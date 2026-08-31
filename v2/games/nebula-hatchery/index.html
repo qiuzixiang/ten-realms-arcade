@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="zh-CN" data-realm="nebula-hatchery">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#100d2a" />
+    <meta name="description" content="星云孵化场：围绕星核绘制边界，把空间孵化为连通、各含一核且呈 180° 旋转对称的星云。" />
+    <meta property="og:title" content="星云孵化场 · 十境谜游馆" />
+    <meta property="og:description" content="在宇宙温床中划分旋转对称的星云，让恒星与行星逐层诞生。" />
+    <title>星云孵化场 · 十境谜游馆</title>
+    <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="../../shared/realm-ui.css" />
+    <script type="module" src="../../shared/realm-ui.mjs"></script>
+    <script type="module" src="./app.mjs"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#nebula-board">跳到星云育床</a>
+    <div class="cosmos" aria-hidden="true"><i></i><i></i><i></i></div>
+    <div class="aurora aurora--violet" aria-hidden="true"></div>
+    <div class="aurora aurora--mint" aria-hidden="true"></div>
+
+    <header class="topbar">
+      <a class="back-link" href="../../" aria-label="返回十境谜游馆首页">
+        <span aria-hidden="true">←</span>
+        <span><small>TEN REALMS</small>返回谜游馆</span>
+      </a>
+      <div class="nursery-seal" aria-label="十境谜游馆，星云孵化场">
+        <span class="nursery-seal__core" aria-hidden="true"><i></i></span>
+        <span><small>CELESTIAL NURSERY</small>星云孵化场</span>
+      </div>
+      <nav class="top-actions" aria-label="页面选项">
+        <button class="pill-button" id="mute-button" type="button" aria-pressed="false">
+          <span aria-hidden="true">♬</span><span class="action-label">声音</span>
+        </button>
+        <button class="pill-button" id="rules-button" type="button">
+          <span aria-hidden="true">?</span><span class="action-label">规则</span>
+        </button>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="page-title">
+        <div>
+          <p class="eyebrow"><span aria-hidden="true"></span> SYMMETRY INCUBATION LAB</p>
+          <h1 id="page-title">星云<em>孵化场</em></h1>
+        </div>
+        <p>围绕星核划出孵化边界。每片空间必须连成一体、恰含一个中心星核，并在旋转半周后与自身重合。</p>
+      </section>
+
+      <section class="game-shell" aria-label="星云孵化场游戏区">
+        <article class="nursery-card" aria-labelledby="level-title">
+          <header class="nursery-heading">
+            <div>
+              <p id="level-kicker">微光育苗 · 01</p>
+              <h2 id="level-title">露滴育星皿</h2>
+            </div>
+            <div class="hatch-meter" role="progressbar" aria-label="已孵化格子比例" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+              <span id="progress-percent">0%</span>
+              <small>星云稳定</small>
+            </div>
+          </header>
+          <div class="progress-track" aria-hidden="true"><i id="progress-bar"></i></div>
+
+          <div class="board-frame">
+            <p class="visually-hidden" id="board-help">
+              边界笔或擦除笔下，轻触细网格边；归属笔记下，先选星核再选方格。方向键移动双倍网格光标，回车操作当前位置；数字 1、2、3 切换工具，Escape 取消星核选择。
+            </p>
+            <div class="board-scroll" id="board-scroll">
+              <svg
+                id="nebula-board"
+                class="nebula-board"
+                role="group"
+                tabindex="0"
+                data-realm-game-focus
+                aria-label="星云孵化育床"
+                aria-describedby="board-help board-status"
+                xmlns="http://www.w3.org/2000/svg"
+              ></svg>
+            </div>
+            <div class="board-pan-controls" aria-label="宽棋盘平移控制">
+              <button id="board-pan-left" type="button" aria-label="向左平移育床">←</button>
+              <span>9×9 精密育床 · 左右平移查看，轻触边线落笔</span>
+              <button id="board-pan-right" type="button" aria-label="向右平移育床">→</button>
+            </div>
+            <p class="board-status" id="board-status" aria-live="polite">育床尚未分区。选择边界笔，从星核附近开始观察旋转对称。</p>
+          </div>
+
+          <div class="board-legend" aria-label="育床图例">
+            <span><i class="legend-core legend-core--cell" aria-hidden="true"></i>格心核</span>
+            <span><i class="legend-core legend-core--edge" aria-hidden="true"></i>边心核</span>
+            <span><i class="legend-core legend-core--vertex" aria-hidden="true"></i>角点核</span>
+            <span><i class="legend-note" aria-hidden="true">↗</i>归属笔记</span>
+          </div>
+
+          <div class="tool-dock" role="toolbar" aria-label="孵化边界工具">
+            <button class="tool-button is-active" data-mode="draw" type="button" aria-pressed="true">
+              <span class="tool-glyph tool-glyph--draw" aria-hidden="true"><i></i></span>
+              <span><strong>边界笔</strong><small>绘制星云外壳</small></span><kbd>1</kbd>
+            </button>
+            <button class="tool-button" data-mode="erase" type="button" aria-pressed="false">
+              <span class="tool-glyph tool-glyph--erase" aria-hidden="true"><i></i></span>
+              <span><strong>擦除笔</strong><small>打开相邻空间</small></span><kbd>2</kbd>
+            </button>
+            <button class="tool-button" data-mode="note" type="button" aria-pressed="false">
+              <span class="tool-glyph tool-glyph--note" aria-hidden="true">↗</span>
+              <span><strong>归属笔记</strong><small>成对标记，不判胜负</small></span><kbd>3</kbd>
+            </button>
+          </div>
+        </article>
+
+        <aside class="lab-card" aria-labelledby="lab-title">
+          <header class="lab-heading">
+            <p>INCUBATION TELEMETRY</p>
+            <h2 id="lab-title">孵化观测台</h2>
+            <span id="save-state">每次落笔都保存在本机</span>
+          </header>
+
+          <dl class="status-grid">
+            <div><dt>稳定星云</dt><dd><strong id="valid-count">0</strong><span id="core-total">/ 0 片</span></dd></div>
+            <div><dt>封闭矛盾</dt><dd><strong id="conflict-count">0</strong><span> 舱</span></dd></div>
+            <div><dt>孵化边界</dt><dd><strong id="edge-count">0</strong><span> 段</span></dd></div>
+            <div><dt>观测步数</dt><dd><strong id="move-count">0</strong><span> 步</span></dd></div>
+          </dl>
+
+          <fieldset class="difficulty-picker">
+            <legend>选择培育强度</legend>
+            <div id="difficulty-buttons"></div>
+            <p id="difficulty-note">5×5 · 8 枚星核 · 求解器已证明唯一</p>
+          </fieldset>
+
+          <div class="lab-actions">
+            <button class="primary-action" id="new-game-button" type="button"><span aria-hidden="true">✦</span> 换一星胚</button>
+            <button id="restart-button" type="button"><span aria-hidden="true">↺</span> 重开</button>
+            <button id="undo-button" type="button" disabled><span aria-hidden="true">↶</span> 撤销</button>
+          </div>
+
+          <div class="lab-message" id="lab-message">
+            <span class="pulse-orb" aria-hidden="true"><i></i></span>
+            <p><strong>等待第一段孵化边界</strong><span>星核可能落在格心、边心或角点；边界永远不能穿过星核。</span></p>
+          </div>
+
+          <section class="atlas" aria-labelledby="atlas-title">
+            <div class="atlas-heading">
+              <h3 id="atlas-title">星系图鉴</h3>
+              <span><b id="atlas-count">0</b> / 9 孵化</span>
+            </div>
+            <div class="rarity-strip" id="rarity-strip" aria-label="已发现星核稀有度"></div>
+            <ul class="local-badges" aria-label="本游戏观测徽章">
+              <li id="zero-conflict-badge"><i aria-hidden="true">◇</i><span><b>零矛盾孵化</b><small>一局未封闭错误区域</small></span></li>
+              <li id="intuition-badge"><i aria-hidden="true">◇</i><span><b>对称直觉</b><small>不使用归属笔记完成一局</small></span></li>
+            </ul>
+            <p>图鉴、稀有度与观测徽章只改变表现，不参与规则、解数或境界值计算。</p>
+          </section>
+
+          <div class="keyboard-guide">
+            <h3>观测快捷键</h3>
+            <p><span>方向键</span>移动光标　<span>Enter</span>落笔 / 选核　<span>Z / U</span>撤销　<span>R</span>重开　<span>N</span>换题　<span>M</span>静音</p>
+          </div>
+        </aside>
+      </section>
+    </main>
+
+    <footer>
+      <p>星云会长大，规则与源流仍保持清晰。</p>
+      <a href="../../">十境谜游馆</a><span aria-hidden="true">·</span>
+      <button id="footer-rules-button" type="button">规则源流与 MIT 致谢</button>
+    </footer>
+
+    <dialog class="rules-dialog" id="rules-dialog" aria-labelledby="rules-title">
+      <div class="dialog-topline">
+        <p>RULES &amp; ORIGIN</p>
+        <button class="dialog-close" id="rules-close-button" type="button" aria-label="关闭规则">×</button>
+      </div>
+      <div class="rules-content">
+        <header>
+          <span class="rules-core" aria-hidden="true"><i></i></span>
+          <div><p>Galaxies / Spiral Galaxies</p><h2 id="rules-title">星云孵化的四条定律</h2></div>
+        </header>
+        <ol class="rule-list">
+          <li><span>01</span><p><strong>每片星云四向连通</strong>边界把方格分成区域；只共用角点不算连接，同一区域内也不能残留一段多余边界。</p></li>
+          <li><span>02</span><p><strong>每片恰含一个中心星核</strong>星核可在格心、两格共享边的中点，或四格共享角点；边心核周围两格、角点核周围四格必须同属一片。</p></li>
+          <li><span>03</span><p><strong>旋转 180° 后完全重合</strong>区域可以凹陷，也不要求是矩形；只要每个方格绕星核转半周后仍落在同一区域。</p></li>
+          <li><span>04</span><p><strong>全盘每格都要稳定</strong>满足全部条件的局部星云会先亮起；只有所有方格都进入合法星云才完成孵化。</p></li>
+        </ol>
+        <section class="control-rules">
+          <h3>边界与笔记不是同一件事</h3>
+          <p>“边界笔 / 擦除笔”改变正式分区并决定胜负。边界不能穿过边心或角点星核。“归属笔记”只是你的推理箭头：先选星核，再点一个方格，会同时标记它绕该核旋转后的伙伴；笔记正确与否都不参与通关。</p>
+          <p>鼠标与触控使用同一套几何命中：归属笔记模式下，星核拥有 44px 圆形优先区域；边界笔与擦除笔使用 44px 逻辑触控带。交点附近若方向含糊会拒绝落笔，避免误选半格。</p>
+        </section>
+        <section class="solver-note">
+          <h3>题面保证</h3>
+          <p>九道内置题均由固定种子的上游生成器产生，并由本作独立、穷尽到第二解的格归属求解器再次验证；当前题库每题恰有一解。胜利仍由实时规则重新判定，不与隐藏答案字符串比对。</p>
+        </section>
+        <section class="source-panel">
+          <h3>规则源流</h3>
+          <p>底层规则逐项保留自 Simon Tatham's Portable Puzzle Collection 的 Galaxies；原谜题也称 Tentai Show / Spiral Galaxies，由 Nikoli 发明，James Harvey 贡献给该合集。本页主题、视觉、文案、动画、输入反馈与合成声音为独立再创作。</p>
+          <div class="source-links">
+            <a href="https://github.com/ebnbin/puzzles/blob/main/doc-zh/galaxies.html" target="_blank" rel="noreferrer">Galaxies 中文规则文档 <span aria-hidden="true">↗</span></a>
+            <a href="https://www.chiark.greenend.org.uk/~sgtatham/puzzles/" target="_blank" rel="noreferrer">Simon Tatham 谜题合集 <span aria-hidden="true">↗</span></a>
+            <a href="../../THIRD_PARTY_NOTICES.md">MIT 致谢与第三方声明 <span aria-hidden="true">→</span></a>
+          </div>
+          <small>感谢 Simon Tatham、Portable Puzzle Collection 贡献者、James Harvey 与 ebnbin/puzzles 中文文档维护者；原项目依 MIT License 提供。</small>
+        </section>
+      </div>
+    </dialog>
+
+    <dialog class="victory-dialog" id="victory-dialog" aria-labelledby="victory-title">
+      <div class="birth-system" aria-hidden="true">
+        <i class="birth-system__core"></i><i class="birth-system__orbit"></i><i class="birth-system__planet"></i><i class="birth-system__moon"></i>
+      </div>
+      <p>CELESTIAL BIRTH CONFIRMED</p>
+      <h2 id="victory-title">星云开始诞生</h2>
+      <p>所有孵化边界都已稳定。星云旋转，恒星点燃，行星正从尘埃环中凝聚。</p>
+      <dl>
+        <div><dt>观测步数</dt><dd id="victory-moves">0</dd></div>
+        <div><dt>稳定星云</dt><dd id="victory-regions">0 / 0</dd></div>
+        <div><dt>本局矛盾</dt><dd id="victory-conflicts">0</dd></div>
+      </dl>
+      <p class="victory-discovery" id="victory-discovery">图鉴新增：常辉星核</p>
+      <div class="victory-actions">
+        <button class="primary-action" id="next-level-button" type="button">培育下一枚星胚</button>
+        <button id="stay-button" type="button">观察新生星系</button>
+      </div>
+    </dialog>
+
+    <div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+    <div class="visually-hidden" id="assertive-status" role="alert" aria-live="assertive"></div>
+  </body>
+</html>

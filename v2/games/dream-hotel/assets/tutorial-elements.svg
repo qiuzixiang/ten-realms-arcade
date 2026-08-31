@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 184" preserveAspectRatio="xMidYMid meet" role="img" aria-labelledby="title description">
+  <title id="title">旅客数字与梦境格子</title>
+  <desc id="description">一块真实旅舍棋盘上，数字6位于格子中，旁边标注客房面积等于数字。</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#171026"/><stop offset="1" stop-color="#09070f"/></linearGradient>
+    <radialGradient id="clue" cx="35%" cy="28%" r="80%"><stop stop-color="#fff5d9"/><stop offset="1" stop-color="#d9aa57"/></radialGradient>
+  </defs>
+  <rect width="320" height="184" rx="14" fill="url(#bg)"/>
+  <path d="M18 26H302M18 158H302" stroke="#e6bd70" stroke-opacity=".18"/>
+  <g transform="translate(28 30)">
+    <rect width="144" height="120" rx="5" fill="#1c1528" stroke="#e6bd70" stroke-width="2"/>
+    <g stroke="#675875" stroke-opacity=".7">
+      <path d="M36 0V120M72 0V120M108 0V120M0 30H144M0 60H144M0 90H144"/>
+    </g>
+    <g transform="translate(72 60)">
+      <circle r="16" fill="url(#clue)" stroke="#ffe2a6"/>
+      <text y="6" text-anchor="middle" fill="#24172d" font-family="Georgia,serif" font-size="18" font-weight="700">6</text>
+    </g>
+    <g fill="#9d7be7" fill-opacity=".26">
+      <circle cx="18" cy="15" r="3"/><circle cx="126" cy="105" r="3"/><path d="M19 103l4 7 7 4-7 4-4 7-4-7-7-4 7-4z"/>
+    </g>
+  </g>
+  <g transform="translate(192 39)" font-family="-apple-system,BlinkMacSystemFont,'PingFang SC',sans-serif">
+    <text fill="#e6bd70" font-size="8" font-weight="700" letter-spacing="1.6">TRAVELER REQUEST</text>
+    <text y="27" fill="#f8f0ff" font-size="18" font-weight="700">数字 = 面积</text>
+    <path d="M0 42H91" stroke="#e6bd70" stroke-opacity=".35"/>
+    <text y="62" fill="#b9adca" font-size="11">数字 6 需要恰好 6 格</text>
+    <text y="80" fill="#b9adca" font-size="11">数字可在房内任意位置</text>
+    <g transform="translate(0 96)">
+      <rect width="102" height="28" rx="14" fill="#9d7be7" fill-opacity=".1" stroke="#9d7be7" stroke-opacity=".38"/>
+      <circle cx="14" cy="14" r="4" fill="#e6bd70"/>
+      <text x="26" y="18" fill="#c7a9ff" font-size="10">每房仅一位旅客</text>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,98 @@
+{
+  "schemaVersion": 1,
+  "edition": "2.0",
+  "status": "ready",
+  "expectedGames": 10,
+  "games": [
+    {
+      "slug": "cloud-camp",
+      "title": "云端露营季",
+      "genre": "布营玩法",
+      "mechanic": "树帐配对",
+      "summary": "在漂浮林地为每棵云杉安排一顶观星帐篷，精确满足行列数字与一一配对规则。",
+      "preview": "./assets/previews/cloud-camp.webp",
+      "accent": "#ffb45f"
+    },
+    {
+      "slug": "mist-photo-studio",
+      "title": "雾都照相馆",
+      "genre": "显影玩法",
+      "mechanic": "连段数织",
+      "summary": "在红色安全灯下依据行列连续段提示，为馆藏底片完成数织显影。",
+      "preview": "./assets/previews/mist-photo-studio.webp",
+      "accent": "#f04d48"
+    },
+    {
+      "slug": "mystic-perfumery",
+      "title": "神秘调香所",
+      "genre": "调香玩法",
+      "mechanic": "香印推理",
+      "summary": "从聚合香印中推理出秘密香方，让专属调香瓶在最后一滴成形。",
+      "preview": "./assets/previews/mystic-perfumery.webp",
+      "accent": "#d29a5c"
+    },
+    {
+      "slug": "nebula-hatchery",
+      "title": "星云孵化场",
+      "genre": "分区玩法",
+      "mechanic": "星核对称",
+      "summary": "围绕星核绘制边界，把空间孵化为连通、各含一核且呈 180° 旋转对称的星云。",
+      "preview": "./assets/previews/nebula-hatchery.webp",
+      "accent": "#86f2d0"
+    },
+    {
+      "slug": "neon-skyline",
+      "title": "霓虹天际线",
+      "genre": "造城玩法",
+      "mechanic": "视线排楼",
+      "summary": "依据街区四周的观察数字，在每行每列规划不重复的建筑高度，点亮未来城市。",
+      "preview": "./assets/previews/neon-skyline.webp",
+      "accent": "#63f3ff"
+    },
+    {
+      "slug": "polar-railway",
+      "title": "极地蒸汽列车",
+      "genre": "铺轨玩法",
+      "mechanic": "配额连线",
+      "summary": "依据行列调度配额，从起点 A 铺出一条不分叉、不交叉的完整铁轨，抵达终点 B。",
+      "preview": "./assets/previews/polar-railway.webp",
+      "accent": "#77d9f5"
+    },
+    {
+      "slug": "season-dyehouse",
+      "title": "四季染坊",
+      "genre": "浸染玩法",
+      "mechanic": "连区换色",
+      "summary": "从布面左上角选择季节染料，让起点连通区如染液浸展，在步限内统一整幅织物。",
+      "preview": "./assets/previews/season-dyehouse.webp",
+      "accent": "#d7aa56"
+    },
+    {
+      "slug": "yokai-inn",
+      "title": "妖怪旅店",
+      "genre": "排房玩法",
+      "mechanic": "无序配对",
+      "summary": "把相邻妖怪需求组成双人客房，让完整 0 到 N 无序数组合各入住一次。",
+      "preview": "./assets/previews/yokai-inn.webp",
+      "accent": "#f0c468"
+    },
+    {
+      "slug": "aurora-magnet-lab",
+      "title": "极光磁场实验室",
+      "genre": "磁场玩法",
+      "mechanic": "极性排布",
+      "summary": "为固定双格槽位装入正负磁极或中性模块，满足四周数量并避免同性磁极接触。",
+      "preview": "./assets/previews/aurora-magnet-lab.webp",
+      "accent": "#62f2e6"
+    },
+    {
+      "slug": "dream-hotel",
+      "title": "梦境旅舍",
+      "genre": "筑梦玩法",
+      "mechanic": "面积分区",
+      "summary": "拖出矩形客房，让每位旅客获得与数字相等的房间面积，并无缝覆盖整层楼。",
+      "preview": "./assets/previews/dream-hotel.webp",
+      "accent": "#c7a9ff"
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" preserveAspectRatio="xMidYMid meet" role="img" aria-labelledby="title description" data-tutorial-state="goal">
+  <title id="title">铺满旅店并让每一种无序数字组合恰好入住一次</title>
+  <desc id="description">一个完整的五乘四旅店被十个互不重叠的房框铺满，右侧十种零到三的无序组合全部打勾。</desc>
+  <rect x="8" y="8" width="624" height="344" rx="30" fill="#15162d" stroke="#f4c66d" stroke-width="3"/>
+  <g font-family="system-ui,sans-serif">
+    <text x="32" y="46" fill="#f4c66d" font-size="19" font-weight="900">所有格铺满 · 每种组合一次</text>
+    <g transform="translate(32 66)" font-size="22" font-weight="900" text-anchor="middle">
+      <g fill="#1d2540" stroke="#766d91" stroke-width="1.5">
+        <rect x="0" y="0" width="48" height="48" rx="10"/><rect x="52" y="0" width="48" height="48" rx="10"/><rect x="104" y="0" width="48" height="48" rx="10"/><rect x="156" y="0" width="48" height="48" rx="10"/><rect x="208" y="0" width="48" height="48" rx="10"/>
+        <rect x="0" y="52" width="48" height="48" rx="10"/><rect x="52" y="52" width="48" height="48" rx="10"/><rect x="104" y="52" width="48" height="48" rx="10"/><rect x="156" y="52" width="48" height="48" rx="10"/><rect x="208" y="52" width="48" height="48" rx="10"/>
+        <rect x="0" y="104" width="48" height="48" rx="10"/><rect x="52" y="104" width="48" height="48" rx="10"/><rect x="104" y="104" width="48" height="48" rx="10"/><rect x="156" y="104" width="48" height="48" rx="10"/><rect x="208" y="104" width="48" height="48" rx="10"/>
+        <rect x="0" y="156" width="48" height="48" rx="10"/><rect x="52" y="156" width="48" height="48" rx="10"/><rect x="104" y="156" width="48" height="48" rx="10"/><rect x="156" y="156" width="48" height="48" rx="10"/><rect x="208" y="156" width="48" height="48" rx="10"/>
+      </g>
+      <g fill="#fff7dc">
+        <text x="24" y="32">0</text><text x="76" y="32">2</text><text x="128" y="32">2</text><text x="180" y="32">3</text><text x="232" y="32">0</text>
+        <text x="24" y="84">1</text><text x="76" y="84">3</text><text x="128" y="84">0</text><text x="180" y="84">0</text><text x="232" y="84">1</text>
+        <text x="24" y="136">1</text><text x="76" y="136">3</text><text x="128" y="136">3</text><text x="180" y="136">3</text><text x="232" y="136">1</text>
+        <text x="24" y="188">2</text><text x="76" y="188">0</text><text x="128" y="188">2</text><text x="180" y="188">2</text><text x="232" y="188">1</text>
+      </g>
+      <g fill="#f4c66d10" stroke="#f4c66d" stroke-width="4">
+        <rect x="-4" y="-4" width="108" height="56" rx="14"/><rect x="100" y="-4" width="108" height="56" rx="14"/>
+        <rect x="204" y="-4" width="56" height="108" rx="14"/><rect x="-4" y="48" width="108" height="56" rx="14"/>
+        <rect x="100" y="48" width="108" height="56" rx="14"/><rect x="-4" y="100" width="56" height="108" rx="14"/>
+        <rect x="48" y="100" width="56" height="108" rx="14"/><rect x="100" y="100" width="108" height="56" rx="14"/>
+        <rect x="204" y="100" width="56" height="108" rx="14"/><rect x="100" y="152" width="108" height="56" rx="14"/>
+      </g>
+    </g>
+    <g transform="translate(326 74)">
+      <text x="0" y="0" fill="#65d5c8" font-size="15" font-weight="900">完整 0..3 住客组合</text>
+      <g transform="translate(0 20)" font-size="14" font-weight="800">
+        <g fill="#65d5c820" stroke="#65d5c8" stroke-width="2">
+          <rect x="0" y="0" width="82" height="38" rx="12"/><rect x="92" y="0" width="82" height="38" rx="12"/><rect x="184" y="0" width="82" height="38" rx="12"/>
+          <rect x="0" y="48" width="82" height="38" rx="12"/><rect x="92" y="48" width="82" height="38" rx="12"/><rect x="184" y="48" width="82" height="38" rx="12"/>
+          <rect x="0" y="96" width="82" height="38" rx="12"/><rect x="92" y="96" width="82" height="38" rx="12"/><rect x="184" y="96" width="82" height="38" rx="12"/>
+          <rect x="0" y="144" width="82" height="38" rx="12"/>
+        </g>
+        <g fill="#eafff9">
+          <text x="12" y="25">✓ 0·0</text><text x="104" y="25">✓ 0·1</text><text x="196" y="25">✓ 1·1</text>
+          <text x="12" y="73">✓ 0·2</text><text x="104" y="73">✓ 1·2</text><text x="196" y="73">✓ 2·2</text>
+          <text x="12" y="121">✓ 0·3</text><text x="104" y="121">✓ 1·3</text><text x="196" y="121">✓ 2·3</text>
+          <text x="12" y="169">✓ 3·3</text>
+        </g>
+      </g>
+      <g transform="translate(0 226)">
+        <circle cx="22" cy="22" r="20" fill="#f4c66d"/>
+        <path d="M12 22l7 7 14-17" fill="none" stroke="#15162d" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+        <text x="55" y="18" fill="#fff7dc" font-size="16" font-weight="900">旅店结账成功</text>
+        <text x="55" y="39" fill="#d8d0df" font-size="13">排除线只是笔记，不影响通关</text>
+      </g>
+    </g>
+  </g>
+</svg>

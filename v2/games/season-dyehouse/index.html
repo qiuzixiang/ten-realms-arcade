@@ -1,0 +1,383 @@
+<!doctype html>
+<html lang="zh-CN" data-realm="season-dyehouse">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#243a35" />
+    <meta
+      name="description"
+      content="四季染坊：从布面左上角选择季节染料，让起点连通区如染液浸展，在步限内统一整幅织物。"
+    />
+    <meta property="og:title" content="四季染坊 · 十境谜游馆 2.0" />
+    <meta property="og:description" content="用四时染料浸染一匹山居长绸，让左上染池流过每一根经纬。" />
+    <title>四季染坊 · 十境谜游馆 2.0</title>
+    <link rel="preload" as="image" href="./assets/tutorial-elements.svg" type="image/svg+xml" />
+    <link rel="preload" as="image" href="./assets/tutorial-action.svg" type="image/svg+xml" />
+    <link rel="preload" as="image" href="./assets/tutorial-goal.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="../../shared/realm-ui.css" />
+    <link rel="stylesheet" href="./styles.css" />
+    <script type="module" src="../../shared/realm-ui.mjs"></script>
+    <script type="module" src="./app.mjs"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#cloth-board">跳到染布面</a>
+    <div class="mountain-mist mountain-mist--one" aria-hidden="true"></div>
+    <div class="mountain-mist mountain-mist--two" aria-hidden="true"></div>
+
+    <header class="topbar">
+      <a class="home-link" href="../../" aria-label="返回十境谜游馆 2.0">
+        <span class="home-link__mark" aria-hidden="true">十</span>
+        <span><small>TEN REALMS 2.0</small>返回谜游馆</span>
+      </a>
+      <div class="workshop-sign" aria-label="十境谜游馆第二季，四季染坊">
+        <span class="workshop-sign__stamp" aria-hidden="true">染</span>
+        <span><small>DYEHOUSE · REALM 02</small>四季染坊</span>
+      </div>
+      <nav class="top-actions" aria-label="页面选项">
+        <button class="quiet-button" id="mute-button" type="button" aria-pressed="false">
+          <span aria-hidden="true">♪</span><span class="button-label">声音</span>
+        </button>
+        <button class="quiet-button" id="tutorial-button" type="button">
+          <span aria-hidden="true">◎</span><span class="button-label">教程</span>
+        </button>
+        <button class="quiet-button" id="rules-button" type="button">
+          <span aria-hidden="true">文</span><span class="button-label">规则</span>
+        </button>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="page-title">
+        <div>
+          <p class="eyebrow"><span aria-hidden="true"></span> MIST, FIBRE &amp; FOUR SEASONS</p>
+          <h1 id="page-title">四季<em>染坊</em></h1>
+        </div>
+        <p class="hero-copy">从左上角的一汪染池出发，以六味季候一层层浸过山雾与经纬，直到整匹布只剩一种色系。</p>
+      </section>
+
+      <section class="game-layout" aria-label="四季染坊游戏区">
+        <article class="loom-card" aria-labelledby="board-heading">
+          <header class="loom-heading">
+            <div>
+              <p id="board-kicker">SPRING SILK · 布样 00000001</p>
+              <h2 id="board-heading">春绢·从容</h2>
+            </div>
+            <p class="board-status" id="board-status" role="status" aria-live="polite">从左上角染池开始，选一味不同的染料。</p>
+          </header>
+
+          <div class="loom-stats" aria-label="当前染布数据">
+            <dl>
+              <div>
+                <dt>已控织格</dt>
+                <dd><strong id="controlled-value">0</strong><span id="controlled-total"> / 144</span></dd>
+              </div>
+              <div>
+                <dt>已用步数</dt>
+                <dd><strong id="moves-value">0</strong><span> 步</span></dd>
+              </div>
+              <div>
+                <dt>染布步限</dt>
+                <dd><strong id="limit-value">—</strong><span> 步</span></dd>
+              </div>
+              <div>
+                <dt>求解器参考</dt>
+                <dd><strong id="reference-value">—</strong><span> 步</span></dd>
+              </div>
+              <div class="clean-stat">
+                <dt>连续有效扩张</dt>
+                <dd><strong id="clean-value">0</strong><span> 步</span></dd>
+              </div>
+            </dl>
+            <p class="save-indicator" id="save-state" role="status" aria-live="polite">布样会自动保存在本机</p>
+          </div>
+
+          <div class="board-frame" id="board-frame">
+            <div class="board-scroll-guard">
+              <div
+                class="cloth-board"
+                id="cloth-board"
+                role="grid"
+                tabindex="0"
+                aria-label="染布面，12 行 12 列"
+                aria-describedby="board-help"
+                aria-activedescendant="cloth-cell-0"
+              ></div>
+            </div>
+            <span class="loom-pin loom-pin--left" aria-hidden="true"></span>
+            <span class="loom-pin loom-pin--right" aria-hidden="true"></span>
+          </div>
+          <p class="visually-hidden" id="board-help">
+            游戏始终从左上角的同色连通区扩张。按数字键 1 到 6 选染料；在布面上可用方向键检视织格，按回车或空格选择虚拟光标所在织格的颜色。按 Z 撤销，R 重开，N 换题，M 静音。
+          </p>
+
+          <section class="palette-section" aria-labelledby="palette-title">
+            <div class="palette-heading">
+              <div>
+                <p>SEASONAL DYE POTS</p>
+                <h3 id="palette-title">选择下一味季染</h3>
+              </div>
+              <p><span aria-hidden="true">⌨</span> 数字键 1–6</p>
+            </div>
+            <div class="dye-palette" id="dye-palette" role="toolbar" aria-label="六色季节染料">
+              <button class="dye-button" type="button" data-dye="0" data-colour="0" aria-label="春青染，按 1">
+                <span class="dye-swatch" data-symbol="芽" aria-hidden="true"></span>
+                <span><strong>春青</strong><small>嫩芽斜纹</small></span><kbd>1</kbd>
+              </button>
+              <button class="dye-button" type="button" data-dye="1" data-colour="1" aria-label="夏绯染，按 2">
+                <span class="dye-swatch" data-symbol="☀" aria-hidden="true"></span>
+                <span><strong>夏绯</strong><small>日轮方纹</small></span><kbd>2</kbd>
+              </button>
+              <button class="dye-button" type="button" data-dye="2" data-colour="2" aria-label="秋金染，按 3">
+                <span class="dye-swatch" data-symbol="叶" aria-hidden="true"></span>
+                <span><strong>秋金</strong><small>落叶绫纹</small></span><kbd>3</kbd>
+              </button>
+              <button class="dye-button" type="button" data-dye="3" data-colour="3" aria-label="冬蓝染，按 4">
+                <span class="dye-swatch" data-symbol="❄" aria-hidden="true"></span>
+                <span><strong>冬蓝</strong><small>雪花格纹</small></span><kbd>4</kbd>
+              </button>
+              <button class="dye-button" type="button" data-dye="4" data-colour="4" aria-label="梅紫染，按 5">
+                <span class="dye-swatch" data-symbol="梅" aria-hidden="true"></span>
+                <span><strong>梅紫</strong><small>梅瓣团纹</small></span><kbd>5</kbd>
+              </button>
+              <button class="dye-button" type="button" data-dye="5" data-colour="5" aria-label="松墨染，按 6">
+                <span class="dye-swatch" data-symbol="松" aria-hidden="true"></span>
+                <span><strong>松墨</strong><small>松针竖纹</small></span><kbd>6</kbd>
+              </button>
+            </div>
+          </section>
+        </article>
+
+        <aside class="dyehouse-desk" aria-label="染坊操作台">
+          <section class="control-card" aria-labelledby="control-title">
+            <header class="card-heading">
+              <p>MASTER DYER'S DESK</p>
+              <h2 id="control-title">掌染台</h2>
+            </header>
+
+            <label class="field-label" for="preset-select">
+              <span>织物规格</span>
+              <select id="preset-select">
+                <option value="12x12-easy">春绢·从容 — 12×12 / 6 色 / 参考 +5</option>
+                <option value="12x12-medium">夏织·精进 — 12×12 / 6 色 / 参考 +2</option>
+                <option value="12x12-hard">秋锦·严选 — 12×12 / 6 色 / 参考线</option>
+                <option value="16x16-medium">冬幕·进阶 — 16×16 / 6 色 / 参考 +2</option>
+                <option value="16x16-hard">玄机大幅 — 16×16 / 6 色 / 参考线</option>
+                <option value="12x12-3">三候素染 — 12×12 / 3 色 / 参考线</option>
+                <option value="12x12-4">四时雅染 — 12×12 / 4 色 / 参考线</option>
+              </select>
+            </label>
+
+            <form class="seed-form" id="seed-form">
+              <div class="field-label seed-field">
+                <label class="seed-field__label" for="seed-input">
+                  <span>布样印记</span><small>文字或整数，可复现</small>
+                </label>
+                <div class="seed-entry">
+                  <input id="seed-input" name="seed" type="text" value="00000001" maxlength="80" autocomplete="off" spellcheck="false" />
+                  <button class="primary-button" id="seed-submit-button" type="submit">按印开局</button>
+                </div>
+              </div>
+            </form>
+
+            <button class="daily-button" id="daily-button" type="button">
+              <span class="daily-button__seal" aria-hidden="true">今</span>
+              <span><strong>领今日布样</strong><small>每个本地日期一幅固定织物</small></span>
+            </button>
+
+            <div class="control-actions" role="group" aria-label="布样操作">
+              <button id="new-puzzle-button" type="button"><span aria-hidden="true">＋</span><span>换一匹</span><kbd>N</kbd></button>
+              <button id="restart-button" type="button"><span aria-hidden="true">↺</span><span>重开</span><kbd>R</kbd></button>
+              <button id="undo-button" type="button" disabled><span aria-hidden="true">↶</span><span>撤销</span><kbd>Z</kbd></button>
+            </div>
+
+            <div class="quick-note">
+              <span aria-hidden="true">※</span>
+              <p><strong>无浪费连染</strong>选非同色染料即合法，但只有吸收新织格才会延续“有效扩张”记录。</p>
+            </div>
+          </section>
+
+          <section class="record-card" aria-labelledby="record-title">
+            <header class="card-heading record-heading">
+              <div><p>LOCAL WEAVING LEDGER</p><h2 id="record-title">染坊长卷</h2></div>
+              <span><strong id="catalogue-count">0</strong> / 12 图鉴</span>
+            </header>
+            <dl class="record-summary">
+              <div><dt>每日布样</dt><dd id="daily-count">0</dd></div>
+              <div><dt>本幅个人最佳</dt><dd id="best-value">—</dd></div>
+            </dl>
+            <ul class="catalogue-grid" id="catalogue-grid" aria-label="织物图鉴">
+              <li class="catalogue-item" data-catalogue="spring-sprig"><i aria-hidden="true">芽</i><span><strong>春枝细绢</strong><small>完成任意一匹布</small></span></li>
+              <li class="catalogue-item" data-catalogue="summer-ripple"><i aria-hidden="true">澜</i><span><strong>夏澜纱</strong><small>完成夏织·精进</small></span></li>
+              <li class="catalogue-item" data-catalogue="autumn-check"><i aria-hidden="true">鹿</i><span><strong>秋鹿锦</strong><small>完成秋锦·严选</small></span></li>
+              <li class="catalogue-item" data-catalogue="winter-brocade"><i aria-hidden="true">山</i><span><strong>冬山大幅</strong><small>完成任意 16×16</small></span></li>
+              <li class="catalogue-item" data-catalogue="three-harmony"><i aria-hidden="true">三</i><span><strong>三候素缎</strong><small>完成三候素染</small></span></li>
+              <li class="catalogue-item" data-catalogue="four-turns"><i aria-hidden="true">四</i><span><strong>四时纹绢</strong><small>完成四时雅染</small></span></li>
+              <li class="catalogue-item" data-catalogue="solver-satin"><i aria-hidden="true">算</i><span><strong>精算缎</strong><small>不超参考步数</small></span></li>
+              <li class="catalogue-item" data-catalogue="unbroken-cloud"><i aria-hidden="true">云</i><span><strong>无隙云纹</strong><small>全程每步都扩张</small></span></li>
+              <li class="catalogue-item" data-catalogue="daily-sun"><i aria-hidden="true">日</i><span><strong>朝日布样</strong><small>完成 1 张每日布样</small></span></li>
+              <li class="catalogue-item" data-catalogue="daily-moon"><i aria-hidden="true">月</i><span><strong>三日月绮</strong><small>完成 3 个不同日期</small></span></li>
+              <li class="catalogue-item" data-catalogue="seven-frames"><i aria-hidden="true">七</i><span><strong>七架合锦</strong><small>通过全部 7 种规格</small></span></li>
+              <li class="catalogue-item" data-catalogue="masterpiece"><i aria-hidden="true">廿</i><span><strong>百转名绣</strong><small>收录 20 匹不同布面</small></span></li>
+            </ul>
+            <p class="record-footnote">图鉴、个人最佳与奖励只存在本机；每个题面与成就奖励都以唯一标识去重。</p>
+          </section>
+        </aside>
+      </section>
+    </main>
+
+    <footer>
+      <p><span aria-hidden="true">◇</span> 经纬会留下季候，规则与来路也不会被山雾遮住。</p>
+      <div>
+        <a href="../../">十境谜游馆 2.0</a>
+        <button type="button" data-open-rules>查看规则源流与 MIT 致谢</button>
+      </div>
+    </footer>
+
+    <dialog class="tutorial-dialog" id="tutorial-dialog" aria-labelledby="tutorial-title">
+      <div class="dialog-topline">
+        <p>THE DYER'S FIRST LESSON</p>
+        <button class="icon-close" id="tutorial-close" type="button" aria-label="关闭教程">×</button>
+      </div>
+      <div class="tutorial-body">
+        <div class="tutorial-picture">
+          <img
+            id="tutorial-image"
+            src="./assets/tutorial-elements.svg"
+            alt="四季染坊的布面、左上染池与带纹理符号的季节染料"
+            width="640"
+            height="360"
+          />
+        </div>
+        <div class="tutorial-copy-block">
+          <p class="tutorial-step" id="tutorial-step">01 / 03 · 认识元素</p>
+          <h2 id="tutorial-title">染池在布面左上角</h2>
+          <p id="tutorial-copy">金线圈住的左上同色连通块，就是你此刻控制的染池。六种染料各有季候符号和独立织纹，不只靠颜色区分。</p>
+        </div>
+      </div>
+      <div class="tutorial-nav">
+        <button id="tutorial-skip" type="button">跳过教程</button>
+        <span class="tutorial-dots" aria-hidden="true"><i class="is-current"></i><i></i><i></i></span>
+        <div>
+          <button id="tutorial-prev" type="button" disabled>上一张</button>
+          <button class="primary-button" id="tutorial-next" type="button">下一张</button>
+        </div>
+      </div>
+    </dialog>
+
+    <dialog class="rules-dialog" id="rules-dialog" aria-labelledby="rules-title">
+      <div class="dialog-topline">
+        <p>FLOOD · RULES &amp; ORIGIN</p>
+        <button class="icon-close" id="rules-close" type="button" aria-label="关闭规则">×</button>
+      </div>
+      <div class="rules-scroll">
+        <header class="rules-heading">
+          <span class="ink-roundel" aria-hidden="true">浸</span>
+          <div><p>Portable Puzzle Collection / Flood</p><h2 id="rules-title">一池染尽四时色</h2></div>
+        </header>
+
+        <ol class="rule-list">
+          <li>
+            <span>01</span>
+            <p><strong>起点只在左上角</strong>染池是布面左上格，以及所有经上下左右相连、且与它同色的织格；对角接触不算连通。</p>
+          </li>
+          <li>
+            <span>02</span>
+            <p><strong>先改染起点块，再按连通性吸收</strong>选一味不同于当前染池的染料，先把旧起点连通块全部改成新色；改染后与它上下左右相连的同色织格，会自然并入新染池。</p>
+          </li>
+          <li>
+            <span>03</span>
+            <p><strong>合法操作可以零扩张</strong>任意非同色选择都合法并计 1 步，即使这次没有吸收新格。这会中断“连续有效扩张”，但不会被引擎禁止。</p>
+          </li>
+          <li>
+            <span>04</span>
+            <p><strong>同色选择严格无效</strong>若所选染料就是左上染池当前颜色，布面、撤销栈与记录都不改变，也不计步。</p>
+          </li>
+          <li>
+            <span>05</span>
+            <p><strong>在步限内统一全布</strong>当每一格都与左上染池连通且同色，并且已用步数不超过步限，才算通关。在第“步限”步刚好完成，仍然胜利。</p>
+          </li>
+          <li>
+            <span>06</span>
+            <p><strong>超限后可继续练习，但本局仍失败</strong>未完成时一旦用完步限，本次成绩已失败。可继续染到全布统一来练习，但超限后才统一不会转为通关；需撤销到步限内完成，或重开再试。</p>
+          </li>
+        </ol>
+
+        <section class="reference-note" aria-labelledby="reference-title">
+          <div aria-hidden="true">Σ?</div>
+          <p><strong id="reference-title">“参考步数”不是已证明的最优解</strong>本作保留上游 Flood 的三层前瞻启发式求解思路，它提供可靠可解的参考路径，但没有枚举并证明最短解，因此界面绝不标注“最优”。</p>
+        </section>
+
+        <section class="limit-table" aria-labelledby="limit-title">
+          <h3 id="limit-title">不同规格的步限</h3>
+          <p>每个可复现布样都先由参考求解器跑通，然后按规格加入宽限。原版 Flood 只有步数与限制，<strong>没有分数系统</strong>；本作的图鉴与本地记录是题材化的长期激励，不改变胜负。</p>
+          <div class="limit-grid">
+            <span><b>从容</b>参考 +5</span>
+            <span><b>精进 / 16×16 进阶</b>参考 +2</span>
+            <span><b>严选 / 大幅 / 3–4 色</b>等于参考</span>
+          </div>
+        </section>
+
+        <section class="control-guide" aria-labelledby="control-guide-title">
+          <h3 id="control-guide-title">操作与辅助</h3>
+          <p>点击或轻触染料，或按数字键 1–6。布面只有一个键盘焦点：方向键移动虚拟光标查看织格，回车或空格会选择该织格的颜色。Z 撤销，R 重开，N 换题，M 静音。每一步都自动保存；损坏或不符规则的存档会安全回退到同题初始状态。</p>
+        </section>
+
+        <section class="source-panel" aria-labelledby="source-title">
+          <h3 id="source-title">规则源流与 MIT 致谢</h3>
+          <p>核心规则与参数源自 Simon Tatham's Portable Puzzle Collection 的 Flood；中文网页版参考 ebnbin/puzzles。四季染坊的织物题面、界面、图鉴、文案、动效与合成声音为独立再创作。</p>
+          <div class="source-links">
+            <a href="https://puzzles.ebnbin.dev/doc/zh/flood.html" target="_blank" rel="noreferrer">
+              Flood 中文规则 <span aria-hidden="true">↗</span>
+            </a>
+            <a href="https://github.com/ebnbin/puzzles/blob/main/src/games/flood.ts" target="_blank" rel="noreferrer">
+              ebnbin/puzzles · src/games/flood.ts <span aria-hidden="true">↗</span>
+            </a>
+            <a href="https://github.com/ebnbin/puzzles/blob/main/vendor/sgtpuzzles/flood.c" target="_blank" rel="noreferrer">
+              Portable Puzzles · vendor flood.c <span aria-hidden="true">↗</span>
+            </a>
+            <a href="https://github.com/ebnbin/puzzles/blob/main/vendor/sgtpuzzles/LICENCE" target="_blank" rel="noreferrer">
+              Portable Puzzles · MIT LICENCE <span aria-hidden="true">↗</span>
+            </a>
+            <a href="../../THIRD_PARTY_NOTICES.md">
+              十境谜游馆 · 第三方声明 <span aria-hidden="true">→</span>
+            </a>
+          </div>
+          <small>感谢 Simon Tatham、Portable Puzzle Collection 全体贡献者，以及 ebnbin/puzzles 中文文档与网页版维护者。相关上游代码依 MIT License 提供。</small>
+        </section>
+      </div>
+    </dialog>
+
+    <dialog class="result-dialog victory-dialog" id="victory-dialog" aria-labelledby="victory-title">
+      <div class="result-mist" aria-hidden="true"><i></i><i></i><i></i></div>
+      <p class="result-kicker">THE CLOTH HOLDS ONE SEASON</p>
+      <span class="result-seal" aria-hidden="true">成</span>
+      <h2 id="victory-title">一色浸尽，新布入卷</h2>
+      <p id="victory-copy">染液已流过每一根经纬，这匹织物正在山风里慢慢干透。</p>
+      <dl class="result-stats">
+        <div><dt>完成步数</dt><dd id="victory-moves">0</dd></div>
+        <div><dt>染布步限</dt><dd id="victory-limit">0</dd></div>
+        <div><dt>求解器参考</dt><dd id="victory-reference">0</dd></div>
+      </dl>
+      <p class="catalogue-reward" id="victory-catalogue">染坊长卷已记下这幅布样。</p>
+      <div class="result-actions">
+        <button class="primary-button" id="victory-next" type="button">开下一幅布样</button>
+        <button id="victory-stay" type="button">留在布前</button>
+      </div>
+    </dialog>
+
+    <dialog class="result-dialog failure-dialog" id="failure-dialog" aria-labelledby="failure-title">
+      <p class="result-kicker">THE DYE HAS CROSSED THE LIMIT</p>
+      <span class="result-seal result-seal--failure" aria-hidden="true">惜</span>
+      <h2 id="failure-title">步限已尽</h2>
+      <p id="failure-copy">这匹布还未统一色系。你可继续染完当作练习，但即使后来全布同色，本局仍记为超限；撤销到步限内才能再次争取通关。</p>
+      <div class="result-actions">
+        <button class="primary-button" id="failure-undo" type="button">撤销一步</button>
+        <button id="failure-continue" type="button">继续练习</button>
+      </div>
+    </dialog>
+
+    <div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+    <div class="visually-hidden" id="live-status" role="status" aria-live="polite" aria-atomic="true"></div>
+    <noscript><p class="noscript-note">四季染坊需要开启 JavaScript 才能织出题面。</p></noscript>
+  </body>
+</html>

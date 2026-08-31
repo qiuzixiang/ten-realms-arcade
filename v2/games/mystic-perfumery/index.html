@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="zh-CN" data-realm="mystic-perfumery">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#120d1a" />
+    <meta
+      name="description"
+      content="神秘调香所：依照 Guess / Mastermind 规则，从聚合香印中推理出秘密香方，让专属调香瓶在最后一滴成形。"
+    />
+    <meta property="og:title" content="神秘调香所 · 十境谜游馆" />
+    <meta property="og:description" content="每一枚香印都只说真话，却从不告诉你是哪一滴。" />
+    <title>神秘调香所 · 十境谜游馆</title>
+    <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="../../shared/realm-ui.css" />
+    <script type="module" src="../../shared/realm-ui.mjs"></script>
+    <script type="module" src="./app.mjs"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#draft-row">跳到当前香方</a>
+    <div class="paper-grain" aria-hidden="true"></div>
+    <div class="ambient-haze haze-one" aria-hidden="true"></div>
+    <div class="ambient-haze haze-two" aria-hidden="true"></div>
+
+    <header class="topbar">
+      <a class="back-link" href="../../" aria-label="返回十境谜游馆首页">
+        <span aria-hidden="true">←</span>
+        <span><small>TEN REALMS</small>返回谜游馆</span>
+      </a>
+      <div class="atelier-sign" aria-label="十境谜游馆，神秘调香所">
+        <span class="atelier-sign__seal" aria-hidden="true">香</span>
+        <span><small>THE VEILED ATELIER</small>神秘调香所</span>
+      </div>
+      <nav class="top-actions" aria-label="页面选项">
+        <button class="round-button" id="mute-button" type="button" aria-pressed="false">
+          <span class="sound-mark" aria-hidden="true">♪</span><span class="button-label">声音</span>
+        </button>
+        <button class="round-button" id="rules-button" type="button">
+          <span class="rules-mark" aria-hidden="true">?</span><span class="button-label">规则</span>
+        </button>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="page-title">
+        <p class="eyebrow"><span aria-hidden="true"></span> DECODE THE VEILED FORMULA</p>
+        <h1 id="page-title">神秘<em>调香所</em></h1>
+        <p>每一枚香印都只说真话，却从不告诉你是哪一滴。循着余香，复原封存在暗柜里的秘密香方。</p>
+      </section>
+
+      <section class="game-layout" aria-label="神秘调香所游戏区">
+        <article class="formula-card" aria-labelledby="recipe-title">
+          <header class="formula-card__header">
+            <div>
+              <p class="recipe-kicker" id="recipe-kicker">馆藏香方 · 01</p>
+              <h2 id="recipe-title">雾窗初醒</h2>
+              <p class="recipe-params" id="recipe-params">4 种精华 · 4 滴香方 · 10 轮机会 · 可重复</p>
+            </div>
+            <div class="round-meter" aria-label="剩余调香轮数">
+              <strong id="round-remaining">10</strong>
+              <span>轮尚余</span>
+            </div>
+          </header>
+
+          <section class="bottle-stage" id="bottle-stage" aria-label="秘密香方与调香瓶状态">
+            <div class="formula-vault" id="formula-vault">
+              <p>密封香方</p>
+              <div class="secret-slots" id="secret-slots" role="img" aria-label="秘密香方尚未揭晓"></div>
+            </div>
+            <div class="forming-bottle" aria-hidden="true">
+              <span class="bottle-stopper"></span>
+              <span class="bottle-neck"></span>
+              <span class="bottle-body"><i id="bottle-liquid"></i><b>V</b></span>
+              <span class="bottle-shadow"></span>
+            </div>
+            <div class="bottle-copy">
+              <p id="bottle-state-label">香气尚在雾中</p>
+              <strong id="bottle-state-copy">提交一轮香方，印记会告诉你两类命中的总数。</strong>
+            </div>
+          </section>
+
+          <section class="history-panel" aria-labelledby="history-title">
+            <div class="section-heading">
+              <div><p>DISTILLATION LOG</p><h3 id="history-title">试香记录</h3></div>
+              <span id="history-count">0 / 10</span>
+            </div>
+            <div class="history-scroll" id="history-scroll" tabindex="0" aria-label="已提交香方，可滚动浏览">
+              <ol class="history-list" id="history-list"></ol>
+              <p class="empty-history" id="empty-history">还没有试香记录。先从下方选择精华，调出第一轮。</p>
+            </div>
+          </section>
+
+          <section class="composer" id="composer" aria-labelledby="composer-title">
+            <div class="section-heading composer-heading">
+              <div><p>CURRENT BLEND</p><h3 id="composer-title">本轮香方</h3></div>
+              <span id="draft-status">尚缺 4 滴</span>
+            </div>
+            <p class="visually-hidden" id="draft-help">
+              左右方向键选择槽位，上下方向键更换精华；数字键直接放入精华并前进；空格切换留香，Delete 清空，Enter 在可提交时验香。
+            </p>
+            <div
+              class="draft-row"
+              id="draft-row"
+              role="group"
+              aria-label="当前秘密香方猜测"
+              aria-describedby="draft-help"
+            ></div>
+
+            <div class="palette-scroll" aria-label="香料精华选择器，可横向滚动">
+              <div class="ingredient-palette" id="ingredient-palette" role="toolbar" aria-label="选择香料精华"></div>
+            </div>
+
+            <div class="composer-actions">
+              <button id="hint-button" type="button"><span aria-hidden="true">⌁</span> 闻香建议</button>
+              <button id="clear-button" type="button"><span aria-hidden="true">×</span> 清空本轮</button>
+              <button class="submit-button" id="submit-button" type="button" disabled>
+                <span class="submit-seal" aria-hidden="true">验</span><span><strong>封蜡验香</strong><small>Enter · 只返回聚合香印</small></span>
+              </button>
+            </div>
+          </section>
+        </article>
+
+        <aside class="formula-ledger" aria-labelledby="ledger-title">
+          <div class="ledger-heading">
+            <p>PERFUMER'S LEDGER</p>
+            <h2 id="ledger-title">配方账册</h2>
+            <span id="save-state">每一步都会留在本机</span>
+          </div>
+
+          <fieldset class="difficulty-picker">
+            <legend>选择调香资格</legend>
+            <div id="difficulty-buttons"></div>
+            <p id="difficulty-note">本作入门预设 · 4 香 / 4 滴 / 10 轮</p>
+          </fieldset>
+
+          <div class="mode-actions">
+            <button class="daily-button" id="daily-button" type="button">
+              <span aria-hidden="true">☾</span><span><strong>今日香方</strong><small id="daily-status">每日一瓶 · 经典参数</small></span>
+            </button>
+            <button id="new-game-button" type="button"><span aria-hidden="true">＋</span> 换一张馆藏</button>
+            <button id="restart-button" type="button"><span aria-hidden="true">↺</span> 重开本方</button>
+            <button id="undo-button" type="button" disabled><span aria-hidden="true">↶</span> 撤销</button>
+          </div>
+
+          <section class="atelier-message" id="atelier-message" aria-live="polite">
+            <span class="message-wick" aria-hidden="true"></span>
+            <p><strong>香方尚未落笔</strong><span>先选中一个香槽，再从精华盘放入香料。</span></p>
+          </section>
+
+          <section class="collection-panel" aria-labelledby="collection-title">
+            <div class="section-heading">
+              <div><p>FORMULA CABINET</p><h3 id="collection-title">配方图鉴</h3></div>
+              <button id="collection-toggle" type="button" aria-expanded="false">展开</button>
+            </div>
+            <dl class="collection-stats">
+              <div><dt>已藏香瓶</dt><dd id="bottle-count">0</dd></div>
+              <div><dt>稀有香瓶</dt><dd id="rare-count">0</dd></div>
+              <div><dt>当前连胜</dt><dd id="streak-count">0</dd></div>
+              <div><dt>今日香方</dt><dd id="daily-count">0</dd></div>
+            </dl>
+            <ol class="bottle-shelf" id="bottle-shelf" hidden></ol>
+          </section>
+
+          <section class="feedback-legend" aria-labelledby="legend-title">
+            <h3 id="legend-title">两类香印</h3>
+            <div><i class="feedback-mark exact" aria-hidden="true">✦</i><p><strong>完全命中</strong><span>精华与位置都正确</span></p></div>
+            <div><i class="feedback-mark misplaced" aria-hidden="true">◇</i><p><strong>成分命中</strong><span>精华正确，位置错误</span></p></div>
+            <small>香印顺序是聚合计数，不与左侧香槽一一对应。</small>
+          </section>
+
+          <p class="keyboard-note">
+            键盘：←→ 选槽 · ↑↓ 换香 · 1–8 放入 · Space 留香 · Delete 清空 · Enter 验香 · H 建议 · Z 撤销 · R 重开 · N 换方 · D 今日 · M 静音 · ? 规则
+          </p>
+        </aside>
+      </section>
+    </main>
+
+    <footer>
+      <p>瓶中香气会散，规则不会。</p>
+      <a href="../../">十境谜游馆</a><span aria-hidden="true">·</span>
+      <button id="footer-rules-button" type="button">规则与来源</button>
+    </footer>
+
+    <dialog class="rules-dialog" id="rules-dialog" aria-labelledby="rules-title">
+      <div class="dialog-topline">
+        <p>RULES &amp; ORIGIN</p>
+        <button class="dialog-close" id="rules-close-button" type="button" aria-label="关闭规则">×</button>
+      </div>
+      <div class="rules-dialog__content">
+        <header>
+          <span class="dialog-seal" aria-hidden="true">V</span>
+          <div><p>Guess / Mastermind</p><h2 id="rules-title">密封香方的四条真相</h2></div>
+        </header>
+        <ol class="rule-list">
+          <li><span>一</span><p><strong>逐槽调出完整香方</strong>当前三档都不允许空白，且允许同一种精华重复出现；秘密香方也遵守相同重复规则。</p></li>
+          <li><span>二</span><p><strong>香印只给聚合数量</strong>实心星印表示精华与位置都正确，空心菱印表示精华正确但位置错误；它们不会对应某个具体槽位。</p></li>
+          <li><span>三</span><p><strong>重复精华不会被多算</strong>每种精华最多按“猜测中数量”和“秘方中数量”的较小值计入命中，再扣除完全命中。</p></li>
+          <li><span>四</span><p><strong>最后一轮仍先判胜</strong>只要全部槽位完全命中就立即成方；若最后一次仍未命中才会失败并揭晓答案。</p></li>
+        </ol>
+        <div class="parameter-table" role="region" aria-labelledby="parameter-title" tabindex="0">
+          <h3 id="parameter-title">本作三档参数</h3>
+          <table>
+            <thead><tr><th>档位</th><th>精华</th><th>槽位</th><th>轮数</th><th>空白 / 重复</th></tr></thead>
+            <tbody>
+              <tr><th>香徒</th><td>4</td><td>4</td><td>10</td><td>否 / 是（本作入门）</td></tr>
+              <tr><th>调香师</th><td>6</td><td>4</td><td>10</td><td>否 / 是（Standard）</td></tr>
+              <tr><th>秘典</th><td>8</td><td>5</td><td>12</td><td>否 / 是（Super）</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="control-rules">
+          <h3>留香与建议</h3>
+          <p>为某个槽位点亮“留”标记后，这一滴会在验香后自动复制到下一轮，但仍可改动；它不是正确提示，也不参与评分。</p>
+          <p>“闻香建议”只从所有与公开历史相容的候选中取一项，不读取秘密香方。馆藏题与每日题都由稳定种子生成；存档只保存题目描述与公开操作，不保存答案数组。</p>
+        </div>
+        <div class="source-panel">
+          <h3>规则与来源</h3>
+          <p>底层规则逐项保留自 Simon Tatham's Portable Puzzle Collection 的 Guess（经典桌游常称 Mastermind）。主题、交互、动画、文案与合成声音为《神秘调香所》的独立再创作。</p>
+          <div class="source-links">
+            <a href="https://github.com/ebnbin/puzzles/blob/main/doc-zh/guess.html" target="_blank" rel="noreferrer">Guess 中文规则文档 <span aria-hidden="true">↗</span></a>
+            <a href="https://www.chiark.greenend.org.uk/~sgtatham/puzzles/" target="_blank" rel="noreferrer">Simon Tatham 谜题合集 <span aria-hidden="true">↗</span></a>
+            <a href="../../THIRD_PARTY_NOTICES.md">MIT 致谢与第三方声明 <span aria-hidden="true">→</span></a>
+          </div>
+          <small>感谢 James Harvey、Simon Tatham、Portable Puzzle Collection 贡献者及 ebnbin/puzzles 中文文档维护者；原项目依 MIT License 提供。</small>
+        </div>
+      </div>
+    </dialog>
+
+    <dialog class="result-dialog" id="result-dialog" aria-labelledby="result-title" aria-describedby="result-copy result-answer result-unlock">
+      <div class="result-bottle" aria-hidden="true"><i></i><b>V</b></div>
+      <p id="result-kicker">FORMULA DISTILLED</p>
+      <h2 id="result-title">香方成形</h2>
+      <p id="result-copy">瓶身在最后一枚香印落下时凝成。</p>
+      <div class="result-answer" id="result-answer" role="img" aria-label="秘密香方"></div>
+      <dl>
+        <div><dt>使用轮数</dt><dd id="result-guesses">0</dd></div>
+        <div><dt>剩余评级</dt><dd id="result-rating">—</dd></div>
+      </dl>
+      <p class="result-unlock" id="result-unlock"></p>
+      <div class="result-actions">
+        <button class="primary-action" id="next-recipe-button" type="button">再调一瓶</button>
+        <button id="result-undo-button" type="button">撤销末轮</button>
+        <button id="stay-button" type="button">留在配方柜</button>
+      </div>
+    </dialog>
+
+    <div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+    <div class="visually-hidden" id="assertive-status" role="alert" aria-live="assertive"></div>
+  </body>
+</html>

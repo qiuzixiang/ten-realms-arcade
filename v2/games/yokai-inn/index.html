@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="zh-CN" data-realm="yokai-inn">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#11152b" />
+    <meta name="description" content="妖怪旅店：遵循 Dominosa 规则，把相邻妖怪需求组成双人客房，让完整 0..N 无序数组合各入住一次。" />
+    <meta property="og:title" content="妖怪旅店 · 十境谜游馆 2.0" />
+    <meta property="og:description" content="排好每一间双人客房，今晚百鬼都有归处。" />
+    <title>妖怪旅店 · 十境谜游馆 2.0</title>
+    <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="../../shared/realm-ui.css" />
+    <link rel="stylesheet" href="./styles.css" />
+    <script type="module" src="../../shared/realm-ui.mjs"></script>
+    <script type="module" src="./app.mjs"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#inn-board">跳到旅店房图</a>
+    <div class="night-sky" aria-hidden="true"><i></i><i></i><i></i></div>
+
+    <header class="topbar">
+      <a class="back-link" href="../../" aria-label="返回十境谜游馆 2.0">
+        <span aria-hidden="true">←</span>
+        <span><small>TEN REALMS 2.0</small>返回谜游馆</span>
+      </a>
+      <div class="realm-mark" aria-label="十境谜游馆 2.0，妖怪旅店">
+        <span aria-hidden="true">宿</span>
+        <p><small>YOKAI INN</small>妖怪旅店</p>
+      </div>
+      <nav class="top-actions" aria-label="游戏选项">
+        <button id="mute-button" class="icon-button" type="button" aria-label="声音开关" aria-pressed="false">
+          <span aria-hidden="true" data-sound-icon>♪</span><span>声音</span>
+        </button>
+        <button id="tutorial-button" class="icon-button" type="button" aria-label="教程">
+          <span aria-hidden="true">画</span><span>教程</span>
+        </button>
+        <button id="rules-button" class="icon-button" type="button" aria-label="规则">
+          <span aria-hidden="true">?</span><span>规则</span>
+        </button>
+      </nav>
+    </header>
+
+    <main>
+      <section class="intro" aria-labelledby="page-title">
+        <div>
+          <p class="eyebrow">百鬼夜泊 · 今宵有房</p>
+          <h1 id="page-title">妖怪<em>旅店</em></h1>
+        </div>
+        <p>把正交相邻的两位房客安排进一间房；从 0 到最大需求的每一种无序组合，今晚都必须恰好出现一次。</p>
+      </section>
+
+      <section class="game-layout" aria-label="妖怪旅店游戏区">
+        <article class="board-card" aria-labelledby="puzzle-title">
+          <header class="board-card__header">
+            <div>
+              <p class="puzzle-kicker"><span id="difficulty-label">灯影小馆</span><span aria-hidden="true">·</span><span id="room-total-label">10 间</span></p>
+              <h2 id="puzzle-title">正在展开旅簿</h2>
+              <p id="puzzle-id" class="puzzle-id">题面生成中</p>
+            </div>
+            <div class="proof-seal" id="proof-seal" data-proof="checking" role="status">
+              <span aria-hidden="true">◇</span><p><strong>求解核验中</strong><small>EXACT COVER</small></p>
+            </div>
+          </header>
+
+          <div class="board-progress" role="progressbar" aria-label="已入住客房" aria-valuemin="0" aria-valuemax="10" aria-valuenow="0">
+            <i id="board-progress-bar"></i>
+          </div>
+
+          <p class="board-help" id="board-help">
+            点击房客之间的接缝直接落笔；也可依次选择两个相邻数字格。金框是确定客房，交叉封条是排除边。
+          </p>
+
+          <div class="board-viewport" id="board-viewport" tabindex="0" aria-label="旅店房图滚动区域">
+            <div
+              class="inn-board"
+              id="inn-board"
+              role="grid"
+              aria-label="妖怪旅店数字房图"
+              aria-describedby="board-help board-selection-status"
+            ></div>
+          </div>
+          <p class="scroll-hint" id="scroll-hint"><span aria-hidden="true">↔</span> 大馆可在房图内左右滑动，页面本身不会横向溢出</p>
+
+          <p class="selection-status" id="board-selection-status" role="status" aria-live="polite">
+            请选择一条接缝，或先选一位房客。
+          </p>
+
+          <div class="tool-palette" role="toolbar" aria-label="排房工具">
+            <button id="room-tool" class="tool-button is-active" type="button" aria-pressed="true">
+              <span class="tool-shape room-shape" aria-hidden="true"></span>
+              <span><strong>确定客房</strong><small>点击 · Enter · D</small></span>
+            </button>
+            <button id="exclude-tool" class="tool-button" type="button" aria-pressed="false">
+              <span class="tool-shape exclude-shape" aria-hidden="true"></span>
+              <span><strong>画排除线</strong><small>右键 · Space · X</small></span>
+            </button>
+          </div>
+
+          <div class="board-actions">
+            <button id="undo-button" type="button" disabled><span aria-hidden="true">↶</span>撤销</button>
+            <button id="restart-button" type="button"><span aria-hidden="true">↺</span>重开</button>
+            <button id="new-puzzle-button" class="primary-action" type="button"><span aria-hidden="true">＋</span>换一簿</button>
+          </div>
+        </article>
+
+        <aside class="guest-ledger" aria-labelledby="ledger-title">
+          <header class="ledger-header">
+            <div><p>KEEPER'S LEDGER</p><h2 id="ledger-title">掌柜旅簿</h2></div>
+            <span id="save-status" role="status">本机自动存档</span>
+          </header>
+
+          <dl class="session-stats">
+            <div><dt>已配客房</dt><dd><strong id="room-count">0</strong><span id="room-total">/ 10</span></dd></div>
+            <div><dt>不同组合</dt><dd><strong id="pair-count">0</strong><span id="pair-total">/ 10</span></dd></div>
+            <div><dt>落笔步数</dt><dd><strong id="move-count">0</strong><span> 步</span></dd></div>
+            <div><dt>误排记录</dt><dd><strong id="mistake-count">0</strong><span> 次</span></dd></div>
+          </dl>
+
+          <fieldset class="difficulty-picker">
+            <legend>选择旅店规模</legend>
+            <div id="difficulty-buttons"></div>
+            <p id="difficulty-note">0–3 · 10 间客房</p>
+          </fieldset>
+
+          <label class="unique-toggle" for="unique-toggle">
+            <input id="unique-toggle" type="checkbox" checked />
+            <span class="switch-track" aria-hidden="true"><i></i></span>
+            <span><strong>确保唯一解</strong><small>关闭后仅保证有解，不承诺多解</small></span>
+          </label>
+
+          <section class="pair-section" aria-labelledby="pair-title">
+            <div class="section-heading"><h3 id="pair-title">今晚的住客组合</h3><span>每种恰好一次</span></div>
+            <div class="pair-tray" id="pair-tray" aria-label="无序数字组合使用情况"></div>
+            <p class="pair-legend"><span><i class="shape-missing" aria-hidden="true"></i>未入住</span><span><i class="shape-used" aria-hidden="true">✓</i>已使用</span><span><i class="shape-duplicate" aria-hidden="true">!</i>重复冲突</span></p>
+          </section>
+
+          <section class="inn-rank" aria-labelledby="rank-title">
+            <div class="rank-topline">
+              <div><p>LOCAL LONG-TERM RECORD</p><h3 id="rank-title"><span id="star-display" aria-label="旅店零星">☆☆☆☆☆</span> 旅店星级</h3></div>
+              <span id="collection-count">0 / 21</span>
+            </div>
+            <p id="next-star-copy">完成第一本旅簿，即可点亮第一颗星。</p>
+            <div class="rank-track" aria-hidden="true"><i id="rank-progress"></i></div>
+            <dl class="collection-mini">
+              <div><dt>住客图鉴</dt><dd id="guest-book-count">0 组</dd></div>
+              <div><dt>稀有组合</dt><dd id="rare-count">0 / 6</dd></div>
+              <div><dt>无误旅簿</dt><dd id="clean-count">0 本</dd></div>
+            </dl>
+            <button id="compendium-button" type="button">打开妖怪住客图鉴 <span aria-hidden="true">→</span></button>
+          </section>
+
+          <section class="number-highlighter" aria-labelledby="highlight-title">
+            <div class="section-heading"><h3 id="highlight-title">追踪同需求房客</h3><span>最多两种</span></div>
+            <div id="highlight-buttons"></div>
+            <p>第一组用圆印，第二组用菱印；不只依靠颜色区分。</p>
+          </section>
+
+          <p class="keyboard-note">
+            键盘：方向键移动 · Enter 配房 · Space 排除 · D / X 切工具 · 0–5 追踪数字 · Z 撤销 · R 重开 · N 换题 · M 静音 · ? 规则
+          </p>
+        </aside>
+      </section>
+    </main>
+
+    <footer>
+      <p>夜再深，也要让每一位房客有归处。</p>
+      <button id="footer-rules-button" type="button">规则、源流与 MIT 致谢</button>
+    </footer>
+
+    <dialog id="tutorial-dialog" class="modal tutorial-dialog" aria-labelledby="tutorial-title" aria-describedby="tutorial-description">
+      <div class="modal-shell">
+        <header class="modal-topline">
+          <div><p>FIRST CHECK-IN · 图片教程</p><h2 id="tutorial-title">三张旅店入门图</h2></div>
+          <button id="tutorial-skip" class="modal-close" type="button">跳过</button>
+        </header>
+        <p class="visually-hidden" id="tutorial-description">依次了解房图元素、配房操作和通关条件。</p>
+        <div class="tutorial-pages" id="tutorial-pages">
+          <article class="tutorial-page" data-tutorial-page="0">
+            <img src="./assets/tutorial-elements.svg" alt="数字需求格、金色客房边框、交叉排除线和两种形状的同数字追踪标记" />
+            <div><p>01 · 先认旅店元素</p><h3>数字是房客需求，边界是你的判断</h3><p>每个数字格是一位房客。金色圆角房框表示两格确定同住；交叉封条表示这两格绝不配成一间。</p><ul><li>房框与封条都不会盖住数字</li><li>最多同时高亮两种需求</li></ul></div>
+          </article>
+          <article class="tutorial-page" data-tutorial-page="1" hidden>
+            <img src="./assets/tutorial-action.svg" alt="分开的两幅操作图：先选择数字二，再选择右侧数字四，最后出现完整客房框" />
+            <div><p>02 · 再学怎么落笔</p><h3>直接点接缝，或依次选择正交相邻两格</h3><p>确定新客房会自动拆掉与它重叠的旧房，并清除这两位房客周围的全部排除线；这一整组变化只算一步，也可一次撤销。</p><ul><li>再次确定同一房间会拆房</li><li>入住后的房客旁不能再画排除线</li></ul></div>
+          </article>
+          <article class="tutorial-page" data-tutorial-page="2" hidden>
+            <img src="./assets/tutorial-goal.svg" alt="五乘四旅店被十间客房完整铺满，零到三的十种无序组合全部打勾" />
+            <div><p>03 · 最后看通关条件</p><h3>铺满全馆，而且完整组合各用一次</h3><p>每格必须恰好属于一间房；从 0 到本馆最大需求的所有无序数对（含 0·0 这类同数对）必须各出现一次。</p><ul><li>重复组合会显示三角冲突印</li><li>排除线只是笔记，不参与胜负</li></ul></div>
+          </article>
+        </div>
+        <footer class="tutorial-footer">
+          <button id="tutorial-previous" type="button" disabled>上一张</button>
+          <p><span id="tutorial-counter">1 / 3</span><span class="tutorial-dots" id="tutorial-dots" aria-hidden="true"><i class="is-active"></i><i></i><i></i></span></p>
+          <button id="tutorial-next" class="primary-action" type="button">下一张</button>
+        </footer>
+      </div>
+    </dialog>
+
+    <dialog id="rules-dialog" class="modal rules-dialog" aria-labelledby="rules-title">
+      <div class="modal-shell">
+        <header class="modal-topline">
+          <div><p>DOMINOSA · RULES &amp; ORIGIN</p><h2 id="rules-title">掌柜的完整排房守则</h2></div>
+          <button class="modal-close" data-close-dialog type="button" aria-label="关闭规则">×</button>
+        </header>
+        <div class="rules-content">
+          <ol class="rule-list">
+            <li><span>一</span><p><strong>完整组合，一种一次</strong>最大数字为 N 时，必须使用 0 ≤ a ≤ b ≤ N 的每一种无序数对，包含所有同数对，且每种恰好一间。</p></li>
+            <li><span>二</span><p><strong>每格恰好入住一次</strong>客房只能覆盖上下左右正交相邻的两格；对角、跨边和重叠都不合法。最终所有格必须完全铺满。</p></li>
+            <li><span>三</span><p><strong>确定与排除含义相反</strong>金框表示两格确定同房；交叉封条表示两格确定不同房。排除线只是推理笔记，不参与最终通关判定。</p></li>
+          </ol>
+          <section>
+            <h3>严格保留的操作语义</h3>
+            <p>再次操作已确定房间会拆除它。放置新房时，与两端重叠的一或两间旧房会先拆除，两端周围的所有排除线也会清掉。只有两端都尚未入住时，才可切换排除线。</p>
+            <p>相同数字组合允许暂时重复，所有重复房间都会出现红色三角冲突印；引擎不会替你悄悄拒绝这一步，但重复状态不能通关。数字追踪最多同时选择两种。</p>
+          </section>
+          <section>
+            <h3>规模与唯一解选项</h3>
+            <p>阶数 N 的旅店严格为 (N+2) × (N+1)，共 (N+1)(N+2)/2 间房；每个数字在题面恰出现 N+2 次。三档分别是 N=3、4、5。</p>
+            <p>“确保唯一解”开启时，题面必须由 exact-cover 求解器完整排除第二解后才会展示唯一印。关闭时仍由构造见证与求解器验证至少一解，但只标注“不保证唯一”；若恰好唯一，会如实显示。</p>
+          </section>
+          <section class="source-panel">
+            <h3>规则源流与许可</h3>
+            <p>规则原型 Dominosa，一般认为由 O. S. Adler 创作；规则与实现参考 Simon Tatham 与众多贡献者的 Portable Puzzle Collection，中文文档参考 ebnbin/puzzles。相关上游依 MIT License 发布，本作规则引擎为独立重写。</p>
+            <div class="source-links">
+              <a href="https://github.com/ebnbin/puzzles/blob/main/doc-zh/dominosa.html" target="_blank" rel="noreferrer">Dominosa 中文规则 <span aria-hidden="true">↗</span></a>
+              <a href="https://github.com/ebnbin/puzzles/blob/5a9e1795a3324e0f6433b79fbe31cbd9b12048a3/src/games/dominosa.ts" target="_blank" rel="noreferrer">固定审计版本的 Web 适配 <span aria-hidden="true">↗</span></a>
+              <a href="https://github.com/ebnbin/puzzles/blob/5a9e1795a3324e0f6433b79fbe31cbd9b12048a3/vendor/sgtpuzzles/LICENCE" target="_blank" rel="noreferrer">Portable Puzzles MIT License <span aria-hidden="true">↗</span></a>
+              <a href="../../THIRD_PARTY_NOTICES.md">本仓库第三方致谢 <span aria-hidden="true">→</span></a>
+            </div>
+          </section>
+        </div>
+      </div>
+    </dialog>
+
+    <dialog id="compendium-dialog" class="modal compendium-dialog" aria-labelledby="compendium-title">
+      <div class="modal-shell">
+        <header class="modal-topline">
+          <div><p>LOCAL YOKAI COMPENDIUM</p><h2 id="compendium-title">妖怪住客图鉴</h2></div>
+          <button class="modal-close" data-close-dialog type="button" aria-label="关闭住客图鉴">×</button>
+        </header>
+        <div class="compendium-summary" id="compendium-summary"></div>
+        <ol class="compendium-grid" id="compendium-grid"></ol>
+        <p class="privacy-note">记录只保存在本浏览器；每个图鉴、稀有组合、无误旅簿与星级都有稳定奖励 ID，重复完成不会重复领取，后续可映射到 2.0 全局 XP。</p>
+      </div>
+    </dialog>
+
+    <dialog id="victory-dialog" class="modal victory-dialog" aria-labelledby="victory-title">
+      <div class="modal-shell victory-shell">
+        <p>ALL GUESTS CHECKED IN</p>
+        <div class="victory-seal" aria-hidden="true">满</div>
+        <h2 id="victory-title">百鬼安寝，今夜满房</h2>
+        <p id="victory-copy">每一种组合都找到了唯一的归处。</p>
+        <dl>
+          <div><dt>落笔</dt><dd id="victory-moves">0 步</dd></div>
+          <div><dt>排房</dt><dd id="victory-quality">无误</dd></div>
+          <div><dt>新记录</dt><dd id="victory-rewards">0 项</dd></div>
+        </dl>
+        <p class="victory-reward-copy" id="victory-reward-copy">本次旅簿已写入本机图鉴。</p>
+        <div class="victory-actions">
+          <button id="victory-stay" type="button">留在旅店</button>
+          <button id="victory-new" class="primary-action" type="button">再开一簿</button>
+        </div>
+      </div>
+    </dialog>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <div class="visually-hidden" id="assertive-status" role="alert" aria-live="assertive"></div>
+  </body>
+</html>

@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="zh-CN" data-realm="mist-photo-studio">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#170b0c">
+  <meta name="description" content="雾都照相馆：在红色安全灯下依据行列连续段提示，为馆藏底片完成数织显影。">
+  <title>雾都照相馆 · 十境谜游馆 2.0</title>
+  <link rel="stylesheet" href="../../shared/realm-ui.css">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <div class="safe-light" aria-hidden="true"></div>
+  <div class="film-grain" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <a class="back-link" href="../../" aria-label="返回十境谜游馆">
+      <span aria-hidden="true">←</span>
+      <span>十境谜游馆</span>
+    </a>
+    <p class="open-sign"><span aria-hidden="true"></span> DARKROOM OPEN · 00:17</p>
+    <button class="header-button" id="tutorialButton" type="button">三步入门</button>
+  </header>
+
+  <main id="main-content">
+    <header class="title-block">
+      <div>
+        <p class="kicker">MIST CITY PHOTOGRAPHIC ARCHIVE · NO. 07</p>
+        <h1>雾都照相馆</h1>
+      </div>
+      <p class="title-copy">红灯亮起后，只剩行列边缘的数字可信。让正确的黑格在相纸上显影，并明确排除每一处留白。</p>
+    </header>
+
+    <div class="studio-layout">
+      <section class="workbench" aria-labelledby="active-title">
+        <header class="workbench-header">
+          <div class="negative-id" aria-hidden="true">
+            <span>NEG</span>
+            <b id="negativeNumber">01</b>
+          </div>
+          <div class="active-copy">
+            <p id="activeMeta">雾历 03 · 南码头</p>
+            <h2 id="active-title">街角的旧伞 · 原片</h2>
+            <p id="activeCaption">雨停前，伞柄在石阶边轻轻偏向西侧。</p>
+          </div>
+          <div class="proof-badge" id="uniqueBadge" title="由求解器验证">唯一解</div>
+        </header>
+
+        <div class="difficulty-strip" aria-label="底片难度与每日挑战">
+          <div class="difficulty-buttons" id="difficultyButtons" role="group" aria-label="选择显影难度"></div>
+          <button class="daily-button" id="dailyButton" type="button">
+            <span aria-hidden="true">◐</span>
+            <span><b>今日底片</b><small id="dailyLabel">等待领取</small></span>
+          </button>
+        </div>
+
+        <div class="board-console">
+          <div class="exposure-meter" aria-label="显影进度">
+            <div>
+              <p>EXPOSURE</p>
+              <b><span id="decidedCount">0</span> / <span id="cellTotal">25</span></b>
+            </div>
+            <div class="meter-track" role="progressbar" aria-label="已明确格子比例" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="progressBar">
+              <span></span>
+            </div>
+            <p id="lineStatus" role="status" aria-live="polite" aria-atomic="true">等待第一笔显影</p>
+          </div>
+
+          <div class="board-frame" id="boardFrame">
+            <div class="board-sprockets board-sprockets--top" aria-hidden="true"></div>
+            <div class="board-viewport" id="boardViewport" role="region" aria-label="可滚动数织底片；大棋盘可在此区域内横向和纵向滚动" tabindex="0">
+              <div class="nonogram-board" id="board" role="grid" aria-label="数织棋盘"></div>
+            </div>
+            <div class="board-sprockets board-sprockets--bottom" aria-hidden="true"></div>
+          </div>
+
+          <div class="tool-shelf" aria-label="显影工具与操作">
+            <div class="brush-tools" role="group" aria-label="选择格子状态">
+              <button class="tool-button is-active" id="toolFill" type="button" data-tool="fill" aria-pressed="true">
+                <span class="tool-swatch tool-swatch--fill" aria-hidden="true"></span>
+                <span><b>显影</b><small>填黑 F</small></span>
+              </button>
+              <button class="tool-button" id="toolExclude" type="button" data-tool="exclude" aria-pressed="false">
+                <span class="tool-swatch tool-swatch--exclude" aria-hidden="true">×</span>
+                <span><b>排除</b><small>留白 X</small></span>
+              </button>
+              <button class="tool-button" id="toolErase" type="button" data-tool="erase" aria-pressed="false">
+                <span class="tool-swatch tool-swatch--erase" aria-hidden="true"></span>
+                <span><b>回洗</b><small>未知 Del</small></span>
+              </button>
+            </div>
+            <button class="inspect-button" id="inspectButton" type="button">
+              <span aria-hidden="true">⌁</span>
+              <span><b>核对线索</b><small>只找已矛盾的行列</small></span>
+            </button>
+          </div>
+        </div>
+
+        <div class="action-row" aria-label="局面操作">
+          <button id="undoButton" type="button"><span aria-hidden="true">↶</span><span>撤销</span></button>
+          <button id="restartButton" type="button"><span aria-hidden="true">↺</span><span>重开</span></button>
+          <button id="newButton" type="button"><span aria-hidden="true">▱</span><span>换张底片</span></button>
+          <button id="muteButton" type="button" aria-pressed="false"><span aria-hidden="true">♪</span><span>声音</span></button>
+          <button id="rulesButton" type="button"><span aria-hidden="true">?</span><span>规则与来源</span></button>
+        </div>
+      </section>
+
+      <aside class="archive-panel" aria-labelledby="archive-title">
+        <header class="archive-header">
+          <div>
+            <p>PRIVATE CONTACT SHEET</p>
+            <h2 id="archive-title">照片图鉴</h2>
+          </div>
+          <strong><span id="albumCount">0</span> / 9</strong>
+        </header>
+
+        <div class="archive-stats" aria-label="长期显影记录">
+          <div><span>首次显影</span><b id="firstCount">0</b></div>
+          <div><span>无误显影</span><b id="flawlessCount">0</b></div>
+          <div><span>参考曝光</span><b id="referenceCount">0</b></div>
+          <div><span>暗房连胜</span><b><span id="dailyStreak">0</span> 日</b></div>
+        </div>
+
+        <div class="contact-sheet" id="contactSheet" role="region" aria-label="九张馆藏照片，可横向滚动" tabindex="0"></div>
+
+        <section class="daily-card" aria-labelledby="daily-card-title">
+          <div class="daily-card__stamp" aria-hidden="true">DAILY<br>FILM</div>
+          <div>
+            <p>今日冲洗记录</p>
+            <h3 id="daily-card-title">每日底片尚未完成</h3>
+            <span id="dailyCardCopy">每天的底片固定可复现；当天只盖一次章，也不会重复增加全局奖励。</span>
+          </div>
+        </section>
+
+        <details class="shortcut-card">
+          <summary>键盘与触控</summary>
+          <ul>
+            <li><kbd>方向键</kbd> 移动格子焦点</li>
+            <li><kbd>Enter</kbd> 未知 → 黑 → 排除；<kbd>Space</kbd> 反向循环</li>
+            <li><kbd>F</kbd> 显影、<kbd>X</kbd> 排除、<kbd>Del</kbd> 回洗</li>
+            <li><kbd>Ctrl/⌘ Z</kbd> 撤销，<kbd>R</kbd> 重开，<kbd>N</kbd> 换片</li>
+            <li>触控先选工具，再轻点格子；棋盘区域可独立滚动</li>
+          </ul>
+        </details>
+      </aside>
+    </div>
+
+    <footer class="game-footer">
+      <p>规则骨架来自 Pattern / Nonogram；主题、界面、声音与馆藏底片为本作原创。</p>
+      <button id="footerRulesButton" type="button">查看规则源流与 MIT 致谢</button>
+    </footer>
+  </main>
+
+  <p class="sr-only" id="boardInstructions">每格有未知、填黑、排除三态。按方向键移动；Enter 正向循环，空格反向循环，F 填黑，X 排除，Delete 回到未知。</p>
+  <div class="live-region" id="liveRegion" aria-live="polite" aria-atomic="true"></div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <dialog class="rules-dialog" id="rulesDialog" aria-labelledby="rules-title">
+    <div class="dialog-shell">
+      <header class="dialog-header">
+        <div><p>DARKROOM MANUAL · PATTERN</p><h2 id="rules-title">底片显影守则</h2></div>
+        <button id="rulesCloseButton" type="button" aria-label="关闭规则">×</button>
+      </header>
+      <div class="dialog-body">
+        <section>
+          <h3>连续段就是唯一证词</h3>
+          <p>每行左侧、每列上方的数字，依次表示该行或列中黑格连续段的长度。相邻两段之间至少隔一格明确的留白；没有数字的行列必须全部排除。</p>
+        </section>
+        <section class="state-legend" aria-label="三种格子状态">
+          <div><i class="legend-cell legend-cell--unknown"></i><span><b>未知</b>仍待判断，不能用于通关</span></div>
+          <div><i class="legend-cell legend-cell--filled"></i><span><b>填黑</b>相纸已经显影</span></div>
+          <div><i class="legend-cell legend-cell--excluded">×</i><span><b>排除</b>确认这里保持留白</span></div>
+        </section>
+        <section>
+          <h3>完整胜利条件</h3>
+          <p>只有当所有格都离开“未知”状态，并且每一行、每一列的黑格连续段顺序与长度完全匹配线索时，照片才会入册。黑格看似正确但留白仍未知，不算完成。</p>
+        </section>
+        <section>
+          <h3>操作</h3>
+          <p>鼠标左键按当前工具落笔，右键固定排除，Shift + 点击回到未知。触控先选显影、排除或回洗；键盘 Enter / Space 分别正反循环三态。错误落笔不会被阻止，也没有生命或失败条件。</p>
+        </section>
+        <section class="source-panel">
+          <h3>规则源流与许可</h3>
+          <p>本作精确保留 Simon Tatham's Portable Puzzle Collection 中 Pattern 的行列线索、三态格子与完整判胜规则；界面包装与代码在仓库 MIT 许可下发布。</p>
+          <ul>
+            <li><a href="https://puzzles.ebnbin.dev/doc/zh/pattern.html" target="_blank" rel="noreferrer">ebnbin/puzzles · Pattern 中文规则</a></li>
+            <li><a href="https://github.com/ebnbin/puzzles/blob/main/doc-zh/pattern.html" target="_blank" rel="noreferrer">中文规则源码</a></li>
+            <li><a href="https://www.chiark.greenend.org.uk/~sgtatham/puzzles/" target="_blank" rel="noreferrer">Simon Tatham's Portable Puzzle Collection</a></li>
+            <li><a href="../../THIRD_PARTY_NOTICES.md">MIT 致谢与第三方声明</a></li>
+          </ul>
+        </section>
+      </div>
+    </div>
+  </dialog>
+
+  <dialog class="victory-dialog" id="victoryDialog" aria-labelledby="victory-title">
+    <div class="victory-shell">
+      <button class="victory-close" id="victoryCloseButton" type="button" aria-label="关闭完成照片">×</button>
+      <p>DEVELOPMENT COMPLETE</p>
+      <h2 id="victory-title">一张照片浮出雾色</h2>
+      <div class="victory-photo" id="victoryPhoto" role="img" aria-label="完成后的收藏照片"></div>
+      <p id="victoryCaption">照片说明</p>
+      <dl>
+        <div><dt>有效落笔</dt><dd id="victoryMoves">0</dd></div>
+        <div><dt>参考操作</dt><dd id="victoryPar">0</dd></div>
+        <div><dt>显影记录</dt><dd id="victoryQuality">首次入册</dd></div>
+      </dl>
+      <div class="victory-unlocks" id="victoryUnlocks" aria-label="本次解锁"></div>
+      <div class="victory-actions">
+        <button id="victoryNextButton" type="button">冲洗下一张</button>
+        <button id="victoryStayButton" type="button">留在相片前</button>
+      </div>
+    </div>
+  </dialog>
+
+  <script type="module" src="../../shared/realm-ui.mjs"></script>
+  <script type="module" src="./app.mjs"></script>
+</body>
+</html>

@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="zh-CN" data-realm="neon-skyline">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#07051a" />
+    <meta
+      name="description"
+      content="霓虹天际线：依据街区四周的观察数字，在每行每列规划不重复的建筑高度，点亮一座可被验证的未来城市。"
+    />
+    <meta property="og:title" content="霓虹天际线 · 十境谜游馆" />
+    <meta property="og:description" content="从四条街观察楼群，让 1 到 N 的高度在每行每列各出现一次。" />
+    <title>霓虹天际线 · 十境谜游馆</title>
+    <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="../../shared/realm-ui.css" />
+    <script type="module" src="../../shared/realm-ui.mjs"></script>
+    <script type="module" src="./app.mjs"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#skyline-board">跳到城市规划网格</a>
+
+    <div class="city-backdrop" aria-hidden="true">
+      <div class="aurora aurora--cyan"></div>
+      <div class="aurora aurora--magenta"></div>
+      <div class="distant-city distant-city--rear"></div>
+      <div class="distant-city distant-city--front"></div>
+      <div class="traffic-stream traffic-stream--one"><i></i><i></i><i></i><i></i></div>
+      <div class="traffic-stream traffic-stream--two"><i></i><i></i><i></i></div>
+    </div>
+
+    <header class="topbar">
+      <a class="back-link" href="../../" aria-label="返回十境谜游馆首页">
+        <span aria-hidden="true">←</span>
+        <span><small>TEN REALMS</small>返回谜游馆</span>
+      </a>
+
+      <div class="city-sign" aria-label="十境谜游馆，霓虹天际线">
+        <span class="city-sign__mark" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span><small>NIGHT GRID 11</small>霓虹天际线</span>
+      </div>
+
+      <nav class="top-actions" aria-label="城市规划操作">
+        <button class="top-action top-action--new" id="new-game-button" type="button">
+          <span aria-hidden="true">＋</span><span class="action-label">换题</span>
+        </button>
+        <button class="top-action" id="undo-button" type="button" disabled>
+          <span aria-hidden="true">↶</span><span class="action-label">撤销</span>
+        </button>
+        <button class="top-action" id="restart-button" type="button">
+          <span aria-hidden="true">↺</span><span class="action-label">重开</span>
+        </button>
+        <button class="top-action" id="mute-button" type="button" aria-pressed="false">
+          <span class="sound-glyph" aria-hidden="true">♪</span><span class="action-label">声音</span>
+        </button>
+        <button class="top-action" id="flat-view-button" type="button" aria-pressed="false">
+          <span aria-hidden="true">▦</span><span class="action-label">俯视</span>
+        </button>
+        <button class="top-action" id="rules-button" type="button">
+          <span aria-hidden="true">?</span><span class="action-label">规则</span>
+        </button>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="page-title">
+        <div class="hero-copy">
+          <p class="eyebrow"><span aria-hidden="true"></span> URBAN VISIBILITY LAB · 00:47</p>
+          <h1 id="page-title">霓虹<em>天际线</em></h1>
+          <p>让每条街的高度都不重复。站在四周的观察点，只有越过此前最高楼的建筑才看得见。</p>
+        </div>
+        <div class="hero-signal" aria-hidden="true">
+          <span>SKYLINE</span><i></i><i></i><i></i><i></i><i></i><i></i>
+        </div>
+      </section>
+
+      <section class="game-layout" aria-label="霓虹天际线游戏区">
+        <article class="planning-card" aria-labelledby="level-title">
+          <header class="planning-header">
+            <div class="level-heading">
+              <p id="level-kicker">街区级 · 4 × 4</p>
+              <h2 id="level-title">雨线一号街区</h2>
+              <p class="level-code"><span id="level-index">01</span> / <span id="level-total">09</span> · <span id="level-code">BLOCK-A1</span></p>
+            </div>
+            <div class="build-meter" aria-label="楼体规划进度">
+              <span><strong id="progress-percent">0%</strong><small>城市校准</small></span>
+              <i class="build-meter__tower" aria-hidden="true"><b id="meter-rise"></b></i>
+            </div>
+          </header>
+
+          <div class="progress-track" role="progressbar" aria-label="已填写格子进度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+            <span id="progress-bar"></span>
+          </div>
+
+          <div class="board-zone">
+            <div class="street-label street-label--north" aria-hidden="true"><span>NORTH / 北街观察带</span></div>
+            <p class="visually-hidden" id="board-instructions">
+              方向键或 W A S D 移动焦点。数字键一到六放置建筑；开启笔记后切换候选。Delete 或 Backspace 清除，F 填满候选，Z 撤销，R 重开，N 换题，M 静音，V 切换俯视模式。
+            </p>
+
+            <div class="skyline-puzzle" id="skyline-puzzle" data-size="4">
+              <span class="puzzle-corner puzzle-corner--nw" aria-hidden="true"></span>
+              <div class="clue-strip clue-strip--top" id="clues-top" data-side="top" aria-label="从北街向下观察的线索"></div>
+              <span class="puzzle-corner puzzle-corner--ne" aria-hidden="true"></span>
+
+              <div class="clue-strip clue-strip--left" id="clues-left" data-side="left" aria-label="从西街向右观察的线索"></div>
+              <div
+                class="skyline-board"
+                id="skyline-board"
+                role="grid"
+                tabindex="0"
+                aria-label="建筑高度规划网格"
+                aria-describedby="board-instructions board-message"
+                data-realm-game-focus
+              ></div>
+              <div class="clue-strip clue-strip--right" id="clues-right" data-side="right" aria-label="从东街向左观察的线索"></div>
+
+              <span class="puzzle-corner puzzle-corner--sw" aria-hidden="true"></span>
+              <div class="clue-strip clue-strip--bottom" id="clues-bottom" data-side="bottom" aria-label="从南街向上观察的线索"></div>
+              <span class="puzzle-corner puzzle-corner--se" aria-hidden="true"></span>
+            </div>
+
+            <div class="street-flow" aria-hidden="true"><i></i><i></i><i></i></div>
+            <div class="board-message" id="board-message">
+              <span class="message-beacon" aria-hidden="true"><i></i></span>
+              <p><strong id="message-title">等待第一栋楼</strong><span id="message-copy">选择空地，再从下方高度台输入建筑高度。</span></p>
+            </div>
+          </div>
+
+          <section class="input-console" aria-labelledby="console-title">
+            <div class="console-heading">
+              <div><p>HEIGHT CONSOLE</p><h3 id="console-title">楼高输入台</h3></div>
+              <span id="selected-cell-label">尚未选择地块</span>
+            </div>
+
+            <div class="number-pad" id="number-pad" role="toolbar" aria-label="选择建筑高度">
+              <button type="button" data-value="1" aria-label="放置高度 1"><span>1</span><i aria-hidden="true"></i></button>
+              <button type="button" data-value="2" aria-label="放置高度 2"><span>2</span><i aria-hidden="true"></i></button>
+              <button type="button" data-value="3" aria-label="放置高度 3"><span>3</span><i aria-hidden="true"></i></button>
+              <button type="button" data-value="4" aria-label="放置高度 4"><span>4</span><i aria-hidden="true"></i></button>
+              <button type="button" data-value="5" aria-label="放置高度 5"><span>5</span><i aria-hidden="true"></i></button>
+              <button type="button" data-value="6" aria-label="放置高度 6"><span>6</span><i aria-hidden="true"></i></button>
+            </div>
+
+            <div class="edit-tools" role="toolbar" aria-label="候选与清除工具">
+              <button class="note-button" id="note-button" type="button" aria-pressed="false">
+                <span aria-hidden="true">✎</span><span><strong>候选笔记</strong><small>只作记录，不是建筑</small></span><kbd>P</kbd>
+              </button>
+              <button id="clear-button" type="button">
+                <span aria-hidden="true">⌫</span><span><strong>清除</strong><small>移除当前楼高或笔记</small></span><kbd>⌫</kbd>
+              </button>
+              <button id="fill-candidates-button" type="button">
+                <span aria-hidden="true">∵</span><span><strong>全候选</strong><small>为空地填入 1…N</small></span><kbd>F</kbd>
+              </button>
+            </div>
+          </section>
+        </article>
+
+        <aside class="city-console" aria-labelledby="city-console-title">
+          <header class="city-console__heading">
+            <div><p>MIDNIGHT PLANNING BUREAU</p><h2 id="city-console-title">零点规划局</h2></div>
+            <span class="save-state" id="save-state"><i aria-hidden="true"></i> 本机自动留档</span>
+          </header>
+
+          <fieldset class="difficulty-picker">
+            <legend>选择城市尺度</legend>
+            <div id="difficulty-buttons">
+              <button type="button" data-difficulty="block" aria-pressed="true"><span aria-hidden="true">04</span><strong>街区</strong><small>4×4 · 高密度观测</small></button>
+              <button type="button" data-difficulty="district" aria-pressed="false"><span aria-hidden="true">05</span><strong>城区</strong><small>5×5 · 缺失线索</small></button>
+              <button type="button" data-difficulty="megacity" aria-pressed="false"><span aria-hidden="true">06</span><strong>都会</strong><small>6×6 · 低密度观测</small></button>
+            </div>
+            <p id="difficulty-note">4×4 · 高密度观测点</p>
+          </fieldset>
+
+          <dl class="status-grid" aria-label="本局状态">
+            <div><dt>已建楼体</dt><dd><strong id="filled-count">0</strong><span id="cell-total"> / 16</span></dd></div>
+            <div><dt>规则冲突</dt><dd><strong id="conflict-count">0</strong><span> 处</span></dd></div>
+            <div><dt>规划操作</dt><dd><strong id="move-count">0</strong><span> 步</span></dd></div>
+            <div><dt>个人最佳</dt><dd><strong id="best-moves">—</strong><span> 步</span></dd></div>
+          </dl>
+
+          <section class="district-progress" aria-labelledby="district-progress-title">
+            <div class="section-heading">
+              <div><p>CITY ATLAS</p><h3 id="district-progress-title">城市版图</h3></div>
+              <strong><span id="completed-count">0</span>/<span id="city-total">9</span></strong>
+            </div>
+            <ol class="city-map" id="city-map" aria-label="九个街区的完成进度">
+              <li data-city-node="1" class="is-current"><span>01</span><small>当前</small></li>
+              <li data-city-node="2"><span>02</span><small>未亮</small></li>
+              <li data-city-node="3"><span>03</span><small>未亮</small></li>
+              <li data-city-node="4"><span>04</span><small>未亮</small></li>
+              <li data-city-node="5"><span>05</span><small>未亮</small></li>
+              <li data-city-node="6"><span>06</span><small>未亮</small></li>
+              <li data-city-node="7"><span>07</span><small>未亮</small></li>
+              <li data-city-node="8"><span>08</span><small>未亮</small></li>
+              <li data-city-node="9"><span>09</span><small>未亮</small></li>
+            </ol>
+          </section>
+
+          <section class="landmark-panel" aria-labelledby="landmark-title">
+            <div class="section-heading">
+              <div><p>LANDMARK SIGNALS</p><h3 id="landmark-title">地标解锁</h3></div>
+              <span id="landmark-count">0 / 6</span>
+            </div>
+            <ul class="landmark-list" id="landmark-list">
+              <li data-landmark="rainline-terminal"><i aria-hidden="true">◇</i><span><strong>雨线总站</strong><small>完成 1 个街区</small></span></li>
+              <li data-landmark="prism-exchange"><i aria-hidden="true">◇</i><span><strong>棱光换乘塔</strong><small>完成 3 个不同街区</small></span></li>
+              <li data-landmark="aurora-spire"><i aria-hidden="true">◇</i><span><strong>极光中枢</strong><small>完成 6 个不同街区</small></span></li>
+              <li data-landmark="midnight-crown"><i aria-hidden="true">◇</i><span><strong>零点王冠</strong><small>完成全部 9 个街区</small></span></li>
+              <li data-landmark="conflict-free"><i aria-hidden="true">◇</i><span><strong>无瑕规划局</strong><small>零冲突完成任意街区</small></span></li>
+              <li data-landmark="operations-record"><i aria-hidden="true">◇</i><span><strong>一笔成城台</strong><small>达到建议操作数</small></span></li>
+            </ul>
+          </section>
+
+          <p class="keyboard-note">
+            <strong>键盘全程可玩</strong> 方向键 / WASD 移动 · 1–6 输入 · P 笔记 · F 全候选 · Delete 清除 · Z 撤销 · R 重开 · N 换题 · V 俯视 · M 静音 · ? 规则
+          </p>
+        </aside>
+      </section>
+    </main>
+
+    <footer>
+      <p>在零点以后，每一盏窗都成为城市坐标。</p>
+      <nav aria-label="页脚链接">
+        <a href="../../">十境谜游馆</a><span aria-hidden="true">·</span>
+        <button id="footer-rules-button" type="button">规则源流与 MIT 致谢</button>
+      </nav>
+    </footer>
+
+    <dialog class="rules-dialog" id="rules-dialog" aria-labelledby="rules-title">
+      <div class="dialog-shell">
+        <header class="dialog-topline">
+          <div><p>FIELD MANUAL / TOWERS</p><h2 id="rules-title">城市观察手册</h2></div>
+          <button class="dialog-close" id="rules-close-button" type="button" aria-label="关闭规则">×</button>
+        </header>
+        <div class="dialog-scroll">
+          <section class="rule-intro">
+            <span class="rule-intro__skyline" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+            <div><p>从四条街验证整座城市</p><strong>楼高不重，视线有数</strong></div>
+          </section>
+
+          <ol class="rule-list">
+            <li><span>01</span><p><strong>每格是一栋楼</strong>在 N×N 街区中，每栋楼的高度只能是 1 到 N。数字始终清晰显示，楼体透视只是视觉表现。</p></li>
+            <li><span>02</span><p><strong>每行每列各高度一次</strong>同一行与同一列都必须恰好包含一次 1…N；任何重复高度都会产生冲突。</p></li>
+            <li><span>03</span><p><strong>高楼会挡住矮楼</strong>从某个观察点向内看，只有比此前遇到的所有楼都高的建筑可见。边缘数字就是该方向最终看见的楼数。</p></li>
+            <li><span>04</span><p><strong>空白观察位没有约束</strong>四边有些位置不会给数字；缺失线索不等于 0，也不需要自行补全。题面内预填的楼高不可修改。</p></li>
+            <li><span>05</span><p><strong>所有约束同时成立才通关</strong>填满棋盘、每行每列均无重复，并满足全部实际给出的四边可见数，城市才会正式点亮。</p></li>
+          </ol>
+
+          <section class="control-rules">
+            <h3>规划台怎么用</h3>
+            <p>先选地块，再按数字按钮或键盘 1–6 建楼。候选模式中的数字只是一页规划笔记：不算建筑高度、不参与行列或视线判定，也不会帮助通关。</p>
+            <p>方向键与 WASD 可移动地块焦点；Delete / Backspace 清除，F 为全部空格填写候选，Z 撤销。触控操作不依赖右键或悬停。若楼体效果影响阅读，可随时切换“俯视”。</p>
+          </section>
+
+          <section class="visibility-example" aria-labelledby="visibility-example-title">
+            <div>
+              <p id="visibility-example-title">观察示例</p>
+              <span class="observer" aria-hidden="true">◉</span>
+              <ol aria-label="从左观察高度二、一、四、三">
+                <li style="--example-height: 2"><span>2</span></li>
+                <li style="--example-height: 1"><span>1</span></li>
+                <li style="--example-height: 4"><span>4</span></li>
+                <li style="--example-height: 3"><span>3</span></li>
+              </ol>
+            </div>
+            <p>从左看见高度 2 与 4，共 <strong>2</strong> 栋；高度 1 被 2 挡住，高度 3 被 4 挡住。</p>
+          </section>
+
+          <section class="source-panel">
+            <h3>规则源流与 MIT 致谢</h3>
+            <p>底层规则逐项保留自 Simon Tatham's Portable Puzzle Collection 的 Towers（Skyscrapers）。本页的夜城主题、文案、布局、动画、声音与操作反馈为独立再创作。</p>
+            <div class="source-links">
+              <a href="https://github.com/ebnbin/puzzles/blob/main/doc-zh/towers.html" target="_blank" rel="noreferrer">ebnbin/puzzles Towers 中文规则 <span aria-hidden="true">↗</span></a>
+              <a href="https://www.chiark.greenend.org.uk/~sgtatham/puzzles/" target="_blank" rel="noreferrer">Simon Tatham 谜题合集 <span aria-hidden="true">↗</span></a>
+              <a href="../../THIRD_PARTY_NOTICES.md">第三方声明与 MIT License <span aria-hidden="true">→</span></a>
+            </div>
+            <small>感谢 Simon Tatham、Portable Puzzle Collection 贡献者，以及 ebnbin/puzzles 中文文档维护者。</small>
+          </section>
+        </div>
+      </div>
+    </dialog>
+
+    <dialog class="victory-dialog" id="victory-dialog" aria-labelledby="victory-title">
+      <div class="victory-city" aria-hidden="true">
+        <i></i><i></i><i></i><i></i><i></i><i></i><span></span>
+      </div>
+      <p>ALL SIGHTLINES VERIFIED</p>
+      <h2 id="victory-title">整座城市，准时亮灯</h2>
+      <p id="victory-copy">四条街的观察记录全部吻合，交通流正在楼群之间重新启动。</p>
+      <dl>
+        <div><dt>规划操作</dt><dd id="victory-moves">0</dd></div>
+        <div><dt>规则冲突</dt><dd id="victory-conflicts">0</dd></div>
+        <div><dt>个人最佳</dt><dd id="victory-best">—</dd></div>
+      </dl>
+      <p class="unlock-message" id="victory-unlock" hidden><span aria-hidden="true">◆</span> <strong>新地标已接入城市电网</strong></p>
+      <div class="victory-actions">
+        <button class="primary-action" id="next-level-button" type="button">前往下一街区</button>
+        <button id="stay-button" type="button">留在天际线</button>
+      </div>
+    </dialog>
+
+    <div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+    <div class="visually-hidden" id="assertive-status" role="alert" aria-live="assertive" aria-atomic="true"></div>
+  </body>
+</html>

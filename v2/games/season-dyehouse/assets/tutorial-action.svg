@@ -1,0 +1,131 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" preserveAspectRatio="xMidYMid meet" role="img" aria-labelledby="action-title action-desc">
+  <title id="action-title">选择夏季染料后，左上连通区域向外扩张</title>
+  <desc id="action-desc">画面用左右分栏展示完全分开的操作前和操作后布面。左侧金线圈住三个绿色起点织格；中间箭头表示选择太阳符号的夏染；右侧起点区域变成夏色，并吸收所有与它相邻连通的夏色织格。</desc>
+  <defs>
+    <linearGradient id="paper" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fcf5e2"/>
+      <stop offset="0.58" stop-color="#f4e6c9"/>
+      <stop offset="1" stop-color="#e8cfaa"/>
+    </linearGradient>
+    <pattern id="fibre" width="16" height="16" patternUnits="userSpaceOnUse">
+      <path d="M-3 5L19 1M-3 14L19 10" stroke="#66442d" stroke-width="1" opacity="0.08"/>
+      <circle cx="5" cy="11" r="1" fill="#66442d" opacity="0.09"/>
+    </pattern>
+    <pattern id="spring" width="10" height="10" patternUnits="userSpaceOnUse">
+      <rect width="10" height="10" fill="#4f8a62"/>
+      <path d="M0 8L8 0M5 10L10 5" stroke="#b4d9aa" stroke-width="1.4" opacity="0.53"/>
+      <circle cx="2" cy="2" r="1" fill="#edf5db" opacity="0.7"/>
+    </pattern>
+    <pattern id="summer" width="12" height="12" patternUnits="userSpaceOnUse">
+      <rect width="12" height="12" fill="#c94f3b"/>
+      <path d="M0 3H12M0 9H12" stroke="#f5a36f" stroke-width="1.5" opacity="0.55"/>
+      <path d="M3 0V12M9 0V12" stroke="#7d2e2a" stroke-width="0.8" opacity="0.22"/>
+    </pattern>
+    <pattern id="autumn" width="12" height="12" patternUnits="userSpaceOnUse">
+      <rect width="12" height="12" fill="#c8892f"/>
+      <path d="M-2 11L11-2M3 14L14 3" stroke="#f3cc72" stroke-width="2" opacity="0.55"/>
+      <path d="M0 1H12" stroke="#8e5620" stroke-width="1" opacity="0.28"/>
+    </pattern>
+    <pattern id="winter" width="12" height="12" patternUnits="userSpaceOnUse">
+      <rect width="12" height="12" fill="#49759d"/>
+      <path d="M0 6H12M6 0V12" stroke="#b8d8e3" stroke-width="1.2" opacity="0.48"/>
+      <circle cx="6" cy="6" r="1.4" fill="#eef8f6" opacity="0.78"/>
+    </pattern>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="150%">
+      <feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#513522" flood-opacity="0.22"/>
+    </filter>
+    <symbol id="sprout" viewBox="0 0 28 28">
+      <path d="M14 23V12" fill="none" stroke="#f6f0ce" stroke-width="2.8" stroke-linecap="round"/>
+      <path d="M14 13C8 13 5 10 5 5c6 0 9 3 9 8ZM14 16c6 0 9-3 9-8-6 0-9 3-9 8Z" fill="#f6f0ce" stroke="#315942" stroke-width="1.2" stroke-linejoin="round"/>
+      <path d="M9 23H19" stroke="#f6f0ce" stroke-width="2.6" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="sun" viewBox="0 0 28 28">
+      <circle cx="14" cy="14" r="5.5" fill="#fff1c9" stroke="#7d2e2a" stroke-width="1.2"/>
+      <path d="M14 2.5V6M14 22v3.5M2.5 14H6M22 14h3.5M5.8 5.8l2.5 2.5m11.4 11.4 2.5 2.5m0-16.4-2.5 2.5M8.3 19.7l-2.5 2.5" fill="none" stroke="#fff1c9" stroke-width="2.3" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="leaf" viewBox="0 0 28 28">
+      <path d="M23 5C13 5 7 9 7 17c0 4 2 6 5 6 8 0 11-8 11-18Z" fill="#fff0b2" stroke="#74451e" stroke-width="1.3" stroke-linejoin="round"/>
+      <path d="M5 24c4-6 8-10 15-15M11 18l1-5m2 2h5" fill="none" stroke="#74451e" stroke-width="1.4" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="snow" viewBox="0 0 28 28">
+      <path d="M14 3v22M4.5 8.5l19 11M4.5 19.5l19-11M10.5 5.5 14 8.3l3.5-2.8M10.5 22.5l3.5-2.8 3.5 2.8M5.2 12.6l4.2-.6.9-4M22.8 15.4l-4.2.6-.9 4M5.2 15.4l4.2.6.9 4M22.8 12.6l-4.2-.6-.9-4" fill="none" stroke="#f2f7ed" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+  </defs>
+
+  <rect width="640" height="360" rx="24" fill="url(#paper)"/>
+  <rect width="640" height="360" rx="24" fill="url(#fibre)"/>
+  <path d="M0 0h640v10H0z" fill="#6d4328"/>
+  <text x="32" y="43" fill="#3f2b20" font-family="system-ui, -apple-system, 'Noto Sans SC', sans-serif" font-size="28" font-weight="800">选染料，连通区域随之扩张</text>
+  <text x="33" y="68" fill="#72503a" font-family="system-ui, -apple-system, 'Noto Sans SC', sans-serif" font-size="16" font-weight="600">金线标记当前已从左上染池连通的织格</text>
+
+  <g filter="url(#shadow)">
+    <rect x="24" y="86" width="242" height="244" rx="18" fill="#fff9e9" stroke="#9c744d" stroke-width="2"/>
+    <rect x="41" y="99" width="72" height="30" rx="15" fill="#4c2e1d"/>
+    <text x="77" y="120" text-anchor="middle" fill="#fff4d2" font-family="system-ui, -apple-system, 'Noto Sans SC', sans-serif" font-size="17" font-weight="800">操作前</text>
+    <text x="245" y="119" text-anchor="end" fill="#72503a" font-family="system-ui, -apple-system, 'Noto Sans SC', sans-serif" font-size="14" font-weight="700">春色起点</text>
+    <rect x="49" y="137" width="192" height="180" rx="13" fill="#684229" stroke="#d4a65f" stroke-width="3"/>
+
+    <g stroke="#f7eed6" stroke-width="1.2">
+      <g><rect x="59" y="145" width="40" height="40" rx="6" fill="url(#spring)" stroke="#ffe49a" stroke-width="3"/><use href="#sprout" x="65" y="151" width="28" height="28"/></g>
+      <g><rect x="103" y="145" width="40" height="40" rx="6" fill="url(#spring)" stroke="#ffe49a" stroke-width="3"/><use href="#sprout" x="109" y="151" width="28" height="28"/></g>
+      <g><rect x="147" y="145" width="40" height="40" rx="6" fill="url(#summer)"/><use href="#sun" x="153" y="151" width="28" height="28"/></g>
+      <g><rect x="191" y="145" width="40" height="40" rx="6" fill="url(#winter)"/><use href="#snow" x="197" y="151" width="28" height="28"/></g>
+
+      <g><rect x="59" y="189" width="40" height="40" rx="6" fill="url(#spring)" stroke="#ffe49a" stroke-width="3"/><use href="#sprout" x="65" y="195" width="28" height="28"/></g>
+      <g><rect x="103" y="189" width="40" height="40" rx="6" fill="url(#autumn)"/><use href="#leaf" x="109" y="195" width="28" height="28"/></g>
+      <g><rect x="147" y="189" width="40" height="40" rx="6" fill="url(#summer)"/><use href="#sun" x="153" y="195" width="28" height="28"/></g>
+      <g><rect x="191" y="189" width="40" height="40" rx="6" fill="url(#summer)"/><use href="#sun" x="197" y="195" width="28" height="28"/></g>
+
+      <g><rect x="59" y="233" width="40" height="40" rx="6" fill="url(#summer)"/><use href="#sun" x="65" y="239" width="28" height="28"/></g>
+      <g><rect x="103" y="233" width="40" height="40" rx="6" fill="url(#summer)"/><use href="#sun" x="109" y="239" width="28" height="28"/></g>
+      <g><rect x="147" y="233" width="40" height="40" rx="6" fill="url(#winter)"/><use href="#snow" x="153" y="239" width="28" height="28"/></g>
+      <g><rect x="191" y="233" width="40" height="40" rx="6" fill="url(#autumn)"/><use href="#leaf" x="197" y="239" width="28" height="28"/></g>
+
+      <g><rect x="59" y="277" width="40" height="40" rx="6" fill="url(#winter)"/><use href="#snow" x="65" y="283" width="28" height="28"/></g>
+      <g><rect x="103" y="277" width="40" height="40" rx="6" fill="url(#autumn)"/><use href="#leaf" x="109" y="283" width="28" height="28"/></g>
+      <g><rect x="147" y="277" width="40" height="40" rx="6" fill="url(#spring)"/><use href="#sprout" x="153" y="283" width="28" height="28"/></g>
+      <g><rect x="191" y="277" width="40" height="40" rx="6" fill="url(#winter)"/><use href="#snow" x="197" y="283" width="28" height="28"/></g>
+    </g>
+  </g>
+
+  <g aria-label="选择夏季染料">
+    <path d="M280 185h50v-19l34 34-34 34v-19h-50Z" fill="#c94f3b" stroke="#7d2e2a" stroke-width="3" stroke-linejoin="round"/>
+    <rect x="282" y="248" width="82" height="56" rx="16" fill="#fff4e6" stroke="#c94f3b" stroke-width="3"/>
+    <rect x="290" y="256" width="40" height="40" rx="10" fill="url(#summer)"/>
+    <use href="#sun" x="296" y="262" width="28" height="28"/>
+    <text x="346" y="274" text-anchor="middle" fill="#7d2e2a" font-family="system-ui, -apple-system, 'Noto Sans SC', sans-serif" font-size="14" font-weight="800">选</text>
+    <text x="346" y="292" text-anchor="middle" fill="#7d2e2a" font-family="system-ui, -apple-system, 'Noto Sans SC', sans-serif" font-size="17" font-weight="900">夏</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="374" y="86" width="242" height="244" rx="18" fill="#fff9e9" stroke="#9c744d" stroke-width="2"/>
+    <rect x="391" y="99" width="72" height="30" rx="15" fill="#7d2e2a"/>
+    <text x="427" y="120" text-anchor="middle" fill="#fff4d2" font-family="system-ui, -apple-system, 'Noto Sans SC', sans-serif" font-size="17" font-weight="800">操作后</text>
+    <text x="595" y="119" text-anchor="end" fill="#7d2e2a" font-family="system-ui, -apple-system, 'Noto Sans SC', sans-serif" font-size="14" font-weight="800">吸收 5 格</text>
+    <rect x="399" y="137" width="192" height="180" rx="13" fill="#684229" stroke="#d4a65f" stroke-width="3"/>
+
+    <g stroke="#f7eed6" stroke-width="1.2">
+      <g><rect x="409" y="145" width="40" height="40" rx="6" fill="url(#summer)" stroke="#ffe49a" stroke-width="3"/><use href="#sun" x="415" y="151" width="28" height="28"/></g>
+      <g><rect x="453" y="145" width="40" height="40" rx="6" fill="url(#summer)" stroke="#ffe49a" stroke-width="3"/><use href="#sun" x="459" y="151" width="28" height="28"/></g>
+      <g><rect x="497" y="145" width="40" height="40" rx="6" fill="url(#summer)" stroke="#ffe49a" stroke-width="3"/><use href="#sun" x="503" y="151" width="28" height="28"/></g>
+      <g><rect x="541" y="145" width="40" height="40" rx="6" fill="url(#winter)"/><use href="#snow" x="547" y="151" width="28" height="28"/></g>
+
+      <g><rect x="409" y="189" width="40" height="40" rx="6" fill="url(#summer)" stroke="#ffe49a" stroke-width="3"/><use href="#sun" x="415" y="195" width="28" height="28"/></g>
+      <g><rect x="453" y="189" width="40" height="40" rx="6" fill="url(#autumn)"/><use href="#leaf" x="459" y="195" width="28" height="28"/></g>
+      <g><rect x="497" y="189" width="40" height="40" rx="6" fill="url(#summer)" stroke="#ffe49a" stroke-width="3"/><use href="#sun" x="503" y="195" width="28" height="28"/></g>
+      <g><rect x="541" y="189" width="40" height="40" rx="6" fill="url(#summer)" stroke="#ffe49a" stroke-width="3"/><use href="#sun" x="547" y="195" width="28" height="28"/></g>
+
+      <g><rect x="409" y="233" width="40" height="40" rx="6" fill="url(#summer)" stroke="#ffe49a" stroke-width="3"/><use href="#sun" x="415" y="239" width="28" height="28"/></g>
+      <g><rect x="453" y="233" width="40" height="40" rx="6" fill="url(#summer)" stroke="#ffe49a" stroke-width="3"/><use href="#sun" x="459" y="239" width="28" height="28"/></g>
+      <g><rect x="497" y="233" width="40" height="40" rx="6" fill="url(#winter)"/><use href="#snow" x="503" y="239" width="28" height="28"/></g>
+      <g><rect x="541" y="233" width="40" height="40" rx="6" fill="url(#autumn)"/><use href="#leaf" x="547" y="239" width="28" height="28"/></g>
+
+      <g><rect x="409" y="277" width="40" height="40" rx="6" fill="url(#winter)"/><use href="#snow" x="415" y="283" width="28" height="28"/></g>
+      <g><rect x="453" y="277" width="40" height="40" rx="6" fill="url(#autumn)"/><use href="#leaf" x="459" y="283" width="28" height="28"/></g>
+      <g><rect x="497" y="277" width="40" height="40" rx="6" fill="url(#spring)"/><use href="#sprout" x="503" y="283" width="28" height="28"/></g>
+      <g><rect x="541" y="277" width="40" height="40" rx="6" fill="url(#winter)"/><use href="#snow" x="547" y="283" width="28" height="28"/></g>
+    </g>
+  </g>
+
+  <text x="320" y="349" text-anchor="middle" fill="#664832" font-family="system-ui, -apple-system, 'Noto Sans SC', sans-serif" font-size="15" font-weight="700">同色但未与染池连通的织格，要等染液触及后才会加入</text>
+</svg>

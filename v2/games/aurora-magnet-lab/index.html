@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="zh-CN" data-realm="aurora-magnet-lab">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#061523">
+    <meta name="description" content="极光磁场实验室：为固定双格槽位装入正负磁极或中性模块，满足四周数量并避免同性磁极接触。">
+    <title>极光磁场实验室 · 十境谜游馆 2.0</title>
+    <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../../shared/realm-ui.css">
+    <link rel="stylesheet" href="./styles.css">
+    <script type="module" src="../../shared/realm-ui.mjs"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#magnet-board">跳到磁场棋盘</a>
+
+    <div class="polar-sky" aria-hidden="true">
+      <span class="sky-star sky-star--one"></span>
+      <span class="sky-star sky-star--two"></span>
+      <span class="sky-star sky-star--three"></span>
+      <i class="sky-ribbon sky-ribbon--one"></i>
+      <i class="sky-ribbon sky-ribbon--two"></i>
+    </div>
+
+    <header class="lab-header">
+      <a class="museum-link" href="../../" aria-label="返回十境谜游馆 2.0">
+        <span class="museum-mark" aria-hidden="true">十</span>
+        <span><small>TEN REALMS 2.0</small>返回谜游馆</span>
+      </a>
+      <nav class="header-actions" aria-label="实验操作">
+        <button id="new-puzzle-button" type="button" aria-label="换题"><span aria-hidden="true">⟳</span><b>换题</b></button>
+        <button id="undo-button" type="button" aria-label="撤销" disabled><span aria-hidden="true">↶</span><b>撤销</b></button>
+        <button id="restart-button" type="button" aria-label="重开"><span aria-hidden="true">↺</span><b>重开</b></button>
+        <button id="mute-button" type="button" aria-label="声音" aria-pressed="false"><span aria-hidden="true">♪</span><b>声音</b></button>
+        <button id="tutorial-button" type="button" aria-label="教程"><span aria-hidden="true">▣</span><b>教程</b></button>
+        <button id="rules-button" type="button" aria-label="规则"><span aria-hidden="true">?</span><b>规则</b></button>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="page-title">
+        <div>
+          <p class="eyebrow"><span aria-hidden="true"></span> POLAR RESEARCH STATION · LAB 07</p>
+          <h1 id="page-title">极光磁场<em>实验室</em></h1>
+          <p>校准每一组固定双格槽位。让正负极精确响应四周观测值，也别让相同磁极正面接触。</p>
+        </div>
+        <div class="save-beacon" id="save-beacon" role="status" aria-live="polite">
+          <i aria-hidden="true"></i><span id="save-message">本机实验记录已就绪</span>
+        </div>
+      </section>
+
+      <section class="lab-layout" aria-label="极光磁场实验区">
+        <aside class="panel mission-panel" aria-labelledby="mission-heading">
+          <div class="panel-heading">
+            <p>EXPERIMENT CONTROL</p>
+            <h2 id="mission-heading">观测任务</h2>
+          </div>
+
+          <fieldset class="difficulty-picker">
+            <legend>实验等级</legend>
+            <div id="difficulty-buttons" class="segmented-control"></div>
+            <p id="difficulty-note">4 × 4 · 四周线索完整</p>
+          </fieldset>
+
+          <article class="mission-card">
+            <p id="difficulty-kicker">POLAR CALIBRATION</p>
+            <h3 id="puzzle-title">冰窗校极</h3>
+            <span id="puzzle-subtitle">4 × 4 · 8 个横向槽位</span>
+            <p id="puzzle-note">先从零线索入手。</p>
+            <code id="puzzle-seed">seed · —</code>
+          </article>
+
+          <dl class="instrument-grid" aria-label="实验实时数据">
+            <div><dt>已装槽位</dt><dd><b id="assigned-count">0</b><span id="slot-total"> / 0</span></dd></div>
+            <div><dt>吻合线索</dt><dd><b id="clue-count">0</b><span id="clue-total"> / 0</span></dd></div>
+            <div><dt>同性冲突</dt><dd><b id="conflict-count">0</b><span> 处</span></dd></div>
+            <div><dt>操作</dt><dd><b id="move-count">0</b><span> 步</span></dd></div>
+          </dl>
+
+          <div class="mission-tip" id="mission-tip">
+            <span aria-hidden="true">⌁</span>
+            <p><strong id="status-title">等待模块装载</strong><span id="status-copy">点击任一槽位端点，把正极放在这一端。</span></p>
+          </div>
+        </aside>
+
+        <section class="panel board-panel" aria-labelledby="board-heading">
+          <header class="board-heading">
+            <div>
+              <p>FIELD CHAMBER</p>
+              <h2 id="board-heading">低温磁场舱</h2>
+            </div>
+            <button id="check-button" class="check-button" type="button">核验磁场</button>
+          </header>
+
+          <div class="polarity-key" aria-label="极性图例">
+            <span><i class="mini-pole mini-pole--plus" aria-hidden="true">+</i><b>正极</b> · 青色圆形</span>
+            <span><i class="mini-pole mini-pole--minus" aria-hidden="true">−</i><b>负极</b> · 洋红菱形</span>
+            <span><i class="mini-pole mini-pole--neutral" aria-hidden="true">中</i><b>中性</b> · 琥珀六边形</span>
+          </div>
+
+          <div class="board-viewport" id="board-viewport" tabindex="-1">
+            <div class="field-chamber" id="field-chamber">
+              <div class="completion-aurora" aria-hidden="true"><i></i><i></i><i></i></div>
+              <div class="puzzle-grid" id="puzzle-grid">
+                <div class="grid-corner grid-corner--plus" aria-hidden="true">+</div>
+                <div class="column-clues column-clues--plus" id="column-plus-clues" aria-label="各列正极数量线索"></div>
+                <div class="grid-corner" aria-hidden="true"></div>
+                <div class="row-clues row-clues--plus" id="row-plus-clues" aria-label="各行正极数量线索"></div>
+                <div class="magnet-board" id="magnet-board" role="grid" aria-label="固定双格磁极槽位棋盘" aria-describedby="board-instructions"></div>
+                <div class="row-clues row-clues--minus" id="row-minus-clues" aria-label="各行负极数量线索"></div>
+                <div class="grid-corner" aria-hidden="true"></div>
+                <div class="column-clues column-clues--minus" id="column-minus-clues" aria-label="各列负极数量线索"></div>
+                <div class="grid-corner grid-corner--minus" aria-hidden="true">−</div>
+              </div>
+            </div>
+          </div>
+          <p class="board-instructions" id="board-instructions">方向键或 WASD 移动；Enter 放正负极，Space 依次切换中性、候选与清空；候选不参与判定。</p>
+
+          <div class="tool-deck" role="toolbar" aria-label="模块装载工具">
+            <button class="tool-button is-active" type="button" data-tool="polarity" aria-pressed="true">
+              <span class="tool-symbol tool-symbol--magnet" aria-hidden="true"><i>+</i><i>−</i></span>
+              <span><strong>正负磁极</strong><small>Enter · 点哪端正极在哪端</small></span>
+            </button>
+            <button class="tool-button" type="button" data-tool="neutral" aria-pressed="false">
+              <span class="tool-symbol tool-symbol--neutral" aria-hidden="true">中</span>
+              <span><strong>中性模块</strong><small>Space · 不计正负</small></span>
+            </button>
+            <button class="tool-button" type="button" data-tool="note" aria-pressed="false">
+              <span class="tool-symbol tool-symbol--note" aria-hidden="true">??</span>
+              <span><strong>候选笔记</strong><small>Q · 不可能中性</small></span>
+            </button>
+            <button class="tool-button" type="button" data-tool="erase" aria-pressed="false">
+              <span class="tool-symbol tool-symbol--erase" aria-hidden="true">×</span>
+              <span><strong>清空槽位</strong><small>Delete</small></span>
+            </button>
+          </div>
+        </section>
+
+        <aside class="panel spectrum-panel" aria-labelledby="spectrum-heading">
+          <div class="panel-heading">
+            <p>LOCAL RESEARCH ARCHIVE</p>
+            <h2 id="spectrum-heading">极光光谱图鉴</h2>
+          </div>
+          <p class="spectrum-intro">每道唯一实验解锁一段光谱。记录只留在本机，奖励 ID 可供 2.0 成长系统去重接入。</p>
+          <ol class="spectrum-list" id="spectrum-list" aria-label="光谱收集进度"></ol>
+          <div class="archive-stats">
+            <span><small>光谱</small><b><span id="spectrum-count">0</span> / <span id="spectrum-total">6</span></b></span>
+            <span><small>零冲突实验</small><b id="zero-conflict-count">0</b></span>
+            <span><small>稀有磁暴</small><b id="storm-count">0</b></span>
+          </div>
+          <section class="best-record" aria-labelledby="best-heading">
+            <p>BEST OPERATION</p>
+            <h3 id="best-heading">当前实验最佳操作</h3>
+            <strong id="best-moves">—</strong>
+            <span id="best-copy">完成后会记录个人最佳；相同成绩不会重复奖励。</span>
+          </section>
+          <button class="text-action" id="spectrum-tutorial-button" type="button">重看三张图片教程</button>
+        </aside>
+      </section>
+    </main>
+
+    <footer class="lab-footer">
+      <p>极光磁场实验室 · 十境谜游馆 2.0</p>
+      <p>
+        规则原型 Magnets：创意归功于 Janko，由 James Harvey 贡献给 Simon Tatham’s Portable Puzzle Collection。
+        参考 <a href="https://github.com/ebnbin/puzzles/blob/main/doc-zh/magnets.html" target="_blank" rel="noreferrer">ebnbin/puzzles 中文规则</a>
+        与 <a href="https://github.com/ebnbin/puzzles/blob/main/vendor/sgtpuzzles/magnets.c" target="_blank" rel="noreferrer">上游实现</a>重新实现；上游依 MIT License 发布。
+        <a href="../../THIRD_PARTY_NOTICES.md">MIT 致谢</a>
+      </p>
+    </footer>
+
+    <dialog class="lab-dialog rules-dialog" id="rules-dialog" aria-labelledby="rules-title">
+      <div class="dialog-shell">
+        <header class="dialog-topline"><p>PROTOCOL / MAGNETS</p><button id="rules-close-button" type="button" aria-label="关闭规则">×</button></header>
+        <div class="dialog-content">
+          <p class="dialog-kicker">低温实验规程</p>
+          <h2 id="rules-title">三种模块，一套完整磁场</h2>
+          <ol class="rule-cards">
+            <li><b>01</b><div><h3>槽位配对固定</h3><p>每个可操作格恰好属于一个横向或纵向双格槽位。配对方向不能改变；奇数题盘可能有一个永久中性的封闭空位。</p></div></li>
+            <li><b>02</b><div><h3>整槽只有三种完成状态</h3><p>装入“+−”“−+”之一，或装入两端都中性的模块。未填与明确中性不同，不能只填一端。</p></div></li>
+            <li><b>03</b><div><h3>四周分别统计正负极</h3><p>顶部统计每列正极，底部统计每列负极，左侧统计每行正极，右侧统计每行负极。数字 0 是真实线索，破折号才表示缺失且不约束。</p></div></li>
+            <li><b>04</b><div><h3>同性不能正交相邻</h3><p>两个正极或两个负极不能上下左右接触；对角相邻允许，异性相邻允许，中性模块可接触任何极性。</p></div></li>
+            <li><b>05</b><div><h3>候选与标灰只是笔记</h3><p>两个问号表示“这里不可能中性”；线索也可点按标灰。两类笔记都不计数、不填槽、不改变冲突与胜利。</p></div></li>
+            <li><b>06</b><div><h3>全部条件同时成立才完成</h3><p>每个槽位已明确装载、所有已给正负线索精确相等、没有任何同性正交接触，三项缺一不可。</p></div></li>
+          </ol>
+          <section class="control-guide">
+            <h3>原作循环与本作输入</h3>
+            <p>点按空槽某一端或按 Enter：该端“+ → − → 清空”，另一端同步相反。中性模块须先用 Space 或中性工具转为候选再清空；磁铁上 Space 不生效。右键、长按或 Space：未填 → 中性 → 两个问号 → 未填。</p>
+            <p>方向键 / WASD 移动，Q 切换候选，Delete 清空，Ctrl/⌘+Z 撤销，R 重开，N 换题，M 静音，? 打开规则。任一模态窗口打开时，棋盘快捷键都会隔离。</p>
+          </section>
+          <p class="license-note">规则源流：Janko “Magnete” → James Harvey / Simon Tatham’s Portable Puzzle Collection → ebnbin/puzzles 中文网页版本。本作规则引擎与界面为独立重新实现，并保留上游 MIT 致谢。</p>
+        </div>
+      </div>
+    </dialog>
+
+    <dialog class="lab-dialog tutorial-dialog" id="tutorial-dialog" aria-labelledby="tutorial-title" aria-describedby="tutorial-body">
+      <div class="dialog-shell tutorial-shell">
+        <header class="dialog-topline"><p>FIRST FIELD BRIEFING</p><button id="tutorial-skip-button" type="button">跳过，直接实验</button></header>
+        <article class="tutorial-card">
+          <div class="tutorial-visual"><img id="tutorial-image" src="./assets/tutorial-elements.svg" alt=""></div>
+          <div class="tutorial-copy">
+            <p class="dialog-kicker" id="tutorial-step">01 · 认识元件</p>
+            <h2 id="tutorial-title">一眼分清正、负与中性</h2>
+            <p id="tutorial-body">每条描边都圈出一个固定双格槽位。正极是青色圆形“+ 正”，负极是洋红菱形“− 负”，中性是琥珀六边形。</p>
+            <ul id="tutorial-bullets"><li>文字、形状、颜色三重区分</li><li>四周数字分别统计正极与负极</li></ul>
+            <p class="visually-hidden" id="tutorial-announcement" aria-live="polite" aria-atomic="true"></p>
+          </div>
+        </article>
+        <footer class="tutorial-footer">
+          <button id="tutorial-previous-button" type="button" disabled>上一张</button>
+          <p><span id="tutorial-counter">1 / 3</span><span class="tutorial-dots" id="tutorial-dots" aria-hidden="true"></span></p>
+          <button id="tutorial-next-button" type="button">下一张</button>
+        </footer>
+      </div>
+    </dialog>
+
+    <dialog class="lab-dialog victory-dialog" id="victory-dialog" aria-labelledby="victory-title">
+      <div class="dialog-shell victory-shell">
+        <div class="victory-aurora" aria-hidden="true"><i></i><i></i><i></i></div>
+        <p class="dialog-kicker">FIELD STABLE / AURORA RELEASED</p>
+        <h2 id="victory-title">极光已越过实验舱</h2>
+        <p id="victory-copy">所有槽位与观测线索吻合，同性磁极保持了安全距离。</p>
+        <dl class="victory-stats">
+          <div><dt>实验</dt><dd id="victory-level">—</dd></div>
+          <div><dt>操作</dt><dd id="victory-moves">0</dd></div>
+          <div><dt>冲突操作</dt><dd id="victory-conflicts">0</dd></div>
+          <div><dt>用时</dt><dd id="victory-time">00:00</dd></div>
+        </dl>
+        <ul class="reward-list" id="victory-rewards" aria-label="本次新获得的本地记录"></ul>
+        <div class="dialog-actions">
+          <button class="primary-action" id="next-experiment-button" type="button">下一项实验</button>
+          <button id="stay-button" type="button">留在极光下</button>
+        </div>
+      </div>
+    </dialog>
+
+    <div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+    <p class="visually-hidden" id="assertive-status" role="alert" aria-live="assertive"></p>
+    <script type="module" src="./app.mjs"></script>
+  </body>
+</html>

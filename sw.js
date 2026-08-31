@@ -53,6 +53,11 @@ self.addEventListener("fetch", (event) => {
   const url = new URL(event.request.url);
   if (url.origin !== self.location.origin) return;
 
+  // Version 2 owns its own shell, cache and service-worker scope. Let those
+  // requests reach the network (or its scoped worker) without 1.0 fallback.
+  const v2Path = new URL("./v2/", self.registration.scope).pathname;
+  if (url.pathname === v2Path.slice(0, -1) || url.pathname.startsWith(v2Path)) return;
+
   event.respondWith(
     fetch(event.request)
       .then((response) => {

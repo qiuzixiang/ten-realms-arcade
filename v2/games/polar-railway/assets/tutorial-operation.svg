@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 184" preserveAspectRatio="xMidYMid meet" role="img" aria-label="极地蒸汽列车操作示例：在单一当前棋盘状态中选择共享边铺设轨道，并在不用的格子标记排除号">
+  <title>在共享边铺轨的当前操作状态</title>
+  <defs>
+    <linearGradient id="operation-sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#173a51"/>
+      <stop offset="1" stop-color="#081924"/>
+    </linearGradient>
+    <radialGradient id="operation-focus">
+      <stop offset="0" stop-color="#ffd56e" stop-opacity=".62"/>
+      <stop offset="1" stop-color="#ffd56e" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="operation-glow" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <rect width="320" height="184" rx="18" fill="url(#operation-sky)"/>
+  <path d="M0 160C55 145 84 157 131 151S227 139 320 156V184H0Z" fill="#9bd4df" opacity=".12"/>
+  <g fill="#bfefff" opacity=".34"><circle cx="22" cy="29" r="1.2"/><circle cx="181" cy="18" r="1.5"/><circle cx="298" cy="41" r="1.2"/><circle cx="279" cy="151" r="1.5"/></g>
+
+  <text x="18" y="21" fill="#effcff" font-family="system-ui, sans-serif" font-size="12" font-weight="800" letter-spacing="1">02 · 铺设共享边</text>
+
+  <!-- Quotas above a single live board state -->
+  <g font-family="system-ui, sans-serif" font-size="10" font-weight="800" text-anchor="middle" fill="#e9fbff">
+    <text x="50" y="39">2</text><text x="80" y="39">3</text><text x="110" y="39">2</text><text x="140" y="39">2</text>
+  </g>
+  <rect x="35" y="45" width="120" height="120" rx="6" fill="#edf9fa" stroke="#8cc3ce" stroke-width="2"/>
+  <path d="M65 45V165M95 45V165M125 45V165M35 75H155M35 105H155M35 135H155" fill="none" stroke="#709daa" stroke-width="1"/>
+
+  <!-- A and B are shown in their real edge positions -->
+  <rect x="8" y="80" width="21" height="20" rx="10" fill="#f4b942"/>
+  <text x="18.5" y="94" text-anchor="middle" fill="#17212a" font-family="system-ui, sans-serif" font-size="12" font-weight="900">A</text>
+  <path d="M29 90H50V75" fill="none" stroke="#27343c" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M29 90H50V75" fill="none" stroke="#e5fbff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="42" y="81.5" width="16" height="16" rx="4" fill="#197a9a" fill-opacity=".3" stroke="#157d9e"/>
+  <circle cx="50" cy="89.5" r="2.4" fill="#f4b942"/>
+
+  <path d="M110 165V175" stroke="#27343c" stroke-width="8" stroke-linecap="round"/>
+  <path d="M110 165V175" stroke="#e5fbff" stroke-width="2.5" stroke-linecap="round"/>
+  <rect x="99.5" y="160" width="21" height="20" rx="10" fill="#f4b942"/>
+  <text x="110" y="174" text-anchor="middle" fill="#17212a" font-family="system-ui, sans-serif" font-size="12" font-weight="900">B</text>
+
+  <!-- Existing context in this one current state -->
+  <path d="M50 75V60H80" fill="none" stroke="#27343c" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M50 75V60H80" fill="none" stroke="#b7eaf0" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="127.5" y="47.5" width="25" height="25" rx="4" fill="#6dcadd" fill-opacity=".22" stroke="#1e8ead" stroke-width="1.5" stroke-dasharray="4 2"/>
+  <path d="M102 112L118 128M118 112L102 128" stroke="#bf404a" stroke-width="3.2" stroke-linecap="round"/>
+
+  <!-- The selected shared edge, shown only in its current TRACK state -->
+  <circle cx="95" cy="90" r="30" fill="url(#operation-focus)"/>
+  <path d="M80 90H110" fill="none" stroke="#25323a" stroke-width="10" stroke-linecap="round"/>
+  <path d="M80 90H110" fill="none" stroke="#f7c54f" stroke-width="3.5" stroke-linecap="round" filter="url(#operation-glow)"/>
+  <path d="M90 84V96M95 84V96M100 84V96" stroke="#fff0bd" stroke-width="1.4"/>
+  <circle cx="95" cy="90" r="8" fill="none" stroke="#fff3bd" stroke-width="1.5" stroke-dasharray="2 3"/>
+
+  <!-- Finger/cursor points to the one current selection -->
+  <g transform="translate(112 90) rotate(-18)">
+    <path d="M0 19V3.5C0 .8 4 .8 4 3.5V11 7.5C4 5 8 5 8 7.5V12 9C8 6.8 12 7 12 9.3V13 10.5C12 8.5 16 8.7 16 11V18.5C16 24 12.5 27 7.5 27S0 23 0 19Z" fill="#f6d2ae" stroke="#713f32" stroke-width="1.3"/>
+  </g>
+
+  <!-- Row quotas do not compete with the board -->
+  <g font-family="system-ui, sans-serif" font-size="10" font-weight="800" text-anchor="middle" fill="#e9fbff">
+    <text x="165" y="64">2</text><text x="165" y="94">3</text><text x="165" y="124">1</text><text x="165" y="154">3</text>
+  </g>
+
+  <g font-family="system-ui, sans-serif">
+    <rect x="190" y="43" width="112" height="66" rx="12" fill="#0d2635" stroke="#4b8294"/>
+    <circle cx="210" cy="63" r="9" fill="#f4b942"/>
+    <path d="M205 63H215" stroke="#24323a" stroke-width="3.5" stroke-linecap="round"/>
+    <text x="226" y="61" fill="#f6fcff" font-size="11" font-weight="800">依次点相邻格</text>
+    <text x="226" y="78" fill="#9fe6f2" font-size="10">第二格决定轨道边</text>
+    <path d="M201 90H291" stroke="#31566a"/>
+    <text x="202" y="102" fill="#f8d26e" font-size="9" font-weight="700">当前状态：已铺轨</text>
+
+    <rect x="190" y="117" width="112" height="42" rx="12" fill="#0d2635" stroke="#4b8294"/>
+    <path d="M202 128L214 140M214 128L202 140" stroke="#ef6d73" stroke-width="2.8" stroke-linecap="round"/>
+    <text x="225" y="132" fill="#f6fcff" font-size="10" font-weight="800">不用的格子</text>
+    <text x="225" y="147" fill="#9fe6f2" font-size="9">标记 × 排除</text>
+  </g>
+</svg>

@@ -1,0 +1,123 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" preserveAspectRatio="xMidYMid meet" role="img" aria-label="极光磁场实验室元素图鉴：成对槽位、青色圆形正极、洋红菱形负极、琥珀六边形中性件，以及正负数量线索">
+  <title>极光磁场实验室：认识实验元件</title>
+  <desc>四张独立卡片依次展示成对槽位、加正标记的青色圆形正极、减负标记的洋红菱形负极、六边形中性件；下方展示行列正负数量线索。</desc>
+  <defs>
+    <linearGradient id="elements-bg" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#07162f"/>
+      <stop offset="0.55" stop-color="#102858"/>
+      <stop offset="1" stop-color="#170f36"/>
+    </linearGradient>
+    <linearGradient id="elements-panel" x1="0" y1="0" x2="0" y2="1">
+      <stop stop-color="#172d59"/>
+      <stop offset="1" stop-color="#0c1937"/>
+    </linearGradient>
+    <linearGradient id="elements-aurora" x1="0" y1="0" x2="1" y2="0">
+      <stop stop-color="#52f2dc" stop-opacity="0"/>
+      <stop offset="0.28" stop-color="#52f2dc" stop-opacity="0.72"/>
+      <stop offset="0.68" stop-color="#9b7bff" stop-opacity="0.58"/>
+      <stop offset="1" stop-color="#ff58c7" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="elements-positive" cx="35%" cy="28%" r="72%">
+      <stop stop-color="#b8fff7"/>
+      <stop offset="0.36" stop-color="#31e7df"/>
+      <stop offset="1" stop-color="#079eae"/>
+    </radialGradient>
+    <linearGradient id="elements-negative" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#ff83db"/>
+      <stop offset="1" stop-color="#bd278f"/>
+    </linearGradient>
+    <linearGradient id="elements-neutral" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#ffd77a"/>
+      <stop offset="1" stop-color="#d58a2d"/>
+    </linearGradient>
+    <filter id="elements-glow" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="elements-shadow" x="-30%" y="-30%" width="160%" height="180%">
+      <feDropShadow dx="0" dy="7" stdDeviation="8" flood-color="#020615" flood-opacity="0.55"/>
+    </filter>
+  </defs>
+
+  <rect width="640" height="360" rx="24" fill="url(#elements-bg)"/>
+  <path d="M-30 67C76 4 132 88 229 39S401 10 470 55 584 86 682 22" fill="none" stroke="url(#elements-aurora)" stroke-width="25" stroke-linecap="round" filter="url(#elements-glow)"/>
+  <g fill="#dffeff">
+    <circle cx="37" cy="30" r="1.6"/><circle cx="99" cy="57" r="1.2"/><circle cx="543" cy="25" r="1.5"/><circle cx="603" cy="66" r="1.2"/>
+  </g>
+
+  <g font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, sans-serif">
+    <text x="28" y="38" fill="#f4fbff" font-size="22" font-weight="800">实验元件图鉴</text>
+    <text x="612" y="36" text-anchor="end" fill="#a8c8e9" font-size="12" font-weight="700">先辨形状，再读线索</text>
+
+    <g filter="url(#elements-shadow)">
+      <rect x="24" y="66" width="136" height="178" rx="18" fill="url(#elements-panel)" stroke="#5577a8" stroke-width="1.5"/>
+      <rect x="176" y="66" width="136" height="178" rx="18" fill="url(#elements-panel)" stroke="#1ed9d5" stroke-width="1.5"/>
+      <rect x="328" y="66" width="136" height="178" rx="18" fill="url(#elements-panel)" stroke="#ef55bd" stroke-width="1.5"/>
+      <rect x="480" y="66" width="136" height="178" rx="18" fill="url(#elements-panel)" stroke="#e9ae53" stroke-width="1.5"/>
+    </g>
+
+    <g aria-label="一个由两个相邻格组成的空槽位">
+      <rect x="43" y="105" width="98" height="56" rx="13" fill="#09142b" stroke="#9bb2d2" stroke-width="3"/>
+      <path d="M92 106v54" stroke="#526b91" stroke-width="2"/>
+      <rect x="50" y="112" width="35" height="42" rx="8" fill="#13294e" stroke="#34547e"/>
+      <rect x="99" y="112" width="35" height="42" rx="8" fill="#13294e" stroke="#34547e"/>
+      <path d="M57 119h8M57 119v8M127 119h-8M127 119v8M57 147h8M57 147v-8M127 147h-8M127 147v-8" fill="none" stroke="#7e9dc6" stroke-width="2" stroke-linecap="round"/>
+      <text x="92" y="193" text-anchor="middle" fill="#f2f7ff" font-size="15" font-weight="800">成对槽位</text>
+      <text x="92" y="215" text-anchor="middle" fill="#91afd2" font-size="11">一次处理一组</text>
+    </g>
+
+    <g aria-label="青色圆形正极，标有加正">
+      <circle cx="244" cy="133" r="35" fill="#0b263f" stroke="#4bf4ed" stroke-width="2" filter="url(#elements-glow)"/>
+      <circle cx="244" cy="133" r="29" fill="url(#elements-positive)" stroke="#d8fffb" stroke-width="2"/>
+      <text x="244" y="139" text-anchor="middle" fill="#032e38" font-size="15" font-weight="900">+ 正</text>
+      <text x="244" y="193" text-anchor="middle" fill="#9dfff8" font-size="15" font-weight="800">正极</text>
+      <text x="244" y="215" text-anchor="middle" fill="#91afd2" font-size="11">青色圆形</text>
+    </g>
+
+    <g aria-label="洋红菱形负极，标有减负">
+      <path d="M396 91l42 42-42 42-42-42z" fill="#321138" stroke="#ff69cd" stroke-width="2" filter="url(#elements-glow)"/>
+      <path d="M396 99l34 34-34 34-34-34z" fill="url(#elements-negative)" stroke="#ffd5f3" stroke-width="2"/>
+      <text x="396" y="139" text-anchor="middle" fill="#4b073b" font-size="15" font-weight="900">− 负</text>
+      <text x="396" y="193" text-anchor="middle" fill="#ff9dde" font-size="15" font-weight="800">负极</text>
+      <text x="396" y="215" text-anchor="middle" fill="#91afd2" font-size="11">洋红菱形</text>
+    </g>
+
+    <g aria-label="琥珀六边形中性件，不计入正负数量">
+      <path d="M522 107l26-16 26 16v52l-26 16-26-16z" fill="#372b1c" stroke="#ffd783" stroke-width="2" filter="url(#elements-glow)"/>
+      <path d="M529 111l19-12 19 12v44l-19 12-19-12z" fill="url(#elements-neutral)" stroke="#fff0bf" stroke-width="2"/>
+      <text x="548" y="139" text-anchor="middle" fill="#523310" font-size="14" font-weight="900">中性</text>
+      <text x="548" y="193" text-anchor="middle" fill="#ffd98c" font-size="15" font-weight="800">中性件</text>
+      <text x="548" y="215" text-anchor="middle" fill="#91afd2" font-size="11">不计正负数量</text>
+    </g>
+
+    <g aria-label="行列线索分别给出需要的正极和负极数量">
+      <rect x="24" y="260" width="592" height="76" rx="17" fill="#0a1733" stroke="#35527d" stroke-width="1.5"/>
+      <rect x="39" y="274" width="94" height="48" rx="12" fill="#14294c" stroke="#526f98"/>
+      <text x="86" y="294" text-anchor="middle" fill="#dcecff" font-size="12" font-weight="800">线索条</text>
+      <text x="86" y="311" text-anchor="middle" fill="#89a9cf" font-size="10">行 / 列皆相同</text>
+
+      <rect x="151" y="274" width="82" height="48" rx="12" fill="#093e4b" stroke="#37e5df" stroke-width="2"/>
+      <circle cx="174" cy="298" r="13" fill="url(#elements-positive)"/>
+      <text x="174" y="302" text-anchor="middle" fill="#04303a" font-size="9" font-weight="900">+ 正</text>
+      <text x="215" y="303" text-anchor="middle" fill="#c9fffb" font-size="19" font-weight="900">2</text>
+
+      <rect x="245" y="274" width="82" height="48" rx="12" fill="#42113c" stroke="#f15cbe" stroke-width="2"/>
+      <path d="M268 284l14 14-14 14-14-14z" fill="url(#elements-negative)"/>
+      <text x="268" y="301" text-anchor="middle" fill="#4a073b" font-size="8" font-weight="900">− 负</text>
+      <text x="309" y="303" text-anchor="middle" fill="#ffd4f1" font-size="19" font-weight="900">2</text>
+
+      <path d="M348 298h35" stroke="#7f9dc3" stroke-width="3" stroke-linecap="round"/>
+      <path d="M384 298l-10-7v14z" fill="#7f9dc3"/>
+      <g transform="translate(401 276)">
+        <rect width="44" height="44" rx="9" fill="#13294e" stroke="#54729c"/>
+        <path d="M22 0v44M0 22h44" stroke="#4c678e"/>
+        <circle cx="11" cy="11" r="8" fill="url(#elements-positive)"/>
+        <path d="M33 3l8 8-8 8-8-8z" fill="url(#elements-negative)"/>
+        <path d="M4 29l7-4 7 4v10l-7 4-7-4z" fill="url(#elements-neutral)"/>
+        <circle cx="33" cy="33" r="8" fill="url(#elements-positive)"/>
+      </g>
+      <text x="468" y="294" fill="#f1f7ff" font-size="12" font-weight="800">数字 = 需要的数量</text>
+      <text x="468" y="313" fill="#92afd2" font-size="10">中性件不会占用正负线索</text>
+    </g>
+  </g>
+</svg>

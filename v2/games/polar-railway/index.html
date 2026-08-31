@@ -1,0 +1,390 @@
+<!doctype html>
+<html lang="zh-CN" data-realm="polar-railway">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#06131d" />
+    <meta
+      name="description"
+      content="极地蒸汽列车：依据行列调度配额，从起点 A 铺出一条不分叉、不交叉的完整铁轨，抵达终点 B。"
+    />
+    <meta property="og:title" content="极地蒸汽列车 · 十境谜游馆 2.0" />
+    <meta property="og:description" content="在极夜风雪中补完唯一铁路，让蒸汽列车沿 A 到 B 的路线真实驶完全程。" />
+    <title>极地蒸汽列车 · 十境谜游馆 2.0</title>
+    <link rel="stylesheet" href="../../shared/realm-ui.css" />
+    <link rel="stylesheet" href="./styles.css" />
+    <script type="module" src="../../shared/realm-ui.mjs"></script>
+    <script type="module" src="./app.mjs"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#board-viewport">跳到铁路棋盘</a>
+
+    <div class="polar-night" aria-hidden="true">
+      <span class="aurora aurora--one"></span>
+      <span class="aurora aurora--two"></span>
+      <span class="snowfield"></span>
+      <span class="snow snow--near"></span>
+      <span class="snow snow--far"></span>
+    </div>
+
+    <header class="topbar">
+      <a class="back-link" href="../../" aria-label="返回十境谜游馆 2.0">
+        <span class="back-link__arrow" aria-hidden="true">←</span>
+        <span><small>TEN REALMS · 2.0</small>返回谜游馆</span>
+      </a>
+
+      <div class="station-mark" aria-label="十境谜游馆 2.0，第十一境，极地蒸汽列车">
+        <span class="station-mark__wheel" aria-hidden="true"><i></i></span>
+        <span><small>POLAR LINE · 11</small>极地蒸汽列车</span>
+      </div>
+
+      <nav class="top-actions" aria-label="页面选项">
+        <button class="round-action" id="mute-button" type="button" aria-pressed="false">
+          <span class="sound-icon" aria-hidden="true">♪</span><span class="action-label">声音</span>
+        </button>
+        <button class="round-action" id="tutorial-button" type="button">
+          <span aria-hidden="true">◫</span><span class="action-label">教程</span>
+        </button>
+        <button class="round-action" id="rules-button" type="button">
+          <span aria-hidden="true">?</span><span class="action-label">规则</span>
+        </button>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="page-title">
+        <div class="hero-copy">
+          <p class="eyebrow"><span aria-hidden="true"></span> ARCTIC RAIL DISPATCH · 04:17</p>
+          <h1 id="page-title">极地蒸汽<br /><em>列车</em></h1>
+          <p>风雪抹去了最后一段铁轨。核对每行每列的铺轨配额，让从 A 到 B 的唯一线路重新贯通。</p>
+        </div>
+        <div class="hero-locomotive" aria-hidden="true">
+          <span class="hero-smoke hero-smoke--one"></span>
+          <span class="hero-smoke hero-smoke--two"></span>
+          <span class="hero-engine"><i></i></span>
+          <span class="hero-rail"></span>
+        </div>
+      </section>
+
+      <section class="game-layout" aria-label="极地蒸汽列车游戏区">
+        <article class="dispatch-board" aria-labelledby="level-title">
+          <header class="board-header">
+            <div class="board-heading">
+              <p id="level-kicker">破雪线 · 001</p>
+              <h2 id="level-title">白湾补给段</h2>
+              <span class="puzzle-seed" id="puzzle-seed">题面 #00001</span>
+            </div>
+            <div class="departure-state" aria-label="线路当前状态">
+              <span class="signal-light" id="signal-light" aria-hidden="true"><i></i></span>
+              <span><small>调度状态</small><strong id="route-status">等待铺轨</strong></span>
+            </div>
+          </header>
+
+          <div class="board-progress" aria-label="配额完成进度">
+            <span id="progress-bar" aria-hidden="true"></span>
+            <span class="visually-hidden" id="quota-summary">0 项配额已满足，共 10 项</span>
+          </div>
+
+          <div class="board-viewport" id="board-viewport" tabindex="0" aria-label="可横向滚动的铁路调度棋盘">
+            <p class="visually-hidden" id="board-help">
+              选择铺轨边或排除边工具后，依次选择两个正交相邻格；键盘也可按 Shift 加方向键快速操作相邻边。选择候选格或无轨格后，按空格或回车操作格子。方向键移动焦点；数字键一到四切换工具，Z 撤销，R 重开，N 换题，M 静音。
+            </p>
+            <div class="quota-board" id="quota-board" style="--board-columns: 5; --board-rows: 5">
+              <div class="quota-corner quota-corner--top" aria-hidden="true">
+                <span>列</span><small>配额</small>
+              </div>
+              <div class="column-clues" id="column-clues" role="list" aria-label="各列轨道占用配额"></div>
+
+              <div class="board-axis-label" aria-hidden="true"><span>TRACK FIELD</span></div>
+              <div class="board-cells-wrap board-stage" id="board-stage">
+                <div
+                  class="railway-board"
+                  id="rail-grid"
+                  role="grid"
+                  aria-label="轨道格"
+                  aria-describedby="board-help"
+                  aria-rowcount="5"
+                  aria-colcount="5"
+                >
+                  <div class="ice-grid" aria-hidden="true"></div>
+                  <div class="cell-layer" id="cell-layer" role="rowgroup"></div>
+                  <div class="edge-layer" id="edge-layer" aria-hidden="true"></div>
+                  <div class="endpoint-layer" id="endpoint-layer" aria-hidden="true"></div>
+                  <div class="train-layer" id="train-layer" aria-hidden="true">
+                    <span class="board-train" id="board-train"><i></i><b></b></span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="quota-corner quota-corner--side" aria-hidden="true">
+                <span>行</span><small>配额</small>
+              </div>
+              <div class="row-clues" id="row-clues" role="list" aria-label="各行轨道占用配额"></div>
+            </div>
+          </div>
+
+          <div class="board-legend" aria-label="棋盘图例">
+            <span><i class="legend-track" aria-hidden="true"></i>实铺铁轨</span>
+            <span><i class="legend-excluded-edge" aria-hidden="true">×</i>排除边</span>
+            <span><i class="legend-candidate" aria-hidden="true"></i>候选格</span>
+            <span><i class="legend-empty" aria-hidden="true">×</i>无轨格</span>
+            <span><i class="legend-given" aria-hidden="true"></i>预置轨道</span>
+          </div>
+
+          <div class="tool-console" id="tool-buttons" role="toolbar" aria-label="铺轨工具" aria-describedby="tool-help">
+            <p class="visually-hidden" id="tool-help">四种工具都有颜色以外的形状标记。当前工具可用数字键一到四切换。</p>
+            <button class="tool-button is-active" id="tool-track" data-tool="edge-track" type="button" aria-pressed="true">
+              <span class="tool-glyph tool-glyph--track" aria-hidden="true"><i></i></span>
+              <span><strong>铺轨边</strong><small>依次点相邻格</small></span>
+              <kbd>1</kbd>
+            </button>
+            <button class="tool-button" id="tool-edge-excluded" data-tool="edge-excluded" type="button" aria-pressed="false">
+              <span class="tool-glyph tool-glyph--edge-x" aria-hidden="true">×</span>
+              <span><strong>排除边</strong><small>依次点相邻格</small></span>
+              <kbd>2</kbd>
+            </button>
+            <button class="tool-button" id="tool-candidate" data-tool="cell-candidate" type="button" aria-pressed="false">
+              <span class="tool-glyph tool-glyph--candidate" aria-hidden="true"><i></i></span>
+              <span><strong>候选格</strong><small>确定会有轨道</small></span>
+              <kbd>3</kbd>
+            </button>
+            <button class="tool-button" id="tool-cell-excluded" data-tool="cell-excluded" type="button" aria-pressed="false">
+              <span class="tool-glyph tool-glyph--cell-x" aria-hidden="true">×</span>
+              <span><strong>无轨格</strong><small>确定不会经过</small></span>
+              <kbd>4</kbd>
+            </button>
+          </div>
+        </article>
+
+        <aside class="control-console" aria-labelledby="control-title">
+          <header class="console-heading">
+            <p>BRASS DISPATCH CONSOLE</p>
+            <h2 id="control-title">黄铜调度台</h2>
+            <span id="save-status">每一步自动留存在本机</span>
+          </header>
+
+          <dl class="journey-meters">
+            <div><dt>已满足配额</dt><dd><strong id="completion-count">0</strong><span id="quota-total"> / 10</span></dd></div>
+            <div><dt>铺轨步数</dt><dd><strong id="move-count">0</strong><span> 步</span></dd></div>
+            <div><dt>行车计时</dt><dd><strong id="timer-value">00:00</strong></dd></div>
+            <div><dt>建议步数</dt><dd><strong id="par-moves">—</strong><span> 步</span></dd></div>
+            <div><dt>线路冲突</dt><dd><strong id="conflict-count">0</strong><span> 处</span></dd></div>
+          </dl>
+
+          <fieldset class="difficulty-picker">
+            <legend>选择极地干线</legend>
+            <div class="difficulty-buttons" id="difficulty-buttons">
+              <button class="is-active" type="button" data-difficulty="easy" aria-pressed="true">
+                <span>破雪线</span><small>入门 · 5 × 5</small>
+              </button>
+              <button type="button" data-difficulty="medium" aria-pressed="false">
+                <span>冰脊线</span><small>进阶 · 6 × 6</small>
+              </button>
+              <button type="button" data-difficulty="hard" aria-pressed="false">
+                <span>极夜线</span><small>挑战 · 7 × 7</small>
+              </button>
+            </div>
+            <p id="difficulty-note">5 × 5 · 适合初次调度</p>
+          </fieldset>
+
+          <div class="dispatch-actions" aria-label="本局操作">
+            <button class="primary-action" id="new-puzzle-button" type="button"><span aria-hidden="true">＋</span> 换一张图</button>
+            <button id="restart-button" type="button"><span aria-hidden="true">↺</span> 重开</button>
+            <button id="undo-button" type="button" disabled><span aria-hidden="true">↶</span> 撤销</button>
+          </div>
+
+          <div class="dispatch-message" id="dispatch-message">
+            <span class="message-flag" aria-hidden="true"><i></i></span>
+            <p><strong id="status-title">等待首段铁轨</strong><span id="status-copy">先核对 A 附近的预置轨道与行列配额。</span></p>
+          </div>
+
+          <details class="keyboard-guide">
+            <summary>触控与键盘操作</summary>
+            <p><span>触控</span> 边工具依次点两个相邻格；格心工具直接点格子。</p>
+            <p><span>键盘</span> 方向键移动；空格 / Enter 选格，Shift＋方向键快速操作边；1–4 选工具。</p>
+            <p><span>快捷键</span> Z 撤销，R 重开，N 换题，M 静音。</p>
+          </details>
+        </aside>
+      </section>
+
+      <section class="expedition-log" aria-labelledby="expedition-title">
+        <header class="log-heading">
+          <div>
+            <p>POLAR LINE ARCHIVE</p>
+            <h2 id="expedition-title">极地线路档案</h2>
+          </div>
+          <p>完成调度会留下可去重的本地线路记录；同一题的奖励只记一次。</p>
+        </header>
+
+        <div class="archive-layout">
+          <section class="route-atlas" aria-labelledby="atlas-title">
+            <header><span aria-hidden="true">⌁</span><div><p>ROUTE ATLAS</p><h3 id="atlas-title">线路图鉴</h3></div></header>
+            <p>每条独立线路首次通车后盖上车站戳。</p>
+            <div class="atlas-stamps" id="atlas-grid" role="list" aria-label="已经通车的线路">
+              <span class="atlas-empty" id="atlas-empty">尚无通车记录</span>
+            </div>
+            <strong class="archive-count"><span id="collection-count">0</span> / <span id="collection-total">0</span></strong>
+          </section>
+
+          <section class="badge-rack" aria-labelledby="badges-title">
+            <header><span aria-hidden="true">✦</span><div><p>DISPATCH HONOURS</p><h3 id="badges-title">调度徽章</h3></div></header>
+            <div class="badge-list" id="badge-list">
+              <article class="achievement" id="badge-no-rework" data-badge="no-rework" aria-label="零返工铺轨徽章，尚未取得">
+                <span class="badge-medallion badge-medallion--spanner" aria-hidden="true"><i></i></span>
+                <p><strong>零返工铺轨</strong><small>全程未撤销、重开或改动已下标记</small></p>
+                <span class="badge-state">未取得</span>
+                <strong class="badge-count" id="zero-count">0 次</strong>
+              </article>
+              <article class="achievement" id="badge-on-time" data-badge="on-time" aria-label="准点徽章，尚未取得">
+                <span class="badge-medallion badge-medallion--clock" aria-hidden="true"><i></i></span>
+                <p><strong>准点徽章</strong><small>在本难度准点时限内通关</small></p>
+                <span class="badge-state">未取得</span>
+              </article>
+            </div>
+            <div class="punctual-grid" id="punctual-grid" aria-label="各难度准点徽章"></div>
+          </section>
+
+          <section class="livery-workshop" aria-labelledby="livery-title">
+            <header><span aria-hidden="true">◆</span><div><p>ROLLING STOCK</p><h3 id="livery-title">车头与车厢外观</h3></div></header>
+            <p id="livery-status">通车更多线路，解锁新的极地编组。</p>
+            <div class="livery-preview" id="livery-preview" aria-hidden="true">
+              <span class="preview-engine"><i></i></span><span class="preview-car"></span><span class="preview-car"></span>
+            </div>
+            <h4>车头</h4>
+            <div class="livery-options" id="engine-options" role="radiogroup" aria-label="选择车头外观">
+              <button class="is-selected" type="button" role="radio" data-livery="coal" aria-checked="true">
+                <i class="swatch swatch--coal" aria-hidden="true"></i><span>玄煤号</span><small>已拥有</small>
+              </button>
+              <button type="button" role="radio" data-livery="aurora" aria-checked="false" aria-disabled="true">
+                <i class="swatch swatch--aurora" aria-hidden="true"></i><span>极光号</span><small>通车 3 线</small>
+              </button>
+              <button type="button" role="radio" data-livery="brass" aria-checked="false" aria-disabled="true">
+                <i class="swatch swatch--brass" aria-hidden="true"></i><span>金星号</span><small>集齐双徽章</small>
+              </button>
+            </div>
+            <h4>车厢</h4>
+            <div class="livery-options livery-options--carriages" id="carriage-options" role="radiogroup" aria-label="选择车厢外观">
+              <button class="is-selected" type="button" role="radio" data-livery="mail" aria-checked="true">
+                <i class="swatch swatch--mail" aria-hidden="true"></i><span>邮运厢</span><small>已拥有</small>
+              </button>
+              <button type="button" role="radio" data-livery="observatory" aria-checked="false" aria-disabled="true">
+                <i class="swatch swatch--observatory" aria-hidden="true"></i><span>观星厢</span><small>通车 5 线</small>
+              </button>
+            </div>
+          </section>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>风雪会覆盖枕木，清晰的规则不会。</p>
+      <nav aria-label="页脚链接">
+        <a href="../../">返回十境谜游馆 2.0</a>
+        <span aria-hidden="true">·</span>
+        <button id="footer-tutorial-button" type="button">重看三步教程</button>
+        <span aria-hidden="true">·</span>
+        <button id="footer-rules-button" type="button">规则源流与 MIT 致谢</button>
+      </nav>
+    </footer>
+
+    <dialog class="tutorial-dialog" id="tutorial-dialog" aria-labelledby="tutorial-title" aria-describedby="tutorial-copy">
+      <div class="dialog-topline">
+        <p>POLAR DISPATCH TRAINING</p>
+        <button class="dialog-close" id="tutorial-close" type="button" aria-label="跳过并关闭教程">×</button>
+      </div>
+      <div class="tutorial-shell">
+        <header>
+          <p id="tutorial-eyebrow">新任调度员训练 · 1 / 3</p>
+          <h2 id="tutorial-title">先认清调度图</h2>
+        </header>
+
+        <div class="tutorial-stage" id="tutorial-stage">
+          <img
+            id="tutorial-image"
+            src="./assets/tutorial-elements.svg"
+            alt="真实棋盘示意：起点 A、终点 B、预置弯轨，以及棋盘顶部列配额和右侧行配额"
+          />
+          <p id="tutorial-copy">顶部数字是每列经过的轨道格数，右侧数字是每行经过的轨道格数。A、B 与深色实线轨道已经固定，不能拆改。</p>
+        </div>
+
+        <div class="tutorial-progress" aria-label="教程进度">
+          <span class="is-active" data-tutorial-dot="0" aria-label="第 1 步，当前步骤"></span>
+          <span data-tutorial-dot="1" aria-label="第 2 步"></span>
+          <span data-tutorial-dot="2" aria-label="第 3 步"></span>
+        </div>
+        <div class="tutorial-actions">
+          <button id="tutorial-skip" type="button">跳过教程</button>
+          <div>
+            <button id="tutorial-back" type="button" disabled>上一步</button>
+            <button class="primary-action" id="tutorial-next" type="button">下一步</button>
+          </div>
+        </div>
+      </div>
+    </dialog>
+
+    <dialog class="rules-dialog" id="rules-dialog" aria-labelledby="rules-title">
+      <div class="dialog-topline">
+        <p>RULES, ORIGIN &amp; LICENSE</p>
+        <button class="dialog-close" id="rules-close" type="button" aria-label="关闭规则">×</button>
+      </div>
+      <div class="rules-content">
+        <header>
+          <span class="rules-wheel" aria-hidden="true"><i></i></span>
+          <div><p>Tracks / 铁路</p><h2 id="rules-title">极地铁路调度规章</h2></div>
+        </header>
+
+        <ol class="rule-list">
+          <li><span>01</span><p><strong>从 A 连续抵达 B</strong>补全一条单一铁路线。A 是左侧进入棋盘的起点，B 是从底侧离开棋盘的终点；两端的外部连接也是轨道的一部分。</p></li>
+          <li><span>02</span><p><strong>配额数的是“经过格”</strong>顶部数字表示该列有多少格被轨道经过，右侧数字表示该行有多少格被轨道经过。一个格不论是直轨还是弯轨，都只占用 1 个配额；数字不数边数。</p></li>
+          <li><span>03</span><p><strong>每个轨道格恰好两端</strong>路径在格子正交四边之间连接。除 A、B 的棋盘外端点外，每个经过格必须恰有两个不同方向相连，因此不能分叉、断头、原地折返或交叉。</p></li>
+          <li><span>04</span><p><strong>预置轨道保持不动</strong>题面已有的直轨或弯轨方向固定；相邻格连接必须彼此吻合。轨道不能越格、斜走，也不能在同一格中交叉。</p></li>
+          <li><span>05</span><p><strong>不得留下错误回路</strong>所有实铺轨段最终都要属于 A 到 B 的同一条路径。即使行列数字已经满足，独立回路、脱离主线的轨段或错误端点仍不算通关。</p></li>
+        </ol>
+
+        <section class="rule-notes" aria-labelledby="notes-title">
+          <h3 id="notes-title">候选与排除只是调度笔记</h3>
+          <p>候选格表示“这里会经过轨道”，无轨格表示“这里不经过轨道”；排除边表示两格不会在该方向连接。它们帮助推理，但不代替真实轨道，也不会单独满足配额或胜利条件。</p>
+        </section>
+
+        <section class="source-panel" aria-labelledby="source-title">
+          <h3 id="source-title">规则源流与 MIT 致谢</h3>
+          <p>规则逐项校准自 Simon Tatham's Portable Puzzle Collection 的 Tracks，以及 ebnbin/puzzles 提供的中文规则与上游实现；极地蒸汽列车的题面、视觉、文案、交互反馈与合成声音为本作实现。</p>
+          <div class="source-links">
+            <a href="https://github.com/ebnbin/puzzles/blob/5a9e1795a3324e0f6433b79fbe31cbd9b12048a3/doc-zh/tracks.html" target="_blank" rel="noreferrer">Tracks 中文规则（固定版本）<span aria-hidden="true">↗</span></a>
+            <a href="https://github.com/ebnbin/puzzles/blob/5a9e1795a3324e0f6433b79fbe31cbd9b12048a3/src/games/tracks.ts" target="_blank" rel="noreferrer">ebnbin/puzzles · Tracks 源码 <span aria-hidden="true">↗</span></a>
+            <a href="https://www.chiark.greenend.org.uk/~sgtatham/puzzles/" target="_blank" rel="noreferrer">Simon Tatham 谜题合集 <span aria-hidden="true">↗</span></a>
+            <a href="https://github.com/ebnbin/puzzles/blob/5a9e1795a3324e0f6433b79fbe31cbd9b12048a3/LICENCE" target="_blank" rel="noreferrer">MIT License <span aria-hidden="true">↗</span></a>
+            <a href="../../THIRD_PARTY_NOTICES.md">十境谜游馆 · 第三方声明 <span aria-hidden="true">→</span></a>
+          </div>
+          <small>感谢 Simon Tatham、Portable Puzzle Collection 贡献者与 ebnbin/puzzles 中文文档维护者；上游按 MIT License 提供。</small>
+        </section>
+      </div>
+    </dialog>
+
+    <dialog class="victory-dialog" id="victory-dialog" aria-labelledby="victory-title" aria-describedby="victory-summary">
+      <div class="victory-window" aria-hidden="true">
+        <span class="victory-aurora"></span><span class="victory-smoke"></span>
+        <span class="victory-train"><i></i></span><span class="victory-track"></span>
+      </div>
+      <p>POLAR EXPRESS CLEARED</p>
+      <h2 id="victory-title">全线准予通车</h2>
+      <p id="victory-summary">所有配额恰好满足；列车已从 A 沿完整轨道抵达 B。</p>
+      <dl>
+        <div><dt>调度步数</dt><dd id="victory-moves">0 步</dd></div>
+        <div><dt>用时</dt><dd id="victory-time">00:00</dd></div>
+        <div><dt>线路</dt><dd id="victory-route">破雪线</dd></div>
+      </dl>
+      <div class="reward-callout" id="victory-awards" hidden>
+        <span aria-hidden="true">✦</span><p><strong id="reward-title">新档案已收录</strong><small id="reward-description">线路图鉴新增一枚车站戳</small></p>
+      </div>
+      <div class="victory-actions">
+        <button class="primary-action" id="victory-next" type="button">驶向下一段</button>
+        <button id="victory-stay" type="button">留在调度台</button>
+      </div>
+    </dialog>
+
+    <div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+    <div class="visually-hidden" id="polite-status" role="status" aria-live="polite" aria-atomic="true"></div>
+    <div class="visually-hidden" id="alert-status" role="alert" aria-live="assertive" aria-atomic="true"></div>
+  </body>
+</html>

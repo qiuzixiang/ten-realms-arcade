@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="zh-CN" data-realm="cloud-camp">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#153552" />
+    <meta
+      name="description"
+      content="云端露营季：在漂浮林地为每棵云杉安排一顶观星帐篷，精确满足 Tents 的行列数字与一一配对规则。"
+    />
+    <meta property="og:title" content="云端露营季 · 十境谜游馆" />
+    <meta property="og:description" content="为云杉留下一顶帐篷，让片片浮地在篝火中入夜。" />
+    <title>云端露营季 · 十境谜游馆</title>
+    <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="../../shared/realm-ui.css" />
+    <script type="module" src="../../shared/realm-ui.mjs"></script>
+    <script type="module" src="./app.mjs"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#camp-board">跳到露营棋盘</a>
+    <div class="sky-layer sky-layer--far" aria-hidden="true"></div>
+    <div class="sky-layer sky-layer--near" aria-hidden="true"></div>
+    <div class="star-field" aria-hidden="true"></div>
+
+    <header class="topbar">
+      <a class="back-link" href="../../" aria-label="返回十境谜游馆首页">
+        <span aria-hidden="true">←</span>
+        <span><small>TEN REALMS</small>返回谜游馆</span>
+      </a>
+      <div class="season-mark" aria-label="云端露营季">
+        <span class="season-mark__spark" aria-hidden="true">✦</span>
+        <span><small>FLOATING CAMP</small>云端露营季</span>
+      </div>
+      <nav class="top-actions" aria-label="页面选项">
+        <button class="icon-button" id="mute-button" type="button" aria-pressed="false">
+          <span aria-hidden="true" class="sound-glyph">♪</span><span>声音</span>
+        </button>
+        <button class="icon-button" id="rules-button" type="button">
+          <span aria-hidden="true">?</span><span>规则</span>
+        </button>
+      </nav>
+    </header>
+
+    <main>
+      <section class="camp-intro" aria-labelledby="page-title">
+        <div>
+          <p class="eyebrow"><span aria-hidden="true"></span> CAMP ABOVE THE CLOUDS</p>
+          <h1 id="page-title">云端<em>露营季</em></h1>
+        </div>
+        <p>为每棵云杉留下一顶观星帐篷。数字归位、营位相安，篝火才会在浮地上亮起。</p>
+      </section>
+
+      <section class="game-layout" aria-label="云端露营季游戏区">
+        <article class="board-card" aria-labelledby="level-title">
+          <header class="board-card__header">
+            <div>
+              <p id="difficulty-kicker">云絮营线 · 01</p>
+              <h2 id="level-title">棉云草甸</h2>
+            </div>
+            <div class="sky-clock" id="sky-clock" aria-label="帐篷安排进度">
+              <span class="sky-clock__orb" aria-hidden="true"></span>
+              <span><strong id="tent-progress">0 / 0</strong><small>帐篷 · 云杉</small></span>
+            </div>
+          </header>
+
+          <div class="board-progress" aria-hidden="true"><span id="board-progress-bar"></span></div>
+
+          <div class="board-viewport" id="board-viewport">
+            <p class="visually-hidden" id="board-caption">
+              上方数字是每列帐篷数，右侧数字是每行帐篷数。方向键移动，Enter 或空格切换帐篷，X 切换草地排除。
+            </p>
+            <div
+              class="camp-board"
+              id="camp-board"
+              role="grid"
+              aria-describedby="board-caption"
+              aria-label="漂浮林地露营棋盘"
+            ></div>
+          </div>
+          <p class="board-scroll-hint" id="board-scroll-hint"><span aria-hidden="true">↔</span> 较大浮地可在棋盘内左右滑动</p>
+
+          <div class="tool-dock" role="toolbar" aria-label="布营工具">
+            <button class="tool-button is-active" id="tent-tool" type="button" aria-pressed="true">
+              <span class="tool-tent" aria-hidden="true"></span>
+              <span><strong>搭帐篷</strong><small>点击 · Enter</small></span>
+            </button>
+            <button class="tool-button" id="grass-tool" type="button" aria-pressed="false">
+              <span class="tool-grass" aria-hidden="true">×</span>
+              <span><strong>草地排除</strong><small>右键 · X</small></span>
+            </button>
+            <button class="tool-button tool-button--check" id="check-button" type="button">
+              <span aria-hidden="true">◎</span>
+              <span><strong>巡营核对</strong><small>快捷键 C</small></span>
+            </button>
+          </div>
+
+          <div class="board-actions">
+            <button class="primary-action" id="new-game-button" type="button"><span aria-hidden="true">＋</span> 换块浮地</button>
+            <button id="restart-button" type="button"><span aria-hidden="true">↺</span> 重开</button>
+            <button id="undo-button" type="button" disabled><span aria-hidden="true">↶</span> 撤销</button>
+          </div>
+        </article>
+
+        <aside class="camp-journal" aria-labelledby="journal-title">
+          <header class="journal-heading">
+            <p>CAMPKEEPER'S LOG</p>
+            <h2 id="journal-title">浮地营手记</h2>
+            <span id="save-state">每一步都留在本机</span>
+          </header>
+
+          <dl class="status-grid">
+            <div><dt>已搭帐篷</dt><dd><strong id="tent-count">0</strong><span id="tree-total"> / 0</span></dd></div>
+            <div><dt>布营步数</dt><dd><strong id="move-count">0</strong><span>步</span></dd></div>
+            <div><dt>警示记录</dt><dd><strong id="mistake-count">0</strong><span>次</span></dd></div>
+            <div><dt>一一关系</dt><dd class="matching-readout" id="matching-readout">待安排</dd></div>
+          </dl>
+
+          <fieldset class="difficulty-picker">
+            <legend>选择营线</legend>
+            <div id="difficulty-buttons"></div>
+            <p id="difficulty-note">5 × 5 · 看清行列的第一块浮地</p>
+          </fieldset>
+
+          <section class="camp-message" id="camp-message">
+            <span class="camp-message__ember" aria-hidden="true"></span>
+            <p><strong>暮色刚刚落下</strong><span>选一块空地搭帐篷，行列数字会随之回应。</span></p>
+          </section>
+
+          <section class="keepsakes" aria-labelledby="keepsakes-title">
+            <div class="section-title"><div><p>SEASON KEEPSAKES</p><h3 id="keepsakes-title">营地收藏</h3></div><span id="clear-progress">0 / 9 块浮地</span></div>
+            <ul class="decoration-list" id="decoration-list" aria-label="已解锁营地装饰"></ul>
+            <div class="visitor-row">
+              <p>今夜访客</p>
+              <ul id="visitor-list" aria-label="已入住的小动物"></ul>
+            </div>
+            <dl class="season-stats">
+              <div><dt>连续露营</dt><dd id="camp-streak">0 天</dd></div>
+              <div><dt>无误布营</dt><dd id="flawless-count">0 局</dd></div>
+              <div><dt>效率记录</dt><dd id="efficient-count">0 局</dd></div>
+            </dl>
+          </section>
+
+          <p class="keyboard-note">
+            键盘：方向键移动 · Enter/Space 帐篷 · X 草地 · Z 撤销 · R 重开 · N 换题 · C 核对 · M 静音
+          </p>
+        </aside>
+      </section>
+    </main>
+
+    <footer>
+      <p>云影会移动，规则不会。</p>
+      <button id="footer-rules-button" type="button">规则与来源</button>
+    </footer>
+
+    <dialog class="rules-dialog" id="rules-dialog" aria-labelledby="rules-title" aria-describedby="rules-summary">
+      <div class="dialog-topline">
+        <p>RULES &amp; ORIGIN</p>
+        <button class="dialog-close" id="rules-close-button" type="button" aria-label="关闭规则">×</button>
+      </div>
+      <div class="rules-dialog__content">
+        <header>
+          <span class="dialog-campmark" aria-hidden="true">✦</span>
+          <div><p>Tents</p><h2 id="rules-title">护林员的三条布营约定</h2></div>
+        </header>
+        <p id="rules-summary">帐篷布局、行列数字与全局一一配对必须同时成立。</p>
+        <ol class="rule-list">
+          <li><span>一</span><p><strong>每棵云杉与每顶帐篷必须一一对应</strong>对应只能上下左右相邻；一顶帐篷可以额外挨着其他树，只要全局存在覆盖所有树与帐篷的合法匹配。</p></li>
+          <li><span>二</span><p><strong>帐篷八个方向都不能相互接触</strong>水平、垂直和对角接触都会让营位过于拥挤。</p></li>
+          <li><span>三</span><p><strong>每行、每列的帐篷数要精确等于边缘数字</strong>草地排除只是推理笔记；正确帐篷都放好时，剩余空格不必全部标记。</p></li>
+        </ol>
+
+        <div class="control-rules">
+          <h3>怎么布营</h3>
+          <p>选择“搭帐篷”或“草地排除”后轻触空格；再点一次同一状态会回到未知。右键始终使用草地工具。巡营核对只会指出问题，不会改变局面。</p>
+          <p>聚焦帐篷时，相邻的所有候选云杉会同时呼应。这只表示兼容关系，不会暗示某棵树已被固定分配。</p>
+        </div>
+
+        <div class="difficulty-rules">
+          <h3>三档营线</h3>
+          <p>云絮、岭风、星穹是本作品按棋盘规模与推理密度设计的分档，三档使用完全相同的 Tents 规则。每道题的帐篷布局均由求解器验证为唯一解。</p>
+        </div>
+
+        <div class="source-panel">
+          <h3>规则与来源</h3>
+          <p>底层规则逐项保留自 Simon Tatham's Portable Puzzle Collection 的 Tents；主题、网页、文案、动画和合成声音为《云端露营季》的独立创作。</p>
+          <div class="source-links">
+            <a href="https://github.com/ebnbin/puzzles/blob/main/doc-zh/tents.html" target="_blank" rel="noreferrer">Tents 中文规则文档 <span aria-hidden="true">↗</span></a>
+            <a href="https://www.chiark.greenend.org.uk/~sgtatham/puzzles/" target="_blank" rel="noreferrer">Simon Tatham 谜题合集 <span aria-hidden="true">↗</span></a>
+            <a href="../../THIRD_PARTY_NOTICES.md">MIT 致谢与第三方声明 <span aria-hidden="true">→</span></a>
+          </div>
+          <small>感谢 Simon Tatham、Portable Puzzle Collection 贡献者及 ebnbin/puzzles 中文文档维护者；原项目依 MIT License 提供。</small>
+        </div>
+      </div>
+    </dialog>
+
+    <dialog class="victory-dialog" id="victory-dialog" aria-labelledby="victory-title" aria-describedby="victory-copy">
+      <div class="victory-sky" aria-hidden="true"><span></span><i></i><i></i><i></i></div>
+      <p>NIGHT CAMP IS OPEN</p>
+      <h2 id="victory-title">篝火已经点亮</h2>
+      <p id="victory-copy">云杉与帐篷找到了合法的一一安排，今夜的小客人正在靠近。</p>
+      <div class="victory-visitors" id="victory-visitors" aria-label="今夜来访的小动物"></div>
+      <dl>
+        <div><dt>步数</dt><dd id="victory-moves">0</dd></div>
+        <div><dt>效率线</dt><dd id="victory-par">0</dd></div>
+        <div><dt>布营警示</dt><dd id="victory-mistakes">0</dd></div>
+      </dl>
+      <p class="unlock-copy" id="unlock-copy"></p>
+      <div class="victory-actions">
+        <button class="primary-action" id="next-level-button" type="button">再寻一块浮地</button>
+        <button id="stay-button" type="button">留在篝火边</button>
+      </div>
+    </dialog>
+
+    <div class="toast" id="toast"></div>
+    <div class="visually-hidden" id="polite-status" role="status" aria-live="polite" aria-atomic="true"></div>
+    <div class="visually-hidden" id="assertive-status" role="alert" aria-live="assertive"></div>
+  </body>
+</html>

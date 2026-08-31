@@ -1,0 +1,164 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" preserveAspectRatio="xMidYMid meet" role="img" aria-label="极光磁场实验室完成目标：完整四乘四棋盘中正负数量全部匹配，同极互不相邻，中性件不计数，天空亮起青绿与紫色极光">
+  <title>极光磁场实验室：完成无冲突棋盘</title>
+  <desc>四乘四棋盘全部填满。每一行和每一列的正负线索都精确满足，相邻格没有相同磁极，底部两个槽位使用中性件；背景极光已经点亮。</desc>
+  <defs>
+    <linearGradient id="goal-bg" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#041226"/>
+      <stop offset="0.54" stop-color="#102a55"/>
+      <stop offset="1" stop-color="#1d1042"/>
+    </linearGradient>
+    <linearGradient id="goal-aurora-a" x1="0" y1="0" x2="1" y2="0">
+      <stop stop-color="#42f5ce" stop-opacity="0"/>
+      <stop offset="0.23" stop-color="#42f5ce" stop-opacity="0.95"/>
+      <stop offset="0.72" stop-color="#77cfff" stop-opacity="0.65"/>
+      <stop offset="1" stop-color="#77cfff" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="goal-aurora-b" x1="0" y1="0" x2="1" y2="0">
+      <stop stop-color="#8b74ff" stop-opacity="0"/>
+      <stop offset="0.32" stop-color="#8b74ff" stop-opacity="0.78"/>
+      <stop offset="0.68" stop-color="#ff5bc6" stop-opacity="0.82"/>
+      <stop offset="1" stop-color="#ff5bc6" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="goal-positive" cx="34%" cy="28%" r="73%">
+      <stop stop-color="#b8fff7"/>
+      <stop offset="0.4" stop-color="#30e5dc"/>
+      <stop offset="1" stop-color="#079faf"/>
+    </radialGradient>
+    <linearGradient id="goal-negative" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#ff91de"/>
+      <stop offset="1" stop-color="#c32692"/>
+    </linearGradient>
+    <linearGradient id="goal-neutral" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#ffe29a"/>
+      <stop offset="1" stop-color="#d18a31"/>
+    </linearGradient>
+    <linearGradient id="goal-board" x1="0" y1="0" x2="0" y2="1">
+      <stop stop-color="#17345c"/>
+      <stop offset="1" stop-color="#09172f"/>
+    </linearGradient>
+    <filter id="goal-aurora-glow" x="-30%" y="-150%" width="160%" height="400%">
+      <feGaussianBlur stdDeviation="9" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="goal-token-glow" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="goal-shadow" x="-30%" y="-30%" width="160%" height="180%">
+      <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#010510" flood-opacity="0.7"/>
+    </filter>
+  </defs>
+
+  <rect width="640" height="360" rx="24" fill="url(#goal-bg)"/>
+  <g fill="#d9fbff">
+    <circle cx="35" cy="43" r="1.3"/><circle cx="77" cy="22" r="1.7"/><circle cx="126" cy="58" r="1.1"/>
+    <circle cx="502" cy="35" r="1.4"/><circle cx="568" cy="57" r="1.1"/><circle cx="609" cy="22" r="1.6"/>
+  </g>
+  <path d="M-36 82C68 11 136 85 225 37s167-29 239 14 133 29 218-26" fill="none" stroke="url(#goal-aurora-a)" stroke-width="24" stroke-linecap="round" filter="url(#goal-aurora-glow)"/>
+  <path d="M-20 112C86 67 149 124 249 74s158-30 239 10 124 27 177-7" fill="none" stroke="url(#goal-aurora-b)" stroke-width="17" stroke-linecap="round" filter="url(#goal-aurora-glow)"/>
+  <path d="M0 324l74-43 35 24 52-53 46 48 42-28 48 39 54-58 57 55 45-24 45 41 52-48 58 47 52-23v59H0z" fill="#081226" stroke="#29486c" stroke-width="2"/>
+
+  <g font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, sans-serif">
+    <text x="24" y="36" fill="#f5fdff" font-size="21" font-weight="900">极光已点亮</text>
+    <text x="24" y="58" fill="#a9c7e4" font-size="11" font-weight="700">完整填满 · 线索匹配 · 同极不相邻</text>
+
+    <g transform="translate(27 102)" filter="url(#goal-shadow)">
+      <rect width="132" height="176" rx="18" fill="#0d1d3b" stroke="#41648f" stroke-width="1.5"/>
+      <circle cx="66" cy="49" r="31" fill="#123b40" stroke="#5cf0cf" stroke-width="2"/>
+      <path d="M51 49l10 10 22-27" fill="none" stroke="#79f0bd" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="66" y="98" text-anchor="middle" fill="#c8fff0" font-size="16" font-weight="900">全部通过</text>
+      <text x="66" y="121" text-anchor="middle" fill="#8daacb" font-size="10">每条线索都有 ✓</text>
+      <rect x="18" y="139" width="96" height="23" rx="11.5" fill="#173e3d" stroke="#48c998"/>
+      <text x="66" y="155" text-anchor="middle" fill="#baffea" font-size="9" font-weight="800">无相邻同极冲突</text>
+    </g>
+
+    <g aria-label="四乘四完整无冲突棋盘，行列正负线索均已满足" filter="url(#goal-shadow)">
+      <rect x="180" y="61" width="284" height="264" rx="24" fill="#0a1831" stroke="#5c7ba5" stroke-width="2"/>
+      <text x="322" y="83" text-anchor="middle" fill="#dcecff" font-size="10" font-weight="800">列线索</text>
+      <text x="197" y="194" text-anchor="middle" fill="#9eb9d8" font-size="9" font-weight="800" transform="rotate(-90 197 194)">行 + 正</text>
+      <text x="447" y="194" text-anchor="middle" fill="#9eb9d8" font-size="9" font-weight="800" transform="rotate(90 447 194)">行 − 负</text>
+
+      <g fill="#0d4149" stroke="#3ce0d8" stroke-width="1.5">
+        <rect x="220" y="87" width="32" height="22" rx="8"/><rect x="266" y="87" width="32" height="22" rx="8"/>
+        <rect x="312" y="87" width="32" height="22" rx="8"/><rect x="358" y="87" width="32" height="22" rx="8"/>
+        <rect x="190" y="115" width="28" height="32" rx="8"/><rect x="190" y="161" width="28" height="32" rx="8"/>
+        <rect x="190" y="207" width="28" height="32" rx="8"/><rect x="190" y="253" width="28" height="32" rx="8"/>
+      </g>
+      <g fill="#c6fff9" font-size="9" font-weight="900" text-anchor="middle">
+        <text x="236" y="101">+2 ✓</text><text x="282" y="101">+2 ✓</text><text x="328" y="101">+1 ✓</text><text x="374" y="101">+1 ✓</text>
+        <text x="204" y="135">+2</text><text x="204" y="181">+2</text><text x="204" y="227">+1</text><text x="204" y="273">+1</text>
+      </g>
+      <g fill="#511743" stroke="#ef5abb" stroke-width="1.5">
+        <rect x="220" y="291" width="32" height="22" rx="8"/><rect x="266" y="291" width="32" height="22" rx="8"/>
+        <rect x="312" y="291" width="32" height="22" rx="8"/><rect x="358" y="291" width="32" height="22" rx="8"/>
+        <rect x="392" y="115" width="28" height="32" rx="8"/><rect x="392" y="161" width="28" height="32" rx="8"/>
+        <rect x="392" y="207" width="28" height="32" rx="8"/><rect x="392" y="253" width="28" height="32" rx="8"/>
+      </g>
+      <g fill="#ffd3ef" font-size="9" font-weight="900" text-anchor="middle">
+        <text x="236" y="305">−2 ✓</text><text x="282" y="305">−2 ✓</text><text x="328" y="305">−1 ✓</text><text x="374" y="305">−1 ✓</text>
+        <text x="406" y="135">−2</text><text x="406" y="181">−2</text><text x="406" y="227">−1</text><text x="406" y="273">−1</text>
+      </g>
+
+      <rect x="219" y="112" width="172" height="176" rx="15" fill="url(#goal-board)" stroke="#6d8aac" stroke-width="2"/>
+      <g fill="#173354" stroke="#547298">
+        <rect x="222" y="115" width="40" height="40" rx="8"/><rect x="266" y="115" width="40" height="40" rx="8"/><rect x="310" y="115" width="40" height="40" rx="8"/><rect x="354" y="115" width="34" height="40" rx="8"/>
+        <rect x="222" y="159" width="40" height="40" rx="8"/><rect x="266" y="159" width="40" height="40" rx="8"/><rect x="310" y="159" width="40" height="40" rx="8"/><rect x="354" y="159" width="34" height="40" rx="8"/>
+        <rect x="222" y="203" width="40" height="40" rx="8"/><rect x="266" y="203" width="40" height="40" rx="8"/><rect x="310" y="203" width="40" height="40" rx="8"/><rect x="354" y="203" width="34" height="40" rx="8"/>
+        <rect x="222" y="247" width="40" height="38" rx="8"/><rect x="266" y="247" width="40" height="38" rx="8"/><rect x="310" y="247" width="40" height="38" rx="8"/><rect x="354" y="247" width="34" height="38" rx="8"/>
+      </g>
+      <g fill="none" stroke="#9bb0c9" stroke-width="2.5">
+        <rect x="221" y="114" width="86" height="42" rx="10"/><rect x="309" y="114" width="80" height="42" rx="10"/>
+        <rect x="221" y="158" width="86" height="42" rx="10"/><rect x="309" y="158" width="80" height="42" rx="10"/>
+        <rect x="221" y="202" width="86" height="42" rx="10"/><rect x="309" y="202" width="80" height="42" rx="10"/>
+        <rect x="221" y="246" width="86" height="40" rx="10"/><rect x="309" y="246" width="80" height="40" rx="10"/>
+      </g>
+      <g stroke="#405f86">
+        <path d="M264 116v38M352 116v38M264 160v38M352 160v38M264 204v38M352 204v38M264 248v36M352 248v36"/>
+      </g>
+
+      <g filter="url(#goal-token-glow)">
+        <circle cx="242" cy="135" r="15" fill="url(#goal-positive)" stroke="#d4fffa"/>
+        <circle cx="286" cy="179" r="15" fill="url(#goal-positive)" stroke="#d4fffa"/>
+        <circle cx="330" cy="135" r="15" fill="url(#goal-positive)" stroke="#d4fffa"/>
+        <circle cx="374" cy="179" r="15" fill="url(#goal-positive)" stroke="#d4fffa"/>
+        <circle cx="242" cy="223" r="15" fill="url(#goal-positive)" stroke="#d4fffa"/>
+        <circle cx="286" cy="267" r="15" fill="url(#goal-positive)" stroke="#d4fffa"/>
+      </g>
+      <g>
+        <path d="M286 119l16 16-16 16-16-16z" fill="url(#goal-negative)" stroke="#ffd3ef"/>
+        <path d="M242 163l16 16-16 16-16-16z" fill="url(#goal-negative)" stroke="#ffd3ef"/>
+        <path d="M374 119l15 16-15 16-15-16z" fill="url(#goal-negative)" stroke="#ffd3ef"/>
+        <path d="M330 163l16 16-16 16-16-16z" fill="url(#goal-negative)" stroke="#ffd3ef"/>
+        <path d="M286 207l16 16-16 16-16-16z" fill="url(#goal-negative)" stroke="#ffd3ef"/>
+        <path d="M242 251l16 16-16 16-16-16z" fill="url(#goal-negative)" stroke="#ffd3ef"/>
+      </g>
+      <g>
+        <path d="M316 210l14-8 14 8v26l-14 8-14-8z" fill="url(#goal-neutral)" stroke="#fff0bf"/>
+        <path d="M360 210l14-8 14 8v26l-14 8-14-8z" fill="url(#goal-neutral)" stroke="#fff0bf"/>
+        <path d="M316 254l14-8 14 8v26l-14 8-14-8z" fill="url(#goal-neutral)" stroke="#fff0bf"/>
+        <path d="M360 254l14-8 14 8v26l-14 8-14-8z" fill="url(#goal-neutral)" stroke="#fff0bf"/>
+      </g>
+      <g font-size="7.5" font-weight="900" text-anchor="middle">
+        <g fill="#04313a"><text x="242" y="138">+ 正</text><text x="286" y="182">+ 正</text><text x="330" y="138">+ 正</text><text x="374" y="182">+ 正</text><text x="242" y="226">+ 正</text><text x="286" y="270">+ 正</text></g>
+        <g fill="#4b073b"><text x="286" y="138">− 负</text><text x="242" y="182">− 负</text><text x="374" y="138">− 负</text><text x="330" y="182">− 负</text><text x="286" y="226">− 负</text><text x="242" y="270">− 负</text></g>
+        <g fill="#53330d"><text x="330" y="226">中性</text><text x="374" y="226">中性</text><text x="330" y="270">中性</text><text x="374" y="270">中性</text></g>
+      </g>
+    </g>
+
+    <g transform="translate(486 104)" filter="url(#goal-shadow)">
+      <rect width="128" height="172" rx="18" fill="#0d1d3b" stroke="#41648f" stroke-width="1.5"/>
+      <text x="64" y="28" text-anchor="middle" fill="#f1f8ff" font-size="13" font-weight="900">完成条件</text>
+      <circle cx="23" cy="54" r="10" fill="#1f6b59" stroke="#65e9b1"/>
+      <path d="M18 54l4 4 7-9" fill="none" stroke="#baffea" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="42" y="58" fill="#cbe0f4" font-size="10" font-weight="700">所有槽位填满</text>
+      <circle cx="23" cy="85" r="10" fill="#1f6b59" stroke="#65e9b1"/>
+      <path d="M18 85l4 4 7-9" fill="none" stroke="#baffea" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="42" y="89" fill="#cbe0f4" font-size="10" font-weight="700">正负数量吻合</text>
+      <circle cx="23" cy="116" r="10" fill="#1f6b59" stroke="#65e9b1"/>
+      <path d="M18 116l4 4 7-9" fill="none" stroke="#baffea" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="42" y="120" fill="#cbe0f4" font-size="10" font-weight="700">同极互不相邻</text>
+      <rect x="14" y="139" width="100" height="21" rx="10.5" fill="#173f3e" stroke="#51dba7"/>
+      <text x="64" y="154" text-anchor="middle" fill="#baffea" font-size="9" font-weight="900">磁场稳定，极光升起</text>
+    </g>
+  </g>
+</svg>

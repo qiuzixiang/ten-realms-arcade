@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="zh-CN" data-realm="dream-hotel">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#171126">
+    <meta name="description" content="在梦境旅舍中拖出矩形客房，让每位旅客获得与数字相等的房间面积，并无缝覆盖整层楼。">
+    <title>梦境旅舍 · 十境谜游馆 2.0</title>
+    <link rel="stylesheet" href="../../shared/realm-ui.css">
+    <link rel="stylesheet" href="./styles.css">
+    <script type="module" src="../../shared/realm-ui.mjs"></script>
+    <script type="module" src="./app.mjs"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#game-board">跳到旅舍楼层</a>
+    <div class="ambient ambient--one" aria-hidden="true"></div>
+    <div class="ambient ambient--two" aria-hidden="true"></div>
+
+    <header class="topbar">
+      <a class="back-link" href="../../" aria-label="返回十境谜游馆 2.0">
+        <span aria-hidden="true">←</span>
+        <span><small>TEN REALMS 2.0</small>返回谜游馆</span>
+      </a>
+      <div class="brand-mark" aria-hidden="true"><i></i><b>梦</b><i></i></div>
+      <nav class="utility-nav" aria-label="游戏设置">
+        <button id="mute-button" type="button" aria-pressed="false" aria-label="静音" title="静音（M）">
+          <span aria-hidden="true" data-sound-icon>♪</span><span class="utility-label">声音</span>
+        </button>
+        <button id="tutorial-button" type="button" aria-label="重看图片教程">
+          <span aria-hidden="true">◇</span><span class="utility-label">教程</span>
+        </button>
+        <button id="rules-button" type="button" aria-label="查看规则与源流">
+          <span aria-hidden="true">?</span><span class="utility-label">规则</span>
+        </button>
+      </nav>
+    </header>
+
+    <main>
+      <section class="intro" aria-labelledby="page-title">
+        <div>
+          <p class="eyebrow">DREAM HOTEL · FLOOR PLANNING</p>
+          <h1 id="page-title">梦境旅舍</h1>
+          <p>每个数字是一位旅客所需的梦境面积。拖出矩形客房，让整层楼严丝合缝地进入好梦。</p>
+        </div>
+        <div class="hotel-rating" aria-label="旅舍总评">
+          <span>旅舍总评</span>
+          <strong id="overall-rating">☆☆☆</strong>
+          <small id="completion-total">尚待第一层开门</small>
+        </div>
+      </section>
+
+      <section class="game-layout" aria-label="梦境旅舍规划台">
+        <article class="board-panel" aria-labelledby="level-title">
+          <header class="board-heading">
+            <div>
+              <p><span id="difficulty-label">浅梦</span><i aria-hidden="true"></i><span id="level-seed">01 号梦钥</span></p>
+              <h2 id="level-title">摇篮前厅</h2>
+              <span id="level-subtitle">月光刚好铺满第一层</span>
+            </div>
+            <div class="save-indicator" id="save-indicator">
+              <span aria-hidden="true"></span>
+              <small>本机自动留档</small>
+            </div>
+          </header>
+
+          <div class="status-strip" id="status-strip" data-tone="calm">
+            <span class="status-symbol" id="status-symbol" aria-hidden="true">◇</span>
+            <div>
+              <strong id="status-title">等待第一间客房</strong>
+              <p id="status-copy">选择“成房”，从一个格子拖到另一个格子。</p>
+            </div>
+          </div>
+
+          <div class="tool-row" role="toolbar" aria-label="规划工具">
+            <button class="tool-button is-active" type="button" data-tool="room" aria-pressed="true" aria-keyshortcuts="F">
+              <span class="tool-icon tool-icon--room" aria-hidden="true"></span>
+              <span><strong>成房</strong><small>矩形客房 · F</small></span>
+            </button>
+            <button class="tool-button" type="button" data-tool="candidate" aria-pressed="false" aria-keyshortcuts="C">
+              <span class="tool-icon tool-icon--candidate" aria-hidden="true"></span>
+              <span><strong>候选</strong><small>虚线笔记 · C</small></span>
+            </button>
+            <button class="tool-button" type="button" data-tool="exclude" aria-pressed="false" aria-keyshortcuts="X">
+              <span class="tool-icon tool-icon--exclude" aria-hidden="true">×</span>
+              <span><strong>排除</strong><small>格内记号 · X</small></span>
+            </button>
+          </div>
+
+          <div class="floor-stage" id="floor-stage">
+            <div class="floor-sign floor-sign--left" aria-hidden="true"><span>1</span><i></i><span>9</span></div>
+            <div
+              class="hotel-grid"
+              id="game-board"
+              role="grid"
+              tabindex="0"
+              aria-label="梦境旅舍楼层，5 列 5 行"
+              aria-describedby="board-instructions board-summary"
+              aria-activedescendant="cell-0-0"
+            ></div>
+            <div class="floor-sign floor-sign--right" aria-hidden="true"><span>N</span><i></i><span>D</span></div>
+          </div>
+          <p class="visually-hidden" id="board-instructions">方向键移动游标；回车开始或完成当前矩形；Escape 取消；F 成房、C 候选、X 排除；Delete 删除游标处的客房或候选。</p>
+          <p class="visually-hidden" id="board-summary">尚未规划客房。</p>
+          <div class="board-legend" aria-label="棋盘图例">
+            <span><i class="legend-swatch legend-swatch--room" aria-hidden="true"></i>实线：已成房</span>
+            <span><i class="legend-swatch legend-swatch--candidate" aria-hidden="true"></i>虚线：候选笔记</span>
+            <span><i class="legend-swatch legend-swatch--exclude" aria-hidden="true">×</i>交叉：排除笔记</span>
+          </div>
+
+          <div class="board-actions">
+            <button id="undo-button" type="button" disabled><span aria-hidden="true">↶</span>撤销</button>
+            <button id="restart-button" type="button"><span aria-hidden="true">↺</span>重开</button>
+            <button class="primary-button" id="next-button" type="button"><span aria-hidden="true">✦</span>换一层</button>
+          </div>
+        </article>
+
+        <aside class="planner-panel" aria-label="旅舍档案与关卡设置">
+          <fieldset class="difficulty-picker">
+            <legend>选择梦境深度</legend>
+            <div id="difficulty-buttons">
+              <button type="button" data-difficulty="easy" aria-pressed="true"><span>◌</span><strong>浅梦</strong><small>5 × 5</small></button>
+              <button type="button" data-difficulty="medium" aria-pressed="false"><span>◐</span><strong>叠梦</strong><small>7 × 7</small></button>
+              <button type="button" data-difficulty="hard" aria-pressed="false"><span>◉</span><strong>深梦</strong><small>9 × 9</small></button>
+            </div>
+          </fieldset>
+
+          <section class="floor-progress" aria-labelledby="progress-title">
+            <div class="section-title">
+              <div><p>FLOOR STATUS</p><h3 id="progress-title">本层进度</h3></div>
+              <strong id="progress-percent">0%</strong>
+            </div>
+            <div class="progress-track" role="progressbar" aria-label="楼层覆盖进度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><i id="progress-fill"></i></div>
+            <dl class="stat-grid">
+              <div><dt>成房</dt><dd><b id="room-count">0</b><span id="room-total">/ 6</span></dd></div>
+              <div><dt>待规划</dt><dd><b id="uncovered-count">25</b><span>格</span></dd></div>
+              <div><dt>落笔</dt><dd><b id="move-count">0</b><span>次</span></dd></div>
+              <div><dt>停留</dt><dd><b id="time-count">0:00</b><span>分</span></dd></div>
+            </dl>
+          </section>
+
+          <section class="compendium" aria-labelledby="compendium-title">
+            <div class="section-title">
+              <div><p>DREAM SUITES</p><h3 id="compendium-title">梦境房型图鉴</h3></div>
+              <strong id="type-count">0 型</strong>
+            </div>
+            <p>通关后，楼层里的新房型会永久收入本机图鉴。</p>
+            <div class="room-type-list" id="room-type-list" aria-live="polite">
+              <span class="empty-record">尚未收录</span>
+            </div>
+          </section>
+
+          <section class="achievement-card" aria-labelledby="achievement-title">
+            <div class="section-title">
+              <div><p>CONCIERGE NOTES</p><h3 id="achievement-title">长期目标</h3></div>
+            </div>
+            <ul id="achievement-list">
+              <li data-achievement="first-draw"><i aria-hidden="true">◇</i><span><b>一次成房</b><small>整层没有一次错误框选</small></span><em>待解锁</em></li>
+              <li data-achievement="no-rework"><i aria-hidden="true">⌘</i><span><b>无返工规划</b><small>不撤销、不拆房、不重开</small></span><em>待解锁</em></li>
+              <li data-achievement="rating"><i aria-hidden="true">☆</i><span><b>三星旅舍</b><small>在任意楼层获得三星</small></span><em>待解锁</em></li>
+            </ul>
+          </section>
+
+          <details class="keyboard-help">
+            <summary>键盘与触控说明</summary>
+            <p>拖动可预览矩形，松手提交。键盘用方向键移动，Enter 开始/完成，Esc 取消；F/C/X 切换工具，Z 撤销，R 重开，N 换题，M 静音。</p>
+          </details>
+        </aside>
+      </section>
+    </main>
+
+    <footer>
+      <div><span aria-hidden="true">✦</span><p><b>梦会散，严密的规则不会。</b><small>所有进度只保存在这台设备。</small></p></div>
+      <nav aria-label="页脚链接">
+        <a href="../../">十境谜游馆 2.0</a>
+        <button id="footer-rules-button" type="button">规则与源流</button>
+      </nav>
+    </footer>
+
+    <dialog class="tutorial-dialog" id="tutorial-dialog" aria-labelledby="tutorial-title" aria-describedby="tutorial-body" tabindex="-1">
+      <div class="dialog-shell tutorial-shell">
+        <header class="dialog-topline">
+          <p>DREAM HOTEL · 入住图鉴</p>
+          <button id="tutorial-skip" type="button">跳过，直接开门</button>
+        </header>
+        <div class="tutorial-visual">
+          <img id="tutorial-image" src="./assets/tutorial-elements.svg" alt="数字旅客与梦境格子的示意图" width="320" height="184">
+        </div>
+        <div class="tutorial-copy">
+          <p id="tutorial-tag">01 · 旅客需求</p>
+          <h2 id="tutorial-title">数字就是房间面积</h2>
+          <p id="tutorial-body">每个数字代表一位旅客。数字 6 需要一间恰好占 6 格的矩形客房。</p>
+          <ul id="tutorial-bullets"><li>数字可以在客房内任意位置</li><li>每间客房必须恰含一个数字</li></ul>
+        </div>
+        <footer class="tutorial-footer">
+          <button id="tutorial-previous" type="button" disabled>上一张</button>
+          <div><span id="tutorial-counter">1 / 3</span><i aria-hidden="true" id="tutorial-dots"><b></b><b></b><b></b></i></div>
+          <button class="primary-button" id="tutorial-next" type="button">下一张</button>
+        </footer>
+      </div>
+    </dialog>
+
+    <dialog class="rules-dialog" id="rules-dialog" aria-labelledby="rules-title" tabindex="-1">
+      <div class="dialog-shell rules-shell">
+        <header class="dialog-topline">
+          <p>RULES &amp; ORIGIN</p>
+          <button class="dialog-close" id="rules-close" type="button" aria-label="关闭规则">×</button>
+        </header>
+        <div class="rules-content">
+          <div class="rules-heading"><span aria-hidden="true">梦</span><div><p>RECTANGLES / SHIKAKU</p><h2 id="rules-title">旅舍规划的四条铁律</h2></div></div>
+          <ol class="rule-list">
+            <li><span>一</span><p><strong>客房只能是矩形</strong>边界沿方格线，不能有凹角、孔洞、斜边或 T 形拼接。</p></li>
+            <li><span>1</span><p><strong>每房恰含一个数字</strong>数字可在房间内任意位置；零个或多个数字都不合法。</p></li>
+            <li><span>×</span><p><strong>面积必须等于数字</strong>宽 × 高得到的格数，必须与房内唯一数字完全相等。</p></li>
+            <li><span>▦</span><p><strong>整层无缝覆盖</strong>所有格子都要恰好属于一间房；客房不可重叠，也不能留下空格。</p></li>
+          </ol>
+          <section class="rules-note">
+            <h3>怎么规划</h3>
+            <p>在“成房”工具下，从起点拖到终点；预览会同时显示尺寸、面积和是否可提交。轻点已有客房可拆除。候选虚线框和格内 × 都只是笔记，不参与规则判定，留着笔记也能通关。</p>
+            <p>每道正式题均由内置 exact-cover 求解器枚举到第二解：只有搜索穷尽且恰好找到一个解的题面才会发布。</p>
+          </section>
+          <section class="source-card">
+            <h3>规则源流与 MIT 致谢</h3>
+            <p>玩法完整保留 Simon Tatham's Portable Puzzle Collection 的 Rectangles（常见名 Shikaku）规则；中文规则与网页接线参考 ebnbin/puzzles。主题、美术、交互与合成音效为《梦境旅舍》的独立再创作。</p>
+            <div>
+              <a href="https://puzzles.ebnbin.dev/doc/zh/rect.html" target="_blank" rel="noreferrer">Rectangles 中文规则 <span aria-hidden="true">↗</span></a>
+              <a href="https://github.com/ebnbin/puzzles/blob/main/src/games/rect.ts" target="_blank" rel="noreferrer">ebnbin/puzzles 接线源码 <span aria-hidden="true">↗</span></a>
+              <a href="https://www.chiark.greenend.org.uk/~sgtatham/puzzles/" target="_blank" rel="noreferrer">Portable Puzzle Collection <span aria-hidden="true">↗</span></a>
+              <a href="../../THIRD_PARTY_NOTICES.md">MIT 第三方声明 <span aria-hidden="true">→</span></a>
+            </div>
+            <small>感谢 Simon Tatham、Portable Puzzle Collection 贡献者、Nikoli 与 ebnbin/puzzles 中文文档维护者。</small>
+          </section>
+        </div>
+      </div>
+    </dialog>
+
+    <dialog class="victory-dialog" id="victory-dialog" aria-labelledby="victory-title" tabindex="-1">
+      <div class="dialog-shell victory-shell">
+        <div class="victory-window" aria-hidden="true"><i></i><span>☾</span><b></b><b></b><b></b></div>
+        <p>ALL ROOMS ARE DREAMING</p>
+        <h2 id="victory-title">整层好梦，准时入住</h2>
+        <p id="victory-copy">每位旅客都有了刚刚好的房间，整层楼没有一格被遗忘。</p>
+        <div class="victory-stars" id="victory-stars" aria-label="本次评级三星">★★★</div>
+        <dl>
+          <div><dt>规划落笔</dt><dd id="victory-moves">6 次</dd></div>
+          <div><dt>新收房型</dt><dd id="victory-types">3 型</dd></div>
+          <div><dt>本次用时</dt><dd id="victory-time">0:42</dd></div>
+        </dl>
+        <ul class="victory-rewards" id="victory-rewards"></ul>
+        <div class="victory-actions">
+          <button id="victory-stay" type="button">留在本层</button>
+          <button class="primary-button" id="victory-next" type="button">领取下一把梦钥</button>
+        </div>
+      </div>
+    </dialog>
+
+    <div class="toast" id="toast" aria-hidden="true"></div>
+    <div class="visually-hidden" id="polite-live" role="status" aria-live="polite" aria-atomic="true"></div>
+    <div class="visually-hidden" id="alert-live" role="alert" aria-live="assertive" aria-atomic="true"></div>
+  </body>
+</html>
