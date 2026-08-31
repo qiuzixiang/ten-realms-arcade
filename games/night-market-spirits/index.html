@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#071522" />
+    <meta
+      name="description"
+      content="夜市精灵撤离：遵循 Same Game 规则，把正交相连的同类灯灵成群送入夜空。"
+    />
+    <title>夜市精灵撤离 · 十境谜游馆</title>
+    <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./styles.css" />
+    <script type="module" src="./app.mjs"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#spirit-board">跳到精灵棋盘</a>
+    <div class="market-backdrop" aria-hidden="true"></div>
+    <div class="sky-haze sky-haze--one" aria-hidden="true"></div>
+    <div class="sky-haze sky-haze--two" aria-hidden="true"></div>
+
+    <header class="topbar">
+      <a class="back-link" href="../../" aria-label="返回十境谜游馆首页">
+        <span aria-hidden="true">←</span>
+        <span><small>TEN REALMS</small>返回谜游馆</span>
+      </a>
+      <div class="realm-mark" aria-label="十境谜游馆，第七境">
+        <span class="realm-mark__bell" aria-hidden="true"></span>
+        <span><small>REALM 07</small>夜市精灵撤离</span>
+      </div>
+      <nav class="top-actions" aria-label="页面选项">
+        <button class="round-button" id="mute-button" type="button" aria-pressed="false">
+          <span class="sound-glyph" aria-hidden="true">♪</span><span class="button-label">声音</span>
+        </button>
+        <button class="round-button" id="rules-button" type="button">
+          <span aria-hidden="true">?</span><span class="button-label">规则</span>
+        </button>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="page-title">
+        <p class="eyebrow"><span aria-hidden="true"></span> THE LAST BELL IS WAITING</p>
+        <h1 id="page-title">夜市精灵<em>撤离</em></h1>
+        <p>闭市钟前，把相邻结伴的灯灵送上夜空。它们落下、靠拢，也为下一次相逢让路。</p>
+      </section>
+
+      <section class="game-layout" aria-label="夜市精灵撤离游戏区">
+        <article class="market-card" aria-labelledby="board-title">
+          <header class="market-card__header">
+            <div>
+              <p id="difficulty-kicker">灯影巷 · 5 × 6</p>
+              <h2 id="board-title">闭市中的第 <span id="seed-heading">1</span> 号摊簿</h2>
+            </div>
+            <div class="bell-clock" aria-label="闭市进度">
+              <span class="bell-clock__face" aria-hidden="true"><i></i></span>
+              <span><strong id="remaining-header">30</strong><small>只待撤离</small></span>
+            </div>
+          </header>
+
+          <div class="awning-line" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+          <p class="visually-hidden" id="board-instructions">
+            方向键或 W A S D 在有精灵的摊位间移动。回车或空格第一次选中完整合法群组，再按一次确认撤离。Escape 取消选择。
+          </p>
+          <div class="board-shell">
+            <div class="paper-corner paper-corner--left" aria-hidden="true"></div>
+            <div class="paper-corner paper-corner--right" aria-hidden="true"></div>
+            <div class="board-scroll" id="board-scroll">
+              <div
+                class="spirit-board"
+                id="spirit-board"
+                role="grid"
+                aria-label="闭市摊位棋盘"
+                aria-describedby="board-instructions board-message"
+              ></div>
+            </div>
+            <div class="flight-layer" id="flight-layer" aria-hidden="true"></div>
+          </div>
+
+          <div class="selection-readout" id="selection-readout">
+            <span class="selection-readout__orb" aria-hidden="true"></span>
+            <p id="board-message"><strong>寻找结伴的灯灵</strong><span>悬停或聚焦一只精灵，可预览整组与本次得分。</span></p>
+            <div><small>本次预计</small><b id="preview-score">—</b></div>
+          </div>
+        </article>
+
+        <aside class="ledger" aria-labelledby="ledger-title">
+          <div class="ledger-heading">
+            <div><p>CLOSING LEDGER</p><h2 id="ledger-title">闭市账簿</h2></div>
+            <span id="save-state">每一步自动留档</span>
+          </div>
+          <dl class="score-grid">
+            <div class="score-grid__primary"><dt>本局灯火分</dt><dd id="score-value">0</dd></div>
+            <div><dt>本档最高</dt><dd id="best-value">0</dd></div>
+            <div><dt>撤离批次</dt><dd id="moves-value">0</dd></div>
+            <div><dt>可撤群组</dt><dd id="groups-value">0</dd></div>
+          </dl>
+
+          <fieldset class="difficulty-picker">
+            <legend>选择夜市规模</legend>
+            <div id="difficulty-buttons">
+              <button type="button" data-difficulty="lantern" aria-pressed="true"><strong>灯影巷</strong><small>5×6 · 3 类</small></button>
+              <button type="button" data-difficulty="canopy" aria-pressed="false"><strong>伞幕街</strong><small>6×7 · 4 类</small></button>
+              <button type="button" data-difficulty="bell" aria-pressed="false"><strong>终钟市</strong><small>7×8 · 5 类</small></button>
+            </div>
+          </fieldset>
+
+          <form class="seed-form" id="seed-form">
+            <label for="seed-input"><span>闭市牌号</span><small>数字或短语会生成同一盘</small></label>
+            <div>
+              <input id="seed-input" name="seed" type="text" maxlength="32" inputmode="text" autocomplete="off" value="1" />
+              <button type="submit">按牌开局</button>
+            </div>
+          </form>
+
+          <div class="game-actions" role="group" aria-label="游戏操作">
+            <button class="primary-action" id="new-game-button" type="button"><span aria-hidden="true">＋</span> 换一局</button>
+            <button id="restart-button" type="button"><span aria-hidden="true">↺</span> 重开</button>
+            <button id="undo-button" type="button" disabled><span aria-hidden="true">↶</span> 撤销</button>
+          </div>
+
+          <div class="spirit-legend" aria-label="灯灵图例">
+            <p>轮廓与纹样也能辨认</p>
+            <div id="spirit-legend-items"></div>
+          </div>
+          <p class="keyboard-note">
+            键盘：方向键 / WASD 移动 · Enter 两次确认 · Esc 取消 · U 撤销 · R 重开 · N 换局 · M 静音 · ? 规则
+          </p>
+        </aside>
+      </section>
+    </main>
+
+    <footer>
+      <p>钟声落下以前，愿每一盏微光都有同伴。</p>
+      <a href="../../">十境谜游馆</a><span aria-hidden="true">·</span>
+      <button id="footer-rules-button" type="button">规则与源流</button>
+    </footer>
+
+    <dialog class="rules-dialog" id="rules-dialog" aria-labelledby="rules-title">
+      <div class="dialog-topline">
+        <p>RULES &amp; ORIGIN / SAME GAME</p>
+        <button class="dialog-close" id="rules-close-button" type="button" aria-label="关闭规则">×</button>
+      </div>
+      <div class="rules-dialog__content">
+        <header><span class="dialog-bell" aria-hidden="true"></span><div><p>闭市人手册</p><h2 id="rules-title">五条撤离规矩</h2></div></header>
+        <ol class="rule-list">
+          <li><span>一</span><p><strong>至少两只，正交相连</strong>只有颜色与轮廓相同、沿上／下／左／右连成的完整群组才能撤离；斜角不算相邻。</p></li>
+          <li><span>二</span><p><strong>先选整组，再次确认</strong>第一次点击或按键会选亮合法群组，第二次激活同组才送它们升空。单只不会改变盘面或得分，Esc 可取消。</p></li>
+          <li><span>三</span><p><strong>先下落，再向左靠摊</strong>移除后，各列精灵先向下坠落；整列腾空时，右侧非空列保持顺序向左合拢。新相逢不会自动消除。</p></li>
+          <li><span>四</span><p><strong>真实计分为 (n−2)²</strong>一次撤离 n 只所得为 (n−2)²：2 只 0 分、3 只 1 分、4 只 4 分。没有连击倍率，也没有额外清盘奖励。</p></li>
+          <li><span>五</span><p><strong>空盘胜，孤灯残局败</strong>清空所有摊位即胜利；盘面非空却再无合法群组即本局结束。终局仍可撤销末步。</p></li>
+        </ol>
+        <div class="source-panel">
+          <h3>规则源流与 MIT 致谢</h3>
+          <p>底层判定逐项保留自 Simon Tatham's Portable Puzzle Collection 的 Same Game；本页只重做夜市叙事、视觉、输入反馈与合成声音。</p>
+          <div class="source-links">
+            <a href="https://github.com/ebnbin/puzzles/blob/main/doc-zh/samegame.html" target="_blank" rel="noreferrer">ebnbin/puzzles 中文规则 <span aria-hidden="true">↗</span></a>
+            <a href="https://www.chiark.greenend.org.uk/~sgtatham/puzzles/" target="_blank" rel="noreferrer">Portable Puzzle Collection <span aria-hidden="true">↗</span></a>
+            <a href="../../THIRD_PARTY_NOTICES.md">MIT 致谢与第三方声明 <span aria-hidden="true">→</span></a>
+          </div>
+          <small>感谢 Simon Tatham、上游贡献者与中文文档维护者；原项目依 MIT License 提供。</small>
+        </div>
+      </div>
+    </dialog>
+
+    <dialog class="outcome-dialog" id="outcome-dialog" aria-labelledby="outcome-title">
+      <div class="outcome-sky" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+      <p id="outcome-kicker">THE MARKET IS CLEAR</p>
+      <h2 id="outcome-title">全员升空</h2>
+      <p id="outcome-copy">最后一盏微光越过屋檐，闭市钟终于可以落下。</p>
+      <dl>
+        <div><dt>本局得分</dt><dd id="outcome-score">0</dd></div>
+        <div><dt>撤离批次</dt><dd id="outcome-moves">0</dd></div>
+        <div><dt>剩余灯灵</dt><dd id="outcome-remaining">0</dd></div>
+      </dl>
+      <div class="outcome-actions">
+        <button class="primary-action" id="outcome-next-button" type="button">下一号摊簿</button>
+        <button id="outcome-undo-button" type="button">撤销末步</button>
+        <button id="outcome-stay-button" type="button">查看盘面</button>
+      </div>
+    </dialog>
+
+    <div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+    <div class="visually-hidden" id="assertive-status" role="alert" aria-live="assertive" aria-atomic="true"></div>
+  </body>
+</html>

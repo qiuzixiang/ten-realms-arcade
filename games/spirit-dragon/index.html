@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#071a22" />
+    <meta
+      name="description"
+      content="灵龙巡脉：遵循 Pearl / Masyu 规则，穿过天地灵珠铺成唯一闭合龙脉。"
+    />
+    <meta property="og:title" content="灵龙巡脉 · 十境谜游馆" />
+    <meta property="og:description" content="一笔唤醒山河，让灵龙沿唯一闭环巡游。" />
+    <title>灵龙巡脉 · 十境谜游馆</title>
+    <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./styles.css" />
+    <script type="module" src="./app.mjs"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#dragon-board">跳到山河灵图</a>
+
+    <div class="world-art" aria-hidden="true"></div>
+    <div class="world-vignette" aria-hidden="true"></div>
+    <div class="mist mist--one" aria-hidden="true"></div>
+    <div class="mist mist--two" aria-hidden="true"></div>
+
+    <header class="topbar">
+      <a class="back-link" href="../../" aria-label="返回十境谜游馆">
+        <span aria-hidden="true">←</span>
+        <span><small>TEN REALMS</small>返回谜游馆</span>
+      </a>
+
+      <div class="realm-seal" aria-label="十境谜游馆，第九境">
+        <span class="realm-seal__mark" aria-hidden="true">九</span>
+        <span><small>REALM 09</small>灵龙巡脉</span>
+      </div>
+
+      <nav class="top-actions" aria-label="页面选项">
+        <button class="round-button" id="mute-button" type="button" aria-pressed="false">
+          <span class="sound-glyph" aria-hidden="true">◖))</span><span>声音</span>
+        </button>
+        <button class="round-button" id="rules-button" type="button" aria-label="打开规则说明">
+          <span aria-hidden="true">?</span><span>规则</span>
+        </button>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="page-title">
+        <p class="eyebrow"><span aria-hidden="true"></span> TRACE THE LIVING MERIDIAN</p>
+        <h1 id="page-title">灵龙<em>巡脉</em></h1>
+        <p>山河只认一条归路。循天地灵珠，一笔唤醒沉睡的龙脉。</p>
+      </section>
+
+      <section class="game-shell" aria-label="灵龙巡脉游戏区">
+        <article class="map-card" aria-labelledby="level-title">
+          <header class="map-card__header">
+            <div>
+              <p id="level-kicker">初醒境 · 卷一</p>
+              <h2 id="level-title">青岚初引</h2>
+            </div>
+            <div class="pearl-progress" aria-label="灵珠贯通进度">
+              <span class="pearl-progress__orb" aria-hidden="true"></span>
+              <span><strong id="pearl-count">0 / 0</strong><small>灵珠响应</small></span>
+            </div>
+          </header>
+
+          <div class="map-frame" id="map-frame">
+            <div class="map-corner map-corner--a" aria-hidden="true"></div>
+            <div class="map-corner map-corner--b" aria-hidden="true"></div>
+            <p hidden id="board-help">
+              方格中心是龙脉节点。方向键移动游标；按住 Shift 再按方向键，逐边绘制当前工具；Enter 或空格切换刚经过的边。L 选择龙脉，X 选择禁行标记。
+            </p>
+            <p hidden id="board-pearl-status">灵珠状态将在棋盘载入后显示。</p>
+            <svg
+              class="dragon-board"
+              id="dragon-board"
+              role="group"
+              aria-roledescription="灵图棋盘"
+              tabindex="0"
+              aria-label="山河灵图"
+              aria-describedby="board-help board-pearl-status"
+            ></svg>
+            <div class="board-wash" id="board-wash" aria-hidden="true"></div>
+            <div class="dragon-run" id="dragon-run" aria-hidden="true">
+              <span class="dragon-head"></span>
+            </div>
+          </div>
+
+          <div class="tool-dock" role="toolbar" aria-label="巡脉工具">
+            <button class="tool-button is-active" id="line-tool" type="button" aria-pressed="true" aria-label="铺设龙脉工具">
+              <span class="tool-glyph tool-glyph--line" aria-hidden="true"></span>
+              <span><strong>铺设龙脉</strong><small>拖画 · L</small></span>
+            </button>
+            <button class="tool-button" id="mark-tool" type="button" aria-pressed="false" aria-label="标记禁行工具">
+              <span class="tool-glyph tool-glyph--mark" aria-hidden="true">×</span>
+              <span><strong>标记禁行</strong><small>辅助 · X</small></span>
+            </button>
+            <button class="tool-button tool-button--check" id="check-button" type="button" aria-label="观脉检查">
+              <span class="tool-glyph" aria-hidden="true">◇</span>
+              <span><strong>观脉</strong><small>检查 · C</small></span>
+            </button>
+          </div>
+        </article>
+
+        <aside class="oracle-card" aria-labelledby="oracle-title">
+          <div class="oracle-heading">
+            <div>
+              <p>MOUNTAIN KEEPER'S RECORD</p>
+              <h2 id="oracle-title">司脉录</h2>
+            </div>
+            <span id="save-state">每一步留存本机</span>
+          </div>
+
+          <div class="status-banner" id="status-banner">
+            <span class="status-banner__sigil" aria-hidden="true"></span>
+            <p><strong id="status-title">山雾未散</strong><span id="status-copy">从任意节点起笔，穿过每颗灵珠。</span></p>
+          </div>
+
+          <dl class="status-grid">
+            <div><dt>已铺脉线</dt><dd><strong id="edge-count">0</strong><span> 段</span></dd></div>
+            <div><dt>灵珠安定</dt><dd><strong id="settled-count">0</strong><span id="clue-total"> / 0</span></dd></div>
+            <div><dt>局部逆脉</dt><dd><strong id="conflict-count">0</strong><span> 处</span></dd></div>
+            <div><dt>落笔次数</dt><dd><strong id="move-count">0</strong><span> 步</span></dd></div>
+          </dl>
+
+          <fieldset class="difficulty-picker">
+            <legend>选择山境</legend>
+            <div id="difficulty-buttons"></div>
+            <p id="difficulty-note">5 × 5 · 初识灵珠</p>
+          </fieldset>
+
+          <div class="map-actions">
+            <button class="primary-action" id="new-game-button" type="button">
+              <span aria-hidden="true">＋</span> 换一卷
+            </button>
+            <button id="restart-button" type="button"><span aria-hidden="true">↺</span> 重开</button>
+            <button id="undo-button" type="button" disabled><span aria-hidden="true">↶</span> 撤销</button>
+          </div>
+
+          <div class="legend" aria-label="灵图图例">
+            <span><i class="legend-pearl legend-pearl--earth" aria-hidden="true"></i>地珠：转弯</span>
+            <span><i class="legend-pearl legend-pearl--heaven" aria-hidden="true"></i>天珠：直穿</span>
+            <span><i class="legend-mark" aria-hidden="true">×</i>禁行笔记</span>
+          </div>
+
+          <p class="keyboard-note">
+            键盘：方向键移游标 · Shift+方向键逐边绘制 · Enter/Space 切换刚经过的边 · L 龙脉 · X 禁行 · Z 撤销 · R 重开 · N 换题 · C 检查 · M 静音 · ? 规则
+          </p>
+        </aside>
+      </section>
+    </main>
+
+    <footer>
+      <p>山河有脉，规则有源。</p>
+      <a href="../../">十境谜游馆</a>
+      <span aria-hidden="true">·</span>
+      <button id="footer-rules-button" type="button">规则与源流</button>
+    </footer>
+
+    <dialog class="rules-dialog" id="rules-dialog" aria-labelledby="rules-title">
+      <div class="dialog-topline">
+        <p>RULES &amp; ORIGIN</p>
+        <button class="dialog-close" id="rules-close-button" type="button" aria-label="关闭规则">×</button>
+      </div>
+      <div class="rules-dialog__content">
+        <header>
+          <span class="dialog-seal" aria-hidden="true">脉</span>
+          <div><p>PEARL / MASYU</p><h2 id="rules-title">巡脉人的三重约定</h2></div>
+        </header>
+
+        <ol class="rule-list">
+          <li>
+            <span>一</span>
+            <p><strong>只铺一条闭合龙脉</strong>线沿方格中心之间的正交方向行进，不分叉、不交叉；终局必须恰好形成一个闭环，并穿过所有灵珠。</p>
+          </li>
+          <li>
+            <span class="mini-pearl mini-pearl--earth" aria-hidden="true"></span>
+            <p><strong>地珠上转弯</strong>龙脉在地珠处必须转弯；从珠子沿两端离开后，紧邻的下一格都必须继续直行。</p>
+          </li>
+          <li>
+            <span class="mini-pearl mini-pearl--heaven" aria-hidden="true"></span>
+            <p><strong>天珠上直穿</strong>龙脉在天珠处必须直行；沿路径前后紧邻的两格中，至少有一格必须转弯。</p>
+          </li>
+        </ol>
+
+        <div class="control-rules">
+          <h3>怎么铺设</h3>
+          <p>从一个格心拖到相邻格心可连续绘线；若第一段已有龙脉，本次拖动会连续擦除。也可以轻触宽边逐段切换。切到“禁行”工具可写下 × 笔记，笔记与龙脉互斥，但不参与胜负。</p>
+          <p>红色波纹只指出当前落笔已经造成的局部矛盾，例如分叉、确定不合规则的灵珠或过早封闭的小环；未画完的端点不会被当作错误，也不会提前泄露答案。</p>
+        </div>
+
+        <div class="rule-map">
+          <h3>主题映射</h3>
+          <dl>
+            <div><dt>黑珠</dt><dd>沉稳地珠 · 转弯</dd></div>
+            <div><dt>白珠</dt><dd>澄明天珠 · 直穿</dd></div>
+            <div><dt>唯一环线</dt><dd>山河龙脉</dd></div>
+          </dl>
+        </div>
+
+        <div class="source-panel">
+          <h3>规则源流与致谢</h3>
+          <p>底层判定逐项保留 Simon Tatham's Portable Puzzle Collection 中 Pearl 的规则；视觉、文案、交互反馈与合成声音为《灵龙巡脉》的独立再创作。</p>
+          <div class="source-links">
+            <a href="https://github.com/ebnbin/puzzles/blob/main/doc-zh/pearl.html" target="_blank" rel="noreferrer">Pearl 中文规则文档 <span aria-hidden="true">↗</span></a>
+            <a href="https://www.chiark.greenend.org.uk/~sgtatham/puzzles/" target="_blank" rel="noreferrer">Portable Puzzle Collection <span aria-hidden="true">↗</span></a>
+            <a href="../../THIRD_PARTY_NOTICES.md">MIT 致谢与第三方声明 <span aria-hidden="true">→</span></a>
+          </div>
+          <small>感谢 Simon Tatham、Portable Puzzle Collection 贡献者及 ebnbin/puzzles 中文文档维护者；原项目依 MIT License 提供。</small>
+        </div>
+      </div>
+    </dialog>
+
+    <dialog class="victory-dialog" id="victory-dialog" aria-labelledby="victory-title">
+      <div class="victory-orbit" aria-hidden="true"><span></span><i></i><i></i><i></i></div>
+      <p>THE MERIDIAN AWAKENS</p>
+      <h2 id="victory-title">灵龙归脉</h2>
+      <p>唯一的龙脉穿过所有灵珠。山雾散去，灵龙正沿整条路径巡游。</p>
+      <dl>
+        <div><dt>落笔</dt><dd id="victory-moves">0 步</dd></div>
+        <div><dt>龙脉</dt><dd id="victory-edges">0 段</dd></div>
+      </dl>
+      <div class="victory-actions">
+        <button class="primary-action" id="next-level-button" type="button">再巡一卷</button>
+        <button id="stay-button" type="button">留在此境</button>
+      </div>
+    </dialog>
+
+    <div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+    <div class="visually-hidden" id="assertive-status" role="alert" aria-live="assertive"></div>
+  </body>
+</html>

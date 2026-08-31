@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#090812" />
+    <meta
+      name="description"
+      content="十境谜游馆：十款规则经典、视觉全新的独立浏览器小游戏。选择一个世界，立即开始。"
+    />
+    <meta property="og:title" content="十境谜游馆 · Ten Realms Arcade" />
+    <meta
+      property="og:description"
+      content="十种世界，十种手感，一座随时可以进入的谜游馆。"
+    />
+    <title>十境谜游馆 · Ten Realms Arcade</title>
+    <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml" />
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="stylesheet" href="./styles.css" />
+    <script src="./app.js" type="module"></script>
+  </head>
+  <body>
+    <div class="ambient ambient-a" aria-hidden="true"></div>
+    <div class="ambient ambient-b" aria-hidden="true"></div>
+
+    <header class="site-header">
+      <a class="brand" href="./" aria-label="返回十境谜游馆首页">
+        <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
+        <span><strong>十境谜游馆</strong><small>TEN REALMS ARCADE</small></span>
+      </a>
+      <a class="source-link" href="https://github.com/ebnbin/puzzles" target="_blank" rel="noreferrer">
+        规则源流 <span aria-hidden="true">↗</span>
+      </a>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-copy-block">
+          <p class="eyebrow"><span></span> ALL TEN REALMS ARE OPEN</p>
+          <h1 id="hero-title">十个世界，<br /><em>等你入境。</em></h1>
+          <p class="hero-copy">
+            同一座谜游馆里，没有两扇相同的门。驾驶回收艇、唤醒灵龙、打理红线，或在镜影舞台安排一场完美演出——每款都保留经典规则，也拥有自己的视觉、声音与节奏。
+          </p>
+          <a class="hero-cta" href="#games">
+            浏览全部游戏 <span aria-hidden="true">↓</span>
+          </a>
+        </div>
+
+        <div class="hero-ticket" aria-label="十款游戏均已开放，支持离线游玩">
+          <span class="ticket-number">10</span>
+          <div>
+            <strong>全境开放</strong>
+            <span>无需登录 · 自动存档</span>
+            <span>手机与桌面均可游玩</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="games" id="games" aria-labelledby="games-title">
+        <div class="section-heading">
+          <div>
+            <p class="kicker">CHOOSE YOUR PORTAL</p>
+            <h2 id="games-title">今晚，先去哪里？</h2>
+          </div>
+          <p>点击任意画面，进入完整游戏</p>
+        </div>
+
+        <div class="game-grid">
+          <a class="game-card star-drift" href="./games/star-drift/" style="--order: 0" aria-label="进入星滞回收局">
+            <figure class="card-preview">
+              <img src="./games/star-drift/assets/salvage-field.jpg" alt="" width="1672" height="941" decoding="async" />
+              <figcaption><span>REALM</span><b>01</b></figcaption>
+            </figure>
+            <div class="card-body">
+              <p class="card-prototype"><span>航行玩法</span> 惯性漂移</p>
+              <h3>星滞回收局</h3>
+              <p class="card-summary">驾船穿过残骸区，借助惯性与引力锚停靠，收回全部能源芯。</p>
+              <span class="enter"><span>进入游戏</span><b aria-hidden="true">↗</b></span>
+            </div>
+          </a>
+
+          <a class="game-card memory-ark" href="./games/memory-ark/" style="--order: 1" aria-label="进入记忆方舟">
+            <figure class="card-preview">
+              <img src="./games/memory-ark/assets/ark-chamber.jpg" alt="" width="1536" height="1024" decoding="async" />
+              <figcaption><span>REALM</span><b>02</b></figcaption>
+            </figure>
+            <div class="card-body">
+              <p class="card-prototype"><span>空间玩法</span> 滚动交换</p>
+              <h3>记忆方舟</h3>
+              <p class="card-summary">滚动遗迹核心，让地面与核心表面的记忆符印逐面归位。</p>
+              <span class="enter"><span>进入游戏</span><b aria-hidden="true">↗</b></span>
+            </div>
+          </a>
+
+          <a class="game-card red-thread" href="./games/red-thread-office/" style="--order: 2" aria-label="进入月老红线事务所">
+            <figure class="card-preview">
+              <img src="./games/red-thread-office/assets/red-thread-office-bg.jpg" alt="" width="1536" height="1024" loading="lazy" decoding="async" />
+              <figcaption><span>REALM</span><b>03</b></figcaption>
+            </figure>
+            <div class="card-body">
+              <p class="card-prototype"><span>解结玩法</span> 交线重排</p>
+              <h3>月老红线事务所</h3>
+              <p class="card-summary">挪动缘分簿上的名字，解开每一处红线交点，让缘分各归其位。</p>
+              <span class="enter"><span>进入游戏</span><b aria-hidden="true">↗</b></span>
+            </div>
+          </a>
+
+          <a class="game-card firefly" href="./games/firefly-garden/" style="--order: 3" aria-label="进入夜庭萤火">
+            <figure class="card-preview">
+              <img src="./games/firefly-garden/assets/moonlit-garden.jpg" alt="" width="1587" height="991" loading="lazy" decoding="async" />
+              <figcaption><span>REALM</span><b>04</b></figcaption>
+            </figure>
+            <div class="card-body">
+              <p class="card-prototype"><span>点灯玩法</span> 无重光照</p>
+              <h3>夜庭萤火</h3>
+              <p class="card-summary">安放不会彼此照见的萤火精灵，让沉睡花圃的每个角落重获光亮。</p>
+              <span class="enter"><span>进入游戏</span><b aria-hidden="true">↗</b></span>
+            </div>
+          </a>
+
+          <a class="game-card abyss" href="./games/abyss-echo/" style="--order: 4" aria-label="进入深海回声站">
+            <figure class="card-preview">
+              <img src="./games/abyss-echo/assets/abyss-observation-window.jpg" alt="" width="1536" height="1024" loading="lazy" decoding="async" />
+              <figcaption><span>REALM</span><b>05</b></figcaption>
+            </figure>
+            <div class="card-body">
+              <p class="card-prototype"><span>探测玩法</span> 回声推理</p>
+              <h3>深海回声站</h3>
+              <p class="card-summary">从海沟边缘发射声呐，根据吸收、偏折与回声锁定隐藏能量体。</p>
+              <span class="enter"><span>进入游戏</span><b aria-hidden="true">↗</b></span>
+            </div>
+          </a>
+
+          <a class="game-card storm-lanterns" href="./games/storm-lanterns/" style="--order: 5" aria-label="进入风暴灯塔网">
+            <figure class="card-preview">
+              <img src="./games/storm-lanterns/assets/storm-sea.jpg" alt="" width="1600" height="900" loading="lazy" decoding="async" />
+              <figcaption><span>REALM</span><b>06</b></figcaption>
+            </figure>
+            <div class="card-body">
+              <p class="card-prototype"><span>连网玩法</span> 旋转供能</p>
+              <h3>风暴灯塔网</h3>
+              <p class="card-summary">旋转漂浮的航标模块，让主灯塔的能量抵达每一座远海信标。</p>
+              <span class="enter"><span>进入游戏</span><b aria-hidden="true">↗</b></span>
+            </div>
+          </a>
+
+          <a class="game-card night-market" href="./games/night-market-spirits/" style="--order: 6" aria-label="进入夜市精灵撤离">
+            <figure class="card-preview">
+              <img src="./games/night-market-spirits/assets/closed-night-market.jpg" alt="" width="1672" height="941" loading="lazy" decoding="async" />
+              <figcaption><span>REALM</span><b>07</b></figcaption>
+            </figure>
+            <div class="card-body">
+              <p class="card-prototype"><span>撤离玩法</span> 连群清场</p>
+              <h3>夜市精灵撤离</h3>
+              <p class="card-summary">送走成群结队的灯灵，让摊位在闭市前腾空，追求漂亮的连锁分数。</p>
+              <span class="enter"><span>进入游戏</span><b aria-hidden="true">↗</b></span>
+            </div>
+          </a>
+
+          <a class="game-card sky-bridges" href="./games/sky-bridges/" style="--order: 7" aria-label="进入云海航路">
+            <figure class="card-preview">
+              <img src="./games/sky-bridges/assets/cloud-harbors.jpg" alt="" width="1824" height="862" loading="lazy" decoding="async" />
+              <figcaption><span>REALM</span><b>08</b></figcaption>
+            </figure>
+            <div class="card-body">
+              <p class="card-prototype"><span>建造玩法</span> 航路连岛</p>
+              <h3>云海航路</h3>
+              <p class="card-summary">架设互不交叉的单双航线，满足各浮空港需求并连成完整航运网。</p>
+              <span class="enter"><span>进入游戏</span><b aria-hidden="true">↗</b></span>
+            </div>
+          </a>
+
+          <a class="game-card spirit-dragon" href="./games/spirit-dragon/" style="--order: 8" aria-label="进入灵龙巡脉">
+            <figure class="card-preview">
+              <img src="./games/spirit-dragon/assets/spirit-mountains.jpg" alt="" width="1920" height="1080" loading="lazy" decoding="async" />
+              <figcaption><span>REALM</span><b>09</b></figcaption>
+            </figure>
+            <div class="card-body">
+              <p class="card-prototype"><span>寻径玩法</span> 灵珠闭环</p>
+              <h3>灵龙巡脉</h3>
+              <p class="card-summary">循黑白灵珠铺成唯一龙脉闭环，让沉睡灵龙沿山河苏醒巡游。</p>
+              <span class="enter"><span>进入游戏</span><b aria-hidden="true">↗</b></span>
+            </div>
+          </a>
+
+          <a class="game-card mirror-theatre" href="./games/mirror-theatre/" style="--order: 9" aria-label="进入镜影大剧院">
+            <figure class="card-preview">
+              <img src="./games/mirror-theatre/assets/mirror-hall-stage.jpg" alt="" width="1440" height="823" loading="lazy" decoding="async" />
+              <figcaption><span>REALM</span><b>10</b></figcaption>
+            </figure>
+            <div class="card-body">
+              <p class="card-prototype"><span>排演玩法</span> 镜面视线</p>
+              <h3>镜影大剧院</h3>
+              <p class="card-summary">安排三类演员穿行镜廊，让观众席看到恰好数量的真身与映像。</p>
+              <span class="enter"><span>进入游戏</span><b aria-hidden="true">↗</b></span>
+            </div>
+          </a>
+        </div>
+      </section>
+
+      <section class="manifesto" aria-label="设计原则">
+        <p>THE SAME LOGIC CAN DREAM IN TEN DIFFERENT LANGUAGES.</p>
+        <div><span>规则完整</span><span>视觉独立</span><span>离线可玩</span><span>隐私优先</span></div>
+      </section>
+    </main>
+
+    <footer>
+      <p>基于 Simon Tatham's Portable Puzzle Collection 的经典规则重新创作。</p>
+      <p>MIT Licensed · <span id="year">2026</span></p>
+    </footer>
+  </body>
+</html>

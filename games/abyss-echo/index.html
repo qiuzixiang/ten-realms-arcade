@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#03171d">
+    <meta name="description" content="深海回声站：以 Black Box 完整光路规则为核心的离线声呐推理游戏。">
+    <title>深海回声站 · 十境谜游馆</title>
+    <link rel="icon" href="../../assets/favicon.svg">
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <div class="marine-snow" id="marineSnow" aria-hidden="true"></div>
+
+    <header class="site-header">
+      <a class="back-link" href="../../" aria-label="返回十境谜游馆">
+        <span aria-hidden="true">←</span>
+        <span>十境谜游馆</span>
+      </a>
+      <div class="station-id" aria-label="第五境，声呐阵列在线">
+        <span class="station-dot" aria-hidden="true"></span>
+        REALM 05 · ARRAY ONLINE
+      </div>
+    </header>
+
+    <main class="page-shell">
+      <section class="hero" aria-labelledby="gameTitle">
+        <div class="hero-copy">
+          <p class="eyebrow">ABYSSAL RESEARCH RELAY · 7,842M</p>
+          <h1 id="gameTitle"><span>深海</span>回声站</h1>
+          <p class="lede">向海沟边缘投下声呐，听清吞没、偏折与回声。你看不见能量体，只能重建它们留下的完整声场。</p>
+        </div>
+        <div class="depth-readout" aria-hidden="true">
+          <span>当前深度</span>
+          <strong>−7,842<small> m</small></strong>
+          <i></i>
+        </div>
+      </section>
+
+      <section class="console" id="console" aria-label="深海回声站控制台">
+        <div class="console-topline">
+          <div class="system-state">
+            <span class="pulse-dot" aria-hidden="true"></span>
+            <span id="phaseLabel">监听中</span>
+          </div>
+          <div class="signal-progress" aria-label="已解析浮标进度">
+            <span id="progressLabel">0 / 32 浮标已解析</span>
+            <div class="progress-track" aria-hidden="true"><i id="progressFill"></i></div>
+          </div>
+          <p class="autosave-state"><span aria-hidden="true">◇</span> 本机自动存档</p>
+        </div>
+
+        <div class="toolbar" aria-label="游戏控制">
+          <label class="difficulty-control">
+            <span>下潜区段</span>
+            <select id="difficultySelect" aria-label="选择难度并开始新游戏">
+              <option value="shelf">陆架 · 6×6 / 4 体</option>
+              <option value="trench" selected>海沟 · 8×8 / 5 体</option>
+              <option value="hadal">深渊 · 10×10 / 7 体</option>
+            </select>
+          </label>
+          <div class="toolbar-actions">
+            <button class="control-button control-primary" id="newGameButton" type="button">
+              <span aria-hidden="true">＋</span> 新声场
+            </button>
+            <button class="control-button" id="restartButton" type="button">
+              <span aria-hidden="true">↺</span> 重开
+            </button>
+            <button class="control-button" id="undoButton" type="button" disabled>
+              <span aria-hidden="true">↶</span> 撤销
+            </button>
+            <button class="control-button icon-control" id="muteButton" type="button" aria-pressed="false">
+              <span class="button-icon" aria-hidden="true">◖</span><span class="button-label">声音开启</span>
+            </button>
+            <button class="control-button icon-control" id="rulesButton" type="button" aria-label="规则与来源">
+              <span class="button-icon" aria-hidden="true">?</span><span class="button-label">规则与来源</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="console-body">
+          <section class="array-panel" aria-labelledby="arrayTitle">
+            <div class="panel-heading">
+              <div>
+                <p class="panel-kicker">SONAR ARRAY</p>
+                <h2 id="arrayTitle">边缘声呐阵列</h2>
+              </div>
+              <p class="array-hint" id="arrayHint">点按外围浮标发射 · 点按内部节点标记能量体</p>
+            </div>
+
+            <div class="board-scroll" id="boardScroll" tabindex="-1">
+              <div class="board-stage" id="boardStage">
+                <div class="radar-rings" aria-hidden="true"><i></i><i></i><i></i></div>
+                <div class="scan-fan" aria-hidden="true"></div>
+                <div class="board-grid" id="board" role="group" aria-label="声呐阵列棋盘"></div>
+                <canvas class="signal-canvas" id="signalCanvas" aria-hidden="true"></canvas>
+                <div class="failure-wave" aria-hidden="true"></div>
+              </div>
+            </div>
+
+            <div class="legend" aria-label="浮标反馈图例">
+              <span><b class="legend-hit">H</b> 正撞吞没</span>
+              <span><b class="legend-reflect">R</b> 原路回声</span>
+              <span><b class="legend-pair">7</b> 成对穿出</span>
+            </div>
+          </section>
+
+          <aside class="telemetry" aria-labelledby="telemetryTitle">
+            <div class="telemetry-head">
+              <div>
+                <p class="panel-kicker">FIELD MODEL</p>
+                <h2 id="telemetryTitle">声场模型</h2>
+              </div>
+              <div class="model-ring" id="modelRing" aria-hidden="true"><span id="ringCount">0/5</span></div>
+            </div>
+
+            <p class="mission-copy" id="missionCopy">在内部节点标记 5 个深渊能量体。浮标可按任意顺序探测，编号相同的一对互为入口与出口。</p>
+
+            <dl class="metrics">
+              <div><dt>已标记</dt><dd id="guessMetric">0 / 5</dd></div>
+              <div><dt>发射</dt><dd id="shotMetric">0</dd></div>
+              <div><dt>步数</dt><dd id="moveMetric">0</dd></div>
+              <div><dt>检验</dt><dd id="checkMetric">0</dd></div>
+            </dl>
+
+            <div class="response-log">
+              <div class="subheading">
+                <h3>最近回波</h3>
+                <span id="responseCount">尚未发射</span>
+              </div>
+              <ol id="responseList" aria-label="最近的声呐反馈">
+                <li class="empty-log">等待第一束信号穿过海沟……</li>
+              </ol>
+            </div>
+
+            <div class="check-zone">
+              <p id="checkHint">还需标记 5 个能量体才可校验。</p>
+              <button class="check-button" id="checkButton" type="button" disabled>
+                <span class="check-radar" aria-hidden="true"></span>
+                校验完整声场
+              </button>
+            </div>
+
+            <button class="mapping-note" id="mappingButton" type="button">
+              <span aria-hidden="true">◎</span>
+              <span><b>为什么不直接对坐标？</b><small>查看“响应等价”胜利规则</small></span>
+              <i aria-hidden="true">→</i>
+            </button>
+          </aside>
+        </div>
+
+        <div class="console-footer">
+          <p><kbd>方向键</kbd> 移动焦点　<kbd>Enter</kbd> 操作　<kbd>Z</kbd> 撤销　<kbd>M</kbd> 静音　<kbd>?</kbd> 规则</p>
+          <p class="session-id" id="sessionId">FIELD / TRENCH / 0000</p>
+        </div>
+
+        <div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+      </section>
+    </main>
+
+    <dialog class="rules-dialog" id="rulesDialog" aria-labelledby="rulesTitle">
+      <form method="dialog" class="dialog-shell">
+        <div class="dialog-header">
+          <div>
+            <p class="panel-kicker">PROTOCOL / BLACK BOX</p>
+            <h2 id="rulesTitle">规则与来源</h2>
+          </div>
+          <button class="dialog-close" value="close" aria-label="关闭规则面板">×</button>
+        </div>
+
+        <div class="rules-intro">
+          <span class="source-badge">规则不变量完整保留</span>
+          <p>本作把 Black Box 的“隐藏球与边缘激光”映射成“深渊能量体与声呐浮标”。名称、视觉和反馈被重新设计，底层光路与胜利判定没有改变。</p>
+        </div>
+
+        <ol class="rule-list">
+          <li>
+            <b>从边缘入射</b>
+            <p>点按任一外围浮标，信号沿正交方向进入阵列；内部节点用于标记你推测的能量体。</p>
+          </li>
+          <li>
+            <b>正撞＝吞没 H</b>
+            <p>信号正前方紧邻能量体时立即被吸收，入口浮标显示 <strong>H</strong>。</p>
+          </li>
+          <li>
+            <b>单侧掠过＝反向偏折 90°</b>
+            <p>仅左前方有能量体，信号向右转；仅右前方有能量体，信号向左转。一次信号可连续偏折多次。</p>
+          </li>
+          <li>
+            <b>双侧影响或入场前偏折＝回声 R</b>
+            <p>左右前方同时受影响会掉头；如果信号尚未进入阵列就被入口邻侧能量体偏折，也按原规则返回同一浮标，显示 <strong>R</strong>。</p>
+          </li>
+          <li>
+            <b>从别处穿出＝共享编号</b>
+            <p>信号若从另一浮标离开，入口与出口会同时点亮同一个编号。编号只表示配对，不代表先后或距离。</p>
+          </li>
+          <li>
+            <b>完整响应等价＝胜利</b>
+            <p>标记数量达到目标后才能校验。系统会比较你的布局与隐藏布局在所有入口产生的完整 H / R / 配对出口响应；响应完全一致即通过，因此接受规则允许的非唯一等价解，而不是简单比较坐标。</p>
+          </li>
+        </ol>
+
+        <section class="source-note" aria-labelledby="sourceTitle">
+          <h3 id="sourceTitle">原始规则与许可</h3>
+          <p>规则参考 Simon Tatham 的 Portable Puzzle Collection 及 ebnbin/puzzles 中文文档。Black Box 原作由 Eric Solomon 创作，合集版本由 James Harvey 贡献；相关项目依据 MIT License 发布。本作保留 MIT 致谢，主题、美术、交互与声音为本站原创实现。</p>
+          <div class="source-links">
+            <a href="https://github.com/ebnbin/puzzles/blob/main/doc-zh/blackbox.html" target="_blank" rel="noreferrer">中文 Black Box 规则文档 ↗</a>
+            <a href="https://www.chiark.greenend.org.uk/~sgtatham/puzzles/" target="_blank" rel="noreferrer">Simon Tatham 谜题合集 ↗</a>
+          </div>
+        </section>
+
+        <button class="dialog-confirm" value="close">返回控制台</button>
+      </form>
+    </dialog>
+
+    <dialog class="victory-dialog" id="victoryDialog" aria-labelledby="victoryTitle">
+      <div class="victory-bubbles" id="victoryBubbles" aria-hidden="true"></div>
+      <div class="victory-content">
+        <p class="panel-kicker">FIELD SIGNATURE MATCHED</p>
+        <div class="victory-mark" aria-hidden="true"><span>✓</span></div>
+        <h2 id="victoryTitle">回声已被读懂</h2>
+        <p id="victoryCopy">你的模型与整片海沟的响应完全一致。</p>
+        <div class="victory-stats" id="victoryStats"></div>
+        <div class="victory-actions">
+          <button class="dialog-confirm" id="victoryNewButton" type="button">下潜至新声场</button>
+          <button class="ghost-button" id="victoryInspectButton" type="button">查看最终揭晓</button>
+        </div>
+      </div>
+    </dialog>
+
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>

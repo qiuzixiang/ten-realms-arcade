@@ -1,0 +1,11 @@
+{
+  "name": "ten-realms-arcade",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "test": "node scripts/validate.mjs",
+    "serve": "python3 -m http.server 4173"
+  }
+}

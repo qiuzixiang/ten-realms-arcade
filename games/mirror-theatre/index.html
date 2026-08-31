@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#130f14">
+    <meta name="description" content="在镜廊舞台安排真人、全息与机械演员，让每排观众看到正确的谢幕阵容。">
+    <title>镜影大剧院 · 十境谜游馆</title>
+    <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#theatre-board">跳到镜廊舞台</a>
+
+    <div class="theatre-backdrop" aria-hidden="true">
+      <div class="backdrop-image"></div>
+      <div class="backdrop-scrim"></div>
+      <div class="proscenium-line proscenium-line--left"></div>
+      <div class="proscenium-line proscenium-line--right"></div>
+    </div>
+
+    <header class="topbar">
+      <a class="museum-link" href="../../" aria-label="返回十境谜游馆">
+        <span class="museum-mark" aria-hidden="true">十</span>
+        <span><small>第二批独立谜戏</small>十境谜游馆</span>
+      </a>
+
+      <nav class="utility-bar" aria-label="游戏操作">
+        <button class="icon-button" id="new-game-button" type="button" title="换题">
+          <span aria-hidden="true">↻</span><span class="button-label">换题</span>
+        </button>
+        <button class="icon-button" id="undo-button" type="button" title="撤销" disabled>
+          <span aria-hidden="true">↶</span><span class="button-label">撤销</span>
+        </button>
+        <button class="icon-button" id="restart-button" type="button" title="重新开始">
+          <span aria-hidden="true">◫</span><span class="button-label">重排</span>
+        </button>
+        <button class="icon-button" id="mute-button" type="button" aria-pressed="false" title="静音">
+          <span class="sound-icon" aria-hidden="true">♪</span><span class="button-label">静音</span>
+        </button>
+        <button class="icon-button" id="rules-button" type="button" title="规则说明">
+          <span aria-hidden="true">?</span><span class="button-label">规则</span>
+        </button>
+      </nav>
+    </header>
+
+    <main id="main-content">
+      <section class="marquee" aria-labelledby="game-title">
+        <p class="marquee-kicker">REALM 10 · LIGHT, MIRROR, CURTAIN</p>
+        <div class="marquee-title-row">
+          <div>
+            <h1 id="game-title">镜影大剧院</h1>
+            <p>让每束目光穿过镜廊，找到它真正看得见的演员。</p>
+          </div>
+          <div class="save-indicator" id="save-indicator" role="status" aria-live="polite">
+            <span aria-hidden="true"></span><span id="save-copy">本机自动存档</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="game-layout" aria-label="镜影大剧院游戏区">
+        <aside class="house-panel" aria-labelledby="bill-heading">
+          <div class="panel-heading">
+            <p>TONIGHT'S BILL</p>
+            <h2 id="bill-heading">今晚剧目</h2>
+          </div>
+
+          <div class="difficulty-switch" id="difficulty-buttons" aria-label="难度选择"></div>
+
+          <div class="level-bill">
+            <p id="difficulty-kicker">序幕</p>
+            <h3 id="level-title">绒幕试光</h3>
+            <p id="level-subtitle">短镜廊 · 11 位演员</p>
+            <p class="director-note" id="level-note">先听清三种掌声，再让幕布升起。</p>
+          </div>
+
+          <section class="cast-call" aria-labelledby="cast-heading">
+            <div class="section-title-line">
+              <h3 id="cast-heading">演员总表</h3>
+              <span>已登台 / 应到</span>
+            </div>
+            <ul class="cast-list" id="cast-list">
+              <li data-actor="human">
+                <span class="actor-mark actor-mark--human" aria-hidden="true"><i></i></span>
+                <span><strong>真人演员</strong><small>仅直视可见</small></span>
+                <b><span class="cast-current">0</span>/<span class="cast-target">0</span></b>
+              </li>
+              <li data-actor="hologram">
+                <span class="actor-mark actor-mark--hologram" aria-hidden="true"><i></i></span>
+                <span><strong>全息演员</strong><small>反射后可见</small></span>
+                <b><span class="cast-current">0</span>/<span class="cast-target">0</span></b>
+              </li>
+              <li data-actor="robot">
+                <span class="actor-mark actor-mark--robot" aria-hidden="true"><i></i></span>
+                <span><strong>机械演员</strong><small>始终可见</small></span>
+                <b><span class="cast-current">0</span>/<span class="cast-target">0</span></b>
+              </li>
+            </ul>
+          </section>
+
+          <div class="house-stats" aria-label="当前进度">
+            <span><small>登台</small><b id="filled-stat">0 / 0</b></span>
+            <span><small>席位</small><b id="edge-stat">0 / 0</b></span>
+            <span><small>步数</small><b id="step-stat">0</b></span>
+          </div>
+        </aside>
+
+        <section class="stage-panel" aria-labelledby="stage-heading">
+          <div class="stage-heading-row">
+            <div>
+              <p>THE MIRROR STAGE</p>
+              <h2 id="stage-heading">镜廊舞台</h2>
+            </div>
+            <button class="text-button" id="check-button" type="button">核对追光</button>
+          </div>
+
+          <div class="stage-frame" id="stage-frame">
+            <div class="curtain curtain--left" aria-hidden="true"></div>
+            <div class="curtain curtain--right" aria-hidden="true"></div>
+            <div class="light-sweep" aria-hidden="true"></div>
+
+            <div class="mirror-stage" id="mirror-stage">
+              <div class="stage-corner stage-corner--tl" aria-hidden="true"></div>
+              <div class="edge-clues edge-clues--top" id="top-clues" aria-label="上方观众席"></div>
+              <div class="stage-corner stage-corner--tr" aria-hidden="true"></div>
+              <div class="edge-clues edge-clues--left" id="left-clues" aria-label="左侧观众席"></div>
+              <div class="theatre-board" id="theatre-board" role="grid" aria-label="镜廊舞台棋盘"></div>
+              <div class="edge-clues edge-clues--right" id="right-clues" aria-label="右侧观众席"></div>
+              <div class="stage-corner stage-corner--bl" aria-hidden="true"></div>
+              <div class="edge-clues edge-clues--bottom" id="bottom-clues" aria-label="下方观众席"></div>
+              <div class="stage-corner stage-corner--br" aria-hidden="true"></div>
+            </div>
+          </div>
+
+          <div class="ray-reader" id="ray-reader" aria-live="polite">
+            <span class="ray-symbol" aria-hidden="true">◇</span>
+            <p><strong id="status-title">幕布已升起</strong><span id="status-copy">选择演员工具，再点舞台格开始排演。</span></p>
+          </div>
+
+          <div class="tool-deck" aria-label="排演工具">
+            <div class="tool-deck-heading">
+              <span>排演工具</span>
+              <small>键盘：C / 1 / 2 / 3 / P / Delete</small>
+            </div>
+            <div class="tool-buttons" id="tool-buttons">
+              <button class="tool-button is-selected" type="button" data-tool="cycle" aria-pressed="true">
+                <span class="cycle-mark" aria-hidden="true">↻</span><span><strong>轮换</strong><small>依次换角</small></span>
+              </button>
+              <button class="tool-button" type="button" data-tool="human" aria-pressed="false">
+                <span class="actor-mark actor-mark--human" aria-hidden="true"><i></i></span><span><strong>真人</strong><small>数字 1</small></span>
+              </button>
+              <button class="tool-button" type="button" data-tool="hologram" aria-pressed="false">
+                <span class="actor-mark actor-mark--hologram" aria-hidden="true"><i></i></span><span><strong>全息</strong><small>数字 2</small></span>
+              </button>
+              <button class="tool-button" type="button" data-tool="robot" aria-pressed="false">
+                <span class="actor-mark actor-mark--robot" aria-hidden="true"><i></i></span><span><strong>机械</strong><small>数字 3</small></span>
+              </button>
+              <button class="tool-button" type="button" data-tool="notes" aria-pressed="false">
+                <span class="note-mark" aria-hidden="true">△</span><span><strong>候选</strong><small>字母 P</small></span>
+              </button>
+              <button class="tool-button" type="button" data-tool="erase" aria-pressed="false">
+                <span class="erase-mark" aria-hidden="true">×</span><span><strong>清场</strong><small>Delete</small></span>
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <aside class="audience-panel" aria-labelledby="audience-heading">
+          <div class="panel-heading">
+            <p>FROM THE HOUSE</p>
+            <h2 id="audience-heading">观众席手记</h2>
+          </div>
+
+          <div class="rule-ribbon">
+            <span class="beam beam--direct" aria-hidden="true"></span>
+            <p><strong>镜前是直视</strong>真人与机械会被看见。</p>
+          </div>
+          <div class="rule-ribbon">
+            <span class="beam beam--reflected" aria-hidden="true"></span>
+            <p><strong>首次折光以后</strong>全息与机械会被看见。</p>
+          </div>
+
+          <div class="selected-ray-card" id="selected-ray-card">
+            <p>LIGHT PATH</p>
+            <h3>点一处观众席</h3>
+            <span>舞台会描出这排观众的完整视线。</span>
+          </div>
+
+          <div class="audience-tip">
+            <span aria-hidden="true">↗</span>
+            <p><strong>每个入口独立计数</strong>同一演员绕镜再次出现，也要再算一次。</p>
+          </div>
+
+          <button class="rules-link-button" id="footer-rules-button" type="button">展开完整规则与操作</button>
+        </aside>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>镜影大剧院 · 十境谜游馆</p>
+      <p>
+        规则源流：
+        <a href="https://github.com/ebnbin/puzzles/blob/main/doc-zh/undead.html" target="_blank" rel="noreferrer">ebnbin/puzzles · Undead 中文规则</a>
+        · 基于 MIT 许可致谢原作者与上游 Simon Tatham's Portable Puzzle Collection。
+      </p>
+    </footer>
+
+    <dialog class="theatre-dialog rules-dialog" id="rules-dialog" aria-labelledby="rules-dialog-title">
+      <div class="dialog-topline"><span>PLAYBILL / RULES</span><button id="rules-close-button" type="button" aria-label="关闭规则">×</button></div>
+      <div class="dialog-body">
+        <p class="dialog-kicker">镜廊排演须知</p>
+        <h2 id="rules-dialog-title">让所有目光与总表同时吻合</h2>
+        <div class="rules-grid">
+          <section>
+            <span class="rule-number">01</span>
+            <h3>每格都要有演员</h3>
+            <p>斜镜之外的每个舞台格，必须恰好安排真人、全息或机械演员之一。左侧总表给出三类演员的全局人数。</p>
+          </section>
+          <section>
+            <span class="rule-number">02</span>
+            <h3>可见性取决于首面镜</h3>
+            <p>真人只在尚未碰镜时可见；全息只在至少碰过一面镜后可见；机械始终可见。第二面、第三面镜不会切回直视。</p>
+          </section>
+          <section>
+            <span class="rule-number">03</span>
+            <h3>沿真实反射方向追光</h3>
+            <p><b>/</b> 让上↔右、下↔左；<b>\</b> 让上↔左、下↔右。每个边缘数字都从自己的观众席向内重新开始，直到光从另一边退出。</p>
+          </section>
+          <section>
+            <span class="rule-number">04</span>
+            <h3>经过几次，就数几次</h3>
+            <p>一条光路若绕回同一演员格，会保留每次经过；演员在当次状态可见，就再次计入该入口的数字。</p>
+          </section>
+        </div>
+        <div class="operation-guide">
+          <h3>操作</h3>
+          <p>选择工具后点舞台格；“轮换”依次循环三类演员。右键或 Shift+Enter 可直接轮换候选，候选只供推理，不参与任何计数。方向键或 WASD 移动焦点，1/2/3 落下三类演员，P 进入候选，C 回到轮换，Delete 清空。</p>
+        </div>
+        <p class="license-note">规则实现逐条校准自 <a href="https://github.com/ebnbin/puzzles/blob/main/doc-zh/undead.html" target="_blank" rel="noreferrer">Undead 中文规则</a> 与其未经修改的上游实现；依 MIT 许可致谢。</p>
+      </div>
+    </dialog>
+
+    <dialog class="theatre-dialog victory-dialog" id="victory-dialog" aria-labelledby="victory-title">
+      <div class="victory-rays" aria-hidden="true"><i></i><i></i><i></i></div>
+      <div class="dialog-body victory-body">
+        <p class="dialog-kicker">CURTAIN CALL</p>
+        <h2 id="victory-title">全场目光，恰好相逢</h2>
+        <p id="victory-copy">镜面扫过最后一道光，三类演员依次谢幕。</p>
+        <div class="victory-cast" aria-hidden="true">
+          <span class="actor-mark actor-mark--human"><i></i></span>
+          <span class="actor-mark actor-mark--hologram"><i></i></span>
+          <span class="actor-mark actor-mark--robot"><i></i></span>
+        </div>
+        <dl class="victory-stats">
+          <div><dt>剧目</dt><dd id="victory-level">—</dd></div>
+          <div><dt>步数</dt><dd id="victory-steps">0</dd></div>
+          <div><dt>观众席</dt><dd id="victory-edges">0 / 0</dd></div>
+        </dl>
+        <div class="dialog-actions">
+          <button class="primary-button" id="next-level-button" type="button">下一场演出</button>
+          <button class="secondary-button" id="stay-button" type="button">留在舞台</button>
+        </div>
+      </div>
+    </dialog>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <p class="sr-only" id="assertive-status" role="alert" aria-live="assertive"></p>
+
+    <script type="module" src="./app.mjs"></script>
+  </body>
+</html>

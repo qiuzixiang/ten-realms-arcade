@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#250a12">
+    <meta name="description" content="在月老红线事务所挪动缘分印章，解开每一个红线交点。基于 Untangle 规则的原创浏览器谜题。">
+    <title>月老红线事务所 · 十境谜游馆</title>
+    <link rel="icon" href="../../assets/favicon.svg">
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <div class="page-glow page-glow--one" aria-hidden="true"></div>
+    <div class="page-glow page-glow--two" aria-hidden="true"></div>
+
+    <a class="museum-link" href="../../" aria-label="返回十境谜游馆首页">
+      <span aria-hidden="true">←</span>
+      <span>十境谜游馆</span>
+    </a>
+
+    <main class="office-shell">
+      <header class="masthead">
+        <div class="masthead__seal" aria-hidden="true"><span>缘</span></div>
+        <div class="masthead__copy">
+          <p class="eyebrow">REALM 03 · UNTANGLE</p>
+          <h1>月老红线事务所</h1>
+          <p class="subtitle">把错置的心愿印章移回清朗处。线不必变短，只需不再彼此相交。</p>
+        </div>
+        <p class="case-number" aria-label="案卷编号三">案卷<br><strong>叁</strong></p>
+      </header>
+
+      <section class="desk-panel" aria-label="红线案卷操作台">
+        <div class="case-toolbar">
+          <div class="level-picker" aria-label="案卷难度">
+            <span class="level-picker__label">案卷密度</span>
+            <div class="level-picker__buttons" role="group" aria-label="选择难度；选择后开始新案卷">
+              <button class="level-button" type="button" data-difficulty="easy">初签</button>
+              <button class="level-button is-active" type="button" data-difficulty="medium">合契</button>
+              <button class="level-button" type="button" data-difficulty="hard">星罗</button>
+            </div>
+          </div>
+
+          <div class="action-bar" role="toolbar" aria-label="案卷操作">
+            <button class="tool-button tool-button--primary" id="newGameButton" type="button">
+              <span class="tool-button__icon" aria-hidden="true">✦</span><span>新案卷</span>
+            </button>
+            <button class="tool-button" id="restartButton" type="button">
+              <span class="tool-button__icon" aria-hidden="true">↺</span><span>重开</span>
+            </button>
+            <button class="tool-button" id="undoButton" type="button" disabled>
+              <span class="tool-button__icon" aria-hidden="true">↶</span><span>撤销</span>
+            </button>
+            <button class="tool-button icon-button" id="muteButton" type="button" aria-pressed="false" aria-label="静音">
+              <span class="sound-on" aria-hidden="true">♪</span><span class="sound-off" aria-hidden="true">×</span>
+            </button>
+            <button class="tool-button icon-button" id="rulesButton" type="button" aria-label="打开规则与来源"><span aria-hidden="true">?</span></button>
+          </div>
+        </div>
+
+        <div class="status-ribbon" aria-label="当前案卷进度">
+          <div class="status-item"><span class="status-item__label">尚存线结</span><strong id="crossingCount">—</strong></div>
+          <div class="status-item"><span class="status-item__label">流转步数</span><strong id="moveCount">0</strong></div>
+          <div class="progress-wrap">
+            <div class="progress-copy"><span>理顺进度</span><strong id="progressText">0%</strong></div>
+            <div class="progress-track" role="progressbar" aria-label="理顺进度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="progressBar"><span id="progressFill"></span></div>
+          </div>
+          <p class="live-status" id="liveStatus" role="status" aria-live="polite">正在展开缘分簿……</p>
+        </div>
+
+        <div class="workspace">
+          <aside class="ledger-card ledger-card--brief">
+            <p class="ledger-card__kicker">本案批示</p>
+            <h2>线可错身，<br>不可相穿。</h2>
+            <p>拖动任意心愿印章，直到红线之间没有交叉。连在同一枚印章上的线，相会不算结。</p>
+            <div class="ink-divider" aria-hidden="true"><span></span></div>
+            <p class="small-note">红色线结会实时标记；已经理顺的红线转为金色。</p>
+          </aside>
+
+          <section class="board-frame" aria-labelledby="boardTitle">
+            <div class="board-heading">
+              <div><p>缘分簿 · 当前页</p><h2 id="boardTitle">待理红线图</h2></div>
+              <span class="board-state" id="boardState">核对中</span>
+            </div>
+            <div class="thread-board" id="threadBoard" tabindex="-1">
+              <canvas id="threadCanvas" aria-hidden="true"></canvas>
+              <div class="constellation-layer" id="constellationLayer" aria-hidden="true"></div>
+              <div class="node-layer" id="nodeLayer" aria-label="可移动的心愿印章"></div>
+              <div class="board-vignette" aria-hidden="true"></div>
+              <p class="gesture-hint" id="gestureHint"><span aria-hidden="true">⌁</span>拖动印章 · 或按 Tab 选章，再用方向键移动</p>
+            </div>
+          </section>
+
+          <aside class="ledger-card ledger-card--registry">
+            <div class="registry-heading">
+              <div><p class="ledger-card__kicker">缘分簿</p><h2>印章名录</h2></div>
+              <span id="sealCount">—枚</span>
+            </div>
+            <ol class="seal-registry" id="sealRegistry" aria-label="本案印章名录"></ol>
+            <p class="keyboard-note"><kbd>Tab</kbd> 选章　<kbd>↑↓←→</kbd> 移动　<kbd>Shift</kbd> 加速</p>
+          </aside>
+        </div>
+      </section>
+
+      <footer class="office-footer">
+        <p>所有进度自动存于本机。事务所不设倒计时，也没有无解案卷。</p>
+        <button type="button" class="text-button" id="footerRulesButton">规则与来源 · MIT 致谢</button>
+      </footer>
+    </main>
+
+    <section class="victory-sheet" id="victorySheet" role="dialog" aria-modal="true" hidden aria-labelledby="victoryTitle" aria-describedby="victoryDescription">
+      <div class="victory-sheet__stars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+      <div class="victory-sheet__seal" aria-hidden="true">合</div>
+      <p class="eyebrow">CASE RESOLVED</p>
+      <h2 id="victoryTitle">此页红线，皆已相安。</h2>
+      <p id="victoryDescription">缘分星图已经铺开。你用 <strong id="victoryMoves">0</strong> 步理顺了这份案卷。</p>
+      <div class="victory-sheet__actions">
+        <button type="button" class="paper-button paper-button--primary" id="nextCaseButton">接下一案</button>
+        <button type="button" class="paper-button" id="victoryUndoButton">撤销最后一步</button>
+        <button type="button" class="paper-button" id="reviewBoardButton">留在此页</button>
+      </div>
+    </section>
+
+    <dialog class="rules-dialog" id="rulesDialog" aria-labelledby="rulesDialogTitle">
+      <form method="dialog" class="rules-dialog__paper">
+        <div class="rules-dialog__heading">
+          <div><p class="eyebrow">RULES &amp; ORIGIN</p><h2 id="rulesDialogTitle">规则与来源</h2></div>
+          <button class="dialog-close" value="close" aria-label="关闭规则说明">×</button>
+        </div>
+        <div class="rules-grid">
+          <section><span class="rule-number">壹</span><h3>自由挪动印章</h3><p>每枚心愿印章都可移动到纸面任意可达位置。拖动只改变印章位置，红线的连接关系始终不变。</p></section>
+          <section><span class="rule-number">贰</span><h3>核对中心线相交</h3><p>不共享逻辑印章的两条红线，只要数学中心线的闭线段相交便算线结：X 形穿越、T 形触碰、非共享端点相碰、共线重叠都计入。平行或共线分离不计；共享同一印章的线则整对忽略。</p></section>
+          <section><span class="rule-number">叁</span><h3>零线结即完成</h3><p>当任意两条红线都不再相交，案卷立即完成。没有步数上限，也没有额外排序或长度要求。</p></section>
+        </div>
+        <div class="mapping-note">
+          <h3>从 Untangle 到月老事务所</h3>
+          <p>原作中的点映射为“人物／心愿印章”，连线映射为“红线”，交叉边映射为“发红的线结”；胜负判定逐项保持 Untangle 原规则不变。每局先生成一张无交叉的平面图，再打乱印章位置，因此一定存在解。</p>
+        </div>
+        <div class="source-note">
+          <h3>来源与许可</h3>
+          <p>规则参考 Simon Tatham’s Portable Puzzle Collection 及 ebnbin/puzzles 中文规则文档。原项目按 MIT License 发布；本作保留致谢，主题、美术、交互与声音均为重新设计。</p>
+          <div class="source-links">
+            <a href="https://github.com/ebnbin/puzzles/blob/main/doc-zh/untangle.html" target="_blank" rel="noreferrer">Untangle 中文规则 ↗</a>
+            <a href="https://www.chiark.greenend.org.uk/~sgtatham/puzzles/" target="_blank" rel="noreferrer">Simon Tatham 合集 ↗</a>
+            <a href="../../THIRD_PARTY_NOTICES.md" target="_blank">MIT 致谢全文 ↗</a>
+          </div>
+        </div>
+        <button class="paper-button paper-button--primary dialog-done" value="close">阅毕，继续理线</button>
+      </form>
+    </dialog>
+
+    <script type="module" src="./game.js"></script>
+  </body>
+</html>

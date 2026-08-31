@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#130e0a" />
+    <meta
+      name="description"
+      content="记忆方舟：滚动古老的立方遗迹核心，让六枚记忆符印分别进入六个表面。"
+    />
+    <title>记忆方舟 · 十境谜游馆</title>
+    <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./styles.css" />
+    <script type="module" src="./game.js"></script>
+  </head>
+  <body>
+    <div class="chamber-light" aria-hidden="true"></div>
+    <div class="grain" aria-hidden="true"></div>
+
+    <header class="topbar">
+      <a class="back-link" href="../../" aria-label="返回十境谜游馆">
+        <span aria-hidden="true">←</span>
+        <span><b>十境谜游馆</b><small>返回入口大厅</small></span>
+      </a>
+      <div class="top-actions">
+        <button class="icon-button" id="soundButton" type="button" aria-pressed="false">
+          <span class="button-icon" aria-hidden="true">◖</span><span class="action-label">声音</span>
+        </button>
+        <button class="icon-button" id="rulesButton" type="button" aria-label="规则与来源">
+          <span class="button-icon" aria-hidden="true">?</span><span class="action-label">规则与来源</span>
+        </button>
+      </div>
+    </header>
+
+    <main class="game-layout">
+      <section class="story-panel" aria-labelledby="gameTitle">
+        <p class="realm-label"><span></span> REALM 02 · CUBE ARCHIVE</p>
+        <h1 id="gameTitle"><span>记忆</span>方舟</h1>
+        <p class="story-copy">
+          遗迹核心仍记得滚动的方式。让地面的六枚符印分别沉入六个表面，唤醒这艘被时间掩埋的方舟。
+        </p>
+
+        <div class="awakening-meter" aria-label="核心表面唤醒进度">
+          <div class="meter-heading">
+            <span>核心共鸣</span><strong id="progressText">0 / 6</strong>
+          </div>
+          <div class="face-pips" id="facePips" aria-hidden="true">
+            <i></i><i></i><i></i><i></i><i></i><i></i>
+          </div>
+        </div>
+
+        <dl class="stats" aria-label="本局数据">
+          <div><dt>已走步数</dt><dd id="moveCount">000</dd></div>
+          <div><dt>参考航迹</dt><dd id="referenceCount">—</dd></div>
+          <div><dt>历史最佳</dt><dd id="bestCount">—</dd></div>
+        </dl>
+
+        <p class="status-message" id="statusMessage" role="status" aria-live="polite">
+          选择相邻地格，或使用方向键 / WASD 滚动核心。
+        </p>
+      </section>
+
+      <section class="game-console" aria-label="记忆方舟操作台">
+        <div class="console-header">
+          <div>
+            <p>ARK MEMORY INTERFACE</p>
+            <h2>符印收集阵列</h2>
+          </div>
+          <span class="save-indicator" id="saveIndicator"><i></i> 自动存档</span>
+        </div>
+
+        <div class="board-wrap" id="boardWrap">
+          <div
+            class="board"
+            id="board"
+            role="grid"
+            aria-label="4 乘 4 记忆地格。点击核心相邻地格移动。"
+            tabindex="0"
+          ></div>
+          <div class="core-anchor" id="coreAnchor" aria-hidden="true">
+            <div class="core-shadow"></div>
+            <div class="cube-visual" id="cubeVisual">
+              <div class="cube-face face-front" data-slot="south"><span></span></div>
+              <div class="cube-face face-back" data-slot="north"><span></span></div>
+              <div class="cube-face face-right" data-slot="east"><span></span></div>
+              <div class="cube-face face-left" data-slot="west"><span></span></div>
+              <div class="cube-face face-top" data-slot="top"><span></span></div>
+              <div class="cube-face face-bottom" data-slot="bottom"><span></span></div>
+            </div>
+            <span class="core-aura"></span>
+          </div>
+          <div class="board-flash" aria-hidden="true"></div>
+          <div class="corner-mark corner-a" aria-hidden="true"></div>
+          <div class="corner-mark corner-b" aria-hidden="true"></div>
+          <div class="corner-mark corner-c" aria-hidden="true"></div>
+          <div class="corner-mark corner-d" aria-hidden="true"></div>
+        </div>
+
+        <div class="console-footer">
+          <div class="dpad" aria-label="滚动方向">
+            <button type="button" data-direction="north" aria-label="向上滚动">↑</button>
+            <button type="button" data-direction="west" aria-label="向左滚动">←</button>
+            <span aria-hidden="true"><i></i></span>
+            <button type="button" data-direction="east" aria-label="向右滚动">→</button>
+            <button type="button" data-direction="south" aria-label="向下滚动">↓</button>
+          </div>
+          <p class="input-hint"><span>轻扫</span><span>点击邻格</span><span>方向键 / WASD</span></p>
+        </div>
+      </section>
+
+      <section class="command-panel" aria-label="本局控制">
+        <button class="command primary" id="newButton" type="button">
+          <span aria-hidden="true">✦</span><b>新航迹</b><small>生成可解新局</small>
+        </button>
+        <button class="command" id="restartButton" type="button">
+          <span aria-hidden="true">↺</span><b>重开</b><small>回到本局起点</small>
+        </button>
+        <button class="command" id="undoButton" type="button" disabled>
+          <span aria-hidden="true">↶</span><b>撤销</b><small>退回上一步</small>
+        </button>
+        <button class="command rules-command" id="rulesButtonSecondary" type="button">
+          <span aria-hidden="true">◇</span><b>规则与来源</b><small>查看原型映射</small>
+        </button>
+      </section>
+    </main>
+
+    <footer class="page-footer">
+      <p>六面皆明，方舟乃醒。</p>
+      <span>MEMORY ARK · OFFLINE PUZZLE</span>
+    </footer>
+
+    <dialog class="rules-dialog" id="rulesDialog" aria-labelledby="rulesTitle">
+      <div class="dialog-frame">
+        <div class="dialog-header">
+          <div><p>ARCHIVE NOTE 02</p><h2 id="rulesTitle">规则与来源</h2></div>
+          <button class="dialog-close" id="closeRulesButton" type="button" aria-label="关闭规则">×</button>
+        </div>
+
+        <div class="rules-grid">
+          <section>
+            <h3>如何唤醒方舟</h3>
+            <ol>
+              <li><b>滚动</b><span>核心每次只能向上、下、左、右的相邻地格滚动 90°，不能越过 4×4 阵列边界。</span></li>
+              <li><b>交换</b><span>滚动完成后，新的底面与落脚地格交换“有符印 / 无符印”状态；离开的地格不变。</span></li>
+              <li><b>收集</b><span>开局六个表面为空，六枚符印散落在地面。让六枚符印同时分别位于六个表面即获胜。</span></li>
+              <li><b>精进</b><span>所有局面都由已解状态严格逆向构造，保证可解。步数越少，航迹越利落。</span></li>
+            </ol>
+          </section>
+
+          <section class="mapping-card">
+            <h3>原规则映射</h3>
+            <dl>
+              <div><dt>Cube 的 4×4 网格</dt><dd>方舟符印阵列</dd></div>
+              <div><dt>可滚动立方体</dt><dd>遗迹核心</dd></div>
+              <div><dt>六个有色地格</dt><dd>六枚记忆符印</dd></div>
+              <div><dt>有色 / 无色表面</dt><dd>已铭刻 / 空白表面</dd></div>
+              <div><dt>六面全部有色</dt><dd>方舟完全唤醒</dd></div>
+            </dl>
+          </section>
+        </div>
+
+        <section class="source-note">
+          <h3>来源与许可</h3>
+          <p>
+            底层规则忠实参考 Simon Tatham’s Portable Puzzle Collection 中的 <i>Cube</i>，
+            以及 ebnbin/puzzles 的中文规则文档。本作仅重做主题、文案、视觉、输入反馈与声音；
+            原项目及本项目均依 MIT License 使用与致谢。
+          </p>
+          <div class="source-links">
+            <a href="https://github.com/ebnbin/puzzles/blob/main/doc-zh/cube.html" target="_blank" rel="noreferrer">
+              中文 Cube 规则 <span aria-hidden="true">↗</span>
+            </a>
+            <a href="https://www.chiark.greenend.org.uk/~sgtatham/puzzles/" target="_blank" rel="noreferrer">
+              Simon Tatham 合集 <span aria-hidden="true">↗</span>
+            </a>
+            <a href="https://www.chiark.greenend.org.uk/~sgtatham/puzzles/doc/cube.html#C4" target="_blank" rel="noreferrer">
+              英文 Cube 说明 <span aria-hidden="true">↗</span>
+            </a>
+            <a href="https://github.com/ebnbin/puzzles/blob/main/vendor/sgtpuzzles/LICENCE" target="_blank" rel="noreferrer">
+              MIT License <span aria-hidden="true">↗</span>
+            </a>
+          </div>
+        </section>
+      </div>
+    </dialog>
+
+    <dialog
+      class="ending"
+      id="ending"
+      aria-labelledby="endingTitle"
+      aria-describedby="endingCopy"
+    >
+      <div class="awakening-rings" aria-hidden="true"><i></i><i></i><i></i></div>
+      <div class="ending-card">
+        <p>ALL SIX FACES REMEMBER</p>
+        <h2 id="endingTitle">方舟，醒了。</h2>
+        <span id="endingCopy">六枚记忆归入核心。</span>
+        <div class="ending-stats">
+          <div><small>本次航迹</small><b id="endingMoves">0 步</b></div>
+          <div><small>参考航迹</small><b id="endingReference">—</b></div>
+        </div>
+        <div class="ending-actions">
+          <button type="button" id="continueButton">留在阵列</button>
+          <button type="button" id="endingNewButton" autofocus>开启新航迹</button>
+        </div>
+      </div>
+    </dialog>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <noscript>《记忆方舟》需要启用 JavaScript 才能保存局面并运行立方体规则。</noscript>
+  </body>
+</html>

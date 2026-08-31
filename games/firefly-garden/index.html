@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#071d18" />
+    <meta
+      name="description"
+      content="夜庭萤火：在月下花庭安放互不相照的萤火，遵循 Light Up / Akari 规则唤醒每一朵花。"
+    />
+    <meta property="og:title" content="夜庭萤火 · 十境谜游馆" />
+    <meta property="og:description" content="让每处花圃见光，却别让萤火彼此照见。" />
+    <title>夜庭萤火 · 十境谜游馆</title>
+    <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./styles.css" />
+    <script type="module" src="./app.mjs"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#garden-board">跳到花庭棋盘</a>
+    <div class="scene-backdrop" aria-hidden="true"></div>
+    <div class="mist mist-a" aria-hidden="true"></div>
+    <div class="mist mist-b" aria-hidden="true"></div>
+    <div class="dawn-wash" aria-hidden="true"></div>
+
+    <header class="topbar">
+      <a class="back-link" href="../../" aria-label="返回十境谜游馆首页">
+        <span aria-hidden="true">←</span>
+        <span><small>TEN REALMS</small>返回谜游馆</span>
+      </a>
+
+      <div class="realm-mark" aria-label="十境谜游馆，第四境">
+        <span class="realm-mark__seed" aria-hidden="true"></span>
+        <span><small>REALM 04</small>夜庭萤火</span>
+      </div>
+
+      <nav class="top-actions" aria-label="页面选项">
+        <button class="round-button" id="mute-button" type="button" aria-pressed="false">
+          <span class="sound-icon" aria-hidden="true"><i></i><i></i></span>
+          <span class="button-label">声音</span>
+        </button>
+        <button class="round-button" id="rules-button" type="button">
+          <span class="rules-icon" aria-hidden="true">?</span>
+          <span class="button-label">规则</span>
+        </button>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="page-title">
+        <p class="eyebrow"><span aria-hidden="true"></span> LIGHT THE SLEEPING GARDEN</p>
+        <h1 id="page-title">夜庭<em>萤火</em></h1>
+        <p>让每处花圃见光，却别让萤火彼此照见。月落以前，唤醒这座沉睡的庭院。</p>
+      </section>
+
+      <section class="game-layout" aria-label="夜庭萤火游戏区">
+        <article class="garden-card" aria-labelledby="level-title">
+          <header class="garden-card__header">
+            <div>
+              <p class="garden-kicker" id="difficulty-kicker">微光庭 · 01</p>
+              <h2 id="level-title">露珠小径</h2>
+            </div>
+            <div class="moon-progress" aria-label="花圃照亮进度">
+              <span class="moon-progress__orb" id="progress-orb" aria-hidden="true"></span>
+              <span><strong id="progress-percent">0%</strong><small>花开进度</small></span>
+            </div>
+          </header>
+
+          <div class="progress-track" aria-hidden="true">
+            <span id="progress-bar"></span>
+          </div>
+
+          <div class="board-frame" id="board-frame">
+            <div class="corner-leaf corner-leaf-a" aria-hidden="true"></div>
+            <div class="corner-leaf corner-leaf-b" aria-hidden="true"></div>
+            <p class="visually-hidden" id="board-caption">
+              使用方向键在花圃间移动，回车或空格安放萤火，X 添加或清除“这里不能放”标记。触控设备上，大花庭可横向滑动查看。
+            </p>
+            <div
+              class="garden-board"
+              id="garden-board"
+              role="grid"
+              aria-label="夜庭花圃"
+              aria-describedby="board-caption"
+            ></div>
+            <div class="check-flash" id="check-flash" aria-hidden="true"></div>
+          </div>
+          <p class="board-scroll-hint"><span aria-hidden="true">↔</span> 大花庭可左右滑动查看</p>
+
+          <div class="tool-dock" role="toolbar" aria-label="花圃工具">
+            <button class="tool-button is-active" id="bulb-tool" type="button" aria-pressed="true">
+              <span class="mini-firefly" aria-hidden="true"><i></i></span>
+              <span><strong>安放萤火</strong><small>点击 · Enter</small></span>
+            </button>
+            <button class="tool-button" id="mark-tool" type="button" aria-pressed="false">
+              <span class="mark-glyph" aria-hidden="true"></span>
+              <span><strong>这里不能放</strong><small>右键 · X</small></span>
+            </button>
+            <button class="tool-button tool-button--check" id="check-button" type="button">
+              <span class="check-glyph" aria-hidden="true"></span>
+              <span><strong>巡夜检查</strong><small>快捷键 C</small></span>
+            </button>
+          </div>
+        </article>
+
+        <aside class="night-journal" aria-labelledby="journal-title">
+          <div class="journal-heading">
+            <p>MOONKEEPER'S NOTES</p>
+            <h2 id="journal-title">守夜簿</h2>
+            <span id="save-state">每一步都会留在本机</span>
+          </div>
+
+          <dl class="status-grid">
+            <div>
+              <dt>见光花圃</dt>
+              <dd><strong id="lit-count">0</strong><span id="plot-total">/ 0</span></dd>
+            </div>
+            <div>
+              <dt>符文安定</dt>
+              <dd><strong id="rune-count">0</strong><span id="rune-total">/ 0</span></dd>
+            </div>
+            <div>
+              <dt>萤火冲光</dt>
+              <dd><strong id="conflict-count">0</strong><span> 只</span></dd>
+            </div>
+            <div>
+              <dt>行走步数</dt>
+              <dd><strong id="step-count">0</strong><span> 步</span></dd>
+            </div>
+          </dl>
+
+          <fieldset class="difficulty-picker">
+            <legend>选择夜色</legend>
+            <div id="difficulty-buttons"></div>
+            <p id="difficulty-note">5 × 5 · 初见夜色</p>
+          </fieldset>
+
+          <div class="garden-actions">
+            <button class="primary-action" id="new-game-button" type="button">
+              <span aria-hidden="true">＋</span> 新庭院
+            </button>
+            <button id="restart-button" type="button">
+              <span aria-hidden="true">↺</span> 重开
+            </button>
+            <button id="undo-button" type="button" disabled>
+              <span aria-hidden="true">↶</span> 撤销
+            </button>
+          </div>
+
+          <div class="night-message" id="night-message">
+            <span class="night-message__bud" aria-hidden="true"></span>
+            <p><strong>花庭仍在沉睡</strong><span>点亮一块花圃，花朵会沿光路逐格开放。</span></p>
+          </div>
+
+          <div class="legend" aria-label="棋盘图例">
+            <span><i class="legend-plot" aria-hidden="true"></i>沉睡花圃</span>
+            <span><i class="legend-ruin" aria-hidden="true"></i>遮光遗迹</span>
+            <span><i class="legend-rune" aria-hidden="true">2</i>符文石</span>
+          </div>
+
+          <p class="keyboard-note">
+            键盘：方向键移动 · Enter/Space 萤火 · X 禁放 · Z 撤销 · R 重开 · N 新局 · C 检查 · ? 规则
+          </p>
+        </aside>
+      </section>
+    </main>
+
+    <footer>
+      <p>夜会结束，规则仍亮着。</p>
+      <a href="../../">十境谜游馆</a>
+      <span aria-hidden="true">·</span>
+      <button id="footer-rules-button" type="button">规则与来源</button>
+    </footer>
+
+    <dialog class="rules-dialog" id="rules-dialog" aria-labelledby="rules-title">
+      <div class="dialog-topline">
+        <p>RULES &amp; ORIGIN</p>
+        <button class="dialog-close" id="rules-close-button" type="button" aria-label="关闭规则">×</button>
+      </div>
+      <div class="rules-dialog__content">
+        <header>
+          <span class="dialog-moon" aria-hidden="true"></span>
+          <div>
+            <p>Light Up / Akari</p>
+            <h2 id="rules-title">守夜人的三条约定</h2>
+          </div>
+        </header>
+
+        <ol class="rule-list">
+          <li><span>一</span><p><strong>每块花圃都要见光</strong>全部非黑格必须被至少一只萤火照亮。</p></li>
+          <li><span>二</span><p><strong>萤火不能彼此照见</strong>光只沿上下左右传播，遇到任意遗迹或符文石就停止。</p></li>
+          <li><span>三</span><p><strong>符文数字必须刚好满足</strong>数字等于其上下左右紧邻的萤火数量；无数字遗迹不限制邻灯。</p></li>
+        </ol>
+
+        <div class="rule-map">
+          <h3>规则映射</h3>
+          <dl>
+            <div><dt>原作白格</dt><dd>沉睡花圃</dd></div>
+            <div><dt>原作灯泡</dt><dd>萤火精灵</dd></div>
+            <div><dt>原作黑格</dt><dd>遮光遗迹</dd></div>
+            <div><dt>数字黑格</dt><dd>符文石</dd></div>
+          </dl>
+        </div>
+
+        <div class="control-rules">
+          <h3>怎么落子</h3>
+          <p>
+            点击、轻触或按 Enter/Space，在花圃的空格与萤火间切换。萤火可以故意放在已被照亮的花圃里，若因此互相照见，会出现可逆的红色冲光提示。
+          </p>
+          <p>
+            右键、X 键或选择“这里不能放”工具可添加禁放标记。标记格不能放萤火；已点亮格不能新加标记，但已有标记始终可以清除。标记只作笔记，不挡光、也不参与胜负判定。
+          </p>
+        </div>
+
+        <div class="source-panel">
+          <h3>规则与来源</h3>
+          <p>
+            底层规则逐项保留自 Simon Tatham's Portable Puzzle Collection 的 Light Up。
+            本页视觉、文案、输入反馈与合成声音为《夜庭萤火》的独立再创作。
+          </p>
+          <div class="source-links">
+            <a href="https://github.com/ebnbin/puzzles/blob/main/doc-zh/lightup.html" target="_blank" rel="noreferrer">
+              Light Up 中文规则文档 <span aria-hidden="true">↗</span>
+            </a>
+            <a href="https://www.chiark.greenend.org.uk/~sgtatham/puzzles/" target="_blank" rel="noreferrer">
+              Simon Tatham 谜题合集 <span aria-hidden="true">↗</span>
+            </a>
+            <a href="../../THIRD_PARTY_NOTICES.md">
+              MIT 致谢与第三方声明 <span aria-hidden="true">→</span>
+            </a>
+          </div>
+          <small>
+            感谢 Simon Tatham、Portable Puzzle Collection 贡献者及 ebnbin/puzzles 中文文档维护者；原项目依 MIT License 提供。
+          </small>
+        </div>
+      </div>
+    </dialog>
+
+    <dialog class="victory-dialog" id="victory-dialog" aria-labelledby="victory-title">
+      <div class="sunrise-art" aria-hidden="true">
+        <span></span><i></i><i></i><i></i><i></i><i></i>
+      </div>
+      <p>DAWN HAS FOUND THE GARDEN</p>
+      <h2 id="victory-title">黎明抵达</h2>
+      <p id="victory-copy">每朵花都在光里醒来，萤火也守住了彼此的距离。</p>
+      <dl>
+        <div><dt>步数</dt><dd id="victory-steps">0</dd></div>
+        <div><dt>花圃</dt><dd id="victory-plots">0 / 0</dd></div>
+      </dl>
+      <div class="victory-actions">
+        <button class="primary-action" id="next-level-button" type="button">再游一庭</button>
+        <button id="stay-button" type="button">留在黎明</button>
+      </div>
+    </dialog>
+
+    <div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+    <div class="visually-hidden" id="assertive-status" role="alert" aria-live="assertive"></div>
+  </body>
+</html>

@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#071719">
+    <meta name="description" content="风暴灯塔网：旋转漂浮航标，让主灯塔的风暴能量抵达全部信标，并保持整张网络连通且无回路。">
+    <title>风暴灯塔网 · 十境谜游馆</title>
+    <link rel="icon" href="../../assets/favicon.svg">
+    <link rel="preload" href="./assets/storm-sea.jpg" as="image" type="image/jpeg">
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#network-board">跳到航标棋盘</a>
+
+    <div class="ocean-backdrop" aria-hidden="true">
+      <div class="storm-shade"></div>
+      <div class="rain rain--far"></div>
+      <div class="rain rain--near"></div>
+      <div class="beacon-sweep"></div>
+    </div>
+
+    <header class="topbar">
+      <a class="back-link" href="../../" aria-label="返回十境谜游馆">
+        <span aria-hidden="true">←</span>
+        <span>十境谜游馆</span>
+      </a>
+      <div class="station-mark" aria-label="风暴灯塔网">
+        <span class="station-mark__lantern" aria-hidden="true"><i></i></span>
+        <span>STORM RELAY <b>// 02</b></span>
+      </div>
+      <div class="weather-pill"><i aria-hidden="true"></i><span id="header-weather">风暴警戒</span></div>
+    </header>
+
+    <main class="page-shell">
+      <section class="hero" aria-labelledby="page-title">
+        <div class="hero-copy">
+          <p class="eyebrow">MARITIME SIGNAL OFFICE <span>· 暴风夜勤</span></p>
+          <h1 id="page-title">风暴<br><em>灯塔网</em></h1>
+          <p>旋正漂浮航标，让主灯塔的金色风暴能量沿每一条海上链路传播。全网点亮之时，云墙才会退去。</p>
+        </div>
+        <div class="difficulty-block">
+          <span>海况等级</span>
+          <div id="difficulty-buttons" class="segmented-control" role="group" aria-label="选择海况难度"></div>
+        </div>
+      </section>
+
+      <section class="game-console" aria-label="风暴灯塔调度台">
+        <aside class="briefing-panel" aria-label="海图简报">
+          <div class="panel-heading">
+            <span>CHART RECORD</span>
+            <span id="level-code" class="level-code">SL-01</span>
+          </div>
+
+          <div class="chart-title">
+            <span>当前海图</span>
+            <h2 id="level-name">雾湾初哨</h2>
+            <p id="level-brief">正在读取潮汐电报码……</p>
+          </div>
+
+          <div class="energy-dial" aria-label="信标通能进度">
+            <svg viewBox="0 0 140 140" aria-hidden="true">
+              <circle class="energy-dial__track" cx="70" cy="70" r="57"></circle>
+              <circle id="progress-ring" class="energy-dial__progress" cx="70" cy="70" r="57"></circle>
+              <path d="M70 21v12M70 107v12M21 70h12M107 70h12"></path>
+            </svg>
+            <div>
+              <strong id="powered-count">0/0</strong>
+              <span>信标通能</span>
+            </div>
+          </div>
+
+          <dl class="metric-grid">
+            <div><dt>旋转次数</dt><dd id="move-count">00</dd></div>
+            <div><dt>已锁模块</dt><dd id="lock-count">00</dd></div>
+            <div><dt>海图用时</dt><dd id="time-count">00:00</dd></div>
+            <div><dt>自动存档</dt><dd id="save-state" class="metric-state">已同步</dd></div>
+          </dl>
+
+          <div class="radio-note">
+            <span aria-hidden="true">⚡</span>
+            <p><strong>真实通能。</strong>只有从主灯塔沿吻合接口确实可达的模块才会发出金光。</p>
+          </div>
+        </aside>
+
+        <section class="board-column" aria-label="航标网络操作区">
+          <div id="board-shell" class="board-shell" data-state="playing">
+            <div class="board-topline" aria-hidden="true">
+              <span>⌖ / FLOATING RELAY CHART</span>
+              <span id="grid-size">5 × 5</span>
+            </div>
+
+            <div id="board-viewport" class="board-viewport">
+              <div
+                id="network-board"
+                class="network-board"
+                role="grid"
+                aria-label="漂浮航标网络棋盘"
+                aria-describedby="board-description"
+              ></div>
+              <p id="board-description" class="sr-only">棋盘正在展开。</p>
+
+              <div class="compass-rose" aria-hidden="true"><i></i></div>
+
+              <dialog
+                id="victory-panel"
+                class="victory-panel"
+                aria-labelledby="victory-title"
+                aria-describedby="victory-copy"
+              >
+                <div class="victory-beam" aria-hidden="true"></div>
+                <p>ALL BEACONS AWAKE</p>
+                <h3 id="victory-title">云墙已经退去</h3>
+                <p id="victory-copy">整片海域重新看见了灯光。</p>
+                <div class="victory-actions">
+                  <button id="next-level" class="button button--primary" type="button">下一张海图</button>
+                  <button id="close-victory" class="button button--ghost" type="button">留在此图</button>
+                </div>
+              </dialog>
+            </div>
+
+            <div class="board-readout">
+              <span class="signal-reading"><i aria-hidden="true"></i><b id="selected-reading">R 01 · C 01</b></span>
+              <span id="status-readout" role="status">等待航标指令</span>
+              <span id="network-reading">0% ONLINE</span>
+            </div>
+          </div>
+
+          <div class="tile-controls" role="group" aria-label="所选航标操作">
+            <div class="control-copy">
+              <p>航标校准环</p>
+              <span>轻点模块顺旋；长按可锁定</span>
+            </div>
+            <button id="rotate-ccw" class="calibration-button" type="button">
+              <span aria-hidden="true">↶</span><b>逆旋</b><kbd>A</kbd>
+            </button>
+            <button id="rotate-cw" class="calibration-button calibration-button--accent" type="button">
+              <span aria-hidden="true">↷</span><b>顺旋</b><kbd>D</kbd>
+            </button>
+            <button id="toggle-lock" class="calibration-button" type="button" aria-pressed="false">
+              <span id="lock-icon" aria-hidden="true">◇</span><b id="lock-label">锁定</b><kbd>S</kbd>
+            </button>
+          </div>
+          <p id="live-region" class="sr-only" aria-live="assertive"></p>
+        </section>
+
+        <aside class="command-panel" aria-label="灯塔指令控制">
+          <div class="panel-heading">
+            <span>WATCH COMMAND</span>
+            <span class="pulse-bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+          </div>
+
+          <div class="action-stack">
+            <button id="new-game" class="command-button command-button--accent" type="button">
+              <span class="command-button__icon" aria-hidden="true">＋</span>
+              <span><b>换一张海图</b><small>同海况轮换题面</small></span>
+              <kbd>N</kbd>
+            </button>
+            <button id="restart-game" class="command-button" type="button">
+              <span class="command-button__icon" aria-hidden="true">↻</span>
+              <span><b>重新开始</b><small>恢复初始朝向</small></span>
+              <kbd>R</kbd>
+            </button>
+            <button id="undo-move" class="command-button" type="button" disabled>
+              <span class="command-button__icon" aria-hidden="true">↩</span>
+              <span><b>撤销</b><small>回退一次校准</small></span>
+              <kbd>U</kbd>
+            </button>
+            <button id="mute-audio" class="command-button" type="button" aria-pressed="false">
+              <span id="mute-icon" class="command-button__icon" aria-hidden="true">♪</span>
+              <span><b id="mute-label">声音开启</b><small>Web Audio 合成海讯</small></span>
+              <kbd>M</kbd>
+            </button>
+          </div>
+
+          <div class="legend-block">
+            <p>航标图例</p>
+            <ul>
+              <li><i class="legend-icon legend-icon--source" aria-hidden="true"></i><span><b>主灯塔</b>通能起点</span></li>
+              <li><i class="legend-icon legend-icon--powered" aria-hidden="true"></i><span><b>金色脉冲</b>真实可达</span></li>
+              <li><i class="legend-icon legend-icon--broken" aria-hidden="true"></i><span><b>断口警记</b>接口悬空</span></li>
+              <li><i class="legend-icon legend-icon--locked" aria-hidden="true"></i><span><b>菱形锁印</b>防止误转</span></li>
+            </ul>
+          </div>
+
+          <button id="open-rules" class="rules-link" type="button">
+            <span>规则、操作与源流</span><span aria-hidden="true">↗</span>
+          </button>
+        </aside>
+      </section>
+
+      <section class="keyboard-strip" aria-label="键盘操作提示">
+        <span>KEYBOARD MAP</span>
+        <p><kbd>↑</kbd><kbd>→</kbd><kbd>↓</kbd><kbd>←</kbd> 选格</p>
+        <p><kbd>Enter</kbd> / <kbd>D</kbd> 顺旋</p>
+        <p><kbd>A</kbd> 逆旋 · <kbd>F</kbd> 半转</p>
+        <p><kbd>S</kbd> 锁定 · <kbd>U</kbd> 撤销</p>
+      </section>
+    </main>
+
+    <dialog id="rules-dialog" class="rules-dialog" aria-labelledby="rules-title">
+      <form method="dialog" class="rules-dialog__frame">
+        <div class="rules-dialog__topline">
+          <span>ARCHIVE / NET RULESET</span>
+          <button class="dialog-close" value="close" aria-label="关闭规则说明">×</button>
+        </div>
+        <div class="rules-dialog__content">
+          <p class="eyebrow">ORIGINAL PUZZLE: NET</p>
+          <h2 id="rules-title">规则、操作与源流</h2>
+          <p class="rules-lede">《风暴灯塔网》更换了航海叙事、视觉与反馈；拼块旋转、连通条件及胜利判定忠实映射 Net 的标准非回绕棋盘。</p>
+
+          <ol class="rule-list">
+            <li><span>01</span><div><b>只旋转，不换形</b><p>每格的航标与接口数量固定，只能原地旋转。轻点或按 D / Enter 顺时针旋转，按 A 逆时针旋转，按 F 旋转 180°。</p></div></li>
+            <li><span>02</span><div><b>接口必须吻合</b><p>一条链路只有在相邻两格都朝向彼此时才连通。任何接口指向棋盘外，或只由单方伸出，都是悬空断口。</p></div></li>
+            <li><span>03</span><div><b>全海域一张网</b><p>所有模块都必须属于同一连通网络。金色高亮只表示从主灯塔沿当前有效链路真实可达的部分，并不替代完整判定。</p></div></li>
+            <li><span>04</span><div><b>不得形成回路</b><p>即使所有模块都能通能，只要链路中出现闭合回路仍不算完成。正确答案是一棵覆盖全部格的网络树。</p></div></li>
+            <li><span>05</span><div><b>锁印只是笔记</b><p>长按模块、按 S 或使用锁定按钮可防止误转；再次操作即可解锁。锁定与否不会改变规则或胜负。</p></div></li>
+          </ol>
+
+          <div class="mapping-table" role="table" aria-label="主题与 Net 原件映射">
+            <div role="row"><span role="columnheader">风暴海域</span><span role="columnheader">Net 原件</span></div>
+            <div role="row"><span role="cell">漂浮航标模块</span><span role="cell">可旋转拼块</span></div>
+            <div role="row"><span role="cell">风暴能量链路</span><span role="cell">网络连线</span></div>
+            <div role="row"><span role="cell">主灯塔金光</span><span role="cell">中央块高亮起点</span></div>
+            <div role="row"><span role="cell">菱形锁印</span><span role="cell">锁定辅助标记</span></div>
+          </div>
+
+          <div class="source-block">
+            <p>权威规则与 MIT 致谢</p>
+            <a href="https://github.com/ebnbin/puzzles/blob/main/doc-zh/net.html" target="_blank" rel="noreferrer">
+              <span>ebnbin/puzzles 中文 Net 规则</span><span aria-hidden="true">↗</span>
+            </a>
+            <a href="https://www.chiark.greenend.org.uk/~sgtatham/puzzles/" target="_blank" rel="noreferrer">
+              <span>Simon Tatham's Portable Puzzle Collection</span><span aria-hidden="true">↗</span>
+            </a>
+            <a href="../../THIRD_PARTY_NOTICES.md">
+              <span>十境谜游馆第三方致谢</span><span aria-hidden="true">↗</span>
+            </a>
+            <p class="license-note">规则概念与上游实现源自 Simon Tatham 及贡献者的 Portable Puzzle Collection；中文文档参考 ebnbin/puzzles。相关上游项目以 MIT License 发布，本页在此保留致谢。</p>
+          </div>
+        </div>
+      </form>
+    </dialog>
+
+    <script type="module" src="./app.mjs"></script>
+  </body>
+</html>

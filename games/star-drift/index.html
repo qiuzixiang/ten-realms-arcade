@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#050912">
+    <meta name="description" content="星滞回收局：驾驶无制动微型回收艇，在太空残骸区利用惯性回收全部能源芯。">
+    <title>星滞回收局 · 十境谜游馆</title>
+    <link rel="icon" href="../../assets/favicon.svg">
+    <link rel="preload" href="./assets/salvage-field.jpg" as="image" type="image/jpeg">
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#game-board">跳到操作区</a>
+
+    <div class="space-backdrop" aria-hidden="true">
+      <div class="star-layer star-layer--near"></div>
+      <div class="star-layer star-layer--far"></div>
+      <div class="scan-beam"></div>
+    </div>
+
+    <header class="topbar">
+      <a class="back-link" href="../../" aria-label="返回十境谜游馆">
+        <span aria-hidden="true">←</span>
+        <span>十境谜游馆</span>
+      </a>
+      <div class="bureau-mark" aria-label="星滞回收局">
+        <span class="bureau-mark__orb" aria-hidden="true"></span>
+        <span>SDRB <b>// 07</b></span>
+      </div>
+      <div class="signal-pill"><i aria-hidden="true"></i><span>回收链路在线</span></div>
+    </header>
+
+    <main class="page-shell">
+      <section class="mission-intro" aria-labelledby="page-title">
+        <div>
+          <p class="eyebrow">ORBITAL SALVAGE DIRECTIVE <span>7-A</span></p>
+          <h1 id="page-title">星滞<br><em>回收局</em></h1>
+          <p class="intro-copy">你的微型回收艇没有刹车。点燃八向推进器，借残骸与引力锚制动，带回每一枚能源芯。
+          </p>
+        </div>
+        <div class="difficulty-switcher" role="group" aria-label="任务难度">
+          <span>轨道层级</span>
+          <div id="difficulty-buttons" class="segmented-control"></div>
+        </div>
+      </section>
+
+      <section class="game-console" aria-label="回收艇控制台">
+        <aside class="telemetry-panel" aria-label="任务遥测">
+          <div class="panel-heading">
+            <span>FLIGHT DATA</span>
+            <span id="level-code" class="level-code">S-01</span>
+          </div>
+
+          <div class="mission-name-block">
+            <span>当前任务</span>
+            <h2 id="level-name">寂静泊位</h2>
+            <p id="level-brief">完成航迹计算中…</p>
+          </div>
+
+          <div class="energy-gauge" aria-label="能源回收进度">
+            <svg class="energy-gauge__ring" viewBox="0 0 120 120" aria-hidden="true">
+              <circle cx="60" cy="60" r="49"></circle>
+              <circle id="progress-ring" class="energy-gauge__progress" cx="60" cy="60" r="49"></circle>
+            </svg>
+            <div class="energy-gauge__value">
+              <strong id="energy-count">0/0</strong>
+              <span>能源芯</span>
+            </div>
+          </div>
+
+          <dl class="metric-grid">
+            <div>
+              <dt>推进次数</dt>
+              <dd id="move-count">00</dd>
+            </div>
+            <div>
+              <dt>建议航程</dt>
+              <dd id="par-count">—</dd>
+            </div>
+            <div>
+              <dt>存活状态</dt>
+              <dd id="risk-reading" class="metric-state">稳定</dd>
+            </div>
+            <div>
+              <dt>自动存档</dt>
+              <dd id="save-state" class="metric-state">已同步</dd>
+            </div>
+          </dl>
+
+          <div class="trajectory-note">
+            <span aria-hidden="true">i</span>
+            <p><strong>刹车已移除。</strong>艇体只会被正前方的残骸挡住，或进入引力锚。</p>
+          </div>
+        </aside>
+
+        <div class="board-column">
+          <div id="board-shell" class="board-shell" data-state="playing">
+            <div class="board-topline" aria-hidden="true">
+              <span>℃ / LOCAL VOID MAP</span>
+              <span id="sector-size">8 × 8 GRID</span>
+            </div>
+
+            <div id="game-board" class="canvas-wrap" tabindex="0" role="application" aria-label="星滞回收棋盘。使用方向键、WASD 或 QEZC 控制八向推进。" aria-describedby="board-description">
+              <canvas id="game-canvas">你的浏览器不支持 Canvas，无法运行本游戏。</canvas>
+              <p id="board-description" class="sr-only">棋盘遥测正在初始化。</p>
+              <div id="mine-warning" class="mine-warning" aria-hidden="true">
+                <span></span>
+                <b>CORE PROXIMITY</b>
+              </div>
+              <div class="corner-bracket corner-bracket--tl" aria-hidden="true"></div>
+              <div class="corner-bracket corner-bracket--tr" aria-hidden="true"></div>
+              <div class="corner-bracket corner-bracket--bl" aria-hidden="true"></div>
+              <div class="corner-bracket corner-bracket--br" aria-hidden="true"></div>
+
+              <section id="outcome-panel" class="outcome-panel" aria-live="polite" aria-hidden="true" inert>
+                <p id="outcome-kicker">MISSION COMPLETE</p>
+                <h3 id="outcome-title">回收链路闭合</h3>
+                <p id="outcome-copy">全部能源芯已安全入库。</p>
+                <div class="outcome-actions">
+                  <button id="outcome-primary" class="button button--primary" type="button">下一任务</button>
+                  <button id="outcome-secondary" class="button button--ghost" type="button">重走航线</button>
+                </div>
+              </section>
+            </div>
+
+            <div class="board-readout">
+              <span class="coordinate-readout"><i aria-hidden="true"></i><b id="position-readout">X 00 / Y 00</b></span>
+              <span id="status-readout">等待推进指令</span>
+              <span class="zoom-readout">OPTICAL 1.0×</span>
+            </div>
+          </div>
+
+          <p id="live-region" class="sr-only" aria-live="assertive"></p>
+
+          <div class="flight-controls">
+            <div class="control-copy">
+              <p>八向推进矩阵</p>
+              <span>点击棋盘方向、轻扫，或使用键盘</span>
+            </div>
+            <div id="direction-pad" class="direction-pad" role="group" aria-label="八向推进控制">
+              <button type="button" data-dir="NW" aria-label="左上推进"><span>↖</span></button>
+              <button type="button" data-dir="N" aria-label="向上推进"><span>↑</span></button>
+              <button type="button" data-dir="NE" aria-label="右上推进"><span>↗</span></button>
+              <button type="button" data-dir="W" aria-label="向左推进"><span>←</span></button>
+              <span class="direction-pad__core" aria-hidden="true"><i></i></span>
+              <button type="button" data-dir="E" aria-label="向右推进"><span>→</span></button>
+              <button type="button" data-dir="SW" aria-label="左下推进"><span>↙</span></button>
+              <button type="button" data-dir="S" aria-label="向下推进"><span>↓</span></button>
+              <button type="button" data-dir="SE" aria-label="右下推进"><span>↘</span></button>
+            </div>
+          </div>
+        </div>
+
+        <aside class="command-panel" aria-label="指令控制">
+          <div class="panel-heading">
+            <span>COMMAND BUS</span>
+            <span class="pulse-bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+          </div>
+
+          <div class="action-stack">
+            <button id="new-game" class="command-button command-button--accent" type="button">
+              <span class="command-button__icon" aria-hidden="true">+</span>
+              <span><b>新游戏</b><small>切换本层级星区</small></span>
+              <kbd>N</kbd>
+            </button>
+            <button id="restart-game" class="command-button" type="button">
+              <span class="command-button__icon" aria-hidden="true">↻</span>
+              <span><b>重开</b><small>回到初始泊位</small></span>
+              <kbd>R</kbd>
+            </button>
+            <button id="undo-move" class="command-button" type="button" disabled>
+              <span class="command-button__icon" aria-hidden="true">↩</span>
+              <span><b>撤销</b><small>回卷上次推进</small></span>
+              <kbd>U</kbd>
+            </button>
+            <button id="mute-audio" class="command-button" type="button" aria-pressed="false">
+              <span id="mute-icon" class="command-button__icon" aria-hidden="true">♪</span>
+              <span><b id="mute-label">声音开启</b><small>Web Audio 合成信号</small></span>
+              <kbd>M</kbd>
+            </button>
+          </div>
+
+          <div class="legend-block">
+            <p>星区图例</p>
+            <ul>
+              <li><i class="legend-icon legend-icon--ship" aria-hidden="true"></i><span><b>回收艇</b>无常规制动</span></li>
+              <li><i class="legend-icon legend-icon--energy" aria-hidden="true"></i><span><b>能源芯</b>经过即回收</span></li>
+              <li><i class="legend-icon legend-icon--anchor" aria-hidden="true"></i><span><b>引力锚</b>进入即停泊</span></li>
+              <li><i class="legend-icon legend-icon--mine" aria-hidden="true"></i><span><b>反应堆</b>碰触即失败</span></li>
+            </ul>
+          </div>
+
+          <button id="open-rules" class="rules-link" type="button">
+            <span>规则与来源</span>
+            <span aria-hidden="true">↗</span>
+          </button>
+        </aside>
+      </section>
+
+      <section class="keyboard-strip" aria-label="键盘提示">
+        <span>KEYBOARD MAP</span>
+        <p><kbd>↑</kbd><kbd>→</kbd><kbd>↓</kbd><kbd>←</kbd> 正交</p>
+        <p><kbd>Q</kbd><kbd>E</kbd><kbd>Z</kbd><kbd>C</kbd> 对角</p>
+        <p><kbd>1–9</kbd> 小键盘八向</p>
+        <p><kbd>U</kbd> 撤销</p>
+      </section>
+    </main>
+
+    <dialog id="rules-dialog" class="rules-dialog" aria-labelledby="rules-title">
+      <form method="dialog" class="rules-dialog__frame">
+        <div class="rules-dialog__topline">
+          <span>ARCHIVE / RULESET</span>
+          <button class="dialog-close" value="close" aria-label="关闭规则说明">×</button>
+        </div>
+        <div class="rules-dialog__content">
+          <p class="eyebrow">ORIGINAL PUZZLE: INERTIA</p>
+          <h2 id="rules-title">规则与来源</h2>
+          <p class="rules-lede">《星滞回收局》只重做了叙事、画面、输入反馈与声音；底层行动与胜负规则忠实映射 Inertia。
+          </p>
+
+          <ol class="rule-list">
+            <li><span>01</span><div><b>八向启航</b><p>每步可选上、下、左、右或四个对角方向。对角航行允许穿过两块正交残骸之间的斜缝。</p></div></li>
+            <li><span>02</span><div><b>惯性制动</b><p>回收艇一旦出发就持续前进，直到正前方是墙体，或艇体进入一枚引力锚。初始泊位本身也是永久引力锚：可从中离开，日后返回或经过时会停下。</p></div></li>
+            <li><span>03</span><div><b>沿途回收</b><p>能源芯映射原作的宝石：艇体途经时自动收集，但不会因此停下。回收全部能源芯即达成任务。</p></div></li>
+            <li><span>04</span><div><b>反应堆优先</b><p>失稳反应堆映射原作地雷：一旦碰触立即失败。即使同一步先回收了最后一枚能源芯，后续撞雷仍判失败。</p></div></li>
+            <li><span>05</span><div><b>时间回卷</b><p>可撤销任意有效推进，包括撞雷的致命一步，回到行动前的位置与收集状态。</p></div></li>
+          </ol>
+
+          <div class="mapping-table" role="table" aria-label="主题规则映射">
+            <div role="row"><span role="columnheader">星滞主题</span><span role="columnheader">Inertia 原件</span></div>
+            <div role="row"><span role="cell">微型回收艇</span><span role="cell">移动小球</span></div>
+            <div role="row"><span role="cell">太空残骸</span><span role="cell">墙体 / 障碍</span></div>
+            <div role="row"><span role="cell">引力锚</span><span role="cell">停止点</span></div>
+            <div role="row"><span role="cell">能源芯</span><span role="cell">宝石</span></div>
+            <div role="row"><span role="cell">失稳反应堆</span><span role="cell">地雷</span></div>
+          </div>
+
+          <div class="source-block">
+            <p>权威规则与致谢</p>
+            <a href="https://github.com/ebnbin/puzzles/blob/main/doc-zh/inertia.html" target="_blank" rel="noreferrer">
+              <span>ebnbin/puzzles 中文 Inertia 规则</span><span aria-hidden="true">↗</span>
+            </a>
+            <a href="https://www.chiark.greenend.org.uk/~sgtatham/puzzles/" target="_blank" rel="noreferrer">
+              <span>Simon Tatham's Portable Puzzle Collection</span><span aria-hidden="true">↗</span>
+            </a>
+            <p class="license-note">规则概念源自 Simon Tatham 及贡献者的 Portable Puzzle Collection，中文文档参考 ebnbin/puzzles，二者均依 MIT License 发布。本页在此保留 MIT 致谢。
+            </p>
+          </div>
+        </div>
+      </form>
+    </dialog>
+
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>

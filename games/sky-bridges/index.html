@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#071927" />
+    <meta name="description" content="云海航路：连接浮空港，让每座港口获得刚好的航线数量，并将整片云海连成一张货运网络。" />
+    <meta property="og:title" content="云海航路 · 十境谜游馆" />
+    <meta property="og:description" content="在云海之上调度单线与双线航路，唤醒完整的浮空港网络。" />
+    <title>云海航路 · 十境谜游馆</title>
+    <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./styles.css" />
+    <script type="module" src="./app.mjs"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#board-viewport">跳到航路图</a>
+    <div class="sky-art" aria-hidden="true"></div>
+    <div class="sky-shade" aria-hidden="true"></div>
+    <div class="cloud-bank cloud-bank--near" aria-hidden="true"></div>
+    <div class="cloud-bank cloud-bank--far" aria-hidden="true"></div>
+
+    <header class="topbar">
+      <a class="back-link" href="../../" aria-label="返回十境谜游馆首页">
+        <span aria-hidden="true">←</span>
+        <span><small>TEN REALMS</small>返回谜游馆</span>
+      </a>
+      <div class="realm-seal" aria-label="十境谜游馆，云海航路">
+        <span class="realm-seal__compass" aria-hidden="true"><i></i></span>
+        <span><small>SKYWAY 07</small>云海航路</span>
+      </div>
+      <nav class="top-actions" aria-label="页面选项">
+        <button class="pill-button" id="mute-button" type="button" aria-pressed="false">
+          <span class="sound-glyph" aria-hidden="true">♪</span><span class="action-label">声音</span>
+        </button>
+        <button class="pill-button" id="rules-button" type="button">
+          <span aria-hidden="true">?</span><span class="action-label">规则</span>
+        </button>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="page-title">
+        <p class="eyebrow"><span aria-hidden="true"></span> CELESTIAL FREIGHT CONTROL</p>
+        <h1 id="page-title">云海<em>航路</em></h1>
+        <p>为浮空港铺设一条或两条平行航线。数字刚好满足、全港彼此可达，云层才会为货运网络打开。</p>
+      </section>
+
+      <section class="game-shell" aria-label="云海航路游戏区">
+        <article class="chart-card" aria-labelledby="level-title">
+          <header class="chart-header">
+            <div>
+              <p id="level-kicker">晴空航线 · 01</p>
+              <h2 id="level-title">曙光转运站</h2>
+            </div>
+            <div class="network-meter" aria-label="港口满足进度">
+              <span class="network-meter__dial" id="progress-dial" aria-hidden="true"><i></i></span>
+              <span><strong id="progress-percent">0%</strong><small>港口校准</small></span>
+            </div>
+          </header>
+          <div class="progress-line" aria-hidden="true"><span id="progress-bar"></span></div>
+
+          <div class="board-viewport" id="board-viewport" tabindex="0" aria-label="航路图滚动区域">
+            <p class="visually-hidden" id="board-help">
+              点击或轻触两座同行或同列的最近港口来调整航线。方向键移动港口焦点，回车选择端点；数字键 1、2、3、4 切换工具。
+            </p>
+            <div class="route-board" id="route-board" role="group" aria-label="浮空港航路网络" aria-describedby="board-help">
+              <div class="chart-grid" aria-hidden="true"></div>
+              <div class="board-clouds" aria-hidden="true"><i></i><i></i><i></i></div>
+              <svg class="route-layer" id="route-layer" aria-hidden="true"></svg>
+              <div class="edge-controls" id="edge-controls" role="group" aria-label="候选航线"></div>
+              <div class="port-layer" id="port-layer" role="group" aria-label="浮空港"></div>
+              <svg class="drag-layer" id="drag-layer" aria-hidden="true"></svg>
+            </div>
+          </div>
+
+          <div class="board-legend" aria-label="图例">
+            <span><i class="legend-route legend-route--one" aria-hidden="true"></i>单航线</span>
+            <span><i class="legend-route legend-route--two" aria-hidden="true"></i>双航线</span>
+            <span><i class="legend-mark" aria-hidden="true">×</i>禁航笔记</span>
+            <span><i class="legend-port" aria-hidden="true">3</i>需求 / 已铺</span>
+          </div>
+
+          <div class="tool-dock" role="toolbar" aria-label="航路调度工具">
+            <button class="tool-button is-active" data-mode="forward" type="button" aria-pressed="true">
+              <span class="tool-icon route-add" aria-hidden="true"><i></i></span>
+              <span><strong>增加航线</strong><small>0 → 1 → 2 → 0</small></span><kbd>1</kbd>
+            </button>
+            <button class="tool-button" data-mode="reverse" type="button" aria-pressed="false">
+              <span class="tool-icon route-minus" aria-hidden="true"><i></i></span>
+              <span><strong>反向调整</strong><small>0 → 2 → 1 → 0</small></span><kbd>2</kbd>
+            </button>
+            <button class="tool-button" data-mode="mark" type="button" aria-pressed="false">
+              <span class="tool-icon no-route" aria-hidden="true">×</span>
+              <span><strong>禁航笔记</strong><small>只作标记，不计航线</small></span><kbd>3</kbd>
+            </button>
+            <button class="tool-button" data-mode="check" type="button" aria-pressed="false">
+              <span class="tool-icon check-port" aria-hidden="true">✓</span>
+              <span><strong>核验港口</strong><small>标记已满足的数字</small></span><kbd>4</kbd>
+            </button>
+          </div>
+        </article>
+
+        <aside class="dispatch-card" aria-labelledby="dispatch-title">
+          <header class="dispatch-heading">
+            <p>SKYWAY DISPATCH LOG</p>
+            <h2 id="dispatch-title">云航调度台</h2>
+            <span id="save-state">每一步都自动留存在本机</span>
+          </header>
+          <dl class="status-grid">
+            <div><dt>需求已满足</dt><dd><strong id="exact-count">0</strong><span id="port-total">/ 0 港</span></dd></div>
+            <div><dt>网络分区</dt><dd><strong id="component-count">0</strong><span> 区</span></dd></div>
+            <div><dt>航线总数</dt><dd><strong id="route-count">0</strong><span> 条</span></dd></div>
+            <div><dt>调度步数</dt><dd><strong id="move-count">0</strong><span> 步</span></dd></div>
+          </dl>
+          <fieldset class="difficulty-picker">
+            <legend>选择云况</legend>
+            <div id="difficulty-buttons"></div>
+            <p id="difficulty-note">7 港 · 7 条候选航路</p>
+          </fieldset>
+          <div class="dispatch-actions">
+            <button class="primary-action" id="new-game-button" type="button"><span aria-hidden="true">＋</span> 换一航区</button>
+            <button id="restart-button" type="button"><span aria-hidden="true">↺</span> 重开</button>
+            <button id="undo-button" type="button" disabled><span aria-hidden="true">↶</span> 撤销</button>
+          </div>
+          <div class="dispatch-message" id="dispatch-message">
+            <span class="signal-lamp" aria-hidden="true"><i></i></span>
+            <p><strong>等待首条航线</strong><span>先选一座港，再选它四向最近的港口。</span></p>
+          </div>
+          <div class="mini-guide">
+            <h3>调度手势</h3>
+            <p><span>点选</span> 两个端点，或从一港拖向另一港。</p>
+            <p><span>右键 / Shift</span> 临时反向循环；触控可直接选“反向调整”。</p>
+            <p><span>键盘</span> 方向键移动，Enter 选择，Z 撤销，R 重开，N 换题，M 静音。</p>
+          </div>
+        </aside>
+      </section>
+    </main>
+
+    <footer>
+      <p>云层会散，规则与来路仍然清晰。</p>
+      <a href="../../">十境谜游馆</a><span aria-hidden="true">·</span>
+      <button id="footer-rules-button" type="button">规则源流与 MIT 致谢</button>
+    </footer>
+
+    <dialog class="rules-dialog" id="rules-dialog" aria-labelledby="rules-title">
+      <div class="dialog-topline">
+        <p>RULES &amp; ORIGIN</p>
+        <button class="dialog-close" id="rules-close-button" type="button" aria-label="关闭规则">×</button>
+      </div>
+      <div class="rules-content">
+        <header>
+          <span class="rules-compass" aria-hidden="true"><i></i></span>
+          <div><p>Bridges / Hashiwokakero</p><h2 id="rules-title">云航局的五条航令</h2></div>
+        </header>
+        <ol class="rule-list">
+          <li><span>01</span><p><strong>数字必须刚好满足</strong>港口数字是连接到这里的航线总数；双线贡献 2，不是只算一个邻港。</p></li>
+          <li><span>02</span><p><strong>只飞向四向最近港</strong>航线必须水平或垂直，且只能抵达该方向第一座可见港口，不能越港。</p></li>
+          <li><span>03</span><p><strong>每对港口至多两线</strong>单线与双线都是同一对港口之间的平行航路，循环调整为 0、1、2。</p></li>
+          <li><span>04</span><p><strong>航线不可交叉</strong>航线可在共同港口汇合，但不能在云海内部相交；禁航笔记不是真航线，可以相互穿越。</p></li>
+          <li><span>05</span><p><strong>所有港口最终连通</strong>数字全满仍不够，整张货运网必须只有一个连通分区。经典默认<strong>允许环网</strong>，不要求生成树。</p></li>
+        </ol>
+        <div class="rule-map">
+          <h3>主题映射</h3>
+          <dl>
+            <div><dt>数字岛屿</dt><dd>浮空港</dd></div><div><dt>单桥 / 双桥</dt><dd>单航线 / 双航线</dd></div>
+            <div><dt>岛屿度数</dt><dd>港口航线需求</dd></div><div><dt>全局连通</dt><dd>完整货运网络</dd></div>
+          </dl>
+        </div>
+        <div class="control-rules">
+          <h3>怎么调度</h3>
+          <p>选择“增加航线”后，点两座相邻可见港口，或从一港拖向另一港，按 0→1→2→0 循环。选择“反向调整”则按 0→2→1→0 循环；它有独立触控按钮，不依赖右键。</p>
+          <p>“禁航笔记”只标记某条候选边不打算使用；“核验港口”只给当前数字恰好的港口盖章。两种辅助标记都不计度数、不提供连通、也不参与胜利判定。</p>
+        </div>
+        <div class="source-panel">
+          <h3>规则源流</h3>
+          <p>底层规则逐项保留自 Simon Tatham's Portable Puzzle Collection 的 Bridges。本页题面、云航主题、视觉、文案、输入反馈与合成声音为独立再创作。</p>
+          <div class="source-links">
+            <a href="https://github.com/ebnbin/puzzles/blob/main/doc-zh/bridges.html" target="_blank" rel="noreferrer">Bridges 中文规则文档 <span aria-hidden="true">↗</span></a>
+            <a href="https://www.chiark.greenend.org.uk/~sgtatham/puzzles/" target="_blank" rel="noreferrer">Simon Tatham 谜题合集 <span aria-hidden="true">↗</span></a>
+            <a href="../../THIRD_PARTY_NOTICES.md">MIT 致谢与第三方声明 <span aria-hidden="true">→</span></a>
+          </div>
+          <small>感谢 Simon Tatham、Portable Puzzle Collection 贡献者与 ebnbin/puzzles 中文文档维护者；原项目依 MIT License 提供。</small>
+        </div>
+      </div>
+    </dialog>
+
+    <dialog class="victory-dialog" id="victory-dialog" aria-labelledby="victory-title">
+      <div class="victory-sky" aria-hidden="true"><i></i><i></i><i></i><span></span></div>
+      <p>THE CLOUDWAY IS OPEN</p>
+      <h2 id="victory-title">云层已开</h2>
+      <p>每座浮空港都收到刚好的航线，货运光点正在整张网络间穿行。</p>
+      <dl>
+        <div><dt>调度步数</dt><dd id="victory-moves">0</dd></div>
+        <div><dt>连通港口</dt><dd id="victory-ports">0 / 0</dd></div>
+        <div><dt>航线总数</dt><dd id="victory-routes">0</dd></div>
+      </dl>
+      <div class="victory-actions">
+        <button class="primary-action" id="next-level-button" type="button">驶向下一航区</button>
+        <button id="stay-button" type="button">留在云海</button>
+      </div>
+    </dialog>
+
+    <div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+    <div class="visually-hidden" id="assertive-status" role="alert" aria-live="assertive"></div>
+  </body>
+</html>
