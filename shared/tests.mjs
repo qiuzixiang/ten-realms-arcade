@@ -10,6 +10,7 @@ import {
   normalizeProgress,
   progressSummary,
 } from "./reward-engine.mjs";
+import { REALM_TUTORIALS, tutorialArt } from "./tutorial-data.mjs";
 
 const firstDate = new Date(2026, 7, 31, 9, 30);
 const nextDate = new Date(2026, 8, 1, 12, 0);
@@ -181,5 +182,34 @@ assert.match(realmUiSource, /progress = mergeProgress\(progress, loadProgress\(\
 assert.match(realmUiSource, /element === document\.body \|\| element === document\.documentElement/);
 assert.match(realmUiSource, /tutorialWaitObserver\.observe\(document\.body/);
 assert.doesNotMatch(realmUiSource, /retryCount\s*</);
+
+for (const [realmId, tutorial] of Object.entries(REALM_TUTORIALS)) {
+  assert.equal(tutorial.cards.length, 3, `${realmId} should have three tutorial cards`);
+  const artwork = tutorial.cards.map(({ focus }) => tutorialArt(realmId, focus));
+  assert.equal(new Set(artwork).size, 3, `${realmId} should render a distinct SVG for every card`);
+  for (const [index, art] of artwork.entries()) {
+    assert.match(art, /^<svg\b/, `${realmId} card ${index + 1} should render SVG artwork`);
+    assert.match(art, /viewBox="0 0 320 184"/);
+    assert.match(art, /preserveAspectRatio="xMidYMid meet"/);
+    const stateLayerCount = ["art-elements", "art-action", "art-goal"]
+      .filter((className) => art.includes(`class="${className}"`)).length;
+    assert.equal(stateLayerCount, 1, `${realmId} card ${index + 1} should contain one focused state only`);
+  }
+}
+
+const memoryTutorialArt = REALM_TUTORIALS["memory-ark"].cards
+  .map(({ focus }) => tutorialArt("memory-ark", focus))
+  .join("\n");
+for (const sigil of ["✦", "≋", "◇", "⌁", "◉", "∿"]) assert.match(memoryTutorialArt, new RegExp(sigil));
+
+const redThreadCopy = REALM_TUTORIALS["red-thread-office"].cards
+  .flatMap(({ title, body, bullets }) => [title, body, ...bullets])
+  .join("\n");
+assert.match(redThreadCopy, /人物印章|红色方印/);
+assert.doesNotMatch(redThreadCopy, /圆形角色/);
+const redThreadArt = REALM_TUTORIALS["red-thread-office"].cards
+  .map(({ focus }) => tutorialArt("red-thread-office", focus))
+  .join("\n");
+for (const seal of ["归", "晴", "知", "安", "逢", "暖"]) assert.match(redThreadArt, new RegExp(seal));
 
 console.log("Realm reward engine: all assertions passed.");

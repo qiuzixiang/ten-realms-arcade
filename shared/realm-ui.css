@@ -259,6 +259,7 @@
 
 .realm-guide-card__visual {
   min-width: 0;
+  aspect-ratio: 320 / 184;
   align-self: center;
   overflow: hidden;
   border: 1px solid #ffffff18;
@@ -271,22 +272,6 @@
   display: block;
   width: 100%;
   height: auto;
-}
-
-.realm-art .art-elements,
-.realm-art .art-action,
-.realm-art .art-goal {
-  transition: opacity .25s ease, filter .25s ease;
-}
-
-.realm-art[data-focus="elements"] .art-action,
-.realm-art[data-focus="elements"] .art-goal,
-.realm-art[data-focus="action"] .art-elements,
-.realm-art[data-focus="action"] .art-goal,
-.realm-art[data-focus="goal"] .art-elements,
-.realm-art[data-focus="goal"] .art-action {
-  opacity: .26;
-  filter: saturate(.45);
 }
 
 .realm-guide-card__copy {
@@ -841,9 +826,6 @@
   }
 
   .realm-utility-dock__track i,
-  .realm-art .art-elements,
-  .realm-art .art-action,
-  .realm-art .art-goal,
   .realm-reward-toast {
     transition: none;
   }

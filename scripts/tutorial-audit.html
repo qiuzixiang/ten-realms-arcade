@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>教程 SVG 视觉审计</title>
+    <style>
+      * { box-sizing: border-box; }
+      body { margin: 0; padding: 24px; color: #eef6ff; background: #050912; font-family: system-ui, sans-serif; }
+      h1 { margin: 0 0 24px; }
+      main { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 22px; }
+      article { padding: 12px; border: 1px solid #ffffff20; border-radius: 16px; background: #0b1220; }
+      h2 { margin: 0 0 10px; font-size: 16px; }
+      .art { overflow: hidden; aspect-ratio: 320 / 184; border: 1px solid #ffffff1f; border-radius: 14px; background: #070d18; }
+      .realm-art { display: block; width: 100%; height: auto; }
+    </style>
+  </head>
+  <body>
+    <h1>十境图片教程 · 30 卡视觉审计</h1>
+    <main></main>
+    <script type="module">
+      import { REALM_TUTORIALS, tutorialArt } from "../shared/tutorial-data.mjs";
+
+      const main = document.querySelector("main");
+      for (const [realmId, tutorial] of Object.entries(REALM_TUTORIALS)) {
+        tutorial.cards.forEach((card, index) => {
+          const article = document.createElement("article");
+          article.innerHTML = `<h2>${tutorial.title} · ${index + 1}/3 · ${card.tag}</h2><div class="art">${tutorialArt(realmId, card.focus)}</div>`;
+          main.append(article);
+        });
+      }
+    </script>
+  </body>
+</html>
