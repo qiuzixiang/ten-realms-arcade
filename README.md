@@ -2,6 +2,12 @@
 
 十款以经典逻辑规则为骨架、重新设计视觉叙事与交互手感的浏览器小游戏。十个世界现已全部开放；每款游戏都是独立页面，无运行时依赖，适合手机和桌面浏览器，也可以直接部署到 GitHub Pages。
 
+## 在线体验
+
+- [Vercel 正式站](https://ten-realms-arcade.vercel.app/)
+- [GitHub Pages 镜像](https://qiuzixiang.github.io/ten-realms-arcade/)
+- [GitHub 源码仓库](https://github.com/qiuzixiang/ten-realms-arcade)
+
 | 游戏 | 规则原型 | 新主题 |
 | --- | --- | --- |
 | [星滞回收局](./games/star-drift/) | Inertia | 在残骸区利用惯性收回能源芯 |
