@@ -574,6 +574,14 @@ function completeGame(analysis) {
   if (state.completed) return;
   state.completed = true;
   render();
+  const tier = DIFFICULTIES.indexOf(state.difficulty) + 1;
+  const reward = {
+    levelId: state.level.id,
+    tier: Math.max(1, tier),
+    moves: state.game.moves,
+  };
+  if (window.RealmArcade?.complete) window.RealmArcade.complete(reward);
+  else (window.__realmCompletionQueue ??= []).push(reward);
   playSound("complete");
   elements.boardWash.classList.remove("is-flashing");
   void elements.boardWash.offsetWidth;

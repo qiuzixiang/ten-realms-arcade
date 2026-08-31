@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { readFile } from "node:fs/promises";
 
 import {
   CELL,
@@ -337,6 +338,21 @@ test("every declared level solution is legal and completes all three rules", () 
     );
     assert.equal(result.complete, true, `${level.id} declared solution must win`);
   }
+});
+
+test("page wires the shared guide and guards completion rewards across restore and undo", async () => {
+  const [html, app, styles] = await Promise.all([
+    readFile(new URL("./index.html", import.meta.url), "utf8"),
+    readFile(new URL("./app.mjs", import.meta.url), "utf8"),
+    readFile(new URL("./styles.css", import.meta.url), "utf8"),
+  ]);
+
+  assert.match(html, /\.\.\/\.\.\/shared\/realm-ui\.css/);
+  assert.match(html, /type="module" src="\.\.\/\.\.\/shared\/realm-ui\.mjs"/);
+  assert.match(app, /completionReported:\s*completed\s*\|\|\s*saved\.active\.completionReported === true/);
+  assert.match(app, /if \(!state\.completionReported\)\s*{[\s\S]*?reportRealmCompletion\(\)/);
+  assert.match(app, /window\.__realmCompletionQueue \?\?= \[\]/);
+  assert.match(styles, /--board-inset:\s*10px/);
 });
 
 let passed = 0;

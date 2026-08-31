@@ -10,6 +10,8 @@
   html {
     color-scheme: dark;
     scroll-behavior: smooth;
+    min-width: 0;
+    overflow-x: hidden;
   }
 
   body,
@@ -55,7 +57,7 @@
   }
 
   body {
-    min-width: 320px;
+    min-width: 0;
     min-height: 100vh;
     min-height: 100svh;
     overflow-x: hidden;
@@ -802,15 +804,15 @@
 
   .dpad {
     display: grid;
-    grid-template-columns: repeat(3, 36px);
-    grid-template-rows: repeat(3, 34px);
+    grid-template-columns: repeat(3, 44px);
+    grid-template-rows: repeat(3, 44px);
     gap: 4px;
   }
 
   .dpad button,
   .dpad > span {
-    width: 36px;
-    min-height: 34px;
+    width: 44px;
+    min-height: 44px;
     display: grid;
     place-items: center;
   }

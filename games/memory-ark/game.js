@@ -155,6 +155,15 @@ function seedFromUrl() {
 
 const requestedSeed = seedFromUrl();
 let session = requestedSeed === null ? restoreSession() ?? newSession() : newSession(requestedSeed);
+let completionReported = session.completed;
+
+function reportCompletion(payload) {
+  if (window.RealmArcade?.complete) {
+    window.RealmArcade.complete(payload);
+  } else {
+    (window.__realmCompletionQueue ??= []).push(payload);
+  }
+}
 
 class ArkAudio {
   constructor() {
@@ -533,8 +542,18 @@ function hideEnding({ restoreFocus = true } = {}) {
 }
 
 function celebrate() {
+  if (session.completed) return;
   rememberEndingFocus();
   session.completed = true;
+  if (!completionReported) {
+    completionReported = true;
+    reportCompletion({
+      levelId: `cube:standard:${session.seed.toString(36)}`,
+      tier: 2,
+      moves: session.current.moves,
+      par: session.referenceMoves,
+    });
+  }
   const isNewBest = recordBest();
   saveSession();
   renderStats();
@@ -619,6 +638,7 @@ async function undo() {
     session.history.pop();
     session.current = cloneState(previous);
     session.completed = false;
+    completionReported = false;
     setStatus("已撤回上一段航迹，位置、朝向与符印一并复原。 ");
     render();
     saveSession();
@@ -635,6 +655,7 @@ function restart() {
   session.current = cloneState(session.initial);
   session.history = [];
   session.completed = false;
+  completionReported = false;
   setStatus("航迹已重置：六枚符印回到本局最初的位置。 ");
   render();
   saveSession();
@@ -652,6 +673,7 @@ function startNewGame() {
   let seed = randomSeed();
   if (seed === session.seed) seed = (seed + 1) >>> 0;
   session = newSession(seed);
+  completionReported = false;
   setStatus("新的可解航迹已展开。先观察六枚符印，再决定第一滚。 ");
   render();
   saveSession();

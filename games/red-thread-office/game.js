@@ -18,6 +18,7 @@ const LEVEL_COPY = {
   medium: { short: "合契", title: "合契 · 十枚印章" },
   hard: { short: "星罗", title: "星罗 · 十四枚印章" },
 };
+const REWARD_TIER = { easy: 1, medium: 2, hard: 3 };
 
 const SEAL_STORIES = [
   { mark: "归", name: "远舟", wish: "愿有灯可归" },
@@ -89,6 +90,15 @@ let drawFrame = null;
 let victoryTimer = null;
 let lastFocusBeforeVictory = null;
 let reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+let completionReported = false;
+
+function reportCompletion(payload) {
+  if (window.RealmArcade?.complete) {
+    window.RealmArcade.complete(payload);
+  } else {
+    (window.__realmCompletionQueue ??= []).push(payload);
+  }
+}
 
 function clonePoint(vertex) {
   return { id: vertex.id, x: vertex.x, y: vertex.y };
@@ -361,6 +371,7 @@ function startPuzzle(difficulty = state.difficulty, seed = makeSeed(), message =
   state.selectedId = null;
   state.dragging = null;
   state.solved = false;
+  completionReported = false;
   renderRegistry();
   renderNodes();
   updateDifficultyButtons();
@@ -379,6 +390,7 @@ function restartPuzzle() {
   state.selectedId = null;
   state.dragging = null;
   state.solved = false;
+  completionReported = false;
   renderNodes();
   elements.gestureHint.classList.remove("is-dismissed");
   updatePuzzleView();
@@ -395,6 +407,7 @@ function undoMove() {
   state.history = undone.history;
   state.steps = undone.steps;
   state.solved = false;
+  completionReported = false;
   const { move } = undone;
   updateNodePosition(move.id);
   setSelected(move.id, false);
@@ -406,6 +419,14 @@ function undoMove() {
 
 function completePuzzle() {
   state.solved = true;
+  if (!completionReported) {
+    completionReported = true;
+    reportCompletion({
+      levelId: `case:${state.difficulty}:${state.seed}`,
+      tier: REWARD_TIER[state.difficulty],
+      moves: state.steps,
+    });
+  }
   applySolvedAppearance();
   updateKnottedNodes(new Set());
   elements.boardState.textContent = "已归档";
@@ -421,6 +442,8 @@ function showVictory() {
   elements.victorySheet.hidden = false;
   elements.officeShell.inert = true;
   elements.museumLink.inert = true;
+  const utilityDock = document.querySelector(".realm-utility-dock");
+  if (utilityDock) utilityDock.inert = true;
   document.body.classList.add("victory-open");
   elements.nextCaseButton.focus({ preventScroll: true });
 }
@@ -430,6 +453,8 @@ function hideVictory() {
   elements.victorySheet.hidden = true;
   elements.officeShell.inert = false;
   elements.museumLink.inert = false;
+  const utilityDock = document.querySelector(".realm-utility-dock");
+  if (utilityDock) utilityDock.inert = false;
   document.body.classList.remove("victory-open");
 }
 
@@ -748,6 +773,7 @@ function wireEvents() {
     hideVictory();
     playCue("new");
     startPuzzle(state.difficulty);
+    elements.nodeLayer.querySelector(".seal-node:not(:disabled)")?.focus({ preventScroll: true });
   });
   elements.reviewBoardButton.addEventListener("click", () => {
     hideVictory();
@@ -789,6 +815,7 @@ function initialise() {
   wireEvents();
 
   if (restoreGame()) {
+    completionReported = state.solved;
     renderRegistry();
     renderNodes();
     updateDifficultyButtons();

@@ -23,6 +23,7 @@ const SAVE_KEY = "ten-realms.night-market-spirits.session.v1";
 const PREFS_KEY = "ten-realms.night-market-spirits.preferences.v1";
 const DEFAULT_SEED = 1;
 const REDUCED_MOTION = matchMedia("(prefers-reduced-motion: reduce)");
+const DIFFICULTY_TIER = Object.freeze({ lantern: 1, canopy: 2, bell: 3 });
 
 const SPIRITS = Object.freeze([
   Object.freeze({
@@ -101,6 +102,16 @@ let toastTimer = 0;
 let saveTimer = 0;
 let outcomeTimer = 0;
 let lastInputWasKeyboard = false;
+
+function awardClear() {
+  const payload = {
+    levelId: `${game.difficulty}:${game.seed}`,
+    tier: DIFFICULTY_TIER[game.difficulty] ?? 1,
+    moves: game.moves,
+  };
+  if (window.RealmArcade?.complete) window.RealmArcade.complete(payload);
+  else (window.__realmCompletionQueue ??= []).push(payload);
+}
 
 class MarketAudio {
   constructor() {
@@ -634,6 +645,7 @@ function activateCell(row, column, keyboard = false) {
   announce(`送走 ${preview.group.length} 只灯灵，${scoreCopy}${newBest ? "，刷新本档最高分" : ""}。`, game.status !== STATUS.PLAYING);
 
   if (game.status !== STATUS.PLAYING) {
+    if (game.status === STATUS.CLEARED) awardClear();
     clearTimeout(outcomeTimer);
     outcomeTimer = window.setTimeout(showOutcome, REDUCED_MOTION.matches ? 0 : 700);
   }

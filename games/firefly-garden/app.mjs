@@ -19,6 +19,7 @@ const STORAGE_KEY = "five-realms.firefly-garden:v1";
 const STORAGE_VERSION = 1;
 const HISTORY_LIMIT = 80;
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+const COMPLETION_TIERS = Object.freeze({ glimmer: 1, moonpath: 2, deepgarden: 3 });
 
 const elements = {
   board: document.querySelector("#garden-board"),
@@ -75,6 +76,7 @@ const defaultState = () => ({
   steps: 0,
   history: [],
   completed: false,
+  completionReported: false,
   muted: false,
   tool: "bulb",
   stats: {
@@ -172,6 +174,7 @@ function readSave() {
       ? { ...savedStats.bestMovesByPuzzle }
       : {};
 
+    const completed = evaluatePosition(level, active).complete;
     state = {
       level,
       difficulty: level.difficulty,
@@ -179,7 +182,8 @@ function readSave() {
       marks: active.marks,
       steps: active.steps,
       history,
-      completed: evaluatePosition(level, active).complete,
+      completed,
+      completionReported: completed || saved.active.completionReported === true,
       muted: Boolean(saved.preferences?.muted),
       tool: "bulb",
       stats: { completedByDifficulty, bestMovesByPuzzle },
@@ -207,6 +211,7 @@ function writeSave() {
         difficulty: state.difficulty,
         ...active,
         completed: state.completed,
+        completionReported: state.completionReported,
         history: state.history.map((item) => ({
           bulbs: [...item.bulbs],
           marks: [...item.marks],
@@ -494,12 +499,26 @@ function invalidMove(key, reason) {
   playSound("invalid");
 }
 
+function reportRealmCompletion() {
+  const payload = {
+    levelId: `${state.difficulty}:${state.level.id}`,
+    tier: COMPLETION_TIERS[state.difficulty] ?? 1,
+    moves: state.steps,
+  };
+  if (typeof window.RealmArcade?.complete === "function") window.RealmArcade.complete(payload);
+  else (window.__realmCompletionQueue ??= []).push(payload);
+}
+
 function completeGarden() {
   if (state.completed) return;
   state.completed = true;
   state.stats.completedByDifficulty[state.difficulty] += 1;
   const previousBest = Number(state.stats.bestMovesByPuzzle[state.level.id]);
   if (!previousBest || state.steps < previousBest) state.stats.bestMovesByPuzzle[state.level.id] = state.steps;
+  if (!state.completionReported) {
+    state.completionReported = true;
+    reportRealmCompletion();
+  }
   document.body.classList.add("is-dawn");
   elements.victorySteps.textContent = String(state.steps);
   elements.victoryPlots.textContent = `${currentEvaluation.totalPlots} / ${currentEvaluation.totalPlots}`;
@@ -608,6 +627,7 @@ function startLevel(level, message) {
   state.steps = 0;
   state.history = [];
   state.completed = false;
+  state.completionReported = false;
   state.tool = "bulb";
   document.body.classList.remove("is-dawn");
   buildBoard();

@@ -638,6 +638,21 @@ test("victory prompt has a native labelled modal contract", async () => {
   strictEqual(/\b(?:aria-hidden|inert)\b/.test(openingTag), false);
 });
 
+test("page wires shared progression and defers victory behind any open guide", async () => {
+  const [html, app] = await Promise.all([
+    readFile(new URL("./index.html", import.meta.url), "utf8"),
+    readFile(new URL("./app.mjs", import.meta.url), "utf8"),
+  ]);
+
+  ok(/\.\.\/\.\.\/shared\/realm-ui\.css/.test(html));
+  ok(/type="module" src="\.\.\/\.\.\/shared\/realm-ui\.mjs"/.test(html));
+  ok(/completionReported:\s*payload\.completionReported === true \|\| restoredGame\.status === STATUS\.WON/.test(app));
+  ok(/par:\s*game\.level\.referenceTurns/.test(app), "the proven reference turn count is a reliable par");
+  ok(/if \(!completionReported\)\s*{[\s\S]*?reportRealmCompletion\(\)/.test(app));
+  ok(/document\.querySelectorAll\("dialog\[open\]"\)/.test(app));
+  ok(/window\.__realmCompletionQueue \?\?= \[\]/.test(app));
+});
+
 let passed = 0;
 for (const { name, callback } of tests) {
   try {

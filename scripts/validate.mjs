@@ -153,6 +153,14 @@ for (const [test] of discoveredTests) {
   }
 }
 
+const sharedTest = path.join(root, "shared", "tests.mjs");
+const sharedResult = spawnSync(process.execPath, [sharedTest], { encoding: "utf8" });
+process.stdout.write(sharedResult.stdout);
+if (sharedResult.status !== 0) {
+  failures += 1;
+  process.stderr.write(sharedResult.stderr);
+}
+
 if (failures) {
   console.error(`Validation failed with ${failures} issue(s).`);
   process.exit(1);

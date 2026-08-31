@@ -1,0 +1,850 @@
+.realm-utility-dock,
+.realm-guide-dialog,
+.realm-progress-dialog,
+.realm-reward-toast {
+  box-sizing: border-box;
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.realm-utility-dock *,
+.realm-guide-dialog *,
+.realm-progress-dialog *,
+.realm-reward-toast * {
+  box-sizing: border-box;
+}
+
+.realm-utility-dock {
+  --realm-accent: #7ee8ff;
+  --realm-accent-rgb: 126, 232, 255;
+  position: relative;
+  z-index: 20;
+  display: grid;
+  grid-template-columns: auto minmax(120px, 240px) auto auto;
+  align-items: center;
+  gap: 12px;
+  width: min(1120px, calc(100% - 24px));
+  min-height: 58px;
+  margin: 10px auto 6px;
+  padding: 9px 10px 9px 14px;
+  color: #f7fbff;
+  border: 1px solid rgba(var(--realm-accent-rgb), .34);
+  border-radius: 18px;
+  background: linear-gradient(135deg, rgba(8, 15, 29, .96), rgba(20, 25, 42, .92));
+  box-shadow: 0 14px 36px #00000030, inset 0 1px #ffffff0f;
+  backdrop-filter: blur(14px);
+}
+
+.realm-utility-dock__identity {
+  min-width: 0;
+}
+
+.realm-utility-dock__eyebrow,
+.realm-utility-dock__detail {
+  margin: 0;
+  color: #b7c2d3;
+  font-size: 11px;
+  line-height: 1.35;
+  letter-spacing: .08em;
+}
+
+.realm-utility-dock__rank {
+  position: relative;
+  z-index: 1;
+  display: block;
+  min-width: 44px;
+  min-height: 44px;
+  margin: -13px 0;
+  padding: 13px 0;
+  overflow: hidden;
+  color: #fff;
+  border: 0;
+  background: transparent;
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 1.3;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.realm-utility-dock__rank:hover {
+  color: var(--realm-accent);
+}
+
+.realm-utility-dock__rank:focus-visible {
+  outline: 2px solid var(--realm-accent);
+  outline-offset: 3px;
+}
+
+.realm-utility-dock__xp {
+  display: grid;
+  gap: 5px;
+  min-width: 0;
+}
+
+.realm-utility-dock__xp-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+  color: #dfe8f5;
+  font-size: 11px;
+}
+
+.realm-utility-dock__xp-row b {
+  color: var(--realm-accent);
+  font-size: 14px;
+}
+
+.realm-utility-dock__track {
+  overflow: hidden;
+  height: 6px;
+  border-radius: 999px;
+  background: #ffffff18;
+}
+
+.realm-utility-dock__track i {
+  display: block;
+  width: calc(var(--realm-progress, 0) * 100%);
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--realm-accent), #fff3a7);
+  box-shadow: 0 0 12px rgba(var(--realm-accent-rgb), .58);
+  transition: width .45s ease;
+}
+
+.realm-utility-dock__stats {
+  display: flex;
+  gap: 6px;
+  min-width: max-content;
+}
+
+.realm-utility-dock__stat {
+  display: grid;
+  min-width: 54px;
+  padding: 5px 8px;
+  text-align: center;
+  border: 1px solid #ffffff14;
+  border-radius: 11px;
+  background: #ffffff09;
+}
+
+.realm-utility-dock__stat b {
+  color: #fff;
+  font-size: 14px;
+}
+
+.realm-utility-dock__stat span {
+  color: #9faec1;
+  font-size: 9px;
+  letter-spacing: .06em;
+}
+
+.realm-utility-dock__tutorial,
+.realm-guide-dialog button {
+  min-width: 44px;
+  min-height: 44px;
+  font: inherit;
+  cursor: pointer;
+}
+
+.realm-utility-dock__tutorial {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 0 14px;
+  color: #07121c;
+  font-weight: 800;
+  border: 0;
+  border-radius: 13px;
+  background: var(--realm-accent);
+  box-shadow: 0 8px 18px rgba(var(--realm-accent-rgb), .22);
+}
+
+.realm-utility-dock__tutorial::before {
+  content: "?";
+  display: grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  border: 2px solid currentColor;
+  border-radius: 50%;
+  font-size: 12px;
+}
+
+.realm-utility-dock__tutorial:hover {
+  filter: brightness(1.08);
+  transform: translateY(-1px);
+}
+
+.realm-utility-dock__tutorial:focus-visible,
+.realm-guide-dialog button:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 3px;
+}
+
+.realm-guide-dialog {
+  --realm-accent: #7ee8ff;
+  --realm-accent-rgb: 126, 232, 255;
+  overflow: hidden;
+  width: min(760px, calc(100vw - 24px));
+  max-width: none;
+  max-height: min(780px, calc(100dvh - 24px));
+  margin: auto;
+  padding: 0;
+  color: #f6f9ff;
+  border: 1px solid rgba(var(--realm-accent-rgb), .38);
+  border-radius: 26px;
+  background: #0c1423;
+  box-shadow: 0 28px 90px #000a;
+}
+
+.realm-guide-dialog::backdrop {
+  background: rgba(2, 5, 12, .78);
+  backdrop-filter: blur(8px);
+}
+
+.realm-guide-dialog[open] {
+  animation: realm-dialog-in .26s ease-out both;
+}
+
+.realm-guide-dialog__shell {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  max-height: min(780px, calc(100dvh - 24px));
+}
+
+.realm-guide-dialog__topline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 58px;
+  padding: 9px 10px 9px 22px;
+  border-bottom: 1px solid #ffffff12;
+  background: linear-gradient(90deg, rgba(var(--realm-accent-rgb), .1), transparent 60%);
+}
+
+.realm-guide-dialog__topline p {
+  margin: 0;
+  color: #c9d4e4;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: .1em;
+}
+
+.realm-guide-dialog__skip {
+  padding: 0 14px;
+  color: #d8e1ed;
+  border: 1px solid #ffffff20;
+  border-radius: 13px;
+  background: #ffffff08;
+}
+
+.realm-guide-dialog__skip:hover {
+  color: #fff;
+  border-color: #ffffff45;
+  background: #ffffff10;
+}
+
+.realm-guide-card {
+  overflow: auto;
+  display: grid;
+  grid-template-columns: minmax(280px, 1.04fr) minmax(250px, .96fr);
+  gap: 24px;
+  padding: 24px;
+  overscroll-behavior: contain;
+}
+
+.realm-guide-card__visual {
+  min-width: 0;
+  align-self: center;
+  overflow: hidden;
+  border: 1px solid #ffffff18;
+  border-radius: 22px;
+  background: radial-gradient(circle at 50% 30%, rgba(var(--realm-accent-rgb), .16), transparent 68%), #070d18;
+  box-shadow: inset 0 1px #ffffff10;
+}
+
+.realm-art {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.realm-art .art-elements,
+.realm-art .art-action,
+.realm-art .art-goal {
+  transition: opacity .25s ease, filter .25s ease;
+}
+
+.realm-art[data-focus="elements"] .art-action,
+.realm-art[data-focus="elements"] .art-goal,
+.realm-art[data-focus="action"] .art-elements,
+.realm-art[data-focus="action"] .art-goal,
+.realm-art[data-focus="goal"] .art-elements,
+.realm-art[data-focus="goal"] .art-action {
+  opacity: .26;
+  filter: saturate(.45);
+}
+
+.realm-guide-card__copy {
+  align-self: center;
+}
+
+.realm-guide-card__step {
+  margin: 0 0 8px;
+  color: var(--realm-accent);
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+
+.realm-guide-card h2 {
+  margin: 0;
+  color: #fff;
+  font-size: clamp(24px, 4vw, 36px);
+  line-height: 1.12;
+  letter-spacing: -.035em;
+}
+
+.realm-guide-card__body {
+  margin: 14px 0 0;
+  color: #c2ccda;
+  font-size: 15px;
+  line-height: 1.75;
+}
+
+.realm-guide-card__bullets {
+  display: grid;
+  gap: 8px;
+  margin: 18px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.realm-guide-card__bullets li {
+  position: relative;
+  padding-left: 22px;
+  color: #e4ebf5;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.realm-guide-card__bullets li::before {
+  content: "";
+  position: absolute;
+  top: .58em;
+  left: 1px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--realm-accent);
+  box-shadow: 0 0 10px rgba(var(--realm-accent-rgb), .6);
+}
+
+.realm-guide-dialog__footer {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 12px;
+  min-height: 70px;
+  padding: 10px 14px;
+  border-top: 1px solid #ffffff12;
+  background: #080e19;
+}
+
+.realm-guide-dialog__counter {
+  justify-self: start;
+  margin: 0;
+  color: #8f9caf;
+  font-size: 12px;
+}
+
+.realm-guide-dialog__dots {
+  display: flex;
+  justify-content: center;
+  gap: 7px;
+}
+
+.realm-guide-dialog__dots i {
+  display: block;
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  background: #ffffff28;
+  transition: width .2s ease, background .2s ease;
+}
+
+.realm-guide-dialog__dots i.is-active {
+  width: 22px;
+  background: var(--realm-accent);
+}
+
+.realm-guide-dialog .realm-guide-dialog__next {
+  justify-self: end;
+  min-width: 126px;
+  padding: 0 18px;
+  color: #07121c;
+  font-weight: 900;
+  border: 0;
+  border-radius: 14px;
+  background: var(--realm-accent);
+  box-shadow: 0 10px 22px rgba(var(--realm-accent-rgb), .2);
+}
+
+.realm-progress-dialog {
+  --realm-accent: #7ee8ff;
+  --realm-accent-rgb: 126, 232, 255;
+  overflow: hidden;
+  width: min(720px, calc(100vw - 24px));
+  max-width: none;
+  max-height: min(820px, calc(100dvh - 24px));
+  margin: auto;
+  padding: 0;
+  color: #f6f9ff;
+  border: 1px solid rgba(var(--realm-accent-rgb), .38);
+  border-radius: 26px;
+  background: #0c1423;
+  box-shadow: 0 28px 90px #000a;
+}
+
+.realm-progress-dialog::backdrop {
+  background: rgba(2, 5, 12, .78);
+  backdrop-filter: blur(8px);
+}
+
+.realm-progress-dialog__shell {
+  max-height: min(820px, calc(100dvh - 24px));
+}
+
+.realm-progress-dialog__topline {
+  position: sticky;
+  z-index: 2;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  min-height: 72px;
+  padding: 12px 14px 12px 22px;
+  border-bottom: 1px solid #ffffff12;
+  background: linear-gradient(90deg, rgba(var(--realm-accent-rgb), .12), #0c1423 65%);
+}
+
+.realm-progress-dialog__topline p,
+.realm-progress-dialog__topline h2 {
+  margin: 0;
+}
+
+.realm-progress-dialog__topline p {
+  color: var(--realm-accent);
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: .13em;
+}
+
+.realm-progress-dialog__topline h2 {
+  margin-top: 3px;
+  font-size: 22px;
+}
+
+.realm-progress-dialog__close {
+  flex: 0 0 44px;
+  width: 44px;
+  height: 44px;
+  color: #e8eef7;
+  border: 1px solid #ffffff22;
+  border-radius: 14px;
+  background: #ffffff09;
+  font-size: 25px;
+  cursor: pointer;
+}
+
+.realm-progress-dialog__close:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 2px;
+}
+
+.realm-progress-dialog__body {
+  overflow: auto;
+  max-height: calc(min(820px, 100dvh - 24px) - 72px);
+  padding: 20px;
+  overscroll-behavior: contain;
+}
+
+.realm-progress-dialog__summary,
+.realm-progress-dialog__section {
+  border: 1px solid #ffffff14;
+  border-radius: 18px;
+  background: #ffffff08;
+}
+
+.realm-progress-dialog__summary {
+  padding: 18px;
+  background: radial-gradient(circle at 92% 5%, rgba(var(--realm-accent-rgb), .18), transparent 42%), #ffffff08;
+}
+
+.realm-progress-dialog__summary p,
+.realm-progress-dialog__summary span {
+  margin: 0;
+  color: #aebacc;
+  font-size: 12px;
+}
+
+.realm-progress-dialog__summary > strong {
+  display: block;
+  margin: 3px 0 2px;
+  color: #fff;
+  font-size: clamp(25px, 5vw, 36px);
+}
+
+.realm-progress-dialog__summary span b {
+  color: var(--realm-accent);
+}
+
+.realm-progress-dialog__track {
+  overflow: hidden;
+  height: 8px;
+  margin-top: 14px;
+  border-radius: 99px;
+  background: #ffffff14;
+}
+
+.realm-progress-dialog__track i {
+  display: block;
+  width: calc(var(--realm-progress, 0) * 100%);
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--realm-accent), #fff3a7);
+}
+
+.realm-progress-dialog__quest {
+  margin-top: 12px !important;
+  color: #e4ebf5 !important;
+  line-height: 1.55;
+}
+
+.realm-progress-dialog__section {
+  margin-top: 12px;
+  padding: 16px;
+}
+
+.realm-progress-dialog__heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.realm-progress-dialog__heading h3,
+.realm-progress-dialog__heading span {
+  margin: 0;
+}
+
+.realm-progress-dialog__heading h3 {
+  font-size: 15px;
+}
+
+.realm-progress-dialog__heading span {
+  color: #8f9caf;
+  font-size: 11px;
+}
+
+.realm-progress-dialog__badges,
+.realm-progress-dialog__earning,
+.realm-progress-dialog__ranks {
+  display: grid;
+  gap: 8px;
+  margin: 13px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.realm-progress-dialog__badges {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.realm-progress-dialog__badges li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  padding: 10px;
+  border-radius: 13px;
+  background: #ffffff08;
+}
+
+.realm-progress-dialog__badges li > i {
+  color: #667287;
+  font-style: normal;
+  font-size: 22px;
+}
+
+.realm-progress-dialog__badges li.is-unlocked > i {
+  color: var(--realm-accent);
+  filter: drop-shadow(0 0 7px rgba(var(--realm-accent-rgb), .6));
+}
+
+.realm-progress-dialog__badges span,
+.realm-progress-dialog__badges b,
+.realm-progress-dialog__badges small {
+  display: block;
+  min-width: 0;
+}
+
+.realm-progress-dialog__badges b {
+  color: #edf3fb;
+  font-size: 12px;
+}
+
+.realm-progress-dialog__badges small {
+  margin-top: 2px;
+  color: #8f9caf;
+  font-size: 10px;
+  line-height: 1.35;
+}
+
+.realm-progress-dialog__badges li.is-locked {
+  opacity: .66;
+}
+
+.realm-progress-dialog__earning {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.realm-progress-dialog__earning li,
+.realm-progress-dialog__ranks li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 9px 11px;
+  border-radius: 11px;
+  background: #ffffff07;
+}
+
+.realm-progress-dialog__earning b,
+.realm-progress-dialog__ranks b {
+  flex: 0 0 auto;
+  color: var(--realm-accent);
+  font-size: 11px;
+}
+
+.realm-progress-dialog__earning span,
+.realm-progress-dialog__ranks span {
+  color: #c4cedc;
+  font-size: 11px;
+}
+
+.realm-progress-dialog__ranks {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.realm-progress-dialog__ranks li {
+  display: grid;
+  opacity: .48;
+}
+
+.realm-progress-dialog__ranks li.is-reached {
+  opacity: 1;
+}
+
+.realm-progress-dialog__ranks li.is-current {
+  outline: 1px solid var(--realm-accent);
+  background: rgba(var(--realm-accent-rgb), .1);
+}
+
+.realm-progress-dialog__privacy {
+  margin: 14px 3px 0;
+  color: #78869a;
+  font-size: 10px;
+  text-align: center;
+}
+
+.realm-guide-dialog__next:hover {
+  filter: brightness(1.08);
+}
+
+.realm-reward-toast {
+  --realm-accent: #7ee8ff;
+  --realm-accent-rgb: 126, 232, 255;
+  position: fixed;
+  inset: auto 18px max(18px, env(safe-area-inset-bottom)) auto;
+  z-index: 2147483001;
+  width: min(360px, calc(100vw - 36px));
+  margin: 0;
+  padding: 16px 18px;
+  color: #f8fbff;
+  border: 1px solid rgba(var(--realm-accent-rgb), .42);
+  border-radius: 18px;
+  background: linear-gradient(145deg, #0a1322f5, #172039f5);
+  box-shadow: 0 20px 60px #0009;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(18px) scale(.97);
+  transition: opacity .2s ease, transform .28s ease;
+}
+
+.realm-reward-toast.is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.realm-reward-toast__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.realm-reward-toast__top strong {
+  font-size: 16px;
+}
+
+.realm-reward-toast__top b {
+  color: var(--realm-accent);
+  font-size: 20px;
+}
+
+.realm-reward-toast ul {
+  display: grid;
+  gap: 4px;
+  margin: 10px 0 0;
+  padding: 0;
+  color: #c3cede;
+  font-size: 12px;
+  list-style: none;
+}
+
+.realm-reward-toast li {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+@keyframes realm-dialog-in {
+  from { opacity: 0; transform: translateY(12px) scale(.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@media (max-width: 760px) {
+  .realm-utility-dock {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 8px 10px;
+    min-height: 0;
+    padding: 10px;
+    border-radius: 16px;
+  }
+
+  .realm-utility-dock__xp {
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
+
+  .realm-utility-dock__stats {
+    display: none;
+  }
+
+  .realm-utility-dock__tutorial {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .realm-guide-card {
+    grid-template-columns: 1fr;
+    gap: 18px;
+    padding: 16px;
+  }
+
+  .realm-guide-card__visual {
+    max-width: 520px;
+    margin: 0 auto;
+  }
+
+  .realm-guide-card h2 {
+    font-size: clamp(23px, 7vw, 31px);
+  }
+
+  .realm-guide-card__body {
+    font-size: 14px;
+    line-height: 1.65;
+  }
+
+  .realm-guide-dialog__footer {
+    grid-template-columns: auto 1fr;
+  }
+
+  .realm-guide-dialog__counter {
+    display: none;
+  }
+
+  .realm-guide-dialog__dots {
+    justify-self: start;
+  }
+}
+
+@media (max-width: 420px) {
+  .realm-guide-dialog {
+    width: calc(100vw - 12px);
+    max-height: calc(100dvh - 12px);
+    border-radius: 20px;
+  }
+
+  .realm-guide-dialog__shell {
+    max-height: calc(100dvh - 12px);
+  }
+
+  .realm-guide-dialog__topline {
+    padding-left: 15px;
+  }
+
+  .realm-guide-dialog__topline p {
+    max-width: 55vw;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .realm-guide-dialog .realm-guide-dialog__next {
+    min-width: 112px;
+    padding-inline: 12px;
+  }
+
+  .realm-progress-dialog {
+    width: calc(100vw - 12px);
+    max-height: calc(100dvh - 12px);
+    border-radius: 20px;
+  }
+
+  .realm-progress-dialog__shell {
+    max-height: calc(100dvh - 12px);
+  }
+
+  .realm-progress-dialog__body {
+    max-height: calc(100dvh - 84px);
+    padding: 12px;
+  }
+
+  .realm-progress-dialog__badges,
+  .realm-progress-dialog__earning,
+  .realm-progress-dialog__ranks {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .realm-guide-dialog[open] {
+    animation: none;
+  }
+
+  .realm-utility-dock__track i,
+  .realm-art .art-elements,
+  .realm-art .art-action,
+  .realm-art .art-goal,
+  .realm-reward-toast {
+    transition: none;
+  }
+}

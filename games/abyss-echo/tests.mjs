@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { readFile } from "node:fs/promises";
 import {
   RESPONSE,
   areResponseEquivalent,
@@ -197,6 +198,20 @@ test("layout generation is unique, bounded and validates edges", () => {
   assert.throws(() => traceRay(4, [], 16), RangeError);
   assert.throws(() => traceRay(1, [], 0), RangeError);
   assert.throws(() => generateLayout(2, 1, () => 1), RangeError);
+});
+
+test("page wires the shared guide and reports each generated field only once", async () => {
+  const [html, app] = await Promise.all([
+    readFile(new URL("./index.html", import.meta.url), "utf8"),
+    readFile(new URL("./app.js", import.meta.url), "utf8"),
+  ]);
+
+  assert.match(html, /\.\.\/\.\.\/shared\/realm-ui\.css/);
+  assert.match(html, /type="module" src="\.\.\/\.\.\/shared\/realm-ui\.mjs"/);
+  assert.match(app, /completionReported = saved\.completionReported === true \|\| state\.phase === "won"/);
+  assert.match(app, /function completionLevelId\(\)[\s\S]*?state\.hidden/);
+  assert.match(app, /if \(!completionReported\)\s*{[\s\S]*?reportRealmCompletion\(\)/);
+  assert.match(app, /window\.__realmCompletionQueue \?\?= \[\]/);
 });
 
 let passed = 0;

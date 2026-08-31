@@ -26,6 +26,7 @@ const LONG_PRESS_MS = 480;
 const REDUCED_MOTION = matchMedia("(prefers-reduced-motion: reduce)");
 const RING_LENGTH = 358.14;
 const SVG_NS = "http://www.w3.org/2000/svg";
+const COMPLETION_TIERS = Object.freeze({ easy: 1, medium: 2, hard: 3 });
 
 const $ = (selector) => document.querySelector(selector);
 const elements = {
@@ -97,6 +98,7 @@ let selectedIndex = recovered?.selectedIndex ?? game.level.lighthouseIndex;
 let elapsedOffset = recovered?.elapsedMs ?? 0;
 let clockStartedAt = Date.now();
 let victoryDismissed = recovered?.victoryDismissed ?? false;
+let completionReported = recovered?.completionReported ?? false;
 let victoryTimer = 0;
 let saveTimer = 0;
 let clockTimer = 0;
@@ -282,6 +284,7 @@ function loadSavedState() {
       selectedIndex: restoredIndex,
       elapsedMs,
       victoryDismissed: payload.victoryDismissed === true,
+      completionReported: payload.completionReported === true || restoredGame.status === STATUS.WON,
     };
   } catch {
     return null;
@@ -309,6 +312,7 @@ function saveState(immediate = false) {
         selectedIndex,
         elapsedMs: currentElapsed(),
         victoryDismissed,
+        completionReported,
       };
       localStorage.setItem(STORAGE_KEY, JSON.stringify(payload));
       elements.saveState.textContent = "已同步";
@@ -633,6 +637,17 @@ function rejectedMessage(reason) {
   return "这项校准无法执行";
 }
 
+function reportRealmCompletion() {
+  const payload = {
+    levelId: `${game.level.difficulty}:${game.level.id}`,
+    tier: COMPLETION_TIERS[game.level.difficulty] ?? 1,
+    moves: game.moves,
+    par: game.level.referenceTurns,
+  };
+  if (typeof window.RealmArcade?.complete === "function") window.RealmArcade.complete(payload);
+  else (window.__realmCompletionQueue ??= []).push(payload);
+}
+
 function performAction(action, options = {}) {
   const before = game;
   const beforePowered = game.evaluation.reachableCount;
@@ -652,6 +667,10 @@ function performAction(action, options = {}) {
     elapsedOffset = elapsedBefore;
     clockStartedAt = Date.now();
     victoryDismissed = false;
+    if (!completionReported) {
+      completionReported = true;
+      reportRealmCompletion();
+    }
   }
 
   render({ focus: options.focus === true });
@@ -686,6 +705,7 @@ function startLevel(level, options = {}) {
   history = [];
   selectedIndex = game.level.lighthouseIndex;
   victoryDismissed = false;
+  completionReported = false;
   resetClock();
   render({ focus: options.focus === true });
   audio.chart();
@@ -715,6 +735,7 @@ function restartCurrent(focus = false) {
   history = [];
   selectedIndex = game.level.lighthouseIndex;
   victoryDismissed = false;
+  completionReported = false;
   resetClock();
   render({ focus });
   audio.chart();
@@ -753,8 +774,10 @@ function scheduleVictory() {
 
 function showVictory() {
   if (game.status !== STATUS.WON || victoryDismissed) return;
-  if (elements.rulesDialog.open) {
-    elements.rulesDialog.addEventListener("close", showVictory, { once: true });
+  const blockingDialog = [...document.querySelectorAll("dialog[open]")]
+    .find((dialog) => dialog !== elements.victoryPanel);
+  if (blockingDialog) {
+    blockingDialog.addEventListener("close", showVictory, { once: true });
     return;
   }
   elements.victoryCopy.textContent = `用 ${game.moves} 次旋转、${formatTime(currentElapsed())} 校准 ${game.level.total} 座航标。整片海域重新看见了灯光。`;

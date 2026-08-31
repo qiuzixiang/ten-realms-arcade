@@ -70,6 +70,11 @@ const difficultyCopy = {
   [DIFFICULTIES.MEDIUM]: { label: "深空", code: "DEEP" },
   [DIFFICULTIES.HARD]: { label: "禁区", code: "RED" },
 };
+const rewardTier = {
+  [DIFFICULTIES.EASY]: 1,
+  [DIFFICULTIES.MEDIUM]: 2,
+  [DIFFICULTIES.HARD]: 3,
+};
 const directionCopy = {
   N: "向上",
   NE: "右上",
@@ -96,6 +101,15 @@ let lastFrameTime = 0;
 let outcomeTimer = 0;
 let statusTimer = 0;
 let warningLatched = false;
+let completionReported = game.status === STATUS.WON;
+
+function reportCompletion(payload) {
+  if (window.RealmArcade?.complete) {
+    window.RealmArcade.complete(payload);
+  } else {
+    (window.__realmCompletionQueue ??= []).push(payload);
+  }
+}
 
 class SignalAudio {
   constructor() {
@@ -417,6 +431,7 @@ function clearEffects() {
 function activateLevel(level, { announce = true } = {}) {
   clearEffects();
   game = createGame(level);
+  completionReported = false;
   selectedDifficulty = level.difficulty;
   preferences.lastLevelByDifficulty[selectedDifficulty] = level.id;
   savePreferences();
@@ -462,6 +477,7 @@ function undoLastMove() {
   }
   clearEffects();
   game = result.state;
+  completionReported = false;
   saveGame();
   updateInterface();
   audio.undo();
@@ -560,6 +576,15 @@ function finishFlight() {
   } else if (game.status === STATUS.WON) {
     preferences.completed = [...new Set([...preferences.completed, game.levelId])];
     savePreferences();
+    if (!completionReported) {
+      completionReported = true;
+      reportCompletion({
+        levelId: `mission:${game.level.difficulty}:${game.levelId}`,
+        tier: rewardTier[game.level.difficulty],
+        moves: game.moves,
+        par: game.level.par,
+      });
+    }
     audio.victory();
     launchVictoryParticles();
     showOutcome(STATUS.WON);

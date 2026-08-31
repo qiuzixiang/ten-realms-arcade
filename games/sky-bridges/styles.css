@@ -815,6 +815,16 @@ main {
   line-height: 1.2;
 }
 
+.port.is-right-edge .port-count {
+  right: auto;
+  left: -8px;
+}
+
+.port.is-bottom-edge .port-count {
+  top: -6px;
+  bottom: auto;
+}
+
 .port.is-exact .port-count {
   border-color: var(--gold);
   color: #071521;

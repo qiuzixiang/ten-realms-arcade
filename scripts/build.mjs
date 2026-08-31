@@ -9,7 +9,7 @@ const excluded = new Set([".git", ".github", "dist", "node_modules", "scripts"])
 await rm(out, { recursive: true, force: true });
 await mkdir(out, { recursive: true });
 
-for (const entry of ["index.html", "styles.css", "app.js", "sw.js", "assets", "games", "manifest.webmanifest", ".nojekyll", "LICENSE", "THIRD_PARTY_NOTICES.md"]) {
+for (const entry of ["index.html", "styles.css", "app.js", "sw.js", "assets", "games", "shared", "manifest.webmanifest", ".nojekyll", "LICENSE", "THIRD_PARTY_NOTICES.md"]) {
   await cp(path.join(root, entry), path.join(out, entry), {
     recursive: true,
     filter: (source) => !excluded.has(path.relative(root, source).split(path.sep)[0]),

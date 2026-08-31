@@ -20,6 +20,7 @@ const DIFFICULTIES = Object.freeze({
   trench: Object.freeze({ name: "海沟", code: "TRENCH", size: 8, target: 5 }),
   hadal: Object.freeze({ name: "深渊", code: "HADAL", size: 10, target: 7 }),
 });
+const COMPLETION_TIERS = Object.freeze({ shelf: 1, trench: 2, hadal: 3 });
 
 const SIDE_NAMES = Object.freeze({
   top: "北",
@@ -81,6 +82,7 @@ let animationFrame = 0;
 let clearCanvasTimer = 0;
 let responseSoundTimer = 0;
 let victoryTimer = 0;
+let completionReported = false;
 
 function clone(value) {
   return JSON.parse(JSON.stringify(value));
@@ -204,6 +206,7 @@ function saveGame() {
         state,
         history: history.slice(-HISTORY_LIMIT),
         muted,
+        completionReported,
       }),
     );
   } catch {
@@ -220,6 +223,7 @@ function loadGame() {
     }
     state = saved.state;
     muted = Boolean(saved.muted);
+    completionReported = saved.completionReported === true || state.phase === "won";
     const hiddenKey = [...state.hidden].sort().join("|");
     history = Array.isArray(saved.history)
       ? saved.history
@@ -867,6 +871,12 @@ function makeVictoryBubbles() {
 }
 
 function openVictory(exactCoordinates) {
+  const blockingDialog = [...document.querySelectorAll("dialog[open]")]
+    .find((dialog) => dialog !== elements.victoryDialog);
+  if (blockingDialog) {
+    blockingDialog.addEventListener("close", () => openVictory(exactCoordinates), { once: true });
+    return;
+  }
   elements.victoryCopy.textContent = exactCoordinates
     ? "你的模型与整片海沟的完整响应一致，隐藏能量体坐标也完全吻合。"
     : "你的坐标与隐藏布局并不完全相同，但所有浮标响应一致——这是 Black Box 允许的非唯一等价解。";
@@ -889,6 +899,24 @@ function openVictory(exactCoordinates) {
   openDialog(elements.victoryDialog);
 }
 
+function completionLevelId() {
+  const layout = [...state.hidden]
+    .sort()
+    .map((key) => key.replace(",", "-"))
+    .join("_");
+  return `${state.difficulty}:${state.size}:${layout}`;
+}
+
+function reportRealmCompletion() {
+  const payload = {
+    levelId: completionLevelId(),
+    tier: COMPLETION_TIERS[state.difficulty] ?? 1,
+    moves: state.moves,
+  };
+  if (typeof window.RealmArcade?.complete === "function") window.RealmArcade.complete(payload);
+  else (window.__realmCompletionQueue ??= []).push(payload);
+}
+
 function checkModel() {
   if (state.phase !== "playing" || state.guesses.length !== state.target) return;
   ensureAudio();
@@ -901,6 +929,10 @@ function checkModel() {
     const exact = sameCoordinates();
     state.phase = "won";
     revealAllResponses();
+    if (!completionReported) {
+      completionReported = true;
+      reportRealmCompletion();
+    }
     render();
     saveGame();
     playSound("victory");
@@ -960,6 +992,7 @@ function newGame(difficulty = elements.difficultySelect.value) {
   elements.console.classList.remove("is-failure");
   state = freshState(difficulty);
   history = [];
+  completionReported = false;
   buildBoard();
   saveGame();
   playSound("select");
@@ -976,6 +1009,7 @@ function restartGame() {
   const session = state.session;
   state = freshState(state.difficulty, hidden, session);
   history = [];
+  completionReported = false;
   buildBoard();
   saveGame();
   playSound("undo");

@@ -1901,7 +1901,7 @@ dialog::backdrop {
   }
 
   .garden-card {
-    padding: 14px;
+    padding: 8px;
     border-radius: 27px 11px 27px 11px;
   }
 
@@ -1924,12 +1924,14 @@ dialog::backdrop {
 
   .board-frame {
     display: block;
-    padding: 10px;
+    padding: 4px;
     border-radius: 19px 8px 19px 8px;
   }
 
   .garden-board {
-    --gap: 3px;
+    --gap: 2px;
+    --board-inset: 10px;
+    padding: 4px;
     margin-inline: auto;
   }
 

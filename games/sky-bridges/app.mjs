@@ -338,6 +338,8 @@ function renderBoard(options = {}) {
     button.classList.toggle("is-over", port.over);
     button.classList.toggle("is-checked", checked);
     button.classList.toggle("is-target", selectableTargets.has(island.id));
+    button.classList.toggle("is-right-edge", island.column === width - 1);
+    button.classList.toggle("is-bottom-edge", island.row === height - 1);
     button.innerHTML = `<span class="port-target">${island.target}</span><span class="port-count">${port.count}/${island.target}</span><span class="port-stamp" aria-hidden="true">✓</span>`;
     button.addEventListener("focus", () => { state.focusedIslandId = island.id; });
     button.addEventListener("click", (event) => {
@@ -739,6 +741,14 @@ function celebrate(evaluation) {
   const previousBest = Number(state.stats.bestMoves[state.level.id]) || Infinity;
   state.stats.bestMoves[state.level.id] = Math.min(previousBest, state.session.moves);
   writeSave();
+  const tier = DIFFICULTIES.findIndex((difficulty) => difficulty.id === state.level.difficulty) + 1;
+  const reward = {
+    levelId: state.level.id,
+    tier: Math.max(1, tier),
+    moves: state.session.moves,
+  };
+  if (window.RealmArcade?.complete) window.RealmArcade.complete(reward);
+  else (window.__realmCompletionQueue ??= []).push(reward);
   playVictory();
   announce(`云层已开！${evaluation.totalPorts} 座港口全部连通。`, true);
   elements.victoryMoves.textContent = String(state.session.moves);

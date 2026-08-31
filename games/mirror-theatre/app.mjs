@@ -871,6 +871,14 @@ function finishPerformance() {
   const previousBest = state.stats.bestMovesByLevel[state.level.id];
   if (!previousBest || state.steps < previousBest) state.stats.bestMovesByLevel[state.level.id] = state.steps;
   writeSave();
+  const tier = DIFFICULTIES.findIndex((difficulty) => difficulty.id === state.difficulty) + 1;
+  const reward = {
+    levelId: state.level.id,
+    tier: Math.max(1, tier),
+    moves: state.steps,
+  };
+  if (window.RealmArcade?.complete) window.RealmArcade.complete(reward);
+  else (window.__realmCompletionQueue ??= []).push(reward);
   playSound("win");
   announce(`演出完成：${state.level.title}，${state.steps} 步，全场谢幕。`);
   elements.victoryLevel.textContent = state.level.title;
