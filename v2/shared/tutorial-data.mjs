@@ -67,6 +67,11 @@ const NATIVE_REALM_CONFIGS = Object.freeze({
   "yokai-inn": Object.freeze({ title: "妖怪旅店", token: "百鬼房牌", accent: "#f0c468", accentRgb: "240, 196, 104", nativeTutorialSelector: "#tutorial-button" }),
   "aurora-magnet-lab": Object.freeze({ title: "极光磁场实验室", token: "磁场棱镜", accent: "#62f2e6", accentRgb: "98, 242, 230", nativeTutorialSelector: "#tutorial-button" }),
   "dream-hotel": Object.freeze({ title: "梦境旅舍", token: "梦境房卡", accent: "#c7a9ff", accentRgb: "199, 169, 255", nativeTutorialSelector: "#tutorial-button" }),
+  "time-sand-post": Object.freeze({ title: "时砂邮路局", token: "时砂邮戳", accent: "#ffc96b", accentRgb: "255, 201, 107", nativeTutorialSelector: "#tutorial-button" }),
+  "molten-core-vent": Object.freeze({ title: "熔心泄压站", token: "熔心阀芯", accent: "#5fe5de", accentRgb: "95, 229, 222", nativeTutorialSelector: "#tutorial-button" }),
+  "paper-crane-sanctuary": Object.freeze({ title: "纸鹤归巢台", token: "月羽折签", accent: "#efb4b1", accentRgb: "239, 180, 177", nativeTutorialSelector: "#tutorial-button" }),
+  "resonance-bell-room": Object.freeze({ title: "万象共振钟房", token: "共振音徽", accent: "#f4c56a", accentRgb: "244, 197, 106", nativeTutorialSelector: "#tutorial-button" }),
+  "four-spirit-habitat": Object.freeze({ title: "四灵栖境署", token: "四灵栖印", accent: "#e8d48f", accentRgb: "232, 212, 143", nativeTutorialSelector: "#tutorial-button" }),
 });
 
 export const REALM_CONFIGS = Object.freeze({

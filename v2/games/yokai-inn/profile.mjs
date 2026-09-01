@@ -21,7 +21,6 @@ export const SESSION_VERSION = 1;
 export const HISTORY_LIMIT = 100;
 export const TUTORIAL_VERSION = 2;
 const OUTBOX_VERSION = 1;
-const OUTBOX_LIMIT = 100;
 
 export const DEMAND_LABELS = Object.freeze([
   "无灯静室",
@@ -331,7 +330,7 @@ export function canonicalCompletionDetail(detailInput, completionResult, puzzle)
 }
 
 function normalizeOutbox(value) {
-  if (!isPlainObject(value) || value.version !== OUTBOX_VERSION || !Array.isArray(value.entries) || value.entries.length > OUTBOX_LIMIT) {
+  if (!isPlainObject(value) || value.version !== OUTBOX_VERSION || !Array.isArray(value.entries)) {
     throw new TypeError("Invalid completion outbox.");
   }
   const entries = value.entries.map(normalizeCompletionDetail);
@@ -354,7 +353,6 @@ export function mergeCompletionOutbox(entriesInput, detailInput) {
   });
   const next = entries.filter((entry) => entry.completionId !== merged.completionId);
   next.push(merged);
-  if (next.length > OUTBOX_LIMIT) throw new TypeError("Completion outbox is full.");
   return Object.freeze(next.map((entry) => Object.freeze({
     ...entry,
     rewardIds: Object.freeze([...entry.rewardIds]),

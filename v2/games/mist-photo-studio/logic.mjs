@@ -725,7 +725,8 @@ export function normalizeSession(candidate, fallbackLevel = LEVELS[0]) {
   const moves = finiteInteger(candidate.moves, -1);
   const mistakes = finiteInteger(candidate.mistakes, -1);
   if (moves < 0 || mistakes < 0) return { session: fallback, restored: false, invalid: true };
-  if (candidate.completed === true && !evaluateGrid(level, candidate.grid).complete) {
+  const completed = evaluateGrid(level, candidate.grid).complete;
+  if (candidate.completed === true && !completed) {
     return { session: fallback, restored: false, invalid: true };
   }
   const history = Array.isArray(candidate.history)
@@ -735,6 +736,13 @@ export function normalizeSession(candidate, fallbackLevel = LEVELS[0]) {
       mistakes: snapshot.mistakes,
       completed: snapshot.completed === true,
       completionReported: snapshot.completionReported === true,
+      ...(snapshot.completionRecorded !== undefined
+        ? { completionRecorded: snapshot.completionRecorded === true }
+        : {}),
+      ...(typeof snapshot.runId === "string" ? { runId: snapshot.runId } : {}),
+      ...(typeof snapshot.completionEventId === "string"
+        ? { completionEventId: snapshot.completionEventId }
+        : {}),
     }))
     : [];
   const daily = candidate.daily === true && DAY_PATTERN.test(candidate.dailyDay ?? "");
@@ -746,7 +754,9 @@ export function normalizeSession(candidate, fallbackLevel = LEVELS[0]) {
       moves,
       mistakes,
       history,
-      completed: candidate.completed === true,
+      // Completion is an engine-derived fact. This also repairs a save made
+      // after the final grid write but before its legacy completed flag write.
+      completed,
       completionReported: candidate.completionReported === true,
       tool: ["fill", "exclude", "erase"].includes(candidate.tool) ? candidate.tool : "fill",
       muted: candidate.muted === true,

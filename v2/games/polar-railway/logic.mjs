@@ -850,11 +850,12 @@ function isIsoTimestamp(value) {
 export function normalizeRecords(value) {
   const fallback = createRecords();
   if (!isPlainObject(value)) return fallback;
-  const cleanObject = (candidate, predicate, { keepLatest = false } = {}) => {
+  const cleanObject = (candidate, predicate, { keepLatest = false, maximum = 500 } = {}) => {
     if (!isPlainObject(candidate)) return {};
     const valid = Object.entries(candidate).filter(([key, item]) =>
       typeof key === "string" && key.length <= 160 && predicate(item, key));
-    return Object.fromEntries(keepLatest ? valid.slice(-500) : valid.slice(0, 500));
+    if (maximum === null) return Object.fromEntries(valid);
+    return Object.fromEntries(keepLatest ? valid.slice(-maximum) : valid.slice(0, maximum));
   };
   const awards = cleanObject(value.awards, (item, key) => AWARD_IDS.has(key) && isIsoTimestamp(item));
   const requestedEngine = ENGINE_IDS.has(value.selectedEngine) ? value.selectedEngine : fallback.selectedEngine;
@@ -868,7 +869,7 @@ export function normalizeRecords(value) {
     bestMoves: cleanObject(value.bestMoves, (item, key) => LEVEL_IDS.has(key) && Number.isSafeInteger(item) && item >= 0),
     bestTimes: cleanObject(value.bestTimes, (item, key) => LEVEL_IDS.has(key) && Number.isSafeInteger(item) && item >= 0),
     awards,
-    completionLedger: cleanObject(value.completionLedger, (item) => item === true, { keepLatest: true }),
+    completionLedger: cleanObject(value.completionLedger, (item) => item === true, { maximum: null }),
     selectedEngine,
     selectedCarriage,
   };

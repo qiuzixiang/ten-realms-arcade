@@ -31,11 +31,15 @@ import {
   HISTORY_LIMIT,
   VISITORS,
   campSummary,
+  campCompletionEventId,
+  campCompletionPayload,
   confirmCampCompletion,
+  createCampRunId,
   createCampStats,
   createDefaultState,
   difficultyProgress,
   localDayKey,
+  normalizeCampCompletionOutbox,
   normalizeCampStats,
   parseSnapshot,
   parseStoredGame,
@@ -45,6 +49,7 @@ import {
   snapshotFromState,
 } from "./storage.mjs";
 import { REALM_TUTORIALS, tutorialArt } from "../../shared/tutorial-data.mjs";
+import { awardCompletion, createProgress } from "../../shared/reward-engine.mjs";
 
 const tests = [];
 function test(name, callback) {
@@ -428,9 +433,34 @@ test("history is bounded and solved saves preserve independent local and shared 
   assert.equal(unsolved.state.completionReported, false);
 });
 
-test("a thrown shared reward retries after restore without duplicating the local camp record", () => {
+test("run and event identities are stable across refresh but change for a genuinely new camp", () => {
   const level = LEVELS[0];
-  let state = createDefaultState(level);
+  const firstRunId = "cloud-run-00000001";
+  const secondRunId = "cloud-run-00000002";
+  assert.equal(createCampRunId(() => firstRunId), firstRunId);
+  const first = createDefaultState(level, firstRunId);
+  const restored = parseStoredGame(JSON.stringify(serializeStoredGame(first)));
+  const second = createDefaultState(level, secondRunId);
+  assert.equal(restored.state.runId, firstRunId);
+  assert.equal(restored.state.completionEventId, campCompletionEventId(firstRunId));
+  assert.equal(second.completionEventId, campCompletionEventId(secondRunId));
+  assert.notEqual(second.runId, first.runId, "restarting the same level is a fresh run");
+  assert.notEqual(second.completionEventId, first.completionEventId, "level and score never define event identity");
+  assert.throws(() => campCompletionEventId("bad"), /Invalid cloud-camp run id/);
+
+  const legacy = serializeStoredGame(first);
+  delete legacy.active.runId;
+  delete legacy.active.completionEventId;
+  const migrated = parseStoredGame(JSON.stringify(legacy));
+  const migratedAgain = parseStoredGame(JSON.stringify(serializeStoredGame(migrated.state)));
+  assert.match(migrated.state.runId, /^[a-z0-9][a-z0-9._-]{7,95}$/i);
+  assert.equal(migratedAgain.state.runId, migrated.state.runId, "a legacy save receives one persisted migration id");
+});
+
+test("a host throw retries the identical persisted event without duplicating local or shared settlement", () => {
+  const level = LEVELS[0];
+  const runId = "cloud-retry-0000001";
+  let state = createDefaultState(level, runId);
   state.tents = new Set(level.solution);
   state.moves = level.par;
   state.completed = true;
@@ -440,28 +470,77 @@ test("a thrown shared reward retries after restore without duplicating the local
   assert.equal(local.recorded, true);
   assert.equal(state.completionRecorded, true);
   assert.equal(state.stats.clears[level.id].wins, 1);
+  assert.equal(state.completionOutbox.length, 1);
+  const stablePayload = campCompletionPayload(state);
+  assert.deepEqual(state.completionOutbox[0], stablePayload);
+  assert.equal(stablePayload.runId, runId);
+  assert.equal(stablePayload.eventId, `cloud-camp:${runId}:complete`);
 
-  const failed = confirmCampCompletion(state, () => {
-    throw new Error("shared API unavailable");
+  let sharedProgress = createProgress();
+  let xpAfterFirstDelivery = 0;
+  const failed = confirmCampCompletion(state, (payload) => {
+    assert.deepEqual(payload, stablePayload);
+    const accepted = awardCompletion(sharedProgress, { ...payload, realm: "cloud-camp" }, new Date("2026-08-31T08:00:01Z"));
+    sharedProgress = accepted.progress;
+    xpAfterFirstDelivery = sharedProgress.xp;
+    throw new Error("bridge lost the acknowledgement after host settlement");
   });
   assert.equal(failed.attempted, true);
   assert.equal(failed.succeeded, false);
   assert.equal(failed.state.completionReported, false);
+  assert.deepEqual(failed.state.completionOutbox, [stablePayload], "a failed acknowledgement keeps the exact payload");
+  assert.equal(sharedProgress.realms["cloud-camp"].clears[stablePayload.levelId].wins, 1);
 
   const restored = parseStoredGame(JSON.stringify(serializeStoredGame(failed.state)));
   assert.equal(restored.state.completed, true);
   assert.equal(restored.state.completionRecorded, true);
   assert.equal(restored.state.completionReported, false);
+  assert.equal(restored.state.runId, runId);
+  assert.equal(restored.state.completionEventId, stablePayload.eventId);
+  assert.deepEqual(restored.state.completionOutbox, [stablePayload]);
   const duplicateLocal = recordCampCompletionOnce(restored.state);
   assert.equal(duplicateLocal.recorded, false);
   assert.equal(duplicateLocal.state.stats.clears[level.id].wins, 1);
+  assert.deepEqual(duplicateLocal.state.completionOutbox, [stablePayload], "same-run settlement cannot enqueue twice");
 
-  const queued = [];
-  const retried = confirmCampCompletion(duplicateLocal.state, () => queued.push(level.id));
+  const deliveries = [];
+  const retried = confirmCampCompletion(duplicateLocal.state, (payload) => {
+    deliveries.push(payload.eventId);
+    const replay = awardCompletion(sharedProgress, { ...payload, realm: "cloud-camp" }, new Date("2026-08-31T08:00:02Z"));
+    assert.equal(replay.duplicateEvent, true, "the V2.5 host contract deduplicates a repeated stable event");
+    sharedProgress = replay.progress;
+    return replay;
+  });
   assert.equal(retried.succeeded, true);
   assert.equal(retried.state.completionReported, true);
-  assert.deepEqual(queued, [level.id]);
+  assert.deepEqual(retried.state.completionOutbox, []);
+  assert.deepEqual(deliveries, [stablePayload.eventId]);
   assert.equal(retried.state.stats.clears[level.id].wins, 1);
+  assert.equal(sharedProgress.xp, xpAfterFirstDelivery);
+  assert.equal(sharedProgress.realms["cloud-camp"].clears[stablePayload.levelId].wins, 1);
+
+  const replayAfterAck = confirmCampCompletion(retried.state, () => assert.fail("an acknowledged outbox must stay empty"));
+  assert.equal(replayAfterAck.attempted, false);
+
+  const nextRun = createDefaultState(level, "cloud-retry-0000002");
+  nextRun.completionOutbox = failed.state.completionOutbox;
+  const pendingAcrossNewRun = parseStoredGame(JSON.stringify(serializeStoredGame(nextRun)));
+  assert.deepEqual(pendingAcrossNewRun.state.completionOutbox, [stablePayload], "an old pending event survives a new run");
+  const oldDelivery = confirmCampCompletion(pendingAcrossNewRun.state, () => ({ duplicateEvent: true }));
+  assert.equal(oldDelivery.state.completionOutbox.length, 0);
+  assert.equal(oldDelivery.state.completionReported, false, "delivering an older outbox item cannot mark the new run complete");
+});
+
+test("every pending camp completion survives beyond the former queue capacity", () => {
+  const level = LEVELS[0];
+  const events = Array.from({ length: 130 }, (_, index) => campCompletionPayload({
+    ...createDefaultState(level, `cloud-pending-${String(index).padStart(4, "0")}`),
+    moves: level.par + index,
+  }));
+  const normalized = normalizeCampCompletionOutbox([...events, events[0]]);
+  assert.equal(normalized.length, events.length);
+  assert.equal(normalized[0].eventId, events[0].eventId);
+  assert.equal(normalized.at(-1).eventId, events.at(-1).eventId);
 });
 
 test("camp records defend streaks, bests, flawless runs, and efficiency milestones", () => {
@@ -552,9 +631,13 @@ test("page wiring keeps engine, save, shared rewards, tutorials, source, audio, 
   assert.doesNotMatch(html, /<(?:script|link)[^>]+(?:src|href)="https?:/i, "runtime assets must stay local");
 
   assert.match(app, /evaluatePosition\(state\.level, state\)/);
-  assert.match(app, /if \(state\.completed && !state\.completionReported\)/);
+  assert.match(app, /if \(state\.completed && !state\.completionRecorded\)/);
+  assert.match(app, /function flushCampCompletionOutbox\(\)/);
   assert.match(app, /confirmCampCompletion\(state, reportRealmCompletion\)/);
-  assert.match(app, /window\.__realmCompletionQueue \?\?= \[\]/);
+  assert.match(app, /if \(!writeSave\(\{ quiet: true \}\)\)/, "outbox must be persisted before host delivery");
+  assert.doesNotMatch(app, /window\.__realmCompletionQueue/, "the persistent outbox is the sole delivery channel");
+  assert.match(storage, /eventId: campCompletionEventId\(runId\)/);
+  assert.match(storage, /completionOutbox: normalizeCampCompletionOutbox/);
   assert.match(app, /document\.querySelector\("dialog\[open\]"\)/);
   assert.match(app, /MutationObserver\(syncDialogScrollLock\)/);
   assert.match(app, /tentOptions\.get\(key\)/);

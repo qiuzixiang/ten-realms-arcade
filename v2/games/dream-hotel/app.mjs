@@ -920,6 +920,7 @@ function renderTutorialCard() {
   [...elements.tutorialDots.children].forEach((dot, index) => dot.classList.toggle("is-active", index === state.tutorialIndex));
   elements.tutorialPrevious.disabled = state.tutorialIndex === 0;
   elements.tutorialNext.textContent = state.tutorialIndex === TUTORIAL_CARDS.length - 1 ? "开始规划" : "下一张";
+  elements.tutorialDialog.scrollTop = 0;
 }
 
 function openTutorial(trigger = elements.tutorialButton) {

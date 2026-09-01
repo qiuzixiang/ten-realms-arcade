@@ -38,10 +38,16 @@ import {
 } from "./logic.mjs";
 import {
   confirmPhotoCompletion,
+  createPhotoRunId,
+  normalizePhotoCompletionOutbox,
+  photoCompletionEventId,
+  photoCompletionPayload,
   recordPhotoCompletionOnce,
   restorePhotoCompletionFlags,
+  startPhotoRun,
 } from "./session.mjs";
 import { REALM_TUTORIALS, tutorialArt } from "../../shared/tutorial-data.mjs";
+import { awardCompletion, createProgress } from "../../shared/reward-engine.mjs";
 
 const tests = [];
 function test(name, callback) {
@@ -400,6 +406,24 @@ test("session restoration round-trips valid state and safely rejects corrupt or 
   assert.equal(completedRestore.session.completed, true);
   assert.equal(completedRestore.session.completionReported, true);
 
+  const interruptedFinalWrite = { ...session, grid: solvedGrid(level), completed: false };
+  const repaired = normalizeSession(interruptedFinalWrite);
+  assert.equal(repaired.restored, true);
+  assert.equal(repaired.session.completed, true, "the engine repairs a stale false completion marker");
+  const repairedRun = restorePhotoCompletionFlags(repaired.session, {
+    ...interruptedFinalWrite,
+    runId: "photo-repaired-000001",
+  });
+  const repairedSettlement = recordPhotoCompletionOnce(repairedRun, createCollection(), {
+    levelId: level.id,
+    moves: repairedRun.moves,
+    mistakes: repairedRun.mistakes,
+    daily: false,
+  }, recordCollectionCompletion);
+  assert.equal(repairedSettlement.recorded, true);
+  assert.equal(repairedSettlement.state.completionOutbox.length, 1);
+  assert.equal(repairedSettlement.state.completionOutbox[0].eventId, "mist-photo-studio:photo-repaired-000001:complete");
+
   const damagedHistory = normalizeSession({ ...session, history: [{ grid: [1], moves: 0, mistakes: 0 }] });
   assert.equal(damagedHistory.restored, true);
   assert.equal(damagedHistory.invalid, true);
@@ -410,9 +434,33 @@ test("session restoration round-trips valid state and safely rejects corrupt or 
   assert.equal(normalizeGrid(level, [99]).every((state) => state === CELL.UNKNOWN), true);
 });
 
-test("a thrown shared reward retries after restore without repeating photo collection settlement", () => {
+test("photo run and completion ids survive refresh and rotate only for a new exposure", () => {
   const level = LEVELS[0];
-  let state = createSession(level);
+  const firstRunId = "photo-run-000000001";
+  const secondRunId = "photo-run-000000002";
+  assert.equal(createPhotoRunId(() => firstRunId), firstRunId);
+  const first = startPhotoRun(createSession(level), { runId: firstRunId });
+  const stored = JSON.parse(JSON.stringify(first));
+  const restored = restorePhotoCompletionFlags(normalizeSession(stored).session, stored);
+  const second = startPhotoRun(createSession(level), { runId: secondRunId });
+  assert.equal(restored.runId, firstRunId);
+  assert.equal(restored.completionEventId, photoCompletionEventId(firstRunId));
+  assert.notEqual(second.runId, first.runId, "restarting the same negative creates a new run");
+  assert.notEqual(second.completionEventId, first.completionEventId, "level and score do not define event identity");
+  assert.throws(() => photoCompletionEventId("bad"), /Invalid mist-photo-studio run id/);
+
+  const legacy = JSON.parse(JSON.stringify(createSession(level)));
+  const migrated = restorePhotoCompletionFlags(normalizeSession(legacy).session, legacy);
+  const migratedStored = JSON.parse(JSON.stringify(migrated));
+  const migratedAgain = restorePhotoCompletionFlags(normalizeSession(migratedStored).session, migratedStored);
+  assert.match(migrated.runId, /^[a-z0-9][a-z0-9._-]{7,95}$/i);
+  assert.equal(migratedAgain.runId, migrated.runId, "legacy sessions receive one persistent migration id");
+});
+
+test("a host throw retries the identical photo event without repeating local or shared settlement", () => {
+  const level = LEVELS[0];
+  const runId = "photo-retry-0000001";
+  let state = startPhotoRun(createSession(level), { runId });
   state.grid = solvedGrid(level);
   state.moves = level.par;
   state.completed = true;
@@ -432,18 +480,34 @@ test("a thrown shared reward retries after restore without repeating photo colle
   assert.equal(local.recorded, true);
   assert.equal(recorderCalls, 1);
   assert.equal(local.collection.completed[level.id], true);
+  assert.equal(state.completionOutbox.length, 1);
+  const stablePayload = photoCompletionPayload(state);
+  assert.deepEqual(state.completionOutbox, [stablePayload]);
+  assert.equal(stablePayload.runId, runId);
+  assert.equal(stablePayload.eventId, `mist-photo-studio:${runId}:complete`);
 
-  const failed = confirmPhotoCompletion(state, () => {
-    throw new Error("shared API unavailable");
+  let sharedProgress = createProgress();
+  let xpAfterFirstDelivery = 0;
+  const failed = confirmPhotoCompletion(state, (payload) => {
+    assert.deepEqual(payload, stablePayload);
+    const accepted = awardCompletion(sharedProgress, { ...payload, realm: "mist-photo-studio" }, new Date("2026-08-31T08:00:01Z"));
+    sharedProgress = accepted.progress;
+    xpAfterFirstDelivery = sharedProgress.xp;
+    throw new Error("bridge lost the acknowledgement after host settlement");
   });
   assert.equal(failed.succeeded, false);
   assert.equal(failed.state.completionReported, false);
+  assert.deepEqual(failed.state.completionOutbox, [stablePayload]);
+  assert.equal(sharedProgress.realms["mist-photo-studio"].clears[stablePayload.levelId].wins, 1);
 
   const stored = JSON.parse(JSON.stringify({ ...failed.state, version: SESSION_VERSION }));
   const normalized = normalizeSession(stored);
   const restored = restorePhotoCompletionFlags(normalized.session, stored);
   assert.equal(restored.completionRecorded, true);
   assert.equal(restored.completionReported, false);
+  assert.equal(restored.runId, runId);
+  assert.equal(restored.completionEventId, stablePayload.eventId);
+  assert.deepEqual(restored.completionOutbox, [stablePayload]);
   const duplicateLocal = recordPhotoCompletionOnce(restored, local.collection, {
     levelId: level.id,
     moves: restored.moves,
@@ -452,13 +516,50 @@ test("a thrown shared reward retries after restore without repeating photo colle
   }, recorder);
   assert.equal(duplicateLocal.recorded, false);
   assert.equal(recorderCalls, 1);
+  assert.deepEqual(duplicateLocal.state.completionOutbox, [stablePayload], "same-run settlement cannot enqueue twice");
 
-  const queued = [];
-  const retried = confirmPhotoCompletion(duplicateLocal.state, () => queued.push(level.id));
+  const deliveries = [];
+  const retried = confirmPhotoCompletion(duplicateLocal.state, (payload) => {
+    deliveries.push(payload.eventId);
+    const replay = awardCompletion(sharedProgress, { ...payload, realm: "mist-photo-studio" }, new Date("2026-08-31T08:00:02Z"));
+    assert.equal(replay.duplicateEvent, true, "the V2.5 host contract deduplicates repeated stable events");
+    sharedProgress = replay.progress;
+    return replay;
+  });
   assert.equal(retried.succeeded, true);
   assert.equal(retried.state.completionReported, true);
-  assert.deepEqual(queued, [level.id]);
+  assert.deepEqual(retried.state.completionOutbox, []);
+  assert.deepEqual(deliveries, [stablePayload.eventId]);
   assert.equal(recorderCalls, 1);
+  assert.equal(sharedProgress.xp, xpAfterFirstDelivery);
+  assert.equal(sharedProgress.realms["mist-photo-studio"].clears[stablePayload.levelId].wins, 1);
+
+  const replayAfterAck = confirmPhotoCompletion(retried.state, () => assert.fail("an acknowledged outbox must stay empty"));
+  assert.equal(replayAfterAck.attempted, false);
+
+  const nextRun = startPhotoRun(createSession(level), {
+    runId: "photo-retry-0000002",
+    completionOutbox: failed.state.completionOutbox,
+  });
+  const nextStored = JSON.parse(JSON.stringify(nextRun));
+  const pendingAcrossNewRun = restorePhotoCompletionFlags(normalizeSession(nextStored).session, nextStored);
+  assert.deepEqual(pendingAcrossNewRun.completionOutbox, [stablePayload], "an old pending event survives a new run");
+  const oldDelivery = confirmPhotoCompletion(pendingAcrossNewRun, () => ({ duplicateEvent: true }));
+  assert.equal(oldDelivery.state.completionOutbox.length, 0);
+  assert.equal(oldDelivery.state.completionReported, false, "delivering an older outbox item cannot mark the new run complete");
+});
+
+test("every pending photo completion survives beyond the former queue capacity", () => {
+  const level = LEVELS[0];
+  const events = Array.from({ length: 130 }, (_, index) => photoCompletionPayload({
+    ...createSession(level),
+    runId: `photo-pending-${String(index).padStart(4, "0")}`,
+    moves: level.par + index,
+  }));
+  const normalized = normalizePhotoCompletionOutbox([...events, events[0]]);
+  assert.equal(normalized.length, events.length);
+  assert.equal(normalized[0].eventId, events[0].eventId);
+  assert.equal(normalized.at(-1).eventId, events.at(-1).eventId);
 });
 
 test("the shared tutorial exposes three distinct authentic nonogram states", () => {
@@ -510,9 +611,16 @@ test("page wiring is offline, accessible, reward-safe, responsive, and visually 
 
   assert.match(app, /new AudioContextClass\(\)/);
   assert.match(app, /window\.RealmArcade\?\.complete/);
-  assert.match(app, /window\.__realmCompletionQueue/);
-  assert.match(app, /if \(state\.completed && !state\.completionReported\)/);
+  assert.doesNotMatch(app, /window\.__realmCompletionQueue/, "the persistent outbox is the sole delivery channel");
+  assert.match(app, /if \(state\.completed && !state\.completionRecorded\)/);
+  assert.match(app, /function flushPhotoCompletionOutbox\(\)/);
   assert.match(app, /confirmPhotoCompletion\(state, reportRealmCompletion\)/);
+  assert.match(app, /if \(!saveLocalState\(\)\)/, "outbox must be persisted before host delivery");
+  assert.ok(
+    app.indexOf("const collectionSaved = storageWrite(COLLECTION_KEY")
+      < app.indexOf("storageWrite(SESSION_KEY, JSON.stringify(sessionForStorage()))"),
+    "the local album must persist before the session records its outbox marker",
+  );
   assert.doesNotMatch(app, /if \(state\.completed\) state\.completionReported = true/);
   assert.match(app, /if \(event\.altKey\) return/);
   assert.match(app, /window\.addEventListener\("storage"/);

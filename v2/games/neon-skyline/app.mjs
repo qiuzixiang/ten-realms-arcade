@@ -15,11 +15,13 @@ import {
   cityProgress,
   confirmCompletionReport,
   createSession,
+  enqueueSkylineCompletion,
   mergeStats,
   recordCompletion,
   restartSession,
   restoreSave,
   serializeSave,
+  stageCompletion,
   undoSession,
 } from "./session.mjs";
 
@@ -636,8 +638,9 @@ function loadLevel(nextLevel, message = "新街区已接入") {
   closeDialog(elements.victoryDialog, false);
   const preferences = { ...session.preferences };
   const stats = session.stats;
+  const completionOutbox = session.completionOutbox;
   level = nextLevel;
-  session = createSession(level, { preferences, stats, levels: LEVELS });
+  session = createSession(level, { preferences, stats, levels: LEVELS, completionOutbox });
   selectedKey = keyOf(0, 0);
   newestTowerKey = null;
   buildBoard();
@@ -675,16 +678,22 @@ function currentUnlockedIds() {
   return cityProgress(session.stats, LEVELS).landmarks.filter((item) => item.unlocked).map((item) => item.id);
 }
 
-function queueRealmReward() {
-  const difficulty = DIFFICULTIES.find((item) => item.id === level.difficulty);
-  const reward = {
-    levelId: level.id,
-    tier: difficulty?.tier ?? 1,
-    moves: session.moves,
-    par: level.par,
-  };
-  if (window.RealmArcade?.complete) window.RealmArcade.complete(reward);
-  else (window.__realmCompletionQueue ??= []).push(reward);
+function queueRealmReward(reward) {
+  if (window.RealmArcade?.complete) return window.RealmArcade.complete(reward);
+  const queue = Array.isArray(window.__realmCompletionQueue)
+    ? window.__realmCompletionQueue
+    : (window.__realmCompletionQueue = []);
+  enqueueSkylineCompletion(queue, reward);
+  return false;
+}
+
+function retryPendingRealmReward() {
+  if (session.completionOutbox.length === 0) return;
+  session = stageCompletion(level, session);
+  writeSave("共享进度待同步");
+  const realm = confirmCompletionReport(session, queueRealmReward);
+  session = realm.session;
+  writeSave(realm.succeeded ? "共享进度已同步" : "共享进度待同步");
 }
 
 function openVictoryWhenAvailable() {
@@ -708,6 +717,9 @@ function finishCity() {
   session = recordCompletion(level, session);
   const after = currentUnlockedIds();
   const newLandmarks = after.filter((id) => !before.has(id));
+  // Persist local settlement and the stable outbox before calling the host.
+  // A host that writes and then throws will see the same eventId on retry.
+  writeSave("通关与待同步记录已留档");
   const realm = confirmCompletionReport(session, queueRealmReward);
   session = realm.session;
   writeSave("通关记录已留档");
@@ -832,6 +844,7 @@ function bindEvents() {
     if (event.target === elements.board) cellElements.get(selectedKey)?.focus({ preventScroll: true });
   });
   window.addEventListener("pagehide", () => writeSave("规划已留档"));
+  window.addEventListener("realm:ready", retryPendingRealmReward);
   window.addEventListener("storage", (event) => {
     if (event.key !== STORAGE_KEY || !event.newValue) return;
     try {
@@ -859,6 +872,7 @@ function initialize() {
     writeSave("已建立安全蓝图");
   } else writeSave();
   if (session.completed && !session.completionReported) finishCity();
+  else if (session.completionOutbox.length > 0) retryPendingRealmReward();
 
   window.neonSkyline = Object.freeze({
     getState: () => ({

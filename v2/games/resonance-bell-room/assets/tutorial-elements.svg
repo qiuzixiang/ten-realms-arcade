@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 184" preserveAspectRatio="xMidYMid meet" role="img" aria-label="初醒九响真实初始状态：第1、第2、第5枚钟点亮，其余熄灭，每枚钟有独立九点影响纹" data-game-id="resonance-bell-room" data-level-id="first-awakening" data-tutorial-version="2" data-tutorial-scene="elements" data-state="initial" data-board-size="3x3" data-initial-bits="110010000" data-template-signatures="0,3,4;1,2,4;2,4,5;0,1,3,4;1,2,3,4,5;2,4,5,7,8;0,3,4,6,7;4,5,6,7,8;4,6,7,8" data-solver-minimum="4">
+  <title>万象共振钟房：初醒九响真实初始钟阵</title>
+  <desc>九枚游戏内编钟中第1、第2、第5枚已亮。每枚钟右下角九点图按真实关卡模板标出敲击时会被翻转的钟位。</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#111321"/><stop offset=".62" stop-color="#1a1322"/><stop offset="1" stop-color="#0a1520"/></linearGradient>
+    <radialGradient id="bronze" cx="32%" cy="22%" r="80%"><stop stop-color="#fff2ad"/><stop offset=".34" stop-color="#e0a144"/><stop offset="1" stop-color="#67351e"/></radialGradient>
+    <linearGradient id="sleep" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#45434a"/><stop offset="1" stop-color="#1b1c24"/></linearGradient>
+    <filter id="glow" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <g id="bell">
+      <rect width="42" height="42" rx="8" fill="#10111a" stroke="#4f493f"/>
+      <path class="body" d="M8 28c2-3 3-9 3-14 0-7 5-10 10-10s10 3 10 10c0 5 1 11 3 14H8Z" stroke="currentColor" stroke-width="1"/>
+      <path d="M7 29h28" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <circle cx="21" cy="32" r="2.5" fill="currentColor"/>
+    </g>
+  </defs>
+  <style>
+    .lit{color:#fff0a5}.lit .body{fill:url(#bronze)}.dark{color:#77736c}.dark .body{fill:url(#sleep)}
+    .mini circle{fill:#5e5b58}.mini .a{fill:#ffe58a;filter:url(#glow)}.label{font:800 6px system-ui,sans-serif;fill:currentColor}.copy{font-family:system-ui,"PingFang SC",sans-serif}
+  </style>
+  <rect width="320" height="184" rx="16" fill="url(#bg)"/>
+  <path d="M-22 20C31-10 72 27 118 8s85-7 120 14 62 12 99-9" fill="none" stroke="#e2a84f" stroke-opacity=".2" stroke-width="9"/>
+  <g class="copy"><text x="16" y="18" fill="#fff8e8" font-size="11" font-weight="850">01 · 初醒九响真实初始盘</text></g>
+
+  <g transform="translate(16 28)" class="lit" data-cell-index="0" data-light="1" data-template="0,3,4"><use href="#bell"/><text class="label" x="4" y="8">01</text><g class="mini" transform="translate(26 23)"><circle class="a" cx="1" cy="1" r="1"/><circle cx="5" cy="1" r="1"/><circle cx="9" cy="1" r="1"/><circle class="a" cx="1" cy="5" r="1"/><circle class="a" cx="5" cy="5" r="1"/><circle cx="9" cy="5" r="1"/><circle cx="1" cy="9" r="1"/><circle cx="5" cy="9" r="1"/><circle cx="9" cy="9" r="1"/></g></g>
+  <g transform="translate(62 28)" class="lit" data-cell-index="1" data-light="1" data-template="1,2,4"><use href="#bell"/><text class="label" x="4" y="8">02</text><g class="mini" transform="translate(26 23)"><circle cx="1" cy="1" r="1"/><circle class="a" cx="5" cy="1" r="1"/><circle class="a" cx="9" cy="1" r="1"/><circle cx="1" cy="5" r="1"/><circle class="a" cx="5" cy="5" r="1"/><circle cx="9" cy="5" r="1"/><circle cx="1" cy="9" r="1"/><circle cx="5" cy="9" r="1"/><circle cx="9" cy="9" r="1"/></g></g>
+  <g transform="translate(108 28)" class="dark" data-cell-index="2" data-light="0" data-template="2,4,5"><use href="#bell"/><text class="label" x="4" y="8">03</text><g class="mini" transform="translate(26 23)"><circle cx="1" cy="1" r="1"/><circle cx="5" cy="1" r="1"/><circle class="a" cx="9" cy="1" r="1"/><circle cx="1" cy="5" r="1"/><circle class="a" cx="5" cy="5" r="1"/><circle class="a" cx="9" cy="5" r="1"/><circle cx="1" cy="9" r="1"/><circle cx="5" cy="9" r="1"/><circle cx="9" cy="9" r="1"/></g></g>
+  <g transform="translate(16 74)" class="dark" data-cell-index="3" data-light="0" data-template="0,1,3,4"><use href="#bell"/><text class="label" x="4" y="8">04</text><g class="mini" transform="translate(26 23)"><circle class="a" cx="1" cy="1" r="1"/><circle class="a" cx="5" cy="1" r="1"/><circle cx="9" cy="1" r="1"/><circle class="a" cx="1" cy="5" r="1"/><circle class="a" cx="5" cy="5" r="1"/><circle cx="9" cy="5" r="1"/><circle cx="1" cy="9" r="1"/><circle cx="5" cy="9" r="1"/><circle cx="9" cy="9" r="1"/></g></g>
+  <g transform="translate(62 74)" class="lit" data-cell-index="4" data-light="1" data-template="1,2,3,4,5"><use href="#bell"/><text class="label" x="4" y="8">05</text><g class="mini" transform="translate(26 23)"><circle cx="1" cy="1" r="1"/><circle class="a" cx="5" cy="1" r="1"/><circle class="a" cx="9" cy="1" r="1"/><circle class="a" cx="1" cy="5" r="1"/><circle class="a" cx="5" cy="5" r="1"/><circle class="a" cx="9" cy="5" r="1"/><circle cx="1" cy="9" r="1"/><circle cx="5" cy="9" r="1"/><circle cx="9" cy="9" r="1"/></g></g>
+  <g transform="translate(108 74)" class="dark" data-cell-index="5" data-light="0" data-template="2,4,5,7,8"><use href="#bell"/><text class="label" x="4" y="8">06</text><g class="mini" transform="translate(26 23)"><circle cx="1" cy="1" r="1"/><circle cx="5" cy="1" r="1"/><circle class="a" cx="9" cy="1" r="1"/><circle cx="1" cy="5" r="1"/><circle class="a" cx="5" cy="5" r="1"/><circle class="a" cx="9" cy="5" r="1"/><circle cx="1" cy="9" r="1"/><circle class="a" cx="5" cy="9" r="1"/><circle class="a" cx="9" cy="9" r="1"/></g></g>
+  <g transform="translate(16 120)" class="dark" data-cell-index="6" data-light="0" data-template="0,3,4,6,7"><use href="#bell"/><text class="label" x="4" y="8">07</text><g class="mini" transform="translate(26 23)"><circle class="a" cx="1" cy="1" r="1"/><circle cx="5" cy="1" r="1"/><circle cx="9" cy="1" r="1"/><circle class="a" cx="1" cy="5" r="1"/><circle class="a" cx="5" cy="5" r="1"/><circle cx="9" cy="5" r="1"/><circle class="a" cx="1" cy="9" r="1"/><circle class="a" cx="5" cy="9" r="1"/><circle cx="9" cy="9" r="1"/></g></g>
+  <g transform="translate(62 120)" class="dark" data-cell-index="7" data-light="0" data-template="4,5,6,7,8"><use href="#bell"/><text class="label" x="4" y="8">08</text><g class="mini" transform="translate(26 23)"><circle cx="1" cy="1" r="1"/><circle cx="5" cy="1" r="1"/><circle cx="9" cy="1" r="1"/><circle cx="1" cy="5" r="1"/><circle class="a" cx="5" cy="5" r="1"/><circle class="a" cx="9" cy="5" r="1"/><circle class="a" cx="1" cy="9" r="1"/><circle class="a" cx="5" cy="9" r="1"/><circle class="a" cx="9" cy="9" r="1"/></g></g>
+  <g transform="translate(108 120)" class="dark" data-cell-index="8" data-light="0" data-template="4,6,7,8"><use href="#bell"/><text class="label" x="4" y="8">09</text><g class="mini" transform="translate(26 23)"><circle cx="1" cy="1" r="1"/><circle cx="5" cy="1" r="1"/><circle cx="9" cy="1" r="1"/><circle cx="1" cy="5" r="1"/><circle class="a" cx="5" cy="5" r="1"/><circle cx="9" cy="5" r="1"/><circle class="a" cx="1" cy="9" r="1"/><circle class="a" cx="5" cy="9" r="1"/><circle class="a" cx="9" cy="9" r="1"/></g></g>
+
+  <g class="copy">
+    <rect x="166" y="30" width="138" height="136" rx="14" fill="#0d0f19" stroke="#544732"/>
+    <text x="180" y="49" fill="#f4c56a" font-size="9" font-weight="850">读钟面的两层信息</text>
+    <g class="lit" transform="translate(180 60)"><path class="body" d="M0 28c2-3 3-9 3-14 0-7 5-10 10-10s10 3 10 10c0 5 1 11 3 14H0Z" fill="url(#bronze)" stroke="currentColor"/><path d="M-1 29h28" stroke="currentColor" stroke-width="2"/><circle cx="13" cy="32" r="2.5" fill="currentColor"/></g>
+    <text x="218" y="76" fill="#fff8e8" font-size="10" font-weight="800">金色发光 = 已亮</text><text x="218" y="90" fill="#9d9588" font-size="7">暗色金属 = 仍熄灭</text>
+    <rect x="180" y="105" width="34" height="34" rx="7" fill="#171821" stroke="#65583f"/>
+    <g transform="translate(187 112)" fill="#57534d"><circle cx="2" cy="2" r="2"/><circle cx="10" cy="2" r="2"/><circle cx="18" cy="2" r="2"/><circle cx="2" cy="10" r="2"/><circle cx="10" cy="10" r="2"/><circle cx="18" cy="10" r="2"/><circle cx="2" cy="18" r="2"/><circle cx="10" cy="18" r="2"/><circle cx="18" cy="18" r="2"/><g fill="#ffe58a"><circle cx="10" cy="2" r="2"/><circle cx="18" cy="2" r="2"/><circle cx="2" cy="10" r="2"/><circle cx="10" cy="10" r="2"/><circle cx="18" cy="10" r="2"/></g></g>
+    <text x="224" y="118" fill="#fff8e8" font-size="9" font-weight="800">九点影响纹</text><text x="224" y="132" fill="#9d9588" font-size="7">亮点 = 会随敲击翻转</text>
+    <text x="180" y="154" fill="#79e0bd" font-size="8" font-weight="800">每枚钟的纹样都要单独读</text>
+  </g>
+</svg>

@@ -49,6 +49,9 @@ export function createCompletionPayload(details, now = new Date()) {
     ? rawPuzzleId
     : `v${GENERATOR_VERSION}:${rawPuzzleId}`;
   const attemptId = normalizeAttemptId(details.attemptId);
+  if (!Array.isArray(details.timeline) || !details.timeline.every(Number.isInteger)) {
+    throw new TypeError("A replayable completion timeline is required.");
+  }
   return Object.freeze({
     version: 1,
     gameId: GAME_ID,
@@ -69,6 +72,7 @@ export function createCompletionPayload(details, now = new Date()) {
     efficient: details.efficient === true,
     wasteFree: details.wasteFree === true,
     maxCleanStreak: Number(details.maxCleanStreak) || 0,
+    timeline: Object.freeze([...details.timeline]),
     rewardClaims: Object.freeze((details.claims ?? []).map((claim) => Object.freeze({ ...claim }))),
     completedAt,
   });
@@ -76,7 +80,9 @@ export function createCompletionPayload(details, now = new Date()) {
 
 /**
  * Host contract: prefer the v2 API, then the compatible RealmArcade API.
- * Without either, queue once for RealmArcade and emit the v2 DOM event.
+ * Without either, queue once for RealmArcade and emit the v2 DOM event. The
+ * in-memory queue is only a hint for a late host bootstrap, never an
+ * acknowledgement: the game's persisted outbox remains authoritative.
  */
 export function emitCompletion(payload, host = globalThis.window) {
   if (!host) return "unavailable";
@@ -108,10 +114,10 @@ export function emitCompletion(payload, host = globalThis.window) {
       try {
         host.dispatchEvent(new host.CustomEvent(COMPLETE_EVENT, { detail: payload }));
       } catch {
-        // Queue insertion is already a reliable handoff even if event dispatch fails.
+        // The durable game outbox remains authoritative if observation fails.
       }
     }
-    return "event";
+    return "queue";
   } catch {
     return "unavailable";
   }
@@ -119,7 +125,8 @@ export function emitCompletion(payload, host = globalThis.window) {
 
 /**
  * Drain persisted reports in insertion order. The caller owns persistence;
- * entries remain pending when no adapter or reliable in-page queue exists.
+ * entries remain pending until a host API call returns without throwing. A
+ * compatibility queue or DOM event alone must never settle durable delivery.
  */
 export function flushCompletionReports(records, host = globalThis.window) {
   const delivered = [];
@@ -135,9 +142,9 @@ export function flushCompletionReports(records, host = globalThis.window) {
   let blocked = false;
   for (const [completionId, payload] of Object.entries(records.pendingCompletions)) {
     const delivery = emitCompletion(payload, host);
-    if (delivery === "unavailable") {
+    if (delivery !== "v2-api" && delivery !== "realm-api") {
       blocked = true;
-      break;
+      continue;
     }
     delete records.pendingCompletions[completionId];
     records.completionReports[completionId] = payload.completedAt;

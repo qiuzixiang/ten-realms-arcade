@@ -48,8 +48,9 @@ export function readJSON(storage, key) {
 }
 
 export function writeJSON(storage, key, value) {
+  if (typeof storage?.setItem !== "function") return false;
   try {
-    storage?.setItem?.(key, JSON.stringify(value));
+    storage.setItem(key, JSON.stringify(value));
     return true;
   } catch {
     return false;

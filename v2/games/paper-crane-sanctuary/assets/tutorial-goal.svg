@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 420" role="img" aria-labelledby="title desc" data-tutorial-version="1" data-game-id="paper-crane-sanctuary" data-level-id="dawn-perch-101" data-state="complete" data-cranes="1" data-moves="7" data-complete="true" data-final-board="#...#|##..#|##P..|#...#|#####">
+  <title id="title">纸鹤归巢台第一关真实完成状态</title>
+  <desc id="desc">回放七步合法跳跃后，庭院任意位置只剩一只纸鹤，规则引擎判定通关。</desc>
+  <metadata>{"levelId":"dawn-perch-101","state":"complete","cranes":1,"moves":7,"complete":true,"finalBoard":["#...#","##..#","##P..","#...#","#####"]}</metadata>
+  <defs>
+    <radialGradient id="bg"><stop stop-color="#7a3d69"/><stop offset="1" stop-color="#120b28"/></radialGradient>
+    <filter id="glow"><feGaussianBlur stdDeviation="8" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <g id="p"><rect width="48" height="48" rx="12" fill="#fff4dd" opacity=".12" stroke="#eac98a" stroke-width="2"/><circle cx="24" cy="25" r="10" fill="none" stroke="#eac98a" stroke-width="2.5" stroke-dasharray="3 3"/></g>
+    <g id="c"><use href="#p"/><path d="M9 28 24 13l5 12 12-8-9 15-8 5-7-7z" fill="#fff9e9" stroke="#7f496f" stroke-width="1.8"/><path d="m32 20 9-11-2 13z" fill="#fff9e9" stroke="#7f496f"/></g>
+  </defs>
+  <rect width="720" height="420" rx="28" fill="url(#bg)"/>
+  <circle cx="360" cy="122" r="78" fill="#f6d89a" opacity=".18" filter="url(#glow)"/>
+  <path d="M318 50q42 28 84 0v143q-42 35-84 0z" fill="none" stroke="#ffd992" stroke-width="5" opacity=".72"/>
+  <g transform="translate(222 76)">
+    <use href="#p" x="52"/><use href="#p" x="104"/><use href="#p" x="156"/>
+    <use href="#p" x="104" y="52"/><use href="#p" x="156" y="52"/>
+    <use href="#c" x="104" y="104" filter="url(#glow)"/><use href="#p" x="156" y="104"/><use href="#p" x="208" y="104"/>
+    <use href="#p" x="52" y="156"/><use href="#p" x="104" y="156"/><use href="#p" x="156" y="156"/>
+  </g>
+  <g font-family="system-ui,sans-serif" text-anchor="middle"><text x="360" y="322" fill="#fff7df" font-size="31" font-weight="800">任意位置只剩一鹤，即为归巢</text><text x="360" y="353" fill="#e7cfe2" font-size="16">真实回放：8 只纸鹤 · 7 次跳跃 · 最终 1 只</text><rect x="260" y="370" width="200" height="34" rx="17" fill="#8ff2d1" opacity=".18"/><text x="360" y="393" fill="#aef7de" font-size="15" font-weight="700">RULE ENGINE · COMPLETE</text></g>
+</svg>

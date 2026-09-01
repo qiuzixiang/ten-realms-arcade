@@ -817,6 +817,40 @@ test("房型图鉴、一次成房、无返工与星级奖励全部按稳定 ID �
   equal(loadRecords(persisted), second.records, "settledRuns 必须随长期记录完整往返");
 });
 
+test("结算台账超过旧上限后仍永久保留最早 runId 并阻止重复奖励", () => {
+  const level = LEVELS[0];
+  const summary = computeRunSummary(level, solveIntoState(level));
+  let records = defaultRecords();
+  for (let index = 0; index < 205; index += 1) {
+    const result = applyCompletionToRecords(records, {
+      level,
+      runId: `run-ledger-${String(index).padStart(3, "0")}`,
+      summary,
+      elapsedMs: 10_000 + index,
+      completedAt: new Date(Date.UTC(2026, 7, 31, 8, 0, index)).toISOString(),
+    });
+    strictEqual(result.alreadySettled, false);
+    records = result.records;
+  }
+  strictEqual(Object.keys(records.settledRuns).length, 205);
+  ok(records.settledRuns["run-ledger-000"], "超过旧的 200 条阈值后最早 runId 仍须保留");
+
+  const persisted = new MemoryStorage();
+  ok(saveRecords(persisted, records));
+  const restored = loadRecords(persisted);
+  strictEqual(Object.keys(restored.settledRuns).length, 205);
+  const replay = applyCompletionToRecords(restored, {
+    level,
+    runId: "run-ledger-000",
+    summary,
+    elapsedMs: 1,
+    completedAt: "2027-01-01T00:00:00.000Z",
+  });
+  strictEqual(replay.alreadySettled, true);
+  strictEqual(replay.records.completionCount, 205, "旧 runId 重放不得再次累计完成次数");
+  equal(replay.records, restored, "旧 runId 重放不得改变奖励或统计");
+});
+
 test("本地结算拒绝缺少 runId、非法摘要、时长与时间戳", () => {
   const level = LEVELS[0];
   const summary = computeRunSummary(level, solveIntoState(level));
@@ -945,7 +979,7 @@ test("通关同时接线 RealmArcade.complete 与 DOM CustomEvent", () => {
   strictEqual(events.length, 1, "去重事件也不得再次镜像派发");
 });
 
-test("共享 complete API 抛错时回落有界队列，仍只保留与镜像一次", () => {
+test("共享 complete API 抛错时回落持久队列，仍只保留与镜像一次", () => {
   const level = LEVELS[0];
   const summary = computeRunSummary(level, solveIntoState(level));
   class FakeCustomEvent {
@@ -980,7 +1014,7 @@ test("共享 complete API 抛错时回落有界队列，仍只保留与镜像一
   }
 });
 
-test("共享 API 尚未加载时完成 payload 进入标准队列且不会无界增长", () => {
+test("共享 API 尚未加载时完成 payload 进入持久队列且不遗忘旧事件", () => {
   const level = LEVELS[0];
   const summary = computeRunSummary(level, solveIntoState(level));
   const target = {};
@@ -996,8 +1030,8 @@ test("共享 API 尚未加载时完成 payload 进入标准队列且不会无界
     strictEqual(publishCompletion(target, detail), true, "入队已安全保留完成事件");
   }
   strictEqual(COMPLETION_QUEUE, "__realmCompletionQueue");
-  strictEqual(target[COMPLETION_QUEUE].length, 100);
-  strictEqual(target[COMPLETION_QUEUE][0].moves, summary.moves + 5);
+  strictEqual(target[COMPLETION_QUEUE].length, 105);
+  strictEqual(target[COMPLETION_QUEUE][0].moves, summary.moves);
   strictEqual(target[COMPLETION_QUEUE].at(-1).moves, summary.moves + 104);
   strictEqual(getCompletionTransport(target, target[COMPLETION_QUEUE].at(-1).eventId), "queue");
   strictEqual(publishCompletion(null, target[COMPLETION_QUEUE][0]), false);
@@ -1034,7 +1068,8 @@ test("预置队列已含 eventId 时不重复调 API、入队或派发镜像事�
   strictEqual(getCompletionTransport(target, detail.eventId), "queue");
   strictEqual(apiCalls, 0);
   strictEqual(eventCalls, 0);
-  strictEqual(target[COMPLETION_QUEUE].length, 100);
+  strictEqual(target[COMPLETION_QUEUE].length, 106);
+  strictEqual(target[COMPLETION_QUEUE][0], earlier[0], "超过旧阈值后最早事件仍须保留");
   strictEqual(target[COMPLETION_QUEUE].at(-1), detail);
   strictEqual(target[COMPLETION_QUEUE].filter((item) => item.eventId === detail.eventId).length, 1);
 });
@@ -1481,6 +1516,7 @@ test("首次教程自动打开、可跳过与重看，三张卡片使用三个�
     strictEqual((app.match(new RegExp(file.replace(".", "\\."), "g")) ?? []).length, 1, `${file} 应恰好是一张卡`);
   }
   match(app, /elements\.tutorialImage\.src = card\.image/);
+  match(app, /elements\.tutorialDialog\.scrollTop = 0/, "换卡必须回到教程顶部");
   match(app, /elements\.tutorialSkip\.addEventListener\("click"/);
   match(app, /elements\.tutorialButton\.addEventListener\("click"/);
   match(app, /if \(!tutorialSeen\(storage\)\)/);

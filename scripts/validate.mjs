@@ -19,8 +19,51 @@ const realms = [
   ["灵龙巡脉", "spirit-dragon"],
   ["镜影大剧院", "mirror-theatre"],
 ];
+const expectedV2Games = [
+  ["云端露营季", "cloud-camp"],
+  ["雾都照相馆", "mist-photo-studio"],
+  ["神秘调香所", "mystic-perfumery"],
+  ["星云孵化场", "nebula-hatchery"],
+  ["霓虹天际线", "neon-skyline"],
+  ["极地蒸汽列车", "polar-railway"],
+  ["四季染坊", "season-dyehouse"],
+  ["妖怪旅店", "yokai-inn"],
+  ["极光磁场实验室", "aurora-magnet-lab"],
+  ["梦境旅舍", "dream-hotel"],
+  ["时砂邮路局", "time-sand-post"],
+  ["熔心泄压站", "molten-core-vent"],
+  ["纸鹤归巢台", "paper-crane-sanctuary"],
+  ["万象共振钟房", "resonance-bell-room"],
+  ["四灵栖境署", "four-spirit-habitat"],
+];
 const v2Root = path.join(root, "v2");
-const expectedV2Slugs = Object.keys(REALM_CONFIGS).sort();
+const expectedV2Slugs = expectedV2Games.map(([, slug]) => slug);
+const expectedV2SlugsSorted = [...expectedV2Slugs].sort();
+const configuredV2Slugs = Object.keys(REALM_CONFIGS).sort();
+const nativeTutorialAssets = new Map([
+  ["polar-railway", ["tutorial-elements.svg", "tutorial-operation.svg", "tutorial-goal.svg"]],
+  ["season-dyehouse", ["tutorial-elements.svg", "tutorial-action.svg", "tutorial-goal.svg"]],
+  ["yokai-inn", ["tutorial-elements.svg", "tutorial-action.svg", "tutorial-goal.svg"]],
+  ["aurora-magnet-lab", ["tutorial-elements.svg", "tutorial-operation.svg", "tutorial-goal.svg"]],
+  ["dream-hotel", ["tutorial-elements.svg", "tutorial-action.svg", "tutorial-goal.svg"]],
+  ["time-sand-post", ["tutorial-elements.svg", "tutorial-action.svg", "tutorial-goal.svg"]],
+  ["molten-core-vent", ["tutorial-elements.svg", "tutorial-operation.svg", "tutorial-goal.svg"]],
+  ["paper-crane-sanctuary", ["tutorial-elements.svg", "tutorial-operation.svg", "tutorial-goal.svg"]],
+  ["resonance-bell-room", ["tutorial-elements.svg", "tutorial-operation.svg", "tutorial-goal.svg"]],
+  ["four-spirit-habitat", ["tutorial-elements.svg", "tutorial-action.svg", "tutorial-goal.svg"]],
+]);
+const nativeTutorialGoalMarkers = new Map([
+  ["aurora-magnet-lab", ['data-level-id="ice-window"', 'data-state="solved"', 'data-solution="NNNNRNFF"']],
+  ["polar-railway", ['data-level-id="whiteout-5a"', 'data-state="solved"', 'data-route="0,0;0,1;1,1']],
+  ["dream-hotel", ['data-level-id="lullaby-lobby"', 'data-state="solved"', 'data-board-size="5x5"']],
+  ["season-dyehouse", ['data-preset-id="12x12-easy"', 'data-controlled="144"', 'data-moves="20"']],
+  ["yokai-inn", ['data-puzzle-id="yokai-inn:g1:o3:u:do80yl:a10"', 'data-tutorial-state="goal"', 'data-board-size="5x4"']],
+  ["time-sand-post", ['data-level-id="chronicle-dawn"', 'data-state="solved"', 'data-link-count="15"', 'data-path="8,12,0,4,14,15,13,1,5,9,10,11,6,3,2,7"']],
+  ["molten-core-vent", ['data-level-id="ember-gate-1101"', 'data-state="complete"', 'data-complete="true"', 'data-filled="16"', 'data-satisfied-clues="17"', 'data-cycle="false"']],
+  ["paper-crane-sanctuary", ['data-level-id="dawn-perch-101"', 'data-state="complete"', 'data-cranes="1"', 'data-complete="true"']],
+  ["resonance-bell-room", ['data-level-id="first-awakening"', 'data-state="solved"', 'data-final-bits="111111111"', 'data-minimum-proven="true"']],
+  ["four-spirit-habitat", ['data-level-id="spirit-spring"', 'data-state="solved"', 'data-solution="0,3,1,0,2,0,3,3,2"']],
+]);
 
 async function walk(directory) {
   for (const entry of await readdir(directory, { withFileTypes: true })) {
@@ -42,6 +85,23 @@ function fail(message) {
 function readAttribute(tag, name) {
   const match = tag.match(new RegExp(`\\b${name}\\s*=\\s*(["'])([^"']*)\\1`, "i"));
   return match?.[2];
+}
+
+function webpDimensions(buffer) {
+  if (!Buffer.isBuffer(buffer) || buffer.length < 30
+      || buffer.toString("ascii", 0, 4) !== "RIFF" || buffer.toString("ascii", 8, 12) !== "WEBP") return null;
+  const chunk = buffer.toString("ascii", 12, 16);
+  if (chunk === "VP8X" && buffer.length >= 30) {
+    return { width: buffer.readUIntLE(24, 3) + 1, height: buffer.readUIntLE(27, 3) + 1 };
+  }
+  if (chunk === "VP8 " && buffer.length >= 30 && buffer.toString("hex", 23, 26) === "9d012a") {
+    return { width: buffer.readUInt16LE(26) & 0x3fff, height: buffer.readUInt16LE(28) & 0x3fff };
+  }
+  if (chunk === "VP8L" && buffer.length >= 25 && buffer[20] === 0x2f) {
+    const bits = buffer.readUInt32LE(21);
+    return { width: (bits & 0x3fff) + 1, height: ((bits >>> 14) & 0x3fff) + 1 };
+  }
+  return null;
 }
 
 for (const file of files.filter((item) => item.endsWith(".js") || item.endsWith(".mjs"))) {
@@ -93,25 +153,50 @@ for (const icon of manifest.icons ?? []) await validateReference(path.join(root,
 const v2ManifestPath = path.join(v2Root, "manifest.webmanifest");
 const v2Manifest = JSON.parse(await readFile(v2ManifestPath, "utf8"));
 for (const icon of v2Manifest.icons ?? []) await validateReference(v2ManifestPath, icon.src);
+const packageMetadata = JSON.parse(await readFile(path.join(root, "package.json"), "utf8"));
+if (packageMetadata.version !== "2.5.0") fail("package.json version must be 2.5.0 for the V2.5 release.");
+if (v2Manifest.id !== "./" || v2Manifest.start_url !== "./" || v2Manifest.scope !== "./") {
+  fail("v2 manifest id, start_url and scope must remain isolated at ./.");
+}
+if (!String(v2Manifest.name).includes("2.5") || !String(v2Manifest.short_name).includes("2.5")) {
+  fail("v2 manifest names must identify the 2.5 release.");
+}
+if (JSON.stringify(manifest).includes("/v2/") || JSON.stringify(manifest).includes("./v2/")) {
+  fail("Root manifest must not claim the V2 scope or assets.");
+}
 
 const v2RegistryPath = path.join(v2Root, "games.json");
 const v2Registry = JSON.parse(await readFile(v2RegistryPath, "utf8"));
 const v2Games = Array.isArray(v2Registry.games) ? v2Registry.games : [];
+if (JSON.stringify(configuredV2Slugs) !== JSON.stringify(expectedV2SlugsSorted)) {
+  fail(`v2 shared realm configs must exactly match the fixed V2.5 release: ${expectedV2Slugs.join(", ")}`);
+}
 if (!Array.isArray(v2Registry.games)) fail("v2/games.json must expose a games array.");
 if (v2Registry.schemaVersion !== 1) fail("v2/games.json schemaVersion must be 1.");
-if (v2Registry.edition !== "2.0") fail("v2/games.json edition must be 2.0.");
-if (v2Registry.expectedGames !== expectedV2Slugs.length) {
+if (v2Registry.edition !== "2.5") fail("v2/games.json edition must be 2.5.");
+if (v2Registry.expectedGames !== expectedV2Games.length) fail("v2/games.json V2.5 release must contain exactly 15 games.");
+if (v2Registry.expectedGames !== configuredV2Slugs.length) {
   fail(`v2/games.json expectedGames must be exactly ${expectedV2Slugs.length}.`);
 }
 if (v2Registry.status !== "ready") fail("v2/games.json status must be ready for release.");
-if (v2Games.length !== expectedV2Slugs.length) {
+if (v2Games.length !== expectedV2Games.length) {
   fail(`v2 registry must expose exactly ${expectedV2Slugs.length} games; found ${v2Games.length}.`);
+}
+if (JSON.stringify(v2Games.map((game) => game?.slug)) !== JSON.stringify(expectedV2Slugs)) {
+  fail(`v2 registry order and slugs must exactly match the fixed V2.5 release: ${expectedV2Slugs.join(", ")}`);
+}
+const discoveredV2GameDirectories = (await readdir(path.join(v2Root, "games"), { withFileTypes: true }))
+  .filter((entry) => entry.isDirectory())
+  .map((entry) => entry.name)
+  .sort();
+if (JSON.stringify(discoveredV2GameDirectories) !== JSON.stringify(expectedV2SlugsSorted)) {
+  fail(`v2 game directories must exactly match the V2.5 registry: ${expectedV2Slugs.join(", ")}`);
 }
 
 const seenV2Slugs = new Set();
 const seenV2Titles = new Set();
 const seenV2Previews = new Set();
-for (const game of v2Games) {
+for (const [index, game] of v2Games.entries()) {
   if (!game || typeof game !== "object") {
     fail("Every v2 registry entry must be an object.");
     continue;
@@ -128,6 +213,10 @@ for (const game of v2Games) {
   if (seenV2Previews.has(game.preview)) fail(`Duplicate v2 preview path: ${game.preview}`);
   seenV2Previews.add(game.preview);
   if (!/^#[0-9a-f]{6}$/i.test(game.accent ?? "")) fail(`Invalid v2 accent for ${game.slug}: ${game.accent ?? "(missing)"}`);
+  const [expectedTitle, expectedSlug] = expectedV2Games[index] ?? [];
+  if (game.slug !== expectedSlug || game.title !== expectedTitle) {
+    fail(`v2 registry entry ${index + 1} must be ${expectedTitle ?? "(missing)"} (${expectedSlug ?? "missing"}).`);
+  }
   if (game.preview !== `./assets/previews/${game.slug}.webp`) {
     fail(`v2 preview must use the canonical local path for ${game.slug}: ./assets/previews/${game.slug}.webp`);
   }
@@ -164,6 +253,40 @@ for (const game of v2Games) {
   if (REALM_CONFIGS[game.slug]?.nativeTutorialSelector === "#tutorial-button" && !/\bid=["']tutorial-button["']/i.test(html)) {
     fail(`v2 native tutorial button is missing or misnamed: ${game.slug}`);
   }
+  const tutorialFiles = nativeTutorialAssets.get(game.slug);
+  if (REALM_CONFIGS[game.slug]?.nativeTutorialSelector === "#tutorial-button" && !tutorialFiles) {
+    fail(`v2 native tutorial asset contract is missing for ${game.slug}.`);
+  }
+  if (tutorialFiles) {
+    const gameDirectory = path.join(v2Root, "games", game.slug);
+    const runtimeSources = await Promise.all(files
+      .filter((file) => file.startsWith(`${gameDirectory}${path.sep}`) && /\.(?:html|js|mjs)$/.test(file))
+      .map((file) => readFile(file, "utf8")));
+    const tutorialWiring = [html, ...runtimeSources].join("\n");
+    for (const tutorialFile of tutorialFiles) {
+      const assetPath = path.join(gameDirectory, "assets", tutorialFile);
+      try {
+        const source = await readFile(assetPath, "utf8");
+        if (Buffer.byteLength(source) < 1000) fail(`v2 tutorial asset is unexpectedly small: ${game.slug}/${tutorialFile}`);
+        if (!/<svg\b/i.test(source) || !/\brole=["']img["']/i.test(source)) {
+          fail(`v2 tutorial asset must be an accessible SVG image: ${game.slug}/${tutorialFile}`);
+        }
+      } catch {
+        fail(`v2 native tutorial asset is missing: ${game.slug}/${tutorialFile}`);
+      }
+      if (!tutorialWiring.includes(`./assets/${tutorialFile}?tutorial=`)) {
+        fail(`v2 native tutorial is not wired with a cache revision: ${game.slug}/${tutorialFile}`);
+      }
+    }
+    try {
+      const goalSource = await readFile(path.join(gameDirectory, "assets", tutorialFiles.at(-1)), "utf8");
+      for (const marker of nativeTutorialGoalMarkers.get(game.slug) ?? []) {
+        if (!goalSource.includes(marker)) fail(`v2 native tutorial goal marker is missing for ${game.slug}: ${marker}`);
+      }
+    } catch {
+      // The missing asset is already reported above.
+    }
+  }
   await validateReference(v2RegistryPath, game.preview);
   try {
     const previewFile = path.resolve(path.dirname(v2RegistryPath), game.preview);
@@ -171,18 +294,33 @@ for (const game of v2Games) {
       fail(`v2 preview escapes the preview directory: ${game.slug}`);
     } else if ((await stat(previewFile)).size < 4096) {
       fail(`v2 preview is unexpectedly small: ${game.slug}`);
+    } else {
+      const dimensions = webpDimensions(await readFile(previewFile));
+      if (dimensions?.width !== 1200 || dimensions?.height !== 652) {
+        fail(`v2 preview must be exactly 1200x652 WebP: ${game.slug}`);
+      }
     }
   } catch {
     // validateReference already reports the missing file.
   }
 }
 
-if (JSON.stringify([...seenV2Slugs].sort()) !== JSON.stringify(expectedV2Slugs)) {
+if (JSON.stringify([...seenV2Slugs].sort()) !== JSON.stringify(expectedV2SlugsSorted)) {
   fail(`v2 registry slugs must exactly match shared realm configs: ${expectedV2Slugs.join(", ")}`);
 }
 
 const homepage = await readFile(path.join(root, "index.html"), "utf8");
+const v2Homepage = await readFile(path.join(v2Root, "index.html"), "utf8");
 const readme = await readFile(path.join(root, "README.md"), "utf8");
+const v2HtmlTag = v2Homepage.match(/<html\b[^>]*>/i)?.[0] ?? "";
+if (readAttribute(v2HtmlTag, "data-edition") !== "2.5") fail("v2 guide must declare data-edition=2.5.");
+if (!/data-game-target[^>]*>15</i.test(v2Homepage) || !v2Homepage.includes("十五款")) {
+  fail("v2 guide must expose the fixed fifteen-game V2.5 release metadata.");
+}
+for (const [title, slug] of expectedV2Games) {
+  const link = `[${title}](./v2/games/${slug}/)`;
+  if (readme.split(link).length !== 2) fail(`README must link exactly once to V2.5 game ${title}: ./v2/games/${slug}/`);
+}
 const gameCardTags = [...homepage.matchAll(/<a\b[^>]*>/gi)].filter((match) =>
   readAttribute(match[0], "class")?.split(/\s+/).includes("game-card"),
 );

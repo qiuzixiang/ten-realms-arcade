@@ -13,6 +13,23 @@ const v1GameSlugs = [
   "star-drift", "memory-ark", "red-thread-office", "firefly-garden", "abyss-echo",
   "storm-lanterns", "night-market-spirits", "sky-bridges", "spirit-dragon", "mirror-theatre",
 ];
+const v2GameSlugs = [
+  "cloud-camp", "mist-photo-studio", "mystic-perfumery", "nebula-hatchery", "neon-skyline",
+  "polar-railway", "season-dyehouse", "yokai-inn", "aurora-magnet-lab", "dream-hotel",
+  "time-sand-post", "molten-core-vent", "paper-crane-sanctuary", "resonance-bell-room", "four-spirit-habitat",
+];
+const nativeTutorialAssets = new Map([
+  ["polar-railway", ["tutorial-elements.svg", "tutorial-operation.svg", "tutorial-goal.svg"]],
+  ["season-dyehouse", ["tutorial-elements.svg", "tutorial-action.svg", "tutorial-goal.svg"]],
+  ["yokai-inn", ["tutorial-elements.svg", "tutorial-action.svg", "tutorial-goal.svg"]],
+  ["aurora-magnet-lab", ["tutorial-elements.svg", "tutorial-operation.svg", "tutorial-goal.svg"]],
+  ["dream-hotel", ["tutorial-elements.svg", "tutorial-action.svg", "tutorial-goal.svg"]],
+  ["time-sand-post", ["tutorial-elements.svg", "tutorial-action.svg", "tutorial-goal.svg"]],
+  ["molten-core-vent", ["tutorial-elements.svg", "tutorial-operation.svg", "tutorial-goal.svg"]],
+  ["paper-crane-sanctuary", ["tutorial-elements.svg", "tutorial-operation.svg", "tutorial-goal.svg"]],
+  ["resonance-bell-room", ["tutorial-elements.svg", "tutorial-operation.svg", "tutorial-goal.svg"]],
+  ["four-spirit-habitat", ["tutorial-elements.svg", "tutorial-action.svg", "tutorial-goal.svg"]],
+]);
 
 await rm(out, { recursive: true, force: true });
 await mkdir(out, { recursive: true });
@@ -49,6 +66,24 @@ async function revisionFor(base, assets) {
   return hash.digest("hex").slice(0, 12);
 }
 
+function validatePrecachePaths(name, assets) {
+  if (assets.length !== new Set(assets).size) throw new Error(`${name} precache contains duplicate paths.`);
+  for (const asset of assets) {
+    const segments = asset.slice(2).split("/");
+    if (!/^\.\/[A-Za-z0-9._~/-]+$/.test(asset)
+        || segments.some((segment) => !segment || segment === "." || segment === "..")) {
+      throw new Error(`${name} precache contains a non-canonical path: ${asset}`);
+    }
+  }
+}
+
+function gameSlugsIn(assets) {
+  return [...new Set(assets.flatMap((asset) => {
+    const match = asset.match(/^\.\/games\/([a-z0-9][a-z0-9-]{1,39})\//);
+    return match ? [match[1]] : [];
+  }))].sort();
+}
+
 async function finalizeScope({ directory, assets, serviceWorker, token, manifest }) {
   const revision = await revisionFor(directory, assets);
   const workerPath = path.join(directory, serviceWorker);
@@ -65,24 +100,47 @@ const rootPrecache = await collect(out, out, (relative) => {
 });
 const v2Directory = path.join(out, "v2");
 const v2Precache = await collect(v2Directory, v2Directory, (relative) => relative !== "precache-manifest.json");
+validatePrecachePaths("V1", rootPrecache);
+validatePrecachePaths("V2.5", v2Precache);
 if (rootPrecache.some((asset) => asset === "./v2" || asset.startsWith("./v2/"))) {
-  throw new Error("The 1.0 precache must not contain 2.0 assets.");
+  throw new Error("The 1.0 precache must not contain 2.5 assets.");
+}
+if (JSON.stringify(gameSlugsIn(rootPrecache)) !== JSON.stringify([...v1GameSlugs].sort())) {
+  throw new Error("The 1.0 precache game directories do not exactly match the ten V1 games.");
 }
 for (const slug of v1GameSlugs) {
   if (v2Precache.some((asset) => asset.startsWith(`./games/${slug}/`))) {
-    throw new Error(`The 2.0 precache must not contain the 1.0 game ${slug}.`);
+    throw new Error(`The 2.5 precache must not contain the 1.0 game ${slug}.`);
   }
 }
 const v2Registry = JSON.parse(await readFile(path.join(v2Directory, "games.json"), "utf8"));
+if (v2Registry.edition !== "2.5" || v2Registry.status !== "ready" || v2Registry.expectedGames !== v2GameSlugs.length
+    || JSON.stringify((v2Registry.games ?? []).map((game) => game.slug)) !== JSON.stringify(v2GameSlugs)) {
+  throw new Error("The V2.5 registry does not exactly match the fixed fifteen-game release.");
+}
+if (JSON.stringify(gameSlugsIn(v2Precache)) !== JSON.stringify([...v2GameSlugs].sort())) {
+  throw new Error("The V2.5 precache game directories do not exactly match the fifteen registered games.");
+}
+for (const asset of [
+  "./index.html", "./styles.css", "./app.js", "./sw.js", "./games.json", "./manifest.webmanifest",
+  "./shared/realm-ui.css", "./shared/realm-ui.mjs", "./shared/reward-engine.mjs",
+  "./shared/storage.mjs", "./shared/tutorial-data.mjs",
+]) {
+  if (!v2Precache.includes(asset)) throw new Error(`The V2.5 precache is missing ${asset}.`);
+}
 for (const game of v2Registry.games ?? []) {
+  if (game.preview !== `./assets/previews/${game.slug}.webp`) {
+    throw new Error(`The V2.5 registry preview path is not canonical for ${game.slug}.`);
+  }
   const requiredAssets = [
     `./games/${game.slug}/index.html`,
     `./games/${game.slug}/app.mjs`,
     `./games/${game.slug}/styles.css`,
     game.preview,
+    ...(nativeTutorialAssets.get(game.slug) ?? []).map((asset) => `./games/${game.slug}/assets/${asset}`),
   ];
   for (const asset of requiredAssets) {
-    if (!v2Precache.includes(asset)) throw new Error(`The 2.0 precache is missing ${asset}.`);
+    if (!v2Precache.includes(asset)) throw new Error(`The 2.5 precache is missing ${asset}.`);
   }
 }
 
@@ -104,6 +162,6 @@ const v2Revision = await finalizeScope({
 const finalizedRootWorker = await readFile(path.join(out, "sw.js"), "utf8");
 const finalizedV2Worker = await readFile(path.join(v2Directory, "sw.js"), "utf8");
 if (finalizedRootWorker.includes("__TEN_REALMS_BUILD_REVISION__")) throw new Error("The 1.0 service-worker revision was not finalized.");
-if (finalizedV2Worker.includes("__TEN_REALMS_V2_BUILD_REVISION__")) throw new Error("The 2.0 service-worker revision was not finalized.");
+if (finalizedV2Worker.includes("__TEN_REALMS_V2_BUILD_REVISION__")) throw new Error("The 2.5 service-worker revision was not finalized.");
 
 console.log(`Built ${rootPrecache.length} v1 assets (cache ${rootRevision}) and ${v2Precache.length} v2 assets (cache ${v2Revision}) into dist/.`);

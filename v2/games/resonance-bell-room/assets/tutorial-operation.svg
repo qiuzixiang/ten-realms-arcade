@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 184" preserveAspectRatio="xMidYMid meet" role="img" aria-label="初醒九响合法敲击中央第5枚钟后的真实状态，影响纹中的第2、3、4、5、6枚钟已同步翻转" data-game-id="resonance-bell-room" data-level-id="first-awakening" data-tutorial-version="2" data-tutorial-scene="operation" data-state="after-one-press" data-before-bits="110010000" data-action-index="4" data-action-display="5" data-affected-indices="1,2,3,4,5" data-after-bits="101101000" data-moves="1">
+  <title>万象共振钟房：敲击中央钟一次后的真实状态</title>
+  <desc>从初醒九响初始状态敲第5枚钟一次。第2、3、4、5、6枚钟同步翻转，得到101101000。</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#111321"/><stop offset=".62" stop-color="#1a1322"/><stop offset="1" stop-color="#0a1520"/></linearGradient>
+    <radialGradient id="bronze" cx="32%" cy="22%" r="80%"><stop stop-color="#fff2ad"/><stop offset=".34" stop-color="#e0a144"/><stop offset="1" stop-color="#67351e"/></radialGradient>
+    <linearGradient id="sleep" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#45434a"/><stop offset="1" stop-color="#1b1c24"/></linearGradient>
+    <filter id="glow" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="2.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <g id="bell"><rect width="42" height="42" rx="8" fill="#10111a" stroke="#4f493f"/><path class="body" d="M8 28c2-3 3-9 3-14 0-7 5-10 10-10s10 3 10 10c0 5 1 11 3 14H8Z" stroke="currentColor"/><path d="M7 29h28" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="21" cy="32" r="2.5" fill="currentColor"/></g>
+  </defs>
+  <style>.lit{color:#fff0a5}.lit .body{fill:url(#bronze)}.dark{color:#77736c}.dark .body{fill:url(#sleep)}.hit use{filter:url(#glow)}.hit .ring{fill:none;stroke:#79e0bd;stroke-width:1.4;stroke-dasharray:2 2}.copy{font-family:system-ui,"PingFang SC",sans-serif}.num{font:800 6px system-ui,sans-serif;fill:currentColor}</style>
+  <rect width="320" height="184" rx="16" fill="url(#bg)"/>
+  <path d="M-22 20C31-10 72 27 118 8s85-7 120 14 62 12 99-9" fill="none" stroke="#79e0bd" stroke-opacity=".22" stroke-width="9"/>
+  <g class="copy"><text x="16" y="18" fill="#fff8e8" font-size="11" font-weight="850">02 · 敲第 5 枚钟后的真实单步状态</text></g>
+
+  <g transform="translate(16 28)" class="lit" data-cell-index="0" data-light="1"><use href="#bell"/><text class="num" x="4" y="8">01</text></g>
+  <g transform="translate(62 28)" class="dark hit" data-cell-index="1" data-light="0" data-flipped="true"><use href="#bell"/><rect class="ring" x="-1" y="-1" width="44" height="44" rx="9"/><text class="num" x="4" y="8">02</text></g>
+  <g transform="translate(108 28)" class="lit hit" data-cell-index="2" data-light="1" data-flipped="true"><use href="#bell"/><rect class="ring" x="-1" y="-1" width="44" height="44" rx="9"/><text class="num" x="4" y="8">03</text></g>
+  <g transform="translate(16 74)" class="lit hit" data-cell-index="3" data-light="1" data-flipped="true"><use href="#bell"/><rect class="ring" x="-1" y="-1" width="44" height="44" rx="9"/><text class="num" x="4" y="8">04</text></g>
+  <g transform="translate(62 74)" class="dark hit" data-cell-index="4" data-light="0" data-flipped="true" data-origin="true"><use href="#bell"/><rect class="ring" x="-2" y="-2" width="46" height="46" rx="10" stroke="#fff0a5" stroke-width="2"/><text class="num" x="4" y="8">05</text><circle cx="34" cy="34" r="6" fill="#79e0bd"/><text x="34" y="36.5" text-anchor="middle" fill="#082018" font-size="7" font-weight="900">敲</text></g>
+  <g transform="translate(108 74)" class="lit hit" data-cell-index="5" data-light="1" data-flipped="true"><use href="#bell"/><rect class="ring" x="-1" y="-1" width="44" height="44" rx="9"/><text class="num" x="4" y="8">06</text></g>
+  <g transform="translate(16 120)" class="dark" data-cell-index="6" data-light="0"><use href="#bell"/><text class="num" x="4" y="8">07</text></g>
+  <g transform="translate(62 120)" class="dark" data-cell-index="7" data-light="0"><use href="#bell"/><text class="num" x="4" y="8">08</text></g>
+  <g transform="translate(108 120)" class="dark" data-cell-index="8" data-light="0"><use href="#bell"/><text class="num" x="4" y="8">09</text></g>
+
+  <g class="copy">
+    <rect x="166" y="30" width="138" height="136" rx="14" fill="#0d0f19" stroke="#3b665a"/>
+    <text x="180" y="50" fill="#79e0bd" font-size="9" font-weight="850">第 5 枚钟的真实影响纹</text>
+    <g transform="translate(181 61)" fill="#55534f"><circle cx="5" cy="5" r="4"/><circle cx="19" cy="5" r="4"/><circle cx="33" cy="5" r="4"/><circle cx="5" cy="19" r="4"/><circle cx="19" cy="19" r="4"/><circle cx="33" cy="19" r="4"/><circle cx="5" cy="33" r="4"/><circle cx="19" cy="33" r="4"/><circle cx="33" cy="33" r="4"/><g fill="#f4c56a"><circle cx="19" cy="5" r="4"/><circle cx="33" cy="5" r="4"/><circle cx="5" cy="19" r="4"/><circle cx="19" cy="19" r="4"/><circle cx="33" cy="19" r="4"/></g><circle cx="19" cy="19" r="7" fill="none" stroke="#79e0bd" stroke-width="1.5"/></g>
+    <path d="M230 79h22" stroke="#79e0bd" stroke-width="1.5" stroke-dasharray="3 2"/>
+    <text x="263" y="77" text-anchor="middle" fill="#fff8e8" font-size="8" font-weight="800">2、3、4、5、6</text><text x="263" y="89" text-anchor="middle" fill="#9d9588" font-size="7">五枚一起翻转</text>
+    <path d="M180 108h110" stroke="#3d3a34"/>
+    <text x="180" y="125" fill="#fff8e8" font-size="8" font-weight="800">敲前  110 010 000</text>
+    <text x="180" y="142" fill="#79e0bd" font-size="8" font-weight="800">敲后  101 101 000</text>
+    <text x="180" y="157" fill="#9d9588" font-size="7">移动数：0 → 1 · 影响纹不改变</text>
+  </g>
+</svg>

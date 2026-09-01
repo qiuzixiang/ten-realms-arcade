@@ -23,11 +23,11 @@ import {
   confirmPhotoCompletion,
   recordPhotoCompletionOnce,
   restorePhotoCompletionFlags,
+  startPhotoRun,
 } from "./session.mjs";
 
 const SESSION_KEY = "ten-realms-v2:games:mist-photo-studio:session:v1";
 const COLLECTION_KEY = "ten-realms-v2:games:mist-photo-studio:collection:v1";
-const COMPLETION_TIERS = Object.freeze({ contact: 1, street: 2, archive: 3 });
 const TOOL_STATE = Object.freeze({
   fill: CELL.FILLED,
   exclude: CELL.EXCLUDED,
@@ -60,7 +60,7 @@ elements.dailyCardTitle = document.getElementById("daily-card-title");
 
 let level = LEVELS[0];
 let collection = createCollection();
-let state = createSession(level);
+let state = startPhotoRun(createSession(level));
 let evaluation = evaluateGrid(level, state.grid);
 let focusedIndex = 0;
 let cellElements = [];
@@ -120,7 +120,10 @@ function loadLocalState() {
   collection = normalizeCollection(collectionStored.value);
   if (collectionStored.invalid) storageRemove(COLLECTION_KEY);
 
-  state = restorePhotoCompletionFlags(normalized.session, sessionStored.value);
+  state = restorePhotoCompletionFlags(
+    normalized.session,
+    normalized.restored ? sessionStored.value : null,
+  );
   level = findLevel(state.levelId) ?? LEVELS[0];
   if (state.daily && state.dailyDay !== localDayKey()) {
     state.daily = false;
@@ -144,11 +147,17 @@ function sessionForStorage() {
       moves: item.moves,
       mistakes: item.mistakes,
       completed: item.completed === true,
+      completionRecorded: item.completionRecorded === true,
       completionReported: item.completionReported === true,
+      runId: item.runId,
+      completionEventId: item.completionEventId,
     })),
     completed: state.completed,
     completionRecorded: state.completionRecorded === true,
     completionReported: state.completionReported,
+    runId: state.runId,
+    completionEventId: state.completionEventId,
+    completionOutbox: state.completionOutbox,
     tool: state.tool,
     muted: state.muted,
     daily: state.daily,
@@ -159,8 +168,10 @@ function sessionForStorage() {
 function saveLocalState() {
   const storedCollection = parseStored(COLLECTION_KEY);
   collection = mergeCollections(collection, storedCollection.value);
-  storageWrite(SESSION_KEY, JSON.stringify(sessionForStorage()));
-  storageWrite(COLLECTION_KEY, JSON.stringify(collection));
+  const collectionSaved = storageWrite(COLLECTION_KEY, JSON.stringify(collection));
+  const sessionSaved = collectionSaved
+    && storageWrite(SESSION_KEY, JSON.stringify(sessionForStorage()));
+  return sessionSaved && collectionSaved;
 }
 
 function snapshot() {
@@ -171,6 +182,8 @@ function snapshot() {
     completed: state.completed,
     completionRecorded: state.completionRecorded === true,
     completionReported: state.completionReported,
+    runId: state.runId,
+    completionEventId: state.completionEventId,
   };
 }
 
@@ -675,15 +688,20 @@ function finishPointerGesture(event, cancelled = false) {
   commitGrid(active.preview, active.previous, soundName);
 }
 
-function reportRealmCompletion() {
-  const payload = {
-    levelId: `photo:${level.difficulty}:${level.id}`,
-    tier: COMPLETION_TIERS[level.difficulty] ?? 1,
-    moves: state.moves,
-    par: level.par,
-  };
-  if (typeof window.RealmArcade?.complete === "function") window.RealmArcade.complete(payload);
-  else (window.__realmCompletionQueue ??= []).push(payload);
+function reportRealmCompletion(payload) {
+  if (typeof window.RealmArcade?.complete !== "function") {
+    throw new Error("V2.5 shared reward host is not ready.");
+  }
+  return window.RealmArcade.complete(payload);
+}
+
+function flushPhotoCompletionOutbox() {
+  if (!state.completionOutbox.length) return confirmPhotoCompletion(state, null);
+  if (!saveLocalState()) return confirmPhotoCompletion(state, null);
+  const realm = confirmPhotoCompletion(state, reportRealmCompletion);
+  state = realm.state;
+  if (realm.attempted) saveLocalState();
+  return realm;
 }
 
 function settlePhotoCompletion() {
@@ -695,9 +713,7 @@ function settlePhotoCompletion() {
   }, recordCollectionCompletion);
   state = local.state;
   collection = local.collection;
-  const realm = confirmPhotoCompletion(state, reportRealmCompletion);
-  state = realm.state;
-  saveLocalState();
+  const realm = flushPhotoCompletionOutbox();
   return { result: local.result, realm };
 }
 
@@ -784,7 +800,8 @@ function startLevel(nextLevel, { daily = false, message = "" } = {}) {
   level = nextLevel;
   const muted = state.muted;
   const tool = state.tool;
-  state = createSession(level);
+  const completionOutbox = state.completionOutbox;
+  state = startPhotoRun(createSession(level), { completionOutbox });
   state.muted = muted;
   state.tool = tool;
   state.daily = daily;
@@ -823,13 +840,13 @@ function restart() {
     showToast("这张底片还没有落笔。", false, 1800);
     return;
   }
-  state.history = [previous];
-  state.grid = Array(level.width * level.height).fill(CELL.UNKNOWN);
-  state.moves = 0;
-  state.mistakes = 0;
-  state.completed = false;
-  state.completionRecorded = false;
-  state.completionReported = false;
+  const next = createSession(level);
+  next.history = [previous];
+  next.muted = state.muted;
+  next.tool = state.tool;
+  next.daily = state.daily;
+  next.dailyDay = state.dailyDay;
+  state = startPhotoRun(next, { completionOutbox: state.completionOutbox });
   render();
   saveLocalState();
   playSound("erase");
@@ -843,14 +860,29 @@ function undo() {
     return;
   }
   closeVictory({ restoreFocus: false });
+  const currentRunId = state.runId;
   const completionRecorded = state.completionRecorded === true;
   const completionReported = state.completionReported === true;
+  const completionOutbox = state.completionOutbox;
   state.grid = [...previous.grid];
   state.moves = previous.moves;
   state.mistakes = previous.mistakes;
   state.completed = previous.completed === true;
-  state.completionRecorded = completionRecorded || previous.completionRecorded === true;
-  state.completionReported = completionReported || previous.completionReported === true;
+  if (previous.runId && previous.runId !== currentRunId) {
+    const restoredRun = restorePhotoCompletionFlags(
+      { ...state, completionReported: previous.completionReported === true },
+      { ...previous, completionOutbox },
+    );
+    state.runId = restoredRun.runId;
+    state.completionEventId = restoredRun.completionEventId;
+    state.completionOutbox = restoredRun.completionOutbox;
+    state.completionRecorded = restoredRun.completionRecorded;
+    state.completionReported = restoredRun.completionReported;
+  } else {
+    state.completionOutbox = completionOutbox;
+    state.completionRecorded = completionRecorded || previous.completionRecorded === true;
+    state.completionReported = completionReported || previous.completionReported === true;
+  }
   render();
   saveLocalState();
   playSound("undo");
@@ -1091,10 +1123,19 @@ const restoreResult = loadLocalState();
 buildBoard();
 render();
 
-if (state.completed && !state.completionReported) {
+if (state.completed && !state.completionRecorded) {
   settlePhotoCompletion();
   render();
+} else if (state.completionOutbox.length) {
+  flushPhotoCompletionOutbox();
+  render();
 }
+
+window.addEventListener("realm:ready", (event) => {
+  if (event.detail?.realm !== "mist-photo-studio" || !state.completionOutbox.length) return;
+  flushPhotoCompletionOutbox();
+  render();
+});
 
 window.addEventListener("storage", (event) => {
   if (event.key !== COLLECTION_KEY || event.newValue === null) return;
@@ -1116,6 +1157,7 @@ if (restoreResult.repaired) {
   saveLocalState();
 } else if (restoreResult.restored) {
   showToast(state.completed ? "已恢复完成后的收藏照片。" : "已恢复上次未完成的显影进度。", false, 3000);
+  saveLocalState();
 } else {
   saveLocalState();
 }

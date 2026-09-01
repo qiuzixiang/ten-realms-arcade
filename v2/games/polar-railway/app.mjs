@@ -740,6 +740,10 @@ function render({ preserveTrain = false } = {}) {
     elements.muteButton.setAttribute("aria-pressed", String(state.muted));
     elements.muteButton.querySelector(".action-label")?.replaceChildren(document.createTextNode(state.muted ? "声音关闭" : "声音开启"));
   }
+  // The compact board's containing panel can gain its final width only after
+  // the surrounding controls render. Re-measure on the next layout frame so
+  // the first mobile view never remains one pixel below the 44px tap target.
+  window.requestAnimationFrame(syncBoardScale);
   if (!preserveTrain && !state.completed) clearTrain();
   return evaluation;
 }
@@ -1332,5 +1336,10 @@ window.addEventListener("pagehide", () => {
 });
 
 window.addEventListener("resize", () => requestAnimationFrame(syncBoardScale));
+
+const boardResizeObserver = typeof ResizeObserver === "function" && elements.boardViewport
+  ? new ResizeObserver(() => requestAnimationFrame(syncBoardScale))
+  : null;
+boardResizeObserver?.observe(elements.boardViewport);
 
 initialise();

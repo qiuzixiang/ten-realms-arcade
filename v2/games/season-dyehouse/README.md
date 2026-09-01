@@ -1,6 +1,6 @@
 # 四季染坊 · Season Dyehouse
 
-`season-dyehouse` 是「十境谜游馆 2.0」的独立 Flood 规则游戏。所有游戏代码、样式、教程图、测试、存档和奖励桥都在本目录内，不读写 1.0 成长档案。
+`season-dyehouse` 是「十境谜游馆 2.5」的独立 Flood 规则游戏。所有游戏代码、样式、教程图、测试、存档和奖励桥都在本目录内，不读写 1.0 成长档案。
 
 ## 本地运行与测试
 
@@ -34,16 +34,16 @@ ten-realms-v2:season-dyehouse:
 
 存档仅信任游戏/生成器版本、参数、uint32 种子、本局 `attemptId` 与合法操作日志；恢复时会重新生成布面并逐手重放。损坏数据仅移除本游戏 session，不枚举、不清空其他键。为避免写出无法安全重放的无界日志，单局练习记录最多 512 步；达到后会明示提示撤销或重开。
 
-## 2.0 完成契约
+## 2.5 完成契约
 
 每次新开局都有独立、持久化的 `attemptId`：同一局刷新或重试保持稳定 `completionId` 并严格幂等，后续重开的同题改进局则可再次上报。`rewardClaims[].id` 仍按谜题与成就去重。传递顺序是：
 
-1. `window.TenRealmsV2.complete(payload)`（后续 2.0 主桥）；
+1. `window.TenRealmsV2.complete(payload)`（兼容 V2 主桥）；
 2. `window.RealmArcade.complete(payload)`（现有兼容桥）；
-3. 两者不可用或调用抛错时，按 `completionId` 去重写入 `window.__realmCompletionQueue`，并派发 `ten-realms-v2:game-complete`。
+3. 两者不可用或调用抛错时，按 `completionId` 去重写入 `window.__realmCompletionQueue`，并派发 `ten-realms-v2:game-complete`。这两者只是供迟到宿主消费的内存提示，不代表已确认送达。
 
-本地奖励会先以 pending 台账原子留存，再尝试共享上报；启动、换题、重开、撤销与新通关都会按顺序重试未送达项。因此桥接暂时不可用时不会重复累计本地胜场，也不会在换题后丢失首通 claim。
+本地奖励会先以 pending 台账留存，再尝试共享上报；只有主桥或兼容桥 API 调用真正成功才会移除 pending 并写入确认台账。启动、宿主 ready、换题、重开、撤销与新通关都会按顺序重试未送达项。因此桥接暂时不可用时不会重复累计本地胜场，也不会在换题后丢失首通 claim。
 
-`payload` 包含 `levelId` / `tier` / `moves` / `par` 兼容字段，以及 `puzzleId`、参数、种子、步限、参考步、无空染状态和去重奖励 claim。页面还在 `window.TenRealmsV2Games["season-dyehouse"]` 暴露只读快照、本地记录、开题与重看教程 API，并派发 `ten-realms-v2:game-ready`。
+`payload` 还固化完整 `timeline`。从存储恢复 pending 时，引擎会重新生成题面、逐手重放，并核对获胜状态、题面 ID、规格、种子、步数、步限、参考步、无空染与连续扩张指标；缺少真实通关证明的伪造记录不会上报。页面还在 `window.TenRealmsV2Games["season-dyehouse"]` 暴露只读快照、本地记录、开题与重看教程 API，并派发 `ten-realms-v2:game-ready`。
 
-> 当前根 `scripts/build.mjs` 的 1.0 复制清单不包含 `v2/`。后续合并 `/v2/` 总入口时，需由 v2 集成层把本目录加入发布产物；本游戏本身无需改写 1.0 构建脚本。
+V2.5 根构建会将本目录与教程资产纳入独立的 `/v2/` 预缓存清单，不进入 1.0 的私有资源范围。

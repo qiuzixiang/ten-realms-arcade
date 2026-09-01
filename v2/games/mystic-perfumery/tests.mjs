@@ -36,20 +36,27 @@ import {
   HISTORY_LIMIT,
   STATS_ENTRY_LIMIT,
   SAVE_VERSION,
+  REALM_ID,
+  createPerfumeryRunId,
   createSaveState,
   createStats,
   confirmPerfumeryCompletion,
+  enqueuePerfumeryCompletion,
   difficultyStats,
   hasRevealedRecipe,
   markRecipeRevealed,
   normalizeSave,
   normalizeStats,
+  normalizePerfumeryOutbox,
+  perfumeryCompletionEventId,
   recordOutcome,
   serializeSave,
   snapshotGame,
+  stagePerfumeryCompletion,
   statsSummary,
 } from "./session.mjs";
 import { REALM_TUTORIALS, tutorialArt } from "../../shared/tutorial-data.mjs";
+import { awardCompletion, createProgress } from "../../shared/reward-engine.mjs";
 
 const tests = [];
 
@@ -412,7 +419,7 @@ test("game replay recomputes all public feedback and rejects damaged snapshots",
 
 test("save round-trip stores no secret and restores strict undo history", () => {
   const recipe = archiveRecipe("standard", 1);
-  let runtime = normalizeSave(createSaveState(recipe, { muted: true }));
+  let runtime = normalizeSave(createSaveState(recipe, { muted: true }, undefined, { runId: "run-mystic-roundtrip-0001" }));
   assert.ok(runtime);
   const before = snapshotGame(runtime.active.game, runtime.active);
   const edited = setDraftPeg(runtime.active.game, 0, 3).game;
@@ -431,8 +438,73 @@ test("save round-trip stores no secret and restores strict undo history", () => 
   assert.deepEqual(snapshotGame(restored.active.game, restored.active), snapshotGame(runtime.active.game, runtime.active));
   assert.equal(restored.active.history.length, 1);
   assert.deepEqual(snapshotGame(restored.active.history[0].game, restored.active.history[0]), before);
+  assert.equal(restored.active.runId, runtime.active.runId);
+  assert.equal(restored.active.completionEventId, perfumeryCompletionEventId(runtime.active.runId));
+  assert.deepEqual(restored.active.completionOutbox, []);
   assert.equal(SAVE_VERSION, 1);
   assert.equal(HISTORY_LIMIT, 80);
+});
+
+test("run ids are opaque, stable across refresh, migrated in place, and renewed only for a new attempt", () => {
+  const recipe = archiveRecipe("apprentice", 0);
+  const first = normalizeSave(createSaveState(recipe, {}, undefined, { runId: "run-mystic-attempt-0001" }));
+  const restored = normalizeSave(serializeSave(first));
+  assert.equal(restored.active.runId, "run-mystic-attempt-0001");
+  assert.equal(restored.active.completionEventId, "mystic-perfumery:run-mystic-attempt-0001:complete");
+
+  const next = normalizeSave(createSaveState(recipe, {}, restored.stats, { runId: "run-mystic-attempt-0002" }));
+  assert.notEqual(next.active.runId, restored.active.runId, "restart/new recipe is a new reward attempt even on the same recipe");
+  assert.equal(createPerfumeryRunId(() => "run-mystic-injected-0003"), "run-mystic-injected-0003");
+
+  const legacy = serializeSave(first);
+  delete legacy.active.runId;
+  delete legacy.active.completionEventId;
+  delete legacy.active.completionOutbox;
+  const migrated = normalizeSave(legacy);
+  assert.ok(migrated.active.runId);
+  const migratedAgain = normalizeSave(serializeSave(migrated));
+  assert.equal(migratedAgain.active.runId, migrated.active.runId, "a migrated V1 save persists its generated run id");
+  assert.equal(migratedAgain.active.completionEventId, perfumeryCompletionEventId(migrated.active.runId));
+});
+
+test("outbox migration and deduplication preserve every one of 65 unconfirmed events", () => {
+  const payloads = Array.from({ length: 65 }, (_, index) => ({
+    eventId: `mystic-perfumery:run-mystic-bulk-${String(index).padStart(3, "0")}:complete`,
+    levelId: `standard:bulk-${index}`,
+    tier: 2,
+    moves: index + 1,
+    par: 8,
+  }));
+  const normalized = normalizePerfumeryOutbox([...payloads, payloads[0]]);
+  assert.equal(normalized.length, 65);
+  assert.equal(normalized[0].eventId, payloads[0].eventId);
+  assert.equal(normalized.at(-1).eventId, payloads.at(-1).eventId);
+  const bulkRuntime = normalizeSave(createSaveState(archiveRecipe("standard", 0), {}, undefined, {
+    runId: "run-mystic-bulk-active",
+    completionOutbox: normalized,
+  }));
+  const bulkRestored = normalizeSave(serializeSave(bulkRuntime));
+  assert.equal(bulkRestored.active.completionOutbox.length, 65);
+  assert.equal(bulkRestored.active.completionOutbox[0].eventId, payloads[0].eventId);
+  assert.equal(bulkRestored.active.completionOutbox.at(-1).eventId, payloads.at(-1).eventId);
+
+  const queue = [];
+  assert.equal(enqueuePerfumeryCompletion(queue, payloads[0]), true);
+  assert.equal(enqueuePerfumeryCompletion(queue, payloads[0]), false);
+  assert.equal(queue.length, 1, "the in-memory compatibility queue deduplicates eventId");
+
+  const recipe = archiveRecipe("standard", 0);
+  let game = createGame(recipe);
+  game = submitPegs(game, game.secret).game;
+  let runtime = normalizeSave(createSaveState(recipe, {}, undefined, { runId: "run-mystic-single-migrate" }));
+  runtime.active.game = game;
+  runtime.active.recordedStatus = "won";
+  runtime.active = stagePerfumeryCompletion(runtime.active);
+  const singlePayloadSave = serializeSave(runtime);
+  singlePayloadSave.active.completionOutbox = singlePayloadSave.active.completionOutbox[0];
+  const migrated = normalizeSave(singlePayloadSave);
+  assert.equal(migrated.active.completionOutbox.length, 1);
+  assert.equal(migrated.active.completionOutbox[0].eventId, runtime.active.completionEventId);
 });
 
 test("save normalization safely rejects corrupt versions, recipes, state, and history", () => {
@@ -520,36 +592,114 @@ test("terminal saves preserve pending settlement and shared-report markers", () 
   assert.equal(hasRevealedRecipe(restored.stats, recipe.id), false);
 });
 
-test("a thrown shared reward retries after restore without repeating perfume settlement", () => {
+test("a host throw after awarding retries one persisted event without repeating local or shared settlement", () => {
   const recipe = archiveRecipe("apprentice", 0);
   let game = createGame(recipe);
   game = submitPegs(game, game.secret).game;
-  let runtime = normalizeSave(createSaveState(recipe));
+  let runtime = normalizeSave(createSaveState(recipe, {}, undefined, { runId: "run-mystic-retry-0001" }));
   runtime.active.game = game;
   const local = recordOutcome(runtime.stats, game, new Date("2026-08-31T08:00:00Z"));
   runtime.stats = markRecipeRevealed(local.stats, recipe.id);
   runtime.active.recordedStatus = "won";
+  runtime.active = stagePerfumeryCompletion(runtime.active);
   assert.equal(runtime.stats.wins, 1);
+  assert.equal(runtime.active.completionOutbox[0].eventId, "mystic-perfumery:run-mystic-retry-0001:complete");
 
-  const failed = confirmPerfumeryCompletion(runtime.active, () => {
+  let host = createProgress();
+  let firstHostResult;
+
+  const failed = confirmPerfumeryCompletion(runtime.active, (payload) => {
+    firstHostResult = awardCompletion(host, { ...payload, realm: REALM_ID }, new Date("2026-08-31T08:00:00Z"));
+    host = firstHostResult.progress;
     throw new Error("shared API unavailable");
   });
   runtime.active = failed.active;
   assert.equal(failed.succeeded, false);
   assert.equal(runtime.active.completionReported, false);
+  assert.equal(firstHostResult.duplicateEvent, false);
+  assert.equal(host.realms[REALM_ID].clears[recipe.id].wins, 1);
+  const xpAfterThrow = host.xp;
 
   const restored = normalizeSave(serializeSave(runtime));
   assert.equal(restored.active.recordedStatus, "won");
   assert.equal(restored.active.completionReported, false);
+  assert.equal(restored.active.completionOutbox[0].eventId, runtime.active.completionOutbox[0].eventId);
   assert.equal(restored.stats.wins, 1);
   assert.equal(hasRevealedRecipe(restored.stats, recipe.id), true);
 
-  const queued = [];
-  const retried = confirmPerfumeryCompletion(restored.active, () => queued.push(recipe.id));
+  const undoneRuntime = {
+    ...restored,
+    active: { ...restored.active, game: createGame(recipe), history: [] },
+  };
+  const undoneRestored = normalizeSave(serializeSave(undoneRuntime));
+  assert.equal(undoneRestored.active.game.status, "playing");
+  assert.equal(undoneRestored.active.completionOutbox[0].eventId, runtime.active.completionOutbox[0].eventId);
+  assert.equal(undoneRestored.stats.wins, 1, "undo after settlement keeps the local result and pending outbox");
+
+  let retriedHostResult;
+  const retried = confirmPerfumeryCompletion(undoneRestored.active, (payload) => {
+    retriedHostResult = awardCompletion(host, { ...payload, realm: REALM_ID }, new Date("2026-08-31T08:05:00Z"));
+    host = retriedHostResult.progress;
+    return retriedHostResult;
+  });
   assert.equal(retried.succeeded, true);
   assert.equal(retried.active.completionReported, true);
-  assert.deepEqual(queued, [recipe.id]);
-  assert.equal(restored.stats.wins, 1, "shared retry must not record the local bottle twice");
+  assert.deepEqual(retried.active.completionOutbox, []);
+  assert.equal(retriedHostResult.duplicateEvent, true, "the shared host deduplicates the retry by eventId");
+  assert.equal(host.realms[REALM_ID].clears[recipe.id].wins, 1);
+  assert.equal(host.xp, xpAfterThrow);
+  assert.equal(undoneRestored.stats.wins, 1, "shared retry must not record the local bottle twice");
+
+  const deliveredAgain = awardCompletion(host, {
+    ...runtime.active.completionOutbox[0],
+    realm: REALM_ID,
+  }, new Date("2026-08-31T08:10:00Z"));
+  assert.equal(deliveredAgain.duplicateEvent, true);
+  assert.equal(deliveredAgain.progress.realms[REALM_ID].clears[recipe.id].wins, 1);
+  assert.equal(deliveredAgain.progress.xp, xpAfterThrow);
+});
+
+test("a failed completion survives a new recipe and refresh without changing the new run id", () => {
+  const recipe = archiveRecipe("apprentice", 0);
+  let game = createGame(recipe);
+  game = submitPegs(game, game.secret).game;
+  let previous = normalizeSave(createSaveState(recipe, {}, undefined, { runId: "run-mystic-old-pending" }));
+  previous.active.game = game;
+  previous.active.recordedStatus = "won";
+  previous.active = stagePerfumeryCompletion(previous.active);
+  const oldEventId = previous.active.completionEventId;
+
+  let host = createProgress();
+  const failed = confirmPerfumeryCompletion(previous.active, (payload) => {
+    host = awardCompletion(host, { ...payload, realm: REALM_ID }, new Date("2026-08-31T09:00:00Z")).progress;
+    throw new Error("acknowledgement lost");
+  });
+  const winsAfterThrow = host.realms[REALM_ID].clears[recipe.id].wins;
+  const xpAfterThrow = host.xp;
+
+  const nextRecipe = archiveRecipe("apprentice", 1);
+  const nextRunId = "run-mystic-new-after-failure";
+  const next = normalizeSave(createSaveState(nextRecipe, {}, previous.stats, {
+    runId: nextRunId,
+    completionOutbox: failed.active.completionOutbox,
+  }));
+  const refreshed = normalizeSave(serializeSave(next));
+  assert.equal(refreshed.active.runId, nextRunId);
+  assert.equal(refreshed.active.completionReported, false);
+  assert.equal(refreshed.active.completionOutbox[0].eventId, oldEventId);
+
+  let retryResult;
+  const retried = confirmPerfumeryCompletion(refreshed.active, (payload) => {
+    retryResult = awardCompletion(host, { ...payload, realm: REALM_ID }, new Date("2026-08-31T09:05:00Z"));
+    host = retryResult.progress;
+    return retryResult;
+  });
+  assert.equal(retryResult.duplicateEvent, true);
+  assert.equal(retried.active.runId, nextRunId, "delivery of an older event never rewrites the active run");
+  assert.equal(retried.active.completionReported, false, "only the current run event may mark current completion reported");
+  assert.deepEqual(retried.active.completionOutbox, []);
+  assert.equal(host.realms[REALM_ID].clears[recipe.id].wins, winsAfterThrow);
+  assert.equal(host.xp, xpAfterThrow);
 });
 
 test("revealed recipe eligibility is persistent, monotonic, and recipe-scoped", () => {
@@ -663,8 +813,12 @@ test("page wiring includes shared realm UI, exact source links, offline assets, 
     assert.match(html, new RegExp(`id="${id}"`));
   }
   assert.doesNotMatch(html, /<(?:img|script|link)[^>]+(?:src|href)="https?:/i, "runtime assets must remain local");
-  assert.match(app, /window\.__realmCompletionQueue \?\?= \[\]/);
-  assert.match(app, /levelId:\s*game\.recipe\.id/);
+  assert.match(app, /enqueuePerfumeryCompletion\(queue, payload\)/);
+  assert.match(app, /stagePerfumeryCompletion\(state\.active\)/);
+  assert.match(app, /reportRealmCompletion\(payload\)/);
+  assert.match(app, /realm:ready/);
+  assert.match(app, /else if \(state\.active\.completionOutbox\.length > 0\) retryPendingRealmCompletion\(\)/);
+  assert.match(app, /freshRuntime\(recipe, preferences, stats, completionOutbox\)/);
   assert.match(app, /document\.querySelector\("dialog\[open\]"\)/);
   assert.match(app, /selectSlot\(Number\(slot\.dataset\.slot\), true\)/);
   assert.match(app, /confirmPerfumeryCompletion\(state\.active, reportRealmCompletion\)/);

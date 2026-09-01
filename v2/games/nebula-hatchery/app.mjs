@@ -17,6 +17,14 @@ import {
   solvePuzzle,
   undoSession,
 } from "./logic.mjs";
+import {
+  confirmNebulaCompletion,
+  createNebulaCompletionTracking,
+  enqueueNebulaCompletion,
+  recordNebulaAtlasCompletion,
+  restoreNebulaCompletionTracking,
+  stageNebulaCompletion,
+} from "./completion.mjs";
 
 export const STORAGE_KEYS = Object.freeze({
   session: "ten-realms-v2:games:nebula-hatchery:save:v1",
@@ -244,7 +252,12 @@ function loadGame() {
   const stored = parseStoredJSON(STORAGE_KEYS.session);
   const value = stored.value;
   try {
-    if (!exactKeys(value, ["version", "difficulty", "levelId", "session", "run", "completionReported"])
+    const legacySchema = exactKeys(value, ["version", "difficulty", "levelId", "session", "run", "completionReported"]);
+    const currentSchema = exactKeys(value, [
+      "version", "difficulty", "levelId", "session", "run", "runId",
+      "completionEventId", "completionOutbox", "completionReported",
+    ]);
+    if ((!legacySchema && !currentSchema)
       || value.version !== STORAGE_VERSION
       || typeof value.difficulty !== "string"
       || typeof value.levelId !== "string"
@@ -263,6 +276,15 @@ function loadGame() {
     }
     const session = restoreSession(level, value.session);
     const evaluation = evaluatePosition(level, session.position);
+    const tracking = legacySchema
+      ? { ...createNebulaCompletionTracking(), completionReported: value.completionReported }
+      : restoreNebulaCompletionTracking({
+        runId: value.runId,
+        completionEventId: value.completionEventId,
+        completionOutbox: value.completionOutbox,
+        completionReported: value.completionReported,
+      });
+    if (!tracking) throw new TypeError("Invalid completion tracking.");
     return {
       restored: true,
       invalid: false,
@@ -271,7 +293,7 @@ function loadGame() {
       session,
       evaluation,
       run: { ...value.run },
-      completionReported: value.completionReported,
+      ...tracking,
     };
   } catch {
     if (value !== null || stored.invalid) removeStorage(STORAGE_KEYS.session);
@@ -285,7 +307,7 @@ function loadGame() {
       session,
       evaluation: evaluatePosition(level, session.position),
       run: { conflicts: 0, hadConflict: false, usedNotes: false },
-      completionReported: false,
+      ...createNebulaCompletionTracking(),
     };
   }
 }
@@ -318,6 +340,9 @@ function persistGame() {
     levelId: state.level.id,
     session: sessionToJSON(state.level, state.session),
     run: { ...state.run },
+    runId: state.runId,
+    completionEventId: state.completionEventId,
+    completionOutbox: state.completionOutbox.map((payload) => ({ ...payload })),
     completionReported: state.completionReported,
   });
   if (elements?.saveState) {
@@ -713,53 +738,67 @@ function parForLevel(level) {
   return par;
 }
 
-function reportSharedCompletion() {
-  const difficultyIndex = DIFFICULTIES.findIndex(({ id }) => id === state.difficulty);
-  const payload = {
-    levelId: state.level.id,
+function completionDetails(level = state.level, session = state.session, difficultyId = state.difficulty) {
+  const difficultyIndex = DIFFICULTIES.findIndex(({ id }) => id === difficultyId);
+  return {
+    levelId: level.id,
     tier: difficultyIndex + 1,
-    moves: state.session.moves,
-    par: parForLevel(state.level),
+    moves: session.moves,
+    par: parForLevel(level),
   };
+}
+
+function completionTracking() {
+  return {
+    runId: state.runId,
+    completionEventId: state.completionEventId,
+    completionOutbox: state.completionOutbox,
+    completionReported: state.completionReported,
+  };
+}
+
+function applyCompletionTracking(tracking) {
+  state.runId = tracking.runId;
+  state.completionEventId = tracking.completionEventId;
+  state.completionOutbox = tracking.completionOutbox;
+  state.completionReported = tracking.completionReported;
+}
+
+function reportSharedCompletion(payload) {
   if (window.RealmArcade?.complete) {
-    window.RealmArcade.complete(payload);
+    return window.RealmArcade.complete(payload);
   } else {
-    (window.__realmCompletionQueue ??= []).push(payload);
+    const queue = Array.isArray(window.__realmCompletionQueue)
+      ? window.__realmCompletionQueue
+      : (window.__realmCompletionQueue = []);
+    enqueueNebulaCompletion(queue, payload);
   }
-  return true;
+  return false;
+}
+
+function retryPendingSharedCompletion() {
+  if (state.completionOutbox.length === 0) return;
+  const report = confirmNebulaCompletion(completionTracking(), reportSharedCompletion);
+  applyCompletionTracking(report.tracking);
+  persistGame();
 }
 
 function registerCompletion() {
-  const discoveries = [];
-  if (!state.atlas.completed.has(state.level.id)) {
-    state.atlas.completed.add(state.level.id);
-    discoveries.push(state.level.title);
-  }
-  for (const core of state.level.cores) {
-    if (!state.atlas.rarities.has(core.rarity)) {
-      state.atlas.rarities.add(core.rarity);
-      discoveries.push(`${core.rarity}星核`);
-    }
-  }
-  if (!state.run.hadConflict && !state.atlas.badges.zeroConflict) {
-    state.atlas.badges.zeroConflict = true;
-    discoveries.push("零矛盾孵化徽章");
-  }
-  if (!state.run.usedNotes && !state.atlas.badges.intuition) {
-    state.atlas.badges.intuition = true;
-    discoveries.push("对称直觉徽章");
-  }
+  const local = recordNebulaAtlasCompletion(state.atlas, state.level, state.run);
+  state.atlas = local.atlas;
+  const discoveries = local.discoveries;
   persistAtlas();
   renderAtlas();
 
   if (!state.completionReported) {
-    try {
-      // Assignment happens only after the synchronous report (or queue write)
-      // succeeds. If the shared reward layer throws, the saved false value lets
-      // bootstrap retry this completed board on the next visit.
-      state.completionReported = reportSharedCompletion();
-      persistGame();
-    } catch {
+    // Save the stable outbox before notifying the host. A host that writes and
+    // then throws is retried with this exact eventId and deduplicates it.
+    applyCompletionTracking(stageNebulaCompletion(completionTracking(), completionDetails()));
+    persistGame();
+    const report = confirmNebulaCompletion(completionTracking(), reportSharedCompletion);
+    applyCompletionTracking(report.tracking);
+    persistGame();
+    if (!report.succeeded) {
       showToast("星系已经孵化；共享进度稍后可在谜游馆中同步。", { assertive: true });
     }
   }
@@ -965,7 +1004,7 @@ function startLevel(level, { message = "已换入一枚新星胚。", focusBoard
   state.session = restartSession(level);
   state.evaluation = evaluatePosition(level, state.session.position);
   state.run = { conflicts: 0, hadConflict: false, usedNotes: false };
-  state.completionReported = false;
+  applyCompletionTracking(createNebulaCompletionTracking({ completionOutbox: state.completionOutbox }));
   state.selectedCoreId = null;
   state.lastDiscovery = "";
   resetCursor();
@@ -1197,6 +1236,7 @@ function bindEvents() {
 
   document.addEventListener("keydown", onGlobalKeyDown);
   window.addEventListener("resize", updateBoardPanControls, { passive: true });
+  window.addEventListener("realm:ready", retryPendingSharedCompletion);
   window.addEventListener("pointerdown", ensureAudio, { capture: true, once: true });
   window.addEventListener("keydown", ensureAudio, { capture: true, once: true });
   state.motionQuery.addEventListener?.("change", (event) => {
@@ -1233,7 +1273,7 @@ function bootstrap() {
   if (state.evaluation.complete) {
     if (state.completionReported) scheduleVictory(`图鉴已记录：${state.level.title}`);
     else registerCompletion();
-  }
+  } else if (state.completionOutbox.length > 0) retryPendingSharedCompletion();
   if (game.invalid || atlas.invalid || preferences.invalid || !storageHealthy) {
     window.setTimeout(showStorageWarning, 0);
   }

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" preserveAspectRatio="xMidYMid meet" role="img" aria-labelledby="title desc" data-level-id="spirit-spring" data-state="action" data-action="paint:1:3" data-before="0,-1,-1,0,-1,0,3,-1,2" data-after="0,3,-1,0,-1,0,3,-1,2">
+  <title id="title">四灵栖境署操作教程</title><desc id="desc">从灵泉初醒真实初始状态出发，为区域一安置森龟后的可到达状态。</desc>
+  <rect width="640" height="360" rx="24" fill="#09231f"/><text x="320" y="37" text-anchor="middle" fill="#efd989" font-family="system-ui" font-size="16" font-weight="900">选择森龟，再点按栖境 2</text>
+  <g font-family="system-ui" font-size="13" font-weight="800" fill="#dce8df"><text x="130" y="72" text-anchor="middle">操作前</text><text x="510" y="72" text-anchor="middle">一次合法安置后</text></g>
+  <g transform="translate(50 88)" stroke="#f3e2ae" stroke-width="2">
+    <g fill="#17362f"><rect width="200" height="200"/></g><g fill="#327aa2"><rect width="40" height="40"/><rect x="120" width="80" height="40"/><rect y="40" width="40" height="120"/><rect x="120" y="160" width="40" height="40"/></g><g fill="#438353"><rect x="40" width="80" height="40"/></g><g fill="#8a5da7"><rect x="120" y="120" width="40" height="40"/></g>
+    <path d="M0 0H200V200H0Z M40 0V160M120 0V40M0 40H200M0 120H200M0 160H200M80 120V200M120 120V200M160 120V200" fill="none"/>
+  </g>
+  <path d="M273 185h76m-20-18 20 18-20 18" fill="none" stroke="#efd989" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <g transform="translate(390 88)" stroke="#f3e2ae" stroke-width="2">
+    <rect width="200" height="200" fill="#17362f"/><g fill="#327aa2"><rect width="40" height="40"/><rect x="120" width="80" height="40"/><rect y="40" width="40" height="120"/><rect x="120" y="160" width="40" height="40"/></g><g fill="#438353"><rect x="40" width="80" height="40"/><rect x="80" y="120" width="40" height="80"/></g><g fill="#8a5da7"><rect x="120" y="120" width="40" height="40"/></g>
+    <path d="M0 0H200V200H0Z M40 0V160M120 0V40M0 40H200M0 120H200M0 160H200M80 120V200M120 120V200M160 120V200" fill="none"/>
+    <text x="100" y="172" text-anchor="middle" fill="#fff" stroke="none" font-family="system-ui" font-size="22" font-weight="900">龟</text>
+  </g>
+  <text x="320" y="328" text-anchor="middle" fill="#b9cec1" font-family="system-ui" font-size="14">候选印只作笔记；正式安置才会参与边界检查。</text>
+</svg>

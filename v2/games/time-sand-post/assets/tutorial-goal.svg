@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 520" preserveAspectRatio="xMidYMid meet"
+  role="img" aria-labelledby="title description"
+  data-game-id="time-sand-post" data-tutorial-version="2" data-level-id="chronicle-dawn" data-seed="11021"
+  data-directions="S,S,SE,W,SE,S,NE,-,S,E,E,NW,N,N,E,W"
+  data-givens="8:1,4:4,14:5,13:7,9:10,11:12,2:15,7:16"
+  data-state="solved" data-link-count="15" data-player-moves="8" data-auto-link-count="7" data-solved="true"
+  data-path="8,12,0,4,14,15,13,1,5,9,10,11,6,3,2,7">
+  <title id="title">晨钟首邮：真实通关邮路</title>
+  <desc id="description">由求解器确认的首关唯一解，十六座驿站从 1 连续排到 16，每一段都严格遵守起点箭头。</desc>
+  <defs>
+    <linearGradient id="back" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#10283a"/><stop offset=".5" stop-color="#25163f"/><stop offset="1" stop-color="#38254d"/></linearGradient>
+    <linearGradient id="tile" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#41606a"/><stop offset="1" stop-color="#201832"/></linearGradient>
+    <radialGradient id="stamp" cx="35%" cy="28%"><stop stop-color="#fff4c7"/><stop offset=".58" stop-color="#ffc96b"/><stop offset="1" stop-color="#d98637"/></radialGradient>
+    <filter id="glow"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <style>
+      .cell{fill:url(#tile);stroke:#73f0dc;stroke-width:1.8}.arrow{fill:#73f0dc;font:700 22px system-ui,sans-serif}.stamp{fill:url(#stamp);stroke:#fff0b4;stroke-width:1.3}.derived{fill:#302545;stroke:#d2b8f5;stroke-width:1.5;stroke-dasharray:4 3}.num{fill:#271531;font:800 21px Georgia,serif;text-anchor:middle;dominant-baseline:middle}.num-light{fill:#f5eaff;font:800 21px Georgia,serif;text-anchor:middle;dominant-baseline:middle}.copy{fill:#eee5fa;font-family:system-ui,sans-serif}.muted{fill:#b8abc8}.gold{fill:#ffc96b}.teal{fill:#73f0dc}.tag{font:800 13px system-ui,sans-serif;letter-spacing:2px}.body{font:15px system-ui,sans-serif}.call{fill:#162938;stroke:#4f9e9a;stroke-width:1.5}.route{stroke:#73f0dc;stroke-width:8;stroke-linecap:round;opacity:.74;filter:url(#glow)}
+    </style>
+  </defs>
+  <rect width="800" height="520" rx="28" fill="url(#back)"/>
+  <text x="48" y="34" class="copy tag gold">CHRONICLE-DAWN · 8 PLAYER MOVES + 7 AUTO LINKS</text>
+  <g aria-label="从 1 到 16 的十五段真实邮路">
+    <line class="route" data-link-from="8" data-link-to="12" x1="92" y1="296" x2="92" y2="394"/>
+    <line class="route" data-link-from="12" data-link-to="0" x1="92" y1="394" x2="92" y2="100"/>
+    <line class="route" data-link-from="0" data-link-to="4" x1="92" y1="100" x2="92" y2="198"/>
+    <line class="route" data-link-from="4" data-link-to="14" x1="92" y1="198" x2="288" y2="394"/>
+    <line class="route" data-link-from="14" data-link-to="15" x1="288" y1="394" x2="386" y2="394"/>
+    <line class="route" data-link-from="15" data-link-to="13" x1="386" y1="394" x2="190" y2="394"/>
+    <line class="route" data-link-from="13" data-link-to="1" x1="190" y1="394" x2="190" y2="100"/>
+    <line class="route" data-link-from="1" data-link-to="5" x1="190" y1="100" x2="190" y2="198"/>
+    <line class="route" data-link-from="5" data-link-to="9" x1="190" y1="198" x2="190" y2="296"/>
+    <line class="route" data-link-from="9" data-link-to="10" x1="190" y1="296" x2="288" y2="296"/>
+    <line class="route" data-link-from="10" data-link-to="11" x1="288" y1="296" x2="386" y2="296"/>
+    <line class="route" data-link-from="11" data-link-to="6" x1="386" y1="296" x2="288" y2="198"/>
+    <line class="route" data-link-from="6" data-link-to="3" x1="288" y1="198" x2="386" y2="100"/>
+    <line class="route" data-link-from="3" data-link-to="2" x1="386" y1="100" x2="288" y2="100"/>
+    <line class="route" data-link-from="2" data-link-to="7" x1="288" y1="100" x2="386" y2="198"/>
+  </g>
+  <g aria-label="已完成的 4 乘 4 真实棋盘">
+    <g data-cell-index="0" data-direction="S" data-given="" data-cell-number="3"><rect class="cell" x="48" y="56" width="88" height="88" rx="17"/><text class="arrow" x="59" y="81">↓</text><circle class="derived" cx="92" cy="103" r="25"/><text class="num-light" x="92" y="104">3</text></g>
+    <g data-cell-index="1" data-direction="S" data-given="" data-cell-number="8"><rect class="cell" x="146" y="56" width="88" height="88" rx="17"/><text class="arrow" x="157" y="81">↓</text><circle class="derived" cx="190" cy="103" r="25"/><text class="num-light" x="190" y="104">8</text></g>
+    <g data-cell-index="2" data-direction="SE" data-given="15" data-cell-number="15"><rect class="cell" x="244" y="56" width="88" height="88" rx="17"/><text class="arrow" x="255" y="81">↘</text><circle class="stamp" cx="288" cy="103" r="25"/><text class="num" x="288" y="104">15</text></g>
+    <g data-cell-index="3" data-direction="W" data-given="" data-cell-number="14"><rect class="cell" x="342" y="56" width="88" height="88" rx="17"/><text class="arrow" x="353" y="81">←</text><circle class="derived" cx="386" cy="103" r="25"/><text class="num-light" x="386" y="104">14</text></g>
+    <g data-cell-index="4" data-direction="SE" data-given="4" data-cell-number="4"><rect class="cell" x="48" y="154" width="88" height="88" rx="17"/><text class="arrow" x="59" y="179">↘</text><circle class="stamp" cx="92" cy="201" r="25"/><text class="num" x="92" y="202">4</text></g>
+    <g data-cell-index="5" data-direction="S" data-given="" data-cell-number="9"><rect class="cell" x="146" y="154" width="88" height="88" rx="17"/><text class="arrow" x="157" y="179">↓</text><circle class="derived" cx="190" cy="201" r="25"/><text class="num-light" x="190" y="202">9</text></g>
+    <g data-cell-index="6" data-direction="NE" data-given="" data-cell-number="13"><rect class="cell" x="244" y="154" width="88" height="88" rx="17"/><text class="arrow" x="255" y="179">↗</text><circle class="derived" cx="288" cy="201" r="25"/><text class="num-light" x="288" y="202">13</text></g>
+    <g data-cell-index="7" data-direction="" data-given="16" data-cell-number="16"><rect class="cell" x="342" y="154" width="88" height="88" rx="17"/><text class="arrow" x="353" y="179">◈</text><circle class="stamp" cx="386" cy="201" r="25"/><text class="num" x="386" y="202">16</text></g>
+    <g data-cell-index="8" data-direction="S" data-given="1" data-cell-number="1"><rect class="cell" x="48" y="252" width="88" height="88" rx="17"/><text class="arrow" x="59" y="277">↓</text><circle class="stamp" cx="92" cy="299" r="25"/><text class="num" x="92" y="300">1</text></g>
+    <g data-cell-index="9" data-direction="E" data-given="10" data-cell-number="10"><rect class="cell" x="146" y="252" width="88" height="88" rx="17"/><text class="arrow" x="157" y="277">→</text><circle class="stamp" cx="190" cy="299" r="25"/><text class="num" x="190" y="300">10</text></g>
+    <g data-cell-index="10" data-direction="E" data-given="" data-cell-number="11"><rect class="cell" x="244" y="252" width="88" height="88" rx="17"/><text class="arrow" x="255" y="277">→</text><circle class="derived" cx="288" cy="299" r="25"/><text class="num-light" x="288" y="300">11</text></g>
+    <g data-cell-index="11" data-direction="NW" data-given="12" data-cell-number="12"><rect class="cell" x="342" y="252" width="88" height="88" rx="17"/><text class="arrow" x="353" y="277">↖</text><circle class="stamp" cx="386" cy="299" r="25"/><text class="num" x="386" y="300">12</text></g>
+    <g data-cell-index="12" data-direction="N" data-given="" data-cell-number="2"><rect class="cell" x="48" y="350" width="88" height="88" rx="17"/><text class="arrow" x="59" y="375">↑</text><circle class="derived" cx="92" cy="397" r="25"/><text class="num-light" x="92" y="398">2</text></g>
+    <g data-cell-index="13" data-direction="N" data-given="7" data-cell-number="7"><rect class="cell" x="146" y="350" width="88" height="88" rx="17"/><text class="arrow" x="157" y="375">↑</text><circle class="stamp" cx="190" cy="397" r="25"/><text class="num" x="190" y="398">7</text></g>
+    <g data-cell-index="14" data-direction="E" data-given="5" data-cell-number="5"><rect class="cell" x="244" y="350" width="88" height="88" rx="17"/><text class="arrow" x="255" y="375">→</text><circle class="stamp" cx="288" cy="397" r="25"/><text class="num" x="288" y="398">5</text></g>
+    <g data-cell-index="15" data-direction="W" data-given="" data-cell-number="6"><rect class="cell" x="342" y="350" width="88" height="88" rx="17"/><text class="arrow" x="353" y="375">←</text><circle class="derived" cx="386" cy="397" r="25"/><text class="num-light" x="386" y="398">6</text></g>
+  </g>
+  <rect class="call" x="500" y="96" width="254" height="154" rx="18"/>
+  <text x="522" y="130" class="copy tag teal">通关是一条完整邮路</text>
+  <text x="522" y="164" class="copy body">1 没有前驱，16 没有后继。</text>
+  <text x="522" y="191" class="copy body">中间每站各有一进一出。</text>
+  <text x="522" y="218" class="copy body muted">8 次参考操作后，规则自动补齐 7 段。</text>
+  <rect class="call" x="500" y="282" width="254" height="106" rx="18"/>
+  <text x="522" y="316" class="copy tag gold">引擎已重新判定</text>
+  <text x="522" y="349" class="copy body">16 / 16 定序 · 1 条链 · 完成</text>
+  <text x="522" y="374" class="copy body muted">这不是概念示意图。</text>
+  <text x="48" y="478" class="copy body muted">4 × 4 · 15 段邮路 · 16 座驿站 · SOLVED</text>
+</svg>

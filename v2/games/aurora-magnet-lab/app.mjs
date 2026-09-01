@@ -19,6 +19,7 @@ import {
 } from "./levels.mjs";
 import {
   HISTORY_LIMIT,
+  createRunId,
   createSession,
   loadPreferences,
   loadSession,
@@ -29,16 +30,30 @@ import {
 } from "./persistence.mjs";
 import {
   COMPLETION_EVENT,
+  DELIVERY_STATE,
   GAME_ID,
   READY_EVENT,
   awardCompletion,
   completionDetail,
+  completionDetailFromSettlement,
+  completionRunIsDurable,
+  legacyCompletionEventId,
   loadProfile,
+  markCompletionDelivery,
+  pendingCompletionDetails,
   profileSummary,
   saveProfile,
+  validateCompletionAcknowledgement,
+  validateCompletionDetail,
 } from "./rewards.mjs";
 import { createDialogController } from "./dialog-controller.mjs";
-import { completionDeliveryConfirmed, publishCompletion } from "./completion-bridge.mjs";
+import {
+  flushCompletionOutbox,
+  loadCompletionOutbox,
+  normalizeCompletionOutbox,
+  saveCompletionOutbox,
+  stageCompletion,
+} from "./completion-bridge.mjs";
 import {
   TOOL_IDS,
   cellAriaLabel,
@@ -53,6 +68,18 @@ import {
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 const VALID_DIFFICULTIES = DIFFICULTIES.map((difficulty) => difficulty.id);
 const LONG_PRESS_MS = 560;
+const COMPLETION_LOCK_NAME = `${GAME_ID}:completion-ledger`;
+let fallbackCompletionLock = Promise.resolve();
+
+function withCompletionLock(callback) {
+  const locks = window.navigator?.locks;
+  if (locks && typeof locks.request === "function") {
+    return locks.request(COMPLETION_LOCK_NAME, { mode: "exclusive" }, callback);
+  }
+  const next = fallbackCompletionLock.then(callback, callback);
+  fallbackCompletionLock = next.catch(() => {});
+  return next;
+}
 
 const elements = {
   assertiveStatus: document.querySelector("#assertive-status"),
@@ -102,6 +129,7 @@ const elements = {
   tutorialBullets: document.querySelector("#tutorial-bullets"),
   tutorialAnnouncement: document.querySelector("#tutorial-announcement"),
   tutorialButton: document.querySelector("#tutorial-button"),
+  tutorialCardPanel: document.querySelector(".tutorial-card"),
   tutorialCounter: document.querySelector("#tutorial-counter"),
   tutorialDialog: document.querySelector("#tutorial-dialog"),
   tutorialDots: document.querySelector("#tutorial-dots"),
@@ -183,7 +211,16 @@ let position = normalizePosition(puzzle, session.position);
 let evaluation = evaluatePosition(puzzle, position);
 const profileLoad = loadProfile(storage, LEVELS);
 let profile = profileLoad.profile;
-let storageAvailable = preferenceLoad.available && sessionLoad.available && profileLoad.available;
+const completionValidationOptions = () => ({
+  validateDetail: (detail) => validateCompletionDetail(detail, profile, LEVELS),
+  validateConfirmed: (eventId, runId, detail) => (
+    validateCompletionAcknowledgement(eventId, runId, profile, LEVELS, detail)
+  ),
+});
+const outboxLoad = loadCompletionOutbox(storage, completionValidationOptions());
+let completionOutbox = outboxLoad.outbox;
+let outboxWritable = !outboxLoad.corrupted;
+let storageAvailable = preferenceLoad.available && sessionLoad.available && profileLoad.available && outboxLoad.available;
 let resumeAt = Date.now();
 let tutorialCard = 0;
 let activeKey = puzzle.slots[0].cells[0].key;
@@ -195,6 +232,7 @@ let toastTimer = 0;
 let victoryTimer = 0;
 let longPress = null;
 let suppressedClickKey = null;
+let settlementInFlight = false;
 
 function anyDialogOpen(except = null) {
   return [...document.querySelectorAll("dialog[open]")].some((dialog) => dialog !== except);
@@ -252,6 +290,137 @@ function persistSession(message = "实验记录已保存") {
   storageAvailable = storageAvailable && saved;
   setSaveMessage(message, saved);
   return saved;
+}
+
+function refreshProfile() {
+  const latest = loadProfile(storage, LEVELS);
+  if (!latest.available || latest.corrupted || !latest.restored) return false;
+  profile = latest.profile;
+  return true;
+}
+
+function persistProfile(candidate) {
+  const saved = saveProfile(storage, candidate, LEVELS);
+  storageAvailable = storageAvailable && saved;
+  if (!saved || !refreshProfile()) return false;
+  return true;
+}
+
+function currentSettlement() {
+  return Object.entries(profile.settlements).find(([, settlement]) => settlement.runId === session.runId) ?? null;
+}
+
+function flushPendingCompletionsUnlocked() {
+  if (!outboxWritable || !refreshProfile()) {
+    return { confirmedEventIds: [], confirmedRunIds: [], queuedEventIds: [], persisted: false };
+  }
+  const options = completionValidationOptions();
+  const latestOutbox = loadCompletionOutbox(storage, options);
+  if (!latestOutbox.available || latestOutbox.corrupted) {
+    if (latestOutbox.corrupted) outboxWritable = false;
+    storageAvailable = false;
+    return { confirmedEventIds: [], confirmedRunIds: [], queuedEventIds: [], persisted: false };
+  }
+  completionOutbox = latestOutbox.outbox;
+
+  const stagedEventIds = [];
+  try {
+    for (const detail of pendingCompletionDetails(profile, LEVELS)) {
+      completionOutbox = stageCompletion(completionOutbox, detail, options);
+      stagedEventIds.push(detail.eventId);
+    }
+  } catch {
+    outboxWritable = false;
+    return { confirmedEventIds: [], confirmedRunIds: [], queuedEventIds: [], persisted: false };
+  }
+
+  const stagedSaved = saveCompletionOutbox(storage, completionOutbox, options);
+  storageAvailable = storageAvailable && stagedSaved;
+  if (!stagedSaved) return { confirmedEventIds: [], confirmedRunIds: [], queuedEventIds: [], persisted: false };
+
+  const mergedLoad = loadCompletionOutbox(storage, options);
+  if (!mergedLoad.available || mergedLoad.corrupted) return { confirmedEventIds: [], confirmedRunIds: [], queuedEventIds: [], persisted: false };
+  completionOutbox = mergedLoad.outbox;
+  const alreadyConfirmed = stagedEventIds.filter((eventId) => completionOutbox.confirmed[eventId]);
+  const merelyStaged = stagedEventIds.filter((eventId) => !completionOutbox.confirmed[eventId]);
+  let deliveryProfile = markCompletionDelivery(profile, merelyStaged, DELIVERY_STATE.STAGED);
+  deliveryProfile = markCompletionDelivery(deliveryProfile, alreadyConfirmed, DELIVERY_STATE.CONFIRMED);
+  if (!persistProfile(deliveryProfile)) {
+    return { confirmedEventIds: [], confirmedRunIds: [], queuedEventIds: [], persisted: false };
+  }
+
+  const currentOptions = completionValidationOptions();
+  const result = flushCompletionOutbox(completionOutbox, window, COMPLETION_EVENT, currentOptions);
+  const confirmedProfile = markCompletionDelivery(profile, result.confirmedEventIds, DELIVERY_STATE.CONFIRMED);
+  const confirmationSaved = persistProfile(confirmedProfile);
+  if (!confirmationSaved) return { ...result, persisted: false };
+
+  const confirmedOptions = completionValidationOptions();
+  const acknowledgedOutbox = normalizeCompletionOutbox(result.outbox, confirmedOptions);
+  if (!acknowledgedOutbox) return { ...result, persisted: false };
+  const deliveredStateSaved = saveCompletionOutbox(storage, acknowledgedOutbox, confirmedOptions);
+  storageAvailable = storageAvailable && deliveredStateSaved;
+  if (!deliveredStateSaved) return { ...result, persisted: false };
+
+  const deliveredLoad = loadCompletionOutbox(storage, confirmedOptions);
+  if (!deliveredLoad.available || deliveredLoad.corrupted) return { ...result, persisted: false };
+  completionOutbox = deliveredLoad.outbox;
+  const current = currentSettlement();
+  if (current?.[1].deliveryState === DELIVERY_STATE.CONFIRMED && evaluation.complete) {
+    session.completed = true;
+    session.completionReported = true;
+    const sessionSaved = saveSession(storage, puzzle, session);
+    storageAvailable = storageAvailable && sessionSaved;
+  }
+  return { ...result, persisted: deliveredStateSaved && confirmationSaved };
+}
+
+function flushPendingCompletions() {
+  return withCompletionLock(flushPendingCompletionsUnlocked);
+}
+
+function settlementAttemptId() {
+  const byRun = currentSettlement();
+  if (byRun) return byRun[0];
+  const current = `${GAME_ID}:attempt:${session.runId}`;
+  if (profile.settlements[current]) return current;
+  const legacy = [
+    GAME_ID,
+    "attempt",
+    puzzle.id,
+    session.startedAt,
+    session.moves,
+    session.undos,
+    session.conflictMoves,
+    session.elapsedMs,
+  ].join(":");
+  if (profile.settlements[legacy]) return legacy;
+  if (session.runId.startsWith("legacy-")) {
+    const migrated = Object.entries(profile.settlements)
+      .filter(([, settlement]) => settlement.puzzleId === puzzle.id && !settlement.runId)
+      .sort((left, right) => right[1].clearOrdinal - left[1].clearOrdinal)[0];
+    if (migrated) return migrated[0];
+  }
+  return current;
+}
+
+function currentCompletionIsDurable() {
+  const current = currentSettlement();
+  return completionRunIsDurable(evaluation.complete, current?.[1] ?? null);
+}
+
+function completionMutationIsBlocked() {
+  if (currentCompletionIsDurable()) return false;
+  void flushPendingCompletions();
+  showToast("完成记录尚未安全保存，请稍后重试。", true, 3600);
+  return true;
+}
+
+async function prepareToLeaveCurrentRun() {
+  await flushPendingCompletions();
+  if (currentCompletionIsDurable()) return true;
+  showToast("完成记录尚未写入待投递箱，请保留本局并稍后重试。", true, 3600);
+  return false;
 }
 
 function persistPreferences() {
@@ -658,7 +827,7 @@ function performToolAt(key) {
 }
 
 function commitMove(move) {
-  if (anyDialogOpen()) return false;
+  if (anyDialogOpen() || settlementInFlight || completionMutationIsBlocked()) return false;
   const previousComplete = evaluation.complete;
   const result = applyMove(puzzle, position, move);
   if (!result.accepted) {
@@ -688,7 +857,13 @@ function commitMove(move) {
 }
 
 function undo() {
-  if (anyDialogOpen() || session.history.length === 0) return false;
+  if (
+    anyDialogOpen()
+    || settlementInFlight
+    || session.history.length === 0
+    || completionMutationIsBlocked()
+  ) return false;
+  void flushPendingCompletions();
   const previous = session.history.pop();
   position = normalizePosition(puzzle, previous.position);
   session.moves = previous.moves;
@@ -703,14 +878,14 @@ function undo() {
   return true;
 }
 
-function restart() {
-  if (anyDialogOpen()) return false;
+async function restart() {
+  if (anyDialogOpen() || settlementInFlight) return false;
   if (position.states.size === 0 && position.notes.size === 0) {
     showToast("实验舱已经是空的。", true);
     return false;
   }
-  session.history.push(cloneHistorySnapshot({ ...session, position: positionToJSON(position) }));
-  if (session.history.length > HISTORY_LIMIT) session.history.shift();
+  if (!await prepareToLeaveCurrentRun()) return false;
+  session.history = [];
   position = { states: new Map(), notes: new Set() };
   session.moves = 0;
   session.conflictMoves = 0;
@@ -719,14 +894,16 @@ function restart() {
   evaluation = evaluatePosition(puzzle, position);
   resumeAt = Date.now();
   session.startedAt = resumeAt;
+  session.runId = createRunId({ now: resumeAt });
   session.elapsedMs = 0;
-  persistSession("实验已重开，可撤销恢复");
+  persistSession("新一轮实验已保存");
   render();
-  showToast("实验已重开；撤销可恢复刚才的盘面。");
+  showToast("实验已重开，并生成了新的独立实验编号。");
   return true;
 }
 
-function loadFreshPuzzle(next) {
+async function loadFreshPuzzle(next) {
+  if (settlementInFlight || !await prepareToLeaveCurrentRun()) return false;
   window.clearTimeout(victoryTimer);
   if (elements.victoryDialog.open) victoryController.close({ reason: "next-puzzle", restoreFocus: false });
   puzzle = next;
@@ -743,23 +920,23 @@ function loadFreshPuzzle(next) {
   render();
   window.requestAnimationFrame(() => cellElements.get(activeKey)?.focus({ preventScroll: true }));
   announce(`已载入${puzzle.title}`);
+  return true;
 }
 
-function newPuzzle() {
-  if (anyDialogOpen()) return false;
-  loadFreshPuzzle(nextPuzzle(puzzle));
+async function newPuzzle() {
+  if (anyDialogOpen() || settlementInFlight) return false;
+  if (!await loadFreshPuzzle(nextPuzzle(puzzle))) return false;
   playSound("check");
   return true;
 }
 
-function changeDifficulty(difficulty) {
-  if (!VALID_DIFFICULTIES.includes(difficulty) || anyDialogOpen()) return false;
+async function changeDifficulty(difficulty) {
+  if (!VALID_DIFFICULTIES.includes(difficulty) || anyDialogOpen() || settlementInFlight) return false;
   if (difficulty === puzzle.difficulty) {
     showToast(`当前已经是${difficultyById(difficulty).label}级实验。`);
     return false;
   }
-  loadFreshPuzzle(puzzleAt(difficulty, 0));
-  return true;
+  return await loadFreshPuzzle(puzzleAt(difficulty, 0));
 }
 
 function toggleClueMark(id) {
@@ -822,54 +999,48 @@ function checkField() {
   }
 }
 
-function finishExperiment() {
+function finishExperimentUnlocked() {
   if (session.completionReported || !evaluation.complete) return false;
   syncSession();
   const latestProfileLoad = loadProfile(storage, LEVELS);
-  if (latestProfileLoad.restored || latestProfileLoad.corrupted || profile.totalClears === 0) {
-    profile = latestProfileLoad.profile;
-  }
+  if (latestProfileLoad.restored) profile = latestProfileLoad.profile;
+  const attemptId = settlementAttemptId();
+  const existingSettlement = profile.settlements[attemptId];
   const award = awardCompletion(profile, puzzle, {
     moves: session.moves,
     undos: session.undos,
     conflictMoves: session.conflictMoves,
     elapsedMs: session.elapsedMs,
+    position: positionToJSON(position),
   }, {
-    attemptId: [
-      GAME_ID,
-      "attempt",
-      puzzle.id,
-      session.startedAt,
-      session.moves,
-      session.undos,
-      session.conflictMoves,
-      session.elapsedMs,
-    ].join(":"),
+    attemptId,
+    runId: session.runId,
+    ...(existingSettlement?.legacyEventIdUnknown
+      ? { legacyEventId: legacyCompletionEventId(puzzle.id, existingSettlement.clearOrdinal, session.moves) }
+      : {}),
   });
   profile = award.profile;
-  const profileSaved = saveProfile(storage, profile, LEVELS);
-  storageAvailable = storageAvailable && profileSaved;
+  const profileSaved = persistProfile(profile);
   session.completed = true;
   session.completionReported = false;
-  let sessionSaved = saveSession(storage, puzzle, session);
+  const sessionSaved = saveSession(storage, puzzle, session);
   storageAvailable = storageAvailable && sessionSaved;
-  const detail = completionDetail(puzzle, {
-    moves: session.moves,
-    undos: session.undos,
-    conflictMoves: session.conflictMoves,
-    elapsedMs: session.elapsedMs,
-  }, award);
-  const delivery = publishCompletion(window, detail, COMPLETION_EVENT);
-  session.completionReported = completionDeliveryConfirmed(profileSaved, delivery);
-  if (session.completionReported) {
-    sessionSaved = saveSession(storage, puzzle, session);
-    storageAvailable = storageAvailable && sessionSaved;
-  }
+  const detail = (profileSaved ? completionDetailFromSettlement(profile, attemptId, LEVELS) : null)
+    ?? completionDetail(puzzle, { runId: session.runId }, award);
+  if (profileSaved) flushPendingCompletionsUnlocked();
   playSound("win");
   renderVictory(detail, award);
   render();
   scheduleVictoryDialog(reduceMotion.matches ? 0 : 720);
   return true;
+}
+
+function finishExperiment() {
+  if (session.completionReported || !evaluation.complete || settlementInFlight) return Promise.resolve(false);
+  settlementInFlight = true;
+  return withCompletionLock(finishExperimentUnlocked).finally(() => {
+    settlementInFlight = false;
+  });
 }
 
 function scheduleVictoryDialog(delay = 0) {
@@ -922,6 +1093,7 @@ function renderTutorialCard() {
   }));
   elements.tutorialPreviousButton.disabled = tutorialCard === 0;
   elements.tutorialNextButton.textContent = tutorialCard === TUTORIAL_CARDS.length - 1 ? "开始实验" : "下一张";
+  elements.tutorialCardPanel.scrollTop = 0;
 }
 
 function openTutorial(auto = false) {
@@ -966,6 +1138,7 @@ function snapshot() {
   return JSON.parse(JSON.stringify({
     version: 1,
     gameId: GAME_ID,
+    runId: session.runId,
     puzzle: { id: puzzle.id, seed: puzzle.seed, difficulty: puzzle.difficulty },
     position: positionToJSON(position),
     metrics: {
@@ -1039,6 +1212,14 @@ document.addEventListener("keydown", (event) => {
 
 document.addEventListener("pointerdown", ensureAudio, { once: true, capture: true });
 document.addEventListener("keydown", ensureAudio, { once: true, capture: true });
+for (const eventName of ["realm:ready", "ten-realms-v2:realm-ready"]) {
+  window.addEventListener(eventName, () => flushPendingCompletions());
+}
+window.addEventListener("storage", (event) => {
+  if (event.key === null || event.key === undefined) return;
+  if (!event.key.startsWith("ten-realms-v2:games:aurora-magnet-lab:")) return;
+  window.setTimeout(flushPendingCompletions, 0);
+});
 
 window.AuroraMagnetLab = Object.freeze({
   version: 1,
@@ -1057,12 +1238,11 @@ buildClues();
 buildBoard();
 render();
 
-if (sessionLoad.corrupted || preferenceLoad.corrupted || profileLoad.corrupted) {
+if (sessionLoad.corrupted || preferenceLoad.corrupted || profileLoad.corrupted || outboxLoad.corrupted) {
   setSaveMessage("检测到损坏记录，已安全恢复为可用状态", false);
 }
-if (evaluation.complete && !session.completionReported) {
-  window.setTimeout(finishExperiment, 0);
-}
+if (evaluation.complete && !session.completionReported) window.setTimeout(finishExperiment, 0);
+else window.setTimeout(flushPendingCompletions, 0);
 const tutorialState = loadTutorialSeen(storage);
 if (!tutorialState.seen) window.setTimeout(() => openTutorial(true), 420);
 

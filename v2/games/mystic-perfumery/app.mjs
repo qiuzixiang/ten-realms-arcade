@@ -20,11 +20,13 @@ import {
   HISTORY_LIMIT,
   createSaveState,
   confirmPerfumeryCompletion,
+  enqueuePerfumeryCompletion,
   hasRevealedRecipe,
   markRecipeRevealed,
   normalizeSave,
   recordOutcome,
   serializeSave,
+  stagePerfumeryCompletion,
   statsSummary,
 } from "./session.mjs";
 
@@ -98,8 +100,8 @@ let resultWaitObserver = null;
 let pendingResultTimer = 0;
 let lastOutcome = null;
 
-function freshRuntime(recipe, preferences = {}, stats = undefined) {
-  const normalized = normalizeSave(createSaveState(recipe, preferences, stats));
+function freshRuntime(recipe, preferences = {}, stats = undefined, completionOutbox = []) {
+  const normalized = normalizeSave(createSaveState(recipe, preferences, stats, { completionOutbox }));
   if (!normalized) throw new Error("Unable to create a fresh perfumery session.");
   return normalized;
 }
@@ -576,17 +578,25 @@ function useHint() {
   showToast("闻香建议已填入：它与所有公开香印相容，但不保证就是真正秘方。 ", false, 3900);
 }
 
-function reportRealmCompletion() {
-  const game = state.active.game;
-  const payload = {
-    levelId: game.recipe.id,
-    tier: game.recipe.tier,
-    moves: game.guesses.length,
-    par: game.recipe.par,
-  };
+function reportRealmCompletion(payload) {
   if (typeof window.RealmArcade?.complete === "function") return window.RealmArcade.complete(payload);
-  (window.__realmCompletionQueue ??= []).push(payload);
-  return null;
+  const queue = Array.isArray(window.__realmCompletionQueue)
+    ? window.__realmCompletionQueue
+    : (window.__realmCompletionQueue = []);
+  enqueuePerfumeryCompletion(queue, payload);
+  // The in-memory compatibility queue is not proof of delivery. Keep the
+  // persisted outbox pending so realm:ready or a later page load retries the
+  // same event id.
+  return false;
+}
+
+function retryPendingRealmCompletion() {
+  state.active = stagePerfumeryCompletion(state.active);
+  if (state.active.completionOutbox.length === 0) return;
+  writeSave();
+  const realm = confirmPerfumeryCompletion(state.active, reportRealmCompletion);
+  state.active = realm.active;
+  writeSave();
 }
 
 function terminalOutcomeFallback() {
@@ -620,9 +630,14 @@ function handleTerminal() {
     lastOutcome = terminalOutcomeFallback();
     if (pendingRealmReward && lastOutcome) lastOutcome.practice = false;
   }
+  state.stats = markRecipeRevealed(state.stats, game.recipe.id);
+  state.active = stagePerfumeryCompletion(state.active);
+  // Local settlement and the stable outbox must survive before the shared
+  // host is called. If the host throws after persisting, retry is deduplicated
+  // by the same eventId.
+  writeSave();
   const realm = confirmPerfumeryCompletion(state.active, reportRealmCompletion);
   state.active = realm.active;
-  state.stats = markRecipeRevealed(state.stats, game.recipe.id);
   writeSave();
   render({ scrollHistory: true });
   renderResult();
@@ -664,8 +679,9 @@ function startRecipe(recipe, message) {
   closeResult();
   const preferences = { ...state.preferences };
   const stats = state.stats;
+  const completionOutbox = state.active.completionOutbox;
   const practice = hasRevealedRecipe(stats, recipe.id);
-  state = freshRuntime(recipe, preferences, stats);
+  state = freshRuntime(recipe, preferences, stats, completionOutbox);
   lastOutcome = null;
   render();
   writeSave();
@@ -930,6 +946,7 @@ document.addEventListener("keydown", (event) => {
 
 document.addEventListener("pointerdown", ensureAudio, { once: true, capture: true });
 document.addEventListener("keydown", ensureAudio, { once: true, capture: true });
+window.addEventListener("realm:ready", retryPendingRealmCompletion);
 
 elements.submitButton.addEventListener("click", submitCurrent);
 elements.hintButton.addEventListener("click", useHint);
@@ -970,6 +987,7 @@ const restoreResult = readSave();
 render();
 
 if (state.active.game.status !== "playing") handleTerminal();
+else if (state.active.completionOutbox.length > 0) retryPendingRealmCompletion();
 
 if (restoreResult.restored) {
   setSavedMessage("已恢复上次调香进度 · 自动存档开启");

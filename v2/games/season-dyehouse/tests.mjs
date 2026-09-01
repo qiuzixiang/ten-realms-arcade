@@ -48,6 +48,7 @@ import {
   restoreSession,
   savePreferences,
   saveSession,
+  writeJSON,
 } from "./storage.mjs";
 import {
   COMPLETE_EVENT,
@@ -368,6 +369,8 @@ await test("所有本地存储键均使用 v2 游戏私有前缀，损坏 sessio
   const preferenceStorage = new FakeStorage();
   ok(savePreferences(preferenceStorage, preferences));
   equal(loadPreferences(preferenceStorage), preferences);
+  equal(writeJSON(null, STORAGE_KEYS.records, {}), false, "不存在的 storage 不得误报写入成功");
+  equal(writeJSON({}, STORAGE_KEYS.records, {}), false, "缺少 setItem 时不得误报写入成功");
 
   const legacyPreferences = new FakeStorage({
     [STORAGE_KEYS.preferences]: JSON.stringify({
@@ -458,30 +461,49 @@ await test("织物图鉴、少步、无空染与每日布样奖励全部稳定�
   ok(normalizedLongLedger.rewards["season-dyehouse:volume:12000"], "长期游玩不得在刷新时静默丢掉最新去重记录");
 });
 
-await test("每局完成 ID 稳定、改进局可重报，适配器异常会可靠入队", () => {
+await test("每局完成 ID 稳定、真实回放可证，内存队列不冒充宿主确认", () => {
+  const puzzle = buildPuzzle(1, "12x12-easy");
+  let baselineGame = createGame({ seed: puzzle.seed, presetId: puzzle.preset.id });
+  for (const colour of [1, ...puzzle.referencePath]) {
+    const result = applyMove(baselineGame, colour);
+    ok(result.accepted, "带一次空染的完成日志仍必须逐手合法");
+    baselineGame = result.state;
+  }
+  equal(baselineGame.status, STATUS.WON);
+  equal(baselineGame.wastes, 1);
+
+  let improvedGame = createGame({ seed: puzzle.seed, presetId: puzzle.preset.id });
+  for (const colour of puzzle.referencePath) improvedGame = applyMove(improvedGame, colour).state;
+  equal(improvedGame.status, STATUS.WON);
+  ok(improvedGame.moves < baselineGame.moves);
+
   const details = {
-    puzzleId: "12x12-hard:seed:42",
+    puzzleId: puzzleIdFor(baselineGame),
     attemptId: "test-attempt-run-0042",
     mode: "seed",
-    presetId: "12x12-hard",
-    tier: 3,
-    seed: 42,
-    moves: 16,
-    moveLimit: 16,
-    referenceMoves: 16,
-    efficient: true,
-    wasteFree: true,
-    maxCleanStreak: 16,
+    day: "",
+    presetId: baselineGame.presetId,
+    tier: puzzle.preset.tier,
+    seed: baselineGame.seed,
+    moves: baselineGame.moves,
+    moveLimit: baselineGame.moveLimit,
+    referenceMoves: baselineGame.referenceMoves,
+    efficient: baselineGame.moves <= baselineGame.referenceMoves,
+    wasteFree: baselineGame.wastes === 0,
+    maxCleanStreak: baselineGame.maxCleanStreak,
+    timeline: baselineGame.timeline,
     claims: [{ id: "season-dyehouse:first:42", kind: "first-clear", label: "新布面" }],
   };
   const payload = createCompletionPayload(details, new Date("2026-08-31T12:00:00Z"));
   equal(payload.levelId, payload.puzzleId);
-  equal(payload.puzzleId, `v${GENERATOR_VERSION}:12x12-hard:seed:42`);
-  equal(payload.par, 16);
-  equal(payload.tier, 3);
-  equal(payload.moves, 16);
+  equal(payload.puzzleId, `v${GENERATOR_VERSION}:12x12-easy:seed:1`);
+  equal(payload.par, baselineGame.referenceMoves);
+  equal(payload.tier, 1);
+  equal(payload.moves, baselineGame.moves);
   equal(payload.gameId, "season-dyehouse");
   equal(payload.attemptId, details.attemptId);
+  equal(payload.timeline, baselineGame.timeline);
+  ok(Object.isFrozen(payload.timeline));
   equal(normalizeAttemptId("bad"), "");
   equal(createAttemptId({ randomUUID: () => "test-attempt-fixed-0001" }), "test-attempt-fixed-0001");
   equal(
@@ -490,7 +512,15 @@ await test("每局完成 ID 稳定、改进局可重报，适配器异常会可�
     "同一局的刷新重试必须保持 ID",
   );
   const improvedPayload = createCompletionPayload(
-    { ...details, attemptId: "test-attempt-run-0043", moves: 15 },
+    {
+      ...details,
+      attemptId: "test-attempt-run-0043",
+      moves: improvedGame.moves,
+      efficient: true,
+      wasteFree: true,
+      maxCleanStreak: improvedGame.maxCleanStreak,
+      timeline: improvedGame.timeline,
+    },
     new Date("2026-09-01T12:00:00Z"),
   );
   ok(improvedPayload.completionId !== payload.completionId, "同题新局必须可再次上报");
@@ -510,8 +540,8 @@ await test("每局完成 ID 稳定、改进局可重报，适配器异常会可�
   }
   const events = [];
   const fallbackHost = { CustomEvent: FakeCustomEvent, dispatchEvent: (event) => events.push(event) };
-  equal(emitCompletion(payload, fallbackHost), "event");
-  equal(emitCompletion(payload, fallbackHost), "event");
+  equal(emitCompletion(payload, fallbackHost), "queue");
+  equal(emitCompletion(payload, fallbackHost), "queue");
   equal(fallbackHost[COMPLETION_QUEUE].length, 1);
   equal(events.length, 1, "同一局重试不得重复派发 DOM 事件");
   equal(events[0].type, COMPLETE_EVENT);
@@ -524,43 +554,123 @@ await test("每局完成 ID 稳定、改进局可重报，适配器异常会可�
     CustomEvent: FakeCustomEvent,
     dispatchEvent: (event) => throwEvents.push(event),
   };
-  equal(emitCompletion(payload, throwingHost), "event", "适配器抛错后必须降级入队");
+  equal(emitCompletion(payload, throwingHost), "queue", "适配器抛错后只能降级入队，不能冒充已确认");
   equal(throwingHost[COMPLETION_QUEUE], [payload]);
   equal(throwEvents.length, 1);
 
   const firstLocal = recordCompletion(createRecords(), {
     puzzleId: payload.puzzleId,
     presetId: details.presetId,
-    moves: 16,
-    efficient: true,
-    wasteFree: true,
-    maxCleanStreak: 16,
+    moves: baselineGame.moves,
+    efficient: false,
+    wasteFree: false,
+    maxCleanStreak: baselineGame.maxCleanStreak,
     mode: "seed",
     day: "",
   }, new Date("2026-08-31T12:00:00Z"));
   firstLocal.records.pendingCompletions[payload.completionId] = payload;
-  const unavailableHost = { [COMPLETION_QUEUE]: Object.freeze([]) };
-  const blocked = flushCompletionReports(firstLocal.records, unavailableHost);
+  const blocked = flushCompletionReports(firstLocal.records, throwingHost);
   equal(blocked.blocked, true);
+  equal(blocked.delivered, []);
   equal(firstLocal.records.puzzleWins[payload.puzzleId], 1);
   ok(firstLocal.records.pendingCompletions[payload.completionId]);
+  equal(firstLocal.records.completionReports, {});
+  equal(throwingHost[COMPLETION_QUEUE], [payload], "内存队列中有副本时持久 pending 仍必须保留");
 
   const afterRefresh = normalizeRecords(JSON.parse(JSON.stringify(firstLocal.records)));
   equal(afterRefresh.puzzleWins[payload.puzzleId], 1, "失败后刷新不得重复本地结算");
-  const retryHost = { CustomEvent: FakeCustomEvent, dispatchEvent() {} };
+  ok(afterRefresh.pendingCompletions[payload.completionId], "真实已解 timeline 必须可在刷新后完整恢复");
+  const retryCalls = [];
+  const retryHost = { RealmArcade: { complete: (value) => retryCalls.push(value) } };
   const retried = flushCompletionReports(afterRefresh, retryHost);
   equal(retried.delivered, [payload.completionId]);
+  equal(retryCalls, [payload]);
   equal(afterRefresh.pendingCompletions, {});
   ok(afterRefresh.completionReports[payload.completionId]);
   equal(afterRefresh.puzzleWins[payload.puzzleId], 1);
 
+  const forgedPayload = {
+    ...payload,
+    moves: 0,
+    maxCleanStreak: 0,
+    timeline: [],
+  };
+  const forgedRecords = createRecords();
+  forgedRecords.pendingCompletions[payload.completionId] = forgedPayload;
+  equal(normalizeRecords(forgedRecords).pendingCompletions, {}, "从未游玩的空 timeline 不得伪造完成");
+  const tamperedMetrics = createRecords();
+  tamperedMetrics.pendingCompletions[payload.completionId] = { ...payload, maxCleanStreak: payload.maxCleanStreak + 1 };
+  equal(normalizeRecords(tamperedMetrics).pendingCompletions, {}, "真实 timeline 与伪造指标不一致时也必须拒绝");
+
+  const dailyDay = "2026-09-01";
+  const disguisedDaily = createCompletionPayload({
+    ...details,
+    puzzleId: puzzleIdFor(baselineGame, "daily", dailyDay),
+    attemptId: "test-attempt-fake-daily-0001",
+    mode: "daily",
+    day: dailyDay,
+  }, new Date("2026-09-01T12:00:00Z"));
+  const disguisedDailyRecords = createRecords();
+  disguisedDailyRecords.pendingCompletions[disguisedDaily.completionId] = disguisedDaily;
+  equal(normalizeRecords(disguisedDailyRecords).pendingCompletions, {}, "普通规格与种子不得伪装成每日布样");
+
+  const dailyPuzzle = buildPuzzle(dailySeed(dailyDay), "12x12-medium");
+  let dailyGame = createGame({ seed: dailyPuzzle.seed, presetId: dailyPuzzle.preset.id });
+  for (const colour of dailyPuzzle.referencePath) dailyGame = applyMove(dailyGame, colour).state;
+  const dailyPayload = createCompletionPayload({
+    puzzleId: puzzleIdFor(dailyGame, "daily", dailyDay),
+    attemptId: "test-attempt-real-daily-0001",
+    mode: "daily",
+    day: dailyDay,
+    presetId: dailyGame.presetId,
+    tier: dailyPuzzle.preset.tier,
+    seed: dailyGame.seed,
+    moves: dailyGame.moves,
+    moveLimit: dailyGame.moveLimit,
+    referenceMoves: dailyGame.referenceMoves,
+    efficient: true,
+    wasteFree: dailyGame.wastes === 0,
+    maxCleanStreak: dailyGame.maxCleanStreak,
+    timeline: dailyGame.timeline,
+    claims: [],
+  }, new Date("2026-09-01T12:00:00Z"));
+  const dailyRecords = createRecords();
+  dailyRecords.pendingCompletions[dailyPayload.completionId] = dailyPayload;
+  ok(normalizeRecords(dailyRecords).pendingCompletions[dailyPayload.completionId], "真实每日题面的完成证明必须可恢复");
+
+  const invalidDay = "2026-02-30";
+  const invalidDailyPuzzle = buildPuzzle(dailySeed(invalidDay), "12x12-medium");
+  let invalidDailyGame = createGame({ seed: invalidDailyPuzzle.seed, presetId: invalidDailyPuzzle.preset.id });
+  for (const colour of invalidDailyPuzzle.referencePath) invalidDailyGame = applyMove(invalidDailyGame, colour).state;
+  const invalidDailyPayload = createCompletionPayload({
+    ...details,
+    puzzleId: puzzleIdFor(invalidDailyGame, "daily", invalidDay),
+    attemptId: "test-attempt-invalid-day-0001",
+    mode: "daily",
+    day: invalidDay,
+    presetId: invalidDailyGame.presetId,
+    tier: invalidDailyPuzzle.preset.tier,
+    seed: invalidDailyGame.seed,
+    moves: invalidDailyGame.moves,
+    moveLimit: invalidDailyGame.moveLimit,
+    referenceMoves: invalidDailyGame.referenceMoves,
+    efficient: true,
+    wasteFree: invalidDailyGame.wastes === 0,
+    maxCleanStreak: invalidDailyGame.maxCleanStreak,
+    timeline: invalidDailyGame.timeline,
+    claims: [],
+  }, new Date("2026-02-28T12:00:00Z"));
+  const invalidDailyRecords = createRecords();
+  invalidDailyRecords.pendingCompletions[invalidDailyPayload.completionId] = invalidDailyPayload;
+  equal(normalizeRecords(invalidDailyRecords).pendingCompletions, {}, "仅形式匹配但不存在的日期必须拒绝");
+
   const improvedLocal = recordCompletion(afterRefresh, {
     puzzleId: payload.puzzleId,
     presetId: details.presetId,
-    moves: 15,
+    moves: improvedGame.moves,
     efficient: true,
     wasteFree: true,
-    maxCleanStreak: 15,
+    maxCleanStreak: improvedGame.maxCleanStreak,
     mode: "seed",
     day: "",
   }, new Date("2026-09-01T12:00:00Z"));
@@ -568,7 +678,7 @@ await test("每局完成 ID 稳定、改进局可重报，适配器异常会可�
   const improvementCalls = [];
   flushCompletionReports(improvedLocal.records, { TenRealmsV2: { complete: (value) => improvementCalls.push(value) } });
   equal(improvementCalls, [improvedPayload]);
-  equal(improvedLocal.records.bestMoves[payload.puzzleId], 15);
+  equal(improvedLocal.records.bestMoves[payload.puzzleId], improvedGame.moves);
   equal(improvedLocal.records.puzzleWins[payload.puzzleId], 2);
 
   const readyEvents = [];
@@ -680,10 +790,16 @@ await test("页面语义、规则源流、模态与所有交互接线完整", ()
   ok(/previousStatus !== STATUS\.OVER_LIMIT/.test(appSource));
   ok(/pendingCompletions[\s\S]*flushPendingCompletions/.test(appSource), "本地结算必须先入待上报台账");
   ok(/completionReports[\s\S]*markCompletionReported/.test(appSource), "只有已上报局才能标记完成");
+  ok(/addEventListener\("realm:ready",\s*flushPendingCompletions\)/.test(appSource));
+  ok(/addEventListener\("ten-realms-v2:realm-ready",\s*flushPendingCompletions\)/.test(appSource));
+  ok(/timeline:\s*game\.timeline/.test(appSource), "完成 payload 必须固化真实操作日志");
+  ok(/delivery !== "v2-api" && delivery !== "realm-api"/.test(integrationSource), "内存队列或 DOM 事件不得冒充宿主确认");
+  ok(/restoreGame\([\s\S]*STATUS\.WON[\s\S]*puzzleIdFor/.test(readFileSync(new URL("./rewards.mjs", baseUrl), "utf8")), "pending 必须由规则引擎重放验证");
   ok(/window\.AudioContext \|\| window\.webkitAudioContext/.test(appSource));
   ok(/document\.querySelector\("dialog\[open\]"\)/.test(appSource), "模态打开时必须隔离全局快捷键");
   ok(/dialogFocus/.test(appSource) && /restoreDialogFocus/.test(appSource));
   ok(/trapDialogFocus/.test(appSource), "原生 dialog 也必须在 Tab 边界显式环回");
+  ok(/tutorialDialog\.scrollTop = 0/.test(appSource) && /tutorialScrollBody\.scrollTop = 0/.test(appSource), "换卡必须复位桌面与手机教程滚动容器");
   ok(/tutorialVersion !== TUTORIAL_VERSION/.test(appSource) && /tutorialVersion: TUTORIAL_VERSION/.test(appSource), "旧教程已看标记必须升级到 v2 后才视为已看");
   ok(/window\.RealmArcade\?\.complete|host\.RealmArcade\?\.complete/.test(integrationSource));
 });

@@ -173,9 +173,11 @@ function writeSave({ quiet = false } = {}) {
     window.localStorage.setItem(STORAGE_KEY, JSON.stringify(serializeStoredGame(state)));
     storageAvailable = true;
     if (!quiet) setSavedMessage();
+    return true;
   } catch {
     storageAvailable = false;
     if (!quiet) setSavedMessage();
+    return false;
   }
 }
 
@@ -555,24 +557,27 @@ function pushHistory() {
   if (state.history.length > HISTORY_LIMIT) state.history.shift();
 }
 
-function reportRealmCompletion() {
-  const difficulty = difficultyFor(state.difficulty) ?? DIFFICULTIES[0];
-  const payload = {
-    levelId: `${state.difficulty}:${state.level.id}`,
-    tier: difficulty.tier,
-    moves: state.moves,
-    par: state.level.par,
-  };
-  if (typeof window.RealmArcade?.complete === "function") window.RealmArcade.complete(payload);
-  else (window.__realmCompletionQueue ??= []).push(payload);
+function reportRealmCompletion(payload) {
+  if (typeof window.RealmArcade?.complete !== "function") {
+    throw new Error("V2.5 shared reward host is not ready.");
+  }
+  return window.RealmArcade.complete(payload);
+}
+
+function flushCampCompletionOutbox() {
+  if (!state.completionOutbox.length) return confirmCampCompletion(state, null);
+  if (!writeSave({ quiet: true })) return confirmCampCompletion(state, null);
+  const realm = confirmCampCompletion(state, reportRealmCompletion);
+  state = realm.state;
+  if (realm.attempted) writeSave({ quiet: true });
+  return realm;
 }
 
 function settleCampCompletion() {
   const before = campSummary(state.stats);
   const local = recordCampCompletionOnce(state);
   state = local.state;
-  const realm = confirmCampCompletion(state, reportRealmCompletion);
-  state = realm.state;
+  const realm = flushCampCompletionOutbox();
   if (!local.recorded) return { newDecorations: [], newVisitors: [], realm };
   const after = campSummary(state.stats);
   const decorationIds = new Set(before.decorations.map(({ id }) => id));
@@ -720,16 +725,12 @@ function closeVictory({ restoreFocus = true } = {}) {
 function startLevel(level, message, { focusBoard = false } = {}) {
   closeVictory({ restoreFocus: false });
   clearReview();
-  state.level = level;
-  state.difficulty = level.difficulty;
-  state.tents = new Set();
-  state.grass = new Set();
-  state.moves = 0;
-  state.mistakes = 0;
-  state.history = [];
-  state.completed = false;
-  state.completionRecorded = false;
-  state.completionReported = false;
+  const previous = state;
+  state = createDefaultState(level);
+  state.muted = previous.muted;
+  state.tool = previous.tool;
+  state.stats = previous.stats;
+  state.completionOutbox = previous.completionOutbox;
   buildBoard();
   render();
   writeSave();
@@ -995,15 +996,25 @@ updateMuteButton();
 buildBoard();
 render();
 
-if (state.completed && !state.completionReported) {
+if (state.completed && !state.completionRecorded) {
   settleCampCompletion();
   render();
   writeSave({ quiet: true });
+} else if (state.completionOutbox.length) {
+  flushCampCompletionOutbox();
+  render();
 }
+
+window.addEventListener("realm:ready", (event) => {
+  if (event.detail?.realm !== "cloud-camp" || !state.completionOutbox.length) return;
+  flushCampCompletionOutbox();
+  render();
+});
 
 if (restoreResult.restored) {
   setSavedMessage("已恢复上次浮地 · 自动存档开启");
   showToast(state.completed ? "已恢复篝火点亮后的营地；本次不会重复结算。" : "已恢复上次布营进度。");
+  writeSave({ quiet: true });
 } else if (restoreResult.invalid) {
   showToast("旧营地存档无法读取，已安全回到新浮地。", true, 3800);
   writeSave();

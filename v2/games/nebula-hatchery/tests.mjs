@@ -32,9 +32,26 @@ import {
   solvePuzzle,
   undoSession,
 } from "./logic.mjs";
-import { badgeRulesForRealm, masteryTargetFor } from "../../shared/reward-engine.mjs";
+import {
+  awardCompletion,
+  badgeRulesForRealm,
+  createProgress,
+  masteryTargetFor,
+} from "../../shared/reward-engine.mjs";
 import { REALM_CONFIGS, REALM_TUTORIALS, tutorialArt } from "../../shared/tutorial-data.mjs";
 import { clientToBoardPoint } from "./app.mjs";
+import {
+  REALM_ID,
+  confirmNebulaCompletion,
+  createNebulaCompletionTracking,
+  createNebulaRunId,
+  enqueueNebulaCompletion,
+  nebulaCompletionEventId,
+  normalizeNebulaOutbox,
+  recordNebulaAtlasCompletion,
+  restoreNebulaCompletionTracking,
+  stageNebulaCompletion,
+} from "./completion.mjs";
 
 const tests = [];
 let assertions = 0;
@@ -56,6 +73,11 @@ function equal(actual, expected, message) {
 function deepEqual(actual, expected, message) {
   assertions += 1;
   assert.deepEqual(actual, expected, message);
+}
+
+function notEqual(actual, expected, message) {
+  assertions += 1;
+  assert.notEqual(actual, expected, message);
 }
 
 function match(actual, expected, message) {
@@ -879,13 +901,187 @@ test("键盘、存储、静音合成声与减少动画偏好都有完整降级�
   match(appSource, /matchMedia(?:\?\.)?\s*\(/);
 });
 
+test("opaque run tracking survives refresh and renews only for a fresh star embryo", () => {
+  const level = LEVELS[0];
+  const details = {
+    levelId: level.id,
+    tier: DIFFICULTIES.findIndex(({ id }) => id === level.difficulty) + 1,
+    moves: 12,
+    par: 12,
+  };
+  const first = createNebulaCompletionTracking({ runId: "run-nebula-attempt-0001" });
+  equal(first.completionEventId, "nebula-hatchery:run-nebula-attempt-0001:complete");
+  const staged = stageNebulaCompletion(first, details);
+  equal(staged.completionOutbox[0].eventId, first.completionEventId);
+  const restored = restoreNebulaCompletionTracking(JSON.parse(JSON.stringify(staged)), details);
+  equal(restored.runId, first.runId);
+  deepEqual(restored.completionOutbox, staged.completionOutbox);
+
+  const next = createNebulaCompletionTracking({ runId: "run-nebula-attempt-0002" });
+  notEqual(next.runId, first.runId);
+  equal(nebulaCompletionEventId(next.runId), next.completionEventId);
+  equal(createNebulaRunId(() => "run-nebula-injected-0003"), "run-nebula-injected-0003");
+  equal(restoreNebulaCompletionTracking({ ...staged, completionEventId: "nebula-hatchery:wrong-run:complete" }, details), null);
+});
+
+test("outbox migration and queue deduplication preserve all 65 pending nebula events", () => {
+  const payloads = Array.from({ length: 65 }, (_, index) => ({
+    eventId: `nebula-hatchery:run-nebula-bulk-${String(index).padStart(3, "0")}:complete`,
+    levelId: `nebula-bulk-${index}`,
+    tier: index % 3 + 1,
+    moves: index,
+    par: 24,
+  }));
+  const normalized = normalizeNebulaOutbox([...payloads, payloads[0]]);
+  equal(normalized.length, 65);
+  equal(normalized[0].eventId, payloads[0].eventId);
+  equal(normalized.at(-1).eventId, payloads.at(-1).eventId);
+  const bulkTracking = createNebulaCompletionTracking({
+    runId: "run-nebula-bulk-active",
+    completionOutbox: normalized,
+  });
+  const bulkRestored = restoreNebulaCompletionTracking(JSON.parse(JSON.stringify(bulkTracking)));
+  equal(bulkRestored.completionOutbox.length, 65);
+  equal(bulkRestored.completionOutbox[0].eventId, payloads[0].eventId);
+  equal(bulkRestored.completionOutbox.at(-1).eventId, payloads.at(-1).eventId);
+  const queue = [];
+  equal(enqueueNebulaCompletion(queue, payloads[0]), true);
+  equal(enqueueNebulaCompletion(queue, payloads[0]), false);
+  equal(queue.length, 1);
+
+  const tracking = createNebulaCompletionTracking({ runId: "run-nebula-single-migrate" });
+  const staged = stageNebulaCompletion(tracking, {
+    levelId: LEVELS[0].id,
+    tier: 1,
+    moves: 12,
+    par: 12,
+  });
+  const migrated = restoreNebulaCompletionTracking({
+    ...staged,
+    completionOutbox: staged.completionOutbox[0],
+  });
+  equal(migrated.completionOutbox.length, 1);
+  equal(migrated.completionOutbox[0].eventId, tracking.completionEventId);
+});
+
+test("host write-then-throw retry reuses one event and cannot repeat atlas or shared rewards", () => {
+  const level = LEVELS[0];
+  const details = {
+    levelId: level.id,
+    tier: DIFFICULTIES.findIndex(({ id }) => id === level.difficulty) + 1,
+    moves: 12,
+    par: 12,
+  };
+  const firstLocal = recordNebulaAtlasCompletion({
+    completed: new Set(),
+    rarities: new Set(),
+    badges: { zeroConflict: false, intuition: false },
+  }, level, { hadConflict: false, usedNotes: false });
+  const repeatedLocal = recordNebulaAtlasCompletion(firstLocal.atlas, level, { hadConflict: false, usedNotes: false });
+  equal(firstLocal.atlas.completed.size, 1);
+  equal(repeatedLocal.atlas.completed.size, 1, "restoring the completed board cannot add another local clear");
+  equal(repeatedLocal.discoveries.length, 0, "all local unlock claims are idempotent");
+
+  const staged = stageNebulaCompletion(
+    createNebulaCompletionTracking({ runId: "run-nebula-retry-0001" }),
+    details,
+  );
+  let host = createProgress();
+  let firstHostResult;
+  const failed = confirmNebulaCompletion(staged, (payload) => {
+    firstHostResult = awardCompletion(host, { ...payload, realm: REALM_ID }, new Date("2026-08-31T08:00:00Z"));
+    host = firstHostResult.progress;
+    throw new Error("bridge lost its acknowledgement");
+  });
+  equal(failed.succeeded, false);
+  equal(failed.tracking.completionReported, false);
+  equal(firstHostResult.duplicateEvent, false);
+  equal(host.realms[REALM_ID].clears[level.id].wins, 1);
+  const xpAfterThrow = host.xp;
+
+  const refreshed = restoreNebulaCompletionTracking(
+    JSON.parse(JSON.stringify(failed.tracking)),
+    { ...details, moves: 5 },
+  );
+  equal(refreshed.completionOutbox[0].eventId, staged.completionOutbox[0].eventId);
+  equal(refreshed.completionOutbox[0].moves, 12, "undoing the board cannot rewrite the historical completion payload");
+  let retryHostResult;
+  const retried = confirmNebulaCompletion(refreshed, (payload) => {
+    retryHostResult = awardCompletion(host, { ...payload, realm: REALM_ID }, new Date("2026-08-31T08:05:00Z"));
+    host = retryHostResult.progress;
+    return retryHostResult;
+  });
+  equal(retried.succeeded, true);
+  equal(retried.tracking.completionReported, true);
+  deepEqual(retried.tracking.completionOutbox, []);
+  equal(retryHostResult.duplicateEvent, true);
+  equal(host.realms[REALM_ID].clears[level.id].wins, 1);
+  equal(host.xp, xpAfterThrow);
+
+  const duplicateDelivery = awardCompletion(host, { ...staged.completionOutbox[0], realm: REALM_ID });
+  equal(duplicateDelivery.duplicateEvent, true);
+  equal(duplicateDelivery.progress.realms[REALM_ID].clears[level.id].wins, 1);
+  equal(duplicateDelivery.progress.xp, xpAfterThrow);
+});
+
+test("a pending nebula completion survives a new embryo and refresh", () => {
+  const level = LEVELS[0];
+  const details = {
+    levelId: level.id,
+    tier: DIFFICULTIES.findIndex(({ id }) => id === level.difficulty) + 1,
+    moves: 12,
+    par: 12,
+  };
+  const previous = stageNebulaCompletion(
+    createNebulaCompletionTracking({ runId: "run-nebula-old-pending" }),
+    details,
+  );
+  const oldEventId = previous.completionEventId;
+  let host = createProgress();
+  const failed = confirmNebulaCompletion(previous, (payload) => {
+    host = awardCompletion(host, { ...payload, realm: REALM_ID }, new Date("2026-08-31T09:00:00Z")).progress;
+    throw new Error("host acknowledgement lost");
+  });
+  const xpAfterThrow = host.xp;
+  const winsAfterThrow = host.realms[REALM_ID].clears[level.id].wins;
+
+  const nextRunId = "run-nebula-new-after-failure";
+  const next = createNebulaCompletionTracking({
+    runId: nextRunId,
+    completionOutbox: failed.tracking.completionOutbox,
+  });
+  const refreshed = restoreNebulaCompletionTracking(JSON.parse(JSON.stringify(next)));
+  equal(refreshed.runId, nextRunId);
+  equal(refreshed.completionReported, false);
+  equal(refreshed.completionOutbox[0].eventId, oldEventId);
+
+  let retryResult;
+  const retried = confirmNebulaCompletion(refreshed, (payload) => {
+    retryResult = awardCompletion(host, { ...payload, realm: REALM_ID }, new Date("2026-08-31T09:05:00Z"));
+    host = retryResult.progress;
+    return retryResult;
+  });
+  equal(retryResult.duplicateEvent, true);
+  equal(retried.tracking.runId, nextRunId);
+  equal(retried.tracking.completionReported, false, "the previous embryo cannot mark the new run reported");
+  deepEqual(retried.tracking.completionOutbox, []);
+  equal(host.realms[REALM_ID].clears[level.id].wins, winsAfterThrow);
+  equal(host.xp, xpAfterThrow);
+});
+
 test("完成只上报一次，队列后备、对话框串行和焦点恢复均显式实现", () => {
   ok(appSource, "app.mjs exists");
   match(appSource, /\bcompletionReported\b/);
+  match(appSource, /stageNebulaCompletion\(completionTracking\(\), completionDetails\(\)\)/);
+  match(appSource, /confirmNebulaCompletion\(completionTracking\(\), reportSharedCompletion\)/);
+  match(appSource, /completionEventId/);
+  match(appSource, /completionOutbox/);
+  match(appSource, /realm:ready/);
+  match(appSource, /else if \(state\.completionOutbox\.length > 0\) retryPendingSharedCompletion\(\)/);
   match(
     appSource,
-    /state\.completionReported\s*=\s*reportSharedCompletion\(\)/,
-    "the persisted completion flag is assigned only after reporting or queueing succeeds",
+    /applyCompletionTracking\(createNebulaCompletionTracking\(\{ completionOutbox: state\.completionOutbox \}\)\)/,
+    "switching or restarting creates a new run id while preserving pending events",
   );
   match(appSource, /window\.RealmArcade\?*\.complete|window\.RealmArcade\s*&&\s*window\.RealmArcade\.complete/);
   match(appSource, /window\.__realmCompletionQueue/);
@@ -893,6 +1089,11 @@ test("完成只上报一次，队列后备、对话框串行和焦点恢复均�
   match(appSource, /levelId\s*:/);
   match(appSource, /moves\s*:/);
   match(appSource, /tier\s*:/);
+  ok(
+    appSource.indexOf("persistGame();", appSource.indexOf("function registerCompletion"))
+      < appSource.indexOf("confirmNebulaCompletion", appSource.indexOf("function registerCompletion")),
+    "local settlement and outbox are persisted before the shared host call",
+  );
   match(appSource, /dialog\[open\]/);
   match(appSource, /addEventListener\(["']close["'][^\n]*(?:once\s*:\s*true|\{\s*once:\s*true)/);
   match(appSource, /\.showModal\s*\(/);

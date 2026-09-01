@@ -95,6 +95,7 @@ const elements = {
   tutorialButton: $("#tutorial-button"),
   rulesButton: $("#rules-button"),
   tutorialDialog: $("#tutorial-dialog"),
+  tutorialScrollBody: $(".tutorial-body"),
   tutorialTitle: $("#tutorial-title"),
   tutorialImage: $("#tutorial-image"),
   tutorialCopy: $("#tutorial-copy"),
@@ -495,6 +496,7 @@ function settleCompletion() {
       efficient,
       wasteFree,
       maxCleanStreak: game.maxCleanStreak,
+      timeline: game.timeline,
       claims: settlement.claims,
     });
 
@@ -659,6 +661,8 @@ function renderTutorialSlide() {
   elements.tutorialPrev.disabled = tutorialIndex === 0;
   elements.tutorialNext.textContent = tutorialIndex === TUTORIAL_SLIDES.length - 1 ? "开始染色" : "下一张";
   elements.tutorialDots.forEach((dot, index) => dot.classList.toggle("is-current", index === tutorialIndex));
+  elements.tutorialDialog.scrollTop = 0;
+  elements.tutorialScrollBody.scrollTop = 0;
 }
 
 function openTutorial(trigger = document.activeElement) {
@@ -819,6 +823,8 @@ document.addEventListener("keydown", (event) => {
 
 document.addEventListener("pointerdown", () => audio.unlock(), { once: true, capture: true });
 document.addEventListener("keydown", () => audio.unlock(), { once: true, capture: true });
+window.addEventListener("realm:ready", flushPendingCompletions);
+window.addEventListener("ten-realms-v2:realm-ready", flushPendingCompletions);
 
 renderAll();
 saveGame(restored ? "已恢复上次染色进度" : "新布样已留存");

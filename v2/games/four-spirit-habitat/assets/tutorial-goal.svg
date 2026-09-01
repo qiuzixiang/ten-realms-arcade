@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" preserveAspectRatio="xMidYMid meet" role="img" aria-labelledby="title desc" data-level-id="spirit-spring" data-state="solved" data-solution="0,3,1,0,2,0,3,3,2">
+  <title id="title">四灵栖境署通关教程</title><desc id="desc">灵泉初醒由正式规则判定通过的唯一完整四色栖境。</desc>
+  <defs><radialGradient id="halo"><stop stop-color="#f4dd8e" stop-opacity=".35"/><stop offset="1" stop-color="#f4dd8e" stop-opacity="0"/></radialGradient></defs>
+  <rect width="640" height="360" rx="24" fill="#09231f"/><circle cx="270" cy="185" r="175" fill="url(#halo)"/><text x="34" y="34" fill="#efd989" font-family="system-ui" font-size="15" font-weight="900">真实唯一解 · 四灵和鸣</text>
+  <g transform="translate(126 58)" stroke="#f8e9b8" stroke-width="3">
+    <g fill="#327aa2"><rect width="48" height="48"/><rect x="144" width="96" height="48"/><rect y="48" width="48" height="144"/><rect x="144" y="192" width="48" height="48"/></g>
+    <g fill="#438353"><rect x="48" width="96" height="48"/><rect x="96" y="144" width="48" height="96"/><rect x="192" y="144" width="48" height="96"/></g>
+    <g fill="#ba5739"><rect x="48" y="48" width="192" height="96"/></g>
+    <g fill="#8a5da7"><rect x="48" y="144" width="48" height="96"/><rect x="0" y="192" width="48" height="48"/><rect x="144" y="144" width="48" height="48"/></g>
+    <path d="M0 0H240V240H0Z M48 0V192M144 0V48M0 48H240M0 144H240M0 192H240M96 144V240M144 144V240M192 144V240" fill="none"/>
+  </g>
+  <g font-family="system-ui" font-size="20" font-weight="900" fill="#fff" text-anchor="middle"><text x="150" y="89">麟</text><text x="222" y="89">龟</text><text x="318" y="89">麟</text><text x="150" y="185">麟</text><text x="198" y="281">狐</text><text x="246" y="281">龟</text><text x="294" y="233">狐</text><text x="342" y="281">麟</text></g>
+  <g transform="translate(420 82)" font-family="system-ui"><circle cx="62" cy="62" r="62" fill="#76d99b22" stroke="#83e0a6" stroke-width="3"/><path d="M30 63l22 22 43-58" fill="none" stroke="#9bf0b4" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/><text x="62" y="157" text-anchor="middle" fill="#f5eddb" font-size="18" font-weight="900">全部安置</text><text x="62" y="184" text-anchor="middle" fill="#bcd0c3" font-size="14">0 处边界冲突</text><text x="62" y="208" text-anchor="middle" fill="#bcd0c3" font-size="14">候选印已清空</text></g>
+  <text x="320" y="334" text-anchor="middle" fill="#efd989" font-family="system-ui" font-size="14" font-weight="800">每一段共享边界两侧，守护灵都不相同。</text>
+</svg>

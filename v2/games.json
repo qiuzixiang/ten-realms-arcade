@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "edition": "2.0",
+  "edition": "2.5",
   "status": "ready",
-  "expectedGames": 10,
+  "expectedGames": 15,
   "games": [
     {
       "slug": "cloud-camp",
@@ -93,6 +93,51 @@
       "summary": "拖出矩形客房，让每位旅客获得与数字相等的房间面积，并无缝覆盖整层楼。",
       "preview": "./assets/previews/dream-hotel.webp",
       "accent": "#c7a9ff"
+    },
+    {
+      "slug": "time-sand-post",
+      "title": "时砂邮路局",
+      "genre": "投递玩法",
+      "mechanic": "箭向序链",
+      "summary": "沿每座时砂邮塔指向的方向接续号码，把全部站点串成从起点到终点的唯一完整邮路。",
+      "preview": "./assets/previews/time-sand-post.webp",
+      "accent": "#ffc96b"
+    },
+    {
+      "slug": "molten-core-vent",
+      "title": "熔心泄压站",
+      "genre": "泄压玩法",
+      "mechanic": "斜管配额",
+      "summary": "在热交换格中安装两向泄压管，精确满足节点配额，同时阻止斜管回路锁死熔心。",
+      "preview": "./assets/previews/molten-core-vent.webp",
+      "accent": "#5fe5de"
+    },
+    {
+      "slug": "paper-crane-sanctuary",
+      "title": "纸鹤归巢台",
+      "genre": "归巢玩法",
+      "mechanic": "越鹤消子",
+      "summary": "让纸鹤越过相邻同伴落入空栖位，被越过的纸鹤随月风归巢，直到庭中只余最后一鹤。",
+      "preview": "./assets/previews/paper-crane-sanctuary.webp",
+      "accent": "#efb4b1"
+    },
+    {
+      "slug": "resonance-bell-room",
+      "title": "万象共振钟房",
+      "genre": "调律玩法",
+      "mechanic": "矩阵翻响",
+      "summary": "敲响一口主钟会联动翻转一组共振钟；读懂每关不同的共鸣矩阵，让整座钟房同时齐鸣。",
+      "preview": "./assets/previews/resonance-bell-room.webp",
+      "accent": "#f4c56a"
+    },
+    {
+      "slug": "four-spirit-habitat",
+      "title": "四灵栖境署",
+      "genre": "栖境玩法",
+      "mechanic": "四色邻域",
+      "summary": "为相连地貌划分青、朱、白、玄四类栖境，让任何接壤区域都不与同色灵兽争夺领地。",
+      "preview": "./assets/previews/four-spirit-habitat.webp",
+      "accent": "#e8d48f"
     }
   ]
 }

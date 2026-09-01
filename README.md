@@ -1,13 +1,13 @@
 # 十境谜游馆 · Ten Realms Arcade
 
-一个以经典逻辑规则为骨架、重新设计视觉叙事与交互手感的浏览器小游戏项目。仓库同时保留两套独立合集：根路径是原十款 **1.0**，`/v2/` 是另外十款 **2.0**。两个版本的导览、游戏进度和本地存档互不干扰。
+一个以经典逻辑规则为骨架、重新设计视觉叙事与交互手感的浏览器小游戏项目。仓库同时保留两套独立合集：根路径是原十款 **1.0**，`/v2/` 是扩展至十五款的 **2.5**。两个版本的导览、游戏进度和本地存档互不干扰。
 
 每款游戏都有独立页面、首次进入时的三张图片教程、可跳过或重新查看的规则说明，以及通关、个人最佳、建议步数、今日首胜和连续游玩等激励。项目无运行时第三方依赖，适配手机和桌面浏览器，所有进度仅保存在当前浏览器中。
 
 ## 在线体验
 
 - 1.0：[Vercel](https://ten-realms-arcade.vercel.app/) · [GitHub Pages](https://qiuzixiang.github.io/ten-realms-arcade/)
-- 2.0：[Vercel](https://ten-realms-arcade.vercel.app/v2/) · [GitHub Pages](https://qiuzixiang.github.io/ten-realms-arcade/v2/)
+- 2.5：[Vercel](https://ten-realms-arcade.vercel.app/v2/) · [GitHub Pages](https://qiuzixiang.github.io/ten-realms-arcade/v2/)
 - [GitHub 源码仓库](https://github.com/qiuzixiang/ten-realms-arcade)
 
 ## 1.0 · 原十款
@@ -25,7 +25,7 @@
 | [灵龙巡脉](./games/spirit-dragon/) | Pearl | 遵循天地珠律铺成唯一龙脉闭环 |
 | [镜影大剧院](./games/mirror-theatre/) | Undead | 借镜面视线安排三类演员的位置 |
 
-## 2.0 · 新十款
+## 2.5 · 扩展十五款
 
 | 游戏 | 规则原型 |
 | --- | --- |
@@ -39,6 +39,11 @@
 | [妖怪旅店](./v2/games/yokai-inn/) | Dominosa |
 | [极光磁场实验室](./v2/games/aurora-magnet-lab/) | Magnets |
 | [梦境旅舍](./v2/games/dream-hotel/) | Rectangles |
+| [时砂邮路局](./v2/games/time-sand-post/) | Signpost |
+| [熔心泄压站](./v2/games/molten-core-vent/) | Slant |
+| [纸鹤归巢台](./v2/games/paper-crane-sanctuary/) | Pegs |
+| [万象共振钟房](./v2/games/resonance-bell-room/) | Flip |
+| [四灵栖境署](./v2/games/four-spirit-habitat/) | Map |
 
 ## 本地运行
 
@@ -46,7 +51,7 @@
 npm run serve
 ```
 
-打开 <http://localhost:4173/> 查看 1.0，或打开 <http://localhost:4173/v2/> 查看 2.0。项目不需要安装第三方包。
+打开 <http://localhost:4173/> 查看 1.0，或打开 <http://localhost:4173/v2/> 查看 2.5。项目不需要安装第三方包。
 
 ## 验证与构建
 
@@ -55,12 +60,12 @@ npm test
 npm run build
 ```
 
-`npm test` 同时检查两个版本的游戏清单、路径、静态资源、存档命名空间和离线预缓存边界。构建产物位于 `dist/`：1.0 保持在根目录，2.0 位于 `dist/v2/`。GitHub Actions 会在 `main` 分支更新后发布 GitHub Pages。
+`npm test` 同时检查两个版本的游戏清单、路径、静态资源、存档命名空间和离线预缓存边界。构建产物位于 `dist/`：1.0 保持在根目录，2.5 位于 `dist/v2/`。GitHub Actions 会在 `main` 分支更新后发布 GitHub Pages。
 
 ## 存档隔离
 
-1.0 继续使用原有存档键，其共享成长档案为 `ten-realms:progress:v1`。2.0 的共享成长、教程状态及每款游戏的私有存档均使用 `ten-realms-v2:` 前缀；因此在同一浏览器和站点来源下游玩、重置或升级 2.0，不会覆盖 1.0 进度。
+1.0 继续使用原有存档键，其共享成长档案为 `ten-realms:progress:v1`。2.5 延续原 2.0 的共享成长、教程状态及每款游戏私有存档，继续使用 `ten-realms-v2:` 前缀；因此升级 2.5 不会丢失原十款进度，也不会覆盖 1.0 存档。
 
 ## 规则与许可
 
-规则参考 [Simon Tatham's Portable Puzzle Collection](https://www.chiark.greenend.org.uk/~sgtatham/puzzles/) 及 [ebnbin/puzzles](https://github.com/ebnbin/puzzles) 的中文网页版本。主题包装、视觉资产和本仓库中的游戏实现由本项目重新制作。详细许可与署名见 [1.0 第三方声明](THIRD_PARTY_NOTICES.md) 和 [2.0 第三方声明](v2/THIRD_PARTY_NOTICES.md)。
+规则参考 [Simon Tatham's Portable Puzzle Collection](https://www.chiark.greenend.org.uk/~sgtatham/puzzles/) 及 [ebnbin/puzzles](https://github.com/ebnbin/puzzles) 的中文网页版本。主题包装、视觉资产和本仓库中的游戏实现由本项目重新制作。详细许可与署名见 [1.0 第三方声明](THIRD_PARTY_NOTICES.md) 和 [2.5 第三方声明](v2/THIRD_PARTY_NOTICES.md)。

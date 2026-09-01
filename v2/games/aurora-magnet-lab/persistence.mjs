@@ -11,9 +11,12 @@ export const STORAGE_KEYS = Object.freeze({
   profile: `${STORAGE_PREFIX}profile:v1`,
   preferences: `${STORAGE_PREFIX}preferences:v1`,
   tutorial: `${STORAGE_PREFIX}tutorial:v2`,
+  completionOutbox: `${STORAGE_PREFIX}completion-outbox:v1`,
 });
 export const SESSION_VERSION = 1;
 export const HISTORY_LIMIT = 80;
+const RUN_ID_PATTERN = /^[a-z0-9._~-]{8,120}$/i;
+let fallbackRunCounter = 0;
 
 function assertOwnedKey(key) {
   if (!String(key).startsWith(STORAGE_PREFIX)) throw new Error("Refusing to access a storage key outside this game.");
@@ -61,6 +64,37 @@ export function removeOwned(storage, key) {
   }
 }
 
+export function normalizeRunId(value) {
+  const runId = typeof value === "string" ? value.trim() : "";
+  return RUN_ID_PATTERN.test(runId) ? runId : "";
+}
+
+export function createRunId(options = {}) {
+  if (Object.hasOwn(options, "runId") && !normalizeRunId(options.runId)) {
+    throw new TypeError("An explicitly supplied Aurora runId is invalid.");
+  }
+  const supplied = normalizeRunId(options.runId);
+  if (supplied) return supplied;
+  try {
+    const uuid = (options.cryptoSource ?? globalThis.crypto)?.randomUUID?.();
+    if (normalizeRunId(uuid)) return uuid;
+  } catch {
+    // Fall through to a timestamp plus local nonce when Web Crypto is blocked.
+  }
+  const now = Number.isFinite(options.now) ? options.now : Date.now();
+  const randomSource = typeof options.randomSource === "function" ? options.randomSource : Math.random;
+  const random = Math.floor(Math.max(0, Math.min(0.9999999999999999, randomSource())) * Number.MAX_SAFE_INTEGER)
+    .toString(36)
+    .padStart(11, "0");
+  fallbackRunCounter = (fallbackRunCounter + 1) % Number.MAX_SAFE_INTEGER;
+  return `run-${Math.max(0, Math.floor(now)).toString(36)}-${random}-${fallbackRunCounter.toString(36)}`;
+}
+
+function legacyRunId(puzzle, value) {
+  const stamp = Math.max(0, Math.floor(value.startedAt)).toString(36);
+  return `legacy-${puzzle.id}-${stamp}`.slice(0, 120);
+}
+
 export function createSession(puzzle, options = {}) {
   return {
     version: SESSION_VERSION,
@@ -76,6 +110,7 @@ export function createSession(puzzle, options = {}) {
     completed: false,
     completionReported: false,
     startedAt: Number.isFinite(options.now) ? options.now : Date.now(),
+    runId: createRunId(options),
   };
 }
 
@@ -134,6 +169,9 @@ export function normalizeSession(puzzle, value, options = {}) {
   if (!Array.isArray(value.markedClues) || new Set(value.markedClues).size !== value.markedClues.length) return null;
   if (value.markedClues.some((id) => !clueIdExists(puzzle, id))) return null;
   if (!Number.isFinite(value.startedAt) || value.startedAt < 0) return null;
+  const runId = normalizeRunId(value.runId)
+    || (value.runId === undefined ? normalizeRunId(legacyRunId(puzzle, value)) : "");
+  if (!runId) return null;
 
   const evaluation = evaluatePosition(puzzle, position);
   const completed = evaluation.complete;
@@ -152,6 +190,7 @@ export function normalizeSession(puzzle, value, options = {}) {
     completed,
     completionReported: completed && value.completionReported === true,
     startedAt: value.startedAt,
+    runId,
     ...(options.includeRuntime ? { evaluation } : {}),
   };
 }
@@ -179,7 +218,9 @@ export function loadSession(storage, puzzles, fallbackPuzzle, options = {}) {
       corrupted: true,
     };
   }
-  return { session, puzzle, available: true, restored: true, corrupted: false };
+  const migrated = !normalizeRunId(read.value.runId);
+  if (migrated) writeOwnedJSON(storage, STORAGE_KEYS.session, session);
+  return { session, puzzle, available: true, restored: true, corrupted: false, migrated };
 }
 
 export function saveSession(storage, puzzle, session) {

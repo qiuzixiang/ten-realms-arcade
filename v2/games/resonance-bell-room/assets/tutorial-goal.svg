@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 184" preserveAspectRatio="xMidYMid meet" role="img" aria-label="初醒九响真实完成状态：依次各敲第2、第3、第5、第8枚钟后九枚编钟全部点亮" data-game-id="resonance-bell-room" data-level-id="first-awakening" data-tutorial-version="2" data-tutorial-scene="goal" data-state="solved" data-initial-bits="110010000" data-solution-presses="1,2,4,7" data-solution-display="2,3,5,8" data-final-bits="111111111" data-complete="true" data-minimum-proven="true" data-solver-minimum="4" data-solution-count="2">
+  <title>万象共振钟房：初醒九响真实完成态</title>
+  <desc>从真实初始状态按独立求解器给出的一组最少解，依次各敲第2、第3、第5、第8枚钟，九枚钟全部点亮。题面有两组奇偶解，最少需要四敲。</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#111321"/><stop offset=".62" stop-color="#21162a"/><stop offset="1" stop-color="#0a1c21"/></linearGradient>
+    <radialGradient id="bronze" cx="32%" cy="22%" r="80%"><stop stop-color="#fff8c4"/><stop offset=".34" stop-color="#e5aa4b"/><stop offset="1" stop-color="#6b361e"/></radialGradient>
+    <filter id="glow" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <g id="bell"><rect width="42" height="42" rx="8" fill="#17131a" stroke="#d5a955"/><path d="M8 28c2-3 3-9 3-14 0-7 5-10 10-10s10 3 10 10c0 5 1 11 3 14H8Z" fill="url(#bronze)" stroke="#fff0a5"/><path d="M7 29h28" stroke="#fff0a5" stroke-width="2" stroke-linecap="round"/><circle cx="21" cy="32" r="2.5" fill="#fff0a5"/></g>
+  </defs>
+  <style>.copy{font-family:system-ui,"PingFang SC",sans-serif}.lit{filter:url(#glow)}.num{font:800 6px system-ui,sans-serif;fill:#fff0a5;paint-order:stroke;stroke:#251506;stroke-width:.7px}.tap{fill:#79e0bd;stroke:#d7fff2;stroke-width:.7}</style>
+  <rect width="320" height="184" rx="16" fill="url(#bg)"/>
+  <path d="M-24 23C26-11 69 31 117 8s88-5 126 17 59 8 95-12" fill="none" stroke="#f4c56a" stroke-opacity=".66" stroke-width="10" filter="url(#glow)"/>
+  <path d="M-20 32C30 7 70 40 119 18s88-4 125 16 60 7 92-8" fill="none" stroke="#79e0bd" stroke-opacity=".38" stroke-width="6" filter="url(#glow)"/>
+  <g class="copy"><text x="16" y="18" fill="#fff8e8" font-size="11" font-weight="850">03 · 初醒九响真实完成态</text></g>
+
+  <g transform="translate(16 28)" class="lit" data-cell-index="0" data-light="1"><use href="#bell"/><text class="num" x="4" y="8">01</text></g>
+  <g transform="translate(62 28)" class="lit" data-cell-index="1" data-light="1" data-solution-press="true"><use href="#bell"/><text class="num" x="4" y="8">02</text><circle class="tap" cx="34" cy="34" r="5"/><text x="34" y="36" text-anchor="middle" fill="#092017" font-size="6" font-weight="900">敲</text></g>
+  <g transform="translate(108 28)" class="lit" data-cell-index="2" data-light="1" data-solution-press="true"><use href="#bell"/><text class="num" x="4" y="8">03</text><circle class="tap" cx="34" cy="34" r="5"/><text x="34" y="36" text-anchor="middle" fill="#092017" font-size="6" font-weight="900">敲</text></g>
+  <g transform="translate(16 74)" class="lit" data-cell-index="3" data-light="1"><use href="#bell"/><text class="num" x="4" y="8">04</text></g>
+  <g transform="translate(62 74)" class="lit" data-cell-index="4" data-light="1" data-solution-press="true"><use href="#bell"/><text class="num" x="4" y="8">05</text><circle class="tap" cx="34" cy="34" r="5"/><text x="34" y="36" text-anchor="middle" fill="#092017" font-size="6" font-weight="900">敲</text></g>
+  <g transform="translate(108 74)" class="lit" data-cell-index="5" data-light="1"><use href="#bell"/><text class="num" x="4" y="8">06</text></g>
+  <g transform="translate(16 120)" class="lit" data-cell-index="6" data-light="1"><use href="#bell"/><text class="num" x="4" y="8">07</text></g>
+  <g transform="translate(62 120)" class="lit" data-cell-index="7" data-light="1" data-solution-press="true"><use href="#bell"/><text class="num" x="4" y="8">08</text><circle class="tap" cx="34" cy="34" r="5"/><text x="34" y="36" text-anchor="middle" fill="#092017" font-size="6" font-weight="900">敲</text></g>
+  <g transform="translate(108 120)" class="lit" data-cell-index="8" data-light="1"><use href="#bell"/><text class="num" x="4" y="8">09</text></g>
+
+  <g class="copy">
+    <rect x="166" y="30" width="138" height="136" rx="14" fill="#0d1119" stroke="#527566"/>
+    <circle cx="235" cy="62" r="21" fill="#163f34" stroke="#79e0bd" stroke-width="2" filter="url(#glow)"/>
+    <path d="M225 62l7 7 14-17" fill="none" stroke="#d8fff1" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="235" y="93" text-anchor="middle" fill="#fff8e8" font-size="11" font-weight="900">九钟同时点亮</text>
+    <text x="180" y="113" fill="#bdf5df" font-size="8">✓ 完成条件：9 / 9 已亮</text>
+    <text x="180" y="129" fill="#bdf5df" font-size="8">✓ 一组最少解：2、3、5、8</text>
+    <text x="180" y="145" fill="#bdf5df" font-size="8">✓ GF(2) 证明最少：4 敲</text>
+    <text x="235" y="159" text-anchor="middle" fill="#aa9fb2" font-size="7">共有 2 组奇偶解 · 不宣称路径唯一</text>
+  </g>
+</svg>

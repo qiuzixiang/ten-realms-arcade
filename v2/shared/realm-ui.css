@@ -51,7 +51,11 @@
 .realm-guide-dialog footer span { color: #a8b9b8; font: 700 11px/1 ui-monospace, monospace; }
 
 html:has(.realm-guide-dialog[open]),
-body:has(.realm-guide-dialog[open]) { overflow: hidden; overscroll-behavior: none; }
+body:has(.realm-guide-dialog[open]),
+html:has(.realm-progress-dialog[open]),
+body:has(.realm-progress-dialog[open]),
+html:has(dialog[open]),
+body:has(dialog[open]) { overflow: hidden; overscroll-behavior: none; }
 
 .realm-progress-dialog { --realm-accent: #70f0d0; width: 680px; max-width: calc(100% - 24px); max-height: calc(100dvh - 24px); padding: 0; overflow: auto; color: #f7fffc; border: 1px solid rgba(var(--realm-accent-rgb), .42); border-radius: 24px; background: #0a1721; box-shadow: 0 30px 90px #000c; }
 .realm-progress-dialog::backdrop { background: #02060bd9; backdrop-filter: blur(8px); }

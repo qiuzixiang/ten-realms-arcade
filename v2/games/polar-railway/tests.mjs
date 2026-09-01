@@ -692,7 +692,7 @@ test("records normalize damage, deduplicate completions, and retain bests", () =
   }
 });
 
-test("the bounded completion ledger keeps the newest id retry-safe after reload", () => {
+test("the completion ledger retains the oldest id retry-safe after the former limit", () => {
   const puzzle = LEVELS[0];
   let records = createRecords();
   for (let index = 0; index <= 500; index += 1) {
@@ -703,15 +703,17 @@ test("the bounded completion ledger keeps the newest id retry-safe after reload"
   }
   equal(records.completed[puzzle.id], 501);
   const restored = normalizeRecords(JSON.parse(JSON.stringify(records)));
-  equal(Object.keys(restored.completionLedger).length, 500);
-  equal(restored.completionLedger["long-run-0"], undefined, "only the oldest id is evicted");
+  equal(Object.keys(restored.completionLedger).length, 501);
+  equal(restored.completionLedger["long-run-0"], true, "the oldest id survives refresh");
   equal(restored.completionLedger["long-run-500"], true, "the just-delivered id survives refresh");
-  const replay = recordCompletion(restored, summaryFor(puzzle, "long-run-500", {
+  const replay = recordCompletion(restored, summaryFor(puzzle, "long-run-0", {
     moves: 1,
     elapsedMs: 1,
   }));
   equal(replay.duplicate, true);
-  equal(replay.records.completed[puzzle.id], 501, "refresh retry cannot increment local clears again");
+  equal(replay.awards.length, 0);
+  equal(replay.records.completed[puzzle.id], 501, "old-id retry cannot increment local clears again");
+  deepEqual(replay.records, restored, "old-id retry cannot change rewards or statistics");
 });
 
 test("route atlas progress unlocks each engine and carriage exactly once", () => {
@@ -1334,7 +1336,7 @@ test("three first-run tutorial slides use distinct, contain-fitted real SVG scen
   matches(css, /object-fit\s*:\s*contain/);
 });
 
-test("accessibility and responsive CSS preserve 44px controls outside the compact board", () => {
+test("accessibility and responsive CSS preserve 44px controls and compact board cells", () => {
   const html = read("index.html");
   const app = read("app.mjs");
   const css = read("styles.css");
@@ -1343,6 +1345,10 @@ test("accessibility and responsive CSS preserve 44px controls outside the compac
   matches(`${html}\n${app}`, /aria-current|aria-pressed|aria-selected/i);
   matches(css, /(?:--[\w-]*(?:tap|touch|target)[\w-]*\s*:\s*44px|min-(?:width|height|inline-size|block-size)\s*:\s*(?:44px|var\([^)]*(?:tap|touch|target)))/i,
     "interactive controls need a 44px minimum target");
+  matches(css, /--cell-size:\s*clamp\(44px,/,
+    "the responsive board cell must never shrink below 44px");
+  matches(css, /\.railway-board\s*\{[^}]*border:\s*0;[^}]*box-shadow:\s*inset 0 0 0 2px/is,
+    "the visual board frame must not consume pixels from 44px gridcell hit targets");
   matches(css, /@media\s*\(\s*prefers-reduced-motion\s*:\s*reduce\s*\)/i);
   matches(css, /prefers-reduced-motion[\s\S]{0,900}animation(?:-duration)?\s*:\s*(?:none|0?\.0*1ms)/i);
   matches(css, /@media\s*\([^)]*max-width\s*:/i);
@@ -1358,6 +1364,10 @@ test("compact rail boards fit every difficulty with both quota axes visible", ()
   const css = read("styles.css");
   matches(app, /function syncBoardScale\(\)/);
   matches(app, /\(availableWidth - axisWidth\) \/ state\.level\.width/);
+  matches(functionSource(app, "render"), /requestAnimationFrame\(syncBoardScale\)/,
+    "initial mobile render must re-measure after surrounding panels settle");
+  matches(app, /new ResizeObserver\(\(\) => requestAnimationFrame\(syncBoardScale\)\)/,
+    "the compact board must track late container-width changes without waiting for a viewport resize");
   matches(app, /elements\.boardViewport\.scrollLeft = 0/);
   matches(css, /@media \(max-width: 700px\)[\s\S]*?\.board-viewport\s*{[^}]*overflow-x:\s*hidden/);
   matches(css, /@media \(max-width: 430px\)[\s\S]*?grid-template-columns:\s*20px calc\(var\(--board-columns\) \* var\(--cell-size\)\) 20px/);

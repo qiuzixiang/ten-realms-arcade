@@ -41,12 +41,35 @@ function buildCard(game, index) {
   return card;
 }
 
+function validateRegistry(registry) {
+  if (!registry || typeof registry !== "object" || Array.isArray(registry)) {
+    throw new TypeError("registry must be an object");
+  }
+  if (registry.schemaVersion !== 1 || registry.edition !== "2.5" || registry.status !== "ready") {
+    throw new TypeError("registry release metadata is inconsistent");
+  }
+  if (!Array.isArray(registry.games)) throw new TypeError("registry games must be an array");
+  if (!Number.isSafeInteger(registry.expectedGames) || registry.expectedGames < 1
+      || registry.expectedGames !== registry.games.length) {
+    throw new RangeError("registry expectedGames must match the game list");
+  }
+  const slugs = new Set();
+  for (const game of registry.games) {
+    if (!game || typeof game !== "object" || !/^[a-z0-9][a-z0-9-]{1,39}$/.test(game.slug ?? "")
+        || typeof game.title !== "string" || typeof game.preview !== "string") {
+      throw new TypeError("registry contains an invalid game entry");
+    }
+    if (slugs.has(game.slug)) throw new TypeError("registry contains a duplicate game slug");
+    slugs.add(game.slug);
+  }
+  return registry;
+}
+
 async function loadRegistry() {
   const response = await fetch("./games.json", { cache: "no-store" });
   if (!response.ok) throw new Error(`registry ${response.status}`);
-  const registry = await response.json();
-  if (!Array.isArray(registry.games)) throw new TypeError("registry games must be an array");
-  target.textContent = String(registry.expectedGames ?? 10);
+  const registry = validateRegistry(await response.json());
+  target.textContent = String(registry.expectedGames);
   count.textContent = String(registry.games.length);
   grid.replaceChildren(...registry.games.map(buildCard));
   emptyState.hidden = registry.games.length !== 0;

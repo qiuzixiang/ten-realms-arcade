@@ -34,30 +34,55 @@ import {
   HISTORY_LIMIT,
   STORAGE_KEYS,
   STORAGE_PREFIX,
+  createRunId,
   createSession,
   loadPreferences,
   loadSession,
   loadTutorialSeen,
   markTutorialSeen,
+  normalizeRunId,
   normalizeSession,
   savePreferences,
   saveSession,
 } from "./persistence.mjs";
 import {
   COMPLETION_EVENT,
+  DELIVERY_STATE,
   DIFFICULTY_TIER,
   GAME_ID,
   READY_EVENT,
   awardCompletion,
   completionDetail,
+  completionDetailFromSettlement,
+  completionRunIsDurable,
   createProfile,
+  legacyCompletionEventId,
   loadProfile,
+  markCompletionDelivery,
+  mergeProfiles,
   normalizeProfile,
+  pendingCompletionDetails,
   profileSummary,
   saveProfile,
+  validateCompletionAcknowledgement,
+  validateCompletionDetail,
 } from "./rewards.mjs";
 import { createDialogController, nextFocusIndex } from "./dialog-controller.mjs";
-import { completionDeliveryConfirmed, publishCompletion } from "./completion-bridge.mjs";
+import {
+  COMPLETION_OUTBOX_VERSION,
+  completionConfirmedForRun,
+  completionDeliveryConfirmed,
+  completionEventIdForRun,
+  createCompletionOutbox,
+  flushCompletionOutbox,
+  loadCompletionOutbox,
+  mergeCompletionOutboxes,
+  normalizeCompletionDetail,
+  normalizeCompletionOutbox,
+  publishCompletion,
+  saveCompletionOutbox,
+  stageCompletion,
+} from "./completion-bridge.mjs";
 import {
   cellAriaLabel,
   clueId,
@@ -135,6 +160,54 @@ class ThrowingStorage {
   getItem() { throw new Error("denied"); }
   setItem() { throw new Error("denied"); }
   removeItem() { throw new Error("denied"); }
+}
+
+class FailOnNthSetStorage extends FakeStorage {
+  constructor(failAt, seed = {}) {
+    super(seed);
+    this.failAt = failAt;
+    this.setCount = 0;
+  }
+
+  setItem(key, value) {
+    this.setCount += 1;
+    if (this.setCount === this.failAt) throw new Error("quota");
+    super.setItem(key, value);
+  }
+}
+
+class FakeCustomEvent {
+  constructor(type, init) {
+    this.type = type;
+    this.detail = init.detail;
+  }
+}
+
+function completionFixture(options = {}) {
+  const puzzle = options.puzzle ?? findPuzzle("ice-window");
+  const runId = options.runId ?? "test-run-fixture-000001";
+  const metrics = {
+    moves: options.moves ?? puzzle.suggestedMoves,
+    undos: options.undos ?? 0,
+    conflictMoves: options.conflictMoves ?? 0,
+    elapsedMs: options.elapsedMs ?? 1234,
+    position: positionToJSON(solutionPosition(puzzle)),
+  };
+  const award = awardCompletion(options.profile ?? createProfile(), puzzle, metrics, {
+    now: options.now ?? 1000,
+    runId,
+    ...(options.attemptId ? { attemptId: options.attemptId } : {}),
+  });
+  return { puzzle, runId, metrics, award, detail: completionDetail(puzzle, metrics, award) };
+}
+
+function completionOptions(profile) {
+  return {
+    validateDetail: (detail) => validateCompletionDetail(detail, profile, LEVELS),
+    validateConfirmed: (eventId, runId, detail) => (
+      validateCompletionAcknowledgement(eventId, runId, profile, LEVELS, detail)
+    ),
+  };
 }
 
 test("三种完成状态在双格两端展开为精确的 +−、−+ 与中性", () => {
@@ -452,6 +525,7 @@ test("存档键全部位于 2.0 游戏私有前缀，绝不接触 1.0 键", () =
     `${STORAGE_PREFIX}profile:v1`,
     `${STORAGE_PREFIX}preferences:v1`,
     `${STORAGE_PREFIX}tutorial:v2`,
+    `${STORAGE_PREFIX}completion-outbox:v1`,
   ]);
   equal(Object.values(STORAGE_KEYS).every((key) => key.startsWith(STORAGE_PREFIX)), true);
 });
@@ -478,7 +552,37 @@ test("活动盘面、历史、候选和线索笔记严格往返存档", () => {
   equal(loaded.session.history, session.history);
   equal(loaded.session.markedClues, session.markedClues);
   equal(loaded.session.completed, false);
+  equal(loaded.session.runId, session.runId);
   equal(storage.accesses.every(([, key]) => key.startsWith(STORAGE_PREFIX)), true);
+});
+
+test("每局 runId 独立且持久，旧 session 缺少 runId 时确定性安全迁移", () => {
+  const puzzle = findPuzzle("ice-window");
+  const first = createSession(puzzle, { now: 1000, cryptoSource: { randomUUID: () => "test-run-first-0001" } });
+  const second = createSession(puzzle, { now: 1000, cryptoSource: { randomUUID: () => "test-run-second-0002" } });
+  equal(first.runId, "test-run-first-0001");
+  equal(second.runId, "test-run-second-0002");
+  ok(first.runId !== second.runId, "same-millisecond runs still need distinct identities");
+  equal(normalizeRunId("bad"), "");
+  throws(() => createRunId({ runId: "bad" }), /invalid/);
+  equal(createRunId({ runId: "explicit-run-00000003" }), "explicit-run-00000003");
+  const fallbackOne = createRunId({ now: 2000, randomSource: () => 0, cryptoSource: {} });
+  const fallbackTwo = createRunId({ now: 2000, randomSource: () => 0, cryptoSource: {} });
+  ok(fallbackOne !== fallbackTwo, "fallback run IDs remain unique even with identical time and random source");
+
+  const legacy = { ...first };
+  delete legacy.runId;
+  const storage = new FakeStorage({ [STORAGE_KEYS.session]: JSON.stringify(legacy) });
+  const migrated = loadSession(storage, LEVELS, puzzle, { now: 9999 });
+  equal(migrated.restored, true);
+  equal(migrated.migrated, true);
+  ok(migrated.session.runId.startsWith(`legacy-${puzzle.id}-`));
+  const savedMigration = JSON.parse(storage.map.get(STORAGE_KEYS.session));
+  equal(savedMigration.runId, migrated.session.runId);
+  equal(loadSession(storage, LEVELS, puzzle).session.runId, migrated.session.runId, "migration must remain stable after refresh");
+
+  const invalid = { ...first, runId: "bad" };
+  equal(normalizeSession(puzzle, invalid), null, "an explicitly malformed runId must not be silently replaced");
 });
 
 test("恢复时重新计算完成状态，不信任伪造布尔值，并保留已上报胜利", () => {
@@ -577,9 +681,16 @@ test("光谱、首次完成、零冲突与最佳操作使用稳定奖励 ID 去�
 
 test("同一实验结算跨刷新幂等，共享上报可重试但不重复累计通关", () => {
   const puzzle = findPuzzle("ice-window");
-  const attemptId = `${GAME_ID}:attempt:${puzzle.id}:424242`;
-  const metrics = { moves: 13, undos: 1, conflictMoves: 0, elapsedMs: 5000 };
-  const first = awardCompletion(createProfile(), puzzle, metrics, { now: 1000, attemptId });
+  const runId = "test-run-refresh-424242";
+  const attemptId = `${GAME_ID}:attempt:${runId}`;
+  const metrics = {
+    moves: 13,
+    undos: 1,
+    conflictMoves: 0,
+    elapsedMs: 5000,
+    position: positionToJSON(solutionPosition(puzzle)),
+  };
+  const first = awardCompletion(createProfile(), puzzle, metrics, { now: 1000, attemptId, runId });
   const firstDetail = completionDetail(puzzle, metrics, first);
   equal(first.duplicate, false);
   equal(first.profile.totalClears, 1);
@@ -590,29 +701,33 @@ test("同一实验结算跨刷新幂等，共享上报可重试但不重复累�
   equal(saveProfile(storage, first.profile, LEVELS), true);
   const restored = loadProfile(storage, LEVELS);
   equal(restored.restored, true);
-  const retried = awardCompletion(restored.profile, puzzle, metrics, { now: 9000, attemptId });
+  const retried = awardCompletion(restored.profile, puzzle, metrics, { now: 9000, attemptId, runId });
   const retriedDetail = completionDetail(puzzle, metrics, retried);
   equal(retried.duplicate, true);
   equal(retried.profile, first.profile);
   equal(retried.profile.totalClears, 1);
   equal(retried.profile.records[puzzle.id].clears, 1);
   equal(retriedDetail, firstDetail, "retry keeps one stable eventId and completion payload");
-  throws(
-    () => awardCompletion(retried.profile, puzzle, { ...metrics, moves: 14 }, { attemptId }),
-    /different puzzle metrics/,
-  );
+  const resolvedAgain = awardCompletion(retried.profile, puzzle, {
+    ...metrics,
+    moves: 14,
+    undos: 3,
+    elapsedMs: 9000,
+  }, { attemptId, runId });
+  equal(resolvedAgain.duplicate, true);
+  equal(completionDetail(puzzle, {}, resolvedAgain), firstDetail, "same run re-solve reuses its immutable first settlement");
+  equal(resolvedAgain.profile.totalClears, 1);
 });
 
 test("宿主完成回调失败时入队且去重，所有兼容通道失败也不抛错", () => {
   const puzzle = findPuzzle("ion-ribbon");
-  const award = awardCompletion(createProfile(), puzzle, { moves: 20, conflictMoves: 0 }, { now: 1000 });
+  const runId = "test-run-host-failure-0001";
+  const award = awardCompletion(createProfile(), puzzle, {
+    moves: 20,
+    conflictMoves: 0,
+    position: positionToJSON(solutionPosition(puzzle)),
+  }, { now: 1000, runId });
   const detail = completionDetail(puzzle, { moves: 20, conflictMoves: 0 }, award);
-  class FakeCustomEvent {
-    constructor(type, init) {
-      this.type = type;
-      this.detail = init.detail;
-    }
-  }
   const events = [];
   const host = {
     RealmArcade: { complete() { throw new Error("host unavailable"); } },
@@ -620,11 +735,14 @@ test("宿主完成回调失败时入队且去重，所有兼容通道失败也�
   };
   const first = publishCompletion(host, detail, COMPLETION_EVENT, { CustomEvent: FakeCustomEvent });
   const second = publishCompletion(host, detail, COMPLETION_EVENT, { CustomEvent: FakeCustomEvent });
-  equal(first.compatibilityReported, true);
+  equal(first.hostConfirmed, false);
+  equal(first.compatibilityReported, false);
+  equal(first.queued, true);
   equal(first.eventDispatched, true);
   equal(host.__realmCompletionQueue.length, 1);
   equal(host.__realmCompletionQueue[0].eventId, detail.eventId);
-  equal(second.compatibilityReported, true);
+  equal(second.hostConfirmed, false);
+  equal(second.queued, true);
   equal(host.__realmCompletionQueue.length, 1, "retry must not duplicate the pending payload");
   equal(events.map((event) => event.type), [COMPLETION_EVENT, COMPLETION_EVENT]);
 
@@ -634,10 +752,442 @@ test("宿主完成回调失败时入队且去重，所有兼容通道失败也�
   });
   const failed = publishCompletion(sealedHost, detail, COMPLETION_EVENT, { CustomEvent: FakeCustomEvent });
   equal(failed.compatibilityReported, false);
+  equal(failed.queued, false);
   equal(failed.eventDispatched, true);
-  equal(completionDeliveryConfirmed(true, first), true);
-  equal(completionDeliveryConfirmed(false, first), false, "a delivered event cannot confirm an unpersisted settlement");
-  equal(completionDeliveryConfirmed(true, failed), false, "a persisted settlement remains pending until delivery works");
+  equal(completionDeliveryConfirmed(true, true, first), false, "an in-memory queue is not a durable acknowledgement");
+  equal(completionDeliveryConfirmed(false, true, first), false, "an unpersisted settlement cannot be confirmed");
+  equal(completionDeliveryConfirmed(true, false, first), false, "an unpersisted outbox cannot be confirmed");
+
+  const accepted = [];
+  host.RealmArcade.complete = (payload) => accepted.push(payload.eventId);
+  const confirmed = publishCompletion(host, detail, COMPLETION_EVENT, { CustomEvent: FakeCustomEvent });
+  equal(confirmed.hostConfirmed, true);
+  equal(completionDeliveryConfirmed(true, true, confirmed), true);
+  equal(accepted, [detail.eventId]);
+  equal(host.__realmCompletionQueue.length, 0, "a real host acknowledgement removes only its stale queue copy");
+});
+
+test("新 run 的完成事件跨局唯一、同局跨刷新稳定，旧 pending 不会确认新局", () => {
+  const first = completionFixture({ runId: "test-run-identity-first-0001", moves: 13 });
+  const second = completionFixture({ runId: "test-run-identity-second-0002", moves: 13 });
+  ok(first.detail.eventId !== second.detail.eventId, "same puzzle and score in distinct runs must not collide");
+  equal(first.detail.eventId, completionEventIdForRun(first.runId));
+  const restored = completionDetailFromSettlement(first.award.profile, first.award.attemptId, LEVELS);
+  equal(restored, first.detail, "one persisted run reconstructs the exact same payload");
+
+  const confirmed = flushCompletionOutbox(
+    stageCompletion(createCompletionOutbox(), first.detail),
+    { RealmArcade: { complete() {} } },
+    COMPLETION_EVENT,
+  );
+  equal(completionConfirmedForRun(confirmed.confirmedRunIds, first.runId), true);
+  equal(completionConfirmedForRun(confirmed.confirmedRunIds, second.runId), false);
+});
+
+test("完成 proof 必须由正式关卡复算且与 settlement 全字段一致，伪造载荷绝不投递", () => {
+  const fixtureResult = completionFixture({ runId: "test-run-proof-00000001" });
+  const { detail } = fixtureResult;
+  const validator = (candidate) => validateCompletionDetail(candidate, fixtureResult.award.profile, LEVELS);
+  equal(normalizeCompletionDetail(detail), detail);
+  equal(validator(detail), true);
+
+  const incomplete = JSON.parse(JSON.stringify(detail));
+  incomplete.proof.position = { states: {}, notes: [] };
+  equal(normalizeCompletionDetail(incomplete), null);
+  throws(() => stageCompletion(createCompletionOutbox(), incomplete), /Invalid Aurora completion outbox entry/);
+
+  const extraSlot = JSON.parse(JSON.stringify(detail));
+  extraSlot.proof.position.states.NOT_A_SLOT = SLOT_STATE.NEUTRAL;
+  equal(normalizeCompletionDetail(extraSlot), null, "unknown proof slots cannot be normalized away");
+
+  const forgedMetrics = JSON.parse(JSON.stringify(detail));
+  forgedMetrics.moves += 1;
+  forgedMetrics.metrics.moves += 1;
+  ok(normalizeCompletionDetail(forgedMetrics), "shape-valid metrics remain subject to the settlement validator");
+  equal(validator(forgedMetrics), false);
+
+  const forgedRewards = JSON.parse(JSON.stringify(detail));
+  forgedRewards.rewards.push({ id: `${GAME_ID}:clear:forged`, kind: "clear" });
+  forgedRewards.achievements.push("clear");
+  ok(normalizeCompletionDetail(forgedRewards));
+  equal(validator(forgedRewards), false);
+
+  const forgedAttempt = JSON.parse(JSON.stringify(detail));
+  forgedAttempt.proof.attemptId = `${GAME_ID}:attempt:forged-run-000001`;
+  ok(normalizeCompletionDetail(forgedAttempt));
+  equal(validator(forgedAttempt), false);
+
+  let hostCalls = 0;
+  const forgedOutbox = {
+    version: COMPLETION_OUTBOX_VERSION,
+    entries: { [forgedMetrics.eventId]: forgedMetrics },
+    confirmed: {},
+  };
+  const blocked = flushCompletionOutbox(forgedOutbox, {
+    RealmArcade: { complete() { hostCalls += 1; } },
+  }, COMPLETION_EVENT, { validateDetail: validator });
+  equal(blocked.blockedEventIds, [detail.eventId]);
+  equal(hostCalls, 0);
+  equal(Object.keys(blocked.outbox.entries), [detail.eventId]);
+});
+
+test("宿主记账后抛错会跨刷新以同 ID 重试，由宿主去重后才清空持久 outbox", () => {
+  const fixtureResult = completionFixture({ runId: "test-run-write-then-throw-0001" });
+  const profile = fixtureResult.award.profile;
+  const validator = (detail) => validateCompletionDetail(detail, profile, LEVELS);
+  const storage = new FakeStorage();
+  equal(saveProfile(storage, profile, LEVELS), true);
+  let outbox = stageCompletion(createCompletionOutbox(), fixtureResult.detail, { validateDetail: validator });
+  equal(saveCompletionOutbox(storage, outbox, { validateDetail: validator }), true);
+
+  const sharedLedger = new Set();
+  let calls = 0;
+  const host = {
+    RealmArcade: {
+      complete(payload) {
+        calls += 1;
+        sharedLedger.add(payload.eventId);
+        if (calls === 1) throw new Error("response lost after durable host write");
+      },
+    },
+  };
+  const first = flushCompletionOutbox(outbox, host, COMPLETION_EVENT, { validateDetail: validator });
+  equal(first.confirmedEventIds, []);
+  equal(Object.keys(first.outbox.entries), [fixtureResult.detail.eventId]);
+  equal(saveCompletionOutbox(storage, first.outbox, { validateDetail: validator }), true);
+
+  outbox = loadCompletionOutbox(storage, { validateDetail: validator }).outbox;
+  const retried = flushCompletionOutbox(outbox, host, COMPLETION_EVENT, { validateDetail: validator });
+  equal(retried.confirmedEventIds, [fixtureResult.detail.eventId]);
+  equal(calls, 2);
+  equal(sharedLedger.size, 1, "stable event ID lets the host de-duplicate the uncertain first write");
+  equal(Object.keys(retried.outbox.entries), [fixtureResult.detail.eventId], "host success alone does not mint an unverified tombstone");
+  const confirmedProfile = markCompletionDelivery(profile, retried.confirmedEventIds, DELIVERY_STATE.CONFIRMED);
+  equal(saveProfile(storage, confirmedProfile, LEVELS), true);
+  const confirmedOptions = completionOptions(loadProfile(storage, LEVELS).profile);
+  const acknowledged = normalizeCompletionOutbox(retried.outbox, confirmedOptions);
+  equal(saveCompletionOutbox(storage, acknowledged, confirmedOptions), true);
+  const cleared = loadCompletionOutbox(storage, confirmedOptions).outbox;
+  equal(Object.keys(cleared.entries).length, 0);
+  equal(cleared.confirmed[fixtureResult.detail.eventId], fixtureResult.runId);
+  equal(host.__realmCompletionQueue.length, 0);
+});
+
+test("宿主成功后的 profile/outbox 任一落盘中断都按确认状态机安全恢复", () => {
+  const afterProfile = completionFixture({ runId: "test-run-host-success-outbox-fail" });
+  const outboxFailure = new FailOnNthSetStorage(5);
+  equal(saveProfile(outboxFailure, afterProfile.award.profile, LEVELS), true);
+  const pendingOptions = completionOptions(afterProfile.award.profile);
+  const pending = stageCompletion(createCompletionOutbox(), afterProfile.detail, pendingOptions);
+  equal(saveCompletionOutbox(outboxFailure, pending, pendingOptions), true);
+  const stagedProfile = markCompletionDelivery(
+    afterProfile.award.profile,
+    [afterProfile.detail.eventId],
+    DELIVERY_STATE.STAGED,
+  );
+  equal(saveProfile(outboxFailure, stagedProfile, LEVELS), true);
+  let hostCalls = 0;
+  const delivered = flushCompletionOutbox(pending, {
+    RealmArcade: { complete() { hostCalls += 1; } },
+  }, COMPLETION_EVENT, completionOptions(stagedProfile));
+  equal(hostCalls, 1);
+  const confirmedProfile = markCompletionDelivery(stagedProfile, delivered.confirmedEventIds, DELIVERY_STATE.CONFIRMED);
+  equal(saveProfile(outboxFailure, confirmedProfile, LEVELS), true);
+  const confirmedOptions = completionOptions(loadProfile(outboxFailure, LEVELS).profile);
+  const acknowledged = normalizeCompletionOutbox(delivered.outbox, confirmedOptions);
+  equal(saveCompletionOutbox(outboxFailure, acknowledged, confirmedOptions), false,
+    "the injected fifth write loses only the tombstone write, not the confirmed settlement");
+  const recovered = loadCompletionOutbox(outboxFailure, confirmedOptions).outbox;
+  equal(recovered.confirmed[afterProfile.detail.eventId], afterProfile.runId,
+    "a confirmed profile converts the still-pending raw entry without another host call");
+  const noRedelivery = flushCompletionOutbox(recovered, {
+    RealmArcade: { complete() { hostCalls += 1; } },
+  }, COMPLETION_EVENT, confirmedOptions);
+  equal(hostCalls, 1);
+  equal(noRedelivery.confirmedEventIds, []);
+  equal(saveCompletionOutbox(outboxFailure, recovered, confirmedOptions), true);
+
+  const beforeProfile = completionFixture({ runId: "test-run-host-success-profile-fail" });
+  const profileFailure = new FailOnNthSetStorage(4);
+  equal(saveProfile(profileFailure, beforeProfile.award.profile, LEVELS), true);
+  const beforeOptions = completionOptions(beforeProfile.award.profile);
+  const beforePending = stageCompletion(createCompletionOutbox(), beforeProfile.detail, beforeOptions);
+  equal(saveCompletionOutbox(profileFailure, beforePending, beforeOptions), true);
+  const beforeStaged = markCompletionDelivery(
+    beforeProfile.award.profile,
+    [beforeProfile.detail.eventId],
+    DELIVERY_STATE.STAGED,
+  );
+  equal(saveProfile(profileFailure, beforeStaged, LEVELS), true);
+  const sharedLedger = new Set();
+  let uncertainCalls = 0;
+  const idempotentHost = {
+    RealmArcade: {
+      complete(payload) {
+        uncertainCalls += 1;
+        sharedLedger.add(payload.eventId);
+      },
+    },
+  };
+  const firstDelivery = flushCompletionOutbox(beforePending, idempotentHost, COMPLETION_EVENT, completionOptions(beforeStaged));
+  const failedConfirmation = markCompletionDelivery(beforeStaged, firstDelivery.confirmedEventIds, DELIVERY_STATE.CONFIRMED);
+  equal(saveProfile(profileFailure, failedConfirmation, LEVELS), false,
+    "a lost profile confirmation leaves the durable pending entry intact");
+  const restoredStaged = loadProfile(profileFailure, LEVELS).profile;
+  const restoredOptions = completionOptions(restoredStaged);
+  const restoredPending = loadCompletionOutbox(profileFailure, restoredOptions).outbox;
+  const retryDelivery = flushCompletionOutbox(restoredPending, idempotentHost, COMPLETION_EVENT, restoredOptions);
+  equal(uncertainCalls, 2);
+  equal(sharedLedger.size, 1, "the stable event ID de-duplicates the retry after profile confirmation failure");
+  const retryConfirmed = markCompletionDelivery(restoredStaged, retryDelivery.confirmedEventIds, DELIVERY_STATE.CONFIRMED);
+  equal(saveProfile(profileFailure, retryConfirmed, LEVELS), true);
+  const retryOptions = completionOptions(loadProfile(profileFailure, LEVELS).profile);
+  equal(saveCompletionOutbox(
+    profileFailure,
+    normalizeCompletionOutbox(retryDelivery.outbox, retryOptions),
+    retryOptions,
+  ), true);
+  equal(Object.keys(loadCompletionOutbox(profileFailure, retryOptions).outbox.entries).length, 0);
+});
+
+test("伪造或孤立 confirmed 墓碑不能确认未投递 settlement，宿主成功状态持久后才可转墓碑", () => {
+  const fixtureResult = completionFixture({ runId: "test-run-forged-tombstone-001" });
+  let profile = fixtureResult.award.profile;
+  const pendingOptions = completionOptions(profile);
+  equal(validateCompletionAcknowledgement(
+    fixtureResult.detail.eventId,
+    fixtureResult.runId,
+    profile,
+    LEVELS,
+    fixtureResult.detail,
+  ), false);
+
+  const forged = createCompletionOutbox();
+  forged.confirmed[fixtureResult.detail.eventId] = fixtureResult.runId;
+  const storage = new FakeStorage({ [STORAGE_KEYS.completionOutbox]: JSON.stringify(forged) });
+  const loaded = loadCompletionOutbox(storage, pendingOptions);
+  equal(loaded.corrupted, false, "a shape-valid orphan tombstone is ignored so the real completion can recover");
+  equal(loaded.outbox.confirmed, {});
+  const restaged = stageCompletion(loaded.outbox, fixtureResult.detail, pendingOptions);
+  equal(Object.keys(restaged.entries), [fixtureResult.detail.eventId]);
+  equal(saveCompletionOutbox(storage, restaged, pendingOptions), true);
+  equal(Object.keys(loadCompletionOutbox(storage, pendingOptions).outbox.entries), [fixtureResult.detail.eventId]);
+
+  let hostCalls = 0;
+  const delivered = flushCompletionOutbox(restaged, {
+    RealmArcade: { complete() { hostCalls += 1; } },
+  }, COMPLETION_EVENT, pendingOptions);
+  equal(hostCalls, 1);
+  equal(delivered.confirmedEventIds, [fixtureResult.detail.eventId]);
+  equal(Object.keys(delivered.outbox.entries), [fixtureResult.detail.eventId]);
+  equal(normalizeCompletionOutbox(delivered.outbox, pendingOptions).confirmed, {});
+
+  profile = markCompletionDelivery(profile, delivered.confirmedEventIds, DELIVERY_STATE.CONFIRMED);
+  const confirmedOptions = completionOptions(profile);
+  equal(validateCompletionAcknowledgement(
+    fixtureResult.detail.eventId,
+    fixtureResult.runId,
+    profile,
+    LEVELS,
+    fixtureResult.detail,
+  ), true);
+  equal(validateCompletionAcknowledgement(
+    fixtureResult.detail.eventId,
+    "test-run-wrong-tombstone-0001",
+    profile,
+    LEVELS,
+    fixtureResult.detail,
+  ), false);
+  const acknowledged = normalizeCompletionOutbox(delivered.outbox, confirmedOptions);
+  equal(Object.keys(acknowledged.entries).length, 0);
+  equal(acknowledged.confirmed[fixtureResult.detail.eventId], fixtureResult.runId);
+});
+
+test("outbox 合并写不会覆盖其他标签页，确认墓碑阻止陈旧快照复活，且 2001 条不裁剪", () => {
+  const first = completionFixture({ runId: "test-run-tab-first-000001" });
+  const second = completionFixture({ runId: "test-run-tab-second-00002" });
+  const snapshotA = stageCompletion(createCompletionOutbox(), first.detail);
+  const snapshotB = stageCompletion(createCompletionOutbox(), second.detail);
+  const storage = new FakeStorage();
+  equal(saveCompletionOutbox(storage, snapshotA), true);
+  equal(saveCompletionOutbox(storage, snapshotB), true);
+  let merged = loadCompletionOutbox(storage).outbox;
+  equal(new Set(Object.keys(merged.entries)), new Set([first.detail.eventId, second.detail.eventId]));
+
+  const deliveredA = flushCompletionOutbox(snapshotA, { RealmArcade: { complete() {} } }, COMPLETION_EVENT);
+  const combinedProfile = mergeProfiles(first.award.profile, second.award.profile, LEVELS);
+  const confirmedProfile = markCompletionDelivery(combinedProfile, deliveredA.confirmedEventIds, DELIVERY_STATE.CONFIRMED);
+  const confirmedOptions = completionOptions(confirmedProfile);
+  const acknowledgedA = normalizeCompletionOutbox(deliveredA.outbox, confirmedOptions);
+  equal(saveCompletionOutbox(storage, acknowledgedA, confirmedOptions), true);
+  equal(saveCompletionOutbox(storage, snapshotA, confirmedOptions), true, "a stale tab may save but cannot resurrect a confirmed event");
+  merged = loadCompletionOutbox(storage, confirmedOptions).outbox;
+  equal(Object.hasOwn(merged.entries, first.detail.eventId), false);
+  equal(merged.confirmed[first.detail.eventId], first.runId);
+  equal(Object.hasOwn(merged.entries, second.detail.eventId), true);
+
+  const bulk = createCompletionOutbox();
+  for (let index = 0; index < 2001; index += 1) {
+    const runId = `bulk-run-${String(index).padStart(6, "0")}`;
+    const eventId = completionEventIdForRun(runId);
+    const detail = JSON.parse(JSON.stringify(first.detail));
+    detail.runId = runId;
+    detail.eventId = eventId;
+    detail.completionId = eventId;
+    detail.proof.attemptId = `${GAME_ID}:attempt:${runId}`;
+    bulk.entries[eventId] = detail;
+  }
+  const normalizedBulk = normalizeCompletionOutbox(bulk);
+  ok(normalizedBulk);
+  equal(Object.keys(normalizedBulk.entries).length, 2001);
+  const bulkStorage = new FakeStorage();
+  equal(saveCompletionOutbox(bulkStorage, normalizedBulk), true);
+  equal(Object.keys(loadCompletionOutbox(bulkStorage).outbox.entries).length, 2001);
+});
+
+test("损坏 outbox 整份 fail-closed、原文不被空文档覆盖，storage 缺失不误报成功", () => {
+  const fixtureResult = completionFixture({ runId: "test-run-corrupt-outbox-0001" });
+  const valid = stageCompletion(createCompletionOutbox(), fixtureResult.detail);
+  const mixed = JSON.parse(JSON.stringify(valid));
+  mixed.entries[`${GAME_ID}:completion:bad-entry`] = { gameId: GAME_ID };
+  const rawMixed = JSON.stringify(mixed);
+  const storage = new FakeStorage({ [STORAGE_KEYS.completionOutbox]: rawMixed });
+  const loaded = loadCompletionOutbox(storage);
+  equal(loaded.corrupted, true);
+  equal(loaded.available, false);
+  equal(storage.map.get(STORAGE_KEYS.completionOutbox), rawMixed);
+  equal(saveCompletionOutbox(storage, createCompletionOutbox()), false);
+  equal(storage.map.get(STORAGE_KEYS.completionOutbox), rawMixed, "valid siblings and corrupt bytes are both preserved for recovery");
+
+  const brokenRaw = "{not-json";
+  storage.map.set(STORAGE_KEYS.completionOutbox, brokenRaw);
+  equal(loadCompletionOutbox(storage).corrupted, true);
+  equal(saveCompletionOutbox(storage, valid), false);
+  equal(storage.map.get(STORAGE_KEYS.completionOutbox), brokenRaw);
+  equal(saveCompletionOutbox(new ThrowingStorage(), valid), false);
+});
+
+test("profile 与 outbox 的部分写入可从 settlement 重建，多标签奖励合并且状态只前进", () => {
+  const first = completionFixture({ runId: "test-run-profile-tab-first-01", now: 1000 });
+  const second = completionFixture({ runId: "test-run-profile-tab-second-2", now: 2000 });
+  const shared = new FakeStorage();
+  equal(saveProfile(shared, first.award.profile, LEVELS), true);
+  equal(saveProfile(shared, second.award.profile, LEVELS), true);
+  const mergedProfile = loadProfile(shared, LEVELS).profile;
+  equal(mergedProfile.totalClears, 2);
+  equal(new Set(Object.keys(mergedProfile.settlements)), new Set([first.award.attemptId, second.award.attemptId]));
+  equal(mergedProfile.records[first.puzzle.id].clears, 2);
+
+  const partial = new FailOnNthSetStorage(2);
+  equal(saveProfile(partial, first.award.profile, LEVELS), true);
+  const staged = stageCompletion(createCompletionOutbox(), first.detail);
+  equal(saveCompletionOutbox(partial, staged), false, "outbox quota failure follows the durable settlement write");
+  const recovered = loadProfile(partial, LEVELS).profile;
+  equal(recovered.totalClears, 1);
+  equal(pendingCompletionDetails(recovered, LEVELS), [first.detail], "the immutable settlement rebuilds the missing outbox entry");
+  const duplicate = awardCompletion(recovered, first.puzzle, { ...first.metrics, moves: first.metrics.moves + 4 }, {
+    runId: first.runId,
+    attemptId: first.award.attemptId,
+  });
+  equal(duplicate.profile.totalClears, 1);
+  equal(completionDetail(first.puzzle, {}, duplicate), first.detail);
+
+  const stagedProfile = markCompletionDelivery(recovered, [first.detail.eventId], DELIVERY_STATE.STAGED);
+  const confirmedProfile = markCompletionDelivery(stagedProfile, [first.detail.eventId], DELIVERY_STATE.CONFIRMED);
+  const staleDowngrade = markCompletionDelivery(confirmedProfile, [first.detail.eventId], DELIVERY_STATE.UNSTAGED);
+  equal(staleDowngrade.settlements[first.award.attemptId].deliveryState, DELIVERY_STATE.CONFIRMED);
+});
+
+test("profile 首写失败时已解局不可离开，solved session 刷新后以同一 run 和 event 重试", () => {
+  const existing = completionFixture({ runId: "test-run-existing-profile-001", now: 1000 });
+  const storage = new FailOnNthSetStorage(2);
+  equal(saveProfile(storage, existing.award.profile, LEVELS), true);
+
+  const puzzle = existing.puzzle;
+  const runId = "test-run-profile-write-fail-01";
+  const session = createSession(puzzle, { now: 2000, runId });
+  session.position = positionToJSON(solutionPosition(puzzle));
+  session.moves = puzzle.suggestedMoves;
+  session.undos = 1;
+  session.conflictMoves = 0;
+  session.elapsedMs = 4321;
+  const metrics = {
+    moves: session.moves,
+    undos: session.undos,
+    conflictMoves: session.conflictMoves,
+    elapsedMs: session.elapsedMs,
+    position: session.position,
+  };
+  const failedAward = awardCompletion(existing.award.profile, puzzle, metrics, { now: 2000, runId });
+  const stableDetail = completionDetail(puzzle, metrics, failedAward);
+  equal(saveProfile(storage, failedAward.profile, LEVELS), false, "the injected profile write fails before any outbox delivery");
+  equal(saveSession(storage, puzzle, session), true, "the solved session remains durable after the one-shot profile failure");
+
+  const staleProfile = loadProfile(storage, LEVELS).profile;
+  const missingSettlement = Object.values(staleProfile.settlements).find((item) => item.runId === runId) ?? null;
+  equal(missingSettlement, null);
+  equal(completionRunIsDurable(true, missingSettlement), false, "a solved run without its settlement cannot be abandoned");
+  equal(completionRunIsDurable(false, missingSettlement), true, "an unfinished run still permits ordinary puzzle navigation");
+  equal(completionRunIsDurable(true, { deliveryState: DELIVERY_STATE.UNSTAGED }), false,
+    "a solved run remains read-only until its settlement reaches durable outbox staging");
+  equal(completionRunIsDurable(true, { deliveryState: DELIVERY_STATE.STAGED }), true,
+    "durable outbox staging releases the solved board for navigation or editing");
+
+  const restoredSession = loadSession(storage, LEVELS, puzzle);
+  equal(restoredSession.restored, true);
+  equal(restoredSession.session.completed, true);
+  equal(restoredSession.session.runId, runId);
+  const retryMetrics = {
+    moves: restoredSession.session.moves,
+    undos: restoredSession.session.undos,
+    conflictMoves: restoredSession.session.conflictMoves,
+    elapsedMs: restoredSession.session.elapsedMs,
+    position: restoredSession.session.position,
+  };
+  const retried = awardCompletion(staleProfile, puzzle, retryMetrics, { now: 3000, runId });
+  const retriedDetail = completionDetail(puzzle, retryMetrics, retried);
+  equal(retriedDetail.eventId, stableDetail.eventId);
+  equal(retriedDetail.runId, stableDetail.runId);
+  equal(saveProfile(storage, retried.profile, LEVELS), true);
+  equal(loadProfile(storage, LEVELS).profile.totalClears, 2);
+  equal(completionRunIsDurable(true, retried.profile.settlements[retried.attemptId]), false,
+    "the recovered settlement remains protected until its outbox is durably staged");
+});
+
+test("旧 profile/session 迁移保留历史 eventId，绑定 legacy run 后不会换成新公式", () => {
+  const puzzle = findPuzzle("ice-window");
+  const attemptId = `${GAME_ID}:attempt:${puzzle.id}:1000:13:0:0:5000`;
+  const metrics = {
+    moves: 13,
+    undos: 0,
+    conflictMoves: 0,
+    elapsedMs: 5000,
+    position: positionToJSON(solutionPosition(puzzle)),
+  };
+  const original = awardCompletion(createProfile(), puzzle, metrics, { now: 1000, attemptId });
+  const legacyDocument = JSON.parse(JSON.stringify(original.profile));
+  const storedSettlement = legacyDocument.settlements[attemptId];
+  delete storedSettlement.eventId;
+  delete storedSettlement.deliveryState;
+  delete storedSettlement.finalPosition;
+  delete storedSettlement.undos;
+  delete storedSettlement.elapsedMs;
+  const migrated = normalizeProfile(legacyDocument, LEVELS);
+  const oldEventId = legacyCompletionEventId(puzzle.id, 1, 13);
+  equal(migrated.settlements[attemptId].eventId, oldEventId);
+  equal(migrated.settlements[attemptId].deliveryState, DELIVERY_STATE.CONFIRMED);
+
+  const legacyRunId = "legacy-ice-window-session-001";
+  const resumed = awardCompletion(migrated, puzzle, metrics, { attemptId, runId: legacyRunId });
+  const detail = completionDetail(puzzle, {}, resumed);
+  equal(detail.identityVersion, 0);
+  equal(detail.eventId, oldEventId);
+  equal(detail.runId, legacyRunId);
+  equal(resumed.profile.totalClears, 1);
+  const storage = new FakeStorage();
+  equal(saveProfile(storage, resumed.profile, LEVELS), true);
+  const restored = loadProfile(storage, LEVELS).profile;
+  equal(completionDetailFromSettlement(restored, attemptId, LEVELS), detail);
 });
 
 test("稀有磁暴和有冲突完成记录分别产生正确、可去重的长期档案", () => {
@@ -684,10 +1234,16 @@ test("档案严格往返，损坏档案安全回退且总通关数必须自洽",
 
 test("完成载荷包含 v2 标准事件、兼容字段与 JSON 可序列化去重信息", () => {
   const puzzle = LEVELS[0];
-  const award = awardCompletion(createProfile(), puzzle, { moves: 11, conflictMoves: 0 }, { now: 1000 });
-  const detail = completionDetail(puzzle, {
-    moves: 11, undos: 2, conflictMoves: 0, elapsedMs: 65432,
-  }, award);
+  const runId = "test-run-completion-detail-0001";
+  const metrics = {
+    moves: 11,
+    undos: 2,
+    conflictMoves: 0,
+    elapsedMs: 65432,
+    position: positionToJSON(solutionPosition(puzzle)),
+  };
+  const award = awardCompletion(createProfile(), puzzle, metrics, { now: 1000, runId });
+  const detail = completionDetail(puzzle, metrics, award);
   equal(COMPLETION_EVENT, "ten-realms-v2:game-complete");
   equal(READY_EVENT, "ten-realms-v2:game-ready");
   equal(detail.gameId, GAME_ID);
@@ -699,7 +1255,8 @@ test("完成载荷包含 v2 标准事件、兼容字段与 JSON 可序列化去�
     const tierAward = awardCompletion(createProfile(), tierPuzzle, {
       moves: tierPuzzle.suggestedMoves,
       conflictMoves: 0,
-    }, { now: 1000 + expectedTier });
+      position: positionToJSON(solutionPosition(tierPuzzle)),
+    }, { now: 1000 + expectedTier, runId: `test-run-tier-${difficulty}-0001` });
     const tierDetail = completionDetail(tierPuzzle, {
       moves: tierPuzzle.suggestedMoves,
       conflictMoves: 0,
@@ -721,7 +1278,9 @@ test("完成载荷包含 v2 标准事件、兼容字段与 JSON 可序列化去�
     bestMoves: 11,
     previousBestMoves: null,
   });
-  ok(detail.eventId.startsWith(`${GAME_ID}:completion:${puzzle.id}:1:`));
+  equal(detail.eventId, completionEventIdForRun(runId));
+  equal(detail.proof.attemptId, `${GAME_ID}:attempt:${runId}`);
+  equal(evaluatePosition(puzzle, normalizePosition(puzzle, detail.proof.position)).complete, true);
   equal(new Set(detail.rewards.map((reward) => reward.id)).size, detail.rewards.length);
   equal(JSON.parse(JSON.stringify(detail)), detail);
 });
@@ -963,15 +1522,34 @@ test("独立 HTML、CSS、应用接线与三张真实 SVG 教程满足静态契�
   ok(css.includes("safe-area-inset-bottom"));
   ok(html.includes('id="tutorial-announcement" aria-live="polite" aria-atomic="true"'));
   ok(app.includes("elements.tutorialAnnouncement.textContent"));
+  ok(app.includes("elements.tutorialCardPanel.scrollTop = 0"), "tutorial card changes reset the real mobile scroll container");
 
   ok(app.includes("LONG_PRESS_MS"));
   ok(app.includes('addEventListener("contextmenu"'));
   ok(app.includes('addEventListener("keydown"'));
   ok(app.includes("window.AuroraMagnetLab"));
   ok(app.includes('from "./completion-bridge.mjs"'));
-  ok(app.includes("publishCompletion(window, detail, COMPLETION_EVENT)"));
+  ok(app.includes("pendingCompletionDetails(profile, LEVELS)"));
+  ok(app.includes("saveCompletionOutbox(storage, completionOutbox"));
+  ok(app.includes("flushCompletionOutbox(completionOutbox, window, COMPLETION_EVENT"));
   ok(app.includes("const latestProfileLoad = loadProfile(storage, LEVELS)"));
-  ok(app.includes("completionDeliveryConfirmed(profileSaved, delivery)"));
+  ok(app.includes("markCompletionDelivery(profile, merelyStaged, DELIVERY_STATE.STAGED)"));
+  ok(app.includes("markCompletionDelivery(profile, result.confirmedEventIds, DELIVERY_STATE.CONFIRMED)"),
+    "only an explicit non-throwing host result advances the durable profile acknowledgement");
+  ok(app.includes("validateCompletionAcknowledgement(eventId, runId, profile, LEVELS, detail)"),
+    "persisted tombstones are checked against the canonical confirmed settlement");
+  ok(app.includes("completionRunIsDurable(evaluation.complete, current?.[1] ?? null)"),
+    "a solved run cannot leave when its settlement write is missing");
+  const commitMoveSource = app.slice(app.indexOf("function commitMove(move)"), app.indexOf("function undo()"));
+  const undoSource = app.slice(app.indexOf("function undo()"), app.indexOf("async function restart()"));
+  ok(commitMoveSource.includes("completionMutationIsBlocked()"),
+    "a solved board cannot accept another move before its completion is durably staged");
+  ok(undoSource.includes("completionMutationIsBlocked()"),
+    "a solved board cannot be undone before its completion is durably staged");
+  ok(app.includes('showToast("完成记录尚未安全保存，请稍后重试。", true, 3600)'),
+    "blocked board edits explain the temporary completion-save lock to the player");
+  ok(app.includes('window.navigator?.locks'), "completion transactions use the browser Web Lock when available");
+  ok(app.includes('["realm:ready", "ten-realms-v2:realm-ready"]'), "both host-ready events retry the durable outbox");
   ok(completionBridge.includes("target?.RealmArcade?.complete"));
   ok(completionBridge.includes("target.__realmCompletionQueue"));
   ok(app.includes("completionReported"));

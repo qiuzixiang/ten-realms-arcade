@@ -1,4 +1,13 @@
-import { PRESETS } from "./logic.mjs";
+import {
+  GAME_VERSION,
+  GENERATOR_VERSION,
+  MAX_HISTORY,
+  PRESETS,
+  STATUS,
+  dailySeed,
+  puzzleIdFor,
+  restoreGame,
+} from "./logic.mjs";
 import { createCompletionPayload } from "./integration.mjs";
 
 export const RECORDS_VERSION = 1;
@@ -57,13 +66,45 @@ function booleanMap(candidate, keyPattern) {
   return result;
 }
 
+function validDayKey(value) {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(value ?? "")) return false;
+  const [year, month, day] = value.split("-").map(Number);
+  const date = new Date(Date.UTC(year, month - 1, day));
+  return date.getUTCFullYear() === year
+    && date.getUTCMonth() === month - 1
+    && date.getUTCDate() === day;
+}
+
 function normalizedPendingPayload(id, candidate) {
   if (!candidate || typeof candidate !== "object" || Array.isArray(candidate)) return null;
-  if (candidate.completionId !== id || candidate.gameId !== "season-dyehouse") return null;
-  if (!safeKey(candidate.puzzleId) || !PRESETS[candidate.difficulty]) return null;
+  if (
+    candidate.version !== 1
+    || candidate.generatorVersion !== GENERATOR_VERSION
+    || candidate.completionId !== id
+    || candidate.gameId !== "season-dyehouse"
+    || candidate.levelId !== candidate.puzzleId
+  ) return null;
+  const preset = PRESETS[candidate.difficulty];
+  if (!safeKey(candidate.puzzleId) || !preset) return null;
+  if (candidate.mode !== "seed" && candidate.mode !== "daily") return null;
+  if (candidate.mode === "daily") {
+    if (
+      !validDayKey(candidate.day)
+      || candidate.difficulty !== "12x12-medium"
+      || candidate.seed !== dailySeed(candidate.day)
+    ) return null;
+  } else if (candidate.day !== "") return null;
   if (typeof candidate.completedAt !== "string" || candidate.completedAt.length > 32) return null;
   const completedAt = new Date(candidate.completedAt);
   if (Number.isNaN(completedAt.getTime())) return null;
+  if (
+    !Number.isInteger(candidate.seed)
+    || candidate.seed < 0
+    || candidate.seed > 0xffffffff
+    || !Array.isArray(candidate.timeline)
+    || candidate.timeline.length > MAX_HISTORY
+    || !candidate.timeline.every(Number.isInteger)
+  ) return null;
   const integerFields = ["tier", "seed", "moves", "moveLimit", "referenceMoves", "par", "maxCleanStreak"];
   if (integerFields.some((field) => !Number.isInteger(candidate[field]) || candidate[field] < 0)) return null;
   const rewardClaims = [];
@@ -79,6 +120,28 @@ function normalizedPendingPayload(id, candidate) {
     ) return null;
     rewardClaims.push({ id: claim.id, kind: claim.kind, label: claim.label });
   }
+
+  const replayed = restoreGame({
+    version: GAME_VERSION,
+    generatorVersion: candidate.generatorVersion,
+    presetId: candidate.difficulty,
+    seed: candidate.seed,
+    timeline: candidate.timeline,
+    reportedCompletionId: "",
+  });
+  if (!replayed || replayed.status !== STATUS.WON) return null;
+  if (puzzleIdFor(replayed, candidate.mode, candidate.day) !== candidate.puzzleId) return null;
+  if (
+    candidate.tier !== preset.tier
+    || candidate.seed !== replayed.seed
+    || candidate.moves !== replayed.moves
+    || candidate.moveLimit !== replayed.moveLimit
+    || candidate.referenceMoves !== replayed.referenceMoves
+    || candidate.par !== replayed.referenceMoves
+    || candidate.efficient !== (replayed.moves <= replayed.referenceMoves)
+    || candidate.wasteFree !== (replayed.wastes === 0)
+    || candidate.maxCleanStreak !== replayed.maxCleanStreak
+  ) return null;
   try {
     const payload = createCompletionPayload({
       puzzleId: candidate.puzzleId,
@@ -94,6 +157,7 @@ function normalizedPendingPayload(id, candidate) {
       efficient: candidate.efficient,
       wasteFree: candidate.wasteFree,
       maxCleanStreak: candidate.maxCleanStreak,
+      timeline: replayed.timeline,
       claims: rewardClaims,
     }, completedAt);
     return payload.completionId === id ? payload : null;

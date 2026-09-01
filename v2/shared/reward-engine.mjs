@@ -1,6 +1,14 @@
 export const PROGRESS_VERSION = 1;
 export const DEFAULT_MASTERY_TARGET = 9;
-export const REALM_MASTERY_TARGETS = Object.freeze({});
+export const REALM_MASTERY_TARGETS = Object.freeze({
+  "polar-railway": 6,
+  "aurora-magnet-lab": 6,
+  "time-sand-post": 6,
+  "molten-core-vent": 6,
+  "paper-crane-sanctuary": 6,
+  "resonance-bell-room": 6,
+  "four-spirit-habitat": 6,
+});
 export const RANKS = Object.freeze([
   { name: "新境访客", threshold: 0 },
   { name: "探路新星", threshold: 300 },
@@ -11,7 +19,7 @@ export const RANKS = Object.freeze([
 ]);
 
 export function createProgress() {
-  return { version: PROGRESS_VERSION, xp: 0, xpBase: 0, rewards: {}, streak: { lastDay: "", count: 0 }, realms: {} };
+  return { version: PROGRESS_VERSION, xp: 0, xpBase: 0, rewards: {}, events: {}, streak: { lastDay: "", count: 0 }, realms: {} };
 }
 
 const validId = (value, pattern) => typeof value === "string"
@@ -19,6 +27,7 @@ const validId = (value, pattern) => typeof value === "string"
   && !["__proto__", "prototype", "constructor"].includes(value);
 const amount = (value, fallback = 0) => Number.isFinite(value) && value >= 0 ? value : fallback;
 const rewardTotal = (rewards) => Object.values(rewards).reduce((sum, value) => sum + value, 0);
+const eventIdPattern = /^[^\u0000-\u001f\u007f]{1,240}$/;
 
 export function masteryTargetFor(realmId) {
   return Object.hasOwn(REALM_MASTERY_TARGETS, realmId) ? REALM_MASTERY_TARGETS[realmId] : DEFAULT_MASTERY_TARGET;
@@ -26,11 +35,12 @@ export function masteryTargetFor(realmId) {
 
 export function badgeRulesForRealm(realmId) {
   const target = masteryTargetFor(realmId);
+  const adeptTarget = target <= 6 ? Math.max(4, target - 1) : 6;
   return [
     { name: "初入此境", clears: 1, description: "完成本境任意一关" },
     { name: "妙手破局", skillful: true, description: "达到效率线，或刷新一次个人最佳" },
     { name: "三关巡礼", clears: 3, description: "完成本境 3 个不同关卡" },
-    { name: "本境行家", clears: 6, description: "完成本境 6 个不同关卡" },
+    { name: "本境行家", clears: adeptTarget, description: `完成本境 ${adeptTarget} 个不同关卡` },
     { name: "本境宗师", clears: target, description: `完成本境 ${target} 个不同关卡` },
   ];
 }
@@ -42,6 +52,12 @@ export function normalizeProgress(candidate) {
     for (const [key, value] of Object.entries(candidate.rewards)) {
       if (!validId(key, /^[^\u0000-\u001f\u007f]{1,240}$/) || !Number.isFinite(value) || value <= 0) continue;
       clean.rewards[key] = Math.min(1000, Math.floor(value));
+    }
+  }
+  if (candidate.events && typeof candidate.events === "object" && !Array.isArray(candidate.events)) {
+    for (const [eventId, timestamp] of Object.entries(candidate.events)) {
+      if (!validId(eventId, eventIdPattern) || typeof timestamp !== "string" || Number.isNaN(Date.parse(timestamp))) continue;
+      clean.events[eventId] = new Date(timestamp).toISOString();
     }
   }
   const storedXp = Math.floor(amount(candidate.xp));
@@ -79,6 +95,9 @@ export function mergeProgress(...candidates) {
   merged.xpBase = Math.max(...sources.map((item) => item.xpBase), 0);
   for (const source of sources) {
     for (const [key, value] of Object.entries(source.rewards)) merged.rewards[key] = Math.max(merged.rewards[key] ?? 0, value);
+    for (const [eventId, timestamp] of Object.entries(source.events)) {
+      if (!merged.events[eventId] || timestamp > merged.events[eventId]) merged.events[eventId] = timestamp;
+    }
     if (source.streak.lastDay > merged.streak.lastDay) merged.streak = { ...source.streak };
     else if (source.streak.lastDay === merged.streak.lastDay) merged.streak.count = Math.max(merged.streak.count, source.streak.count);
   }
@@ -98,6 +117,7 @@ export function mergeProgress(...candidates) {
     merged.realms[realmId] = realm;
   }
   merged.rewards = Object.fromEntries(Object.entries(merged.rewards).sort(([a], [b]) => a.localeCompare(b)));
+  merged.events = Object.fromEntries(Object.entries(merged.events).sort(([left], [right]) => left.localeCompare(right)));
   merged.xp = merged.xpBase + rewardTotal(merged.rewards);
   return merged;
 }
@@ -118,8 +138,16 @@ export function awardCompletion(progress, completion, now = new Date()) {
   const next = normalizeProgress(JSON.parse(JSON.stringify(progress ?? null)));
   const realmId = completion?.realm;
   const levelId = completion?.levelId;
-  const empty = { progress: next, awarded: 0, firstClear: false, personalBest: false, efficient: false, newBadges: [], breakdown: [] };
+  const empty = { progress: next, accepted: false, awarded: 0, firstClear: false, personalBest: false, efficient: false, duplicateEvent: false, newBadges: [], breakdown: [] };
   if (!validId(realmId, /^[a-z0-9-]{2,40}$/) || !validId(levelId, /^[a-z0-9:_-]{1,80}$/i)) return empty;
+  const suppliedEventId = completion?.eventId;
+  const suppliedCompletionId = completion?.completionId;
+  if (suppliedEventId !== undefined && !validId(suppliedEventId, eventIdPattern)) return empty;
+  if (suppliedCompletionId !== undefined && !validId(suppliedCompletionId, eventIdPattern)) return empty;
+  if (suppliedEventId !== undefined && suppliedCompletionId !== undefined && suppliedEventId !== suppliedCompletionId) return empty;
+  const rawEventId = suppliedEventId ?? suppliedCompletionId;
+  if (!rawEventId) return empty;
+  if (next.events[rawEventId]) return { ...empty, accepted: true, duplicateEvent: true };
   const realm = next.realms[realmId] ?? { clears: {}, badges: [] };
   const previous = realm.clears[levelId] ?? null;
   const moves = Number.isFinite(completion.moves) && completion.moves >= 0 ? Math.floor(completion.moves) : null;
@@ -146,6 +174,7 @@ export function awardCompletion(progress, completion, now = new Date()) {
     add(`daily:${today}`, `今日首胜 · ${next.streak.count} 日连游`, 40 + Math.min(7, next.streak.count) * 10);
   }
   const timestamp = (now instanceof Date ? now : new Date(now)).toISOString();
+  next.events[rawEventId] = timestamp;
   realm.clears[levelId] = {
     wins: (previous?.wins ?? 0) + 1,
     bestMoves: moves === null ? previous?.bestMoves ?? null : Math.min(previous?.bestMoves ?? Infinity, moves),
@@ -162,7 +191,7 @@ export function awardCompletion(progress, completion, now = new Date()) {
   }
   next.realms[realmId] = realm;
   next.xp = next.xpBase + rewardTotal(next.rewards);
-  return { progress: next, awarded: breakdown.reduce((sum, item) => sum + item.points, 0), firstClear, personalBest, efficient, newBadges, breakdown };
+  return { progress: next, accepted: true, awarded: breakdown.reduce((sum, item) => sum + item.points, 0), firstClear, personalBest, efficient, duplicateEvent: false, newBadges, breakdown };
 }
 
 export function progressSummary(progress, realmId) {

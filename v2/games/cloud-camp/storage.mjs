@@ -1,8 +1,97 @@
 import { evaluatePosition, normalizePosition, positionToJSON } from "./logic.mjs";
-import { DIFFICULTIES, LEVELS, findLevel } from "./levels.mjs";
+import { DIFFICULTIES, LEVELS, difficultyFor, findLevel } from "./levels.mjs";
 
 export const STORAGE_VERSION = 1;
 export const HISTORY_LIMIT = 90;
+export const CAMP_GAME_ID = "cloud-camp";
+
+const RUN_ID_PATTERN = /^[a-z0-9][a-z0-9._-]{7,95}$/i;
+
+function validRunId(value) {
+  return typeof value === "string"
+    && RUN_ID_PATTERN.test(value)
+    && !["__proto__", "prototype", "constructor"].includes(value);
+}
+
+export function createCampRunId(uuidFactory) {
+  let candidate = "";
+  try {
+    candidate = typeof uuidFactory === "function"
+      ? uuidFactory()
+      : globalThis.crypto?.randomUUID?.();
+  } catch {
+    // A UUID source is an enhancement; the fallback still creates a fresh run identity.
+  }
+  if (validRunId(candidate)) return candidate;
+  const random = Math.random().toString(36).slice(2, 14).padEnd(12, "0");
+  return `run-${Date.now().toString(36)}-${random}`;
+}
+
+export function campCompletionEventId(runId) {
+  if (!validRunId(runId)) throw new TypeError("Invalid cloud-camp run id.");
+  return `${CAMP_GAME_ID}:${runId}:complete`;
+}
+
+export function campCompletionPayload(state) {
+  const difficulty = difficultyFor(state?.difficulty);
+  if (!state?.level || !difficulty || state.level.difficulty !== difficulty.id) return null;
+  const runId = validRunId(state.runId) ? state.runId : null;
+  if (!runId) return null;
+  return {
+    runId,
+    eventId: campCompletionEventId(runId),
+    levelId: `${difficulty.id}:${state.level.id}`,
+    tier: difficulty.tier,
+    moves: safeInteger(state.moves),
+    par: state.level.par,
+  };
+}
+
+function normalizeCampCompletionPayload(candidate) {
+  if (!candidate || typeof candidate !== "object" || Array.isArray(candidate)) return null;
+  const match = typeof candidate.eventId === "string"
+    ? candidate.eventId.match(/^cloud-camp:([a-z0-9][a-z0-9._-]{7,95}):complete$/i)
+    : null;
+  if (
+    !match
+    || !validRunId(match[1])
+    || (candidate.runId !== undefined && candidate.runId !== match[1])
+  ) return null;
+  const level = LEVELS.find((item) => `${item.difficulty}:${item.id}` === candidate.levelId);
+  const difficulty = level ? difficultyFor(level.difficulty) : null;
+  if (
+    !level
+    || !difficulty
+    || candidate.tier !== difficulty.tier
+    || candidate.par !== level.par
+    || !Number.isInteger(candidate.moves)
+    || candidate.moves < 0
+    || candidate.moves > 1_000_000
+  ) return null;
+  return {
+    runId: match[1],
+    eventId: campCompletionEventId(match[1]),
+    levelId: `${level.difficulty}:${level.id}`,
+    tier: difficulty.tier,
+    moves: candidate.moves,
+    par: level.par,
+  };
+}
+
+export function normalizeCampCompletionOutbox(candidate) {
+  if (!Array.isArray(candidate)) return [];
+  const seen = new Set();
+  const clean = [];
+  for (const entry of candidate) {
+    const payload = normalizeCampCompletionPayload(entry);
+    if (!payload || seen.has(payload.eventId)) continue;
+    seen.add(payload.eventId);
+    clean.push(payload);
+  }
+  // Every valid unacknowledged completion is durable. A fixed-size tail here
+  // would silently discard the oldest event when the host stays unavailable.
+  return clean;
+}
 
 export const DECORATIONS = Object.freeze([
   Object.freeze({ id: "cloud-pennant", name: "云帆旗", clears: 1, symbol: "◒" }),
@@ -114,46 +203,75 @@ export function recordCampCompletion(stats, completion, now = new Date()) {
 }
 
 export function recordCampCompletionOnce(state, now = new Date()) {
-  if (!state?.completed || state.completionRecorded === true) {
-    return { state, recorded: false, outcome: null };
+  if (!state?.completed) return { state, recorded: false, outcome: null };
+  const runId = validRunId(state.runId) ? state.runId : createCampRunId();
+  const completionEventId = campCompletionEventId(runId);
+  let next = {
+    ...state,
+    runId,
+    completionEventId,
+    completionOutbox: normalizeCampCompletionOutbox(state.completionOutbox),
+  };
+  let outcome = null;
+  let recorded = false;
+  if (next.completionRecorded !== true) {
+    outcome = recordCampCompletion(next.stats, {
+      levelId: next.level.id,
+      moves: next.moves,
+      mistakes: next.mistakes,
+    }, now);
+    next = { ...next, stats: outcome.stats, completionRecorded: true };
+    recorded = true;
   }
-  const outcome = recordCampCompletion(state.stats, {
-    levelId: state.level.id,
-    moves: state.moves,
-    mistakes: state.mistakes,
-  }, now);
+  if (next.completionReported !== true) {
+    const payload = campCompletionPayload(next);
+    if (payload && !next.completionOutbox.some(({ eventId }) => eventId === payload.eventId)) {
+      next.completionOutbox = [...next.completionOutbox, payload];
+    }
+  }
   return {
-    state: { ...state, stats: outcome.stats, completionRecorded: true },
-    recorded: true,
+    state: next,
+    recorded,
     outcome,
   };
 }
 
 export function confirmCampCompletion(state, reportCompletion) {
-  if (
-    !state?.completed
-    || state.completionRecorded !== true
-    || state.completionReported === true
-    || typeof reportCompletion !== "function"
-  ) {
-    return { state, attempted: false, succeeded: state?.completionReported === true, reward: null };
-  }
-  try {
-    const reward = reportCompletion();
+  const pending = normalizeCampCompletionOutbox(state?.completionOutbox);
+  if (!pending.length || typeof reportCompletion !== "function") {
     return {
-      state: { ...state, completionReported: true },
-      attempted: true,
-      succeeded: true,
-      reward,
-    };
-  } catch {
-    return {
-      state: { ...state, completionReported: false },
-      attempted: true,
-      succeeded: false,
+      state: { ...state, completionOutbox: pending },
+      attempted: false,
+      succeeded: pending.length === 0,
       reward: null,
+      rewards: [],
     };
   }
+  const rewards = [];
+  let completionReported = state.completionReported === true;
+  while (pending.length) {
+    const payload = pending[0];
+    try {
+      rewards.push(reportCompletion(payload));
+      pending.shift();
+      if (payload.eventId === state.completionEventId) completionReported = true;
+    } catch {
+      return {
+        state: { ...state, completionReported, completionOutbox: pending },
+        attempted: true,
+        succeeded: false,
+        reward: rewards.at(-1) ?? null,
+        rewards,
+      };
+    }
+  }
+  return {
+    state: { ...state, completionReported, completionOutbox: pending },
+    attempted: true,
+    succeeded: true,
+    reward: rewards.at(-1) ?? null,
+    rewards,
+  };
 }
 
 export function campSummary(stats) {
@@ -229,7 +347,8 @@ function validHistoryTimeline(history, active) {
   return true;
 }
 
-export function createDefaultState(level = LEVELS[0]) {
+export function createDefaultState(level = LEVELS[0], runId = createCampRunId()) {
+  const safeRunId = validRunId(runId) ? runId : createCampRunId();
   return {
     level,
     difficulty: level.difficulty,
@@ -241,6 +360,9 @@ export function createDefaultState(level = LEVELS[0]) {
     completed: false,
     completionRecorded: false,
     completionReported: false,
+    runId: safeRunId,
+    completionEventId: campCompletionEventId(safeRunId),
+    completionOutbox: [],
     muted: false,
     tool: "tent",
     stats: createCampStats(),
@@ -271,7 +393,22 @@ export function parseStoredGame(input) {
     ) {
       throw new Error("Invalid completion markers");
     }
+    const runId = validRunId(saved.active.runId) ? saved.active.runId : createCampRunId();
+    const completionEventId = campCompletionEventId(runId);
     const completionReported = saved.active.completionReported === true;
+    const completionRecorded = saved.active.completionRecorded === true || completionReported;
+    let completionOutbox = normalizeCampCompletionOutbox(saved.completionOutbox ?? saved.active.completionOutbox);
+    if (completionReported) {
+      completionOutbox = completionOutbox.filter(({ eventId }) => eventId !== completionEventId);
+    } else if (completed && completionRecorded && !completionOutbox.some(({ eventId }) => eventId === completionEventId)) {
+      const payload = campCompletionPayload({
+        level,
+        difficulty: level.difficulty,
+        ...active,
+        runId,
+      });
+      if (payload) completionOutbox = [...completionOutbox, payload];
+    }
     return {
       restored: true,
       invalid: false,
@@ -281,8 +418,11 @@ export function parseStoredGame(input) {
         ...active,
         history,
         completed,
-        completionRecorded: saved.active.completionRecorded === true || completionReported,
+        completionRecorded,
         completionReported,
+        runId,
+        completionEventId,
+        completionOutbox,
         muted: saved.preferences?.muted === true,
         tool: saved.preferences?.tool === "grass" ? "grass" : "tent",
         stats: normalizeCampStats(saved.stats),
@@ -294,6 +434,7 @@ export function parseStoredGame(input) {
 }
 
 export function serializeStoredGame(state) {
+  const runId = validRunId(state.runId) ? state.runId : createCampRunId();
   return {
     version: STORAGE_VERSION,
     preferences: { muted: state.muted === true, tool: state.tool === "grass" ? "grass" : "tent" },
@@ -304,9 +445,12 @@ export function serializeStoredGame(state) {
       completed: state.completed === true,
       completionRecorded: state.completionRecorded === true,
       completionReported: state.completionReported === true,
+      runId,
+      completionEventId: campCompletionEventId(runId),
       history: state.history.slice(-HISTORY_LIMIT).map(snapshotFromState),
       updatedAt: new Date().toISOString(),
     },
+    completionOutbox: normalizeCampCompletionOutbox(state.completionOutbox),
     stats: normalizeCampStats(state.stats),
   };
 }

@@ -14,6 +14,30 @@ export const SAVE_VERSION = 1;
 export const HISTORY_LIMIT = 80;
 export const STATS_ENTRY_LIMIT = 240;
 export const REVEALED_RECIPE_LIMIT = 512;
+export const REALM_ID = "mystic-perfumery";
+
+const RUN_ID_PATTERN = /^[a-z0-9][a-z0-9-]{7,95}$/i;
+let fallbackRunCounter = 0;
+
+export function isPerfumeryRunId(value) {
+  return typeof value === "string" && RUN_ID_PATTERN.test(value);
+}
+
+export function createPerfumeryRunId(randomUUID = globalThis.crypto?.randomUUID?.bind(globalThis.crypto)) {
+  try {
+    const candidate = randomUUID?.();
+    if (isPerfumeryRunId(candidate)) return candidate;
+  } catch {
+    // A browser can expose crypto while denying randomUUID in a restricted frame.
+  }
+  fallbackRunCounter = (fallbackRunCounter + 1) % 0x100000;
+  return `run-${Date.now().toString(36)}-${fallbackRunCounter.toString(36)}-${Math.random().toString(36).slice(2, 12)}`;
+}
+
+export function perfumeryCompletionEventId(runId) {
+  if (!isPerfumeryRunId(runId)) throw new TypeError("A valid perfumery run id is required.");
+  return `${REALM_ID}:${runId}:complete`;
+}
 
 const ARCHIVE_RECIPE_IDS = new Set(DIFFICULTIES.flatMap(({ id }) => (
   Array.from({ length: ARCHIVE_RECIPE_COUNT }, (_, index) => `${id}:folio-${index + 1}`)
@@ -230,8 +254,83 @@ function validUndoTransition(previous, next) {
   return submitted.accepted && JSON.stringify(serializeGame(submitted.game)) === JSON.stringify(serializeGame(next.game));
 }
 
-export function createSaveState(recipe, preferences = {}, stats = createStats()) {
+function completionPayload(active) {
+  const game = active?.game;
+  if (!game || game.status !== "won" || active.recordedStatus !== "won") return null;
+  return {
+    eventId: active.completionEventId,
+    levelId: game.recipe.id,
+    tier: game.recipe.tier,
+    moves: game.guesses.length,
+    par: game.recipe.par,
+  };
+}
+
+const EVENT_ID_PATTERN = /^mystic-perfumery:([a-z0-9][a-z0-9-]{7,95}):complete$/i;
+const COMPLETION_PAYLOAD_KEYS = Object.freeze(["eventId", "levelId", "tier", "moves", "par"]);
+
+function validCompletionPayload(candidate) {
+  return candidate
+    && typeof candidate === "object"
+    && !Array.isArray(candidate)
+    && Object.keys(candidate).length === COMPLETION_PAYLOAD_KEYS.length
+    && typeof candidate.eventId === "string"
+    && EVENT_ID_PATTERN.test(candidate.eventId)
+    && typeof candidate.levelId === "string"
+    && /^[a-z0-9:_-]{1,80}$/i.test(candidate.levelId)
+    && Number.isSafeInteger(candidate.tier)
+    && candidate.tier >= 1
+    && candidate.tier <= 3
+    && Number.isSafeInteger(candidate.moves)
+    && candidate.moves >= 0
+    && candidate.moves <= 1_000_000
+    && Number.isSafeInteger(candidate.par)
+    && candidate.par >= 0
+    && candidate.par <= 1_000_000;
+}
+
+export function normalizePerfumeryOutbox(candidate) {
+  const source = candidate == null ? [] : Array.isArray(candidate) ? candidate : [candidate];
+  if (source.some((payload) => !validCompletionPayload(payload))) return null;
+  const seen = new Set();
+  const clean = [];
+  for (const payload of source) {
+    if (seen.has(payload.eventId)) continue;
+    seen.add(payload.eventId);
+    clean.push({ ...payload });
+  }
+  return clean;
+}
+
+export function enqueuePerfumeryCompletion(queue, payload) {
+  if (!Array.isArray(queue) || !validCompletionPayload(payload)) return false;
+  if (queue.some((item) => item?.eventId === payload.eventId)) return false;
+  queue.push({ ...payload });
+  return true;
+}
+
+function appendCompletion(outbox, payload) {
+  if (!payload || outbox.some((item) => item.eventId === payload.eventId)) return outbox;
+  return [...outbox, payload];
+}
+
+export function stagePerfumeryCompletion(active) {
+  if (!active) return active;
+  let outbox = normalizePerfumeryOutbox(active.completionOutbox) ?? [];
+  if (active.completionReported === true) {
+    outbox = outbox.filter((payload) => payload.eventId !== active.completionEventId);
+  } else {
+    outbox = appendCompletion(outbox, completionPayload(active));
+  }
+  const unchanged = Array.isArray(active.completionOutbox)
+    && JSON.stringify(active.completionOutbox) === JSON.stringify(outbox);
+  return unchanged ? active : { ...active, completionOutbox: outbox };
+}
+
+export function createSaveState(recipe, preferences = {}, stats = createStats(), options = {}) {
   const game = replayGame(recipe, { guesses: [], draft: Array(recipe.params.slots).fill(0), holds: Array(recipe.params.slots).fill(false) });
+  const runId = isPerfumeryRunId(options.runId) ? options.runId : createPerfumeryRunId();
+  const completionOutbox = normalizePerfumeryOutbox(options.completionOutbox) ?? [];
   return {
     version: SAVE_VERSION,
     preferences: { muted: preferences.muted === true },
@@ -239,6 +338,9 @@ export function createSaveState(recipe, preferences = {}, stats = createStats())
       recipe: { mode: recipe.mode, difficulty: recipe.difficulty, index: recipe.index, day: recipe.day },
       ...snapshotGame(game),
       history: [],
+      runId,
+      completionEventId: perfumeryCompletionEventId(runId),
+      completionOutbox,
       completionReported: false,
       recordedStatus: "",
       updatedAt: "",
@@ -248,30 +350,47 @@ export function createSaveState(recipe, preferences = {}, stats = createStats())
 }
 
 export function confirmPerfumeryCompletion(active, reportCompletion) {
-  if (
-    active?.game?.status !== "won"
-    || active.recordedStatus !== "won"
-    || active.completionReported === true
-    || typeof reportCompletion !== "function"
-  ) {
-    return { active, attempted: false, succeeded: active?.completionReported === true, reward: null };
-  }
-  try {
-    const reward = reportCompletion();
+  const prepared = stagePerfumeryCompletion(active);
+  if (!prepared || prepared.completionOutbox.length === 0 || typeof reportCompletion !== "function") {
     return {
-      active: { ...active, completionReported: true },
-      attempted: true,
-      succeeded: true,
-      reward,
-    };
-  } catch {
-    return {
-      active: { ...active, completionReported: false },
-      attempted: true,
-      succeeded: false,
+      active: prepared,
+      attempted: false,
+      succeeded: prepared?.completionOutbox?.length === 0,
       reward: null,
+      deliveredEventIds: [],
     };
   }
+  const remaining = [...prepared.completionOutbox];
+  const deliveredEventIds = [];
+  let completionReported = prepared.completionReported;
+  let reward = null;
+  let failed = false;
+  while (remaining.length > 0) {
+    const payload = remaining[0];
+    try {
+      const result = reportCompletion(payload);
+      if (result === false) {
+        failed = true;
+        break;
+      }
+      remaining.shift();
+      deliveredEventIds.push(payload.eventId);
+      if (payload.eventId === prepared.completionEventId) {
+        completionReported = true;
+        reward = result;
+      }
+    } catch {
+      failed = true;
+      break;
+    }
+  }
+  return {
+    active: { ...prepared, completionReported, completionOutbox: remaining },
+    attempted: true,
+    succeeded: !failed,
+    reward,
+    deliveredEventIds,
+  };
 }
 
 export function normalizeSave(candidate) {
@@ -294,12 +413,29 @@ export function normalizeSave(candidate) {
     ? candidate.active.recordedStatus
     : "";
 
+  const hasRunMetadata = ["runId", "completionEventId", "completionOutbox"]
+    .some((key) => Object.hasOwn(candidate.active, key));
+  let runId;
+  let completionEventId;
+  if (hasRunMetadata) {
+    if (!["runId", "completionEventId", "completionOutbox"].every((key) => Object.hasOwn(candidate.active, key))) return null;
+    if (!isPerfumeryRunId(candidate.active.runId)) return null;
+    runId = candidate.active.runId;
+    completionEventId = perfumeryCompletionEventId(runId);
+    if (candidate.active.completionEventId !== completionEventId) return null;
+  } else {
+    // V1 saves did not have a run id. Give the restored attempt one id once;
+    // the next serialization persists it without changing the storage key.
+    runId = createPerfumeryRunId();
+    completionEventId = perfumeryCompletionEventId(runId);
+  }
+
   let stats = normalizeStats(candidate.stats);
   if (["won", "lost"].includes(storedRecorded)) {
     stats = markRecipeRevealed(stats, recipe.id);
   }
 
-  return {
+  let normalized = {
     version: SAVE_VERSION,
     preferences: { muted: candidate.preferences?.muted === true },
     active: {
@@ -309,25 +445,39 @@ export function normalizeSave(candidate) {
       selectedEssence: active.selectedEssence,
       actions: active.actions,
       history,
+      runId,
+      completionEventId,
+      completionOutbox: [],
       completionReported: candidate.active.completionReported === true,
       recordedStatus: storedRecorded,
       updatedAt: validTimestamp(candidate.active.updatedAt),
     },
     stats,
   };
+  if (hasRunMetadata) {
+    const outbox = normalizePerfumeryOutbox(candidate.active.completionOutbox);
+    if (!outbox) return null;
+    normalized.active.completionOutbox = outbox;
+  }
+  normalized.active = stagePerfumeryCompletion(normalized.active);
+  return normalized;
 }
 
 export function serializeSave(state) {
-  const recipe = state.active.recipe;
+  const active = stagePerfumeryCompletion(state.active);
+  const recipe = active.recipe;
   return {
     version: SAVE_VERSION,
     preferences: { muted: state.preferences.muted === true },
     active: {
       recipe: { mode: recipe.mode, difficulty: recipe.difficulty, index: recipe.index, day: recipe.day },
-      ...snapshotGame(state.active.game, state.active),
-      history: state.active.history.slice(-HISTORY_LIMIT).map((item) => snapshotGame(item.game, item)),
-      completionReported: state.active.completionReported === true,
-      recordedStatus: ["won", "lost"].includes(state.active.recordedStatus) ? state.active.recordedStatus : "",
+      ...snapshotGame(active.game, active),
+      history: active.history.slice(-HISTORY_LIMIT).map((item) => snapshotGame(item.game, item)),
+      runId: active.runId,
+      completionEventId: active.completionEventId,
+      completionOutbox: active.completionOutbox.map((payload) => ({ ...payload })),
+      completionReported: active.completionReported === true,
+      recordedStatus: ["won", "lost"].includes(active.recordedStatus) ? active.recordedStatus : "",
       updatedAt: new Date().toISOString(),
     },
     stats: normalizeStats(state.stats),

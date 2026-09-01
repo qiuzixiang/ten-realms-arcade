@@ -114,7 +114,7 @@ export function createCompletionDetail({ level, runId, summary, elapsedMs, rewar
 
 /**
  * Publish once per run to the first available shared API, falling back to the
- * bounded queue if that API throws. The CustomEvent is an observation mirror,
+ * durable queue if that API throws. The CustomEvent is an observation mirror,
  * not a second completion transport; reward consumers must use the API/queue.
  * Returns true when the event is retained now or was retained earlier.
  */
@@ -134,7 +134,7 @@ export function publishCompletion(target, detail) {
     ));
     if (retainedDetail) {
       const otherItems = pending.filter((item) => item?.eventId !== detail.eventId);
-      try { target[COMPLETION_QUEUE] = [...otherItems.slice(-99), retainedDetail]; } catch { /* already retained */ }
+      try { target[COMPLETION_QUEUE] = [...otherItems, retainedDetail]; } catch { /* already retained */ }
       const knownEvents = priorEvents ?? new Map();
       knownEvents.set(detail.eventId, "queue");
       publishedByTarget.set(target, knownEvents);
@@ -155,7 +155,7 @@ export function publishCompletion(target, detail) {
       const pending = Array.isArray(target[COMPLETION_QUEUE]) ? target[COMPLETION_QUEUE] : [];
       if (pending.some((item) => item?.eventId === detail.eventId && validCompletionDetail(item))) return true;
       const withoutInvalidDuplicate = pending.filter((item) => item?.eventId !== detail.eventId);
-      target[COMPLETION_QUEUE] = [...withoutInvalidDuplicate, detail].slice(-100);
+      target[COMPLETION_QUEUE] = [...withoutInvalidDuplicate, detail];
       return true;
     } catch {
       return false;

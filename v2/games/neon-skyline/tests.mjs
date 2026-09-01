@@ -29,20 +29,27 @@ import { LEVELS, findLevel, levelsForDifficulty } from "./levels.mjs";
 import {
   HISTORY_LIMIT,
   LANDMARKS,
+  REALM_ID,
   SAVE_VERSION,
   applySessionMove,
   cityProgress,
   confirmCompletionReport,
   createSession,
+  createSkylineRunId,
+  enqueueSkylineCompletion,
   emptyStats,
   mergeStats,
+  normalizeSkylineOutbox,
   recordCompletion,
   restartSession,
   restoreSave,
   serializeSave,
+  skylineCompletionEventId,
+  stageCompletion,
   undoSession,
 } from "./session.mjs";
 import { REALM_TUTORIALS, tutorialArt } from "../../shared/tutorial-data.mjs";
+import { awardCompletion, createProgress } from "../../shared/reward-engine.mjs";
 
 const tests = [];
 let assertions = 0;
@@ -606,6 +613,9 @@ test("session moves snapshot history, undo exactly, restart cleanly, and cap his
   equal(restarted.completed, false);
   equal(restarted.completionRecorded, false);
   equal(restarted.completionReported, false);
+  notEqual(restarted.runId, second.session.runId, "restart begins a distinct reward attempt");
+  equal(restarted.completionEventId, skylineCompletionEventId(restarted.runId));
+  deepEqual(restarted.completionOutbox, []);
   equal(restarted.hadConflict, false);
   equal(restarted.preferences.muted, true, "restart preserves preferences");
   equal(restarted.preferences.flatView, true);
@@ -658,6 +668,7 @@ test("strict saves round-trip and every malformed active field safely returns nu
   const level = LEVELS[3];
   let session = createSession(level, {
     levels: LEVELS,
+    runId: "run-neon-roundtrip-0001",
     preferences: { muted: 1, flatView: true, noteMode: false },
   });
   session = applySessionMove(level, session, { type: "toggle-note", row: 0, column: 0, value: 2 }).session;
@@ -669,6 +680,9 @@ test("strict saves round-trip and every malformed active field safely returns nu
   deepEqual(positionToJSON(restored.session), positionToJSON(session));
   equal(restored.session.moves, session.moves);
   equal(restored.session.history.length, session.history.length);
+  equal(restored.session.runId, "run-neon-roundtrip-0001");
+  equal(restored.session.completionEventId, "neon-skyline:run-neon-roundtrip-0001:complete");
+  deepEqual(restored.session.completionOutbox, []);
   deepEqual(restored.session.preferences, { muted: true, flatView: true, noteMode: false });
 
   const alternateBlank = Array.from({ length: level.size * level.size }, (_, index) => index)
@@ -704,6 +718,9 @@ test("strict saves round-trip and every malformed active field safely returns nu
     ["completion mismatch", (copy) => { copy.active.completed = true; }],
     ["local completion marker", (copy) => { copy.active.completionRecorded = "yes"; }],
     ["completion marker", (copy) => { copy.active.completionReported = "yes"; }],
+    ["run id", (copy) => { copy.active.runId = "bad"; }],
+    ["event id mismatch", (copy) => { copy.active.completionEventId = "neon-skyline:another-run:complete"; }],
+    ["outbox before completion", (copy) => { copy.active.completionOutbox = { eventId: copy.active.completionEventId }; }],
   ];
 
   for (const [label, mutate] of invalidCases) {
@@ -719,42 +736,185 @@ test("strict saves round-trip and every malformed active field safely returns nu
   deepEqual(sanitized.session.preferences, { muted: false, flatView: false, noteMode: false });
 });
 
-test("a thrown shared reward retries after restore without duplicating local city settlement", () => {
+test("legacy saves migrate one opaque run id and later refreshes preserve it", () => {
+  const level = LEVELS[0];
+  const current = createSession(level, { levels: LEVELS, runId: "run-neon-current-0001" });
+  const legacy = serializeSave(current);
+  delete legacy.active.runId;
+  delete legacy.active.completionEventId;
+  delete legacy.active.completionOutbox;
+  const migrated = restoreSave(LEVELS, legacy);
+  ok(migrated.session.runId);
+  equal(migrated.session.completionEventId, skylineCompletionEventId(migrated.session.runId));
+  const refreshed = restoreSave(LEVELS, serializeSave(migrated.session));
+  equal(refreshed.session.runId, migrated.session.runId);
+  equal(createSkylineRunId(() => "run-neon-injected-0002"), "run-neon-injected-0002");
+});
+
+test("outbox migration and queue deduplication retain all 65 pending skyline events", () => {
+  const payloads = Array.from({ length: 65 }, (_, index) => ({
+    eventId: `neon-skyline:run-neon-bulk-${String(index).padStart(3, "0")}:complete`,
+    levelId: `bulk-level-${index}`,
+    tier: index % 3 + 1,
+    moves: index,
+    par: 30,
+  }));
+  const normalized = normalizeSkylineOutbox([...payloads, payloads[0]]);
+  equal(normalized.length, 65);
+  equal(normalized[0].eventId, payloads[0].eventId);
+  equal(normalized.at(-1).eventId, payloads.at(-1).eventId);
+  const bulkSession = createSession(LEVELS[0], {
+    levels: LEVELS,
+    runId: "run-neon-bulk-active",
+    completionOutbox: normalized,
+  });
+  const bulkRestored = restoreSave(LEVELS, serializeSave(bulkSession));
+  equal(bulkRestored.session.completionOutbox.length, 65);
+  equal(bulkRestored.session.completionOutbox[0].eventId, payloads[0].eventId);
+  equal(bulkRestored.session.completionOutbox.at(-1).eventId, payloads.at(-1).eventId);
+  const queue = [];
+  equal(enqueueSkylineCompletion(queue, payloads[0]), true);
+  equal(enqueueSkylineCompletion(queue, payloads[0]), false);
+  equal(queue.length, 1);
+
+  const level = LEVELS[0];
+  const recorded = recordCompletion(level, completedSession(level, {
+    runId: "run-neon-single-migrate",
+    completionEventId: "neon-skyline:run-neon-single-migrate:complete",
+    completionOutbox: [],
+    completionRecorded: false,
+    completionReported: false,
+    stats: emptyStats(),
+  }));
+  const legacySingle = serializeSave(recorded);
+  legacySingle.active.completionOutbox = legacySingle.active.completionOutbox[0];
+  const migrated = restoreSave(LEVELS, legacySingle);
+  equal(migrated.session.completionOutbox.length, 1);
+  equal(migrated.session.completionOutbox[0].eventId, recorded.completionEventId);
+});
+
+test("a host throw after awarding retries one event without duplicating local or shared city settlement", () => {
   const level = LEVELS[0];
   const firstRecord = recordCompletion(level, completedSession(level, {
+    runId: "run-neon-retry-0001",
+    completionEventId: "neon-skyline:run-neon-retry-0001:complete",
+    completionOutbox: [],
     completionRecorded: false,
     completionReported: false,
     stats: emptyStats(),
   }));
   equal(firstRecord.completionRecorded, true);
   equal(firstRecord.completionReported, false);
+  equal(firstRecord.completionOutbox[0].eventId, "neon-skyline:run-neon-retry-0001:complete");
   equal(firstRecord.stats.completedByLevel[level.id], 1);
 
-  const failed = confirmCompletionReport(firstRecord, () => {
+  let host = createProgress();
+  let firstHostResult;
+  const failed = confirmCompletionReport(firstRecord, (payload) => {
+    firstHostResult = awardCompletion(host, { ...payload, realm: REALM_ID }, new Date("2026-08-31T08:00:00Z"));
+    host = firstHostResult.progress;
     throw new Error("shared API unavailable");
   });
   equal(failed.succeeded, false);
   equal(failed.session.completionReported, false);
+  equal(firstHostResult.duplicateEvent, false);
+  equal(host.realms[REALM_ID].clears[level.id].wins, 1);
+  const xpAfterThrow = host.xp;
   const saved = serializeSave(failed.session);
   const restored = restoreSave(LEVELS, saved);
   equal(restored.session.completed, true);
   equal(restored.session.completionRecorded, true);
   equal(restored.session.completionReported, false);
+  equal(restored.session.completionOutbox[0].eventId, firstRecord.completionOutbox[0].eventId);
   equal(restored.session.stats.completedByLevel[level.id], 1);
 
-  const duplicateLocal = recordCompletion(level, restored.session);
+  const undonePending = {
+    ...createSession(level, { levels: LEVELS, runId: restored.session.runId }),
+    completionRecorded: true,
+    completionReported: false,
+    completionOutbox: restored.session.completionOutbox,
+    stats: restored.session.stats,
+  };
+  const restoredAfterUndo = restoreSave(LEVELS, serializeSave(undonePending));
+  equal(restoredAfterUndo.session.completed, false);
+  equal(restoredAfterUndo.session.completionOutbox[0].eventId, firstRecord.completionOutbox[0].eventId);
+  equal(restoredAfterUndo.session.stats.completedByLevel[level.id], 1);
+
+  const duplicateLocal = recordCompletion(level, restoredAfterUndo.session);
   equal(duplicateLocal.stats.completedByLevel[level.id], 1, "local completion is idempotent");
-  const queued = [];
-  const retried = confirmCompletionReport(duplicateLocal, () => queued.push(level.id));
+  let retryHostResult;
+  const retried = confirmCompletionReport(duplicateLocal, (payload) => {
+    retryHostResult = awardCompletion(host, { ...payload, realm: REALM_ID }, new Date("2026-08-31T08:05:00Z"));
+    host = retryHostResult.progress;
+    return retryHostResult;
+  });
   equal(retried.succeeded, true);
   equal(retried.session.completionReported, true);
-  deepEqual(queued, [level.id]);
+  deepEqual(retried.session.completionOutbox, []);
+  equal(retryHostResult.duplicateEvent, true);
+  equal(host.realms[REALM_ID].clears[level.id].wins, 1);
+  equal(host.xp, xpAfterThrow);
   equal(retried.session.stats.completedByLevel[level.id], 1);
   equal(retried.session.stats.bestMovesByLevel[level.id], level.par);
 
-  const duplicateReport = confirmCompletionReport(retried.session, () => queued.push("duplicate"));
+  const duplicateReport = confirmCompletionReport(retried.session, () => {
+    throw new Error("a delivered session must never call the host again");
+  });
   equal(duplicateReport.attempted, false);
-  deepEqual(queued, [level.id]);
+
+  const deliveredAgain = awardCompletion(host, {
+    ...firstRecord.completionOutbox[0],
+    realm: REALM_ID,
+  }, new Date("2026-08-31T08:10:00Z"));
+  equal(deliveredAgain.duplicateEvent, true);
+  equal(deliveredAgain.progress.realms[REALM_ID].clears[level.id].wins, 1);
+  equal(deliveredAgain.progress.xp, xpAfterThrow);
+});
+
+test("a pending skyline completion survives switching districts and refreshing", () => {
+  const oldLevel = LEVELS[0];
+  const firstRecord = recordCompletion(oldLevel, completedSession(oldLevel, {
+    runId: "run-neon-old-pending",
+    completionEventId: "neon-skyline:run-neon-old-pending:complete",
+    completionOutbox: [],
+    completionRecorded: false,
+    completionReported: false,
+    stats: emptyStats(),
+  }));
+  const oldEventId = firstRecord.completionEventId;
+  let host = createProgress();
+  const failed = confirmCompletionReport(firstRecord, (payload) => {
+    host = awardCompletion(host, { ...payload, realm: REALM_ID }, new Date("2026-08-31T09:00:00Z")).progress;
+    throw new Error("host wrote but reply was lost");
+  });
+  const xpAfterThrow = host.xp;
+  const winsAfterThrow = host.realms[REALM_ID].clears[oldLevel.id].wins;
+
+  const nextLevel = LEVELS[1];
+  const nextRunId = "run-neon-new-after-failure";
+  const next = createSession(nextLevel, {
+    levels: LEVELS,
+    runId: nextRunId,
+    completionOutbox: failed.session.completionOutbox,
+    stats: failed.session.stats,
+  });
+  const refreshed = restoreSave(LEVELS, serializeSave(next));
+  equal(refreshed.session.runId, nextRunId);
+  equal(refreshed.session.completionReported, false);
+  equal(refreshed.session.completionOutbox[0].eventId, oldEventId);
+
+  let retryResult;
+  const retried = confirmCompletionReport(refreshed.session, (payload) => {
+    retryResult = awardCompletion(host, { ...payload, realm: REALM_ID }, new Date("2026-08-31T09:05:00Z"));
+    host = retryResult.progress;
+    return retryResult;
+  });
+  equal(retryResult.duplicateEvent, true);
+  equal(retried.session.runId, nextRunId);
+  equal(retried.session.completionReported, false, "an older event cannot mark the new run reported");
+  deepEqual(retried.session.completionOutbox, []);
+  equal(host.realms[REALM_ID].clears[oldLevel.id].wins, winsAfterThrow);
+  equal(host.xp, xpAfterThrow);
 });
 
 test("completion records keep best operations, conflict-free and efficiency flags", () => {
@@ -918,6 +1078,8 @@ test("page source wires shared systems, all four clues, dialogs, flat view, and 
   match(app, /aria-colindex/);
   match(app, /completionReported/);
   match(app, /reportRealmCompletion|__realmCompletionQueue/);
+  match(app, /else if \(session\.completionOutbox\.length > 0\) retryPendingRealmReward\(\)/);
+  match(app, /createSession\(level, \{ preferences, stats, levels: LEVELS, completionOutbox \}\)/);
 
   match(styles, /@media\s*\([^)]*max-width:\s*320px[^)]*\)/);
   match(styles, /@media\s*\([^)]*prefers-reduced-motion:\s*reduce[^)]*\)/);

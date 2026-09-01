@@ -480,6 +480,31 @@ test("完成 outbox 按 attemptId 稳定重试，并保留同题的不同重开�
   const remaining = removeCompletionOutbox(loaded.entries, firstDetail.completionId);
   equal(remaining.length, 1);
   equal(remaining[0].attemptId, "attempt-1002");
+
+  let longEntries = [];
+  for (let index = 0; index < 105; index += 1) {
+    longEntries = [...mergeCompletionOutbox(
+      longEntries,
+      completionDetail(puzzle, index === 0 ? first : retried, `attempt-long-${String(index).padStart(3, "0")}`),
+    )];
+  }
+  equal(longEntries.length, 105, "超过旧的 100 条阈值后 outbox 仍须完整保留");
+  equal(longEntries[0].attemptId, "attempt-long-000");
+  equal(longEntries.at(-1).attemptId, "attempt-long-104");
+  const longStorage = new FakeStorage();
+  check(saveCompletionOutbox(longStorage, longEntries).ok);
+  const longLoaded = loadCompletionOutbox(longStorage);
+  equal(longLoaded.status, "restored");
+  equal(longLoaded.entries.length, 105);
+  equal(longLoaded.entries[0].attemptId, "attempt-long-000", "刷新后最早完成 ID 不得被遗忘");
+  equal(longLoaded.entries[0].rewardIds, firstDetail.rewardIds, "最早完成携带的奖励 payload 必须完整保留");
+  const mergedOldest = mergeCompletionOutbox(
+    longLoaded.entries,
+    completionDetail(puzzle, retried, "attempt-long-000"),
+  );
+  equal(mergedOldest.length, 105, "最早完成 ID 重试不得新增 outbox 项");
+  equal(mergedOldest.filter(({ attemptId }) => attemptId === "attempt-long-000").length, 1);
+  equal(mergedOldest.at(-1).rewardIds, firstDetail.rewardIds, "空奖励重试不得抹除首次暂存的奖励 payload");
 });
 
 test("outbox 派发只采用官方题面重算的奖励结果", () => {
@@ -716,7 +741,7 @@ await testAsync("HTML、SVG、CSS 与完成 API 接线满足教程/无障碍/集
     ...["tutorial-elements.svg", "tutorial-action.svg", "tutorial-goal.svg"].map((name) => readFile(path.join(directory, "assets", name), "utf8")),
   ]);
 
-  check(/href="\.\.\/\.\.\/"[^>]*aria-label="返回十境谜游馆 2\.0"/.test(html), "返回按钮必须指向 ../../");
+  check(/href="\.\.\/\.\.\/"[^>]*aria-label="返回十境谜游馆 2\.5"/.test(html), "返回按钮必须指向 ../../");
   check(html.includes('data-realm="yokai-inn"'));
   check(html.includes('../../shared/realm-ui.css'));
   check(html.includes('../../shared/realm-ui.mjs'));

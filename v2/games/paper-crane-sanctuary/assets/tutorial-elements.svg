@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 420" role="img" aria-labelledby="title desc" data-tutorial-version="1" data-game-id="paper-crane-sanctuary" data-level-id="dawn-perch-101" data-state="initial" data-cranes="8" data-board="#PPP#|##PP#|##P.P|#P..#|#####">
+  <title id="title">纸鹤归巢台第一关真实初始状态</title>
+  <desc id="desc">初羽回廊共有八只纸鹤、三个空栖位与不可进入的断台。</desc>
+  <metadata>{"levelId":"dawn-perch-101","state":"initial","cranes":8,"board":["#PPP#","##PP#","##P.P","#P..#","#####"]}</metadata>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#17102f"/><stop offset="1" stop-color="#4c214e"/></linearGradient>
+    <linearGradient id="tile" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#fff9e7"/><stop offset="1" stop-color="#d9bca9"/></linearGradient>
+    <filter id="glow"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <g id="perch"><rect width="48" height="48" rx="12" fill="url(#tile)" opacity=".2" stroke="#f6d89a" stroke-width="2"/><circle cx="24" cy="25" r="10" fill="none" stroke="#f6d89a" stroke-width="3" stroke-dasharray="3 3"/><circle cx="24" cy="25" r="3" fill="#f6d89a"/></g>
+    <g id="crane"><use href="#perch"/><path d="M10 28 24 14l5 11 12-8-9 15-8 4-7-6z" fill="#fff7df" stroke="#7f496f" stroke-width="1.8" stroke-linejoin="round"/><path d="m24 14-3 17 8-6z" fill="#efb4b1"/><path d="m32 20 9-10-2 12z" fill="#fff7df" stroke="#7f496f" stroke-width="1.5"/><circle cx="40" cy="14" r="1.5" fill="#35152f"/></g>
+  </defs>
+  <rect width="720" height="420" rx="28" fill="url(#bg)"/>
+  <circle cx="610" cy="74" r="46" fill="#f6d89a" opacity=".16"/>
+  <text x="42" y="54" fill="#f6d89a" font-size="17" font-family="system-ui,sans-serif" letter-spacing="3">REAL FIRST BOARD · 8 CRANES</text>
+  <g transform="translate(222 76)" filter="url(#glow)">
+    <use href="#crane" x="52" y="0"/><use href="#crane" x="104" y="0"/><use href="#crane" x="156" y="0"/>
+    <use href="#crane" x="104" y="52"/><use href="#crane" x="156" y="52"/>
+    <use href="#crane" x="104" y="104"/><use href="#perch" x="156" y="104"/><use href="#crane" x="208" y="104"/>
+    <use href="#crane" x="52" y="156"/><use href="#perch" x="104" y="156"/><use href="#perch" x="156" y="156"/>
+  </g>
+  <g font-family="system-ui,sans-serif">
+    <path d="M160 146h72" stroke="#ffd992" stroke-width="2"/><circle cx="160" cy="146" r="4" fill="#ffd992"/><text x="44" y="140" fill="#fff7df" font-size="20" font-weight="700">纸鹤</text><text x="44" y="165" fill="#d7c0d8" font-size="14">可作为起跳与被跨对象</text>
+    <path d="M490 232h74" stroke="#ffd992" stroke-width="2"/><circle cx="564" cy="232" r="4" fill="#ffd992"/><text x="574" y="226" fill="#fff7df" font-size="20" font-weight="700">空栖位</text><text x="574" y="251" fill="#d7c0d8" font-size="14">纸鹤只能落在这里</text>
+    <rect x="45" y="342" width="630" height="48" rx="15" fill="#120b25" opacity=".7"/><text x="360" y="373" text-anchor="middle" fill="#fff7df" font-size="17">暗色断台不可进入；只有水平或垂直相邻的栖位属于同一航线</text>
+  </g>
+</svg>

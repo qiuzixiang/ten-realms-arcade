@@ -19,7 +19,6 @@ const TOOL_SET = new Set(Object.values(TOOL_TYPES));
 const MAX_HISTORY = 80;
 const MAX_TIME_MS = 1000 * 60 * 60 * 24 * 365;
 const MAX_COUNTER = 1_000_000;
-const MAX_SETTLED_RUNS = 200;
 
 function isPlainObject(value) {
   if (!value || typeof value !== "object" || Array.isArray(value)) return false;
@@ -264,7 +263,7 @@ export function normalizeRecords(value) {
   ));
   records.achievements = cleanStringMap(value.achievements, safeTimestamp);
   records.rewardIds = cleanStringMap(value.rewardIds, safeTimestamp);
-  const settledRuns = cleanStringMap(value.settledRuns, (entry, runId) => {
+  records.settledRuns = cleanStringMap(value.settledRuns, (entry, runId) => {
     if (!safeRunId(runId)) return null;
     if (!isPlainObject(entry) || typeof entry.improvedRating !== "boolean") return null;
     const levelId = safeMapKey(entry.levelId);
@@ -275,11 +274,6 @@ export function normalizeRecords(value) {
       ? { levelId, completedAt, awardedIds, unlockedRoomTypes, improvedRating: entry.improvedRating }
       : null;
   });
-  records.settledRuns = Object.fromEntries(
-    Object.entries(settledRuns)
-      .sort((left, right) => left[1].completedAt.localeCompare(right[1].completedAt))
-      .slice(-MAX_SETTLED_RUNS),
-  );
   return records;
 }
 
@@ -379,13 +373,6 @@ export function applyCompletionToRecords(recordsInput, { level, runId, summary, 
     unlockedRoomTypes: [...unlockedRoomTypes],
     improvedRating,
   };
-  const otherRuns = Object.entries(records.settledRuns)
-    .filter(([id]) => id !== runId)
-    .sort((left, right) => left[1].completedAt.localeCompare(right[1].completedAt))
-  const staleRunIds = otherRuns
-    .slice(0, Math.max(0, otherRuns.length - (MAX_SETTLED_RUNS - 1)))
-    .map(([id]) => id);
-  staleRunIds.forEach((id) => { delete records.settledRuns[id]; });
 
   return {
     records,
