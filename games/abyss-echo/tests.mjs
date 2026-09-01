@@ -214,6 +214,19 @@ test("page wires the shared guide and reports each generated field only once", a
   assert.match(app, /window\.__realmCompletionQueue \?\?= \[\]/);
 });
 
+test("compact layouts scale every difficulty to the available board width", async () => {
+  const [css, app] = await Promise.all([
+    readFile(new URL("./styles.css", import.meta.url), "utf8"),
+    readFile(new URL("./app.js", import.meta.url), "utf8"),
+  ]);
+
+  assert.match(app, /function syncBoardScale\(\)/);
+  assert.match(app, /availableWidth \/ gridSize/);
+  assert.match(app, /elements\.boardScroll\.scrollLeft = 0/);
+  assert.match(css, /@media \(max-width: 760px\)[\s\S]*?\.board-scroll\s*{[\s\S]*?overflow-x:\s*hidden/);
+  assert.match(css, /@media \(max-width: 760px\)[\s\S]*?\.port::before\s*{[\s\S]*?width:\s*min\(30px, 76%\)/);
+});
+
 let passed = 0;
 for (const { name, run } of tests) {
   try {

@@ -25,6 +25,7 @@ import {
   verifyGeneratedPuzzle,
 } from "./logic.mjs";
 import { reportCompatibilityCompletion } from "./delivery.mjs";
+import { computeCompactBoardMetrics } from "./layout.mjs";
 import {
   HISTORY_LIMIT,
   STORAGE_KEYS,
@@ -127,6 +128,25 @@ function completionDetail(puzzle, result, attemptId = "attempt-0001", overrides 
 const uniqueN1 = fixturePuzzle(1, [1, 0, 0, 0, 1, 1], "unique-n1");
 const multipleN1 = fixturePuzzle(1, [0, 0, 0, 1, 1, 1], "multiple-n1");
 const impossibleN1 = fixturePuzzle(1, [0, 1, 0, 1, 0, 1], "impossible-n1");
+
+test("手机棋盘尺寸计算让三档在 320/390px 可用宽度内完整显示", () => {
+  const narrow = DIFFICULTIES.map(({ width }) => computeCompactBoardMetrics({ availableWidth: 285, columns: width }));
+  equal(narrow.map(({ cell, gap, boardWidth }) => ({ cell, gap, boardWidth })), [
+    { cell: 44, gap: 8, boardWidth: 252 },
+    { cell: 44, gap: 4, boardWidth: 284 },
+    { cell: 39, gap: 2, boardWidth: 285 },
+  ]);
+  check(narrow.every(({ fits, boardWidth, availableWidth }) => fits && boardWidth <= availableWidth));
+
+  const standard = DIFFICULTIES.map(({ width }) => computeCompactBoardMetrics({ availableWidth: 343, columns: width }));
+  check(standard.every(({ fits, boardWidth, availableWidth }) => fits && boardWidth <= availableWidth));
+  equal(standard.at(-1).cell, 44, "390px 视口下七列最高难度仍应保留 44px 数字格");
+  equal(standard.at(-1).gap, 5);
+
+  assert.throws(() => computeCompactBoardMetrics({ availableWidth: 0, columns: 5 })); assertions += 1;
+  assert.throws(() => computeCompactBoardMetrics({ availableWidth: 285, columns: 1 })); assertions += 1;
+  assert.throws(() => computeCompactBoardMetrics({ availableWidth: 285, columns: 5, minGap: 9, maxGap: 8 })); assertions += 1;
+});
 
 test("阶数公式、完整牌组和每值出现次数精确", () => {
   for (const order of [1, 3, 4, 5]) {
@@ -668,13 +688,14 @@ test("五星里程碑是递进长期目标且不信任存档中的 starLevel", (
 });
 
 await testAsync("HTML、SVG、CSS 与完成 API 接线满足教程/无障碍/集成合同", async () => {
-  const [html, css, app, logic, profileSource, deliverySource, ...svgs] = await Promise.all([
+  const [html, css, app, logic, profileSource, deliverySource, layoutSource, ...svgs] = await Promise.all([
     readFile(path.join(directory, "index.html"), "utf8"),
     readFile(path.join(directory, "styles.css"), "utf8"),
     readFile(path.join(directory, "app.mjs"), "utf8"),
     readFile(path.join(directory, "logic.mjs"), "utf8"),
     readFile(path.join(directory, "profile.mjs"), "utf8"),
     readFile(path.join(directory, "delivery.mjs"), "utf8"),
+    readFile(path.join(directory, "layout.mjs"), "utf8"),
     ...["tutorial-elements.svg", "tutorial-action.svg", "tutorial-goal.svg"].map((name) => readFile(path.join(directory, "assets", name), "utf8")),
   ]);
 
@@ -715,7 +736,12 @@ await testAsync("HTML、SVG、CSS 与完成 API 接线满足教程/无障碍/集
   check(css.includes("max-height: 96dvh"));
   check(css.includes(".room-overlay.is-duplicate::after"), "冲突必须有三角形状提示，不只靠颜色");
   check(css.includes(".number-cell.is-highlight-b"), "第二高亮必须有不同形状");
-  check(/@media \(max-width: 560px\)[\s\S]*?--cell: 44px;[\s\S]*?--gap: 44px;/.test(css), "移动端数字格与接缝目标不能互相覆盖");
+  check(css.includes(".board-viewport.is-compact-fit") && css.includes("overflow: hidden"), "手机棋盘不得依赖横向滚动");
+  check(/\.inn-board\.is-compact-fit \.edge-hit[\s\S]*?display: none;/.test(css), "紧凑棋盘应关闭相互重叠的接缝命中层");
+  check(/\.inn-board\.is-compact-fit \.number-cell[\s\S]*?min-width: 0;[\s\S]*?touch-action: manipulation;/.test(css), "紧凑数字格必须可缩放并支持直接触控");
+  check(html.includes("手机端已把完整房图收进一屏") && !html.includes("大馆可在房图内左右滑动"));
+  check(app.includes("computeCompactBoardMetrics") && app.includes("ResizeObserver"), "房图应随真实可用宽度重新适配");
+  check(layoutSource.includes("boardWidth <= width"), "尺寸计算必须显式证明不超出可用宽度");
 
   check(!/\bdocument\b|\bwindow\b|localStorage/.test(logic), "规则引擎必须与 DOM/存储分离");
   check(app.includes('new CustomEvent("ten-realms-v2:game-complete"'));

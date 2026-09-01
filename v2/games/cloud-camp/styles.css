@@ -1621,23 +1621,70 @@ dialog::backdrop {
   .board-viewport {
     padding: 6px;
     border-radius: 16px;
-    scroll-padding-inline: 6px calc(var(--cell, 44px) + 10px);
+    overflow-x: hidden;
   }
 
-  /* Keep the per-row target visible while wide 7×7 boards pan. The board
-     cells retain their 44px touch targets; only the clue rail floats at the
-     scrollport edge, so no rule information disappears on 320–390px screens. */
   .clue-cell--row,
   .clue-corner {
-    position: sticky;
-    right: 0;
-    z-index: 4;
-    background: #173847;
-    box-shadow: -7px 0 12px rgba(4, 20, 30, 0.68);
+    position: relative;
+    right: auto;
+    z-index: auto;
+    box-shadow: none;
   }
 
   .board-scroll-hint.is-needed {
-    display: block;
+    display: none;
+  }
+
+  .tree-visual {
+    width: min(34px, 77%);
+    height: min(39px, 88%);
+  }
+
+  .tree-visual i {
+    width: 91%;
+    height: 56%;
+  }
+
+  .tree-visual i:nth-child(1) { top: 0; width: 71%; }
+  .tree-visual i:nth-child(2) { top: 21%; width: 88%; }
+  .tree-visual i:nth-child(3) { top: 44%; width: 100%; }
+
+  .tree-visual b {
+    width: 18%;
+    height: 26%;
+  }
+
+  .tent-visual {
+    width: min(37px, 84%);
+    height: min(35px, 80%);
+  }
+
+  .tent-visual i:first-child {
+    inset: 12% 5% 8%;
+  }
+
+  .tent-visual i:nth-child(2) {
+    bottom: 10%;
+    width: 24%;
+    height: 49%;
+  }
+
+  .campfire {
+    right: -2%;
+    bottom: 5%;
+    width: 27%;
+    height: 37%;
+  }
+
+  .grass-mark {
+    width: min(30px, 72%);
+    height: min(30px, 72%);
+    font-size: clamp(17px, 7vw, 25px);
+  }
+
+  .clue-cell {
+    font-size: clamp(12px, 4vw, 17px);
   }
 
   .tool-dock {

@@ -37,6 +37,8 @@ import {
 } from "./logic.mjs";
 
 const stylesheet = readFileSync(new URL("./styles.css", import.meta.url), "utf8");
+const appSource = readFileSync(new URL("./app.mjs", import.meta.url), "utf8");
+const htmlSource = readFileSync(new URL("./index.html", import.meta.url), "utf8");
 
 let assertions = 0;
 let passed = 0;
@@ -214,6 +216,16 @@ test("返回入口与页脚独立触控目标声明至少 44 × 44", () => {
   ok(/display:\s*inline-flex/.test(footerControlsRule), "页脚目标必须由真实布局盒承载尺寸");
   ok(/min-width:\s*44px/.test(footerControlsRule), "页脚链接和按钮必须至少 44px 宽");
   ok(/min-height:\s*44px/.test(footerControlsRule), "页脚链接和按钮必须至少 44px 高");
+});
+
+test("320px 手机完整显示最高难度摊位而不要求横滑", () => {
+  ok(/function syncBoardScale\(\)/.test(appSource));
+  ok(/elements\.boardScroll\.scrollLeft = 0/.test(appSource));
+  ok(/@media \(max-width: 430px\)[\s\S]*?\.board-scroll\s*{[^}]*overflow-x:\s*hidden/.test(stylesheet));
+  ok(/grid-template-columns:\s*repeat\(var\(--columns\),\s*var\(--cell, 44px\)\)/.test(stylesheet));
+  ok(/\.stall-slot\s*{[\s\S]*?width:\s*var\(--cell, 44px\)[\s\S]*?min-width:\s*0/.test(stylesheet));
+  ok(/styles\.css\?v=mobile-fit-1/.test(htmlSource));
+  ok(/app\.mjs\?v=mobile-fit-1/.test(htmlSource));
 });
 
 test("移除后先逐列稳定下落，再稳定向左合并非空列", () => {

@@ -1911,6 +1911,21 @@ dialog::backdrop {
     padding: 12px;
   }
 
+  .palette-scroll {
+    overflow-x: visible;
+  }
+
+  .ingredient-palette {
+    grid-auto-columns: auto;
+    grid-auto-flow: row;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    min-width: 0;
+  }
+
+  .ingredient-button {
+    min-width: 0;
+  }
+
   .composer-actions {
     grid-template-columns: 1fr 1fr;
   }
@@ -1959,6 +1974,34 @@ dialog::backdrop {
     padding: 20px 15px;
   }
 
+  .parameter-table {
+    overflow-x: visible;
+    padding: 13px 9px;
+  }
+
+  .parameter-table table {
+    min-width: 0;
+    table-layout: fixed;
+    font-size: 0.61rem;
+  }
+
+  .parameter-table th,
+  .parameter-table td {
+    padding: 7px 3px;
+    overflow-wrap: anywhere;
+    text-align: center;
+  }
+
+  .parameter-table th:first-child,
+  .parameter-table td:first-child {
+    width: 18%;
+  }
+
+  .parameter-table th:last-child,
+  .parameter-table td:last-child {
+    width: 32%;
+  }
+
   .result-dialog {
     width: 100%;
     max-width: none;
@@ -1976,6 +2019,17 @@ dialog::backdrop {
 
   .hero {
     padding-inline: 1px;
+  }
+
+  .ingredient-button {
+    min-height: 72px;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  .ingredient-button span:last-child {
+    max-width: none;
+    text-align: center;
   }
 
   .formula-card {

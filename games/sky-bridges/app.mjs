@@ -272,6 +272,7 @@ function edgeLabel(edge, count, marked) {
 function renderBoard(options = {}) {
   const evaluation = evaluatePosition(state.level, state.session.position);
   const { width, height } = state.level;
+  elements.routeBoard.dataset.gridSize = String(Math.max(width, height));
   elements.routeBoard.style.setProperty("--grid-width", width);
   elements.routeBoard.style.setProperty("--grid-height", height);
   elements.routeBoard.style.setProperty("--grid-size", Math.max(width, height));

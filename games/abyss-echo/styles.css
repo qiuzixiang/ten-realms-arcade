@@ -1506,6 +1506,10 @@ dialog::backdrop {
 }
 
 @media (max-width: 760px) {
+  html {
+    min-width: 0;
+  }
+
   .site-header,
   .page-shell {
     width: min(100% - 24px, 1500px);
@@ -1596,7 +1600,7 @@ dialog::backdrop {
 
   .array-panel,
   .telemetry {
-    padding: 20px 14px;
+    padding: 20px 10px;
   }
 
   .panel-heading {
@@ -1609,12 +1613,58 @@ dialog::backdrop {
   }
 
   .board-scroll {
-    margin-inline: -2px;
-    width: calc(100% + 4px);
+    width: 100%;
+    margin-inline: 0;
+    overflow-x: hidden;
   }
 
   .board-stage {
-    --cell: 44px;
+    max-width: 100%;
+    overflow: hidden;
+  }
+
+  .board-grid button {
+    min-width: 0;
+    min-height: 0;
+  }
+
+  .port::before {
+    width: min(30px, 76%);
+    height: auto;
+    aspect-ratio: 1;
+  }
+
+  .array-cell::before {
+    width: min(9px, 42%);
+    height: auto;
+    aspect-ratio: 1;
+  }
+
+  .array-cell:hover::before,
+  .array-cell:focus-visible::before {
+    width: min(23px, 76%);
+    height: auto;
+  }
+
+  .array-cell.is-guess::before {
+    width: min(26px, 78%);
+    height: auto;
+  }
+
+  .array-cell.is-guess::after {
+    width: min(34px, 92%);
+    height: min(13px, 40%);
+  }
+
+  .array-cell.is-actual::before {
+    width: min(28px, 80%);
+    height: auto;
+  }
+
+  .array-cell.is-actual::after {
+    width: min(40px, 94%);
+    height: auto;
+    aspect-ratio: 1;
   }
 
   .legend {

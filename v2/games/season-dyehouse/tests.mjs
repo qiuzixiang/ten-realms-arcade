@@ -638,13 +638,16 @@ await test("页面语义、规则源流、模态与所有交互接线完整", ()
   ok(/window\.RealmArcade\?\.complete|host\.RealmArcade\?\.complete/.test(integrationSource));
 });
 
-await test("触控尺寸、手机布局、纹理、动画辨识与系统偏好均有静态保障", () => {
+await test("触控尺寸、手机完整棋盘、纹理、动画辨识与系统偏好均有静态保障", () => {
   ok(/min-height:\s*44px/.test(css));
   ok(/min-width:\s*44px/.test(css));
-  ok(/\.board-scroll-guard\s*\{[\s\S]*?overflow-x:\s*auto/.test(css), "窄屏布面必须在自身容器内横向滚动");
+  ok(/\.board-scroll-guard\s*\{[\s\S]*?overflow-x:\s*auto/.test(css), "桌面布面仍可在超大题面时安全滚动");
   ok(/grid-template-columns:\s*repeat\(var\(--board-columns\),\s*minmax\(44px,\s*1fr\)\)/.test(css));
   ok(/min-width:\s*calc\(var\(--board-columns\)\s*\*\s*44px\)/.test(css));
   ok(/\.cloth-cell\s*\{[\s\S]*?min-width:\s*44px[\s\S]*?min-height:\s*44px/.test(css));
+  ok(/@media \(max-width: 520px\)[\s\S]*?\.board-scroll-guard\s*{[\s\S]*?overflow-x:\s*hidden/.test(css), "手机必须一次显示完整布面");
+  ok(/@media \(max-width: 520px\)[\s\S]*?\.cloth-board\s*{[\s\S]*?width:\s*100%[\s\S]*?min-width:\s*0/.test(css));
+  ok(/@media \(max-width: 520px\)[\s\S]*?\.cloth-cell\s*{[\s\S]*?min-width:\s*0[\s\S]*?min-height:\s*0/.test(css));
   ok(/overflow-x:\s*hidden/.test(css));
   ok(/@media\s*\([^)]*max-width:\s*(?:360|390|430|480|520)px/.test(css));
   ok(/grid-template-columns:\s*repeat\(3,\s*minmax\(0,\s*1fr\)\)/.test(css), "320px 染料应为 3×2");

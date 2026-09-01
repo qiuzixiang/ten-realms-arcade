@@ -682,6 +682,12 @@ test("page wiring includes shared realm UI, exact source links, offline assets, 
   assert.match(styles, /min-height:\s*44px/);
   assert.match(styles, /\.history-scroll\s*\{[\s\S]*?overflow:\s*auto/);
   assert.match(styles, /\.palette-scroll\s*\{[\s\S]*?overflow-x:\s*auto/);
+  assert.match(styles, /@media \(max-width: 720px\)[\s\S]*?\.palette-scroll\s*\{[\s\S]*?overflow-x:\s*visible/);
+  assert.match(styles, /@media \(max-width: 720px\)[\s\S]*?\.ingredient-palette\s*\{[\s\S]*?grid-template-columns:\s*repeat\(3,\s*minmax\(0,\s*1fr\)\)/);
+  assert.match(styles, /@media \(max-width: 720px\)[\s\S]*?\.parameter-table\s*\{[\s\S]*?overflow-x:\s*visible/);
+  assert.match(styles, /@media \(max-width: 720px\)[\s\S]*?\.parameter-table table\s*\{[\s\S]*?min-width:\s*0[\s\S]*?table-layout:\s*fixed/);
+  assert.match(styles, /@media \(max-width: 400px\)[\s\S]*?\.ingredient-button\s*\{[\s\S]*?flex-direction:\s*column/);
+  assert.doesNotMatch(html, /aria-label="香料精华选择器，可横向滚动"/);
   assert.match(styles, /@media \(max-width:\s*400px\)/);
   assert.match(styles, /@media \(max-height:\s*650px\)/);
   assert.match(styles, /@media \(prefers-reduced-motion:\s*reduce\)/);

@@ -2297,7 +2297,20 @@ dialog[open] {
   }
 
   .board-scroll-guard {
+    overflow-x: hidden;
     border-width: 2px;
+  }
+
+  .cloth-board {
+    width: 100%;
+    min-width: 0;
+    grid-template-columns: repeat(var(--board-columns), minmax(0, 1fr));
+    grid-template-rows: repeat(var(--board-columns), minmax(0, 1fr));
+  }
+
+  .cloth-cell {
+    min-width: 0;
+    min-height: 0;
   }
 
   .cloth-cell::after {

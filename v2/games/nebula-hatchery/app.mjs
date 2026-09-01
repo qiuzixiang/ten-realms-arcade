@@ -27,6 +27,8 @@ export const STORAGE_KEYS = Object.freeze({
 const STORAGE_VERSION = 1;
 const POINTER_RADIUS_CSS_PX = 22;
 const AMBIGUITY_GAP_CSS_PX = 4;
+const MAX_COMPACT_EDGE_TOLERANCE = 0.46;
+const MAX_COMPACT_AMBIGUITY_GAP = 0.14;
 const RARITIES = Object.freeze([
   Object.freeze({ id: "常辉", colour: "#ffd58e" }),
   Object.freeze({ id: "伴生", colour: "#86f2d0" }),
@@ -862,6 +864,14 @@ function applyTarget(target, { transaction = null, quiet = false } = {}) {
 }
 
 function pointerTarget(point) {
+  const edgeTolerance = Math.min(
+    cssPixelsToBoardUnits(elements.board, POINTER_RADIUS_CSS_PX),
+    MAX_COMPACT_EDGE_TOLERANCE,
+  );
+  const ambiguityGap = Math.min(
+    cssPixelsToBoardUnits(elements.board, AMBIGUITY_GAP_CSS_PX),
+    MAX_COMPACT_AMBIGUITY_GAP,
+  );
   return resolvePointerTarget(state.level, point, {
     mode: state.mode,
     // Dense 9x9 boards leave roughly one cell between many cores. Keep the
@@ -871,8 +881,8 @@ function pointerTarget(point) {
     coreTolerance: state.mode === "note"
       ? cssPixelsToBoardUnits(elements.board, POINTER_RADIUS_CSS_PX)
       : 0,
-    edgeTolerance: cssPixelsToBoardUnits(elements.board, POINTER_RADIUS_CSS_PX),
-    ambiguityGap: cssPixelsToBoardUnits(elements.board, AMBIGUITY_GAP_CSS_PX),
+    edgeTolerance,
+    ambiguityGap,
   });
 }
 

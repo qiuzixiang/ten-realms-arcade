@@ -109,6 +109,7 @@ assert.equal(tutorialArt("cloud-camp", "missing"), "");
 assert.equal(tutorialArt("missing-realm", "elements"), "");
 
 const uiSource = await readFile(new URL("./realm-ui.mjs", import.meta.url), "utf8");
+const uiStyles = await readFile(new URL("./realm-ui.css", import.meta.url), "utf8");
 const serviceWorkerSource = await readFile(new URL("../sw.js", import.meta.url), "utf8");
 assert.match(uiSource, /window\.RealmArcade/);
 assert.match(uiSource, /REALM_CONFIGS/);
@@ -122,6 +123,7 @@ assert.match(uiSource, /data-progress-badges/);
 assert.match(uiSource, /如何获得 XP/);
 assert.match(uiSource, /单纯重复同一成绩不会刷分/);
 assert.doesNotMatch(uiSource, /ten-realms:progress/);
+assert.match(uiStyles, /\[data-rank\]\s*\{[^}]*min-height:\s*44px/, "the shared rank control needs a full mobile touch target");
 assert.match(serviceWorkerSource, /isGameDirectory/);
 assert.match(serviceWorkerSource, /const directoryPath = relativePath\.replace/);
 assert.match(serviceWorkerSource, /new URL\(`\$\{directoryPath\}index\.html`, scope\)/);

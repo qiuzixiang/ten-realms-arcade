@@ -353,6 +353,12 @@ test("page wires the shared guide and guards completion rewards across restore a
   assert.match(app, /if \(!state\.completionReported\)\s*{[\s\S]*?reportRealmCompletion\(\)/);
   assert.match(app, /window\.__realmCompletionQueue \?\?= \[\]/);
   assert.match(styles, /--board-inset:\s*10px/);
+  assert.match(app, /function syncBoardScale\(\)/);
+  assert.match(app, /elements\.boardFrame\.scrollLeft = 0/);
+  assert.match(styles, /@media \(max-width: 680px\)[\s\S]*?\.board-frame\s*{[^}]*overflow-x:\s*hidden/);
+  assert.match(styles, /grid-template-columns:\s*repeat\(var\(--columns\),\s*var\(--cell, 44px\)\)/);
+  assert.match(html, /styles\.css\?v=20260901b/);
+  assert.match(html, /app\.mjs\?v=20260901b/);
 });
 
 test("firefly entities and illuminated range use redundant visual encodings", async () => {

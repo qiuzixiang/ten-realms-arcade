@@ -1827,6 +1827,11 @@ body[data-cleared="true"] .weather-pill i {
 }
 
 @media (max-width: 720px) {
+  html,
+  body {
+    min-width: 0;
+  }
+
   .topbar {
     grid-template-columns: 1fr auto;
     width: calc(100% - 28px);

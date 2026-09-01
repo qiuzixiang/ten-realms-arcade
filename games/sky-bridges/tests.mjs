@@ -612,6 +612,22 @@ test("route network uses grouped graph semantics instead of an ARIA grid", () =>
   ok(appSource.includes('button.setAttribute("aria-pressed", String(portPressed));'));
 });
 
+test("phone layout fits every board density without an inner horizontal scroller", () => {
+  const html = readFileSync(new URL("./index.html", import.meta.url), "utf8");
+  const css = readFileSync(new URL("./styles.css", import.meta.url), "utf8");
+  const appSource = readFileSync(new URL("./app.mjs", import.meta.url), "utf8");
+  ok(appSource.includes("elements.routeBoard.dataset.gridSize"), "runtime exposes the active board density");
+  ok(css.includes('.route-board[data-grid-size="5"]'));
+  ok(css.includes('.route-board[data-grid-size="7"]'));
+  ok(css.includes('.route-board[data-grid-size="10"]'));
+  ok(css.includes("--port-size: min(30px, 10%)"), "dense edge ports remain inside the board bounds");
+  ok(css.includes("overflow: hidden"), "the fitted phone board cannot become an inner horizontal scroller");
+  ok(css.includes(".edge-control--vertical") && css.includes("margin-left: 0 !important"), "right-edge route controls stay fully tappable on phones");
+  ok(css.includes("max-height: calc(100dvh - 20px)"), "the victory surface fits short phone viewports");
+  ok(html.includes('href="./styles.css?v=5"'));
+  ok(html.includes('src="./app.mjs?v=5"'));
+});
+
 for (const { name, callback } of tests) {
   try {
     callback();

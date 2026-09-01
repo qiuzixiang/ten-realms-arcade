@@ -1534,8 +1534,13 @@ test("320px、390px、平板与桌面断点均有无横向溢出的收缩约束"
   match(cssRule(".hotel-grid"), /grid-template-columns:\s*repeat\(var\(--cols\),\s*minmax\(0,\s*1fr\)\)/);
   match(cssRule(".hotel-grid"), /width:\s*min\(100%,\s*620px\)/);
   match(cssRule(".hotel-grid"), /touch-action:\s*none/);
+  doesNotMatch(css, /overflow-x:\s*(?:auto|scroll)/, "页面和棋盘都不得依赖横向滚动");
   for (const breakpoint of [980, 700, 520, 350]) match(css, new RegExp(`@media \\(max-width: ${breakpoint}px\\)`));
-  match(css, /@media \(max-width: 350px\)[\s\S]*?\.floor-sign\s*\{[^}]*display:\s*none/);
+  match(css, /@media \(max-width: 520px\)[\s\S]*?main,\s*[\s\S]*?footer:not\(\.tutorial-footer\)\s*\{[^}]*width:\s*min\(100% - 8px,\s*1240px\)/);
+  match(css, /@media \(max-width: 520px\)[\s\S]*?\.board-panel\s*\{[^}]*padding:\s*8px/);
+  match(css, /@media \(max-width: 520px\)[\s\S]*?\.floor-stage\s*\{[^}]*padding:\s*5px/);
+  match(css, /@media \(max-width: 520px\)[\s\S]*?\.floor-sign\s*\{[^}]*display:\s*none/);
+  match(css, /@media \(max-width: 350px\)[\s\S]*?main,\s*[\s\S]*?footer:not\(\.tutorial-footer\)\s*\{[^}]*width:\s*min\(100% - 4px,\s*1240px\)/);
   match(css, /@media \(max-width: 350px\)[\s\S]*?\.clue\s*\{[^}]*min-width:\s*20px[^}]*font-size:\s*0\.76rem/);
   match(css, /@media \(max-width: 520px\)[\s\S]*?dialog\s*\{[^}]*width:\s*calc\(100% - 16px\)[^}]*max-height:\s*calc\(100dvh - 16px\)/);
 });

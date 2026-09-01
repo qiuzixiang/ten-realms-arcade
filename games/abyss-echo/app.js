@@ -14,6 +14,7 @@ import {
 const STORAGE_KEY = "five-realms:abyss-echo:v1";
 const SAVE_VERSION = 1;
 const HISTORY_LIMIT = 30;
+const COMPACT_BOARD_BREAKPOINT = 760;
 
 const DIFFICULTIES = Object.freeze({
   shelf: Object.freeze({ name: "陆架", code: "SHELF", size: 6, target: 4 }),
@@ -343,6 +344,19 @@ function makePortButton(port) {
   return button;
 }
 
+function syncBoardScale() {
+  if (window.innerWidth > COMPACT_BOARD_BREAKPOINT) {
+    elements.boardStage.style.removeProperty("--cell");
+    return;
+  }
+
+  const gridSize = state.size + 2;
+  const availableWidth = Math.max(0, elements.boardScroll.clientWidth - 2);
+  const cellSize = Math.min(44, availableWidth / gridSize);
+  elements.boardStage.style.setProperty("--cell", String(cellSize) + "px");
+  elements.boardScroll.scrollLeft = 0;
+}
+
 function buildBoard() {
   elements.board.replaceChildren();
   elements.boardStage.style.setProperty("--grid-size", String(state.size + 2));
@@ -393,9 +407,13 @@ function buildBoard() {
     button.tabIndex = index === 0 ? 0 : -1;
   });
 
+  syncBoardScale();
   render();
   requestAnimationFrame(() => {
-    elements.boardScroll.scrollLeft = Math.max(0, (elements.boardScroll.scrollWidth - elements.boardScroll.clientWidth) / 2);
+    syncBoardScale();
+    if (window.innerWidth > COMPACT_BOARD_BREAKPOINT) {
+      elements.boardScroll.scrollLeft = Math.max(0, (elements.boardScroll.scrollWidth - elements.boardScroll.clientWidth) / 2);
+    }
   });
 }
 
@@ -1190,6 +1208,7 @@ document.addEventListener("keydown", onGlobalKeydown);
 window.addEventListener("resize", () => {
   cancelAnimationFrame(animationFrame);
   clearTimeout(clearCanvasTimer);
+  syncBoardScale();
   const { context, width, height } = prepareCanvas();
   context.clearRect(0, 0, width, height);
 });

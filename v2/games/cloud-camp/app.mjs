@@ -27,6 +27,7 @@ import {
 } from "./storage.mjs";
 
 const STORAGE_KEY = "ten-realms-v2:games:cloud-camp:save:v1";
+const COMPACT_BOARD_BREAKPOINT = 700;
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
 const elements = {
@@ -336,6 +337,30 @@ function buildBoard() {
   const firstButton = cellElements.get(focusKey);
   if (firstButton) firstButton.dataset.realmGameFocus = "";
   updateRovingTabIndex();
+  syncBoardScale();
+  window.requestAnimationFrame(syncBoardScale);
+}
+
+function syncBoardScale() {
+  if (!elements.boardViewport || !elements.board) return;
+  if (window.innerWidth > COMPACT_BOARD_BREAKPOINT) {
+    elements.board.style.removeProperty("--cell");
+    elements.boardViewport.scrollLeft = 0;
+    updateScrollHint();
+    return;
+  }
+
+  const viewportStyle = window.getComputedStyle(elements.boardViewport);
+  const boardStyle = window.getComputedStyle(elements.board);
+  const horizontalPadding = (Number.parseFloat(viewportStyle.paddingLeft) || 0)
+    + (Number.parseFloat(viewportStyle.paddingRight) || 0);
+  const gap = Number.parseFloat(boardStyle.columnGap) || 0;
+  const trackCount = state.level.width + 1;
+  const availableWidth = Math.max(0, elements.boardViewport.clientWidth - horizontalPadding);
+  const fittedCell = Math.floor((availableWidth - gap * (trackCount - 1)) / trackCount);
+  elements.board.style.setProperty("--cell", `${Math.min(44, Math.max(24, fittedCell))}px`);
+  elements.boardViewport.scrollLeft = 0;
+  updateScrollHint();
 }
 
 function updateRovingTabIndex() {
@@ -904,7 +929,7 @@ document.addEventListener("keydown", (event) => {
 
 document.addEventListener("pointerdown", ensureAudio, { once: true, capture: true });
 document.addEventListener("keydown", ensureAudio, { once: true, capture: true });
-window.addEventListener("resize", updateScrollHint);
+window.addEventListener("resize", () => window.requestAnimationFrame(syncBoardScale));
 window.addEventListener("pagehide", () => writeSave({ quiet: true }));
 document.addEventListener("visibilitychange", () => {
   if (document.visibilityState === "hidden") writeSave({ quiet: true });

@@ -515,7 +515,7 @@ test("page wiring is offline, accessible, reward-safe, responsive, and visually 
   assert.match(app, /event\.key === " "/);
   assert.match(app, /event\.key === "Delete"/);
   assert.match(app, /event\.key === "Backspace"/);
-  assert.match(app, /pointerType !== "mouse"/);
+  assert.match(app, /\["touch", "pen"\]\.includes\(event\.pointerType\)/);
   assert.match(app, /startDaily/);
   assert.match(app, /gridRow\.setAttribute\("role", "row"\)/);
   assert.match(app, /当前无可行排列/);
@@ -535,6 +535,26 @@ test("page wiring is offline, accessible, reward-safe, responsive, and visually 
   assert.match(css, /@media \(max-width:\s*340px\)/);
   assert.match(css, /@media \(prefers-reduced-motion:\s*reduce\)/);
   assert.match(css, /overflow-x:\s*clip/);
+});
+
+test("compact photo boards show 5, 10, and 15 column negatives without horizontal scrolling", async () => {
+  const [html, css, app] = await Promise.all([
+    readFile(new URL("./index.html", import.meta.url), "utf8"),
+    readFile(new URL("./styles.css", import.meta.url), "utf8"),
+    readFile(new URL("./app.mjs", import.meta.url), "utf8"),
+  ]);
+  assert.match(app, /function syncBoardScale\(\)/);
+  assert.match(app, /\(availableWidth - rowClueWidth\) \/ level\.width/);
+  assert.match(app, /Math\.max\(14, Math\.floor/);
+  assert.match(app, /elements\.boardViewport\.scrollLeft = 0/);
+  assert.match(css, /@media \(max-width: 760px\)[\s\S]*?\.board-viewport\s*{[^}]*overflow:\s*hidden/);
+  assert.match(css, /@media \(max-width: 760px\)[\s\S]*?\.grid-cell,[\s\S]*?min-width:\s*0/);
+  assert.match(css, /@media \(max-width: 760px\)[\s\S]*?\.nonogram-board\s*{[^}]*touch-action:\s*none/);
+  assert.match(css, /@media \(max-width: 480px\)[\s\S]*?\.victory-photo\s*{[^}]*width:\s*min\(210px,\s*64vw\)/);
+  assert.match(css, /@media \(max-width: 480px\)[\s\S]*?\.victory-actions\s*{[^}]*grid-template-columns:\s*1fr 1fr/);
+  assert.match(html, /class="board-viewport"[^>]+aria-label="完整数织底片棋盘"/);
+  assert.doesNotMatch(html, /id="boardViewport"[^>]+aria-label="[^"]*横向[^"]*滚动/);
+  assert.match(html, /手机会自动缩放成完整棋盘/);
 });
 
 let passed = 0;

@@ -1811,10 +1811,13 @@ dialog[open] {
 }
 
 @media (max-width: 520px) {
-  .topbar,
+  .topbar {
+    width: min(100% - 18px, 1240px);
+  }
+
   main,
   footer:not(.tutorial-footer) {
-    width: min(100% - 18px, 1240px);
+    width: min(100% - 8px, 1240px);
   }
 
   .topbar {
@@ -1859,7 +1862,7 @@ dialog[open] {
   }
 
   .board-panel {
-    padding: 12px;
+    padding: 8px;
     border-radius: 20px;
   }
 
@@ -1918,13 +1921,13 @@ dialog[open] {
   }
 
   .floor-stage {
-    gap: 3px;
-    padding: 9px 6px;
+    gap: 0;
+    padding: 5px;
     border-radius: 14px;
   }
 
   .floor-sign {
-    width: 8px;
+    display: none;
   }
 
   .hotel-grid {
@@ -2027,6 +2030,11 @@ dialog[open] {
 }
 
 @media (max-width: 350px) {
+  main,
+  footer:not(.tutorial-footer) {
+    width: min(100% - 4px, 1240px);
+  }
+
   .back-link > span:first-child {
     width: 32px;
     height: 32px;
@@ -2037,15 +2045,11 @@ dialog[open] {
   }
 
   .board-panel {
-    padding: 9px;
+    padding: 5px;
   }
 
   .floor-stage {
-    padding-inline: 3px;
-  }
-
-  .floor-sign {
-    display: none;
+    padding: 3px;
   }
 
   .grid-cell.is-excluded::after {

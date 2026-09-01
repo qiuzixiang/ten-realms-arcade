@@ -2086,6 +2086,7 @@ dialog::backdrop {
 
   .board-frame {
     display: block;
+    overflow-x: hidden;
     padding: 4px;
     border-radius: 19px 8px 19px 8px;
   }
@@ -2093,14 +2094,16 @@ dialog::backdrop {
   .garden-board {
     --gap: 2px;
     --board-inset: 10px;
+    grid-template-columns: repeat(var(--columns), var(--cell, 44px));
+    width: max-content;
+    min-width: 0;
+    max-width: 100%;
     padding: 4px;
     margin-inline: auto;
   }
 
   .board-scroll-hint {
-    display: flex;
-    align-items: center;
-    gap: 7px;
+    display: none;
   }
 
   .corner-leaf {
@@ -2191,7 +2194,23 @@ dialog::backdrop {
 
 @media (max-width: 400px) {
   .garden-card {
-    margin-inline: -4px;
+    margin-inline: -12px;
+    padding: 4px;
+  }
+
+  .board-frame {
+    padding: 2px;
+  }
+
+  .garden-board {
+    --gap: 1px;
+    --board-inset: 6px;
+    padding: 2px;
+  }
+
+  .cell-state {
+    top: 1px;
+    right: 1px;
   }
 
   .moon-progress__orb,

@@ -1303,7 +1303,7 @@ test("three first-run tutorial slides use distinct, contain-fitted real SVG scen
   matches(css, /object-fit\s*:\s*contain/);
 });
 
-test("accessibility and responsive CSS preserve 44px targets at phone through desktop sizes", () => {
+test("accessibility and responsive CSS preserve 44px controls outside the compact board", () => {
   const html = read("index.html");
   const app = read("app.mjs");
   const css = read("styles.css");
@@ -1319,6 +1319,18 @@ test("accessibility and responsive CSS preserve 44px targets at phone through de
   matches(css, /min-width\s*:\s*0/);
   matches(css, /(?:width|max-width)\s*:\s*(?:min\(|clamp\(|calc\(|100%)/i);
   doesNotMatch(css, /[;{]\s*min-width\s*:\s*(?:3[3-9]\d|[4-9]\d\d|\d{4,})px/i, "fixed wide panels would overflow 320px");
+});
+
+test("compact rail boards fit every difficulty with both quota axes visible", () => {
+  const html = read("index.html");
+  const app = read("app.mjs");
+  const css = read("styles.css");
+  matches(app, /function syncBoardScale\(\)/);
+  matches(app, /\(availableWidth - axisWidth\) \/ state\.level\.width/);
+  matches(app, /elements\.boardViewport\.scrollLeft = 0/);
+  matches(css, /@media \(max-width: 700px\)[\s\S]*?\.board-viewport\s*{[^}]*overflow-x:\s*hidden/);
+  matches(css, /@media \(max-width: 430px\)[\s\S]*?grid-template-columns:\s*20px calc\(var\(--board-columns\) \* var\(--cell-size\)\) 20px/);
+  doesNotMatch(html, /aria-label=["'][^"']*横向滚动[^"']*["']/);
 });
 
 test("rail candidates/exclusions have shape cues and the train animation stays inside the grid", () => {

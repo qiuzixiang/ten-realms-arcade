@@ -21,7 +21,7 @@
 }
 .realm-utility-dock > div:first-child { min-width: 0; }
 .realm-utility-dock > div:first-child small, .realm-utility-dock__stat small { display: block; overflow: hidden; color: #a8b9b8; font-size: 9px; letter-spacing: .08em; text-overflow: ellipsis; white-space: nowrap; }
-.realm-utility-dock > div:first-child [data-rank] { display: block; min-height: 34px; margin: 0; padding: 2px 0; color: #fff; background: transparent; font-size: 14px; text-align: left; }
+.realm-utility-dock > div:first-child [data-rank] { display: block; min-height: 44px; margin: 0; padding: 2px 0; color: #fff; background: transparent; font-size: 14px; text-align: left; }
 .realm-utility-dock > div:first-child [data-rank]:hover { color: var(--realm-accent); }
 .realm-utility-dock__progress { display: grid; gap: 5px; font-size: 11px; }
 .realm-utility-dock__progress > span { text-align: right; }

@@ -706,6 +706,20 @@ test("44px 逻辑命中带随棋盘缩放，所有三类星核及合法细边在
   }), null);
 });
 
+test("9×9 手机完整盘采用半格内边界命中，不会因缩放选到相邻边", () => {
+  const puzzle = puzzleFrom("compact-edge-target", 3, 3, "m");
+  const compactTolerance = Math.min(22 / (281 / 9), 0.46);
+  equal(compactTolerance, 0.46);
+  equal(resolvePointerTarget(puzzle, { x: 1 + 0.3, y: 0.5 }, {
+    edgeTolerance: compactTolerance,
+    ambiguityGap: 0.14,
+  })?.edgeId, "v:0:1");
+  equal(resolvePointerTarget(puzzle, { x: 1 + 0.44, y: 0.5 }, {
+    edgeTolerance: compactTolerance,
+    ambiguityGap: 0.14,
+  }), null, "接近边交点的重叠命中不得猜测其他边");
+});
+
 test("HTML 提供本地入口、语义化游戏组、完整工具与实时状态", () => {
   ok(htmlSource, "index.html exists");
   match(htmlSource, /<html\b[^>]*\blang=["']zh-CN["'][^>]*\bdata-realm=["']nebula-hatchery["']/i);
@@ -797,12 +811,14 @@ test("CSS 保证 44px 控件、可缩放矢量边、清楚玩家边界与窄屏�
   match(htmlSource, /id=["']board-scroll["']/);
   match(htmlSource, /id=["']board-pan-left["']/);
   match(htmlSource, /id=["']board-pan-right["']/);
-  match(cssSource, /\.board-frame\.is-wide-board\s+\.nebula-board\s*\{[^}]*width:\s*396px/s);
-  match(cssSource, /\.board-frame\.is-wide-board\s+\.board-scroll\s*\{[^}]*overflow-x:\s*auto/s);
+  match(cssSource, /\.board-frame\.is-wide-board\s+\.nebula-board\s*\{[^}]*width:\s*100%[^}]*max-width:\s*100%/s);
+  match(cssSource, /\.board-frame\.is-wide-board\s+\.board-scroll\s*\{[^}]*overflow:\s*hidden/s);
+  match(htmlSource, /class=["']board-pan-controls["'][^>]*hidden/);
   match(cssSource, /\.board-pan-controls button\s*\{[^}]*width:\s*44px[^}]*height:\s*44px/s);
   match(appSource, /dataset\.gridSize\s*=\s*String\(width\)/);
   match(appSource, /classList\.toggle\(["']is-wide-board["'],\s*width\s*>=\s*9\)/);
-  match(appSource, /boardScroll\.scrollBy\(/);
+  match(appSource, /MAX_COMPACT_EDGE_TOLERANCE\s*=\s*0\.46/);
+  match(appSource, /Math\.min\([\s\S]*?MAX_COMPACT_EDGE_TOLERANCE/);
   for (const breakpoint of [760, 520, 350]) {
     match(cssSource, new RegExp(`@media\\s*\\(max-width:\\s*${breakpoint}px\\)`));
   }

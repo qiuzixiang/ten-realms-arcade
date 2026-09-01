@@ -16,6 +16,7 @@ import {
   toggleHighlight,
 } from "./logic.mjs";
 import { reportCompatibilityCompletion } from "./delivery.mjs";
+import { computeCompactBoardMetrics } from "./layout.mjs";
 import {
   DEMAND_LABELS,
   HISTORY_LIMIT,
@@ -40,6 +41,7 @@ import {
 const INTEGRATION_VERSION = 1;
 const GAME_ID = "yokai-inn";
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+const compactBoardMedia = window.matchMedia("(max-width: 720px)");
 let localStorageRef = null;
 try {
   localStorageRef = window.localStorage;
@@ -124,6 +126,7 @@ let edgeHitElements = new Map();
 let pairElements = new Map();
 let longPressTimer = 0;
 let suppressClickKey = null;
+let boardFitFrame = 0;
 const modalReturnFocus = new WeakMap();
 const announcedCompletionIds = new Set();
 const announcedRewardIds = new Set();
@@ -579,6 +582,39 @@ function edgeCoordinates(edge) {
   };
 }
 
+function fitBoardToViewport() {
+  const compact = compactBoardMedia.matches;
+  elements.board.classList.toggle("is-compact-fit", compact);
+  elements.boardViewport.classList.toggle("is-compact-fit", compact);
+
+  if (!compact) {
+    elements.board.style.removeProperty("--cell");
+    elements.board.style.removeProperty("--gap");
+    delete elements.board.dataset.cellSize;
+    delete elements.board.dataset.gapSize;
+    return;
+  }
+
+  const viewportStyle = window.getComputedStyle(elements.boardViewport);
+  const horizontalPadding = Number.parseFloat(viewportStyle.paddingLeft) + Number.parseFloat(viewportStyle.paddingRight);
+  const availableWidth = Math.max(1, elements.boardViewport.clientWidth - horizontalPadding);
+  const metrics = computeCompactBoardMetrics({
+    availableWidth,
+    columns: state.puzzle.width,
+    desiredCell: window.innerWidth <= 560 ? 44 : 48,
+  });
+  elements.board.style.setProperty("--cell", `${metrics.cell}px`);
+  elements.board.style.setProperty("--gap", `${metrics.gap}px`);
+  elements.board.dataset.cellSize = String(metrics.cell);
+  elements.board.dataset.gapSize = String(metrics.gap);
+  elements.boardViewport.scrollLeft = 0;
+}
+
+function scheduleBoardFit() {
+  window.cancelAnimationFrame(boardFitFrame);
+  boardFitFrame = window.requestAnimationFrame(fitBoardToViewport);
+}
+
 function onCellKeydown(event, index) {
   if (moveCellFocus(event.key)) {
     event.preventDefault();
@@ -690,6 +726,7 @@ function buildBoard() {
     edgeHitElements.set(edge.key, hit);
     elements.board.append(hit);
   }
+  fitBoardToViewport();
 }
 
 function buildPairTray() {
@@ -1280,6 +1317,12 @@ function bindEvents() {
   reduceMotion.addEventListener("change", () => {
     elements.boardViewport.style.scrollBehavior = reduceMotion.matches ? "auto" : "smooth";
   });
+  compactBoardMedia.addEventListener("change", scheduleBoardFit);
+  window.addEventListener("resize", scheduleBoardFit, { passive: true });
+  if ("ResizeObserver" in window) {
+    const boardResizeObserver = new ResizeObserver(scheduleBoardFit);
+    boardResizeObserver.observe(elements.boardViewport);
+  }
 
   installDialogLifecycle(elements.tutorialDialog);
   installDialogLifecycle(elements.rulesDialog);

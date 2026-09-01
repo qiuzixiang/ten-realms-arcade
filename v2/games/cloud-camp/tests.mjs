@@ -558,6 +558,13 @@ test("page wiring keeps engine, save, shared rewards, tutorials, source, audio, 
   assert.match(styles, /prefers-reduced-motion:\s*reduce/);
   assert.match(styles, /animation:\s*none\s*!important/);
   assert.match(styles, /min-height:\s*44px/);
+  assert.match(app, /function syncBoardScale\(\)/);
+  assert.match(app, /state\.level\.width \+ 1/);
+  assert.match(app, /elements\.boardViewport\.scrollLeft = 0/);
+  assert.match(styles, /@media \(max-width: 700px\)[\s\S]*?\.board-viewport\s*{[^}]*overflow-x:\s*hidden/);
+  assert.match(styles, /@media \(max-width: 700px\)[\s\S]*?\.tree-visual\s*{[^}]*width:\s*min\(34px, 77%\)/);
+  assert.match(html, /styles\.css\?v=mobile-fit-1/);
+  assert.match(html, /type="module" src="\.\/app\.mjs"/);
   assert.doesNotMatch(styles, /@import\s+url\(["']?https?:/i);
   assert.doesNotMatch(logic, /document|localStorage|AudioContext/);
   assert.doesNotMatch(storage, /window|document|localStorage/);

@@ -488,6 +488,8 @@ main {
 
 .route-board {
   position: relative;
+  --port-size: 48px;
+  --edge-hit-size: 44px;
   width: max(100%, calc(var(--grid-size) * 52px));
   min-width: 100%;
   aspect-ratio: var(--grid-width) / var(--grid-height);
@@ -648,8 +650,8 @@ main {
 
 .edge-control {
   display: grid;
-  width: 44px;
-  height: 44px;
+  width: var(--edge-hit-size);
+  height: var(--edge-hit-size);
   padding: 0;
   place-items: center;
   border: 0;
@@ -711,8 +713,8 @@ main {
 
 .port {
   display: grid;
-  width: 48px;
-  height: 48px;
+  width: var(--port-size);
+  height: var(--port-size);
   padding: 0;
   place-items: center;
   border: 2px solid rgba(169, 218, 218, 0.55);
@@ -1744,6 +1746,102 @@ dialog::backdrop {
     border-radius: 18px 6px 18px 6px;
   }
 
+  .board-viewport {
+    overflow: hidden;
+  }
+
+  .route-board {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .route-board[data-grid-size="5"] {
+    --port-size: min(44px, 20%);
+    --edge-hit-size: min(42px, 20%);
+  }
+
+  .route-board[data-grid-size="7"] {
+    --port-size: min(38px, 14.285%);
+    --edge-hit-size: min(36px, 14.285%);
+  }
+
+  .route-board[data-grid-size="10"] {
+    --port-size: min(30px, 10%);
+    --edge-hit-size: min(30px, 10%);
+  }
+
+  .route-board:is([data-grid-size="7"], [data-grid-size="10"]) .port-count,
+  .route-board:is([data-grid-size="7"], [data-grid-size="10"]) .port.is-right-edge .port-count,
+  .route-board:is([data-grid-size="7"], [data-grid-size="10"]) .port.is-bottom-edge .port-count {
+    top: auto;
+    right: auto;
+    bottom: 2px;
+    left: 50%;
+    min-width: 0;
+    padding: 0;
+    border: 0;
+    color: var(--cyan);
+    background: transparent;
+    font-size: 0.48rem;
+    line-height: 1;
+    transform: translateX(-50%);
+  }
+
+  .route-board:is([data-grid-size="7"], [data-grid-size="10"]) .port-target {
+    font-size: 1rem;
+    transform: translateY(-4px);
+  }
+
+  .route-board:is([data-grid-size="7"], [data-grid-size="10"]) .port.is-exact .port-count {
+    color: var(--gold-pale);
+    background: transparent;
+  }
+
+  .route-board:is([data-grid-size="7"], [data-grid-size="10"]) .port.is-over .port-count {
+    color: var(--danger);
+    background: transparent;
+  }
+
+  .route-board[data-grid-size="10"] .port::before {
+    inset: -4px;
+  }
+
+  .route-board[data-grid-size="10"] .port-target {
+    font-size: 0.88rem;
+    transform: translateY(-3px);
+  }
+
+  .route-board[data-grid-size="10"] .port-count,
+  .route-board[data-grid-size="10"] .port.is-right-edge .port-count,
+  .route-board[data-grid-size="10"] .port.is-bottom-edge .port-count {
+    bottom: 1px;
+    font-size: 0.43rem;
+  }
+
+  .route-board[data-grid-size="10"] .port.is-target::after {
+    inset: -5px;
+  }
+
+  .route-board[data-grid-size="10"] .port-stamp {
+    top: -4px;
+    left: -4px;
+    width: 15px;
+    height: 15px;
+    font-size: 0.55rem;
+  }
+
+  .route-board[data-grid-size="10"] .edge-control[data-count="0"]:not(.is-marked)::before {
+    opacity: 0;
+  }
+
+  .route-board[data-grid-size="10"] .edge-control[data-count="0"]:not(.is-marked):is(:hover, :focus-visible)::before {
+    opacity: 1;
+  }
+
+  .edge-control--vertical {
+    margin-left: 0 !important;
+  }
+
   .tool-dock {
     grid-template-columns: 1fr 1fr;
   }
@@ -1766,6 +1864,16 @@ dialog::backdrop {
 }
 
 @media (max-width: 480px) {
+  html,
+  body {
+    min-width: 0;
+  }
+
+  .game-shell {
+    width: calc(100% + 16px);
+    margin-left: -8px;
+  }
+
   .top-actions {
     gap: 4px;
   }
@@ -1780,6 +1888,10 @@ dialog::backdrop {
 
   .chart-header {
     align-items: flex-start;
+  }
+
+  .chart-card {
+    padding: 12px;
   }
 
   .chart-header h2 {
@@ -1800,7 +1912,9 @@ dialog::backdrop {
   }
 
   .board-legend {
-    gap: 7px 12px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
   }
 
   .tool-button {
@@ -1862,7 +1976,9 @@ dialog::backdrop {
   }
 
   .victory-dialog {
+    max-height: calc(100dvh - 20px);
     padding: 25px 18px;
+    overflow-y: auto;
   }
 
   .victory-dialog h2 {
@@ -1871,7 +1987,7 @@ dialog::backdrop {
 
   .toast {
     right: 15px;
-    bottom: 15px;
+    bottom: calc(76px + env(safe-area-inset-bottom));
   }
 }
 
@@ -1891,7 +2007,7 @@ dialog::backdrop {
   }
 
   .chart-card {
-    padding: 12px;
+    padding: 8px;
   }
 
   .chart-header p {

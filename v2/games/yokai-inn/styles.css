@@ -499,6 +499,12 @@ main {
   outline-offset: 0;
 }
 
+.board-viewport.is-compact-fit {
+  overflow: hidden;
+  overscroll-behavior: none;
+  scrollbar-width: none;
+}
+
 .inn-board {
   --cell: 54px;
   --gap: 44px;
@@ -508,6 +514,22 @@ main {
   min-width: calc(var(--columns) * var(--cell) + (var(--columns) - 1) * var(--gap));
   margin-inline: auto;
   isolation: isolate;
+}
+
+.inn-board.is-compact-fit {
+  max-width: 100%;
+  min-width: 0;
+}
+
+.inn-board.is-compact-fit .number-cell {
+  min-width: 0;
+  min-height: 0;
+  font-size: clamp(18px, calc(var(--cell) * 0.56), 24px);
+  touch-action: manipulation;
+}
+
+.inn-board.is-compact-fit .edge-hit {
+  display: none;
 }
 
 .number-cell,
@@ -1804,12 +1826,7 @@ dialog::backdrop {
 
   main,
   footer:not(.tutorial-footer) {
-    width: min(calc(100% - 20px), var(--content));
-  }
-
-  .inn-board {
-    --cell: 48px;
-    --gap: 44px;
+    width: min(calc(100% - 8px), var(--content));
   }
 
   .scroll-hint {
@@ -1868,13 +1885,11 @@ dialog::backdrop {
   }
 
   .board-viewport {
-    padding: 14px 12px;
+    width: calc(100% + 16px);
+    max-width: none;
+    padding: 10px 4px;
+    margin-inline: -8px;
     border-radius: 18px;
-  }
-
-  .inn-board {
-    --cell: 44px;
-    --gap: 44px;
   }
 
   .tool-palette {
@@ -2009,6 +2024,10 @@ dialog::backdrop {
   .board-card,
   .guest-ledger {
     padding: 11px;
+  }
+
+  .board-card {
+    padding: 8px;
   }
 
   .board-help {

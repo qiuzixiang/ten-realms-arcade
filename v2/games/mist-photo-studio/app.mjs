@@ -45,6 +45,7 @@ const STATE_LABELS = Object.freeze({
 });
 
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+const COMPACT_BOARD_BREAKPOINT = 760;
 const elements = Object.fromEntries([
   "activeMeta", "activeCaption", "negativeNumber", "difficultyButtons", "dailyButton", "dailyLabel",
   "decidedCount", "cellTotal", "progressBar", "lineStatus", "boardFrame", "boardViewport", "board",
@@ -291,6 +292,28 @@ function createClueNumbers(clues) {
   return fragment;
 }
 
+function syncBoardScale() {
+  if (!elements.boardViewport || !elements.board) return;
+  const maxRowDepth = Math.max(1, ...level.rowClues.map((clues) => clues.length));
+  const maxColumnDepth = Math.max(1, ...level.columnClues.map((clues) => clues.length));
+
+  if (window.innerWidth > COMPACT_BOARD_BREAKPOINT) {
+    elements.board.style.removeProperty("--cell-size");
+    elements.board.style.setProperty("--row-clue-width", `${Math.max(84, maxRowDepth * 20 + 18)}px`);
+    elements.board.style.setProperty("--column-clue-height", `${Math.max(74, maxColumnDepth * 18 + 20)}px`);
+    return;
+  }
+
+  const availableWidth = elements.boardViewport.clientWidth;
+  const rowClueWidth = Math.max(38, maxRowDepth * 14 + 8);
+  const columnClueHeight = Math.max(42, maxColumnDepth * 12 + 8);
+  const cellSize = Math.min(44, Math.max(14, Math.floor((availableWidth - rowClueWidth) / level.width)));
+  elements.board.style.setProperty("--cell-size", `${cellSize}px`);
+  elements.board.style.setProperty("--row-clue-width", `${rowClueWidth}px`);
+  elements.board.style.setProperty("--column-clue-height", `${columnClueHeight}px`);
+  elements.boardViewport.scrollLeft = 0;
+}
+
 function buildBoard({ restoreFocus = false } = {}) {
   const previousFocus = restoreFocus ? focusedIndex : 0;
   elements.board.replaceChildren();
@@ -373,7 +396,9 @@ function buildBoard({ restoreFocus = false } = {}) {
     gridRows[row + 1].append(cell);
   }
   elements.board.append(fragment);
+  syncBoardScale();
   render();
+  requestAnimationFrame(syncBoardScale);
 }
 
 function updateRovingFocus() {
@@ -595,8 +620,11 @@ function pointerState(event) {
   return desiredStateForTool();
 }
 
-function beginMouseGesture(event, cell) {
-  if (event.pointerType !== "mouse" || ![0, 1, 2].includes(event.button) || state.completed) return;
+function beginPointerGesture(event, cell) {
+  const mousePointer = event.pointerType === "mouse" && [0, 1, 2].includes(event.button);
+  const directPointer = ["touch", "pen"].includes(event.pointerType)
+    && event.isPrimary !== false && event.button === 0;
+  if ((!mousePointer && !directPointer) || state.completed) return;
   event.preventDefault();
   focusedIndex = Number(cell.dataset.index);
   updateRovingFocus();
@@ -618,7 +646,7 @@ function beginMouseGesture(event, cell) {
   render(result.changed ? [focusedIndex] : []);
 }
 
-function updateMouseGesture(event) {
+function updatePointerGesture(event) {
   if (!gesture || event.pointerId !== gesture.pointerId) return;
   const target = document.elementFromPoint(event.clientX, event.clientY)?.closest?.("button.grid-cell");
   if (!target || !elements.board.contains(target)) return;
@@ -632,7 +660,7 @@ function updateMouseGesture(event) {
   render(changed);
 }
 
-function finishMouseGesture(event, cancelled = false) {
+function finishPointerGesture(event, cancelled = false) {
   if (!gesture || event.pointerId !== gesture.pointerId) return;
   const active = gesture;
   gesture = null;
@@ -924,11 +952,11 @@ elements.board.addEventListener("contextmenu", (event) => {
 
 elements.board.addEventListener("pointerdown", (event) => {
   const cell = event.target.closest("button.grid-cell");
-  if (cell) beginMouseGesture(event, cell);
+  if (cell) beginPointerGesture(event, cell);
 });
-window.addEventListener("pointermove", updateMouseGesture);
-window.addEventListener("pointerup", (event) => finishMouseGesture(event));
-window.addEventListener("pointercancel", (event) => finishMouseGesture(event, true));
+window.addEventListener("pointermove", updatePointerGesture);
+window.addEventListener("pointerup", (event) => finishPointerGesture(event));
+window.addEventListener("pointercancel", (event) => finishPointerGesture(event, true));
 
 elements.board.addEventListener("keydown", (event) => {
   const cell = event.target.closest("button.grid-cell");
@@ -1080,6 +1108,8 @@ window.addEventListener("storage", (event) => {
     // Another tab's malformed value cannot displace this tab's validated collection.
   }
 });
+
+window.addEventListener("resize", () => requestAnimationFrame(syncBoardScale));
 
 if (restoreResult.repaired) {
   showToast("有一段损坏的暗房记录无法读取，已安全回到可用底片。", true, 4200);

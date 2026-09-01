@@ -43,6 +43,7 @@ import {
 
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 const MAX_HISTORY = 100;
+const COMPACT_BOARD_BREAKPOINT = 700;
 const TOOL_IDS = new Set(["edge-track", "edge-excluded", "cell-candidate", "cell-excluded"]);
 const DIRECTION_META = Object.freeze({
   N: Object.freeze({ dx: 0, dy: -1, angle: -90 }),
@@ -692,6 +693,7 @@ function renderBoard(evaluation) {
   if (elements.quotaBoard) {
     elements.quotaBoard.style.setProperty("--board-columns", state.level.width);
     elements.quotaBoard.style.setProperty("--board-rows", state.level.height);
+    syncBoardScale();
   }
   if (elements.railGrid) {
     elements.railGrid.style.setProperty("--columns", state.level.width);
@@ -705,6 +707,20 @@ function renderBoard(evaluation) {
   renderClues(evaluation);
   renderCells(evaluation);
   renderEdges(evaluation);
+}
+
+function syncBoardScale() {
+  if (!elements.boardViewport || !elements.quotaBoard) return;
+  if (window.innerWidth > COMPACT_BOARD_BREAKPOINT) {
+    elements.quotaBoard.style.removeProperty("--cell-size");
+    return;
+  }
+
+  const availableWidth = elements.boardViewport.clientWidth;
+  const axisWidth = window.innerWidth <= 430 ? 40 : 52;
+  const cellSize = Math.min(44, Math.max(30, Math.floor((availableWidth - axisWidth) / state.level.width)));
+  elements.quotaBoard.style.setProperty("--cell-size", `${cellSize}px`);
+  elements.boardViewport.scrollLeft = 0;
 }
 
 function render({ preserveTrain = false } = {}) {
@@ -1314,5 +1330,7 @@ window.addEventListener("pagehide", () => {
   saveGame();
   window.clearInterval(timerHandle);
 });
+
+window.addEventListener("resize", () => requestAnimationFrame(syncBoardScale));
 
 initialise();

@@ -67,10 +67,10 @@
           </div>
 
           <p class="board-help" id="board-help">
-            点击房客之间的接缝直接落笔；也可依次选择两个相邻数字格。金框是确定客房，交叉封条是排除边。
+            依次选择两个正交相邻数字格即可落笔；较宽屏也可直接点击接缝。金框是确定客房，交叉封条是排除边。
           </p>
 
-          <div class="board-viewport" id="board-viewport" tabindex="0" aria-label="旅店房图滚动区域">
+          <div class="board-viewport" id="board-viewport" tabindex="0" aria-label="旅店房图区域">
             <div
               class="inn-board"
               id="inn-board"
@@ -79,10 +79,10 @@
               aria-describedby="board-help board-selection-status"
             ></div>
           </div>
-          <p class="scroll-hint" id="scroll-hint"><span aria-hidden="true">↔</span> 大馆可在房图内左右滑动，页面本身不会横向溢出</p>
+          <p class="scroll-hint" id="scroll-hint"><span aria-hidden="true">双</span> 手机端已把完整房图收进一屏；请依次点选两位相邻房客</p>
 
           <p class="selection-status" id="board-selection-status" role="status" aria-live="polite">
-            请选择一条接缝，或先选一位房客。
+            请先选一位房客，再选择正交相邻的另一位。
           </p>
 
           <div class="tool-palette" role="toolbar" aria-label="排房工具">

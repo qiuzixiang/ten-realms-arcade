@@ -1623,6 +1623,11 @@ dialog::backdrop {
 }
 
 @media (max-width: 520px) {
+  main,
+  footer {
+    width: calc(100% - 8px);
+  }
+
   .topbar {
     min-height: 66px;
   }
@@ -1659,7 +1664,7 @@ dialog::backdrop {
   }
 
   .nursery-card {
-    padding: 11px;
+    padding: 8px;
   }
 
   .lab-card {
@@ -1688,7 +1693,7 @@ dialog::backdrop {
   }
 
   .board-frame {
-    padding: 7px;
+    padding: 5px;
     border-radius: 17px;
   }
 
@@ -1698,27 +1703,19 @@ dialog::backdrop {
   }
 
   .board-frame.is-wide-board .board-scroll {
-    display: block;
-    overflow-x: auto;
-    overflow-y: hidden;
-    overscroll-behavior-x: contain;
-    scrollbar-color: rgba(var(--mint-rgb), 0.62) transparent;
-    scrollbar-width: thin;
+    display: grid;
+    overflow: hidden;
+    justify-items: center;
   }
 
   .board-frame.is-wide-board .nebula-board {
-    width: 396px;
-    max-width: none;
+    width: 100%;
+    max-width: 100%;
     touch-action: none;
   }
 
   .board-frame.is-wide-board .board-pan-controls {
-    width: 100%;
-    margin-top: 7px;
-    display: grid;
-    grid-template-columns: 44px minmax(0, 1fr) 44px;
-    align-items: center;
-    gap: 6px;
+    display: none;
   }
 
   .board-pan-controls button {
@@ -1848,7 +1845,7 @@ dialog::backdrop {
 
   main,
   footer {
-    width: calc(100% - 12px);
+    width: calc(100% - 4px);
   }
 
   .hero {
@@ -1861,11 +1858,11 @@ dialog::backdrop {
   }
 
   .nursery-card {
-    padding: 8px;
+    padding: 5px;
   }
 
   .board-frame {
-    padding: 5px;
+    padding: 3px;
   }
 
   .board-legend {

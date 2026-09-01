@@ -18,6 +18,7 @@ import {
 const STORAGE_KEY = "five-realms.firefly-garden:v1";
 const STORAGE_VERSION = 1;
 const HISTORY_LIMIT = 80;
+const COMPACT_BOARD_BREAKPOINT = 680;
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 const COMPLETION_TIERS = Object.freeze({ glimmer: 1, moonpath: 2, deepgarden: 3 });
 
@@ -358,6 +359,33 @@ function buildBoard() {
     }
     elements.board.append(rowElement);
   }
+
+  syncBoardScale();
+  window.requestAnimationFrame(syncBoardScale);
+}
+
+function syncBoardScale() {
+  if (!elements.boardFrame || !elements.board) return;
+  if (window.innerWidth > COMPACT_BOARD_BREAKPOINT) {
+    elements.board.style.removeProperty("--cell");
+    elements.boardFrame.scrollLeft = 0;
+    return;
+  }
+
+  const frameStyle = window.getComputedStyle(elements.boardFrame);
+  const boardStyle = window.getComputedStyle(elements.board);
+  const framePadding = (Number.parseFloat(frameStyle.paddingLeft) || 0)
+    + (Number.parseFloat(frameStyle.paddingRight) || 0);
+  const boardChrome = (Number.parseFloat(boardStyle.paddingLeft) || 0)
+    + (Number.parseFloat(boardStyle.paddingRight) || 0)
+    + (Number.parseFloat(boardStyle.borderLeftWidth) || 0)
+    + (Number.parseFloat(boardStyle.borderRightWidth) || 0);
+  const gap = Number.parseFloat(boardStyle.columnGap) || 0;
+  const columns = state.level.width;
+  const availableWidth = Math.max(0, elements.boardFrame.clientWidth - framePadding - boardChrome);
+  const fittedCell = Math.floor((availableWidth - gap * (columns - 1)) / columns);
+  elements.board.style.setProperty("--cell", `${Math.min(68, Math.max(24, fittedCell))}px`);
+  elements.boardFrame.scrollLeft = 0;
 }
 
 function updateRovingTabIndex() {
@@ -820,6 +848,7 @@ document.addEventListener("keydown", (event) => {
 
 document.addEventListener("pointerdown", ensureAudio, { once: true, capture: true });
 document.addEventListener("keydown", ensureAudio, { once: true, capture: true });
+window.addEventListener("resize", () => window.requestAnimationFrame(syncBoardScale));
 
 elements.bulbTool.addEventListener("click", () => setTool("bulb"));
 elements.markTool.addEventListener("click", () => setTool("mark"));

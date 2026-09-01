@@ -22,6 +22,7 @@ import {
 const SAVE_KEY = "ten-realms.night-market-spirits.session.v1";
 const PREFS_KEY = "ten-realms.night-market-spirits.preferences.v1";
 const DEFAULT_SEED = 1;
+const COMPACT_BOARD_BREAKPOINT = 430;
 const REDUCED_MOTION = matchMedia("(prefers-reduced-motion: reduce)");
 const DIFFICULTY_TIER = Object.freeze({ lantern: 1, canopy: 2, bell: 3 });
 
@@ -396,6 +397,8 @@ function renderBoard(options = {}) {
   }
 
   elements.board.replaceChildren(fragment);
+  syncBoardScale();
+  requestAnimationFrame(syncBoardScale);
   elements.board.classList.toggle("is-settling", options.settle === true && !REDUCED_MOTION.matches);
   if (options.settle === true) {
     window.setTimeout(() => elements.board.classList.remove("is-settling"), 320);
@@ -408,6 +411,23 @@ function renderBoard(options = {}) {
       button?.focus({ preventScroll: true });
     });
   }
+}
+
+function syncBoardScale() {
+  if (!elements.boardScroll || !elements.board) return;
+  if (window.innerWidth > COMPACT_BOARD_BREAKPOINT) {
+    elements.board.style.removeProperty("--cell");
+    elements.boardScroll.scrollLeft = 0;
+    return;
+  }
+
+  const boardStyle = window.getComputedStyle(elements.board);
+  const boardChrome = (Number.parseFloat(boardStyle.borderLeftWidth) || 0)
+    + (Number.parseFloat(boardStyle.borderRightWidth) || 0);
+  const columns = difficultyFor(game.difficulty).width;
+  const fittedCell = Math.floor((elements.boardScroll.clientWidth - boardChrome) / columns);
+  elements.board.style.setProperty("--cell", `${Math.min(44, Math.max(24, fittedCell))}px`);
+  elements.boardScroll.scrollLeft = 0;
 }
 
 function renderLegend() {
@@ -853,6 +873,8 @@ window.addEventListener("pointerdown", () => {
   lastInputWasKeyboard = false;
   audio.unlock();
 }, { capture: true });
+
+window.addEventListener("resize", () => requestAnimationFrame(syncBoardScale));
 
 window.addEventListener("keydown", (event) => {
   lastInputWasKeyboard = true;

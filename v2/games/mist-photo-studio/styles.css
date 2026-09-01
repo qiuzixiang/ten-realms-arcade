@@ -1697,6 +1697,55 @@ dialog::backdrop {
     padding: 10px;
   }
 
+  .board-viewport {
+    max-height: none;
+    overflow: hidden;
+  }
+
+  .nonogram-board {
+    min-height: 0;
+    touch-action: none;
+  }
+
+  .grid-cell,
+  .column-clue,
+  .row-clue {
+    min-width: 0;
+    min-height: 0;
+  }
+
+  .clue-corner {
+    padding: 4px;
+  }
+
+  .clue-corner span {
+    display: none;
+  }
+
+  .column-clue {
+    padding: 3px 0;
+  }
+
+  .row-clue {
+    padding: 1px 3px;
+  }
+
+  .column-clue span,
+  .row-clue span {
+    min-width: 0;
+    min-height: 0;
+    padding: 0 1px;
+    font-size: clamp(8px, 2.7vw, 11px);
+  }
+
+  .grid-cell[data-state="filled"]::after {
+    inset: 2px;
+  }
+
+  .grid-cell[data-state="excluded"]::before {
+    font-size: clamp(13px, 5vw, 24px);
+  }
+
   .tool-shelf {
     grid-template-columns: 1fr;
   }
@@ -1858,19 +1907,33 @@ dialog::backdrop {
   }
 
   .victory-shell {
-    padding: 20px 14px;
+    padding: 14px;
   }
 
   .victory-shell h2 {
-    margin-inline: 35px;
+    margin: 3px 35px 10px;
+    font-size: 25px;
+  }
+
+  .victory-photo {
+    width: min(210px, 64vw);
+    padding: 7px;
+    border-width: 5px;
+  }
+
+  .victory-shell > p:nth-of-type(2) {
+    margin-top: 10px;
+    line-height: 1.5;
   }
 
   .victory-shell dl {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    margin-top: 10px;
   }
 
   .victory-actions {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
+    margin-top: 10px;
   }
 }
 

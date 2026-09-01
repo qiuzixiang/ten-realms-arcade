@@ -653,6 +653,15 @@ test("page wires shared progression and defers victory behind any open guide", a
   ok(/window\.__realmCompletionQueue \?\?= \[\]/.test(app));
 });
 
+test("phone layout does not force the document wider than the visual viewport", async () => {
+  const [css, html] = await Promise.all([
+    readFile(new URL("./styles.css", import.meta.url), "utf8"),
+    readFile(new URL("./index.html", import.meta.url), "utf8"),
+  ]);
+  ok(/@media \(max-width: 720px\)[\s\S]*?html,\s*body\s*{[\s\S]*?min-width:\s*0;/.test(css));
+  ok(html.includes('href="./styles.css?v=mobile-2"'));
+});
+
 let passed = 0;
 for (const { name, callback } of tests) {
   try {
