@@ -185,7 +185,7 @@ async function verifyHost(name, root) {
     if (nativeAssets) {
       const tutorialWiring = game.slug === "polar-railway"
         ? await fetchAsset(releaseUrl("ui-helpers.mjs", gameBase), { type: "javascript", minimumBytes: 1_000 })
-        : app;
+        : game.slug === "yokai-inn" ? html : app;
       for (const file of nativeAssets) {
         assert(tutorialWiring.text.includes(`./assets/${file}?tutorial=2`), `${name}/${game.slug}: ${file} cache revision is missing.`);
       }
