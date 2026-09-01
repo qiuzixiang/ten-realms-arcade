@@ -645,7 +645,7 @@ test("page wires shared progression and defers victory behind any open guide", a
   ]);
 
   ok(/\.\.\/\.\.\/shared\/realm-ui\.css/.test(html));
-  ok(/type="module" src="\.\.\/\.\.\/shared\/realm-ui\.mjs"/.test(html));
+  ok(/type="module" src="\.\.\/\.\.\/shared\/realm-ui\.mjs\?v=2"/.test(html));
   ok(/completionReported:\s*payload\.completionReported === true \|\| restoredGame\.status === STATUS\.WON/.test(app));
   ok(/par:\s*game\.level\.referenceTurns/.test(app), "the proven reference turn count is a reliable par");
   ok(/if \(!completionReported\)\s*{[\s\S]*?reportRealmCompletion\(\)/.test(app));

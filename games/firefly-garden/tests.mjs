@@ -347,12 +347,30 @@ test("page wires the shared guide and guards completion rewards across restore a
     readFile(new URL("./styles.css", import.meta.url), "utf8"),
   ]);
 
-  assert.match(html, /\.\.\/\.\.\/shared\/realm-ui\.css/);
-  assert.match(html, /type="module" src="\.\.\/\.\.\/shared\/realm-ui\.mjs"/);
+  assert.match(html, /\.\.\/\.\.\/shared\/realm-ui\.css\?v=2/);
+  assert.match(html, /type="module" src="\.\.\/\.\.\/shared\/realm-ui\.mjs\?v=2"/);
   assert.match(app, /completionReported:\s*completed\s*\|\|\s*saved\.active\.completionReported === true/);
   assert.match(app, /if \(!state\.completionReported\)\s*{[\s\S]*?reportRealmCompletion\(\)/);
   assert.match(app, /window\.__realmCompletionQueue \?\?= \[\]/);
   assert.match(styles, /--board-inset:\s*10px/);
+});
+
+test("firefly entities and illuminated range use redundant visual encodings", async () => {
+  const [html, app, styles] = await Promise.all([
+    readFile(new URL("./index.html", import.meta.url), "utf8"),
+    readFile(new URL("./app.mjs", import.meta.url), "utf8"),
+    readFile(new URL("./styles.css", import.meta.url), "utf8"),
+  ]);
+
+  assert.match(html, /legend-firefly[\s\S]*?萤火实体/);
+  assert.match(html, /legend-light[\s\S]*?照亮范围/);
+  assert.match(app, /class="cell-state"/);
+  assert.match(app, /element\.dataset\.visualState\s*=\s*hasConflict[\s\S]*?"萤火实体"[\s\S]*?"照亮范围"/);
+  assert.match(styles, /\.has-bulb \.cell-state::before\s*{[\s\S]*?content:\s*"萤"/);
+  assert.match(styles, /\.is-lit:not\(\.has-bulb\) \.cell-state::before\s*{[\s\S]*?content:\s*"光"/);
+  assert.match(styles, /\.board-cell\.has-bulb\s*{[\s\S]*?border:\s*2px double/);
+  assert.match(styles, /prefers-reduced-motion:\s*reduce[\s\S]*?\.has-bulb \.firefly\s*{[\s\S]*?animation:\s*none/);
+  assert.doesNotMatch(styles, /(?:html|body)\s*{[^}]*min-width:\s*320px/);
 });
 
 let passed = 0;

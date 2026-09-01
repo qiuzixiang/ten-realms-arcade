@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
 import {
   BOARD_SIZE,
   CANONICAL_ORIENTATION,
@@ -15,8 +16,12 @@ import {
   rewindMove,
   rollOrientation,
   serializeState,
+  sameState,
+  isImmediateSuccessor,
+  validateHistoryChain,
   validateState,
 } from "./logic.mjs";
+import { FACE_VISUALS, ROLL_VISUALS, rollTransform, rollVisual } from "./visuals.mjs";
 
 let assertions = 0;
 function test(name, run) {
@@ -62,6 +67,56 @@ test("四个方向保持精确的立方体朝向映射", () => {
   equal(rollOrientation(CANONICAL_ORIENTATION, "west"), {
     top: "seed", bottom: "eye", north: "tide", south: "wing", east: "echo", west: "sun",
   });
+});
+
+test("视觉翻滚轴与规则朝向一致，东西向不再被误画成原地转身", () => {
+  equal(ROLL_VISUALS.north, { arrow: "↑", axis: "X", quarterTurns: 1, label: "向上翻滚" });
+  equal(ROLL_VISUALS.south, { arrow: "↓", axis: "X", quarterTurns: -1, label: "向下翻滚" });
+  equal(ROLL_VISUALS.east, { arrow: "→", axis: "Z", quarterTurns: 1, label: "向右翻滚" });
+  equal(ROLL_VISUALS.west, { arrow: "←", axis: "Z", quarterTurns: -1, label: "向左翻滚" });
+  equal(rollTransform("base", "east", 0.5), "base rotateZ(45deg)");
+  equal(rollTransform("base", "north", 1), "base rotateX(90deg)");
+  equal(rollVisual("west").arrow, "←");
+  assert.throws(() => rollVisual("diagonal"), /Unknown direction/);
+  assert.throws(() => rollTransform("base", "east", 1.1), /between 0 and 1/);
+  assertions += 2;
+
+  const slotVectors = {
+    top: [0, -1, 0], bottom: [0, 1, 0], north: [0, 0, -1],
+    south: [0, 0, 1], east: [1, 0, 0], west: [-1, 0, 0],
+  };
+  const vectorSlots = new Map(Object.entries(slotVectors).map(([slot, vector]) => [vector.join(","), slot]));
+  const rotateVector = ([x, y, z], { axis, quarterTurns }) => {
+    if (axis === "X" && quarterTurns === 1) return [x, -z, y];
+    if (axis === "X" && quarterTurns === -1) return [x, z, -y];
+    if (axis === "Z" && quarterTurns === 1) return [-y, x, z];
+    return [y, -x, z];
+  };
+  for (const direction of Object.keys(DIRECTIONS)) {
+    const visualOrientation = {};
+    for (const [oldSlot, face] of Object.entries(CANONICAL_ORIENTATION)) {
+      const newSlot = vectorSlots.get(rotateVector(slotVectors[oldSlot], ROLL_VISUALS[direction]).join(","));
+      visualOrientation[newSlot] = face;
+    }
+    equal(visualOrientation, rollOrientation(CANONICAL_ORIENTATION, direction));
+  }
+});
+
+test("六个物理表面始终具有互不重复的刻度标识", () => {
+  equal(Object.keys(FACE_VISUALS).sort(), [...FACE_IDS].sort());
+  equal(new Set(Object.values(FACE_VISUALS).map(({ index }) => index)).size, FACE_IDS.length);
+  for (const visual of Object.values(FACE_VISUALS)) {
+    ok(visual.index.length > 0);
+    ok(visual.name.endsWith("面"));
+  }
+});
+
+test("版本化入口沿整条模块依赖链绕过旧缓存", () => {
+  const html = readFileSync(new URL("./index.html", import.meta.url), "utf8");
+  const game = readFileSync(new URL("./game.js", import.meta.url), "utf8");
+  ok(html.includes('./game.js?v=20260901a'));
+  ok(game.includes('from "./logic.mjs?v=20260901a"'));
+  ok(game.includes('from "./visuals.mjs?v=20260901a"'));
 });
 
 test("相反滚动复原朝向；同向四滚也复原", () => {
@@ -228,6 +283,33 @@ test("存档仅接受结构与六枚唯一符印都有效的状态", () => {
   duplicate.board[second] = duplicate.board[occupied];
   equal(validateState(duplicate), false);
   equal(deserializeState(JSON.stringify(duplicate)), null);
+});
+
+test("撤销历史必须由逐步相邻且规则可重放的状态组成", () => {
+  const puzzle = createPuzzle(20260901);
+  const history = [];
+  let current = puzzle.initial;
+  for (const direction of puzzle.solution.slice(0, 6)) {
+    history.push(current);
+    current = applyMove(current, direction).state;
+  }
+
+  equal(validateHistoryChain(puzzle.initial, current, history), true);
+  equal(sameState(history[0], puzzle.initial), true);
+  equal(isImmediateSuccessor(history.at(-1), current), true);
+
+  const missingStep = history.toSpliced(2, 1);
+  equal(validateHistoryChain(puzzle.initial, current, missingStep), false, "缺步历史不能恢复");
+
+  const unrelated = structuredClone(history);
+  unrelated[3] = createPuzzle(99).initial;
+  unrelated[3].moves = history[3].moves;
+  equal(validateHistoryChain(puzzle.initial, current, unrelated), false, "结构有效但无法重放的历史不能恢复");
+
+  const forgedCurrent = structuredClone(current);
+  forgedCurrent.moves += 1;
+  equal(validateHistoryChain(puzzle.initial, forgedCurrent, history), false, "伪造步数不能绕过历史链");
+  equal(validateHistoryChain(puzzle.initial, puzzle.initial, []), true);
 });
 
 process.stdout.write(`Memory Ark logic: ${assertions} assertions passed.\n`);

@@ -8,8 +8,8 @@
     <title>星滞回收局 · 十境谜游馆</title>
     <link rel="icon" href="../../assets/favicon.svg">
     <link rel="preload" href="./assets/salvage-field.jpg" as="image" type="image/jpeg">
-    <link rel="stylesheet" href="./styles.css">
-    <link rel="stylesheet" href="../../shared/realm-ui.css">
+    <link rel="stylesheet" href="./styles.css?v=20260901b">
+    <link rel="stylesheet" href="../../shared/realm-ui.css?v=2">
   </head>
   <body>
     <a class="skip-link" href="#game-board">跳到操作区</a>
@@ -140,15 +140,15 @@
               <span>点击棋盘方向、轻扫，或使用键盘</span>
             </div>
             <div id="direction-pad" class="direction-pad" role="group" aria-label="八向推进控制">
-              <button type="button" data-dir="NW" aria-label="左上推进"><span>↖</span></button>
               <button type="button" data-dir="N" aria-label="向上推进"><span>↑</span></button>
               <button type="button" data-dir="NE" aria-label="右上推进"><span>↗</span></button>
-              <button type="button" data-dir="W" aria-label="向左推进"><span>←</span></button>
-              <span class="direction-pad__core" aria-hidden="true"><i></i></span>
               <button type="button" data-dir="E" aria-label="向右推进"><span>→</span></button>
+              <button type="button" data-dir="NW" aria-label="左上推进"><span>↖</span></button>
+              <span class="direction-pad__core" aria-hidden="true"><i></i></span>
+              <button type="button" data-dir="SE" aria-label="右下推进"><span>↘</span></button>
+              <button type="button" data-dir="W" aria-label="向左推进"><span>←</span></button>
               <button type="button" data-dir="SW" aria-label="左下推进"><span>↙</span></button>
               <button type="button" data-dir="S" aria-label="向下推进"><span>↓</span></button>
-              <button type="button" data-dir="SE" aria-label="右下推进"><span>↘</span></button>
             </div>
           </div>
         </div>
@@ -252,7 +252,7 @@
       </form>
     </dialog>
 
-    <script type="module" src="../../shared/realm-ui.mjs"></script>
+    <script type="module" src="../../shared/realm-ui.mjs?v=2"></script>
     <script type="module" src="./app.js"></script>
   </body>
 </html>

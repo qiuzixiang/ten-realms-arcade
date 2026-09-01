@@ -773,7 +773,9 @@
 
 @media (max-width: 420px) {
   .realm-guide-dialog {
-    width: calc(100vw - 12px);
+    /* 100vw includes the classic scrollbar gutter in some browsers. Using the
+       dialog containing block keeps equal 6px insets instead of shifting left. */
+    width: calc(100% - 12px);
     max-height: calc(100dvh - 12px);
     border-radius: 20px;
   }

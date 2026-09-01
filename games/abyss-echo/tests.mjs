@@ -207,7 +207,7 @@ test("page wires the shared guide and reports each generated field only once", a
   ]);
 
   assert.match(html, /\.\.\/\.\.\/shared\/realm-ui\.css/);
-  assert.match(html, /type="module" src="\.\.\/\.\.\/shared\/realm-ui\.mjs"/);
+  assert.match(html, /type="module" src="\.\.\/\.\.\/shared\/realm-ui\.mjs\?v=2"/);
   assert.match(app, /completionReported = saved\.completionReported === true \|\| state\.phase === "won"/);
   assert.match(app, /function completionLevelId\(\)[\s\S]*?state\.hidden/);
   assert.match(app, /if \(!completionReported\)\s*{[\s\S]*?reportRealmCompletion\(\)/);

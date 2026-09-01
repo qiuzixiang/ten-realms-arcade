@@ -47,6 +47,7 @@ let verifiedUnique = 0;
 
 const INDEX_SOURCE = readFileSync(new URL("./index.html", import.meta.url), "utf8");
 const APP_SOURCE = readFileSync(new URL("./app.mjs", import.meta.url), "utf8");
+const STYLE_SOURCE = readFileSync(new URL("./styles.css", import.meta.url), "utf8");
 
 function test(name, callback) {
   try {
@@ -133,6 +134,13 @@ test("棋盘使用单一 group 语义并隐藏纯视觉与指针命中层", () =
     "灵珠状态应只作为引用描述，不重复占据浏览节点",
   );
   strictEqual(APP_SOURCE.includes('role="gridcell"'), false, "视觉灵珠不得残留孤立 gridcell 语义");
+  ok(INDEX_SOURCE.includes('./styles.css?v=20260901a'), "手机修复样式必须绕过旧缓存");
+  ok(INDEX_SOURCE.includes('../../shared/realm-ui.css?v=2'), "教程弹窗样式必须使用当前版本");
+  strictEqual(
+    /(?:html|body)\s*{[^}]*min-width:\s*320px/.test(STYLE_SOURCE),
+    false,
+    "320px 设备扣除滚动条后不得产生根级横向溢出",
+  );
   strictEqual(APP_SOURCE.includes('data-edge="${edge}" aria-label='), false, "透明边命中线不得产生读屏名称");
   ok(
     APP_SOURCE.includes('<g aria-hidden="true">${hitEdges.join("")}${touchNodes.join("")}</g>'),

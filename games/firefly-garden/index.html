@@ -12,10 +12,10 @@
     <meta property="og:description" content="让每处花圃见光，却别让萤火彼此照见。" />
     <title>夜庭萤火 · 十境谜游馆</title>
     <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="./styles.css" />
-    <link rel="stylesheet" href="../../shared/realm-ui.css" />
-    <script type="module" src="../../shared/realm-ui.mjs"></script>
-    <script type="module" src="./app.mjs"></script>
+    <link rel="stylesheet" href="./styles.css?v=20260901a" />
+    <link rel="stylesheet" href="../../shared/realm-ui.css?v=2" />
+    <script type="module" src="../../shared/realm-ui.mjs?v=2"></script>
+    <script type="module" src="./app.mjs?v=20260901a"></script>
   </head>
   <body>
     <a class="skip-link" href="#garden-board">跳到花庭棋盘</a>
@@ -75,7 +75,7 @@
             <div class="corner-leaf corner-leaf-a" aria-hidden="true"></div>
             <div class="corner-leaf corner-leaf-b" aria-hidden="true"></div>
             <p class="visually-hidden" id="board-caption">
-              使用方向键在花圃间移动，回车或空格安放萤火，X 添加或清除“这里不能放”标记。触控设备上，大花庭可横向滑动查看。
+              使用方向键在花圃间移动，回车或空格安放萤火，X 添加或清除“这里不能放”标记。琥珀色虫形与“萤”角标是萤火实体；蓝色光路与“光”角标是照亮范围。触控设备上，大花庭可横向滑动查看。
             </p>
             <div
               class="garden-board"
@@ -155,6 +155,8 @@
 
           <div class="legend" aria-label="棋盘图例">
             <span><i class="legend-plot" aria-hidden="true"></i>沉睡花圃</span>
+            <span><i class="legend-firefly" aria-hidden="true"><b></b></i>萤火实体</span>
+            <span><i class="legend-light" aria-hidden="true">光</i>照亮范围</span>
             <span><i class="legend-ruin" aria-hidden="true"></i>遮光遗迹</span>
             <span><i class="legend-rune" aria-hidden="true">2</i>符文石</span>
           </div>
@@ -206,7 +208,7 @@
         <div class="control-rules">
           <h3>怎么落子</h3>
           <p>
-            点击、轻触或按 Enter/Space，在花圃的空格与萤火间切换。萤火可以故意放在已被照亮的花圃里，若因此互相照见，会出现可逆的红色冲光提示。
+            点击、轻触或按 Enter/Space，在花圃的空格与萤火间切换。萤火实体会显示琥珀色分节虫身与“萤”角标；它照亮的花圃则显示蓝色光路、开放花朵与“光”角标。萤火可以故意放在已被照亮的花圃里，若因此互相照见，会出现可逆的冲光提示。
           </p>
           <p>
             右键、X 键或选择“这里不能放”工具可添加禁放标记。标记格不能放萤火；已点亮格不能新加标记，但已有标记始终可以清除。标记只作笔记，不挡光、也不参与胜负判定。

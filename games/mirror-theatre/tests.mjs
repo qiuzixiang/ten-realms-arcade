@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { readFile } from "node:fs/promises";
 
 import {
   ACTOR,
@@ -532,6 +533,28 @@ test("难度按钮重建后仅为键盘或辅助技术激活恢复焦点", () =>
   equal(shouldRestoreDifficultyFocus(), false, "missing event context must fail closed");
 });
 
+test("三类演员在演员表、工具栏与谢幕画面统一使用角色肖像结构", async () => {
+  const html = await readFile(new URL("./index.html", import.meta.url), "utf8");
+  const css = await readFile(new URL("./styles.css", import.meta.url), "utf8");
+
+  for (const actor of ["human", "hologram", "robot"]) {
+    const portrait = new RegExp(
+      `<span class="actor-mark actor-mark--${actor}"(?: aria-hidden="true")?><i><\\/i><\\/span>`,
+      "g",
+    );
+    ok(
+      (html.match(portrait) ?? []).length >= 3,
+      `${actor} portrait should be reused across the theatre UI`,
+    );
+    ok(css.includes(`.actor-mark--${actor}::before`), `${actor} should define a head layer`);
+    ok(css.includes(`.actor-mark--${actor} i`), `${actor} should define a body layer`);
+    ok(css.includes(`.actor-mark--${actor}::after`), `${actor} should define a signature detail layer`);
+  }
+
+  ok(css.includes("repeating-linear-gradient"), "hologram portrait should retain scan-line texture");
+  ok(css.includes("radial-gradient(circle at 6px 6px"), "robot portrait should retain two illuminated eyes");
+});
+
 test("六张内置题的完整答案同时满足全局数与全部边缘线索，且各自唯一解", () => {
   equal(LEVELS.length, 6);
   equal(LEVELS.map((level) => level.id), [
@@ -580,7 +603,7 @@ test("六张内置题的完整答案同时满足全局数与全部边缘线索�
 let passed = 0;
 for (const { name, callback } of tests) {
   try {
-    callback();
+    await callback();
     passed += 1;
     process.stdout.write(`✓ 镜影大剧院 · ${name}\n`);
   } catch (error) {

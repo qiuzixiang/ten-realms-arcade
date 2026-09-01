@@ -11,6 +11,19 @@ const EXPECTED_SLUGS = [
   "dream-hotel",
 ];
 
+const V1_GAME_SLUGS = [
+  "star-drift",
+  "memory-ark",
+  "red-thread-office",
+  "firefly-garden",
+  "abyss-echo",
+  "storm-lanterns",
+  "night-market-spirits",
+  "sky-bridges",
+  "spirit-dragon",
+  "mirror-theatre",
+];
+
 const NATIVE_TUTORIAL_ASSETS = new Map([
   ["polar-railway", ["tutorial-elements.svg", "tutorial-operation.svg", "tutorial-goal.svg"]],
   ["season-dyehouse", ["tutorial-elements.svg", "tutorial-action.svg", "tutorial-goal.svg"]],
@@ -61,6 +74,66 @@ async function verifyHost(name, root) {
   const rootPage = await fetchAsset(releaseUrl("./", root), { type: "text/html", minimumBytes: 1_000 });
   assert(rootPage.text.includes("十境谜游馆"), `${name}: 1.0 root shell is missing.`);
 
+  const [
+    tutorialData,
+    realmCss,
+    realmUi,
+    starRedTutorial,
+    abyssStormTutorial,
+    nightSkyTutorial,
+  ] = await Promise.all([
+    fetchAsset(releaseUrl("shared/tutorial-data.mjs", root), { type: "javascript", minimumBytes: 5_000 }),
+    fetchAsset(releaseUrl("shared/realm-ui.css", root), { type: "css", minimumBytes: 2_000 }),
+    fetchAsset(releaseUrl("shared/realm-ui.mjs", root), { type: "javascript", minimumBytes: 5_000 }),
+    fetchAsset(releaseUrl("shared/tutorial-art/star-red.mjs", root), { type: "javascript", minimumBytes: 5_000 }),
+    fetchAsset(releaseUrl("shared/tutorial-art/abyss-storm.mjs", root), { type: "javascript", minimumBytes: 5_000 }),
+    fetchAsset(releaseUrl("shared/tutorial-art/night-sky.mjs", root), { type: "javascript", minimumBytes: 5_000 }),
+  ]);
+  assert(realmCss.text.includes("width: calc(100% - 12px)"), `${name}: narrow tutorial alignment fix is missing.`);
+  assert(realmUi.text.includes("TUTORIAL_VERSION = 2"), `${name}: tutorial version was not advanced.`);
+  assert(realmUi.text.includes('./realm-ui.css?v=2'), `${name}: tutorial CSS cache bust is missing.`);
+  assert(realmUi.text.includes('./tutorial-data.mjs?v=2'), `${name}: tutorial data cache bust is missing.`);
+  assert(starRedTutorial.text.includes('data-direction="SE"'), `${name}: legal star-drift diagonal tutorial is missing.`);
+  assert(starRedTutorial.text.includes('data-seal-count="7"'), `${name}: seven-seal red-thread goal is missing.`);
+  assert(abyssStormTutorial.text.includes('data-response-count="24"'), `${name}: full abyss response signature is missing.`);
+  assert(abyssStormTutorial.text.includes('data-powered-count="25"'), `${name}: full storm network goal is missing.`);
+  assert(nightSkyTutorial.text.includes('data-action-sequence="remove,drop,shift"'), `${name}: staged night-market collapse is missing.`);
+  assert(nightSkyTutorial.text.includes('data-primary-cycle="0,1,2,0"'), `${name}: sky-bridge primary cycle is missing.`);
+  assert(nightSkyTutorial.text.includes('data-mark-in-cycle="false"'), `${name}: sky-bridge mark separation is missing.`);
+  assert(tutorialData.text.includes('id === "dew-court"'), `${name}: real firefly tutorial level is missing.`);
+  assert(tutorialData.text.includes('data-level="${FIREFLY_GOAL_LEVEL.id}"'), `${name}: real firefly completion renderer is missing.`);
+  assert(tutorialData.text.includes('data-level="${MIRROR_GOAL_LEVEL.id}"'), `${name}: real mirror completion renderer is missing.`);
+  assert(tutorialData.text.includes('data-level="cloud-gate"'), `${name}: real spirit-dragon completion tutorial is missing.`);
+
+  const v1Pages = await Promise.all(V1_GAME_SLUGS.map(async (slug) => {
+    const html = await fetchAsset(releaseUrl(`games/${slug}/`, root), { type: "text/html", minimumBytes: 2_000 });
+    assert(html.text.includes('../../shared/realm-ui.css?v=2'), `${name}/${slug}: current shared CSS is not wired.`);
+    assert(html.text.includes('../../shared/realm-ui.mjs?v=2'), `${name}/${slug}: current shared tutorial module is not wired.`);
+    return html;
+  }));
+  assert(v1Pages.length === 10, `${name}: not all 1.0 game pages were verified.`);
+
+  const [starStyle, memoryGame, memoryLogic, memoryVisuals, fireflyStyle, spiritStyle, mirrorStyle] = await Promise.all([
+    fetchAsset(releaseUrl("games/star-drift/styles.css", root), { type: "css", minimumBytes: 5_000 }),
+    fetchAsset(releaseUrl("games/memory-ark/game.js", root), { type: "javascript", minimumBytes: 5_000 }),
+    fetchAsset(releaseUrl("games/memory-ark/logic.mjs", root), { type: "javascript", minimumBytes: 5_000 }),
+    fetchAsset(releaseUrl("games/memory-ark/visuals.mjs", root), { type: "javascript", minimumBytes: 1_000 }),
+    fetchAsset(releaseUrl("games/firefly-garden/styles.css", root), { type: "css", minimumBytes: 5_000 }),
+    fetchAsset(releaseUrl("games/spirit-dragon/styles.css", root), { type: "css", minimumBytes: 5_000 }),
+    fetchAsset(releaseUrl("games/mirror-theatre/styles.css", root), { type: "css", minimumBytes: 5_000 }),
+  ]);
+  assert(starStyle.text.includes('.direction-pad [data-dir="NW"] { grid-column: 1; grid-row: 1; }'), `${name}: mobile star-drift compass fix is missing.`);
+  assert(memoryGame.text.includes("validateHistoryChain"), `${name}: memory-ark history guard is missing.`);
+  assert(memoryGame.text.includes("prepareRollCue"), `${name}: memory-ark roll cue is missing.`);
+  assert(memoryGame.text.includes('./logic.mjs?v=20260901a'), `${name}: memory-ark logic cache bust is missing.`);
+  assert(memoryGame.text.includes('./visuals.mjs?v=20260901a'), `${name}: memory-ark visual cache bust is missing.`);
+  assert(memoryLogic.text.includes("validateHistoryChain"), `${name}: memory-ark history validator module is missing.`);
+  assert(memoryVisuals.text.includes("ROLL_VISUALS"), `${name}: memory-ark roll visual module is missing.`);
+  assert(fireflyStyle.text.includes('content: "萤"'), `${name}: firefly entity label is missing.`);
+  assert(fireflyStyle.text.includes("html {\n  min-width: 0;"), `${name}: firefly phone overflow fix is missing.`);
+  assert(spiritStyle.text.includes("html {\n  min-width: 0;"), `${name}: spirit-dragon phone overflow fix is missing.`);
+  assert(mirrorStyle.text.includes(".actor-mark--robot::after"), `${name}: mirror actor portraits are missing.`);
+
   const guide = await fetchAsset(releaseUrl("./", v2), { type: "text/html", minimumBytes: 1_000 });
   assert(guide.text.includes("十境谜游馆 2.0"), `${name}: 2.0 guide shell is missing.`);
 
@@ -107,7 +180,7 @@ async function verifyHost(name, root) {
     }
   }));
 
-  return `${name}: guide + 10 games + 10 previews + 30 tutorial cards verified`;
+  return `${name}: v1 fixes + v2 guide + 20 games + 10 previews + tutorial contracts verified`;
 }
 
 async function eventually(name, task) {

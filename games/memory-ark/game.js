@@ -9,8 +9,10 @@ import {
   countGroundTokens,
   createPuzzle,
   isWon,
+  validateHistoryChain,
   validateState,
-} from "./logic.mjs";
+} from "./logic.mjs?v=20260901a";
+import { FACE_VISUALS, rollTransform, rollVisual } from "./visuals.mjs?v=20260901a";
 
 const SAVE_KEY = "five-realms.memory-ark.session.v1";
 const BEST_KEY = "five-realms.memory-ark.best.v1";
@@ -31,6 +33,7 @@ const dom = {
   boardWrap: document.querySelector("#boardWrap"),
   coreAnchor: document.querySelector("#coreAnchor"),
   cubeVisual: document.querySelector("#cubeVisual"),
+  rollLanding: document.querySelector("#rollLanding"),
   moveCount: document.querySelector("#moveCount"),
   referenceCount: document.querySelector("#referenceCount"),
   bestCount: document.querySelector("#bestCount"),
@@ -63,6 +66,7 @@ let busy = false;
 let toastTimer = 0;
 let saveTimer = 0;
 let endingTimer = 0;
+let rollCueTimer = 0;
 let endingReturnFocus = null;
 let suppressClick = false;
 let pointerStart = null;
@@ -128,9 +132,8 @@ function restoreSession() {
     if (!Number.isInteger(parsed.referenceMoves) || parsed.referenceMoves < 1) return null;
     if (!Number.isInteger(parsed.seed)) return null;
 
-    const history = Array.isArray(parsed.history)
-      ? parsed.history.filter(validateState).slice(-400).map(cloneState)
-      : [];
+    if (!validateHistoryChain(parsed.initial, parsed.current, parsed.history, 400)) return null;
+    const history = parsed.history.map(cloneState);
 
     return {
       version: 1,
@@ -279,7 +282,7 @@ function buildBoard() {
     }
   }
   dom.board.append(fragment);
-  dom.board.append(dom.coreAnchor);
+  dom.board.append(dom.coreAnchor, dom.rollLanding);
 }
 
 function tokenName(token) {
@@ -332,10 +335,13 @@ function renderCube() {
   for (const element of dom.cubeFaces) {
     const slot = element.dataset.slot;
     const physicalFace = session.current.orientation[slot];
+    const faceVisual = FACE_VISUALS[physicalFace];
     const token = session.current.faceTokens[physicalFace];
     const symbol = element.querySelector("span");
     element.classList.toggle("has-token", Boolean(token));
     element.dataset.physicalFace = physicalFace;
+    element.dataset.faceIndex = faceVisual.index;
+    element.setAttribute("aria-label", `${faceVisual.name}${token ? `，${tokenName(token)}` : "，空白"}`);
     if (token) {
       element.dataset.token = token;
       symbol.textContent = TOKEN_META[token].glyph;
@@ -428,15 +434,51 @@ function exchangeMessage(exchange) {
   return "空白底面掠过空格，符印状态保持不变。";
 }
 
-function rollTransform(direction, fraction = 1) {
-  const degrees = 90 * fraction;
-  if (direction === "east") return `${BASE_CUBE_TRANSFORM} rotateY(${degrees}deg)`;
-  if (direction === "west") return `${BASE_CUBE_TRANSFORM} rotateY(${-degrees}deg)`;
-  if (direction === "north") return `${BASE_CUBE_TRANSFORM} rotateX(${-degrees}deg)`;
-  return `${BASE_CUBE_TRANSFORM} rotateX(${degrees}deg)`;
+function prepareRollCue(direction) {
+  window.clearTimeout(rollCueTimer);
+  const delta = DIRECTIONS[direction];
+  const visual = rollVisual(direction);
+  const destination = {
+    x: session.current.position.x + delta.dx,
+    y: session.current.position.y + delta.dy,
+  };
+  dom.rollLanding.style.left = `${destination.x * 25}%`;
+  dom.rollLanding.style.top = `${destination.y * 25}%`;
+  dom.rollLanding.dataset.arrow = visual.arrow;
+  dom.rollLanding.dataset.label = visual.label;
+  dom.rollLanding.classList.remove("settled");
+  dom.rollLanding.classList.add("visible");
+  dom.board.dataset.rollLabel = `${visual.arrow} ${visual.label}`;
+  dom.board.classList.add("show-roll-label");
+  dom.coreAnchor.dataset.rollDirection = direction;
+  dom.coreAnchor.dataset.rollArrow = visual.arrow;
+  dom.coreAnchor.classList.add("is-rolling");
+}
+
+function settleRollCue() {
+  dom.coreAnchor.classList.remove("is-rolling");
+  dom.rollLanding.classList.add("settled");
+  rollCueTimer = window.setTimeout(() => {
+    dom.rollLanding.classList.remove("visible", "settled");
+    dom.board.classList.remove("show-roll-label");
+    delete dom.board.dataset.rollLabel;
+    delete dom.coreAnchor.dataset.rollDirection;
+    delete dom.coreAnchor.dataset.rollArrow;
+  }, prefersReducedMotion.matches ? 180 : 360);
+}
+
+function clearRollCue() {
+  window.clearTimeout(rollCueTimer);
+  dom.coreAnchor.classList.remove("is-rolling");
+  dom.rollLanding.classList.remove("visible", "settled");
+  dom.board.classList.remove("show-roll-label");
+  delete dom.board.dataset.rollLabel;
+  delete dom.coreAnchor.dataset.rollDirection;
+  delete dom.coreAnchor.dataset.rollArrow;
 }
 
 async function animateRoll(direction, exchange) {
+  prepareRollCue(direction);
   if (prefersReducedMotion.matches || !dom.coreAnchor.animate) {
     dom.boardWrap.classList.add("exchanged");
     window.setTimeout(() => dom.boardWrap.classList.remove("exchanged"), 20);
@@ -447,23 +489,27 @@ async function animateRoll(direction, exchange) {
   const boardRect = dom.board.getBoundingClientRect();
   const x = (boardRect.width / BOARD_SIZE) * delta.dx;
   const y = (boardRect.height / BOARD_SIZE) * delta.dy;
-  const duration = 440;
+  const duration = 540;
   const anchorAnimation = dom.coreAnchor.animate([
     { transform: "translate3d(0, 0, 0)", offset: 0 },
-    { transform: `translate3d(${x * 0.48}px, ${y * 0.48 - 8}px, 0) scale(1.025)`, offset: 0.48 },
+    { transform: "translate3d(0, 0, 0)", offset: 0.12 },
+    { transform: `translate3d(${x * 0.52}px, ${y * 0.52 - 10}px, 0) scale(1.045)`, offset: 0.52 },
+    { transform: `translate3d(${x}px, ${y}px, 0)`, offset: 0.88 },
     { transform: `translate3d(${x}px, ${y}px, 0)`, offset: 1 },
   ], { duration, easing: "cubic-bezier(.34,.04,.18,1)" });
 
   const cubeAnimation = dom.cubeVisual.animate([
     { transform: BASE_CUBE_TRANSFORM, offset: 0 },
-    { transform: rollTransform(direction, 0.48), offset: 0.48 },
-    { transform: rollTransform(direction, 1), offset: 1 },
+    { transform: BASE_CUBE_TRANSFORM, offset: 0.12 },
+    { transform: rollTransform(BASE_CUBE_TRANSFORM, direction, 0.5), offset: 0.52 },
+    { transform: rollTransform(BASE_CUBE_TRANSFORM, direction, 1), offset: 0.88 },
+    { transform: rollTransform(BASE_CUBE_TRANSFORM, direction, 1), offset: 1 },
   ], { duration, easing: "cubic-bezier(.34,.04,.18,1)" });
 
   const shadow = dom.coreAnchor.querySelector(".core-shadow");
   const shadowAnimation = shadow.animate([
     { opacity: 0.85, transform: "rotate(-5deg) scale(1)" },
-    { opacity: 0.35, transform: "rotate(-5deg) scale(.68)" },
+    { opacity: 0.28, transform: "rotate(-5deg) scale(.62)" },
     { opacity: 0.85, transform: "rotate(-5deg) scale(1)" },
   ], { duration, easing: "ease-in-out" });
 
@@ -608,9 +654,11 @@ async function requestMove(direction) {
     session.current = result.state;
     session.completed = false;
     render();
+    settleRollCue();
     saveSession();
     if (isWon(session.current)) celebrate();
   } finally {
+    if (!dom.rollLanding.classList.contains("settled")) clearRollCue();
     setBusy(false);
   }
 }
@@ -641,14 +689,17 @@ async function undo() {
     completionReported = false;
     setStatus("已撤回上一段航迹，位置、朝向与符印一并复原。 ");
     render();
+    settleRollCue();
     saveSession();
   } finally {
+    if (!dom.rollLanding.classList.contains("settled")) clearRollCue();
     setBusy(false);
   }
 }
 
 function restart() {
   if (busy) return;
+  clearRollCue();
   hideEnding();
   audio.ensure();
   audio.undo();
@@ -667,6 +718,7 @@ function restart() {
 
 function startNewGame() {
   if (busy) return;
+  clearRollCue();
   hideEnding({ restoreFocus: false });
   audio.ensure();
   audio.ui();

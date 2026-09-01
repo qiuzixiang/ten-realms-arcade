@@ -8,18 +8,23 @@
       * { box-sizing: border-box; }
       body { margin: 0; padding: 24px; color: #eef6ff; background: #050912; font-family: system-ui, sans-serif; }
       h1 { margin: 0 0 24px; }
-      main { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 22px; }
+      main { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 22px; }
       article { padding: 12px; border: 1px solid #ffffff20; border-radius: 16px; background: #0b1220; }
       h2 { margin: 0 0 10px; font-size: 16px; }
       .art { overflow: hidden; aspect-ratio: 320 / 184; border: 1px solid #ffffff1f; border-radius: 14px; background: #070d18; }
       .realm-art { display: block; width: 100%; height: auto; }
+      @media (max-width: 420px) {
+        body { padding: 12px; }
+        h1 { margin-bottom: 16px; font-size: 24px; }
+        main { gap: 12px; }
+      }
     </style>
   </head>
   <body>
     <h1>十境图片教程 · 30 卡视觉审计</h1>
     <main></main>
     <script type="module">
-      import { REALM_TUTORIALS, tutorialArt } from "../shared/tutorial-data.mjs";
+      import { REALM_TUTORIALS, tutorialArt } from "../shared/tutorial-data.mjs?v=2";
 
       const main = document.querySelector("main");
       for (const [realmId, tutorial] of Object.entries(REALM_TUTORIALS)) {

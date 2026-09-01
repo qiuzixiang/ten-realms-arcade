@@ -511,13 +511,16 @@ main {
 .actor-mark {
   position: relative;
   display: inline-block;
-  width: 30px;
-  height: 36px;
-  flex: 0 0 30px;
+  width: 32px;
+  height: 38px;
+  flex: 0 0 32px;
   color: currentColor;
+  isolation: isolate;
+  filter: drop-shadow(0 3px 5px rgba(0, 0, 0, 0.42));
 }
 
 .actor-mark::before,
+.actor-mark::after,
 .actor-mark i {
   position: absolute;
   display: block;
@@ -529,24 +532,43 @@ main {
 }
 
 .actor-mark--human::before {
-  top: 1px;
-  left: 10px;
-  width: 11px;
-  height: 11px;
-  border: 2px solid currentColor;
-  border-radius: 50%;
-  background: currentColor;
-  box-shadow: inset 0 0 0 2px #2a1217;
+  z-index: 2;
+  top: 2px;
+  left: 9px;
+  width: 14px;
+  height: 15px;
+  border: 1.5px solid #ffd8ce;
+  border-radius: 52% 48% 45% 45%;
+  background:
+    radial-gradient(circle at 35% 56%, #6f1932 0 1px, transparent 1.5px),
+    radial-gradient(circle at 65% 56%, #6f1932 0 1px, transparent 1.5px),
+    linear-gradient(145deg, #ffe0d7, #ff9b85 72%);
+  box-shadow: -3px -2px 0 -1px #6f1932, 3px -2px 0 -1px #6f1932;
 }
 
 .actor-mark--human i {
   bottom: 1px;
-  left: 5px;
-  width: 21px;
-  height: 22px;
-  border: 2px solid currentColor;
-  background: repeating-linear-gradient(90deg, currentColor 0 2px, transparent 2px 6px);
-  clip-path: polygon(29% 0, 71% 0, 100% 100%, 0 100%);
+  left: 2px;
+  width: 28px;
+  height: 23px;
+  border: 1.5px solid #ffd0c4;
+  border-radius: 45% 45% 4px 4px;
+  background:
+    linear-gradient(55deg, transparent 44%, #ffd4c8 45% 50%, transparent 51%) 3px 1px / 12px 17px no-repeat,
+    linear-gradient(-55deg, transparent 44%, #ffd4c8 45% 50%, transparent 51%) 13px 1px / 12px 17px no-repeat,
+    linear-gradient(135deg, #9b2447, #ff8b72 58%, #b82f4d);
+  clip-path: polygon(24% 0, 76% 0, 100% 100%, 0 100%);
+}
+
+.actor-mark--human::after {
+  z-index: 3;
+  top: 24px;
+  left: 14px;
+  width: 5px;
+  height: 5px;
+  background: var(--gold);
+  box-shadow: 0 0 5px rgba(239, 207, 129, 0.8);
+  transform: rotate(45deg);
 }
 
 .actor-mark--hologram {
@@ -554,23 +576,44 @@ main {
 }
 
 .actor-mark--hologram::before {
-  top: 3px;
-  left: 9px;
-  width: 12px;
-  height: 12px;
-  border: 2px solid currentColor;
-  transform: rotate(45deg);
-  background: rgba(103, 228, 235, 0.08);
+  z-index: 2;
+  top: 2px;
+  left: 8px;
+  width: 16px;
+  height: 16px;
+  border: 1.5px solid #b9fbff;
+  border-radius: 52% 48% 46% 54%;
+  background:
+    repeating-linear-gradient(0deg, #67e4eb52 0 1px, transparent 1px 4px),
+    radial-gradient(circle at 38% 55%, #d9ffff 0 1px, transparent 1.5px),
+    linear-gradient(145deg, #67e4eb55, #14798444);
+  box-shadow: 0 0 8px rgba(103, 228, 235, 0.48);
 }
 
 .actor-mark--hologram i {
   bottom: 1px;
-  left: 4px;
+  left: 2px;
+  width: 28px;
+  height: 23px;
+  border: 1.5px solid currentColor;
+  border-radius: 50% 50% 4px 4px;
+  background:
+    repeating-linear-gradient(0deg, rgba(185, 251, 255, 0.55) 0 1px, transparent 1px 4px),
+    linear-gradient(180deg, rgba(103, 228, 235, 0.32), rgba(20, 121, 132, 0.08));
+  clip-path: polygon(24% 0, 76% 0, 100% 100%, 0 100%);
+  box-shadow: inset 0 0 10px rgba(103, 228, 235, 0.28);
+}
+
+.actor-mark--hologram::after {
+  z-index: 3;
+  bottom: -1px;
+  left: 5px;
   width: 22px;
-  height: 20px;
-  border: 2px solid currentColor;
-  background: repeating-linear-gradient(0deg, rgba(103, 228, 235, 0.48) 0 1px, transparent 1px 4px);
-  clip-path: polygon(50% 0, 100% 100%, 0 100%);
+  height: 5px;
+  border: 1px solid #b9fbff;
+  border-radius: 50%;
+  background: rgba(103, 228, 235, 0.62);
+  box-shadow: 0 0 8px rgba(103, 228, 235, 0.72);
 }
 
 .actor-mark--robot {
@@ -578,23 +621,42 @@ main {
 }
 
 .actor-mark--robot::before {
-  top: 1px;
-  left: 8px;
-  width: 15px;
-  height: 13px;
-  border: 2px solid currentColor;
-  background: radial-gradient(circle at 4px 5px, currentColor 0 1px, transparent 2px), radial-gradient(circle at 10px 5px, currentColor 0 1px, transparent 2px);
+  z-index: 2;
+  top: 3px;
+  left: 6px;
+  width: 20px;
+  height: 15px;
+  border: 1.5px solid #ffe5a3;
+  border-radius: 5px;
+  background:
+    radial-gradient(circle at 6px 6px, #67e4eb 0 2px, transparent 2.5px),
+    radial-gradient(circle at 14px 6px, #67e4eb 0 2px, transparent 2.5px),
+    linear-gradient(145deg, #8e7441, #3d331f);
+  box-shadow: inset 0 -4px rgba(16, 13, 17, 0.26);
 }
 
 .actor-mark--robot i {
   bottom: 1px;
-  left: 5px;
-  width: 21px;
-  height: 19px;
-  border: 2px solid currentColor;
+  left: 3px;
+  width: 26px;
+  height: 21px;
+  border: 1.5px solid #efcf81;
+  border-radius: 4px;
   background:
-    linear-gradient(90deg, transparent 45%, currentColor 46% 54%, transparent 55%),
-    linear-gradient(0deg, transparent 45%, currentColor 46% 54%, transparent 55%);
+    radial-gradient(circle at 9px 10px, #ff8b72 0 1.5px, transparent 2px),
+    radial-gradient(circle at 16px 10px, #8fe09a 0 1.5px, transparent 2px),
+    linear-gradient(90deg, transparent 46%, #efcf8166 47% 53%, transparent 54%),
+    linear-gradient(145deg, #6c592f, #2c2519);
+}
+
+.actor-mark--robot::after {
+  z-index: 1;
+  top: -1px;
+  left: 15px;
+  width: 2px;
+  height: 6px;
+  background: #efcf81;
+  box-shadow: -3px -1px 0 -1px #efcf81, 3px -1px 0 -1px #efcf81;
 }
 
 .house-stats {

@@ -289,6 +289,7 @@ function createFlowerMarkup() {
     <span class="flower" aria-hidden="true"><i></i><i></i><i></i><i></i><b></b></span>
     <span class="firefly" aria-hidden="true"><i></i></span>
     <span class="forbidden" aria-hidden="true"></span>
+    <span class="cell-state" aria-hidden="true"></span>
   `;
 }
 
@@ -408,14 +409,26 @@ function render(previousLight = null, originKey = null) {
       const cell = cellAt(state.level, row, column);
       if (isPlot(cell)) {
         const lit = evaluation.light.has(key);
+        const hasBulb = evaluation.bulbs.has(key);
+        const isMarked = evaluation.marks.has(key);
+        const hasConflict = evaluation.conflicts.has(key);
         const axes = illuminatingAxes(key, evaluation);
         element.classList.toggle("is-lit", lit);
-        element.classList.toggle("has-bulb", evaluation.bulbs.has(key));
-        element.classList.toggle("is-marked", evaluation.marks.has(key));
-        element.classList.toggle("has-conflict", evaluation.conflicts.has(key));
+        element.classList.toggle("has-bulb", hasBulb);
+        element.classList.toggle("is-marked", isMarked);
+        element.classList.toggle("has-conflict", hasConflict);
         element.classList.toggle("ray-horizontal", axes.horizontal);
         element.classList.toggle("ray-vertical", axes.vertical);
         element.classList.remove("is-review-unlit", "is-invalid");
+        element.dataset.visualState = hasConflict
+          ? "萤火冲光"
+          : hasBulb
+            ? "萤火实体"
+            : isMarked
+              ? "禁放标记"
+              : lit
+                ? "照亮范围"
+                : "沉睡花圃";
         element.setAttribute("aria-label", plotAriaLabel(row, column, evaluation));
         if (!previous.has(key) && lit && previousLight) {
           const distance = origin ? Math.abs(origin.row - row) + Math.abs(origin.column - column) : 0;

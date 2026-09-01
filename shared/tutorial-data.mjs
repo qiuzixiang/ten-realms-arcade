@@ -1,3 +1,26 @@
+import {
+  abyssTutorialArt,
+  stormTutorialArt,
+} from "./tutorial-art/abyss-storm.mjs";
+import {
+  nightMarketTutorialArt,
+  skyBridgesTutorialArt,
+} from "./tutorial-art/night-sky.mjs";
+import {
+  redThreadTutorialArt,
+  starDriftTutorialArt,
+} from "./tutorial-art/star-red.mjs";
+import {
+  evaluatePosition as evaluateFireflyPosition,
+  LEVELS as FIREFLY_LEVELS,
+} from "../games/firefly-garden/logic.mjs";
+import {
+  ACTOR as MIRROR_ACTOR,
+  evaluatePosition as evaluateMirrorPosition,
+  LEVELS as MIRROR_LEVELS,
+  solutionPosition as mirrorSolutionPosition,
+} from "../games/mirror-theatre/logic.mjs";
+
 export const REALM_TUTORIALS = Object.freeze({
   "star-drift": {
     title: "星滞回收局",
@@ -12,8 +35,8 @@ export const REALM_TUTORIALS = Object.freeze({
     title: "记忆方舟",
     token: "记忆晶片",
     cards: [
-      { tag: "识别符印", title: "地面与方舟共有六枚记忆符印", body: "地格保存曜、潮、生、翼、观、回六枚符印，立方核心的六个表面也能保存符印。目标是把六枚符印全部收进立方体。", bullets: ["每枚符印只出现一次", "空白面也参与交换"], focus: "elements" },
-      { tag: "滚动交换", title: "落地时，底面与地格交换状态", body: "每滚动一步，立方体朝向会改变；新的底面和落脚地格互换“有符印 / 无符印”状态。离开的地格保持原样。", bullets: ["先判断哪一面将朝下", "可撤销试错"], focus: "action" },
+      { tag: "识别符印", title: "先认清六个不会变的物理表面", body: "方舟六面用Ⅰ至Ⅵ、独立边色和曜潮生翼观回名称标识；滚动只改变它们朝向，不会改变物理表面的身份。", bullets: ["地格与方舟面都能保存符印", "空白面也参与交换"], focus: "elements" },
+      { tag: "滚动交换", title: "跟随箭头看清翻滚与目标落点", body: "方向标签、弧形位移和虚线目标格会显示这一步怎样翻滚；落地后，新的底面与落脚地格交换“有符印 / 无符印”状态。", bullets: ["先看哪一面将朝下", "离开的地格保持原样"], focus: "action" },
       { tag: "记忆归舱", title: "六面集齐即完成", body: "当六枚符印全部位于立方体六个表面、地面不再留有符印时，方舟记忆完整。以参考步数内完成会获得妙手奖励。", bullets: ["符印所在表面不作额外要求", "可重复挑战刷新最佳步数"], focus: "goal" },
     ],
   },
@@ -30,8 +53,8 @@ export const REALM_TUTORIALS = Object.freeze({
     title: "夜庭萤火",
     token: "晨露光",
     cards: [
-      { tag: "花庭元素", title: "花圃、石墙与萤火精灵", body: "空花圃需要被照亮；石墙会挡住光线；带数字的石墙要求周围恰好出现指定数量的萤火。", bullets: ["光只沿上下左右传播", "石墙本身不需要被照亮"], focus: "elements" },
-      { tag: "安放萤火", title: "点击花圃切换萤火与排除记号", body: "一只萤火会照亮同行同列，直到被石墙挡住。两只萤火不能隔着空地互相看见。", bullets: ["数字只统计正交相邻位置", "排除记号只是笔记"], focus: "action" },
+      { tag: "花庭元素", title: "先分清萤火实体与照亮范围", body: "琥珀分节虫形和“萤”角标代表真正放下的萤火；蓝色开放花朵、虚线光路和“光”角标只表示已被照亮。", bullets: ["石墙会挡住光线", "数字石墙统计相邻萤火实体"], focus: "elements" },
+      { tag: "安放萤火", title: "点击花圃切换萤火与排除记号", body: "一只萤火会沿同行同列送出蓝色光路，直到被石墙挡住。两只萤火不能隔着空地互相看见。", bullets: ["红色“冲”角标表示萤火互见", "“禁”角标只是推理笔记"], focus: "action" },
       { tag: "黎明条件", title: "全庭被照亮，且所有限制成立", body: "每个空花圃都亮起、萤火彼此不可见、所有数字石墙恰好满足，三项同时成立才迎来黎明。", bullets: ["冲突位置会即时提示", "重复挑战可刷新个人最佳"], focus: "goal" },
     ],
   },
@@ -39,9 +62,9 @@ export const REALM_TUTORIALS = Object.freeze({
     title: "深海回声站",
     token: "回声样本",
     cards: [
-      { tag: "声场元素", title: "浮标、声呐与隐藏能量体", body: "边缘浮标可以发射声呐；深海网格中藏着若干能量体。声呐可能被吸收、偏折、反射或从另一浮标离开。", bullets: ["编号相同的一对互为入口出口", "问号位置是你的推测"], focus: "elements" },
+      { tag: "声场元素", title: "浮标、声呐与隐藏能量体", body: "边缘浮标可以发射声呐；深海网格中藏着若干能量体。声呐可能被吸收、偏折、反射或从另一浮标离开。", bullets: ["H 表示吸收，R 表示原路反射", "带环轨的能量球是你的模型标记"], focus: "elements" },
       { tag: "读取响应", title: "从边缘发射，记录整片声场", body: "点击浮标观察响应，再根据多条声呐的组合结果推断能量体位置。不要只依赖单条路径。", bullets: ["正面命中会被吸收", "擦边会发生偏折"], focus: "action" },
-      { tag: "响应等价", title: "让你的模型解释全部声呐结果", body: "标出规定数量的能量体并核验。只要你的布局对所有浮标产生完全相同的响应，就算通关，即使坐标并非唯一。", bullets: ["核验次数也会计入表现", "精确坐标与等价解都有效"], focus: "goal" },
+      { tag: "响应等价", title: "让你的模型解释全部声呐结果", body: "标出规定数量的能量体并核验。只有全部边缘浮标的响应签名都完全相同才算通关，即使能量体坐标并非唯一。", bullets: ["不能只凭一束声呐判断等价", "精确坐标与全响应等价解都有效"], focus: "goal" },
     ],
   },
   "storm-lanterns": {
@@ -68,7 +91,7 @@ export const REALM_TUTORIALS = Object.freeze({
     cards: [
       { tag: "浮空港", title: "港口数字就是所需航线总数", body: "圆形浮空港旁的数字表示它最终连接的航线单位数。两个港口间可以没有航线、一条航线或两条并行航线。", bullets: ["航线只能横向或纵向", "中间不能穿过其他港口"], focus: "elements" },
       { tag: "铺设航线", title: "点击候选航路，在 0、1、2 之间循环", body: "每次增加或减少一条航线都会更新两端港口数字。禁航记号和核验印章只是辅助笔记，不参与最终判定。", bullets: ["两条航线会并排显示", "航线不能互相交叉"], focus: "action" },
-      { tag: "全域通航", title: "数字全满足，所有港口连成一体", body: "每个港口度数必须恰好等于数字，航线不交叉，并且所有港口都能沿航线互相抵达。三项同时满足才算通航。", bullets: ["局部小岛群不能单独封闭", "布局会自动为新增航线留出空间"], focus: "goal" },
+      { tag: "全域通航", title: "数字全满足，所有港口连成一体", body: "每个港口度数必须恰好等于数字，航线不交叉，并且所有港口都能沿航线互相抵达。三项同时满足才算通航。", bullets: ["局部小岛群不能单独封闭", "港口位置不变，双航线在同一路径两侧并排"], focus: "goal" },
     ],
   },
   "spirit-dragon": {
@@ -109,7 +132,7 @@ const grid = (x, y, columns, rows, size, color = "#ffffff24") => {
 function starDrift(focus) {
   if (focus === "action") return svg("回收艇沿选定方向直线滑行，途中收集能源芯并停在引力锚", focus, `
     <rect x="18" y="14" width="284" height="156" rx="18" fill="url(#realm-sea)"/>${grid(48, 28, 7, 4, 32)}
-    <g class="art-action"><path d="M70 140L232 48" fill="none" stroke="#64ddff" stroke-width="5" stroke-linecap="round" stroke-dasharray="9 8"/><circle cx="148" cy="96" r="8" fill="#7df9ff" filter="url(#realm-glow)"/><circle cx="238" cy="44" r="16" fill="none" stroke="#ffd66b" stroke-width="4"/><path d="M226 51l11-16 5 18z" fill="#64ddff"/><g transform="translate(70 140) rotate(-30)"><path d="M-14 10L0-16 14 10 0 5z" fill="#f4fbff" stroke="#64ddff" stroke-width="3"/></g><rect x="260" y="100" width="22" height="42" rx="3" fill="#5d6f8d"/></g>`);
+    <g class="art-action"><path d="M64 140L160 44" fill="none" stroke="#64ddff" stroke-width="5" stroke-linecap="round" stroke-dasharray="9 8"/><circle cx="112" cy="92" r="8" fill="#7df9ff" filter="url(#realm-glow)"/><circle cx="160" cy="44" r="16" fill="none" stroke="#ffd66b" stroke-width="4"/><path d="M148 51l11-16 5 18z" fill="#64ddff"/><g transform="translate(64 140) rotate(45)"><path d="M-14 10L0-16 14 10 0 5z" fill="#f4fbff" stroke="#64ddff" stroke-width="3"/></g><rect x="260" y="100" width="22" height="42" rx="3" fill="#5d6f8d"/></g>`);
   if (focus === "goal") return svg("三枚能源芯全部回收，任务进度达到三分之三", focus, `
     <rect x="18" y="14" width="284" height="156" rx="18" fill="url(#realm-sea)"/>${grid(48, 28, 7, 4, 32, "#ffffff18")}
     <g class="art-goal"><g fill="#7df9ff" filter="url(#realm-glow)"><circle cx="92" cy="70" r="11"/><circle cx="160" cy="70" r="11"/><circle cx="228" cy="70" r="11"/></g><g fill="none" stroke="#72efbb" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M82 104l7 7 13-16"/><path d="M150 104l7 7 13-16"/><path d="M218 104l7 7 13-16"/></g><rect x="108" y="126" width="104" height="28" rx="14" fill="#123f4e" stroke="#7df9ff"/><text x="160" y="145" text-anchor="middle" fill="#dffeff" font-size="14" font-weight="800">3 / 3</text></g>`);
@@ -118,16 +141,41 @@ function starDrift(focus) {
     <g class="art-elements"><g transform="translate(82 58)"><path d="M-14 10L0-16 14 10 0 5z" fill="#f4fbff" stroke="#64ddff" stroke-width="3"/></g><circle cx="158" cy="58" r="10" fill="#7df9ff" filter="url(#realm-glow)"/><circle cx="238" cy="58" r="16" fill="none" stroke="#ffd66b" stroke-width="4"/><rect x="58" y="112" width="34" height="30" rx="3" fill="#5d6f8d"/><path d="M158 108l18 34h-36z" fill="#ff5d8f"/><text x="158" y="135" text-anchor="middle" fill="#fff" font-size="18" font-weight="900">!</text></g>`);
 }
 
+const MEMORY_FACE_COLORS = Object.freeze({
+  "Ⅰ": "#ffcc70",
+  "Ⅱ": "#7ec9d4",
+  "Ⅲ": "#a8c879",
+  "Ⅳ": "#e7d8b0",
+  "Ⅴ": "#b89ad7",
+  "Ⅵ": "#e58c62",
+});
+
+function memoryCube(x, y, scale = 1, faces = {}, rollState = "static") {
+  const top = faces.top ?? { index: "Ⅰ", token: "" };
+  const front = faces.front ?? { index: "Ⅳ", token: "" };
+  const right = faces.right ?? { index: "Ⅲ", token: "" };
+  const colorOf = (face) => MEMORY_FACE_COLORS[face.index] ?? "#e7d8b0";
+  const topColor = colorOf(top);
+  const frontColor = colorOf(front);
+  const rightColor = colorOf(right);
+  const facePath = (slot, face, color, path, fill) => `<path class="tutorial-memory-face" data-roll-state="${rollState}" data-slot="${slot}" data-face-index="${face.index}" data-face-color="${color}" d="${path}" fill="${fill}" stroke="${color}" stroke-width="2"/>`;
+  const faceText = (dx, dy, face, color) => `<g class="tutorial-memory-face-mark" data-roll-state="${rollState}" data-slot="${dx === 0 ? "top" : dx < 0 ? "front" : "right"}" data-face-index="${face.index}" transform="translate(${dx} ${dy})"><rect x="-9" y="-8" width="18" height="16" rx="3" fill="#100f0dbb" stroke="${color}"/><text y="3" text-anchor="middle" fill="${color}" font-size="8" font-weight="900">${face.token || face.index}</text></g>`;
+  return `<g class="tutorial-memory-cube" transform="translate(${x} ${y}) scale(${scale})">
+    ${facePath("top", top, topColor, "M-34-12L0-33 34-12 0 9Z", "#7a4c2c")}${facePath("front", front, frontColor, "M-34-12L0 9V47L-34 26Z", "#39271d")}${facePath("right", right, rightColor, "M34-12L0 9V47L34 26Z", "#231b16")}
+    ${faceText(0,-12,top,topColor)}${faceText(-14,23,front,frontColor)}${faceText(14,23,right,rightColor)}
+  </g>`;
+}
+
 function memoryArk(focus) {
-  if (focus === "action") return svg("滚动前后对照：方舟新底面与落脚地格上的符印清楚交换且互不遮挡", focus, `
+  if (focus === "action") return svg("真实向右翻滚提示：方舟沿 Z 轴转九十度，目标地格明确标出，新底面与地格交换符印", focus, `
     <rect x="18" y="14" width="284" height="156" rx="18" fill="#101735"/>
-    <g class="art-action" font-family="ui-sans-serif, system-ui, sans-serif"><rect x="28" y="24" width="116" height="140" rx="12" fill="#ffffff08" stroke="#ffffff20"/><rect x="176" y="24" width="116" height="140" rx="12" fill="#ffffff08" stroke="#ffffff20"/><g fill="#f6f1ff" font-size="12" font-weight="800" text-anchor="middle"><text x="86" y="43">滚动前</text><text x="234" y="43">滚动后</text></g><g><path d="M58 67l28-17 28 17-28 17z" fill="#acb8ff"/><path d="M58 67v28l28 17V84z" fill="#6576dc"/><path d="M114 67v28l-28 17V84z" fill="#8295ff"/><path d="M206 67l28-17 28 17-28 17z" fill="#acb8ff"/><path d="M206 67v28l28 17V84z" fill="#6576dc"/><path d="M262 67v28l-28 17V84z" fill="#8295ff"/></g><g fill="#dce2ff" font-size="10" font-weight="700"><text x="43" y="127">底面</text><text x="43" y="151">地格</text><text x="191" y="127">底面</text><text x="191" y="151">地格</text></g><g font-size="16" font-weight="900" text-anchor="middle"><rect x="92" y="113" width="32" height="20" rx="6" fill="#ffffff08" stroke="#ffffff35"/><text x="108" y="128" fill="#9da7c7" font-size="10">空</text><rect x="92" y="137" width="32" height="20" rx="6" fill="#ef9c5c22" stroke="#ef9c5c"/><text x="108" y="153" fill="#ef9c5c">≋</text><rect x="240" y="113" width="32" height="20" rx="6" fill="#ef9c5c22" stroke="#ef9c5c"/><text x="256" y="129" fill="#ef9c5c">≋</text><rect x="240" y="137" width="32" height="20" rx="6" fill="#ffffff08" stroke="#ffffff35"/><text x="256" y="152" fill="#9da7c7" font-size="10">空</text></g><path d="M151 88h18" stroke="#f6f1ff" stroke-width="4" stroke-linecap="round"/><path d="M171 88l-10-7v14z" fill="#f6f1ff"/><text x="160" y="72" text-anchor="middle" fill="#dce2ff" font-size="9" font-weight="800">滚动</text></g>`);
-  if (focus === "goal") return svg("曜潮生翼观回六枚符印全部收进方舟六个表面，地面已经清空", focus, `
+    <g class="art-action" data-direction="east" data-axis="Z" data-quarter-turns="1" data-bottom-face-index="Ⅲ" font-family="ui-sans-serif,system-ui,sans-serif"><rect x="28" y="28" width="100" height="128" rx="12" fill="#ffffff08" stroke="#ffffff20"/><rect x="192" y="28" width="100" height="128" rx="12" fill="#ffffff08" stroke="#ffffff20"/>${memoryCube(78,70,.72,{},"before")}${memoryCube(242,70,.72,{top:{index:"Ⅴ"},front:{index:"Ⅳ"},right:{index:"Ⅰ"}},"after")}<path d="M133 78Q160 42 187 78" fill="none" stroke="#ffc878" stroke-width="4" stroke-linecap="round"/><path d="M188 78l-11-2 7-9z" fill="#ffc878"/><text x="160" y="40" text-anchor="middle" fill="#fff0cf" font-size="10" font-weight="900">→ 向右翻滚 · Z +90°</text><g font-size="9" font-weight="800" text-anchor="middle"><rect x="44" y="122" width="68" height="23" rx="6" fill="#ef9c5c18" stroke="#ef9c5c"/><text x="78" y="137" fill="#ef9c5c">目标地格 ≋</text><rect x="208" y="122" width="68" height="23" rx="6" fill="#ef9c5c18" stroke="#ef9c5c"/><text x="242" y="137" fill="#ef9c5c">Ⅲ 底面收印</text></g></g>`);
+  if (focus === "goal") return svg("真实归舱状态：六个带独立刻度的物理表面全部收印，地面已经清空", focus, `
     <rect x="18" y="14" width="284" height="156" rx="18" fill="#101735"/>
-    <g class="art-goal"><path d="M106 62l54-32 54 32-54 32z" fill="#acb8ff"/><path d="M106 62v54l54 32V94z" fill="#6576dc"/><path d="M214 62v54l-54 32V94z" fill="#8295ff"/><g font-size="19" font-weight="900" text-anchor="middle"><text x="142" y="66" fill="#ffc766">✦</text><text x="178" y="66" fill="#ef9c5c">≋</text><text x="130" y="105" fill="#dbb66c">◇</text><text x="146" y="130" fill="#ffdf9b">⌁</text><text x="190" y="105" fill="#c87543">◉</text><text x="174" y="130" fill="#f5b77d">∿</text></g><rect x="105" y="151" width="110" height="17" rx="8.5" fill="#ffffff0d" stroke="#ffffff24"/><text x="160" y="163" text-anchor="middle" fill="#dce2ff" font-size="9" font-weight="800">地面已清空</text><path d="M250 56l9 9 18-24" fill="none" stroke="#72efbb" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></g>`);
-  return svg("曜潮生三枚符印位于地格，翼观回三枚符印位于立方方舟表面", focus, `
+    <g class="art-goal" data-face-token-count="6" data-ground-token-count="0">${memoryCube(126,74,1.12,{top:{index:"Ⅰ",token:"✦"},front:{index:"Ⅳ",token:"⌁"},right:{index:"Ⅲ",token:"◇"}})}<g transform="translate(214 34)" font-family="ui-sans-serif,system-ui,sans-serif" font-size="9" font-weight="900">${[["Ⅰ","✦","#ffcc70"],["Ⅱ","≋","#7ec9d4"],["Ⅲ","◇","#a8c879"],["Ⅳ","⌁","#e7d8b0"],["Ⅴ","◉","#b89ad7"],["Ⅵ","∿","#e58c62"]].map(([index,token,color],i)=>`<g transform="translate(0 ${i*19})"><rect width="56" height="15" rx="5" fill="${color}18" stroke="${color}"/><text x="7" y="11" fill="${color}">${index}</text><text x="28" y="11" text-anchor="middle" fill="${color}">${token}</text><path d="M43 8l3 3 6-7" fill="none" stroke="#72efbb" stroke-width="2"/></g>`).join("")}</g><rect x="64" y="151" width="112" height="17" rx="8.5" fill="#ffffff0d" stroke="#ffffff24"/><text x="120" y="163" text-anchor="middle" fill="#dce2ff" font-size="9" font-weight="800">地面已清空</text></g>`);
+  return svg("真实方舟表面具备Ⅰ至Ⅵ刻度与独立边色；地格符印与方舟表面符印清楚分开", focus, `
     <rect x="18" y="14" width="284" height="156" rx="18" fill="#101735"/>
-    <g class="art-elements" font-family="ui-sans-serif, system-ui, sans-serif"><text x="91" y="55" text-anchor="middle" fill="#dce2ff" font-size="11" font-weight="800">地格上的符印</text><g font-size="20" font-weight="900" text-anchor="middle"><rect x="36" y="74" width="34" height="34" rx="6" fill="#ffc76620" stroke="#ffc766"/><text x="53" y="98" fill="#ffc766">✦</text><rect x="78" y="74" width="34" height="34" rx="6" fill="#ef9c5c20" stroke="#ef9c5c"/><text x="95" y="98" fill="#ef9c5c">≋</text><rect x="120" y="74" width="34" height="34" rx="6" fill="#dbb66c20" stroke="#dbb66c"/><text x="137" y="98" fill="#dbb66c">◇</text></g><text x="224" y="35" text-anchor="middle" fill="#dce2ff" font-size="11" font-weight="800">方舟表面的符印</text><path d="M176 68l48-28 48 28-48 28z" fill="#acb8ff"/><path d="M176 68v50l48 28V96z" fill="#6576dc"/><path d="M272 68v50l-48 28V96z" fill="#8295ff"/><g font-size="20" font-weight="900" text-anchor="middle"><text x="224" y="72" fill="#ffdf9b">⌁</text><text x="203" y="116" fill="#c87543">◉</text><text x="245" y="116" fill="#f5b77d">∿</text></g><g fill="#dce2ff" font-size="9" font-weight="700" text-anchor="middle"><text x="53" y="122">曜印</text><text x="95" y="122">潮印</text><text x="137" y="122">生印</text><text x="224" y="160">翼 · 观 · 回</text></g></g>`);
+    <g class="art-elements" font-family="ui-sans-serif,system-ui,sans-serif"><text x="82" y="44" text-anchor="middle" fill="#dce2ff" font-size="10" font-weight="800">地格符印</text><g font-size="18" font-weight="900" text-anchor="middle"><rect x="32" y="58" width="30" height="30" rx="5" fill="#ffc76620" stroke="#ffc766"/><text x="47" y="79" fill="#ffc766">✦</text><rect x="67" y="58" width="30" height="30" rx="5" fill="#7ec9d420" stroke="#7ec9d4"/><text x="82" y="79" fill="#7ec9d4">≋</text><rect x="102" y="58" width="30" height="30" rx="5" fill="#a8c87920" stroke="#a8c879"/><text x="117" y="79" fill="#a8c879">◇</text></g><g fill="#dce2ff" font-size="8" text-anchor="middle"><text x="47" y="102">曜印</text><text x="82" y="102">潮印</text><text x="117" y="102">生印</text></g><text x="221" y="34" text-anchor="middle" fill="#dce2ff" font-size="10" font-weight="800">方舟物理表面</text>${memoryCube(221,80,.95,{top:{index:"Ⅰ",token:"✦"},front:{index:"Ⅳ",token:"⌁"},right:{index:"Ⅲ",token:"◇"}})}<text x="221" y="155" text-anchor="middle" fill="#b6c1db" font-size="8" font-weight="800">Ⅰ–Ⅵ 刻度不会随朝向改变</text></g>`);
 }
 
 function redSeal(x, y, mark, rotation = 0) {
@@ -146,16 +194,72 @@ function redThread(focus) {
     <g class="art-elements"><g stroke="#c83456" stroke-width="4" stroke-linecap="round"><path d="M72 48L248 132M248 48L72 132M72 48V132M248 48V132"/><circle cx="160" cy="90" r="13" fill="#ff315f33" stroke="#ff315f" stroke-dasharray="4 4"/></g>${redSeal(72, 48, "归", -3)}${redSeal(248, 48, "晴", 2)}${redSeal(72, 132, "知", 3)}${redSeal(248, 132, "安", -2)}</g>`);
 }
 
+function tutorialFirefly(x, y, scale = 1, state = "萤") {
+  return `<g class="tutorial-firefly" transform="translate(${x} ${y}) scale(${scale})">
+    <path d="M-3-2C-17-19-24-3-8 8M3-2C17-19 24-3 8 8" fill="#c2e8e244" stroke="#e8fbf5" stroke-width="1.5"/>
+    <ellipse cy="1" rx="5" ry="13" fill="#162a25" stroke="#101a16" stroke-width="1.5"/>
+    <path d="M-4-5H4M-5 1H5M-4 7H4" stroke="#ffd06a" stroke-width="5"/><circle cy="-12" r="5" fill="#142720" stroke="#d9f3ed"/>
+    <circle cx="-2" cy="-13" r="1" fill="#ffd06a"/><circle cx="2" cy="-13" r="1" fill="#ffd06a"/>
+    <rect x="8" y="-20" width="16" height="14" rx="4" fill="${state === "冲" ? "#852f30" : "#593c16"}" stroke="${state === "冲" ? "#ffd6d3" : "#ffe3a4"}" ${state === "冲" ? `stroke-dasharray="2 2"` : ""}/><text x="16" y="-10" text-anchor="middle" fill="#fff0c7" font-size="9" font-weight="900">${state}</text>
+  </g>`;
+}
+
+function tutorialLitFlower(x, y, label = true) {
+  return `<g class="tutorial-light" transform="translate(${x} ${y})">
+    <g fill="#71b2bd" stroke="#d6f7f8" stroke-width="1"><ellipse cy="-6" rx="4" ry="8"/><ellipse cy="6" rx="4" ry="8"/><ellipse cx="-6" rx="8" ry="4"/><ellipse cx="6" rx="8" ry="4"/></g><circle r="3" fill="#effff9"/>
+    ${label ? `<rect x="7" y="-13" width="15" height="13" rx="4" fill="#0a3944" stroke="#b9ecf3"/><text x="14.5" y="-4" text-anchor="middle" fill="#e3fbff" font-size="8" font-weight="900">光</text>` : ""}
+  </g>`;
+}
+
+const FIREFLY_GOAL_LEVEL = FIREFLY_LEVELS.find(({ id }) => id === "dew-court");
+const FIREFLY_GOAL_RESULT = evaluateFireflyPosition(FIREFLY_GOAL_LEVEL, {
+  bulbs: FIREFLY_GOAL_LEVEL.solution,
+});
+
+function fireflyGoalBoard() {
+  const gridX = 90;
+  const gridY = 22;
+  const cellSize = 28;
+  const bulbs = new Set(FIREFLY_GOAL_LEVEL.solution);
+  const cells = [];
+
+  for (let row = 0; row < FIREFLY_GOAL_LEVEL.height; row += 1) {
+    for (let column = 0; column < FIREFLY_GOAL_LEVEL.width; column += 1) {
+      const cell = FIREFLY_GOAL_LEVEL.rows[row][column];
+      const key = `${row}:${column}`;
+      const x = gridX + column * cellSize;
+      const y = gridY + row * cellSize;
+      const centerX = x + cellSize / 2;
+      const centerY = y + cellSize / 2;
+
+      if (cell === "#") {
+        cells.push(`<rect class="tutorial-wall" data-row="${row}" data-column="${column}" x="${x}" y="${y}" width="${cellSize}" height="${cellSize}" rx="5" fill="#11201e" stroke="#71847c"/>`);
+        continue;
+      }
+      if (/^[0-4]$/.test(cell)) {
+        const rune = FIREFLY_GOAL_RESULT.runes.get(key);
+        cells.push(`<g class="tutorial-rune" data-row="${row}" data-column="${column}" data-target="${rune.target}" data-count="${rune.count}" data-exact="${rune.exact}"><rect x="${x}" y="${y}" width="${cellSize}" height="${cellSize}" rx="5" fill="#11201e" stroke="#72efbb"/><text x="${centerX}" y="${centerY + 5}" text-anchor="middle" fill="#fff" font-size="15" font-weight="900">${cell}</text></g>`);
+        continue;
+      }
+
+      const hasFirefly = bulbs.has(key);
+      cells.push(`<g class="tutorial-plot is-lit${hasFirefly ? " has-firefly" : ""}" data-row="${row}" data-column="${column}" data-lit="${FIREFLY_GOAL_RESULT.light.has(key)}" data-firefly="${hasFirefly}"><rect x="${x}" y="${y}" width="${cellSize}" height="${cellSize}" fill="#6ac8dc20"/>${hasFirefly ? tutorialFirefly(centerX, centerY, .46) : tutorialLitFlower(centerX, centerY, false)}</g>`);
+    }
+  }
+
+  return cells.join("");
+}
+
 function firefly(focus) {
-  if (focus === "action") return svg("萤火沿上下左右照明，光线在石墙处停止，排除记号只作笔记", focus, `
-    <rect x="18" y="14" width="284" height="156" rx="18" fill="#0b2b2a"/>${grid(90, 22, 5, 5, 28, "#caffd035")}
-    <g class="art-action"><path d="M104 92H216M160 36V148" stroke="#e9ff76" stroke-width="12" opacity=".18"/><rect x="160" y="22" width="28" height="28" rx="5" fill="#11201e"/><rect x="216" y="78" width="28" height="28" rx="5" fill="#11201e"/><g transform="translate(160 92)" fill="#efff9b" filter="url(#realm-glow)"><circle r="9"/><path d="M0-18v7M0 11v7M-18 0h7M11 0h7" stroke="#efff9b" stroke-width="3"/></g><g stroke="#9cc3b6" stroke-width="4" stroke-linecap="round"><path d="M101 119l14 14M115 119l-14 14"/></g></g>`);
-  if (focus === "goal") return svg("全部花圃被照亮，两只萤火互不可见，数字石墙恰好满足", focus, `
-    <rect x="18" y="14" width="284" height="156" rx="18" fill="#0b2b2a"/><rect x="90" y="22" width="140" height="140" rx="8" fill="#dfff7f16"/>${grid(90, 22, 5, 5, 28, "#caffd05c")}
-    <g class="art-goal"><path d="M104 92H216M132 36V148M188 36V148" stroke="#e9ff76" stroke-width="12" opacity=".16"/><rect x="146" y="78" width="28" height="28" rx="5" fill="#11201e" stroke="#93a69f"/><text x="160" y="98" text-anchor="middle" fill="#fff" font-size="16" font-weight="800">2</text><g transform="translate(132 92)" fill="#efff9b" filter="url(#realm-glow)"><circle r="9"/><path d="M0-17v6M0 11v6M-17 0h6M11 0h6" stroke="#efff9b" stroke-width="3"/></g><g transform="translate(188 92)" fill="#efff9b" filter="url(#realm-glow)"><circle r="9"/></g><path d="M252 48l9 9 18-24" fill="none" stroke="#72efbb" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></g>`);
-  return svg("空花圃、普通石墙、数字石墙和萤火精灵分别显示", focus, `
-    <rect x="18" y="14" width="284" height="156" rx="18" fill="#0b2b2a"/>${grid(90, 22, 5, 5, 28, "#caffd035")}
-    <g class="art-elements"><rect x="146" y="78" width="28" height="28" rx="5" fill="#11201e" stroke="#93a69f"/><text x="160" y="98" text-anchor="middle" fill="#fff" font-size="16" font-weight="800">2</text><rect x="202" y="50" width="28" height="28" rx="5" fill="#11201e"/><g transform="translate(104 50)" fill="#efff9b" filter="url(#realm-glow)"><circle r="9"/><path d="M0-18v7M0 11v7M-18 0h7M11 0h7" stroke="#efff9b" stroke-width="3"/></g><rect x="90" y="106" width="28" height="28" fill="#dfff7f1f"/></g>`);
+  if (focus === "action") return svg("琥珀色萤火实体送出蓝色正交光路；石墙截光，禁放标记只作笔记", focus, `
+    <rect x="18" y="14" width="284" height="156" rx="18" fill="#092329"/>${grid(90, 22, 5, 5, 28, "#b4eaf032")}
+    <g class="art-action" data-grid-x="90" data-grid-y="22" data-cell-size="28"><path d="M90 92H202M160 50V162" stroke="#6ac8dc" stroke-width="6" opacity=".34" stroke-dasharray="8 5"/><rect class="tutorial-wall" data-row="0" data-column="2" x="146" y="22" width="28" height="28" rx="5" fill="#11201e"/><rect class="tutorial-wall" data-row="2" data-column="4" x="202" y="78" width="28" height="28" rx="5" fill="#11201e"/>${tutorialLitFlower(132,92,false)}${tutorialLitFlower(188,92,false)}${tutorialLitFlower(160,120,false)}${tutorialFirefly(160,92,.78)}<path d="M99 119l12 12M111 119l-12 12" stroke="#c7dbd1" stroke-width="3" stroke-linecap="round"/><rect x="111" y="115" width="15" height="13" rx="4" fill="#173029" stroke="#c7dbd1"/><text x="118.5" y="124" text-anchor="middle" fill="#e0ebe5" font-size="8" font-weight="900">禁</text></g>`);
+  if (focus === "goal") return svg("真实黎明状态：花圃呈蓝色照亮状态，萤火仍是琥珀虫形，数字石墙恰好满足", focus, `
+    <rect x="18" y="14" width="284" height="156" rx="18" fill="#092329"/><rect x="90" y="22" width="140" height="140" rx="8" fill="#6ac8dc17"/>${grid(90, 22, 5, 5, 28, "#b4eaf05a")}
+    <g class="art-goal" data-level="${FIREFLY_GOAL_LEVEL.id}" data-rows="${FIREFLY_GOAL_LEVEL.rows.join("/")}" data-solution="${FIREFLY_GOAL_LEVEL.solution.join(",")}" data-plot-count="${FIREFLY_GOAL_RESULT.totalPlots}" data-lit-count="${FIREFLY_GOAL_RESULT.litCount}" data-firefly-count="${FIREFLY_GOAL_RESULT.bulbs.size}" data-all-plots-lit="${FIREFLY_GOAL_RESULT.unlit.size === 0}" data-conflicts="${FIREFLY_GOAL_RESULT.conflicts.size}" data-runes-exact="${[...FIREFLY_GOAL_RESULT.runes.values()].every(({ exact }) => exact)}">${fireflyGoalBoard()}<circle cx="272" cy="48" r="15" fill="#72efbb"/><path d="M265 48l6 6 12-16" fill="none" stroke="#092329" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></g>`);
+  return svg("真实花庭元素：琥珀虫形和萤角标是实体，蓝色花朵和光角标是照亮范围", focus, `
+    <rect x="18" y="14" width="284" height="156" rx="18" fill="#092329"/>${grid(90, 22, 5, 5, 28, "#b4eaf032")}
+    <g class="art-elements">${tutorialFirefly(104,50,.72)}${tutorialLitFlower(216,50)}<rect x="146" y="78" width="28" height="28" rx="5" fill="#11201e" stroke="#93a69f"/><text x="160" y="98" text-anchor="middle" fill="#fff" font-size="16" font-weight="800">2</text><rect x="202" y="106" width="28" height="28" rx="5" fill="#11201e"/><rect x="90" y="106" width="28" height="28" fill="#0c3035" stroke="#86daea7a"/></g>`);
 }
 
 function abyss(focus) {
@@ -185,7 +289,7 @@ function storm(focus) {
 function nightMarket(focus) {
   if (focus === "action") return svg("灯灵群移除后，剩余灯灵先向下坠落，空列再向左合并", focus, `
     <rect x="18" y="14" width="284" height="156" rx="18" fill="#251338"/>
-    <g class="art-action">${grid(38, 42, 4, 4, 24, "#ffffff22")}${grid(186, 42, 4, 4, 24, "#ffffff22")}<g fill="#ff698b"><circle cx="50" cy="54" r="8"/><circle cx="74" cy="54" r="8"/></g><g fill="#65d7ff"><circle cx="122" cy="54" r="8"/><circle cx="122" cy="78" r="8"/></g><g fill="#ffd76e"><circle cx="74" cy="102" r="8"/><circle cx="98" cy="126" r="8"/></g><text x="150" y="34" text-anchor="middle" fill="#ecd6ff" font-size="10" font-weight="800">① 先下落</text><path d="M150 70v36" stroke="#d4a5ff" stroke-width="4" stroke-linecap="round"/><path d="M150 110l-8-12h16z" fill="#d4a5ff"/><g fill="#65d7ff"><circle cx="198" cy="102" r="8"/><circle cx="198" cy="126" r="8"/></g><g fill="#ffd76e"><circle cx="222" cy="126" r="8"/></g><text x="252" y="34" text-anchor="middle" fill="#ecd6ff" font-size="10" font-weight="800">② 再左移</text><path d="M278 88h-24" stroke="#d4a5ff" stroke-width="4" stroke-linecap="round"/><path d="M250 88l12-8v16z" fill="#d4a5ff"/></g>`);
+    <g class="art-action">${grid(38, 42, 4, 4, 24, "#ffffff22")}${grid(186, 42, 4, 4, 24, "#ffffff22")}<g fill="#ff698b"><circle cx="50" cy="54" r="8"/><circle cx="74" cy="54" r="8"/></g><g fill="#65d7ff"><circle cx="122" cy="54" r="8"/><circle cx="122" cy="78" r="8"/></g><g fill="#ffd76e"><circle cx="74" cy="102" r="8"/><circle cx="98" cy="126" r="8"/></g><text x="150" y="34" text-anchor="middle" fill="#ecd6ff" font-size="10" font-weight="800">① 先下落</text><path d="M150 70v36" stroke="#d4a5ff" stroke-width="4" stroke-linecap="round"/><path d="M150 110l-8-12h16z" fill="#d4a5ff"/><g fill="#65d7ff"><circle cx="246" cy="102" r="8"/><circle cx="246" cy="126" r="8"/></g><g fill="#ffd76e"><circle cx="198" cy="126" r="8"/><circle cx="222" cy="126" r="8"/></g><text x="252" y="34" text-anchor="middle" fill="#ecd6ff" font-size="10" font-weight="800">② 再左移</text><path d="M278 88h-24" stroke="#d4a5ff" stroke-width="4" stroke-linecap="round"/><path d="M250 88l12-8v16z" fill="#d4a5ff"/></g>`);
   if (focus === "goal") return svg("清空棋盘获得胜利，留下互不相邻的孤立灯灵会形成残局", focus, `
     <rect x="18" y="14" width="284" height="156" rx="18" fill="#251338"/>
     <g class="art-goal">${grid(42, 46, 4, 4, 24, "#6ef2c155")}${grid(182, 46, 4, 4, 24, "#ff7a9150")}<path d="M72 126l9 9 20-26" fill="none" stroke="#6ef2c1" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/><g fill="#ff698b"><circle cx="194" cy="58" r="8"/><circle cx="254" cy="118" r="8"/></g><circle cx="230" cy="82" r="8" fill="#65d7ff"/><path d="M260 48l18 18M278 48l-18 18" stroke="#ff7a91" stroke-width="5" stroke-linecap="round"/></g>`);
@@ -206,39 +310,151 @@ function skyBridges(focus) {
     <g class="art-elements"><g fill="#fff" stroke="#23658f" stroke-width="4"><circle cx="70" cy="64" r="22"/><circle cx="70" cy="124" r="22"/></g><g fill="#164766" font-size="18" font-weight="800" text-anchor="middle"><text x="70" y="70">2</text><text x="70" y="130">4</text></g><g fill="#fff" stroke="#23658f" stroke-width="3"><circle cx="142" cy="48" r="12"/><circle cx="270" cy="48" r="12"/><circle cx="142" cy="92" r="12"/><circle cx="270" cy="92" r="12"/><circle cx="142" cy="136" r="12"/><circle cx="270" cy="136" r="12"/></g><path d="M154 92H258M154 132H258M154 140H258" fill="none" stroke="#4a83ad" stroke-width="4" stroke-linecap="round"/><g fill="#4a83ad" font-size="12" font-weight="800" text-anchor="middle"><text x="118" y="52">0</text><text x="118" y="96">1</text><text x="118" y="140">2</text></g></g>`);
 }
 
+function spiritPearl(x, y, type, settled = false) {
+  const isEarth = type === "earth";
+  return `<g class="tutorial-pearl tutorial-pearl--${type}${settled ? " is-settled" : ""}">
+    <circle cx="${x}" cy="${y}" r="13" fill="${settled ? "#84edcf2e" : "#84edcf12"}" stroke="${settled ? "#9ff4d9" : "#92e9d344"}"/>
+    <circle cx="${x}" cy="${y}" r="8" fill="url(#spirit-${type})" stroke="${isEarth ? "#e4c37f" : "#f1f8ec"}" stroke-width="1.5"/>
+    ${isEarth
+      ? `<path d="M${x - 3.5} ${y}l3.5-3.5 3.5 3.5-3.5 3.5z" fill="none" stroke="#f5dc97" stroke-width=".8"/>`
+      : `<path d="M${x - 4} ${y}q4-3.5 8 0q-4 3.5-8 0" fill="none" stroke="#124449" stroke-width=".8"/>`}
+  </g>`;
+}
+
+function spiritTutorialDefs() {
+  return `<defs>
+    <linearGradient id="spirit-vein" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#56bda8"/><stop offset=".48" stop-color="#ddffe8"/><stop offset="1" stop-color="#d8bf75"/></linearGradient>
+    <radialGradient id="spirit-earth" cx="35%" cy="27%" r="75%"><stop stop-color="#47645c"/><stop offset=".32" stop-color="#17383a"/><stop offset="1" stop-color="#031319"/></radialGradient>
+    <radialGradient id="spirit-heaven" cx="34%" cy="27%" r="74%"><stop stop-color="#fff"/><stop offset=".46" stop-color="#c8e8df"/><stop offset="1" stop-color="#6baaa2"/></radialGradient>
+  </defs>`;
+}
+
 function spiritDragon(focus) {
-  if (focus === "action") return svg("相邻格点之间可依次切换为空白、龙脉线段和排除记号", focus, `
-    <rect x="18" y="14" width="284" height="156" rx="18" fill="#f1ead8"/>
-    <g class="art-action"><g fill="#f1ead8" stroke="#5d493b" stroke-width="3"><circle cx="52" cy="92" r="6"/><circle cx="104" cy="92" r="6"/><circle cx="134" cy="92" r="6"/><circle cx="186" cy="92" r="6"/><circle cx="216" cy="92" r="6"/><circle cx="268" cy="92" r="6"/></g><path d="M134 92H186" stroke="#4f9c77" stroke-width="7" stroke-linecap="round"/><path d="M235 76l18 32M253 76l-18 32" stroke="#b55545" stroke-width="5" stroke-linecap="round"/><path d="M112 92h12M194 92h12" stroke="#8a7462" stroke-width="3" stroke-dasharray="3 3"/><text x="78" y="132" text-anchor="middle" fill="#70443b" font-size="12" font-weight="800">空白</text><text x="160" y="132" text-anchor="middle" fill="#4f765f" font-size="12" font-weight="800">画线</text><text x="242" y="132" text-anchor="middle" fill="#9f4f43" font-size="12" font-weight="800">排除</text></g>`);
-  if (focus === "goal") return svg("一条不分叉的闭环经过所有黑白灵珠", focus, `
-    <rect x="18" y="14" width="284" height="156" rx="18" fill="#f1ead8"/>${grid(70, 22, 6, 5, 28, "#5d493b35")}
-    <g class="art-goal"><path d="M98 50H154V22H238V106H210V162H98V134H70V50z" fill="none" stroke="#4f9c77" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="98" cy="50" r="10" fill="#26352d"/><circle cx="210" cy="50" r="10" fill="#fff" stroke="#26352d" stroke-width="3"/><circle cx="154" cy="134" r="10" fill="#26352d"/><circle cx="238" cy="106" r="10" fill="#fff" stroke="#26352d" stroke-width="3"/><path d="M256 48l8 8 16-22" fill="none" stroke="#b55545" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></g>`);
-  return svg("黑色地珠要求在珠上转弯，白色天珠要求在珠上直穿", focus, `
-    <rect x="18" y="14" width="284" height="156" rx="18" fill="#f1ead8"/>
-    <g class="art-elements"><path d="M38 58H104V132" fill="none" stroke="#4f9c77" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="104" cy="58" r="12" fill="#26352d"/><path d="M178 92H238V138" fill="none" stroke="#4f9c77" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="210" cy="92" r="12" fill="#fff" stroke="#26352d" stroke-width="3"/><text x="86" y="156" text-anchor="middle" fill="#70443b" font-size="12" font-weight="800">地珠 · 珠上转弯</text><text x="224" y="156" text-anchor="middle" fill="#70443b" font-size="12" font-weight="800">天珠 · 紧邻处转弯</text></g>`);
+  if (focus === "action") return svg("真实灵图中的相邻节点、发光龙脉、游标圈与金色禁行记号", focus, `
+    ${spiritTutorialDefs()}<rect x="18" y="14" width="284" height="156" rx="18" fill="#092a30" stroke="#bee8da2e"/>
+    <g class="art-action" font-family="ui-sans-serif,system-ui,sans-serif">
+      <g fill="none" stroke="#a7d6cb38" stroke-width="1.3" stroke-linecap="round" stroke-dasharray="1 6"><path d="M38 84H112M123 84H197M208 84H282"/></g>
+      <g fill="#b1e1d376"><circle cx="38" cy="84" r="3"/><circle cx="112" cy="84" r="3"/><circle cx="123" cy="84" r="3"/><circle cx="197" cy="84" r="3"/><circle cx="208" cy="84" r="3"/><circle cx="282" cy="84" r="3"/></g>
+      <circle cx="75" cy="84" r="20" fill="none" stroke="#9ff4d9" stroke-width="1.5" stroke-dasharray="3 3"/>
+      <path d="M123 84H197" stroke="#020d11b3" stroke-width="10" stroke-linecap="round"/><path d="M123 84H197" stroke="url(#spirit-vein)" stroke-width="6" stroke-linecap="round"/>
+      <path d="M239 75l12 18M251 75l-12 18" fill="none" stroke="#e6c784" stroke-width="3" stroke-linecap="round"/>
+      <g fill="#c5d8d3" font-size="10" font-weight="800" text-anchor="middle"><text x="75" y="124">选中边</text><text x="160" y="124">龙脉线</text><text x="245" y="124">禁行笔记</text></g>
+    </g>`);
+  if (focus === "goal") return svg("云岫初引的真实过关布局：唯一闭环经过五颗灵珠并唤醒灵龙", focus, `
+    ${spiritTutorialDefs()}<rect x="18" y="8" width="284" height="168" rx="18" fill="#092a30" stroke="#bee8da2e"/>
+    <g class="art-goal" data-level="cloud-gate" data-pearl-count="5" data-loop-count="1">
+      ${grid(88, 20, 4, 4, 36, "#a7d6cb32")}
+      <g fill="#b1e1d365">${[20, 56, 92, 128, 164].flatMap((y) => [88, 124, 160, 196, 232].map((x) => `<circle cx="${x}" cy="${y}" r="2.2"/>`)).join("")}</g>
+      <path d="M88 20H232V56H196V128H232V164H88V92H124V128H160V56H88Z" fill="none" stroke="#020d11b3" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M88 20H232V56H196V128H232V164H88V92H124V128H160V56H88Z" fill="none" stroke="url(#spirit-vein)" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"/>
+      ${spiritPearl(160, 56, "earth", true)}${spiritPearl(196, 20, "heaven", true)}${spiritPearl(196, 92, "heaven", true)}${spiritPearl(88, 128, "heaven", true)}${spiritPearl(196, 164, "heaven", true)}
+      <g transform="translate(124 20) scale(.58)" fill="#eafbe8" stroke="#e6c784" stroke-width="1.5"><path d="M-16 0c6-9 18-10 28-3l7-4-3 8 4 6-9-3C1 12-10 9-16 0Z"/><circle cx="10" cy="-2" r="1.7" fill="#0b3a3b" stroke="none"/></g>
+      <circle cx="278" cy="35" r="14" fill="#8fe09a"/><path d="M271 35l5 5 10-13" fill="none" stroke="#071d25" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>`);
+  return svg("真实灵图中的地珠与天珠：地珠上转弯，天珠上直行并在紧邻处转弯", focus, `
+    ${spiritTutorialDefs()}<rect x="18" y="14" width="284" height="156" rx="18" fill="#092a30" stroke="#bee8da2e"/>
+    <g class="art-elements" font-family="ui-sans-serif,system-ui,sans-serif">
+      <g fill="none" stroke="#a7d6cb38" stroke-width="1.2" stroke-linecap="round" stroke-dasharray="1 6"><path d="M34 50H142M34 82H142M34 114H142M178 50H286M178 82H286M178 114H286"/></g>
+      <g fill="#b1e1d376">${[[34,50],[70,50],[106,50],[142,50],[106,82],[106,114],[178,82],[214,82],[250,82],[286,82],[286,114]].map(([x,y]) => `<circle cx="${x}" cy="${y}" r="2.7"/>`).join("")}</g>
+      <path d="M34 50H106V114" fill="none" stroke="#020d11b3" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/><path d="M34 50H106V114" fill="none" stroke="url(#spirit-vein)" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"/>
+      ${spiritPearl(106, 50, "earth", true)}
+      <path d="M178 82H286V114" fill="none" stroke="#020d11b3" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/><path d="M178 82H286V114" fill="none" stroke="url(#spirit-vein)" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"/>
+      ${spiritPearl(250, 82, "heaven", true)}
+      <g fill="#d9e9e3" font-size="10" font-weight="800" text-anchor="middle"><text x="88" y="148">地珠 · 珠上转弯</text><text x="232" y="148">天珠 · 紧邻处转弯</text></g>
+    </g>`);
+}
+
+function mirrorActor(x, y, type, scale = 1) {
+  if (type === "human") return `<g class="tutorial-actor tutorial-actor--human" transform="translate(${x} ${y}) scale(${scale})">
+    <ellipse cy="-12" rx="10" ry="12" fill="#ffd2c5"/><path d="M-10-15q10-13 20 0v5q-3-7-7-9-7 6-13 7z" fill="#7d2039"/>
+    <path d="M-22 26q2-25 15-31l7 8 7-8q13 6 15 31z" fill="#ff8b72" stroke="#ffd8ce" stroke-width="2"/><path d="M-7-4L0 3l7-7 5 22H-12z" fill="#6f1932"/><path d="M-4 10h8v8h-8z" fill="#efcf81" transform="rotate(45)"/>
+  </g>`;
+  if (type === "hologram") return `<g class="tutorial-actor tutorial-actor--hologram" transform="translate(${x} ${y}) scale(${scale})">
+    <ellipse cy="-12" rx="10" ry="12" fill="#67e4eb30" stroke="#b9fbff" stroke-width="2"/><path d="M-6-13h12M-8-8H5" stroke="#67e4eb" stroke-width="2" opacity=".8"/>
+    <path d="M0-1C-15-2-21 8-22 26H22C21 8 15-2 0-1Z" fill="#67e4eb28" stroke="#67e4eb" stroke-width="2"/>
+    <path d="M-17 7H17M-19 14H19M-20 21H20" stroke="#b9fbff" stroke-width="2" opacity=".72"/><ellipse cy="28" rx="18" ry="3" fill="#67e4eb" opacity=".75"/>
+  </g>`;
+  return `<g class="tutorial-actor tutorial-actor--robot" transform="translate(${x} ${y}) scale(${scale})">
+    <path d="M0-31v6M-4-31h8" stroke="#efcf81" stroke-width="2"/><rect x="-13" y="-25" width="26" height="20" rx="5" fill="#4f4328" stroke="#ffe5a3" stroke-width="2"/>
+    <circle cx="-5" cy="-15" r="2.5" fill="#67e4eb"/><circle cx="5" cy="-15" r="2.5" fill="#67e4eb"/><path d="M-6-8H6" stroke="#efcf81" stroke-width="2"/>
+    <rect x="-18" y="0" width="36" height="27" rx="5" fill="#6c592f" stroke="#efcf81" stroke-width="2"/><rect x="-8" y="6" width="16" height="11" rx="2" fill="#241d17"/><circle cx="-3" cy="11.5" r="1.5" fill="#ff8b72"/><circle cx="3" cy="11.5" r="1.5" fill="#8fe09a"/><path d="M-12 27v6M12 27v6" stroke="#efcf81" stroke-width="3"/>
+  </g>`;
+}
+
+const MIRROR_GOAL_LEVEL = MIRROR_LEVELS.find(({ id }) => id === "velvet-foyer");
+const MIRROR_GOAL_POSITION = mirrorSolutionPosition(MIRROR_GOAL_LEVEL);
+const MIRROR_GOAL_RESULT = evaluateMirrorPosition(MIRROR_GOAL_LEVEL, MIRROR_GOAL_POSITION);
+const MIRROR_ACTOR_BY_CODE = Object.freeze({
+  H: MIRROR_ACTOR.HUMAN,
+  O: MIRROR_ACTOR.HOLOGRAM,
+  R: MIRROR_ACTOR.ROBOT,
+});
+
+function mirrorGoalBoard() {
+  const gridX = 108;
+  const gridY = 34;
+  const cellSize = 26;
+  const cells = [];
+
+  for (let row = 0; row < MIRROR_GOAL_LEVEL.height; row += 1) {
+    for (let column = 0; column < MIRROR_GOAL_LEVEL.width; column += 1) {
+      const puzzleCell = MIRROR_GOAL_LEVEL.rows[row][column];
+      const solutionCell = MIRROR_GOAL_LEVEL.solution[row][column];
+      const x = gridX + column * cellSize;
+      const y = gridY + row * cellSize;
+      const centerX = x + cellSize / 2;
+      const centerY = y + cellSize / 2;
+      if (puzzleCell === "/" || puzzleCell === "\\") {
+        const blade = puzzleCell === "/"
+          ? `M${x + 5} ${y + 21}L${x + 21} ${y + 5}`
+          : `M${x + 5} ${y + 5}L${x + 21} ${y + 21}`;
+        cells.push(`<g class="tutorial-stage-cell tutorial-mirror-cell" data-row="${row}" data-column="${column}" data-kind="mirror" data-mirror="${puzzleCell}"><rect x="${x}" y="${y}" width="${cellSize}" height="${cellSize}" rx="3" fill="#332440" stroke="#ffffff2f"/><path d="${blade}" stroke="#a9e8ff" stroke-width="4" stroke-linecap="round"/></g>`);
+        continue;
+      }
+      const actor = MIRROR_ACTOR_BY_CODE[solutionCell];
+      cells.push(`<g class="tutorial-stage-cell tutorial-actor-cell" data-row="${row}" data-column="${column}" data-kind="actor" data-actor-code="${solutionCell}" data-actor="${actor}"><rect x="${x}" y="${y}" width="${cellSize}" height="${cellSize}" rx="3" fill="#291d34" stroke="#ffffff24"/>${mirrorActor(centerX, centerY, actor, .26)}</g>`);
+    }
+  }
+
+  const clue = (side, index, x, y) => {
+    const result = MIRROR_GOAL_RESULT.edgeResults.get(`${side}:${index}`);
+    return `<g class="tutorial-edge-clue is-exact" data-side="${side}" data-index="${index}" data-clue="${result.clue}" data-visible="${result.visible}" data-exact="${result.exact}" transform="translate(${x} ${y})"><circle r="8" fill="#d8f8c9" stroke="#72efbb" stroke-width="1.5"/><text y="3.5" text-anchor="middle" fill="#173827" font-size="9" font-weight="900">${result.clue}</text></g>`;
+  };
+  for (let index = 0; index < MIRROR_GOAL_LEVEL.width; index += 1) {
+    const x = gridX + index * cellSize + cellSize / 2;
+    cells.push(clue("top", index, x, 22));
+    cells.push(clue("bottom", index, x, 150));
+  }
+  for (let index = 0; index < MIRROR_GOAL_LEVEL.height; index += 1) {
+    const y = gridY + index * cellSize + cellSize / 2;
+    cells.push(clue("left", index, 96, y));
+    cells.push(clue("right", index, 224, y));
+  }
+
+  return cells.join("");
 }
 
 function mirror(focus) {
   if (focus === "action") return svg("观众视线进入舞台，遇到斜镜后转向并沿反射路径继续计数", focus, `
     <rect x="18" y="14" width="284" height="156" rx="18" fill="#21152d"/>${grid(76, 22, 6, 5, 28, "#ffffff1f")}
-    <g class="art-action"><circle cx="48" cy="50" r="14" fill="#fff2b0"/><text x="48" y="55" text-anchor="middle" fill="#473715" font-size="14" font-weight="800">2</text><path d="M62 50H132V134H224" fill="none" stroke="#ffd66e" stroke-width="4" stroke-linecap="round" stroke-dasharray="8 5"/><path d="M118 36l28 28" stroke="#a9e8ff" stroke-width="6"/><text x="132" y="100" text-anchor="middle" fill="#67e4eb" font-size="25" font-weight="900">◇</text><text x="188" y="142" text-anchor="middle" fill="#efcf81" font-size="24" font-weight="900">▦</text><path d="M217 128l12 6-12 6z" fill="#ffd66e"/></g>`);
-  if (focus === "goal") return svg("舞台演员全部填满，演员总数和每条边缘视线数字都得到绿色核验", focus, `
-    <rect x="18" y="14" width="284" height="156" rx="18" fill="#21152d"/>${grid(90, 34, 5, 3, 28, "#ffffff2c")}
-    <g class="art-goal"><g font-size="20" font-weight="900" text-anchor="middle"><text x="104" y="55" fill="#ff8b72">●</text><text x="160" y="55" fill="#67e4eb">◇</text><text x="216" y="55" fill="#efcf81">▦</text><text x="132" y="83" fill="#67e4eb">◇</text><text x="188" y="83" fill="#ff8b72">●</text><text x="104" y="111" fill="#efcf81">▦</text><text x="160" y="111" fill="#ff8b72">●</text><text x="216" y="111" fill="#67e4eb">◇</text></g><g fill="#fff2b0" stroke="#6f5c31" stroke-width="2"><circle cx="76" cy="62" r="12"/><circle cx="244" cy="104" r="12"/></g><g fill="#473715" font-size="12" font-weight="800" text-anchor="middle"><text x="76" y="66">2</text><text x="244" y="108">3</text></g><g fill="none" stroke="#72efbb" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M58 90l7 7 12-16"/><path d="M244 56l7 7 12-16"/></g><rect x="88" y="130" width="144" height="24" rx="12" fill="#31233f" stroke="#ffffff24"/><g font-size="11" font-weight="900" text-anchor="middle"><text x="116" y="146" fill="#ff8b72">● 3</text><text x="160" y="146" fill="#67e4eb">◇ 2</text><text x="204" y="146" fill="#efcf81">▦ 2</text></g></g>`);
+    <g class="art-action"><circle cx="48" cy="50" r="14" fill="#fff2b0"/><text x="48" y="55" text-anchor="middle" fill="#473715" font-size="14" font-weight="800">2</text><path d="M62 50H132V134H224" fill="none" stroke="#ffd66e" stroke-width="4" stroke-linecap="round" stroke-dasharray="8 5"/><path d="M118 36l28 28" stroke="#a9e8ff" stroke-width="6"/>${mirrorActor(160, 78, "hologram", .56)}${mirrorActor(188, 134, "robot", .5)}<path d="M217 128l12 6-12 6z" fill="#ffd66e"/></g>`);
+  if (focus === "goal") return svg("绒幕试光的四乘四舞台完整填入十一位演员，五面镜子、演员总数与十六条边缘线索全部精确", focus, `
+    <rect x="18" y="14" width="284" height="156" rx="18" fill="#21152d"/>
+    <g class="art-goal" data-level="${MIRROR_GOAL_LEVEL.id}" data-width="${MIRROR_GOAL_LEVEL.width}" data-height="${MIRROR_GOAL_LEVEL.height}" data-rows="${MIRROR_GOAL_LEVEL.rows.join("/")}" data-solution="${MIRROR_GOAL_LEVEL.solution.join("/")}" data-filled="${MIRROR_GOAL_RESULT.emptyKeys.size === 0}" data-floor-count="${MIRROR_GOAL_RESULT.floorCount}" data-actor-count="${MIRROR_GOAL_RESULT.filledCount}" data-mirror-count="${MIRROR_GOAL_LEVEL.width * MIRROR_GOAL_LEVEL.height - MIRROR_GOAL_RESULT.floorCount}" data-cast-human="${MIRROR_GOAL_RESULT.actorCounts[MIRROR_ACTOR.HUMAN]}" data-cast-hologram="${MIRROR_GOAL_RESULT.actorCounts[MIRROR_ACTOR.HOLOGRAM]}" data-cast-robot="${MIRROR_GOAL_RESULT.actorCounts[MIRROR_ACTOR.ROBOT]}" data-cast-exact="${MIRROR_GOAL_RESULT.totalsExact}" data-edge-count="${MIRROR_GOAL_RESULT.totalEdges}" data-exact-edge-count="${MIRROR_GOAL_RESULT.exactEdges}" data-edges-exact="${MIRROR_GOAL_RESULT.edgesExact}" font-family="ui-sans-serif,system-ui,sans-serif">${mirrorGoalBoard()}<rect x="84" y="157" width="152" height="13" rx="6.5" fill="#31233f" stroke="#ffffff24"/><g font-size="8" font-weight="900" text-anchor="middle"><text x="112" y="166.5" fill="#ffb8aa">真人 ${MIRROR_GOAL_LEVEL.targets[MIRROR_ACTOR.HUMAN]}</text><text x="160" y="166.5" fill="#9af8fc">全息 ${MIRROR_GOAL_LEVEL.targets[MIRROR_ACTOR.HOLOGRAM]}</text><text x="208" y="166.5" fill="#ffe3a0">机械 ${MIRROR_GOAL_LEVEL.targets[MIRROR_ACTOR.ROBOT]}</text></g><circle cx="272" cy="90" r="15" fill="#72efbb"/><path d="M265 90l6 6 12-16" fill="none" stroke="#173827" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></g>`);
   return svg("真人、全息演员、机械演员和斜镜分别使用独立形状", focus, `
     <rect x="18" y="14" width="284" height="156" rx="18" fill="#21152d"/>
-    <g class="art-elements"><g transform="translate(80 78)"><circle cy="-18" r="13" fill="#ff8b72"/><path d="M-20 28c2-24 10-34 20-34s18 10 20 34z" fill="#ff8b72"/></g><g transform="translate(160 78)" stroke="#67e4eb"><circle cy="-12" r="19" fill="#67e4eb20" stroke-width="3"/><path d="M-22 8h44M-18 17h36M-12 26h24" stroke-width="4"/><path d="M-7-12h14M0-19v14" stroke="#67e4eb" stroke-width="3"/></g><g transform="translate(240 78)"><rect x="-20" y="-28" width="40" height="42" rx="4" fill="#efcf8120" stroke="#efcf81" stroke-width="3"/><circle cx="-7" cy="-10" r="3" fill="#efcf81"/><circle cx="7" cy="-10" r="3" fill="#efcf81"/><path d="M-9 2h18M0 14v18" stroke="#efcf81" stroke-width="4"/></g><g fill="#e9dff5" font-size="12" font-weight="800" text-anchor="middle"><text x="80" y="142">真人 ●</text><text x="160" y="142">全息 ◇</text><text x="240" y="142">机械 ▦</text></g><path d="M272 38l24 24" stroke="#a9e8ff" stroke-width="5"/></g>`);
+    <g class="art-elements">${mirrorActor(78, 78, "human", .86)}${mirrorActor(160, 78, "hologram", .86)}${mirrorActor(242, 78, "robot", .86)}<g fill="#e9dff5" font-size="11" font-weight="800" text-anchor="middle"><text x="78" y="145">真人 · 直视</text><text x="160" y="145">全息 · 镜中</text><text x="242" y="145">机械 · 始终</text></g><path d="M274 30l22 22" stroke="#a9e8ff" stroke-width="5"/></g>`);
 }
 
 const ART_RENDERERS = {
-  "star-drift": starDrift,
+  "star-drift": starDriftTutorialArt,
   "memory-ark": memoryArk,
-  "red-thread-office": redThread,
+  "red-thread-office": redThreadTutorialArt,
   "firefly-garden": firefly,
-  "abyss-echo": abyss,
-  "storm-lanterns": storm,
-  "night-market-spirits": nightMarket,
-  "sky-bridges": skyBridges,
+  "abyss-echo": abyssTutorialArt,
+  "storm-lanterns": stormTutorialArt,
+  "night-market-spirits": nightMarketTutorialArt,
+  "sky-bridges": skyBridgesTutorialArt,
   "spirit-dragon": spiritDragon,
   "mirror-theatre": mirror,
 };

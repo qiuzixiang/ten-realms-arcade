@@ -7,10 +7,13 @@ import {
   progressSummary,
   RANKS,
 } from "./reward-engine.mjs";
-import { REALM_TUTORIALS, tutorialArt } from "./tutorial-data.mjs";
+import { REALM_TUTORIALS, tutorialArt } from "./tutorial-data.mjs?v=2";
 
 const STORAGE_KEY = "ten-realms:progress:v1";
-const TUTORIAL_VERSION = 1;
+// Bump when the visual language or rules shown by the cards materially change.
+// Version 2 replaces several schematic drawings with in-game state replicas and
+// fixes the narrow-screen dialog alignment, so returning players should see it once.
+const TUTORIAL_VERSION = 2;
 const ACCENTS = Object.freeze({
   "star-drift": ["#79e7ff", "121, 231, 255"],
   "memory-ark": ["#aeb8ff", "174, 184, 255"],
@@ -64,7 +67,7 @@ if (tutorial) {
   }
 
   function ensureStylesheet() {
-    const href = new URL("./realm-ui.css", import.meta.url).href;
+    const href = new URL("./realm-ui.css?v=2", import.meta.url).href;
     if ([...document.styleSheets].some((sheet) => sheet.href === href)) return;
     if (document.querySelector(`link[href="${href}"]`)) return;
     const link = document.createElement("link");

@@ -1,6 +1,8 @@
 import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
 import {
   DIFFICULTIES,
+  DIRECTION_VECTORS,
   DIRECTIONS,
   LEVELS,
   SAVE_SCHEMA,
@@ -65,6 +67,86 @@ strictEqual(normalizeDirection({ dx: -1, dy: 0 }), "W");
 strictEqual(normalizeDirection([0, 0]), null);
 strictEqual(normalizeDirection([2, 0]), null);
 strictEqual(normalizeDirection("warp"), null);
+
+// Screen coordinates use x increasing right and y increasing down. Prove the
+// complete compass-to-vector contract so renderers, swipes and movement all
+// agree on what each of the eight direction names means.
+const compassContract = {
+  N: { vector: { dx: 0, dy: -1 }, landing: { x: 3, y: 1 } },
+  NE: { vector: { dx: 1, dy: -1 }, landing: { x: 5, y: 1 } },
+  E: { vector: { dx: 1, dy: 0 }, landing: { x: 5, y: 3 } },
+  SE: { vector: { dx: 1, dy: 1 }, landing: { x: 5, y: 5 } },
+  S: { vector: { dx: 0, dy: 1 }, landing: { x: 3, y: 5 } },
+  SW: { vector: { dx: -1, dy: 1 }, landing: { x: 1, y: 5 } },
+  W: { vector: { dx: -1, dy: 0 }, landing: { x: 1, y: 3 } },
+  NW: { vector: { dx: -1, dy: -1 }, landing: { x: 1, y: 1 } },
+};
+
+const compassLevel = customLevel("compass-contract", [
+  "#######",
+  "#....e#",
+  "#.....#",
+  "#..@..#",
+  "#.....#",
+  "#.....#",
+  "#######",
+]);
+
+for (const [direction, expected] of Object.entries(compassContract)) {
+  equal(DIRECTION_VECTORS[direction], expected.vector, `${direction} needs the correct screen-space vector`);
+  const result = attemptMove(createGame(compassLevel), direction);
+  check(result.moved, `${direction} should leave the central anchor`);
+  equal(result.path[0], {
+    x: compassLevel.start.x + expected.vector.dx,
+    y: compassLevel.start.y + expected.vector.dy,
+  }, `${direction} should take its first step in the labelled direction`);
+  equal(result.state.position, expected.landing, `${direction} should land on the matching board edge`);
+}
+
+// The control is a 3×3 grid rotated 45° clockwise. Its DOM cells therefore
+// map to visual compass positions in this order; arrows, labels and commands
+// must stay paired after that transform.
+const pageSource = readFileSync(new URL("./index.html", import.meta.url), "utf8");
+const styleSource = readFileSync(new URL("./styles.css", import.meta.url), "utf8");
+check(pageSource.includes('./styles.css?v=20260901b'), "direction-pad CSS must bypass stale mobile layouts");
+check(pageSource.includes('../../shared/realm-ui.css?v=2'), "tutorial CSS must use the current version");
+check(pageSource.includes('../../shared/realm-ui.mjs?v=2'), "tutorial module must use the current version");
+const padSource = pageSource.match(/<div id="direction-pad"[\s\S]*?<\/div>/)?.[0] ?? "";
+const padButtons = [...padSource.matchAll(/<button\b([^>]*)><span>([^<]+)<\/span><\/button>/g)].map((match) => ({
+  direction: match[1].match(/data-dir="([^"]+)"/)?.[1],
+  label: match[1].match(/aria-label="([^"]+)"/)?.[1],
+  arrow: match[2],
+}));
+const padContract = {
+  N: { label: "向上推进", arrow: "↑" },
+  NE: { label: "右上推进", arrow: "↗" },
+  E: { label: "向右推进", arrow: "→" },
+  SE: { label: "右下推进", arrow: "↘" },
+  S: { label: "向下推进", arrow: "↓" },
+  SW: { label: "左下推进", arrow: "↙" },
+  W: { label: "向左推进", arrow: "←" },
+  NW: { label: "左上推进", arrow: "↖" },
+};
+equal(padButtons.map(({ direction }) => direction), ["N", "NE", "E", "NW", "SE", "W", "SW", "S"], "rotated pad cells must occupy the correct visual compass positions");
+for (const button of padButtons) {
+  equal({ label: button.label, arrow: button.arrow }, padContract[button.direction], `${button.direction} button text must match its command`);
+}
+
+// Phone layouts remove the 45° transform, so every control needs an explicit
+// conventional nine-grid coordinate instead of inheriting the diamond DOM order.
+const mobilePadPositions = {
+  NW: [1, 1], N: [2, 1], NE: [3, 1],
+  W: [1, 2], E: [3, 2],
+  SW: [1, 3], S: [2, 3], SE: [3, 3],
+};
+for (const [direction, [column, row]] of Object.entries(mobilePadPositions)) {
+  const rule = styleSource.match(new RegExp(`\\.direction-pad \\[data-dir="${direction}"\\] \\{([^}]+)\\}`))?.[1] ?? "";
+  check(rule.includes(`grid-column: ${column}`), `${direction} needs the correct mobile grid column`);
+  check(rule.includes(`grid-row: ${row}`), `${direction} needs the correct mobile grid row`);
+}
+const mobileCoreRule = styleSource.match(/\.direction-pad__core \{([^}]+)\}/g)?.at(-1) ?? "";
+check(mobileCoreRule.includes("grid-column: 2"), "mobile control core belongs in the centre column");
+check(mobileCoreRule.includes("grid-row: 2"), "mobile control core belongs in the centre row");
 
 // Structural validation catches malformed level definitions early.
 throws(() => createLevel({ id: "BAD", name: "bad", difficulty: "easy", par: 1, grid: ["###", "#@#", "#e#"] }), /id/);

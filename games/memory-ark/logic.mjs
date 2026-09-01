@@ -339,6 +339,40 @@ export function validateState(state) {
     && tokens.every((token) => TOKEN_IDS.includes(token));
 }
 
+export function sameState(left, right) {
+  if (!validateState(left) || !validateState(right)) return false;
+  return left.size === right.size
+    && left.moves === right.moves
+    && left.position.x === right.position.x
+    && left.position.y === right.position.y
+    && left.board.every((token, index) => token === right.board[index])
+    && POSITIONS.every((position) => left.orientation[position] === right.orientation[position])
+    && FACE_IDS.every((face) => left.faceTokens[face] === right.faceTokens[face]);
+}
+
+export function isImmediateSuccessor(before, after) {
+  if (!validateState(before) || !validateState(after) || after.moves !== before.moves + 1) return false;
+  return legalDirections(before).some((direction) => {
+    const result = applyMove(before, direction);
+    return result.moved && sameState(result.state, after);
+  });
+}
+
+export function validateHistoryChain(initial, current, history, maxHistory = 400) {
+  if (!validateState(initial) || !validateState(current) || !Array.isArray(history)) return false;
+  if (!Number.isInteger(maxHistory) || maxHistory < 1) return false;
+  if (history.length !== Math.min(current.moves, maxHistory)) return false;
+  if (history.some((state) => !validateState(state))) return false;
+  if (current.moves === 0) return sameState(initial, current);
+  if (history.length === 0) return false;
+  if (current.moves <= maxHistory && !sameState(history[0], initial)) return false;
+  if (history[0].moves !== current.moves - history.length) return false;
+  for (let index = 1; index < history.length; index += 1) {
+    if (!isImmediateSuccessor(history[index - 1], history[index])) return false;
+  }
+  return isImmediateSuccessor(history.at(-1), current);
+}
+
 export function serializeState(state) {
   return JSON.stringify(state);
 }

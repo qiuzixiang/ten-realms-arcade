@@ -1534,6 +1534,16 @@ kbd {
     transform: none;
   }
 
+  .direction-pad [data-dir="NW"] { grid-column: 1; grid-row: 1; }
+  .direction-pad [data-dir="N"] { grid-column: 2; grid-row: 1; }
+  .direction-pad [data-dir="NE"] { grid-column: 3; grid-row: 1; }
+  .direction-pad [data-dir="W"] { grid-column: 1; grid-row: 2; }
+  .direction-pad__core { grid-column: 2; grid-row: 2; }
+  .direction-pad [data-dir="E"] { grid-column: 3; grid-row: 2; }
+  .direction-pad [data-dir="SW"] { grid-column: 1; grid-row: 3; }
+  .direction-pad [data-dir="S"] { grid-column: 2; grid-row: 3; }
+  .direction-pad [data-dir="SE"] { grid-column: 3; grid-row: 3; }
+
   .direction-pad button span {
     transform: none;
   }
