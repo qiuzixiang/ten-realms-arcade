@@ -7,6 +7,7 @@ import { REALM_CONFIGS, REALM_TUTORIALS, tutorialArt } from "./tutorial-data.mjs
 assert.equal(V2_STORAGE_PREFIX, "ten-realms-v2:");
 assert.equal(V2_PROGRESS_KEY, "ten-realms-v2:progress:v1");
 assert.equal(tutorialStorageKey("sample-realm"), "ten-realms-v2:tutorial:sample-realm:v1");
+assert.equal(tutorialStorageKey("sample-realm", 2), "ten-realms-v2:tutorial:sample-realm:v2");
 assert.equal(gameStorageKey("sample-realm", "save"), "ten-realms-v2:games:sample-realm:save:v1");
 assert.throws(() => gameStorageKey("../escape", "save"), /Invalid game slug/);
 
@@ -86,7 +87,8 @@ const svgIds = new Set();
 for (const [realmId, tutorial] of Object.entries(REALM_TUTORIALS)) {
   assert.match(tutorial.accent, /^#[0-9a-f]{6}$/i);
   assert.match(tutorial.accentRgb, /^\d{1,3}, \d{1,3}, \d{1,3}$/);
-  assert.equal(tutorial.version, 1);
+  assert.equal(tutorial.version, 2);
+  assert.equal(tutorialStorageKey(realmId, tutorial.version), `ten-realms-v2:tutorial:${realmId}:v2`);
   assert.ok(tutorial.token);
   assert.equal(tutorial.cards.length, 3, `${realmId} must have exactly three tutorial cards`);
   assert.deepEqual(tutorial.cards.map(({ focus }) => focus), ["elements", "action", "goal"]);
@@ -124,6 +126,8 @@ assert.match(uiSource, /如何获得 XP/);
 assert.match(uiSource, /单纯重复同一成绩不会刷分/);
 assert.doesNotMatch(uiSource, /ten-realms:progress/);
 assert.match(uiStyles, /\[data-rank\]\s*\{[^}]*min-height:\s*44px/, "the shared rank control needs a full mobile touch target");
+assert.match(uiStyles, /button\[data-next\]:is\(:hover, :focus-visible, :active\)/, "game footer hover rules must not hide the tutorial CTA");
+assert.match(uiStyles, /html:has\(\.realm-guide-dialog\[open\]\)[\s\S]*?overflow:\s*hidden/, "an open mobile tutorial must lock background scrolling");
 assert.match(serviceWorkerSource, /isGameDirectory/);
 assert.match(serviceWorkerSource, /const directoryPath = relativePath\.replace/);
 assert.match(serviceWorkerSource, /new URL\(`\$\{directoryPath\}index\.html`, scope\)/);

@@ -44,6 +44,7 @@ import {
   serializeStoredGame,
   snapshotFromState,
 } from "./storage.mjs";
+import { REALM_TUTORIALS, tutorialArt } from "../../shared/tutorial-data.mjs";
 
 const tests = [];
 function test(name, callback) {
@@ -516,6 +517,19 @@ test("nine distinct clears unlock four decorations, all difficulty visitors, and
   assert.equal(summary.flawlessClears, 5);
   assert.deepEqual(difficultyProgress(stats), { cloudlet: 3, ridgewind: 3, aurora: 3 });
   assert.deepEqual(normalizeCampStats(JSON.parse(JSON.stringify(stats))), stats);
+});
+
+test("shared tutorial uses three rule-accurate v2 scenes without covering the row and column labels", () => {
+  const tutorial = REALM_TUTORIALS["cloud-camp"];
+  assert.equal(tutorial.version, 2);
+  assert.deepEqual(tutorial.cards.map(({ focus }) => focus), ["elements", "action", "goal"]);
+  const [elementsArt, actionArt, goalArt] = tutorial.cards.map(({ focus }) => tutorialArt("cloud-camp", focus));
+  assert.match(elementsArt, /上方/);
+  assert.match(elementsArt, /列数/);
+  assert.match(elementsArt, /右侧行数/);
+  assert.doesNotMatch(elementsArt, /<text x="145" y="25">列数<\/text>/);
+  assert.match(actionArt, /未知|帐篷|草地/);
+  assert.match(goalArt, /class="art-goal"/);
 });
 
 test("page wiring keeps engine, save, shared rewards, tutorials, source, audio, and accessibility connected", async () => {

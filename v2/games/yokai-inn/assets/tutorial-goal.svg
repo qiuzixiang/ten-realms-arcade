@@ -1,52 +1,48 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" preserveAspectRatio="xMidYMid meet" role="img" aria-labelledby="title description" data-tutorial-state="goal">
-  <title id="title">铺满旅店并让每一种无序数字组合恰好入住一次</title>
-  <desc id="description">一个完整的五乘四旅店被十个互不重叠的房框铺满，右侧十种零到三的无序组合全部打勾。</desc>
-  <rect x="8" y="8" width="624" height="344" rx="30" fill="#15162d" stroke="#f4c66d" stroke-width="3"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" preserveAspectRatio="xMidYMid meet" role="img" aria-labelledby="title description" data-tutorial-state="goal" data-puzzle-id="yokai-inn:g1:o3:u:do80yl:a10" data-order="3" data-seed="826745565" data-board-size="5x4" data-numbers="3,2,2,3,2,2,0,3,1,0,2,1,1,1,0,1,0,0,3,3" data-solution="0:5,10:15,11:12,13:14,16:17,18:19,1:2,3:8,4:9,6:7">
+  <title id="title">月见汤庭真实唯一解题面的完整通关状态</title>
+  <desc id="description">月见汤庭五乘四真实题面被十个互不重叠的金色客房铺满。右侧从零到三的十种无序组合全部各使用一次，因而满足通关条件。</desc>
+  <rect x="8" y="8" width="624" height="344" rx="30" fill="#15162d" stroke="#f0c468" stroke-width="3"/>
   <g font-family="system-ui,sans-serif">
-    <text x="32" y="46" fill="#f4c66d" font-size="19" font-weight="900">所有格铺满 · 每种组合一次</text>
-    <g transform="translate(32 66)" font-size="22" font-weight="900" text-anchor="middle">
-      <g fill="#1d2540" stroke="#766d91" stroke-width="1.5">
-        <rect x="0" y="0" width="48" height="48" rx="10"/><rect x="52" y="0" width="48" height="48" rx="10"/><rect x="104" y="0" width="48" height="48" rx="10"/><rect x="156" y="0" width="48" height="48" rx="10"/><rect x="208" y="0" width="48" height="48" rx="10"/>
-        <rect x="0" y="52" width="48" height="48" rx="10"/><rect x="52" y="52" width="48" height="48" rx="10"/><rect x="104" y="52" width="48" height="48" rx="10"/><rect x="156" y="52" width="48" height="48" rx="10"/><rect x="208" y="52" width="48" height="48" rx="10"/>
-        <rect x="0" y="104" width="48" height="48" rx="10"/><rect x="52" y="104" width="48" height="48" rx="10"/><rect x="104" y="104" width="48" height="48" rx="10"/><rect x="156" y="104" width="48" height="48" rx="10"/><rect x="208" y="104" width="48" height="48" rx="10"/>
-        <rect x="0" y="156" width="48" height="48" rx="10"/><rect x="52" y="156" width="48" height="48" rx="10"/><rect x="104" y="156" width="48" height="48" rx="10"/><rect x="156" y="156" width="48" height="48" rx="10"/><rect x="208" y="156" width="48" height="48" rx="10"/>
+    <text x="28" y="43" fill="#f0c468" font-size="20" font-weight="900">真实通关画面 · 月见汤庭</text>
+    <text x="28" y="64" fill="#bcb5c8" font-size="13">灯影小馆 5 × 4 · 唯一解已证明 · 10 间客房</text>
+    <g transform="translate(28 87)" data-real-element="complete-board">
+      <rect x="-10" y="-10" width="246" height="199" rx="20" fill="#080d1dc7" stroke="#ffffff16"/>
+      <g fill="#f0c46820" stroke="#f0c468" stroke-width="4" data-real-element="room-overlays">
+        <rect x="-4" y="-4" width="46" height="93" rx="16"/><rect x="-4" y="90" width="46" height="93" rx="16"/>
+        <rect x="43" y="90" width="93" height="46" rx="16"/><rect x="137" y="90" width="93" height="46" rx="16"/>
+        <rect x="43" y="137" width="93" height="46" rx="16"/><rect x="137" y="137" width="93" height="46" rx="16"/>
+        <rect x="43" y="-4" width="93" height="46" rx="16"/><rect x="137" y="-4" width="46" height="93" rx="16"/>
+        <rect x="184" y="-4" width="46" height="93" rx="16"/><rect x="43" y="43" width="93" height="46" rx="16"/>
       </g>
-      <g fill="#fff7dc">
-        <text x="24" y="32">0</text><text x="76" y="32">2</text><text x="128" y="32">2</text><text x="180" y="32">3</text><text x="232" y="32">0</text>
-        <text x="24" y="84">1</text><text x="76" y="84">3</text><text x="128" y="84">0</text><text x="180" y="84">0</text><text x="232" y="84">1</text>
-        <text x="24" y="136">1</text><text x="76" y="136">3</text><text x="128" y="136">3</text><text x="180" y="136">3</text><text x="232" y="136">1</text>
-        <text x="24" y="188">2</text><text x="76" y="188">0</text><text x="128" y="188">2</text><text x="180" y="188">2</text><text x="232" y="188">1</text>
+      <g fill="#1b2340" stroke="#f0c4687c" stroke-width="1.5">
+        <rect x="0" y="0" width="38" height="38" rx="11"/><rect x="47" y="0" width="38" height="38" rx="11"/><rect x="94" y="0" width="38" height="38" rx="11"/><rect x="141" y="0" width="38" height="38" rx="11"/><rect x="188" y="0" width="38" height="38" rx="11"/>
+        <rect x="0" y="47" width="38" height="38" rx="11"/><rect x="47" y="47" width="38" height="38" rx="11"/><rect x="94" y="47" width="38" height="38" rx="11"/><rect x="141" y="47" width="38" height="38" rx="11"/><rect x="188" y="47" width="38" height="38" rx="11"/>
+        <rect x="0" y="94" width="38" height="38" rx="11"/><rect x="47" y="94" width="38" height="38" rx="11"/><rect x="94" y="94" width="38" height="38" rx="11"/><rect x="141" y="94" width="38" height="38" rx="11"/><rect x="188" y="94" width="38" height="38" rx="11"/>
+        <rect x="0" y="141" width="38" height="38" rx="11"/><rect x="47" y="141" width="38" height="38" rx="11"/><rect x="94" y="141" width="38" height="38" rx="11"/><rect x="141" y="141" width="38" height="38" rx="11"/><rect x="188" y="141" width="38" height="38" rx="11"/>
       </g>
-      <g fill="#f4c66d10" stroke="#f4c66d" stroke-width="4">
-        <rect x="-4" y="-4" width="108" height="56" rx="14"/><rect x="100" y="-4" width="108" height="56" rx="14"/>
-        <rect x="204" y="-4" width="56" height="108" rx="14"/><rect x="-4" y="48" width="108" height="56" rx="14"/>
-        <rect x="100" y="48" width="108" height="56" rx="14"/><rect x="-4" y="100" width="56" height="108" rx="14"/>
-        <rect x="48" y="100" width="56" height="108" rx="14"/><rect x="100" y="100" width="108" height="56" rx="14"/>
-        <rect x="204" y="100" width="56" height="108" rx="14"/><rect x="100" y="152" width="108" height="56" rx="14"/>
+      <g fill="#f7efd9" font-size="21" font-weight="900" text-anchor="middle">
+        <text x="19" y="26">3</text><text x="66" y="26">2</text><text x="113" y="26">2</text><text x="160" y="26">3</text><text x="207" y="26">2</text>
+        <text x="19" y="73">2</text><text x="66" y="73">0</text><text x="113" y="73">3</text><text x="160" y="73">1</text><text x="207" y="73">0</text>
+        <text x="19" y="120">2</text><text x="66" y="120">1</text><text x="113" y="120">1</text><text x="160" y="120">1</text><text x="207" y="120">0</text>
+        <text x="19" y="167">1</text><text x="66" y="167">0</text><text x="113" y="167">0</text><text x="160" y="167">3</text><text x="207" y="167">3</text>
+      </g>
+      <g fill="#f0c468" stroke="#0d1225" stroke-width="2">
+        <circle cx="19" cy="42.5" r="6"/><circle cx="19" cy="136.5" r="6"/><circle cx="89.5" cy="113" r="6"/><circle cx="183.5" cy="113" r="6"/><circle cx="89.5" cy="160" r="6"/><circle cx="183.5" cy="160" r="6"/><circle cx="89.5" cy="19" r="6"/><circle cx="160" cy="42.5" r="6"/><circle cx="207" cy="42.5" r="6"/><circle cx="89.5" cy="66" r="6"/>
       </g>
     </g>
-    <g transform="translate(326 74)">
-      <text x="0" y="0" fill="#65d5c8" font-size="15" font-weight="900">完整 0..3 住客组合</text>
-      <g transform="translate(0 20)" font-size="14" font-weight="800">
-        <g fill="#65d5c820" stroke="#65d5c8" stroke-width="2">
-          <rect x="0" y="0" width="82" height="38" rx="12"/><rect x="92" y="0" width="82" height="38" rx="12"/><rect x="184" y="0" width="82" height="38" rx="12"/>
-          <rect x="0" y="48" width="82" height="38" rx="12"/><rect x="92" y="48" width="82" height="38" rx="12"/><rect x="184" y="48" width="82" height="38" rx="12"/>
-          <rect x="0" y="96" width="82" height="38" rx="12"/><rect x="92" y="96" width="82" height="38" rx="12"/><rect x="184" y="96" width="82" height="38" rx="12"/>
-          <rect x="0" y="144" width="82" height="38" rx="12"/>
+    <g transform="translate(294 86)">
+      <text x="0" y="0" fill="#62d1c4" font-size="14" font-weight="900">完整 0..3 无序组合 · 各一次</text>
+      <g transform="translate(0 16)" font-size="13" font-weight="850">
+        <g fill="#62d1c41b" stroke="#62d1c4" stroke-width="1.5">
+          <rect width="91" height="36" rx="11"/><rect x="101" width="91" height="36" rx="11"/><rect x="202" width="91" height="36" rx="11"/>
+          <rect y="46" width="91" height="36" rx="11"/><rect x="101" y="46" width="91" height="36" rx="11"/><rect x="202" y="46" width="91" height="36" rx="11"/>
+          <rect y="92" width="91" height="36" rx="11"/><rect x="101" y="92" width="91" height="36" rx="11"/><rect x="202" y="92" width="91" height="36" rx="11"/><rect y="138" width="91" height="36" rx="11"/>
         </g>
-        <g fill="#eafff9">
-          <text x="12" y="25">✓ 0·0</text><text x="104" y="25">✓ 0·1</text><text x="196" y="25">✓ 1·1</text>
-          <text x="12" y="73">✓ 0·2</text><text x="104" y="73">✓ 1·2</text><text x="196" y="73">✓ 2·2</text>
-          <text x="12" y="121">✓ 0·3</text><text x="104" y="121">✓ 1·3</text><text x="196" y="121">✓ 2·3</text>
-          <text x="12" y="169">✓ 3·3</text>
-        </g>
+        <g fill="#eafff9"><text x="13" y="23">✓ 0·0</text><text x="114" y="23">✓ 0·1</text><text x="215" y="23">✓ 1·1</text><text x="13" y="69">✓ 0·2</text><text x="114" y="69">✓ 1·2</text><text x="215" y="69">✓ 2·2</text><text x="13" y="115">✓ 0·3</text><text x="114" y="115">✓ 1·3</text><text x="215" y="115">✓ 2·3</text><text x="13" y="161">✓ 3·3</text></g>
       </g>
-      <g transform="translate(0 226)">
-        <circle cx="22" cy="22" r="20" fill="#f4c66d"/>
-        <path d="M12 22l7 7 14-17" fill="none" stroke="#15162d" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
-        <text x="55" y="18" fill="#fff7dc" font-size="16" font-weight="900">旅店结账成功</text>
-        <text x="55" y="39" fill="#d8d0df" font-size="13">排除线只是笔记，不影响通关</text>
-      </g>
+      <rect x="0" y="198" width="293" height="62" rx="15" fill="#f0c46813" stroke="#f0c46888"/>
+      <circle cx="31" cy="229" r="18" fill="#f0c468"/><path d="m23 229 6 6 11-13" fill="none" stroke="#15162d" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="61" y="223" fill="#fff7dc" font-size="15" font-weight="900">全馆铺满，组合无缺无重</text><text x="61" y="243" fill="#bcb5c8" font-size="12">因此“百鬼安寝，今夜满房”</text>
     </g>
   </g>
 </svg>

@@ -1,43 +1,38 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" preserveAspectRatio="xMidYMid meet" role="img" aria-labelledby="title description" data-tutorial-state="action">
-  <title id="title">依次选择两个相邻数字格完成配房</title>
-  <desc id="description">左侧单独展示先选中数字二，右侧单独展示再选择正交相邻的数字四后形成房框；下方展示配房与排除两个工具。</desc>
-  <rect x="8" y="8" width="624" height="344" rx="30" fill="#111830" stroke="#65d5c8" stroke-width="3"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" preserveAspectRatio="xMidYMid meet" role="img" aria-labelledby="title description" data-tutorial-state="action" data-puzzle-id="yokai-inn:g1:o3:u:do80yl:a10" data-action="room" data-first-cell="6" data-second-cell="7" data-edge="6:7">
+  <title id="title">在真实月见汤庭题面依次选择零与三完成配房</title>
+  <desc id="description">左侧独立展示选择需求零后的金色起点状态，右侧独立展示再选择右侧正交相邻需求三后形成零三客房；底部显示实机确定客房和画排除线工具。</desc>
+  <rect x="8" y="8" width="624" height="344" rx="30" fill="#111830" stroke="#62d1c4" stroke-width="3"/>
   <g font-family="system-ui,sans-serif">
-    <text x="38" y="48" fill="#65d5c8" font-size="19" font-weight="900">轻触相邻边，或依次选择两格</text>
-    <g transform="translate(38 68)">
-      <rect width="244" height="196" rx="22" fill="#ffffff08" stroke="#ffffff24" stroke-width="2"/>
-      <text x="22" y="30" fill="#f4c66d" font-size="15" font-weight="900">01 · 先选一格</text>
-      <g transform="translate(36 52)" text-anchor="middle" font-size="34" font-weight="900">
-        <rect width="78" height="78" rx="16" fill="#1a2340" stroke="#f4c66d" stroke-width="6"/>
-        <rect x="92" width="78" height="78" rx="16" fill="#1a2340" stroke="#7b7098" stroke-width="2"/>
-        <text x="39" y="52" fill="#fff7dc">2</text><text x="131" y="52" fill="#fff7dc">4</text>
-        <path d="M24 92h30l-5 11h-20z" fill="#f4c66d"/>
+    <text x="30" y="44" fill="#62d1c4" font-size="20" font-weight="900">手机：选工具后，依次点两个正交相邻格</text>
+    <text x="30" y="64" fill="#bcb5c8" font-size="13">较宽屏也可直接点接缝；图中使用真实题面 6:7 边</text>
+    <g transform="translate(30 78)">
+      <rect width="246" height="184" rx="22" fill="#ffffff08" stroke="#ffffff24" stroke-width="2"/>
+      <text x="18" y="29" fill="#f0c468" font-size="14" font-weight="900">01 · 先点需求 0</text>
+      <g transform="translate(34 52)" data-real-element="anchor-state">
+        <rect width="70" height="70" rx="15" fill="#1b2340" stroke="#f0c468" stroke-width="4"/>
+        <rect x="84" width="70" height="70" rx="15" fill="#1b2340" stroke="#756e92" stroke-width="2"/>
+        <text x="35" y="47" text-anchor="middle" fill="#f7efd9" font-size="32" font-weight="900">0</text><text x="119" y="47" text-anchor="middle" fill="#f7efd9" font-size="32" font-weight="900">3</text>
+        <rect x="4" y="4" width="62" height="62" rx="12" fill="none" stroke="#f0c468" stroke-width="3"/>
       </g>
-      <text x="22" y="174" fill="#d8d0df" font-size="14">金色角标提示配房起点</text>
+      <text x="18" y="151" fill="#ffe7a6" font-size="12" font-weight="800">金色内框 = 当前配房起点</text><text x="18" y="169" fill="#bcb5c8" font-size="11">再点自己会取消；点不相邻格会改起点</text>
     </g>
-    <path d="M296 160h42" stroke="#65d5c8" stroke-width="6" stroke-linecap="round"/>
-    <path d="M340 160l-14-11v22z" fill="#65d5c8"/>
-    <g transform="translate(358 68)">
-      <rect width="244" height="196" rx="22" fill="#ffffff08" stroke="#ffffff24" stroke-width="2"/>
-      <text x="22" y="30" fill="#65d5c8" font-size="15" font-weight="900">02 · 再选正交相邻格</text>
-      <g transform="translate(36 52)" text-anchor="middle" font-size="34" font-weight="900">
-        <rect width="78" height="78" rx="16" fill="#1a2340" stroke="#7b7098" stroke-width="2"/>
-        <rect x="92" width="78" height="78" rx="16" fill="#1a2340" stroke="#7b7098" stroke-width="2"/>
-        <rect x="-6" y="-6" width="182" height="90" rx="22" fill="#f4c66d12" stroke="#f4c66d" stroke-width="7"/>
-        <text x="39" y="52" fill="#fff7dc">2</text><text x="131" y="52" fill="#fff7dc">4</text>
-        <circle cx="85" cy="39" r="10" fill="#65d5c8" stroke="#111830" stroke-width="3"/>
+    <path d="M289 164h40" stroke="#62d1c4" stroke-width="6" stroke-linecap="round"/><path d="m337 164-14-11v22z" fill="#62d1c4"/>
+    <g transform="translate(364 78)">
+      <rect width="246" height="184" rx="22" fill="#ffffff08" stroke="#ffffff24" stroke-width="2"/>
+      <text x="18" y="29" fill="#62d1c4" font-size="14" font-weight="900">02 · 再点右侧需求 3</text>
+      <g transform="translate(34 52)" data-real-element="room-state">
+        <rect x="-4" y="-4" width="162" height="78" rx="20" fill="#f0c46820" stroke="#f0c468" stroke-width="4"/>
+        <rect width="70" height="70" rx="15" fill="#1b2340" stroke="#f0c4687c" stroke-width="2"/><rect x="84" width="70" height="70" rx="15" fill="#1b2340" stroke="#f0c4687c" stroke-width="2"/>
+        <text x="35" y="47" text-anchor="middle" fill="#f7efd9" font-size="32" font-weight="900">0</text><text x="119" y="47" text-anchor="middle" fill="#f7efd9" font-size="32" font-weight="900">3</text>
+        <circle cx="77" cy="35" r="8" fill="#f0c468" stroke="#0d1225" stroke-width="3"/>
       </g>
-      <text x="22" y="174" fill="#d8d0df" font-size="14">圆角房框不会盖住数字</text>
+      <text x="18" y="151" fill="#ffe7a6" font-size="12" font-weight="800">形成 0·3 客房，完整变化计 1 步</text><text x="18" y="169" fill="#bcb5c8" font-size="11">同一房间再操作一次会拆房</text>
     </g>
-    <g transform="translate(38 282)">
-      <rect width="254" height="52" rx="18" fill="#f4c66d1a" stroke="#f4c66d" stroke-width="2"/>
-      <path d="M18 13h32v26H18z" fill="none" stroke="#f4c66d" stroke-width="4"/>
-      <text x="66" y="32" fill="#fff7dc" font-size="15" font-weight="800">配房：Enter / 点击</text>
+    <g transform="translate(30 278)">
+      <rect width="276" height="54" rx="16" fill="#f0c46818" stroke="#f0c468" stroke-width="2"/><rect x="15" y="13" width="34" height="28" rx="8" fill="none" stroke="#f0c468" stroke-width="4"/><circle cx="32" cy="27" r="4" fill="#62d1c4"/><text x="64" y="25" fill="#fff7dc" font-size="14" font-weight="900">确定客房（当前）</text><text x="64" y="42" fill="#bcb5c8" font-size="10">两次点选 · Enter · D</text>
     </g>
-    <g transform="translate(310 282)">
-      <rect width="292" height="52" rx="18" fill="#ff826e12" stroke="#ff826e" stroke-width="2"/>
-      <path d="M18 14l30 24m0-24L18 38" stroke="#ff826e" stroke-width="5" stroke-linecap="round"/>
-      <text x="66" y="32" fill="#fff7dc" font-size="15" font-weight="800">排除：Space / 右键</text>
+    <g transform="translate(322 278)">
+      <rect width="288" height="54" rx="16" fill="#ff826f10" stroke="#ff826f" stroke-width="2"/><path d="M17 15l31 25m0-25L17 40" stroke="#ff826f" stroke-width="5" stroke-linecap="round"/><text x="64" y="25" fill="#fff7dc" font-size="14" font-weight="900">画排除线</text><text x="64" y="42" fill="#bcb5c8" font-size="10">先切工具再点两格 · Space · X</text>
     </g>
   </g>
 </svg>

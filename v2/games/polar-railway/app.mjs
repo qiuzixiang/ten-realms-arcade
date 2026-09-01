@@ -344,11 +344,11 @@ function saveGame() {
 
 function tutorialWasSeen() {
   const value = safeParse(storageGet(STORAGE_KEYS.tutorial));
-  return value?.version === 1 && value.seen === true;
+  return value?.version === 2 && value.seen === true;
 }
 
 function markTutorialSeen() {
-  storageSet(STORAGE_KEYS.tutorial, JSON.stringify({ version: 1, seen: true }));
+  storageSet(STORAGE_KEYS.tutorial, JSON.stringify({ version: 2, seen: true }));
 }
 
 function ensureAudio() {

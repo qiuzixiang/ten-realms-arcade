@@ -1007,6 +1007,7 @@ test("keyboard shortcut filtering leaves form controls and editors alone", () =>
 
 test("all private storage keys are isolated to the polar-railway v2 namespace", () => {
   equal(STORAGE_PREFIX, "ten-realms-v2:games:polar-railway:");
+  equal(STORAGE_KEYS.tutorial, `${STORAGE_PREFIX}tutorial:v2`);
   equal(Object.keys(STORAGE_KEYS).length, 4);
   equal(new Set(Object.values(STORAGE_KEYS)).size, Object.values(STORAGE_KEYS).length);
   for (const [name, key] of Object.entries(STORAGE_KEYS)) {
@@ -1268,6 +1269,7 @@ test("the page has a v2 return path, semantic dialogs, live status, and no remot
   matches(html, /href=["']\.\.\/\.\.\/["']/i, "return must target /v2/ via ../../");
   matches(html, /href=["']\.\.\/\.\.\/shared\/realm-ui\.css["']/i);
   matches(html, /src=["']\.\.\/\.\.\/shared\/realm-ui\.mjs["']/i);
+  matches(html, /<script\s+type=["']module["']\s+src=["']\.\/app\.mjs["']><\/script>/i, "game entry script must remain canonical");
   ok(html.indexOf("../../shared/realm-ui.mjs") < html.indexOf("./app.mjs"), "shared progression must load before the game app");
   matches(html, /href=["']\.\.\/\.\.\/THIRD_PARTY_NOTICES\.md["']/i);
   doesNotMatch(html, /tabindex=["'](?:[1-9]\d*)["']/i, "positive tabindex breaks natural focus order");
@@ -1282,8 +1284,8 @@ test("three first-run tutorial slides use distinct, contain-fitted real SVG scen
   deepEqual(TUTORIAL_SLIDES.map(({ id }) => id), ["elements", "operation", "goal"]);
   equal(new Set(TUTORIAL_SLIDES.map(({ image }) => image)).size, 3);
   const pictures = TUTORIAL_SLIDES.map(({ image }) => {
-    ok(image.startsWith("./assets/") && image.endsWith(".svg"));
-    const source = read(image.slice(2));
+    ok(image.startsWith("./assets/") && image.endsWith(".svg?tutorial=2"));
+    const source = read(image.slice(2).replace(/\?tutorial=2$/, ""));
     matches(source, /<svg\b[^>]*preserveAspectRatio=["']xMidYMid meet["']/i);
     matches(source, /viewBox=["'][^"']+["']/i);
     doesNotMatch(source, /(?:id|class|data-state)=["'][^"']*(?:before-state|after-state|state-before|state-after|scene-before|scene-after)[^"']*["']/i,
@@ -1291,13 +1293,42 @@ test("three first-run tutorial slides use distinct, contain-fitted real SVG scen
     return source.replace(/\s+/g, " ").trim();
   });
   equal(new Set(pictures).size, 3, "all three tutorial pictures must be independently authored scenes");
+  equal(pictures.every((source) => source.includes('data-level-id="whiteout-5a"')), true,
+    "all tutorial scenes must come from the first real level");
+  matches(pictures[0], /data-tutorial-scene="elements"[^>]*data-state="initial"/);
+  matches(pictures[1], /data-tutorial-scene="operation"[^>]*data-state="intermediate"/);
+  matches(pictures[1], /data-track-edge="0,1\|1,1"/, "operation scene must show one legal real route edge");
+  matches(pictures[2], /data-tutorial-scene="goal"[^>]*data-state="solved"/);
+  matches(pictures[2], /data-column-clues="2,2,5,4,4"/);
+  matches(pictures[2], /data-row-clues="3,5,3,3,3"/);
+  const tutorialAttribute = (source, name) => new RegExp(`\\b${name}="([^"]*)"`).exec(source)?.[1] ?? null;
+  const tutorialLevel = findLevel("whiteout-5a");
+  equal(tutorialAttribute(pictures[2], "data-column-clues"), tutorialLevel.columnClues.join(","));
+  equal(tutorialAttribute(pictures[2], "data-row-clues"), tutorialLevel.rowClues.join(","));
+  const tutorialProof = countSolutions(tutorialLevel, 2);
+  equal(tutorialProof.count, 1);
+  equal(tutorialProof.truncated, false);
+  const picturedRoute = tutorialAttribute(pictures[2], "data-route").split(";").map((point) => {
+    const [x, y] = point.split(",").map(Number);
+    return { x, y };
+  });
+  deepEqual(picturedRoute, tutorialProof.solutions[0], "通关图必须逐格使用正式关卡的唯一 A→B 路线");
+  const picturedState = solutionState(tutorialLevel);
+  equal(isSolved(tutorialLevel, picturedState), true, "图示路线不得含隐藏回路、游离轨段或配额偏差");
+  deepEqual(traceRoute(tutorialLevel, picturedState.tracks), picturedRoute);
+  const [operationA, operationB] = tutorialAttribute(pictures[1], "data-track-edge").split("|").map(parseCellKey);
+  ok(picturedState.tracks.has(edgeKey(operationA, operationB)), "操作卡高亮边必须属于正式作者路线");
 
   const html = read("index.html");
   const app = read("app.mjs");
   const css = read("styles.css");
   matches(`${html}\n${app}`, /跳过/);
   matches(`${html}\n${app}`, /重看教程|教程/);
+  matches(html, /src=["']\.\/assets\/tutorial-elements\.svg\?tutorial=2["']/);
+  matches(TUTORIAL_SLIDES[1].copy, /图中的格心 × 是“无轨格”/);
   matches(app, /STORAGE_KEYS\.tutorial/);
+  matches(app, /value\?\.version === 2/);
+  matches(app, /JSON\.stringify\(\{ version: 2, seen: true \}\)/);
   matches(app, /TUTORIAL_SLIDES/);
   matches(app, /tutorial[^\n]{0,120}(?:open|showModal)|(?:open|showModal)[^\n]{0,120}tutorial/i);
   matches(css, /object-fit\s*:\s*contain/);

@@ -16,12 +16,13 @@ export const STORAGE_KEYS = Object.freeze({
 });
 
 export const STORAGE_VERSION = 1;
+export const TUTORIAL_VERSION = 2;
 
 export function defaultPreferences() {
   return {
     version: STORAGE_VERSION,
     muted: false,
-    tutorialSeen: false,
+    tutorialVersion: 0,
     presetId: DEFAULT_PRESET_ID,
   };
 }
@@ -32,7 +33,7 @@ export function normalizePreferences(candidate) {
   return {
     version: STORAGE_VERSION,
     muted: candidate.muted === true,
-    tutorialSeen: candidate.tutorialSeen === true,
+    tutorialVersion: candidate.tutorialVersion === TUTORIAL_VERSION ? TUTORIAL_VERSION : 0,
     presetId: PRESETS[candidate.presetId] ? candidate.presetId : DEFAULT_PRESET_ID,
   };
 }

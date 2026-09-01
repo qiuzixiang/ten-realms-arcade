@@ -451,7 +451,7 @@ test("存档键全部位于 2.0 游戏私有前缀，绝不接触 1.0 键", () =
     `${STORAGE_PREFIX}session:v1`,
     `${STORAGE_PREFIX}profile:v1`,
     `${STORAGE_PREFIX}preferences:v1`,
-    `${STORAGE_PREFIX}tutorial:v1`,
+    `${STORAGE_PREFIX}tutorial:v2`,
   ]);
   equal(Object.values(STORAGE_KEYS).every((key) => key.startsWith(STORAGE_PREFIX)), true);
 });
@@ -544,6 +544,12 @@ test("不可用 storage 不抛错，偏好与首次教程也严格使用私有�
   equal(loadTutorialSeen(storage).seen, false);
   equal(markTutorialSeen(storage), true);
   equal(loadTutorialSeen(storage).seen, true);
+  equal(JSON.parse(storage.map.get(STORAGE_KEYS.tutorial)), { version: 2, seen: true });
+  const legacyTutorial = new FakeStorage({
+    [`${STORAGE_PREFIX}tutorial:v1`]: JSON.stringify({ version: 1, seen: true }),
+  });
+  equal(loadTutorialSeen(legacyTutorial).seen, false, "旧教程记录必须让新版教程再自动出现一次");
+  equal(legacyTutorial.map.has(`${STORAGE_PREFIX}tutorial:v1`), true, "升级教程不得清理其他既有记录");
   equal(storage.accesses.every(([, key]) => key.startsWith(STORAGE_PREFIX)), true);
 });
 
@@ -884,9 +890,10 @@ test("独立 HTML、CSS、应用接线与三张真实 SVG 教程满足静态契�
   ok(html.includes("青色圆形"));
   ok(html.includes("洋红菱形"));
   ok(html.includes("琥珀六边形"));
-  ok(html.includes(`./assets/${tutorialFiles[0]}`), "HTML must provide the first tutorial image fallback");
+  ok(html.includes(`./assets/${tutorialFiles[0]}?tutorial=2`), "HTML must provide the versioned first tutorial image fallback");
+  ok(/<script\s+type="module"\s+src="\.\/app\.mjs"><\/script>/.test(html), "game entry script must remain canonical");
   equal(
-    [...app.matchAll(/image:\s*"\.\/assets\/(tutorial-[^"]+\.svg)"/g)].map((match) => match[1]),
+    [...app.matchAll(/image:\s*"\.\/assets\/(tutorial-[^"?]+\.svg)\?tutorial=2"/g)].map((match) => match[1]),
     tutorialFiles,
     "the app must wire all three tutorial cards in order",
   );
@@ -899,8 +906,37 @@ test("独立 HTML、CSS、应用接线与三张真实 SVG 教程满足静态契�
     ok(svg.includes("+ 正"));
     ok(svg.includes("− 负"));
   }
-  ok(svgs[1].includes("三个互不重叠的实色步骤面板"));
-  ok(svgs[1].includes("没有使用淡化的前后状态"));
+  equal(svgs.every((svg) => svg.includes('data-level-id="ice-window"')), true, "三张卡必须取自同一正式关卡");
+  ok(svgs[0].includes('data-tutorial-scene="elements"') && svgs[0].includes('data-state="initial"'));
+  ok(svgs[1].includes('data-tutorial-scene="operation"') && svgs[1].includes('data-state="intermediate"'));
+  ok(svgs[1].includes('data-position="A=N,E=R,G=F"'), "操作卡必须是一张真实可到达的中间局面");
+  ok(svgs[2].includes('data-tutorial-scene="goal"') && svgs[2].includes('data-state="solved"'));
+  ok(svgs[2].includes('data-solution="NNNNRNFF"'), "通关卡必须使用冰窗校极的作者解");
+  ok(svgs.every((svg) => !/(?:before-state|after-state|state-before|state-after|scene-before|scene-after)/i.test(svg)));
+  const svgAttribute = (source, name) => new RegExp(`\\b${name}="([^"]*)"`).exec(source)?.[1] ?? null;
+  const tutorialPuzzle = findPuzzle("ice-window");
+  const authoredPosition = solutionPosition(tutorialPuzzle);
+  equal(statesToSolutionCode(tutorialPuzzle, authoredPosition), svgAttribute(svgs[2], "data-solution"));
+  equal(evaluatePosition(tutorialPuzzle, authoredPosition).complete, true, "教程完成图必须通过真实 Magnets 判定器");
+  equal(svgAttribute(svgs[2], "data-column-plus"), tutorialPuzzle.clues.columns.plus.join(","));
+  equal(svgAttribute(svgs[2], "data-column-minus"), tutorialPuzzle.clues.columns.minus.join(","));
+  equal(svgAttribute(svgs[2], "data-row-plus"), tutorialPuzzle.clues.rows.plus.join(","));
+  equal(svgAttribute(svgs[2], "data-row-minus"), tutorialPuzzle.clues.rows.minus.join(","));
+  const operationPosition = {
+    states: { A: SLOT_STATE.NEUTRAL, E: SLOT_STATE.REVERSE, G: SLOT_STATE.FORWARD },
+    notes: [],
+  };
+  const operationEvaluation = evaluatePosition(tutorialPuzzle, operationPosition);
+  equal(svgAttribute(svgs[1], "data-position"), "A=N,E=R,G=F");
+  equal(operationEvaluation.assignedCount, 3);
+  equal(operationEvaluation.conflictPairs.length, 0, "教程操作中间态必须是可真实到达的无冲突局面");
+  equal(operationEvaluation.complete, false);
+  equal(operationEvaluation.clueResults.rows.plus[2].atTarget, true);
+  equal(operationEvaluation.clueResults.rows.plus[2].remaining, 1);
+  equal(operationEvaluation.clueResults.rows.plus[2].exact, false, "F 槽未明确时第三行正极线索不得显示完成勾选");
+  equal(operationEvaluation.clueResults.rows.minus[2].exact, false, "F 槽未明确时第三行负极线索不得显示完成勾选");
+  ok(!svgs[1].includes("+1✓") && !svgs[1].includes("−1✓"));
+  ok(svgs[1].includes("F 槽仍待明确"));
 
   ok(/button\s*\{[\s\S]*?min-width:\s*44px;[\s\S]*?min-height:\s*44px;/.test(css));
   ok(/html\s*\{[^}]*min-width:\s*0;/s.test(css));

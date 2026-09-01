@@ -41,6 +41,7 @@ import {
 import {
   STORAGE_KEYS,
   STORAGE_PREFIX,
+  TUTORIAL_VERSION,
   defaultPreferences,
   loadPreferences,
   loadSession,
@@ -82,6 +83,10 @@ function equal(actual, expected, message) {
 function ok(value, message) {
   assertions += 1;
   assert.ok(value, message);
+}
+
+function svgAttribute(svg, name) {
+  return svg.match(new RegExp(`${name}="([^"]*)"`))?.[1] ?? "";
 }
 
 async function test(name, run) {
@@ -358,10 +363,26 @@ await test("所有本地存储键均使用 v2 游戏私有前缀，损坏 sessio
   equal(storageSource.includes("ten-realms:progress:v1"), false);
   equal(storageSource.includes("localStorage.clear"), false);
 
-  const preferences = { ...defaultPreferences(), muted: true, tutorialSeen: true, presetId: "16x16-hard" };
+  equal(TUTORIAL_VERSION, 2);
+  const preferences = { ...defaultPreferences(), muted: true, tutorialVersion: TUTORIAL_VERSION, presetId: "16x16-hard" };
   const preferenceStorage = new FakeStorage();
   ok(savePreferences(preferenceStorage, preferences));
   equal(loadPreferences(preferenceStorage), preferences);
+
+  const legacyPreferences = new FakeStorage({
+    [STORAGE_KEYS.preferences]: JSON.stringify({
+      version: 1,
+      muted: true,
+      tutorialSeen: true,
+      presetId: "16x16-hard",
+    }),
+  });
+  equal(loadPreferences(legacyPreferences), {
+    version: 1,
+    muted: true,
+    tutorialVersion: 0,
+    presetId: "16x16-hard",
+  }, "旧教程已看标记必须失效，但静音与规格偏好不能丢失");
 
   const game = createGame({ seed: 12, presetId: "12x12-easy" });
   const sessionStorage = new FakeStorage();
@@ -589,7 +610,7 @@ await test("换题、重开或撤销会取消延迟胜利弹窗，旧局回调�
   ok(/game\.reportedCompletionId === payload\.completionId[\s\S]*currentPuzzleId\(\) === puzzleId/.test(appSource));
 });
 
-await test("三张教程图完全独立，保持比例且前后状态分栏", () => {
+await test("三张教程使用可由规则引擎复算的真实元素、操作与通关状态", () => {
   equal(new Set(svgs).size, 3);
   svgs.forEach((svg, index) => {
     ok(/^<svg\b/.test(svg.trim()), `${svgPaths[index]} 必须是独立 SVG`);
@@ -597,10 +618,37 @@ await test("三张教程图完全独立，保持比例且前后状态分栏", ()
     ok(/preserveAspectRatio="xMidYMid meet"/.test(svg));
     ok(/<title\b/.test(svg) && /<desc\b/.test(svg));
     equal(/<script\b|(?:href|src)="https?:\/\//i.test(svg), false, "SVG 不得有脚本或远程依赖");
+    equal(svgAttribute(svg, "data-tutorial-state"), ["elements", "action", "goal"][index]);
   });
-  ok(/操作前/.test(svgs[1]) && /操作后/.test(svgs[1]));
-  ok(/左右分栏|完全分开/.test(svgs[1]));
-  ok(/只展示一块完成状态/.test(svgs[2]));
+
+  for (const label of ["春青", "夏绯", "秋金", "冬蓝", "梅紫", "松墨"]) ok(svgs[0].includes(label));
+  for (const symbol of ["芽", "☀", "叶", "❄", "梅", "松"]) ok(svgs[0].includes(symbol));
+
+  const tutorialGame = createGame({ seed: 1, presetId: "12x12-easy" });
+  const expectedPrefix = Array.from({ length: 4 }, (_, row) => (
+    tutorialGame.board.slice(row * 12, row * 12 + 5)
+  ));
+  const shownPrefix = svgAttribute(svgs[1], "data-board-prefix")
+    .split(";")
+    .map((row) => row.split(",").map(Number));
+  equal(shownPrefix, expectedPrefix, "操作图必须截取真实种子 1 题面，不能手绘伪造色块");
+  equal(Number(svgAttribute(svgs[1], "data-before-controlled")), tutorialGame.controlled);
+  const tutorialMove = applyMove(tutorialGame, Number(svgAttribute(svgs[1], "data-selected-dye")));
+  ok(tutorialMove.accepted);
+  equal(Number(svgAttribute(svgs[1], "data-expanded-by")), tutorialMove.expandedBy);
+  equal(Number(svgAttribute(svgs[1], "data-after-controlled")), tutorialMove.state.controlled);
+  ok(/操作前/.test(svgs[1]) && /操作后/.test(svgs[1]) && /左右独立/.test(svgs[1]));
+
+  const tutorialPuzzle = buildPuzzle(1, "12x12-easy");
+  const completedBoard = replayReference(tutorialPuzzle);
+  equal(new Set(completedBoard).size, 1);
+  equal(Number(svgAttribute(svgs[2], "data-final-colour")), completedBoard[0]);
+  equal(Number(svgAttribute(svgs[2], "data-controlled")), completedBoard.length);
+  equal(Number(svgAttribute(svgs[2], "data-total")), completedBoard.length);
+  equal(Number(svgAttribute(svgs[2], "data-moves")), tutorialPuzzle.referenceMoves);
+  equal(Number(svgAttribute(svgs[2], "data-reference-moves")), tutorialPuzzle.referenceMoves);
+  equal(Number(svgAttribute(svgs[2], "data-move-limit")), tutorialPuzzle.moveLimit);
+  equal(svgAttribute(svgs[2], "data-board-size"), `${tutorialPuzzle.preset.width}x${tutorialPuzzle.preset.height}`);
 });
 
 await test("页面语义、规则源流、模态与所有交互接线完整", () => {
@@ -623,6 +671,7 @@ await test("页面语义、规则源流、模态与所有交互接线完整", ()
   ok(html.includes('../../shared/realm-ui.css'));
   ok(html.includes('../../shared/realm-ui.mjs'));
   ok(html.indexOf('../../shared/realm-ui.mjs') < html.indexOf('./app.mjs'), "共享成长层必须先于游戏应用加载");
+  ok(html.includes('<script type="module" src="./app.mjs"></script>') && !html.includes('./app.mjs?'), "v2 游戏入口脚本不得附加查询参数");
   ok(html.includes('../../THIRD_PARTY_NOTICES.md'));
   ok(svgPaths.every((name) => appSource.includes(`./assets/${name}`)));
   ok(/showModal\(\)/.test(appSource));
@@ -635,6 +684,7 @@ await test("页面语义、规则源流、模态与所有交互接线完整", ()
   ok(/document\.querySelector\("dialog\[open\]"\)/.test(appSource), "模态打开时必须隔离全局快捷键");
   ok(/dialogFocus/.test(appSource) && /restoreDialogFocus/.test(appSource));
   ok(/trapDialogFocus/.test(appSource), "原生 dialog 也必须在 Tab 边界显式环回");
+  ok(/tutorialVersion !== TUTORIAL_VERSION/.test(appSource) && /tutorialVersion: TUTORIAL_VERSION/.test(appSource), "旧教程已看标记必须升级到 v2 后才视为已看");
   ok(/window\.RealmArcade\?\.complete|host\.RealmArcade\?\.complete/.test(integrationSource));
 });
 

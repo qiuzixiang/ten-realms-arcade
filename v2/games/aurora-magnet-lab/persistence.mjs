@@ -10,7 +10,7 @@ export const STORAGE_KEYS = Object.freeze({
   session: `${STORAGE_PREFIX}session:v1`,
   profile: `${STORAGE_PREFIX}profile:v1`,
   preferences: `${STORAGE_PREFIX}preferences:v1`,
-  tutorial: `${STORAGE_PREFIX}tutorial:v1`,
+  tutorial: `${STORAGE_PREFIX}tutorial:v2`,
 });
 export const SESSION_VERSION = 1;
 export const HISTORY_LIMIT = 80;
@@ -217,7 +217,7 @@ export function savePreferences(storage, preferences, validDifficulties) {
 
 export function loadTutorialSeen(storage) {
   const read = readOwnedJSON(storage, STORAGE_KEYS.tutorial);
-  if (read.corrupted || (read.value !== null && (read.value.version !== 1 || typeof read.value.seen !== "boolean"))) {
+  if (read.corrupted || (read.value !== null && (read.value.version !== 2 || typeof read.value.seen !== "boolean"))) {
     removeOwned(storage, STORAGE_KEYS.tutorial);
     return { seen: false, available: read.available, corrupted: true };
   }
@@ -225,7 +225,7 @@ export function loadTutorialSeen(storage) {
 }
 
 export function markTutorialSeen(storage) {
-  return writeOwnedJSON(storage, STORAGE_KEYS.tutorial, { version: 1, seen: true });
+  return writeOwnedJSON(storage, STORAGE_KEYS.tutorial, { version: 2, seen: true });
 }
 
 export function readProfileDocument(storage) {

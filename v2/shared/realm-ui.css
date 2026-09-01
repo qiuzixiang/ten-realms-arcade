@@ -32,7 +32,7 @@
 .realm-utility-dock__stat b { display: block; }
 .realm-utility-dock button { min-height: 44px; padding: 0 14px; color: #071019; border: 0; border-radius: 12px; background: var(--realm-accent); font: inherit; font-weight: 800; cursor: pointer; }
 
-.realm-guide-dialog { --realm-accent: #70f0d0; width: 620px; max-width: calc(100% - 24px); max-height: min(780px, calc(100dvh - 24px)); padding: 0; overflow: auto; color: #f7fffc; border: 1px solid rgba(var(--realm-accent-rgb), .42); border-radius: 24px; background: #0a1721; box-shadow: 0 30px 90px #000c; }
+.realm-guide-dialog { --realm-accent: #70f0d0; width: 620px; max-width: calc(100% - 24px); max-height: min(780px, calc(100dvh - 24px)); padding: 0; overflow: auto; overscroll-behavior: contain; color: #f7fffc; border: 1px solid rgba(var(--realm-accent-rgb), .42); border-radius: 24px; background: #0a1721; box-shadow: 0 30px 90px #000c; }
 .realm-guide-dialog::backdrop { background: #02060bd9; backdrop-filter: blur(8px); }
 .realm-guide-dialog__shell { padding: clamp(18px, 4vw, 30px); }
 .realm-guide-dialog header, .realm-guide-dialog footer { display: flex; justify-content: space-between; align-items: center; gap: 16px; }
@@ -40,12 +40,18 @@
 .realm-guide-dialog h2 { margin: 5px 0 0; font-size: clamp(23px, 5vw, 34px); }
 .realm-guide-dialog button { min-width: 44px; min-height: 44px; padding: 0 16px; color: #071019; border: 0; border-radius: 12px; background: var(--realm-accent); font: inherit; font-weight: 800; cursor: pointer; }
 .realm-guide-dialog header button { color: #d5e0de; border: 1px solid #ffffff20; background: transparent; }
+.realm-guide-dialog .realm-guide-dialog__shell > footer > button[data-next],
+.realm-guide-dialog .realm-guide-dialog__shell > footer > button[data-next]:is(:hover, :focus-visible, :active) { color: #071019; background: var(--realm-accent); }
+.realm-guide-dialog button:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
 .realm-guide-dialog__art { height: clamp(180px, 37vw, 260px); margin: 22px 0 18px; display: grid; place-items: center; overflow: hidden; border: 1px solid #ffffff18; border-radius: 18px; background: #061018; }
 .realm-guide-dialog__art svg { display: block; width: 100%; height: 100%; object-fit: contain; }
 .realm-guide-dialog__shell > p { color: #c2d1cf; line-height: 1.7; }
 .realm-guide-dialog ul { padding-left: 20px; color: #a8b9b8; line-height: 1.7; }
 .realm-guide-dialog footer { padding-top: 15px; border-top: 1px solid #ffffff14; }
 .realm-guide-dialog footer span { color: #a8b9b8; font: 700 11px/1 ui-monospace, monospace; }
+
+html:has(.realm-guide-dialog[open]),
+body:has(.realm-guide-dialog[open]) { overflow: hidden; overscroll-behavior: none; }
 
 .realm-progress-dialog { --realm-accent: #70f0d0; width: 680px; max-width: calc(100% - 24px); max-height: calc(100dvh - 24px); padding: 0; overflow: auto; color: #f7fffc; border: 1px solid rgba(var(--realm-accent-rgb), .42); border-radius: 24px; background: #0a1721; box-shadow: 0 30px 90px #000c; }
 .realm-progress-dialog::backdrop { background: #02060bd9; backdrop-filter: blur(8px); }

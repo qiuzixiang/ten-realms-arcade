@@ -930,9 +930,16 @@ test("共享教程恰有三张异图且每张只含自己的状态类", () => {
     equal(/\bid=["']/.test(art), false, "tutorial SVGs avoid cross-card id collisions");
   });
   match(tutorialSource, /["']nebula-hatchery["']\s*:\s*nebulaHatchery/);
+  match(arts[0], /格心核/);
+  match(arts[0], /边心核/);
+  match(arts[0], /角点核/);
+  match(arts[1], /绘制边界/);
+  match(arts[1], /归属笔记/);
+  match(arts[2], /四向连通/);
+  match(arts[2], /180° 对称/);
   equal(config.accent, "#86f2d0");
   equal(config.accentRgb, "134, 242, 208");
-  equal(tutorial.version, 1);
+  equal(tutorial.version, 2);
   match(realmUiSource, /const accent = config\.accent/);
   match(realmUiSource, /const accentRgb = config\.accentRgb/);
 });

@@ -698,6 +698,7 @@ test("page wiring includes shared realm UI, exact source links, offline assets, 
 test("three tutorial cards use distinct real-game SVG states", () => {
   const tutorial = REALM_TUTORIALS["mystic-perfumery"];
   assert.ok(tutorial);
+  assert.equal(tutorial.version, 2);
   assert.equal(tutorial.cards.length, 3);
   const artwork = tutorial.cards.map(({ focus }) => tutorialArt("mystic-perfumery", focus));
   assert.equal(new Set(artwork).size, 3);
@@ -709,6 +710,8 @@ test("three tutorial cards use distinct real-game SVG states", () => {
   }
   assert.match(artwork[0], /玫|柑|松|鸢/);
   assert.match(artwork[1], /完全 2 · 成分 1/);
+  assert.match(artwork[1], /data-feedback="2-exact-1-misplaced"/);
+  assert.equal((artwork[1].match(/fill="#8f4962"/g) ?? []).length, 2, "two exact marks must be drawn, not only described");
   assert.match(artwork[2], /★/);
 });
 

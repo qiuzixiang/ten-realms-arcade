@@ -6,27 +6,27 @@ export const STORAGE_KEYS = Object.freeze({
   save: `${STORAGE_PREFIX}save:v1`,
   preferences: `${STORAGE_PREFIX}preferences:v1`,
   records: `${STORAGE_PREFIX}records:v1`,
-  tutorial: `${STORAGE_PREFIX}tutorial:v1`,
+  tutorial: `${STORAGE_PREFIX}tutorial:v2`,
 });
 
 export const TUTORIAL_SLIDES = Object.freeze([
   Object.freeze({
     id: "elements",
-    image: "./assets/tutorial-elements.svg",
+    image: "./assets/tutorial-elements.svg?tutorial=2",
     eyebrow: "01 · 看懂调度图",
     title: "配额、预置轨与两种笔记",
     copy: "上方是每列配额，右侧是每行配额；黄铜轨是不可改的预置。蓝色候选只表示“这里有轨”，叉号表示排除。",
   }),
   Object.freeze({
     id: "operation",
-    image: "./assets/tutorial-operation.svg",
+    image: "./assets/tutorial-operation.svg?tutorial=2",
     eyebrow: "02 · 铺设与排除",
     title: "连选相邻格，决定列车方向",
-    copy: "选“铺轨边”后依次点两个相邻格；“排除边”同理标叉。格心工具用于批量推理，候选不会替代真正方向。",
+    copy: "选“铺轨边”后依次点两个相邻格；“排除边”是在两格之间标叉。图中的格心 × 是“无轨格”，表示该格不经过轨道；候选格也不会替代真正方向。",
   }),
   Object.freeze({
     id: "goal",
-    image: "./assets/tutorial-goal.svg",
+    image: "./assets/tutorial-goal.svg?tutorial=2",
     eyebrow: "03 · 准点抵达",
     title: "补成唯一一条 A 到 B 的线路",
     copy: "每个轨道格恰好两条连接，配额全部吻合；不能交叉、分叉、断头、成环或留下游离轨段。",

@@ -12,13 +12,14 @@ export const STORAGE_PREFIX = "ten-realms-v2:games:yokai-inn:";
 export const STORAGE_KEYS = Object.freeze({
   profile: `${STORAGE_PREFIX}profile:v1`,
   session: `${STORAGE_PREFIX}session:v1`,
-  tutorial: `${STORAGE_PREFIX}tutorial:v1`,
+  tutorial: `${STORAGE_PREFIX}tutorial:v2`,
   outbox: `${STORAGE_PREFIX}completion-outbox:v1`,
 });
 
 export const PROFILE_VERSION = 1;
 export const SESSION_VERSION = 1;
 export const HISTORY_LIMIT = 100;
+export const TUTORIAL_VERSION = 2;
 const OUTBOX_VERSION = 1;
 const OUTBOX_LIMIT = 100;
 
@@ -612,7 +613,8 @@ export function clearSession(storage) {
 
 export function tutorialSeen(storage) {
   try {
-    return storageGet(storage, STORAGE_KEYS.tutorial) === "seen";
+    const record = JSON.parse(storageGet(storage, STORAGE_KEYS.tutorial));
+    return isPlainObject(record) && record.version === TUTORIAL_VERSION && record.seen === true;
   } catch {
     return false;
   }
@@ -620,7 +622,7 @@ export function tutorialSeen(storage) {
 
 export function markTutorialSeen(storage) {
   try {
-    storage.setItem(STORAGE_KEYS.tutorial, "seen");
+    storage.setItem(STORAGE_KEYS.tutorial, JSON.stringify({ version: TUTORIAL_VERSION, seen: true }));
     return true;
   } catch {
     return false;

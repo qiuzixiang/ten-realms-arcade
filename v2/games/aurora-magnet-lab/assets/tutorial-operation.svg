@@ -1,147 +1,48 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" preserveAspectRatio="xMidYMid meet" role="img" aria-label="极光磁场实验室操作教程：第一步选择成对槽位，第二步放入正负磁极或中性件，第三步核对行列线索与同极相邻规则">
-  <title>极光磁场实验室：三步完成一次操作</title>
-  <desc>三个互不重叠的实色步骤面板，分别显示选择槽位、放置正负磁极、核对线索；没有使用淡化的前后状态。</desc>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 184" preserveAspectRatio="xMidYMid meet" role="img" aria-label="冰窗校极真实操作中间态：A 槽中性、E 槽反向、G 槽正向，手指停在 E 槽正极端，四周线索同步更新" data-level-id="ice-window" data-tutorial-scene="operation" data-state="intermediate" data-position="A=N,E=R,G=F" data-active-slot="E" data-active-end="1">
+  <title>冰窗校极：点击槽位一端后的真实中间局面</title>
+  <desc>一张单一当前棋盘状态，不叠放操作前后图。点击 E 槽右端后，右端成为正极、左端同步成为负极；第三行当前计数达到目标，但仍要明确 F 槽才能正式满足线索。</desc>
   <defs>
-    <linearGradient id="operation-bg" x1="0" y1="0" x2="1" y2="1">
-      <stop stop-color="#07142d"/>
-      <stop offset="0.52" stop-color="#122a59"/>
-      <stop offset="1" stop-color="#190f38"/>
-    </linearGradient>
-    <linearGradient id="operation-positive" x1="0" y1="0" x2="1" y2="1">
-      <stop stop-color="#9afff5"/>
-      <stop offset="0.46" stop-color="#29e2d9"/>
-      <stop offset="1" stop-color="#079daf"/>
-    </linearGradient>
-    <linearGradient id="operation-negative" x1="0" y1="0" x2="1" y2="1">
-      <stop stop-color="#ff91de"/>
-      <stop offset="1" stop-color="#c22792"/>
-    </linearGradient>
-    <linearGradient id="operation-neutral" x1="0" y1="0" x2="1" y2="1">
-      <stop stop-color="#ffe098"/>
-      <stop offset="1" stop-color="#d59033"/>
-    </linearGradient>
-    <linearGradient id="operation-aurora" x1="0" y1="0" x2="1" y2="0">
-      <stop stop-color="#40f3dc"/>
-      <stop offset="0.5" stop-color="#7a8cff"/>
-      <stop offset="1" stop-color="#f154c1"/>
-    </linearGradient>
-    <filter id="operation-shadow" x="-25%" y="-20%" width="150%" height="170%">
-      <feDropShadow dx="0" dy="8" stdDeviation="9" flood-color="#010615" flood-opacity="0.6"/>
-    </filter>
-    <filter id="operation-glow" x="-60%" y="-60%" width="220%" height="220%">
-      <feGaussianBlur stdDeviation="4" result="blur"/>
-      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-    </filter>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#07162f"/><stop offset=".58" stop-color="#102858"/><stop offset="1" stop-color="#180f35"/></linearGradient>
+    <radialGradient id="plus" cx="35%" cy="28%" r="75%"><stop stop-color="#b8fff7"/><stop offset=".4" stop-color="#31e7df"/><stop offset="1" stop-color="#079eae"/></radialGradient>
+    <linearGradient id="minus" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ff83db"/><stop offset="1" stop-color="#bd278f"/></linearGradient>
+    <linearGradient id="neutral" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ffe093"/><stop offset="1" stop-color="#d58a2d"/></linearGradient>
+    <filter id="glow" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
   </defs>
-
-  <rect width="640" height="360" rx="24" fill="url(#operation-bg)"/>
-  <path d="M0 55C104 13 145 69 238 35s155-22 229 10 114 21 173-16" fill="none" stroke="url(#operation-aurora)" stroke-width="10" stroke-linecap="round" filter="url(#operation-glow)"/>
-
-  <g font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, sans-serif">
-    <text x="24" y="38" fill="#f4fbff" font-size="22" font-weight="800">一次操作，三步读懂</text>
-    <text x="616" y="36" text-anchor="end" fill="#a8c8e9" font-size="12" font-weight="700">每一步都是独立棋盘状态</text>
-
-    <g filter="url(#operation-shadow)">
-      <rect x="18" y="68" width="190" height="270" rx="20" fill="#102244" stroke="#6685ad" stroke-width="2"/>
-      <rect x="225" y="68" width="190" height="270" rx="20" fill="#102244" stroke="#36dcd7" stroke-width="2"/>
-      <rect x="432" y="68" width="190" height="270" rx="20" fill="#102244" stroke="#74e7b5" stroke-width="2"/>
+  <rect width="320" height="184" rx="16" fill="url(#bg)"/>
+  <path d="M-18 26C43-6 76 35 127 15s92-12 131 11 65 15 91-6" fill="none" stroke="#7f71ff" stroke-opacity=".24" stroke-width="12"/>
+  <g font-family="system-ui, PingFang SC, sans-serif">
+    <text x="16" y="19" fill="#f4fbff" font-size="11" font-weight="800">02 · 点击右端后的单一中间态</text>
+    <g fill="#d9fffb" font-size="8" font-weight="900" text-anchor="middle"><text x="65.5" y="43">+1</text><text x="88.5" y="43">+1</text><text x="111.5" y="43">+1</text><text x="134.5" y="43">+0</text></g>
+    <rect x="54" y="47" width="92" height="92" rx="6" fill="#08192b" stroke="#8eb7d3" stroke-width="1.5"/>
+    <g fill="#112a48" stroke="#4d7597" stroke-width=".8">
+      <rect x="55" y="48" width="44" height="21" rx="4"/><rect x="101" y="48" width="44" height="21" rx="4"/>
+      <rect x="55" y="71" width="44" height="21" rx="4"/><rect x="101" y="71" width="44" height="21" rx="4"/>
+      <rect x="55" y="94" width="44" height="21" rx="4" stroke="#ffe07b" stroke-width="2"/><rect x="101" y="94" width="44" height="21" rx="4"/>
+      <rect x="55" y="117" width="44" height="21" rx="4"/><rect x="101" y="117" width="44" height="21" rx="4"/>
     </g>
-
-    <path d="M211 202h10" stroke="#d8e8ff" stroke-width="4" stroke-linecap="round"/>
-    <path d="M223 202l-8-6v12z" fill="#d8e8ff"/>
-    <path d="M418 202h10" stroke="#d8e8ff" stroke-width="4" stroke-linecap="round"/>
-    <path d="M430 202l-8-6v12z" fill="#d8e8ff"/>
-
-    <g aria-label="第一步，点击一个成对槽位">
-      <circle cx="43" cy="94" r="16" fill="#6b83aa"/>
-      <text x="43" y="100" text-anchor="middle" fill="#fff" font-size="16" font-weight="900">1</text>
-      <text x="67" y="100" fill="#f4f8ff" font-size="17" font-weight="800">选择槽位</text>
-
-      <g transform="translate(45 128)">
-        <rect width="136" height="76" rx="13" fill="#08152f" stroke="#57749d" stroke-width="2"/>
-        <rect x="4" y="4" width="64" height="34" rx="8" fill="#152d53" stroke="#ffe077" stroke-width="3"/>
-        <path d="M36 5v32" stroke="#bda951" stroke-width="2"/>
-        <rect x="72" y="4" width="60" height="34" rx="8" fill="#152d53" stroke="#4d6b93" stroke-width="2"/>
-        <path d="M102 5v32" stroke="#49688f"/>
-        <rect x="4" y="42" width="64" height="30" rx="8" fill="#152d53" stroke="#4d6b93" stroke-width="2"/>
-        <path d="M36 43v28" stroke="#49688f"/>
-        <rect x="72" y="42" width="60" height="30" rx="8" fill="#152d53" stroke="#4d6b93" stroke-width="2"/>
-        <path d="M102 43v28" stroke="#49688f"/>
-      </g>
-      <path d="M78 219l9-19 8 14 15-5-8 20z" fill="#ffe077" stroke="#fff2b7" stroke-width="1.5"/>
-      <text x="113" y="252" text-anchor="middle" fill="#eef5ff" font-size="13" font-weight="800">点击黄色框内的整组</text>
-      <text x="113" y="276" text-anchor="middle" fill="#9db8d8" font-size="11">槽位中的两格会一起变化</text>
-      <rect x="45" y="294" width="136" height="25" rx="12.5" fill="#2d3855"/>
-      <text x="113" y="311" text-anchor="middle" fill="#d6e5fa" font-size="10" font-weight="700">空槽仍保留成对边框</text>
+    <g stroke="#2d5676"><path d="M77 48v21M123 48v21M77 71v21M123 71v21M77 94v21M123 94v21M77 117v21M123 117v21"/></g>
+    <g fill="#89a9c7" font-size="7" text-anchor="middle"><text x="112" y="62">Ⅰ</text><text x="134" y="62">Ⅱ</text><text x="66" y="85">Ⅰ</text><text x="88" y="85">Ⅱ</text><text x="112" y="85">Ⅰ</text><text x="134" y="85">Ⅱ</text><text x="112" y="108">Ⅰ</text><text x="134" y="108">Ⅱ</text><text x="112" y="131">Ⅰ</text><text x="134" y="131">Ⅱ</text></g>
+    <g fill="#d9fffb" font-size="8" font-weight="900" text-anchor="end"><text x="49" y="62">+0</text><text x="49" y="85">+0</text><text x="49" y="108" fill="#ffe07b">+1</text><text x="49" y="131">+2</text></g>
+    <g fill="#ffd5f3" font-size="8" font-weight="900"><text x="151" y="62">−0</text><text x="151" y="85">−0</text><text x="151" y="108" fill="#ffe07b">−1</text><text x="151" y="131">−2</text></g>
+    <g fill="#ffd5f3" font-size="8" font-weight="900" text-anchor="middle"><text x="65.5" y="150">−1</text><text x="88.5" y="150">−1</text><text x="111.5" y="150">−0</text><text x="134.5" y="150">−1</text></g>
+    <g font-size="7" font-weight="900" text-anchor="middle">
+      <path d="M59 52l7-4 7 4v13l-7 4-7-4z" fill="url(#neutral)" stroke="#fff0bf"/><text x="66" y="61" fill="#523310">中</text>
+      <path d="M81 52l7-4 7 4v13l-7 4-7-4z" fill="url(#neutral)" stroke="#fff0bf"/><text x="88" y="61" fill="#523310">中</text>
+      <path d="M66 97l10 8-10 8-10-8z" fill="url(#minus)" stroke="#ffd5f3"/><text x="66" y="108" fill="#4b073b">− 负</text>
+      <circle cx="88" cy="105" r="9" fill="url(#plus)" stroke="#d7fffb"/><text x="88" y="108" fill="#04303a">+ 正</text>
+      <circle cx="66" cy="128" r="9" fill="url(#plus)" stroke="#d7fffb"/><text x="66" y="131" fill="#04303a">+ 正</text>
+      <path d="M88 120l10 8-10 8-10-8z" fill="url(#minus)" stroke="#ffd5f3"/><text x="88" y="131" fill="#4b073b">− 负</text>
     </g>
-
-    <g aria-label="第二步，在槽位中放入青色圆形正极与洋红菱形负极，也可以选择中性件">
-      <circle cx="250" cy="94" r="16" fill="#1bbdb9"/>
-      <text x="250" y="100" text-anchor="middle" fill="#032e38" font-size="16" font-weight="900">2</text>
-      <text x="274" y="100" fill="#f4f8ff" font-size="17" font-weight="800">放入磁极</text>
-
-      <g transform="translate(252 128)">
-        <rect width="136" height="76" rx="13" fill="#08152f" stroke="#57749d" stroke-width="2"/>
-        <rect x="4" y="4" width="64" height="34" rx="8" fill="#14334d" stroke="#37e5df" stroke-width="3"/>
-        <path d="M36 5v32" stroke="#387f8f" stroke-width="2"/>
-        <circle cx="20" cy="21" r="13" fill="url(#operation-positive)" stroke="#d6fffb"/>
-        <text x="20" y="24" text-anchor="middle" fill="#04303a" font-size="7.5" font-weight="900">+ 正</text>
-        <path d="M52 8l13 13-13 13-13-13z" fill="url(#operation-negative)" stroke="#ffd7f2"/>
-        <text x="52" y="24" text-anchor="middle" fill="#4a073b" font-size="7" font-weight="900">− 负</text>
-        <rect x="72" y="4" width="60" height="34" rx="8" fill="#152d53" stroke="#4d6b93" stroke-width="2"/>
-        <path d="M102 5v32" stroke="#49688f"/>
-        <rect x="4" y="42" width="64" height="30" rx="8" fill="#152d53" stroke="#4d6b93" stroke-width="2"/>
-        <path d="M36 43v28" stroke="#49688f"/>
-        <rect x="72" y="42" width="60" height="30" rx="8" fill="#152d53" stroke="#4d6b93" stroke-width="2"/>
-        <path d="M102 43v28" stroke="#49688f"/>
-      </g>
-
-      <path d="M280 222c12-12 34-12 46 0" fill="none" stroke="#d9e8ff" stroke-width="3" stroke-linecap="round"/>
-      <path d="M329 224l-10-2 6-8z" fill="#d9e8ff"/>
-      <text x="320" y="252" text-anchor="middle" fill="#eef5ff" font-size="13" font-weight="800">继续点击可切换方向</text>
-      <g transform="translate(259 285)">
-        <path d="M0 7L13 0l13 7v18l-13 7L0 25z" fill="url(#operation-neutral)" stroke="#fff0bf"/>
-        <text x="13" y="19" text-anchor="middle" fill="#53330d" font-size="7" font-weight="900">中性</text>
-        <text x="37" y="21" fill="#d7e5f8" font-size="10" font-weight="700">也可切换为中性件</text>
-      </g>
-    </g>
-
-    <g aria-label="第三步，核对正负数量线索，并确保相邻格没有相同磁极">
-      <circle cx="457" cy="94" r="16" fill="#65dca7"/>
-      <text x="457" y="100" text-anchor="middle" fill="#073728" font-size="16" font-weight="900">3</text>
-      <text x="481" y="100" fill="#f4f8ff" font-size="17" font-weight="800">核对线索</text>
-
-      <g transform="translate(474 125)">
-        <rect x="20" y="15" width="96" height="76" rx="12" fill="#08152f" stroke="#58769f" stroke-width="2"/>
-        <path d="M68 16v74M21 53h94" stroke="#4a678f"/>
-        <circle cx="44" cy="34" r="14" fill="url(#operation-positive)" stroke="#d6fffb"/>
-        <text x="44" y="37" text-anchor="middle" fill="#04303a" font-size="7.5" font-weight="900">+ 正</text>
-        <path d="M92 20l14 14-14 14-14-14z" fill="url(#operation-negative)" stroke="#ffd7f2"/>
-        <text x="92" y="37" text-anchor="middle" fill="#4a073b" font-size="7" font-weight="900">− 负</text>
-        <path d="M30 61l14-8 14 8v17l-14 8-14-8z" fill="url(#operation-neutral)" stroke="#fff0bf"/>
-        <text x="44" y="72" text-anchor="middle" fill="#53330d" font-size="7" font-weight="900">中性</text>
-        <circle cx="92" cy="72" r="14" fill="url(#operation-positive)" stroke="#d6fffb"/>
-        <text x="92" y="75" text-anchor="middle" fill="#04303a" font-size="7.5" font-weight="900">+ 正</text>
-
-        <rect x="-3" y="20" width="19" height="27" rx="7" fill="#0c4b4d" stroke="#4ff2dc"/>
-        <text x="6.5" y="32" text-anchor="middle" fill="#bafff6" font-size="7" font-weight="900">+1</text>
-        <text x="6.5" y="42" text-anchor="middle" fill="#8ff3bd" font-size="8">✓</text>
-        <rect x="-3" y="58" width="19" height="27" rx="7" fill="#4c1741" stroke="#f36ac4"/>
-        <text x="6.5" y="70" text-anchor="middle" fill="#ffd5f0" font-size="7" font-weight="900">−1</text>
-        <text x="6.5" y="80" text-anchor="middle" fill="#8ff3bd" font-size="8">✓</text>
-        <rect x="121" y="20" width="19" height="27" rx="7" fill="#0c4b4d" stroke="#4ff2dc"/>
-        <text x="130.5" y="32" text-anchor="middle" fill="#bafff6" font-size="7" font-weight="900">+1</text>
-        <text x="130.5" y="42" text-anchor="middle" fill="#8ff3bd" font-size="8">✓</text>
-        <rect x="121" y="58" width="19" height="27" rx="7" fill="#4c1741" stroke="#f36ac4"/>
-        <text x="130.5" y="70" text-anchor="middle" fill="#ffd5f0" font-size="7" font-weight="900">−1</text>
-        <text x="130.5" y="80" text-anchor="middle" fill="#8ff3bd" font-size="8">✓</text>
-      </g>
-
-      <path d="M487 235l9 9 18-23" fill="none" stroke="#79efb8" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
-      <text x="527" y="252" text-anchor="middle" fill="#eef5ff" font-size="13" font-weight="800">线索变绿才算匹配</text>
-      <text x="527" y="277" text-anchor="middle" fill="#9db8d8" font-size="11">上下左右不能出现同极</text>
-      <rect x="459" y="294" width="136" height="25" rx="12.5" fill="#16443e" stroke="#4ecb9d"/>
-      <text x="527" y="311" text-anchor="middle" fill="#bffff0" font-size="10" font-weight="800">数量满足 · 没有冲突</text>
-    </g>
+    <circle cx="88" cy="105" r="13" fill="none" stroke="#fff07e" stroke-width="1.5" stroke-dasharray="2 2" filter="url(#glow)"/>
+    <g transform="translate(96 111) rotate(-18)"><path d="M0 13V2c0-2 3-2 3 0v5-2c0-2 3-2 3 0v3-1c0-2 3-2 3 0v2c0-2 3-2 3 0v5c0 5-3 7-6 7s-6-3-6-8z" fill="#f7d4b3" stroke="#733e35"/></g>
+    <rect x="181" y="39" width="124" height="124" rx="13" fill="#08172e" stroke="#45688e"/>
+    <circle cx="203" cy="64" r="13" fill="url(#plus)" stroke="#d7fffb"/><text x="203" y="67" text-anchor="middle" fill="#04303a" font-size="7" font-weight="900">+ 正</text>
+    <text x="225" y="62" fill="#f4fbff" font-size="10" font-weight="800">点哪一端</text><text x="225" y="74" fill="#9db9d8" font-size="8">正极就落在哪一端</text>
+    <path d="M193 88h100" stroke="#315174"/>
+    <text x="193" y="104" fill="#ffe07b" font-size="9" font-weight="800">E 槽当前：− 负 ｜ + 正</text>
+    <text x="193" y="121" fill="#b8cede" font-size="8">同一槽的两端同步改变</text>
+    <text x="193" y="137" fill="#b8cede" font-size="8">再次点击可反转，再点清空</text>
+    <rect x="193" y="145" width="100" height="12" rx="6" fill="#493b16" stroke="#ffe07b"/>
+    <text x="243" y="154" text-anchor="middle" fill="#fff0a8" font-size="7" font-weight="800">计数到位 · F 槽仍待明确</text>
   </g>
 </svg>

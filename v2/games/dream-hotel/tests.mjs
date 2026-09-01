@@ -68,6 +68,7 @@ import {
 } from "./completion.mjs";
 import { createModalController } from "./modal-controller.mjs";
 import { createVictoryScheduler } from "./victory-scheduler.mjs";
+import { sceneForLevel } from "./scene-themes.mjs";
 
 const html = readFileSync(new URL("./index.html", import.meta.url), "utf8");
 const css = readFileSync(new URL("./styles.css", import.meta.url), "utf8");
@@ -567,7 +568,7 @@ test("所有私有存档键严格使用 2.0 游戏前缀且绝不读写 1.0 进�
   equal(STORAGE_KEYS, {
     session: "ten-realms-v2:games:dream-hotel:session:v1",
     settings: "ten-realms-v2:games:dream-hotel:settings:v1",
-    tutorial: "ten-realms-v2:games:dream-hotel:tutorial:v1",
+    tutorial: "ten-realms-v2:games:dream-hotel:tutorial:v2",
     records: "ten-realms-v2:games:dream-hotel:records:v1",
   });
   strictEqual(new Set(Object.values(STORAGE_KEYS)).size, 4);
@@ -681,6 +682,13 @@ test("设置、局面、教程与长期记录均可安全往返", () => {
   strictEqual(tutorialSeen(storage), false);
   ok(markTutorialSeen(storage));
   strictEqual(tutorialSeen(storage), true);
+  strictEqual(storage.values.get(STORAGE_KEYS.tutorial), "seen-v2");
+  const legacyTutorial = new MemoryStorage({
+    "ten-realms-v2:games:dream-hotel:tutorial:v1": "seen-v1",
+  });
+  strictEqual(tutorialSeen(legacyTutorial), false, "旧教程记录必须让新版教程再自动出现一次");
+  ok(markTutorialSeen(legacyTutorial));
+  strictEqual(legacyTutorial.values.get("ten-realms-v2:games:dream-hotel:tutorial:v1"), "seen-v1");
   ok(saveRecords(storage, defaultRecords()));
   equal(loadRecords(storage), defaultRecords());
 });
@@ -1480,6 +1488,11 @@ test("首次教程自动打开、可跳过与重看，三张卡片使用三个�
   match(app, /markTutorialSeen\(storage\)/);
   match(html, /id="tutorial-counter">1 \/ 3/);
   match(html, /id="tutorial-skip"/);
+  match(html, /src="\.\/assets\/tutorial-elements\.svg\?tutorial=2"/, "HTML fallback must bypass the old tutorial image cache");
+  const versionedTutorialImages = [...app.matchAll(/image:\s*"\.\/assets\/(tutorial-[^"?]+\.svg)\?tutorial=2"/g)]
+    .map((match) => match[1]);
+  equal(versionedTutorialImages, tutorialFiles, "每张新版教程图都必须使用同一缓存版本标识");
+  match(html, /<script\s+type="module"\s+src="\.\/app\.mjs"><\/script>/, "游戏入口脚本必须保持规范路径");
 });
 
 test("三张教程 SVG 均独立、可访问且保持完整宽高比", () => {
@@ -1494,6 +1507,38 @@ test("三张教程 SVG 均独立、可访问且保持完整宽高比", () => {
     doesNotMatch(source, /tutorial-(?:elements|action|goal)\.svg/i, `${name} 不得引用其他教程卡`);
     strictEqual((source.match(/<svg\b/gi) ?? []).length, 1, `${name} 必须是独立 SVG 文档`);
   }
+  strictEqual(tutorialSvgs.every(({ source }) => source.includes('data-level-id="lullaby-lobby"')), true,
+    "三张卡必须来自正式首关摇篮前厅");
+  match(tutorialSvgs[0].source, /data-tutorial-scene="elements"[^>]*data-state="initial"/);
+  match(tutorialSvgs[0].source, /data-board-size="5x5"/);
+  match(tutorialSvgs[1].source, /data-tutorial-scene="operation"[^>]*data-state="intermediate"/);
+  match(tutorialSvgs[1].source, /data-preview-room="0,0,3,2"/);
+  match(tutorialSvgs[2].source, /data-tutorial-scene="goal"[^>]*data-state="solved"/);
+  match(tutorialSvgs[2].source, /data-solution="0,0,3,2;0,2,3,1;0,3,1,2;1,3,2,2;3,0,2,2;3,2,2,3"/);
+  const tutorialAttribute = (source, name) => new RegExp(`\\b${name}="([^"]*)"`).exec(source)?.[1] ?? null;
+  const tutorialLevel = getLevel("lullaby-lobby");
+  const picturedClues = tutorialAttribute(tutorialSvgs[0].source, "data-clues").split(";");
+  equal([...picturedClues].sort(), tutorialLevel.clues.map(({ x, y, value }) => `${x},${y},${value}`).sort(),
+    "元素卡必须使用正式首关全部数字及坐标");
+  const previewValues = tutorialAttribute(tutorialSvgs[1].source, "data-preview-room").split(",").map(Number);
+  const previewRoom = { x: previewValues[0], y: previewValues[1], width: previewValues[2], height: previewValues[3] };
+  const previewAnalysis = analyzeProposal(tutorialLevel, createGameState(), previewRoom);
+  strictEqual(previewAnalysis.valid, true, "操作卡的三乘二预览必须能由真实关卡提交");
+  strictEqual(rectangleArea(previewAnalysis.rect), 6);
+  strictEqual(previewAnalysis.clue.value, 6);
+  const picturedRooms = tutorialAttribute(tutorialSvgs[2].source, "data-solution").split(";").map((room) => {
+    const [x, y, width, height] = room.split(",").map(Number);
+    return { x, y, width, height };
+  });
+  equal(solutionKeys(picturedRooms), solutionKeys(tutorialLevel.solution), "通关图的六间房必须等于作者分区");
+  strictEqual(analyzeRooms(tutorialLevel, picturedRooms).solved, true, "通关图必须通过真实无缝覆盖判定");
+  const picturedScenes = tutorialAttribute(tutorialSvgs[2].source, "data-scenes");
+  const expectedScenes = picturedRooms.map((room) => {
+    const scene = sceneForLevel(tutorialLevel.id, room);
+    return `${rectKey(room)}=${scene.name},${scene.glyph},${scene.color}`;
+  }).join(";");
+  strictEqual(picturedScenes, expectedScenes, "通关图每间房的名称、图标与颜色必须等于真实 sceneFor 映射");
+  match(app, /sceneForLevel\(state\.level\.id, room\)/, "正式游戏与教程测试必须共享同一纯主题映射");
   const tutorialImageRule = cssRule(".tutorial-visual img");
   match(tutorialImageRule, /object-fit:\s*contain/);
   match(tutorialImageRule, /aspect-ratio:\s*320\s*\/\s*184/);

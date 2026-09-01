@@ -11,7 +11,7 @@ export const STORAGE_PREFIX = "ten-realms-v2:games:dream-hotel:";
 export const STORAGE_KEYS = Object.freeze({
   session: `${STORAGE_PREFIX}session:v1`,
   settings: `${STORAGE_PREFIX}settings:v1`,
-  tutorial: `${STORAGE_PREFIX}tutorial:v1`,
+  tutorial: `${STORAGE_PREFIX}tutorial:v2`,
   records: `${STORAGE_PREFIX}records:v1`,
 });
 
@@ -207,11 +207,11 @@ export function saveSession(storage, session) {
 }
 
 export function tutorialSeen(storage) {
-  return safeRead(storage, STORAGE_KEYS.tutorial) === "seen-v1";
+  return safeRead(storage, STORAGE_KEYS.tutorial) === "seen-v2";
 }
 
 export function markTutorialSeen(storage) {
-  return safeWrite(storage, STORAGE_KEYS.tutorial, "seen-v1");
+  return safeWrite(storage, STORAGE_KEYS.tutorial, "seen-v2");
 }
 
 export function defaultRecords() {

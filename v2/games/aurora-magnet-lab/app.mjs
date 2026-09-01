@@ -136,7 +136,7 @@ const TUTORIAL_CARDS = Object.freeze([
     title: "一眼分清正、负与中性",
     body: "每条描边都圈出一个固定双格槽位。正极是青色圆形“+ 正”，负极是洋红菱形“− 负”，中性是琥珀六边形。",
     bullets: Object.freeze(["文字、形状、颜色三重区分", "四周数字分别统计正极与负极"]),
-    image: "./assets/tutorial-elements.svg",
+    image: "./assets/tutorial-elements.svg?tutorial=2",
     alt: "元素图鉴：固定双格槽位、青色圆形正极、洋红菱形负极、琥珀六边形中性模块和正负线索",
   }),
   Object.freeze({
@@ -144,15 +144,15 @@ const TUTORIAL_CARDS = Object.freeze([
     title: "点哪一端，正极就先落在哪一端",
     body: "点击空槽一端会装入正负磁极；继续点同一端会反转，再点会清空。右键、长按或 Space 则在中性、两个问号和清空之间循环。",
     bullets: Object.freeze(["槽位两端永远同步改变", "问号只是“不可能中性”的候选笔记"]),
-    image: "./assets/tutorial-operation.svg",
-    alt: "三个分开的操作步骤：选择槽位、装入正负或中性模块、核对四周线索",
+    image: "./assets/tutorial-operation.svg?tutorial=2",
+    alt: "冰窗校极的真实操作中间态：E 槽左端为负、右端为正，第三行当前计数到位但 F 槽仍待明确",
   }),
   Object.freeze({
     step: "03 · 稳定磁场",
     title: "全部装满、线索吻合、同性不接触",
     body: "所有槽位进入正负或中性状态，已给正负数量全部精确满足，且没有两个相同磁极正交相邻时，实验舱才会生成极光。",
     bullets: Object.freeze(["破折号是缺失线索，数字 0 仍必须满足", "对角同极允许，中性不产生排斥"]),
-    image: "./assets/tutorial-goal.svg",
+    image: "./assets/tutorial-goal.svg?tutorial=2",
     alt: "完成状态：四乘四棋盘全部装满，正负线索吻合且没有同极正交相邻，背景生成极光",
   }),
 ]);

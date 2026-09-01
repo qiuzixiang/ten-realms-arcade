@@ -875,6 +875,7 @@ test("stat merging deduplicates clears, preserves flags, and chooses the best op
 
 test("the three tutorial cards render three independent real-game SVG states", () => {
   const tutorial = REALM_TUTORIALS["neon-skyline"];
+  equal(tutorial.version, 2);
   equal(tutorial.cards.length, 3);
   deepEqual(tutorial.cards.map(({ focus }) => focus), ["elements", "action", "goal"]);
   const art = tutorial.cards.map(({ focus }) => tutorialArt("neon-skyline", focus));
@@ -887,8 +888,9 @@ test("the three tutorial cards render three independent real-game SVG states", (
     equal(/opacity="0(?:\.\d+)?"/.test(svg), false, "old state is not retained as a faded layer");
   }
   match(art[0], /\u5efa筑|\u8857口|\u89c2察数/);
-  match(art[1], />3<|3 \u5c42/);
-  match(art[2], /art-goal/);
+  match(art[1], /候选笔记/);
+  match(art[1], /正式建楼/);
+  for (const side of SIDES) match(art[2], new RegExp(`data-clue-side="${side}"`), `${side} goal clue rail is shown`);
 });
 
 test("page source wires shared systems, all four clues, dialogs, flat view, and responsive safeguards", async () => {

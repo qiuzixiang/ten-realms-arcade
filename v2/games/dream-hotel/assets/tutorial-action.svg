@@ -1,32 +1,23 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 184" preserveAspectRatio="xMidYMid meet" role="img" aria-labelledby="title description">
-  <title id="title">拖拽预览一间六格客房</title>
-  <desc id="description">棋盘上从左上格拖到右下格，形成三乘二的金色预览矩形，面积恰好是6。</desc>
-  <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#171026"/><stop offset="1" stop-color="#09070f"/></linearGradient>
-    <radialGradient id="clue" cx="35%" cy="28%" r="80%"><stop stop-color="#fff5d9"/><stop offset="1" stop-color="#d9aa57"/></radialGradient>
-    <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0 0l8 4-8 4z" fill="#7bd8cf"/></marker>
-  </defs>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 184" preserveAspectRatio="xMidYMid meet" role="img" aria-labelledby="title description" data-level-id="lullaby-lobby" data-tutorial-scene="operation" data-state="intermediate" data-board-size="5x5" data-preview-room="0,0,3,2" data-preview-area="6" data-contained-clue="0,1,6">
+  <title id="title">摇篮前厅真实三乘二客房预览</title>
+  <desc id="description">正式首关摇篮前厅的单一操作中间态。从第一格拖到第二行第三格，金色预览框覆盖三乘二共六格，恰好只包含数字六，尚未松手提交。</desc>
+  <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#171026"/><stop offset="1" stop-color="#09070f"/></linearGradient><radialGradient id="clue" cx="35%" cy="28%" r="80%"><stop stop-color="#fff5d9"/><stop offset="1" stop-color="#d9aa57"/></radialGradient><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0 0l8 4-8 4z" fill="#7bd8cf"/></marker></defs>
   <rect width="320" height="184" rx="14" fill="url(#bg)"/>
-  <g transform="translate(24 27)">
-    <rect width="168" height="132" rx="5" fill="#1c1528" stroke="#e6bd70" stroke-width="2"/>
-    <g stroke="#675875" stroke-opacity=".7">
-      <path d="M42 0V132M84 0V132M126 0V132M0 33H168M0 66H168M0 99H168"/>
-    </g>
-    <rect x="1" y="34" width="124" height="64" rx="4" fill="#e6bd70" fill-opacity=".12" stroke="#ffe2a6" stroke-width="3"/>
-    <g transform="translate(84 66)">
-      <circle r="14" fill="url(#clue)" stroke="#ffe2a6"/>
-      <text y="5" text-anchor="middle" fill="#24172d" font-family="Georgia,serif" font-size="16" font-weight="700">6</text>
-    </g>
-    <circle cx="5" cy="38" r="7" fill="#171026" stroke="#7bd8cf" stroke-width="3"/>
-    <circle cx="121" cy="94" r="7" fill="#171026" stroke="#7bd8cf" stroke-width="3"/>
-    <path d="M13 42C45 47 79 64 112 89" fill="none" stroke="#7bd8cf" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#arrow)"/>
-  </g>
-  <g transform="translate(210 40)" font-family="-apple-system,BlinkMacSystemFont,'PingFang SC',sans-serif">
-    <text fill="#e6bd70" font-size="8" font-weight="700" letter-spacing="1.5">DRAG TO PLAN</text>
-    <text y="27" fill="#f8f0ff" font-size="17" font-weight="700">拖出矩形</text>
-    <rect y="43" width="86" height="34" rx="8" fill="#e6bd70" fill-opacity=".12" stroke="#e6bd70" stroke-opacity=".5"/>
-    <text x="43" y="65" text-anchor="middle" fill="#ffe2a6" font-family="Georgia,serif" font-size="15" font-weight="700">3 × 2 = 6</text>
-    <text y="96" fill="#b9adca" font-size="10">松手前可查看尺寸</text>
-    <text y="113" fill="#b9adca" font-size="10">红色纹理表示不可提交</text>
+  <g font-family="system-ui, PingFang SC, sans-serif">
+    <text x="16" y="19" fill="#f8f0ff" font-size="11" font-weight="800">02 · 摇篮前厅真实拖动预览</text>
+    <rect x="18" y="27" width="135" height="135" rx="6" fill="#1c1528" stroke="#e6bd70" stroke-width="2"/>
+    <path d="M45 27v135M72 27v135M99 27v135M126 27v135M18 54h135M18 81h135M18 108h135M18 135h135" fill="none" stroke="#675875" stroke-opacity=".76"/>
+    <rect x="19.5" y="28.5" width="78" height="51" rx="4" fill="#e6bd70" fill-opacity=".16" stroke="#ffe2a6" stroke-width="3"/>
+    <g fill="url(#clue)" stroke="#ffe2a6"><circle cx="31.5" cy="67.5" r="9"/><circle cx="58.5" cy="94.5" r="9"/><circle cx="31.5" cy="148.5" r="9"/><circle cx="58.5" cy="148.5" r="9"/><circle cx="112.5" cy="40.5" r="9"/><circle cx="139.5" cy="121.5" r="9"/></g>
+    <g fill="#24172d" font-family="Georgia,serif" font-size="10" font-weight="700" text-anchor="middle"><text x="31.5" y="71">6</text><text x="58.5" y="98">3</text><text x="31.5" y="152">2</text><text x="58.5" y="152">4</text><text x="112.5" y="44">4</text><text x="139.5" y="125">6</text></g>
+    <circle cx="31.5" cy="40.5" r="6" fill="#171026" stroke="#7bd8cf" stroke-width="2.5"/><circle cx="85.5" cy="67.5" r="6" fill="#171026" stroke="#7bd8cf" stroke-width="2.5"/>
+    <path d="M39 43c16 3 29 10 40 19" fill="none" stroke="#7bd8cf" stroke-width="2" stroke-dasharray="4 3" marker-end="url(#arrow)"/>
+    <rect x="175" y="33" width="130" height="129" rx="13" fill="#120d1c" stroke="#554066"/>
+    <text x="188" y="52" fill="#e6bd70" font-size="8" font-weight="800" letter-spacing="1">DRAG TO PLAN</text>
+    <text x="188" y="76" fill="#f8f0ff" font-size="16" font-weight="800">拖出 3 × 2</text>
+    <rect x="188" y="89" width="104" height="34" rx="9" fill="#e6bd70" fill-opacity=".12" stroke="#e6bd70" stroke-opacity=".6"/>
+    <text x="240" y="112" text-anchor="middle" fill="#ffe2a6" font-family="Georgia,serif" font-size="17" font-weight="700">3 × 2 = 6</text>
+    <text x="188" y="139" fill="#b9adca" font-size="8">当前预览合法：只含数字 6</text>
+    <text x="188" y="153" fill="#b9adca" font-size="8">松手提交；实线房间可再点拆除</text>
   </g>
 </svg>

@@ -32,6 +32,14 @@ const NATIVE_TUTORIAL_ASSETS = new Map([
   ["dream-hotel", ["tutorial-elements.svg", "tutorial-action.svg", "tutorial-goal.svg"]],
 ]);
 
+const NATIVE_TUTORIAL_GOAL_MARKERS = new Map([
+  ["aurora-magnet-lab", ['data-level-id="ice-window"', 'data-state="solved"', 'data-solution="NNNNRNFF"']],
+  ["polar-railway", ['data-level-id="whiteout-5a"', 'data-state="solved"', 'data-route="0,0;0,1;1,1']],
+  ["dream-hotel", ['data-level-id="lullaby-lobby"', 'data-state="solved"', 'data-board-size="5x5"']],
+  ["season-dyehouse", ['data-preset-id="12x12-easy"', 'data-controlled="144"', 'data-moves="20"']],
+  ["yokai-inn", ['data-puzzle-id="yokai-inn:g1:o3:u:do80yl:a10"', 'data-tutorial-state="goal"', 'data-board-size="5x4"']],
+]);
+
 const RELEASE = (process.env.GITHUB_SHA || "manual").slice(0, 12);
 const RETRIES = Number.parseInt(process.env.ONLINE_SMOKE_RETRIES || "30", 10);
 const RETRY_DELAY_MS = Number.parseInt(process.env.ONLINE_SMOKE_RETRY_DELAY_MS || "10000", 10);
@@ -148,7 +156,11 @@ async function verifyHost(name, root) {
   const sharedCss = await fetchAsset(releaseUrl("shared/realm-ui.css", v2), { type: "css", minimumBytes: 2_000 });
   const sharedUi = await fetchAsset(releaseUrl("shared/realm-ui.mjs", v2), { type: "javascript", minimumBytes: 5_000 });
   assert(sharedCss.text.includes("min-height: 44px"), `${name}: 44px tutorial target fix is missing.`);
+  assert(sharedCss.text.includes("html:has(.realm-guide-dialog[open])"), `${name}: open tutorial scroll lock is missing.`);
   assert(sharedUi.text.includes("图片教程"), `${name}: shared tutorial control is missing.`);
+  assert((sharedTutorial.text.match(/version:\s*2/g) || []).length === 5, `${name}: not all five shared tutorials are at version 2.`);
+  assert(sharedTutorial.text.includes('data-feedback="2-exact-1-misplaced"'), `${name}: authentic perfumery feedback art is missing.`);
+  assert(sharedTutorial.text.includes('data-clue-side="bottom"'), `${name}: four-sided skyline goal clues are missing.`);
 
   await Promise.all(registry.games.map(async (game) => {
     const gameBase = new URL(`games/${game.slug}/`, v2);
@@ -171,10 +183,21 @@ async function verifyHost(name, root) {
 
     const nativeAssets = NATIVE_TUTORIAL_ASSETS.get(game.slug);
     if (nativeAssets) {
-      await Promise.all(nativeAssets.map((file) => fetchAsset(releaseUrl(`assets/${file}`, gameBase), {
+      const tutorialWiring = game.slug === "polar-railway"
+        ? await fetchAsset(releaseUrl("ui-helpers.mjs", gameBase), { type: "javascript", minimumBytes: 1_000 })
+        : app;
+      for (const file of nativeAssets) {
+        assert(tutorialWiring.text.includes(`./assets/${file}?tutorial=2`), `${name}/${game.slug}: ${file} cache revision is missing.`);
+      }
+      assert(html.text.includes('<script type="module" src="./app.mjs"></script>'), `${name}/${game.slug}: canonical module entry changed.`);
+      const tutorialAssets = await Promise.all(nativeAssets.map((file) => fetchAsset(releaseUrl(`assets/${file}`, gameBase), {
         type: "image/svg+xml",
         minimumBytes: 1_000,
       })));
+      const goal = tutorialAssets.at(-1).text;
+      for (const marker of NATIVE_TUTORIAL_GOAL_MARKERS.get(game.slug) || []) {
+        assert(goal.includes(marker), `${name}/${game.slug}: authentic goal marker ${marker} is missing.`);
+      }
     } else {
       assert(sharedTutorial.text.includes(`"${game.slug}"`), `${name}/${game.slug}: shared tutorial data is missing.`);
     }

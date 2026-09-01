@@ -170,22 +170,22 @@
     <dialog id="tutorial-dialog" class="modal tutorial-dialog" aria-labelledby="tutorial-title" aria-describedby="tutorial-description">
       <div class="modal-shell">
         <header class="modal-topline">
-          <div><p>FIRST CHECK-IN · 图片教程</p><h2 id="tutorial-title">三张旅店入门图</h2></div>
+          <div><p>FIRST CHECK-IN</p><h2 id="tutorial-title">三张实机入门图</h2></div>
           <button id="tutorial-skip" class="modal-close" type="button">跳过</button>
         </header>
         <p class="visually-hidden" id="tutorial-description">依次了解房图元素、配房操作和通关条件。</p>
         <div class="tutorial-pages" id="tutorial-pages">
           <article class="tutorial-page" data-tutorial-page="0">
-            <img src="./assets/tutorial-elements.svg" alt="数字需求格、金色客房边框、交叉排除线和两种形状的同数字追踪标记" />
-            <div><p>01 · 先认旅店元素</p><h3>数字是房客需求，边界是你的判断</h3><p>每个数字格是一位房客。金色圆角房框表示两格确定同住；交叉封条表示这两格绝不配成一间。</p><ul><li>房框与封条都不会盖住数字</li><li>最多同时高亮两种需求</li></ul></div>
+            <img src="./assets/tutorial-elements.svg?tutorial=2" alt="月见汤庭真实题面局部：数字格、金色客房框、珊瑚排除线、圆印与菱印追踪标记" />
+            <div><p>01 · 先认实机元素</p><h3>数字是需求，格间标记是你的判断</h3><p>图中截取真实题面“月见汤庭”。金色圆角房框表示两格确定同住；珊瑚交叉封条表示两格绝不配成一间。</p><ul><li>房框与封条不会盖住数字</li><li>圆印、菱印可同时追踪两种需求</li></ul></div>
           </article>
           <article class="tutorial-page" data-tutorial-page="1" hidden>
-            <img src="./assets/tutorial-action.svg" alt="分开的两幅操作图：先选择数字二，再选择右侧数字四，最后出现完整客房框" />
-            <div><p>02 · 再学怎么落笔</p><h3>直接点接缝，或依次选择正交相邻两格</h3><p>确定新客房会自动拆掉与它重叠的旧房，并清除这两位房客周围的全部排除线；这一整组变化只算一步，也可一次撤销。</p><ul><li>再次确定同一房间会拆房</li><li>入住后的房客旁不能再画排除线</li></ul></div>
+            <img src="./assets/tutorial-action.svg?tutorial=2" alt="月见汤庭真实六到七号边：先点需求零，再点右侧正交相邻需求三，形成零三客房" />
+            <div><p>02 · 再学手机落笔</p><h3>先选工具，再依次点正交相邻两格</h3><p>手机完整房图不显示接缝按钮：先选“确定客房”或“画排除线”，再点两格。较宽屏也可直接点接缝。图中真实 6:7 边会形成 0·3 客房。</p><ul><li>再次确定同一房间会拆房</li><li>新房会原子清理重叠房与两端排除线</li></ul></div>
           </article>
           <article class="tutorial-page" data-tutorial-page="2" hidden>
-            <img src="./assets/tutorial-goal.svg" alt="五乘四旅店被十间客房完整铺满，零到三的十种无序组合全部打勾" />
-            <div><p>03 · 最后看通关条件</p><h3>铺满全馆，而且完整组合各用一次</h3><p>每格必须恰好属于一间房；从 0 到本馆最大需求的所有无序数对（含 0·0 这类同数对）必须各出现一次。</p><ul><li>重复组合会显示三角冲突印</li><li>排除线只是笔记，不参与胜负</li></ul></div>
+            <img src="./assets/tutorial-goal.svg?tutorial=2" alt="真实唯一解题面月见汤庭被十间客房完整铺满，零到三的十种无序组合全部各出现一次" />
+            <div><p>03 · 最后核对真实通关画面</p><h3>铺满全馆，而且完整组合各用一次</h3><p>图中是“月见汤庭”的真实唯一解：20 格恰好属于 10 间房；0 到 3 的全部 10 种无序数对（含 0·0）均不缺不重。</p><ul><li>重复组合会显示三角冲突印</li><li>排除线只是笔记，不参与胜负</li></ul></div>
           </article>
         </div>
         <footer class="tutorial-footer">

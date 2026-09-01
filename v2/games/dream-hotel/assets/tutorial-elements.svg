@@ -1,35 +1,22 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 184" preserveAspectRatio="xMidYMid meet" role="img" aria-labelledby="title description">
-  <title id="title">旅客数字与梦境格子</title>
-  <desc id="description">一块真实旅舍棋盘上，数字6位于格子中，旁边标注客房面积等于数字。</desc>
-  <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#171026"/><stop offset="1" stop-color="#09070f"/></linearGradient>
-    <radialGradient id="clue" cx="35%" cy="28%" r="80%"><stop stop-color="#fff5d9"/><stop offset="1" stop-color="#d9aa57"/></radialGradient>
-  </defs>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 184" preserveAspectRatio="xMidYMid meet" role="img" aria-labelledby="title description" data-level-id="lullaby-lobby" data-tutorial-scene="elements" data-state="initial" data-board-size="5x5" data-clues="0,1,6;1,2,3;0,4,2;1,4,4;3,0,4;4,3,6">
+  <title id="title">摇篮前厅真实初始楼层</title>
+  <desc id="description">正式首关摇篮前厅尚未规划时的五乘五棋盘，六位数字旅客位于真实坐标；右侧说明数字等于客房面积且每房只能有一位旅客。</desc>
+  <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#171026"/><stop offset="1" stop-color="#09070f"/></linearGradient><radialGradient id="clue" cx="35%" cy="28%" r="80%"><stop stop-color="#fff5d9"/><stop offset="1" stop-color="#d9aa57"/></radialGradient></defs>
   <rect width="320" height="184" rx="14" fill="url(#bg)"/>
-  <path d="M18 26H302M18 158H302" stroke="#e6bd70" stroke-opacity=".18"/>
-  <g transform="translate(28 30)">
-    <rect width="144" height="120" rx="5" fill="#1c1528" stroke="#e6bd70" stroke-width="2"/>
-    <g stroke="#675875" stroke-opacity=".7">
-      <path d="M36 0V120M72 0V120M108 0V120M0 30H144M0 60H144M0 90H144"/>
-    </g>
-    <g transform="translate(72 60)">
-      <circle r="16" fill="url(#clue)" stroke="#ffe2a6"/>
-      <text y="6" text-anchor="middle" fill="#24172d" font-family="Georgia,serif" font-size="18" font-weight="700">6</text>
-    </g>
-    <g fill="#9d7be7" fill-opacity=".26">
-      <circle cx="18" cy="15" r="3"/><circle cx="126" cy="105" r="3"/><path d="M19 103l4 7 7 4-7 4-4 7-4-7-7-4 7-4z"/>
-    </g>
-  </g>
-  <g transform="translate(192 39)" font-family="-apple-system,BlinkMacSystemFont,'PingFang SC',sans-serif">
-    <text fill="#e6bd70" font-size="8" font-weight="700" letter-spacing="1.6">TRAVELER REQUEST</text>
-    <text y="27" fill="#f8f0ff" font-size="18" font-weight="700">数字 = 面积</text>
-    <path d="M0 42H91" stroke="#e6bd70" stroke-opacity=".35"/>
-    <text y="62" fill="#b9adca" font-size="11">数字 6 需要恰好 6 格</text>
-    <text y="80" fill="#b9adca" font-size="11">数字可在房内任意位置</text>
-    <g transform="translate(0 96)">
-      <rect width="102" height="28" rx="14" fill="#9d7be7" fill-opacity=".1" stroke="#9d7be7" stroke-opacity=".38"/>
-      <circle cx="14" cy="14" r="4" fill="#e6bd70"/>
-      <text x="26" y="18" fill="#c7a9ff" font-size="10">每房仅一位旅客</text>
-    </g>
+  <g font-family="system-ui, PingFang SC, sans-serif">
+    <text x="16" y="19" fill="#f8f0ff" font-size="11" font-weight="800">01 · 摇篮前厅真实初始盘</text>
+    <rect x="18" y="27" width="135" height="135" rx="6" fill="#1c1528" stroke="#e6bd70" stroke-width="2"/>
+    <path d="M45 27v135M72 27v135M99 27v135M126 27v135M18 54h135M18 81h135M18 108h135M18 135h135" fill="none" stroke="#675875" stroke-opacity=".76"/>
+    <g fill="url(#clue)" stroke="#ffe2a6"><circle cx="31.5" cy="67.5" r="9"/><circle cx="58.5" cy="94.5" r="9"/><circle cx="31.5" cy="148.5" r="9"/><circle cx="58.5" cy="148.5" r="9"/><circle cx="112.5" cy="40.5" r="9"/><circle cx="139.5" cy="121.5" r="9"/></g>
+    <g fill="#24172d" font-family="Georgia,serif" font-size="10" font-weight="700" text-anchor="middle"><text x="31.5" y="71">6</text><text x="58.5" y="98">3</text><text x="31.5" y="152">2</text><text x="58.5" y="152">4</text><text x="112.5" y="44">4</text><text x="139.5" y="125">6</text></g>
+    <g fill="#9d7be7" fill-opacity=".25"><circle cx="85.5" cy="40.5" r="2"/><path d="M112 91l3 5 5 3-5 3-3 5-3-5-5-3 5-3z"/></g>
+    <rect x="175" y="33" width="130" height="129" rx="13" fill="#120d1c" stroke="#554066"/>
+    <text x="188" y="52" fill="#e6bd70" font-size="8" font-weight="800" letter-spacing="1">TRAVELER REQUEST</text>
+    <text x="188" y="76" fill="#f8f0ff" font-size="16" font-weight="800">数字 = 客房面积</text>
+    <path d="M188 86h104" stroke="#e6bd70" stroke-opacity=".35"/>
+    <circle cx="200" cy="107" r="10" fill="url(#clue)" stroke="#ffe2a6"/><text x="200" y="111" text-anchor="middle" fill="#24172d" font-family="Georgia,serif" font-size="11" font-weight="700">6</text>
+    <text x="218" y="105" fill="#d4c8e1" font-size="9">需要恰好 6 格</text><text x="218" y="118" fill="#a99ab9" font-size="8">数字可在房内任意位置</text>
+    <rect x="188" y="132" width="104" height="20" rx="10" fill="#9d7be7" fill-opacity=".1" stroke="#9d7be7" stroke-opacity=".45"/>
+    <circle cx="199" cy="142" r="3" fill="#e6bd70"/><text x="208" y="145" fill="#c7a9ff" font-size="8">每间客房恰含一个数字</text>
   </g>
 </svg>

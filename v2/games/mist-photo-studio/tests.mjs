@@ -463,6 +463,7 @@ test("a thrown shared reward retries after restore without repeating photo colle
 
 test("the shared tutorial exposes three distinct authentic nonogram states", () => {
   const tutorial = REALM_TUTORIALS["mist-photo-studio"];
+  assert.equal(tutorial.version, 2);
   assert.equal(tutorial.cards.length, 3);
   const artwork = tutorial.cards.map(({ focus }) => tutorialArt("mist-photo-studio", focus));
   assert.equal(new Set(artwork).size, 3);
@@ -476,6 +477,11 @@ test("the shared tutorial exposes three distinct authentic nonogram states", () 
   const copy = tutorial.cards.flatMap(({ title, body, bullets }) => [title, body, ...bullets]).join("\n");
   assert.match(copy, /黑格连续段/);
   assert.match(copy, /留白仍未知不算完成/);
+  assert.match(artwork[0], /列提示/);
+  assert.match(artwork[1], /显影 · F/);
+  assert.match(artwork[1], /排除 · X/);
+  assert.match(artwork[1], /未知 · Del/);
+  assert.match(artwork[2], /全部明确/);
 });
 
 test("page wiring is offline, accessible, reward-safe, responsive, and visually distinguishes fill from exclusion", async () => {

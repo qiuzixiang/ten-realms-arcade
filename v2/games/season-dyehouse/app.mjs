@@ -22,6 +22,7 @@ import {
 } from "./rewards.mjs";
 import {
   STORAGE_KEYS,
+  TUTORIAL_VERSION,
   loadPreferences,
   loadSession,
   readJSON,
@@ -49,22 +50,22 @@ const DYES = Object.freeze([
 
 const TUTORIAL_SLIDES = Object.freeze([
   Object.freeze({
-    title: "先认染池与季色",
-    src: "./assets/tutorial-elements.svg",
-    alt: "四季染坊示意布面：左上角染池连着同色布块，多种染料同时用纹理与符号区分。",
-    copy: "左上角是起始染池。与它颜色相同、上下左右相连的布格，共同组成你已控制的布面。颜色外还有露点、斜纹、经纬等纹理。",
+    title: "先认真实布面与六味季染",
+    src: "./assets/tutorial-elements.svg?tutorial=2",
+    alt: "四季染坊种子一真实题面左上区域，以及游戏内六味染料的符号与纹理。",
+    copy: "图中截取“春绢·从容”种子 1 的真实题面。左上“池”字格是起始染池；只有与它同色且上下左右连通的布格才受控。右侧六味染料与实机符号、纹理一致。",
   }),
   Object.freeze({
-    title: "选色，让染液正交扩张",
-    src: "./assets/tutorial-action.svg",
-    alt: "左右分开的操作示意：选择夏绯后，旧起点块改色并吸收接壤的夏绯布格。",
-    copy: "点染料，或直接点布面上某格，就会选用它的颜色。起始连通块先整体改色，再与接壤的目标色布块连成更大区域。选当前色不产生任何效果，也不计步。",
+    title: "选色，先换色再正交吸收",
+    src: "./assets/tutorial-action.svg?tutorial=2",
+    alt: "种子一真实题面左上区域：选择春青前受控一格，选择后受控三格并吸收两格。",
+    copy: "真实状态中，左上冬蓝染池只有 1 格。点“春青”后，旧染池先整体换成春青，再吸收右邻与下邻两格，变为 3 格。选当前色无效且不计步；其他色即使零扩张，也会计 1 步。",
   }),
   Object.freeze({
-    title: "在步限内合成一匹布",
-    src: "./assets/tutorial-goal.svg",
-    alt: "整幅布已统一为同一色系，计数牌显示 8 步不超过 12 步限制。",
-    copy: "整幅布只剩一种颜色，且用步不超过本局步限，才算通关。步限由官方启发式求解器的参考路线加宽限得出；它很可靠，但不声称是数学最优。",
+    title: "全幅同色，并且不超过步限",
+    src: "./assets/tutorial-goal.svg?tutorial=2",
+    alt: "春绢从容种子一的真实完成状态：十二乘十二共一百四十四格全为梅紫，二十步不超过二十五步限制。",
+    copy: "整幅布只剩一种颜色，且用步不超过本局步限，才算通关。图中是种子 1 的真实参考路线：20 步完成梅紫 144/144，步限为 25；参考路线可靠，但不声称数学最优。",
   }),
 ]);
 
@@ -667,7 +668,7 @@ function openTutorial(trigger = document.activeElement) {
 }
 
 function closeTutorial() {
-  preferences = { ...preferences, tutorialSeen: true };
+  preferences = { ...preferences, tutorialVersion: TUTORIAL_VERSION };
   savePrefs();
   if (elements.tutorialDialog.open) elements.tutorialDialog.close();
 }
@@ -769,8 +770,8 @@ for (const [dialog, fallback] of [
 ]) {
   dialog.addEventListener("keydown", (event) => trapDialogFocus(dialog, event));
   dialog.addEventListener("close", () => {
-    if (dialog === elements.tutorialDialog && !preferences.tutorialSeen) {
-      preferences = { ...preferences, tutorialSeen: true };
+    if (dialog === elements.tutorialDialog && preferences.tutorialVersion !== TUTORIAL_VERSION) {
+      preferences = { ...preferences, tutorialVersion: TUTORIAL_VERSION };
       savePrefs();
     }
     restoreDialogFocus(dialog, fallback);
@@ -847,6 +848,6 @@ exposeGameApi({
   openTutorial: () => openTutorial(elements.tutorialButton),
 });
 
-if (!preferences.tutorialSeen) {
+if (preferences.tutorialVersion !== TUTORIAL_VERSION) {
   requestAnimationFrame(() => openTutorial(null));
 }

@@ -30,6 +30,7 @@ import {
   HISTORY_LIMIT,
   STORAGE_KEYS,
   STORAGE_PREFIX,
+  TUTORIAL_VERSION,
   YOKAI_GUESTS,
   canonicalCompletionDetail,
   createDefaultProfile,
@@ -60,6 +61,10 @@ function check(value, message) {
 function equal(actual, expected, message) {
   assertions += 1;
   assert.deepEqual(actual, expected, message);
+}
+
+function svgAttribute(svg, name) {
+  return svg.match(new RegExp(`${name}="([^"]*)"`))?.[1] ?? "";
 }
 
 function test(name, callback) {
@@ -379,15 +384,27 @@ class FakeStorage {
 
 test("全部本地键使用专属 v2 games 前缀，教程也不越界", () => {
   equal(STORAGE_PREFIX, "ten-realms-v2:games:yokai-inn:");
+  equal(TUTORIAL_VERSION, 2);
+  equal(STORAGE_KEYS.tutorial, `${STORAGE_PREFIX}tutorial:v2`);
   for (const key of Object.values(STORAGE_KEYS)) check(key.startsWith(STORAGE_PREFIX));
   const storage = new FakeStorage();
   loadProfile(storage);
-  tutorialSeen(storage);
-  markTutorialSeen(storage);
+  equal(tutorialSeen(storage), false);
+  check(markTutorialSeen(storage));
+  equal(tutorialSeen(storage), true);
+  equal(JSON.parse(storage.map.get(STORAGE_KEYS.tutorial)), { version: 2, seen: true });
   saveProfile(storage, createDefaultProfile());
   const allKeys = [...storage.readKeys, ...storage.writeKeys, ...storage.removeKeys];
   check(allKeys.every((key) => key.startsWith(STORAGE_PREFIX)));
   check(!allKeys.some((key) => key.includes("progress:v1")));
+
+  const previousTutorialKey = `${STORAGE_PREFIX}tutorial:v1`;
+  const legacy = new FakeStorage({ [previousTutorialKey]: "seen", sentinel: "keep" });
+  equal(tutorialSeen(legacy), false, "只看过旧教程的玩家必须自动看到本轮 v2 教程");
+  check(markTutorialSeen(legacy));
+  equal(tutorialSeen(legacy), true);
+  equal(legacy.map.get(previousTutorialKey), "seen", "升级教程标记不得清理旧键或其他游戏数据");
+  equal(legacy.map.get("sentinel"), "keep");
 });
 
 test("损坏 profile 只清本游戏 profile 键并安全回退，不碰其他数据", () => {
@@ -705,7 +722,7 @@ await testAsync("HTML、SVG、CSS 与完成 API 接线满足教程/无障碍/集
   check(html.includes('../../shared/realm-ui.mjs'));
   check(html.indexOf('../../shared/realm-ui.mjs') < html.indexOf('./app.mjs'), "共享成长层必须先于游戏应用加载");
   check(html.includes('href="../../assets/favicon.svg"'));
-  equal([...html.matchAll(/<img\s+src="\.\/assets\/tutorial-[^"]+\.svg"/g)].length, 3);
+  equal([...html.matchAll(/<img\s+src="\.\/assets\/tutorial-[^"]+\.svg\?tutorial=2"/g)].length, 3);
   equal([...html.matchAll(/<article class="tutorial-page"/g)].length, 3);
   check(html.includes("https://github.com/ebnbin/puzzles/blob/main/doc-zh/dominosa.html"));
   check(html.includes("../../THIRD_PARTY_NOTICES.md"));
@@ -723,9 +740,43 @@ await testAsync("HTML、SVG、CSS 与完成 API 接线满足教程/无障碍/集
     check(svg.includes('role="img"'));
     check(!/href="https?:|url\(https?:/i.test(svg));
   });
-  check(svgs[1].includes("01 · 先选一格") && svgs[1].includes("02 · 再选正交相邻格"), "操作图必须把前后状态放在两个独立面板");
+  check(svgs[1].includes("01 · 先点需求 0") && svgs[1].includes("02 · 再点右侧需求 3"), "操作图必须把前后状态放在两个独立面板");
   check(!/opacity="0\.[0-9]+"/.test(svgs[1]), "操作图不得靠前后状态叠加淡化");
   equal(new Set(svgs).size, 3);
+
+  const tutorialSeed = Number(svgAttribute(svgs[2], "data-seed"));
+  const tutorialPuzzle = generatePuzzle(Number(svgAttribute(svgs[2], "data-order")), tutorialSeed, { ensureUnique: true });
+  equal(tutorialPuzzle.id, svgAttribute(svgs[2], "data-puzzle-id"));
+  equal(tutorialPuzzle.numbers, svgAttribute(svgs[2], "data-numbers").split(",").map(Number), "通关图数字必须来自真实生成题面");
+  equal(tutorialPuzzle.solution, svgAttribute(svgs[2], "data-solution").split(","), "通关图房框必须来自求解器真实解");
+  const tutorialSolution = createPosition({ rooms: tutorialPuzzle.solution });
+  const tutorialAnalysis = analyzePosition(tutorialPuzzle, tutorialSolution);
+  check(tutorialAnalysis.complete && tutorialAnalysis.legalState);
+  equal(tutorialAnalysis.roomCount, tutorialPuzzle.dominoCount);
+  equal(tutorialAnalysis.usedPairCount, tutorialPuzzle.pairKeys.length);
+  equal(solvePuzzle(tutorialPuzzle, { limit: 2 }).count, 1, "图片标注的唯一解必须可由 exact-cover 复证");
+
+  const actionEdge = svgAttribute(svgs[1], "data-edge");
+  const actionResult = applyEdgeAction(tutorialPuzzle, createPosition(), actionEdge, svgAttribute(svgs[1], "data-action"));
+  check(actionResult.accepted);
+  check(actionResult.position.rooms.has(actionEdge));
+  equal(tutorialPuzzle.numbers[Number(svgAttribute(svgs[1], "data-first-cell"))], 0);
+  equal(tutorialPuzzle.numbers[Number(svgAttribute(svgs[1], "data-second-cell"))], 3);
+
+  const elementPosition = createPosition({
+    rooms: svgAttribute(svgs[0], "data-rooms").split(","),
+    excluded: svgAttribute(svgs[0], "data-excluded").split(","),
+  });
+  check(analyzePosition(tutorialPuzzle, elementPosition).legalState, "元素图的房框与排除线必须组成合法实机状态");
+  const highlightGroups = [...svgs[0].matchAll(/<g data-real-element="highlight-[ab]" data-highlight-value="(\d+)"[^>]*>([\s\S]*?)<\/g>/g)];
+  equal(highlightGroups.length, 2, "元素图必须分别展示两种真实需求追踪印");
+  for (const [, rawValue, marks] of highlightGroups) {
+    const cells = [...marks.matchAll(/data-cell="(\d+)"/g)].map((match) => Number(match[1]));
+    check(cells.length > 0, `需求 ${rawValue} 的追踪印必须绑定至少一个真实格`);
+    for (const cell of cells) {
+      equal(tutorialPuzzle.numbers[cell], Number(rawValue), `需求 ${rawValue} 的追踪印不得画在其他数字上`);
+    }
+  }
 
   check(css.includes("min-width: 44px"));
   check(css.includes("width: 44px"));
@@ -783,6 +834,7 @@ await testAsync("HTML、SVG、CSS 与完成 API 接线满足教程/无障碍/集
   check(!allSource.includes("ten-realms:progress:v1"));
   check(!allSource.includes("ten-realms:tutorial:"));
   check(!allSource.includes("ten-realms-v2:yokai-inn:"));
+  check(html.includes('<script type="module" src="./app.mjs"></script>') && !html.includes('./app.mjs?'));
 });
 
 console.log(`Yokai Inn: ${cases}/${cases} cases passed, ${assertions} assertions; 3 scales and exact-cover proofs verified.`);

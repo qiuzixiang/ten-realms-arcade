@@ -37,6 +37,7 @@ import {
 } from "./completion.mjs";
 import { createModalController } from "./modal-controller.mjs";
 import { createVictoryScheduler } from "./victory-scheduler.mjs";
+import { sceneForLevel } from "./scene-themes.mjs";
 
 const MAX_HISTORY = 80;
 const DIFFICULTY_META = Object.freeze({
@@ -49,27 +50,17 @@ const TOOL_META = Object.freeze({
   candidate: Object.freeze({ label: "候选", symbol: "?" }),
   exclude: Object.freeze({ label: "排除", symbol: "×" }),
 });
-const DREAM_SCENES = Object.freeze([
-  Object.freeze({ name: "月湾", glyph: "☾", color: "#9d7be7" }),
-  Object.freeze({ name: "云池", glyph: "☁", color: "#7bd8cf" }),
-  Object.freeze({ name: "星野", glyph: "✦", color: "#e6bd70" }),
-  Object.freeze({ name: "花钟", glyph: "✾", color: "#cf84b6" }),
-  Object.freeze({ name: "潮声", glyph: "≋", color: "#7d9ae8" }),
-  Object.freeze({ name: "森歌", glyph: "▲", color: "#8fe2b2" }),
-  Object.freeze({ name: "雪灯", glyph: "✲", color: "#d4e1ff" }),
-  Object.freeze({ name: "晨羽", glyph: "⌑", color: "#e6a989" }),
-]);
 const TUTORIAL_CARDS = Object.freeze([
   Object.freeze({
-    image: "./assets/tutorial-elements.svg",
-    alt: "数字旅客与梦境格子的真实棋盘示意图",
+    image: "./assets/tutorial-elements.svg?tutorial=2",
+    alt: "摇篮前厅五乘五真实初始棋盘，六位数字旅客位于正式关卡坐标",
     tag: "01 · 旅客需求",
     title: "数字就是房间面积",
     body: "每个数字代表一位旅客。数字 6 需要一间恰好占 6 格的矩形客房。",
     bullets: ["数字可以在客房内任意位置", "每间客房必须恰含一个数字"],
   }),
   Object.freeze({
-    image: "./assets/tutorial-action.svg",
+    image: "./assets/tutorial-action.svg?tutorial=2",
     alt: "从起点拖到终点并预览三乘二客房的操作示意图",
     tag: "02 · 规划操作",
     title: "拖动，先预览再成房",
@@ -77,7 +68,7 @@ const TUTORIAL_CARDS = Object.freeze([
     bullets: ["实线是客房，虚线与 × 只是笔记", "轻点已有客房可以拆除"],
   }),
   Object.freeze({
-    image: "./assets/tutorial-goal.svg",
+    image: "./assets/tutorial-goal.svg?tutorial=2",
     alt: "六间矩形客房无缝覆盖整层楼的通关示意图",
     tag: "03 · 整层好梦",
     title: "无重叠，也不留一格空白",
@@ -229,14 +220,8 @@ function formatTime(milliseconds) {
   return `${Math.floor(seconds / 60)}:${String(seconds % 60).padStart(2, "0")}`;
 }
 
-function hashIndex(text, length) {
-  let hash = 0;
-  for (let index = 0; index < text.length; index += 1) hash = Math.imul(hash, 31) + text.charCodeAt(index);
-  return Math.abs(hash) % length;
-}
-
 function sceneFor(room) {
-  return DREAM_SCENES[hashIndex(`${state.level.id}:${rectKey(room)}`, DREAM_SCENES.length)];
+  return sceneForLevel(state.level.id, room);
 }
 
 function openDialogs() {
