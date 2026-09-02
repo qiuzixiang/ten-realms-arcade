@@ -58,8 +58,10 @@ self.addEventListener("fetch", (event) => {
   // falling back to the 1.0 shell.
   const v2Path = new URL("./v2/", self.registration.scope).pathname;
   const v3Path = new URL("./v3/", self.registration.scope).pathname;
+  const v4Path = new URL("./v4/", self.registration.scope).pathname;
   if (url.pathname === v2Path.slice(0, -1) || url.pathname.startsWith(v2Path)
-      || url.pathname === v3Path.slice(0, -1) || url.pathname.startsWith(v3Path)) return;
+      || url.pathname === v3Path.slice(0, -1) || url.pathname.startsWith(v3Path)
+      || url.pathname === v4Path.slice(0, -1) || url.pathname.startsWith(v4Path)) return;
 
   event.respondWith(
     fetch(event.request)

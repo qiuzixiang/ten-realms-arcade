@@ -7,7 +7,7 @@ const out = path.join(root, "dist");
 const excluded = new Set([".git", ".github", "dist", "node_modules", "scripts"]);
 const sourceEntries = [
   "index.html", "styles.css", "app.js", "sw.js", "assets", "games", "shared",
-  "manifest.webmanifest", "v2", "v3", ".nojekyll", "LICENSE", "THIRD_PARTY_NOTICES.md",
+  "manifest.webmanifest", "v2", "v3", "v4", ".nojekyll", "LICENSE", "THIRD_PARTY_NOTICES.md",
 ];
 const v1GameSlugs = [
   "star-drift", "memory-ark", "red-thread-office", "firefly-garden", "abyss-echo",
@@ -54,6 +54,18 @@ const editions = [
       ["eclipse-watch", ["tutorial-elements.svg", "tutorial-action.svg", "tutorial-goal.svg"]],
       ["celestial-mural", ["tutorial-elements.svg", "tutorial-action.svg", "tutorial-goal.svg"]],
     ]),
+  },
+  {
+    label: "V4.0",
+    directory: "v4",
+    edition: "4.0",
+    previewExtension: "jpg",
+    token: "__TEN_REALMS_V4_BUILD_REVISION__",
+    slugs: [
+      "time-cargo-bay", "quantum-apothecary", "lunar-tide-seal", "orbital-formation", "archipelago-guard",
+      "shadow-print-lab", "orbit-atlas", "stellar-archive", "balance-terrace", "daynight-loom",
+    ],
+    nativeTutorialAssets: nativeTutorials([]),
   },
 ];
 
@@ -144,7 +156,7 @@ async function validateEdition(spec, assets) {
     if (!assets.includes(asset)) throw new Error(`${spec.label} precache is missing ${asset}.`);
   }
   for (const game of registry.games) {
-    if (game.preview !== `./assets/previews/${game.slug}.webp`) {
+    if (game.preview !== `./assets/previews/${game.slug}.${spec.previewExtension ?? "webp"}`) {
       throw new Error(`${spec.label} preview path is not canonical for ${game.slug}.`);
     }
     const required = [
@@ -162,12 +174,12 @@ async function validateEdition(spec, assets) {
 
 const rootPrecache = await collect(out, out, (relative) => {
   const first = relative.split("/")[0];
-  return first !== "v2" && first !== "v3" && relative !== "precache-manifest.json";
+  return first !== "v2" && first !== "v3" && first !== "v4" && relative !== "precache-manifest.json";
 });
 validatePrecachePaths("V1", rootPrecache);
 if (rootPrecache.some((asset) => asset === "./v2" || asset.startsWith("./v2/")
-    || asset === "./v3" || asset.startsWith("./v3/"))) {
-  throw new Error("The V1 precache must not contain V2 or V3 private assets.");
+    || asset === "./v3" || asset.startsWith("./v3/") || asset === "./v4" || asset.startsWith("./v4/"))) {
+  throw new Error("The V1 precache must not contain V2, V3 or V4 private assets.");
 }
 if (JSON.stringify(gameSlugsIn(rootPrecache)) !== JSON.stringify([...v1GameSlugs].sort())) {
   throw new Error("The V1 precache game directories do not exactly match the ten V1 games.");
@@ -207,5 +219,5 @@ for (const spec of editions) {
 }
 
 console.log(
-  `Built ${rootPrecache.length} V1 assets (cache ${rootRevision}), ${editionPrecache.get("v2").length} V2 assets (cache ${editionRevisions.get("v2")}), and ${editionPrecache.get("v3").length} V3 assets (cache ${editionRevisions.get("v3")}) into dist/.`,
+  `Built ${rootPrecache.length} V1 assets (cache ${rootRevision}), ${editionPrecache.get("v2").length} V2 assets (cache ${editionRevisions.get("v2")}), ${editionPrecache.get("v3").length} V3 assets (cache ${editionRevisions.get("v3")}), and ${editionPrecache.get("v4").length} V4 assets (cache ${editionRevisions.get("v4")}) into dist/.`,
 );

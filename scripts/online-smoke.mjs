@@ -45,6 +45,24 @@ const editions = [
     ]),
     sharedTutorials: [],
   },
+  {
+    label: "V4.0", directory: "v4", edition: "4.0",
+    workerToken: "__TEN_REALMS_V4_BUILD_REVISION__", cachePrefix: "ten-realms-v4-arcade-",
+    storagePrefix: "ten-realms-v4:", rewardHost: "window.TenRealmsV4", previewType: "image/jpeg", previewExtension: "jpg",
+    // V4 game shells deliberately delegate their interface to the module renderer.
+    // Keep a meaningful lower bound without requiring inert markup just to reach 1 KB.
+    gameHtmlMinimumBytes: 640,
+    games: [
+      "time-cargo-bay", "quantum-apothecary", "lunar-tide-seal", "orbital-formation", "archipelago-guard",
+      "shadow-print-lab", "orbit-atlas", "stellar-archive", "balance-terrace", "daynight-loom",
+    ],
+    tutorials: new Map(),
+    sharedTutorials: [],
+    runtimeTutorials: new Set([
+      "time-cargo-bay", "quantum-apothecary", "lunar-tide-seal", "orbital-formation", "archipelago-guard",
+      "shadow-print-lab", "orbit-atlas", "stellar-archive", "balance-terrace", "daynight-loom",
+    ]),
+  },
 ];
 
 const RELEASE = (process.env.GITHUB_SHA || "manual").slice(0, 12);
@@ -163,6 +181,27 @@ function webpDimensions(bytes) {
   return null;
 }
 
+function jpegDimensions(bytes) {
+  if (!(bytes instanceof Uint8Array) || bytes.byteLength < 10 || bytes[0] !== 0xff || bytes[1] !== 0xd8) return null;
+  const view = new DataView(bytes.buffer, bytes.byteOffset, bytes.byteLength);
+  let offset = 2;
+  while (offset + 9 < bytes.byteLength) {
+    if (bytes[offset] !== 0xff) { offset += 1; continue; }
+    while (bytes[offset] === 0xff) offset += 1;
+    const marker = bytes[offset]; offset += 1;
+    if (marker === 0xd8 || marker === 0xd9 || (marker >= 0xd0 && marker <= 0xd7)) continue;
+    if (offset + 2 > bytes.byteLength) return null;
+    const length = view.getUint16(offset);
+    if (length < 2 || offset + length > bytes.byteLength) return null;
+    if ((marker >= 0xc0 && marker <= 0xc3) || (marker >= 0xc5 && marker <= 0xc7)
+        || (marker >= 0xc9 && marker <= 0xcb) || (marker >= 0xcd && marker <= 0xcf)) {
+      return { height: view.getUint16(offset + 3), width: view.getUint16(offset + 5) };
+    }
+    offset += length;
+  }
+  return null;
+}
+
 function tutorialIsNative(source) {
   return /<svg\b/i.test(source)
     && /\brole=["']img["']/i.test(source)
@@ -193,13 +232,12 @@ async function verifyRoot(name, root) {
   assertExactBytes(`${name}/v1/precache-manifest.json`, manifestResponse.bytes, Buffer.from(expectedManifestText));
   assert(!workerResponse.text.includes("__TEN_REALMS_BUILD_REVISION__"), `${name}/v1: worker revision token remains.`);
   assert(workerResponse.text.includes("ten-realms-arcade-"), `${name}/v1: cache namespace is missing.`);
-  assert(workerResponse.text.includes('new URL("./v2/", self.registration.scope)')
-    && workerResponse.text.includes('new URL("./v3/", self.registration.scope)'),
-  `${name}/v1: worker does not bypass both later edition scopes.`);
+  assert(["v2", "v3", "v4"].every((directory) => workerResponse.text.includes(`new URL("./${directory}/", self.registration.scope)`)),
+    `${name}/v1: worker does not bypass all later edition scopes.`);
   const manifest = parsePrecacheManifest(`${name}/v1`, manifestResponse.text);
   assert(JSON.stringify(gameSlugs(manifest)) === JSON.stringify([...V1_GAMES].sort()),
     `${name}/v1: game precache boundary is wrong.`);
-  assert(!manifest.some((asset) => asset.startsWith("./v2/") || asset.startsWith("./v3/")),
+  assert(!manifest.some((asset) => asset.startsWith("./v2/") || asset.startsWith("./v3/") || asset.startsWith("./v4/")),
     `${name}/v1: later-edition private assets leaked into root cache.`);
   requireAssets(`${name}/v1`, manifest, ["./index.html", "./app.js", "./styles.css", "./sw.js", "./shared/realm-ui.mjs"]);
   await Promise.all(V1_GAMES.map(async (slug) => {
@@ -227,21 +265,23 @@ async function verifyEdition(name, root, spec) {
   assertExactBytes(`${name}/${spec.directory}/sw.js`, workerResponse.bytes, Buffer.from(expectedWorker));
   assertExactBytes(`${name}/${spec.directory}/precache-manifest.json`, manifestResponse.bytes, Buffer.from(expectedManifestText));
   assert(!workerResponse.text.includes(spec.workerToken), `${name}/${spec.directory}: worker revision token remains.`);
-  assert(workerResponse.text.includes(spec.cachePrefix) && !workerResponse.text.includes(spec.otherCachePrefix),
+  assert(workerResponse.text.includes(spec.cachePrefix) && editions.filter((item) => item.directory !== spec.directory)
+    .every((item) => !workerResponse.text.includes(item.cachePrefix)),
     `${name}/${spec.directory}: cache namespace is not edition-isolated.`);
   assert(workerResponse.text.includes("url.pathname.startsWith(scope.pathname)") && !/\bcaches\.match\(/.test(workerResponse.text),
     `${name}/${spec.directory}: worker scope guard is missing.`);
   const manifest = parsePrecacheManifest(`${name}/${spec.directory}`, manifestResponse.text);
   assert(JSON.stringify(gameSlugs(manifest)) === JSON.stringify([...spec.games].sort()),
     `${name}/${spec.directory}: game precache boundary is wrong.`);
-  assert(!manifest.some((asset) => asset.startsWith("./v2/") || asset.startsWith("./v3/")),
+  assert(!manifest.some((asset) => editions.some((item) => asset.startsWith(`./${item.directory}/`))),
     `${name}/${spec.directory}: nested edition resources leaked into precache.`);
   requireAssets(`${name}/${spec.directory}`, manifest, [
     "./index.html", "./games.json", "./app.js", "./styles.css", "./sw.js", "./manifest.webmanifest",
     "./shared/storage.mjs", "./shared/realm-ui.mjs", "./shared/realm-ui.css", "./shared/reward-engine.mjs", "./shared/tutorial-data.mjs",
+    ...(spec.directory === "v4" ? ["./shared/game-kit.mjs", "./shared/completion-outbox.mjs"] : []),
     ...spec.games.flatMap((slug) => [
       `./games/${slug}/index.html`, `./games/${slug}/app.mjs`, `./games/${slug}/styles.css`,
-      `./assets/previews/${slug}.webp`,
+      `./assets/previews/${slug}.${spec.previewExtension ?? "webp"}`,
       ...(spec.tutorials.get(slug) ?? []).map((file) => `./games/${slug}/assets/${file}`),
     ]),
   ]);
@@ -251,37 +291,42 @@ async function verifyEdition(name, root, spec) {
     fetchAsset(releaseUrl("shared/realm-ui.mjs", base), { type: "javascript", minimumBytes: 3_000 }),
     fetchAsset(releaseUrl("shared/tutorial-data.mjs", base), { type: "javascript", minimumBytes: 100 }),
   ]);
-  const storagePrefix = spec.directory === "v2" ? "ten-realms-v2:" : "ten-realms-v3:";
+  const storagePrefix = spec.storagePrefix ?? (spec.directory === "v2" ? "ten-realms-v2:" : "ten-realms-v3:");
+  const rewardHost = spec.rewardHost ?? (spec.directory === "v2" ? "window.RealmArcade" : "window.TenRealmsV3");
   assert(sharedStorage.text.includes(storagePrefix), `${name}/${spec.directory}: shared storage prefix is wrong.`);
-  assert(sharedUi.text.includes(spec.directory === "v2" ? "window.RealmArcade" : "window.TenRealmsV3"),
+  assert(sharedUi.text.includes(rewardHost),
     `${name}/${spec.directory}: shared reward host is absent.`);
 
   await Promise.all(registry.games.map(async (game) => {
     const gameBase = new URL(`games/${game.slug}/`, base);
     const [html, app, css, preview] = await Promise.all([
-      fetchAsset(releaseUrl("./", gameBase), { type: "text/html", minimumBytes: 1_000 }),
+      fetchAsset(releaseUrl("./", gameBase), { type: "text/html", minimumBytes: spec.gameHtmlMinimumBytes ?? 1_000 }),
       fetchAsset(releaseUrl("app.mjs", gameBase), { type: "javascript", minimumBytes: 800 }),
       fetchAsset(releaseUrl("styles.css", gameBase), { type: "css", minimumBytes: 800 }),
-      fetchAsset(releaseUrl(game.preview.replace(/^\.\//, ""), base), { type: "image/webp", minimumBytes: 4_096 }),
+      fetchAsset(releaseUrl(game.preview.replace(/^\.\//, ""), base), { type: spec.previewType ?? "image/webp", minimumBytes: 4_096 }),
     ]);
     assert(html.text.includes(`data-realm="${game.slug}"`), `${name}/${spec.directory}/${game.slug}: data-realm is absent.`);
     assert(html.text.includes("../../shared/realm-ui"), `${name}/${spec.directory}/${game.slug}: shared reward UI is not wired.`);
     const nativeTutorials = spec.tutorials.get(game.slug);
     const sharedTutorial = spec.sharedTutorials.includes(game.slug);
-    assert(Boolean(nativeTutorials) !== sharedTutorial,
-      `${name}/${spec.directory}/${game.slug}: tutorial mode must be exactly native or shared.`);
+    const runtimeTutorial = spec.runtimeTutorials?.has(game.slug) === true;
+    assert(Number(Boolean(nativeTutorials)) + Number(sharedTutorial) + Number(runtimeTutorial) === 1,
+      `${name}/${spec.directory}/${game.slug}: tutorial mode must be exactly native, shared or runtime.`);
     if (nativeTutorials) {
       assert(html.text.includes('id="tutorial-button"'), `${name}/${spec.directory}/${game.slug}: native tutorial entry is absent.`);
-    } else {
+    } else if (sharedTutorial) {
       assert(sharedTutorialData.text.includes(`"${game.slug}"`),
         `${name}/${spec.directory}/${game.slug}: shared tutorial contract is absent.`);
+    } else {
+      assert(app.text.includes("tutorialCards") && app.text.includes("game-kit"),
+        `${name}/${spec.directory}/${game.slug}: rule-derived runtime tutorial is absent.`);
     }
     assert(html.text.includes('href="../../"'), `${name}/${spec.directory}/${game.slug}: return link is not canonical.`);
     assert(!/请稍候|开发中|即将开放|coming\s+soon/i.test(html.text), `${name}/${spec.directory}/${game.slug}: placeholder page deployed.`);
     assert(app.bytes.byteLength >= 800 && css.bytes.byteLength >= 800, `${name}/${spec.directory}/${game.slug}: core assets are too short.`);
-    const dimensions = webpDimensions(preview.bytes);
+    const dimensions = spec.previewExtension === "jpg" ? jpegDimensions(preview.bytes) : webpDimensions(preview.bytes);
     assert(dimensions?.width === 1200 && dimensions?.height === 652,
-      `${name}/${spec.directory}/${game.slug}: preview is not a 1200×652 WebP.`);
+      `${name}/${spec.directory}/${game.slug}: preview is not a 1200×652 ${spec.previewExtension === "jpg" ? "JPEG" : "WebP"}.`);
     for (const filename of nativeTutorials ?? []) {
       const tutorial = await fetchAsset(releaseUrl(`assets/${filename}`, gameBase), { type: "image/svg+xml", minimumBytes: 1_000 });
       assert(tutorialIsNative(tutorial.text), `${name}/${spec.directory}/${game.slug}/${filename}: tutorial is not a replayable native SVG.`);
@@ -291,6 +336,7 @@ async function verifyEdition(name, root, spec) {
   const localBase = new URL(`${spec.directory}/`, localDist);
   const criticalModules = [
     "./app.js", "./shared/storage.mjs", "./shared/realm-ui.mjs", "./shared/reward-engine.mjs", "./shared/tutorial-data.mjs",
+    ...(spec.directory === "v4" ? ["./shared/game-kit.mjs", "./shared/completion-outbox.mjs"] : []),
     ...spec.games.map((slug) => `./games/${slug}/app.mjs`),
   ];
   await Promise.all(criticalModules.map(async (asset) => {
@@ -301,9 +347,9 @@ async function verifyEdition(name, root, spec) {
     assertExactBytes(`${name}/${spec.directory}/${asset.slice(2)}`, remote.bytes, local);
   }));
 
-  const other = editions.find((item) => item.directory !== spec.directory);
   await Promise.all([
-    rejectUnexpectedAsset(releaseUrl(`games/${other.games[0]}/app.mjs`, base)),
+    ...editions.filter((item) => item.directory !== spec.directory)
+      .map((other) => rejectUnexpectedAsset(releaseUrl(`games/${other.games[0]}/app.mjs`, base))),
     rejectUnexpectedAsset(releaseUrl("games/__not-a-realm__/app.mjs", base)),
   ]);
   return { revision: revisionFromWorker(`${name}/${spec.directory}`, workerResponse.text), assets: manifest.length };
@@ -312,7 +358,7 @@ async function verifyEdition(name, root, spec) {
 async function verifyHost(name, root) {
   const rootResult = await verifyRoot(name, root);
   const results = await Promise.all(editions.map((spec) => verifyEdition(name, root, spec)));
-  return `${name}: V1 (${rootResult.assets} assets, ${rootResult.revision}), V2.0 (${results[0].assets} assets, ${results[0].revision}), and V3.0 (${results[1].assets} assets, ${results[1].revision}) verified`;
+  return `${name}: V1 (${rootResult.assets} assets, ${rootResult.revision}), ${editions.map((spec, index) => `${spec.label} (${results[index].assets} assets, ${results[index].revision})`).join(", ")} verified`;
 }
 
 async function eventually(name, task) {

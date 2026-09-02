@@ -4,6 +4,7 @@ import path from "node:path";
 
 import { REALM_CONFIGS as V2_REALM_CONFIGS, REALM_TUTORIALS as V2_REALM_TUTORIALS } from "../v2/shared/tutorial-data.mjs";
 import { REALM_CONFIGS as V3_REALM_CONFIGS, REALM_TUTORIALS as V3_REALM_TUTORIALS } from "../v3/shared/tutorial-data.mjs";
+import { REALM_CONFIGS as V4_REALM_CONFIGS, REALM_TUTORIALS as V4_REALM_TUTORIALS } from "../v4/shared/tutorial-data.mjs";
 
 const root = process.cwd();
 const ignored = new Set([".git", "dist", "node_modules"]);
@@ -27,6 +28,7 @@ const editions = [
     directory: "v2",
     label: "V2.0",
     edition: "2.0",
+    workerToken: "__TEN_REALMS_V2_BUILD_REVISION__",
     cachePrefix: "ten-realms-v2-arcade-",
     storagePrefix: "ten-realms-v2:",
     configs: V2_REALM_CONFIGS,
@@ -55,6 +57,7 @@ const editions = [
     directory: "v3",
     label: "V3.0",
     edition: "3.0",
+    workerToken: "__TEN_REALMS_V3_BUILD_REVISION__",
     cachePrefix: "ten-realms-v3-arcade-",
     storagePrefix: "ten-realms-v3:",
     configs: V3_REALM_CONFIGS,
@@ -82,6 +85,34 @@ const editions = [
       ["coral-bloom-lab", ["tutorial-elements.svg", "tutorial-action.svg", "tutorial-goal.svg"]],
       ["eclipse-watch", ["tutorial-elements.svg", "tutorial-action.svg", "tutorial-goal.svg"]],
       ["celestial-mural", ["tutorial-elements.svg", "tutorial-action.svg", "tutorial-goal.svg"]],
+    ]),
+  },
+  {
+    directory: "v4",
+    label: "V4.0",
+    edition: "4.0",
+    workerToken: "__TEN_REALMS_V4_BUILD_REVISION__",
+    previewExtension: "jpg",
+    cachePrefix: "ten-realms-v4-arcade-",
+    storagePrefix: "ten-realms-v4:",
+    configs: V4_REALM_CONFIGS,
+    tutorials: V4_REALM_TUTORIALS,
+    games: [
+      ["时序货舱", "time-cargo-bay"],
+      ["量子配方馆", "quantum-apothecary"],
+      ["月潮结界", "lunar-tide-seal"],
+      ["轨道编队调度", "orbital-formation"],
+      ["群岛边防署", "archipelago-guard"],
+      ["影印净化室", "shadow-print-lab"],
+      ["环轨星图台", "orbit-atlas"],
+      ["星图档案院", "stellar-archive"],
+      ["天平阶梯庭", "balance-terrace"],
+      ["昼夜织机", "daynight-loom"],
+    ],
+    nativeTutorialAssets: nativeTutorials([]),
+    runtimeTutorials: new Set([
+      "time-cargo-bay", "quantum-apothecary", "lunar-tide-seal", "orbital-formation", "archipelago-guard",
+      "shadow-print-lab", "orbit-atlas", "stellar-archive", "balance-terrace", "daynight-loom",
     ]),
   },
 ];
@@ -124,6 +155,27 @@ function webpDimensions(buffer) {
   return null;
 }
 
+function jpegDimensions(buffer) {
+  if (!Buffer.isBuffer(buffer) || buffer.length < 10 || buffer[0] !== 0xff || buffer[1] !== 0xd8) return null;
+  let offset = 2;
+  while (offset + 9 < buffer.length) {
+    if (buffer[offset] !== 0xff) { offset += 1; continue; }
+    while (buffer[offset] === 0xff) offset += 1;
+    const marker = buffer[offset];
+    offset += 1;
+    if (marker === 0xd8 || marker === 0xd9 || (marker >= 0xd0 && marker <= 0xd7)) continue;
+    if (offset + 2 > buffer.length) return null;
+    const length = buffer.readUInt16BE(offset);
+    if (length < 2 || offset + length > buffer.length) return null;
+    if ((marker >= 0xc0 && marker <= 0xc3) || (marker >= 0xc5 && marker <= 0xc7)
+        || (marker >= 0xc9 && marker <= 0xcb) || (marker >= 0xcd && marker <= 0xcf)) {
+      return { height: buffer.readUInt16BE(offset + 3), width: buffer.readUInt16BE(offset + 5) };
+    }
+    offset += length;
+  }
+  return null;
+}
+
 for (const file of files.filter((item) => item.endsWith(".js") || item.endsWith(".mjs"))) {
   const result = spawnSync(process.execPath, ["--check", file], { encoding: "utf8" });
   if (result.status !== 0) fail(result.stderr.trim() || `Syntax check failed: ${path.relative(root, file)}`);
@@ -162,11 +214,11 @@ for (const file of files.filter((item) => item.endsWith(".js") || item.endsWith(
 
 const rootManifest = JSON.parse(await readFile(path.join(root, "manifest.webmanifest"), "utf8"));
 for (const icon of rootManifest.icons ?? []) await validateReference(path.join(root, "manifest.webmanifest"), icon.src);
-if (JSON.stringify(rootManifest).includes("/v2/") || JSON.stringify(rootManifest).includes("/v3/")) {
-  fail("Root manifest must not claim V2 or V3 scope/assets.");
+if (JSON.stringify(rootManifest).includes("/v2/") || JSON.stringify(rootManifest).includes("/v3/") || JSON.stringify(rootManifest).includes("/v4/")) {
+  fail("Root manifest must not claim V2, V3 or V4 scope/assets.");
 }
 const packageMetadata = JSON.parse(await readFile(path.join(root, "package.json"), "utf8"));
-if (packageMetadata.version !== "3.0.0") fail("package.json version must be 3.0.0 for the V3.0 release.");
+if (packageMetadata.version !== "4.0.0") fail("package.json version must be 4.0.0 for the V4.0 release.");
 
 const editionSources = new Map();
 for (const spec of editions) {
@@ -218,7 +270,7 @@ for (const spec of editions) {
     if (!/^#[0-9a-f]{6}$/i.test(game.accent ?? "")) fail(`${spec.label} has an invalid accent: ${game.slug}`);
     if (seenSlugs.has(game.slug) || seenTitles.has(game.title) || seenPreviews.has(game.preview)) fail(`${spec.label} registry has duplicate game metadata: ${game.slug}`);
     seenSlugs.add(game.slug); seenTitles.add(game.title); seenPreviews.add(game.preview);
-    if (game.preview !== `./assets/previews/${game.slug}.webp`) fail(`${spec.label} preview path is not canonical for ${game.slug}.`);
+    if (game.preview !== `./assets/previews/${game.slug}.${spec.previewExtension ?? "webp"}`) fail(`${spec.label} preview path is not canonical for ${game.slug}.`);
     const config = spec.configs[game.slug];
     if (!config || config.title !== game.title || config.accent.toLowerCase() !== game.accent.toLowerCase()) {
       fail(`${spec.label} realm config is inconsistent for ${game.slug}.`);
@@ -243,13 +295,17 @@ for (const spec of editions) {
 
     const tutorialFiles = spec.nativeTutorialAssets.get(game.slug);
     const sharedTutorial = spec.tutorials[game.slug];
-    if (!tutorialFiles && !sharedTutorial) fail(`${spec.label} game has no tutorial contract: ${game.slug}`);
+    const runtimeTutorial = spec.runtimeTutorials?.has(game.slug) === true;
+    if (!tutorialFiles && !sharedTutorial && !runtimeTutorial) fail(`${spec.label} game has no tutorial contract: ${game.slug}`);
     if (tutorialFiles && !html.includes('id="tutorial-button"')) {
       fail(`${spec.label} native tutorial needs its own tutorial button: ${game.slug}`);
     }
     const runtimeFiles = files.filter((file) => file.startsWith(`${gameDirectory}${path.sep}`) && /\.(?:html|js|mjs)$/.test(file));
     const runtimeSources = await Promise.all(runtimeFiles.map((file) => readFile(file, "utf8")));
     const tutorialWiring = runtimeSources.join("\n");
+    if (runtimeTutorial && (!tutorialWiring.includes("tutorialCards") || !tutorialWiring.includes("<svg"))) {
+      fail(`${spec.label} runtime tutorial must expose three rule-derived SVG cards: ${game.slug}`);
+    }
     for (const filename of tutorialFiles ?? []) {
       const assetPath = path.join(gameDirectory, "assets", filename);
       try {
@@ -267,9 +323,9 @@ for (const spec of editions) {
     try {
       const previewPath = path.resolve(path.dirname(registryPath), game.preview);
       const preview = await readFile(previewPath);
-      const dimensions = webpDimensions(preview);
+      const dimensions = spec.previewExtension === "jpg" ? jpegDimensions(preview) : webpDimensions(preview);
       if ((await stat(previewPath)).size < 4096 || dimensions?.width !== 1200 || dimensions?.height !== 652) {
-        fail(`${spec.label} preview must be a 1200×652 WebP: ${game.slug}`);
+        fail(`${spec.label} preview must be a 1200×652 ${spec.previewExtension === "jpg" ? "JPEG" : "WebP"}: ${game.slug}`);
       }
     } catch {
       fail(`${spec.label} preview is missing: ${game.slug}`);
@@ -318,7 +374,7 @@ for (const spec of testSpecs) {
   }
 }
 
-for (const sharedTest of ["shared/tests.mjs", "v2/shared/tests.mjs", "v3/shared/tests.mjs"]) {
+for (const sharedTest of ["shared/tests.mjs", "v2/shared/tests.mjs", "v3/shared/tests.mjs", "v4/shared/tests.mjs"]) {
   const test = path.join(root, sharedTest);
   const result = spawnSync(process.execPath, [test], { encoding: "utf8" });
   process.stdout.write(result.stdout);
@@ -330,11 +386,11 @@ for (const sharedTest of ["shared/tests.mjs", "v2/shared/tests.mjs", "v3/shared/
 
 for (const spec of editions) {
   const editionRoot = editionSources.get(spec.directory);
-  const oppositePrefix = spec.directory === "v2" ? "ten-realms-v3" : "ten-realms-v2";
+  const otherPrefixes = editions.filter((item) => item.directory !== spec.directory).map((item) => item.storagePrefix);
   for (const file of files.filter((item) => item.startsWith(`${editionRoot}${path.sep}`) && /\.(?:js|mjs)$/.test(item))) {
     const source = await readFile(file, "utf8");
-    if (path.basename(file) !== "tests.mjs" && source.includes(oppositePrefix)) {
-      fail(`${spec.label} production code refers to the other edition namespace: ${path.relative(root, file)}`);
+    if (path.basename(file) !== "tests.mjs" && otherPrefixes.some((prefix) => source.includes(prefix))) {
+      fail(`${spec.label} production code refers to another edition namespace: ${path.relative(root, file)}`);
     }
     if (path.basename(file) !== "tests.mjs" && source.includes("localStorage.clear(")) {
       fail(`${spec.label} production code may not clear shared browser storage: ${path.relative(root, file)}`);
@@ -353,23 +409,25 @@ for (const spec of editions) {
       || /\bcaches\.match\(/.test(worker)) {
     fail(`${spec.label} service worker is not correctly scope-isolated.`);
   }
-  if (spec.directory === "v3" && (!worker.includes("__TEN_REALMS_V3_BUILD_REVISION__") || worker.includes("ten-realms-v2-arcade-"))) {
-    fail("V3 service worker must use the V3 revision token and cache prefix only.");
-  }
-  if (spec.directory === "v2" && (!worker.includes("__TEN_REALMS_V2_BUILD_REVISION__") || worker.includes("ten-realms-v3-arcade-"))) {
-    fail("V2 service worker must use the V2 revision token and cache prefix only.");
+  if (!worker.includes(spec.workerToken) || editions.filter((item) => item.directory !== spec.directory)
+    .some((item) => worker.includes(item.cachePrefix))) {
+    fail(`${spec.label} service worker must use only its own revision token and cache prefix.`);
   }
 }
 
 const rootWorker = await readFile(path.join(root, "sw.js"), "utf8");
-if (!rootWorker.includes('new URL("./v2/", self.registration.scope)') || !rootWorker.includes('new URL("./v3/", self.registration.scope)')) {
-  fail("Root service worker must bypass both V2 and V3 paths.");
+if (!["v2", "v3", "v4"].every((directory) => rootWorker.includes(`new URL("./${directory}/", self.registration.scope)`))) {
+  fail("Root service worker must bypass V2, V3 and V4 paths.");
 }
 const v2Ui = await readFile(path.join(root, "v2", "shared", "realm-ui.mjs"), "utf8");
 const v3Ui = await readFile(path.join(root, "v3", "shared", "realm-ui.mjs"), "utf8");
+const v4Ui = await readFile(path.join(root, "v4", "shared", "realm-ui.mjs"), "utf8");
 if (!v2Ui.includes("2.0 十款共享")) fail("V2 shared reward copy must identify the ten-game 2.0 release.");
 if (!v3Ui.includes("3.0 十款共享") || !v3Ui.includes("window.TenRealmsV3")) {
   fail("V3 shared reward host must identify the ten-game 3.0 release and expose its isolated host.");
+}
+if (!v4Ui.includes("4.0 十款共享") || !v4Ui.includes("window.TenRealmsV4")) {
+  fail("V4 shared reward host must identify the ten-game 4.0 release and expose its isolated host.");
 }
 
 if (failures) {

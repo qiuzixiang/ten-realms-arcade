@@ -1,0 +1,28 @@
+import assert from "node:assert/strict";
+import { readFile } from "node:fs/promises";
+import { fileURLToPath } from "node:url";
+import path from "node:path";
+import { DAY, EMPTY, NIGHT, SOLUTION, analyze, cycleCell, freshState, isComplete, normalizeState, setCell, tutorialCards } from "./logic.mjs";
+
+const start = freshState();
+assert.equal(start.cells[0], NIGHT);
+assert.equal(start.cells[1], EMPTY);
+assert.equal(setCell(start, 0, DAY), null, "fixed threads cannot change");
+const once = cycleCell(start, 1);
+assert.equal(once.cells[1], DAY);
+assert.equal(once.moves, 1);
+assert.equal(cycleCell(once, 1).cells[1], NIGHT);
+assert.equal(cycleCell(cycleCell(once, 1), 1).cells[1], EMPTY);
+assert.equal(analyze([DAY, DAY, DAY, EMPTY, ...Array(12).fill(EMPTY)]).valid, false, "three matching threads conflict");
+assert.equal(analyze([DAY, DAY, DAY, NIGHT, ...Array(12).fill(EMPTY)]).triples.size, 3);
+assert.equal(isComplete(normalizeState({ cells: SOLUTION, moves: 10 })), true);
+assert.equal(normalizeState({ cells: [...SOLUTION], moves: -1 }), null);
+assert.equal(normalizeState({ cells: [DAY, ...SOLUTION.slice(1)], moves: 0 }), null, "stored fixed clue is rechecked");
+const cards = tutorialCards();
+assert.equal(cards.length, 3);
+for (const card of cards) assert.match(card.svg, /role="img"[\s\S]*viewBox="0 0 404 404"[\s\S]*preserveAspectRatio="xMidYMid meet"[\s\S]*data-state=/);
+assert.match(cards[2].svg, /data-state="昼夜织机真实完成状态"/);
+const here = path.dirname(fileURLToPath(import.meta.url));
+const css = await readFile(path.join(here, "styles.css"), "utf8");
+assert.match(css, /width: min\(100%, 486px\); grid-template-columns: repeat\(4, minmax\(44px, 1fr\)\)/, "four loom cells shrink within the available panel width instead of clipping on narrow screens");
+console.log("daynight-loom rules, state recovery and true tutorial cards: all assertions passed.");

@@ -1,0 +1,43 @@
+:root { color-scheme: dark; }
+.cargo-board {
+  --cell: clamp(62px, 20vw, 92px);
+  width: min(100%, calc(var(--cell) * 3 + 16px));
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  padding: 8px;
+  border: 1px solid #ffc66d58;
+  border-radius: 21px;
+  background: linear-gradient(145deg, #10253a, #07131e 72%);
+  box-shadow: inset 0 0 0 1px #ffffff0b, 0 18px 46px #0008;
+}
+.cargo-cell {
+  position: relative;
+  aspect-ratio: 1.15 / 1;
+  min-width: 44px;
+  min-height: 44px;
+  display: grid;
+  place-content: center;
+  gap: 1px;
+  overflow: hidden;
+  color: #f8fcff;
+  border: 1px solid #77c4e56b;
+  border-radius: 15px;
+  background: linear-gradient(145deg, #2a516e, #132b41);
+  box-shadow: inset 0 1px #ffffff22, 0 6px 0 #07131d;
+  cursor: pointer;
+  transition: transform .18s ease, border-color .18s ease, background .18s ease;
+}
+.cargo-cell::before, .cargo-cell::after { content: ""; position: absolute; left: 12%; right: 12%; height: 1px; background: #d7f5ff33; }
+.cargo-cell::before { top: 20%; }.cargo-cell::after { bottom: 20%; }
+.cargo-cell:hover:not(:disabled), .cargo-cell:focus-visible { z-index: 1; border-color: #fff1bd; background: linear-gradient(145deg, #446b81, #1b3c54); outline: 3px solid #ffc66d80; outline-offset: 2px; transform: translateY(-2px); }
+.cargo-cell:active:not(:disabled) { transform: translateY(3px); box-shadow: inset 0 1px #ffffff22, 0 2px 0 #07131d; }
+.cargo-cell.is-legal { border-color: #ffc66dcc; box-shadow: inset 0 0 0 1px #fff1bd44, 0 6px 0 #07131d, 0 0 23px #ffc66d23; }
+.cargo-cell:disabled { cursor: default; opacity: 1; }
+.cargo-cell i { position: absolute; top: 14%; left: 15%; width: 8px; height: 8px; border-radius: 50%; background: #f6d996; box-shadow: 0 0 12px #f6d996; }
+.cargo-cell b { position: relative; font: 800 clamp(1.45rem, 7vw, 2.35rem)/1 ui-monospace, SFMono-Regular, Menlo, monospace; text-shadow: 0 2px #07131d; }
+.cargo-cell small { position: relative; color: #c6e5ee; font-size: .61rem; letter-spacing: .12em; }
+.cargo-cell.is-empty { color: #8edcf5; border: 2px dashed #74d8ff99; background: #07141d; box-shadow: inset 0 0 24px #74d8ff12; }
+.cargo-cell.is-empty span { font-size: 1.55rem; line-height: 1; }.cargo-cell.is-empty small { color: #9bddef; }
+@media (max-width: 380px) { .cargo-board { --cell: clamp(58px, 23vw, 72px); gap: 6px; padding: 6px; }.cargo-cell { border-radius: 12px; }.cargo-cell small { font-size: .54rem; } }
+@media (prefers-reduced-motion: reduce) { .cargo-cell { transition: none; } }

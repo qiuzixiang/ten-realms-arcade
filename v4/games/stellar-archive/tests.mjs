@@ -1,0 +1,30 @@
+import assert from "node:assert/strict";
+import { readFile } from "node:fs/promises";
+import { fileURLToPath } from "node:url";
+import path from "node:path";
+import { LEVEL, SIZE, TUTORIAL, cellsForRegion, countSolutions, createState, evaluate, givenAt, isComplete, normalizeState, regionFor, setCell, stateFromValues, tutorialSvg, undo } from "./logic.mjs";
+
+let checks = 0; const check = (value, message) => { assert.ok(value, message); checks += 1; }; const here = path.dirname(fileURLToPath(import.meta.url));
+check(SIZE === 4 && cellsForRegion(0).join(",") === "0,1,4,5", "Solo fixture uses true 2×2 regions");
+check(new Set(LEVEL.givens.map(([cell]) => cell)).size === LEVEL.givens.length, "archive givens do not overlap");
+check(LEVEL.givens.every(([cell, value]) => LEVEL.solution[cell] === value), "every immutable archive mark agrees with solution");
+check(countSolutions(LEVEL, 2) === 1, "independent row/column/region solver proves unique puzzle");
+const initial = createState(); check(!isComplete(initial), "unfinished but consistent archive never wins");
+check(setCell(initial, 0, 2) === initial, "given archive cell is immutable");
+const action = setCell(initial, 1, 2); check(action.values[1] === 2 && action.moves === 1 && evaluate(LEVEL, action).errors.length === 0, "tutorial fill:1:2 respects row, column and region");
+const rowConflict = setCell(action, 2, 2); check(evaluate(LEVEL, rowConflict).errors.some((entry) => entry.type === "row"), "duplicate row mark is visible");
+const regionConflict = setCell(action, 4, 2); check(evaluate(LEVEL, regionConflict).errors.some((entry) => entry.type === "region"), "duplicate regional mark is visible");
+check(undo(action).values[1] === 0 && undo(action).moves === 0, "undo restores actual prior archive state");
+const solved = stateFromValues(LEVEL.solution, 10); check(isComplete(solved), "solution meets rows, columns and every region");
+check(!isComplete(stateFromValues([...LEVEL.solution.slice(0, 15), 0], 9)), "a missing star cannot count as clear");
+check(regionFor(15) === 3 && givenAt(LEVEL, 13) === 3, "region coordinates and givens are stable");
+check(normalizeState({ values: Array(16).fill(1), moves: 0 }) === null, "tampered givens are rejected instead of trusting storage");
+check(TUTORIAL.actionState.values[1] === 2 && isComplete(TUTORIAL.solved), "tutorial states come from engine calls");
+for (const [state, stage] of [[TUTORIAL.initial, "elements"], [TUTORIAL.actionState, "action"], [TUTORIAL.solved, "complete"]]) { const svg = tutorialSvg(state, stage); check(svg.includes('<svg') && svg.includes('data-tutorial-game="stellar-archive"') && svg.includes(`data-stage="${stage}"`), `${stage} runtime SVG is self-contained`); }
+check(tutorialSvg(TUTORIAL.actionState, "action").includes('data-action="fill:1:2"'), "runtime action art records legal engine input"); check(tutorialSvg(TUTORIAL.solved, "complete").includes('data-complete="true"'), "runtime goal art records true completion");
+const [html, app, css] = await Promise.all(["index.html", "app.mjs", "styles.css"].map((name) => readFile(path.join(here, name), "utf8")));
+check(html.includes('data-realm="stellar-archive"') && html.includes('href="../../"'), "entry has isolated realm and return link");
+check(html.includes('../../shared/realm-ui.css') && html.includes('../../shared/game-kit.css') && html.includes('../../shared/realm-ui.mjs'), "entry retains V4 shared resources");
+check(app.includes("mountPuzzle") && app.includes("tutorialSvg"), "app uses game kit and three rule-derived SVG cards");
+check(css.includes("min-height: 44px") && css.includes("@media (max-width: 480px)"), "mobile touch targets have responsive coverage");
+console.log(`Stellar Archive: ${checks} assertions passed.`);

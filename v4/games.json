@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "edition": "4.0",
+  "status": "ready",
+  "expectedGames": 10,
+  "games": [
+    {"slug":"time-cargo-bay","title":"时序货舱","genre":"归位玩法","mechanic":"空舱滑运","summary":"沿货舱的空位滑移时序货箱，让遗物编号回到正确的时间轴。","preview":"./assets/previews/time-cargo-bay.jpg","accent":"#ffbd66"},
+    {"slug":"quantum-apothecary","title":"量子配方馆","genre":"配方玩法","mechanic":"算笼拉丁","summary":"把元素符填进反应格，同时满足每座量子算笼的精确配方。","preview":"./assets/previews/quantum-apothecary.jpg","accent":"#a9d5ff"},
+    {"slug":"lunar-tide-seal","title":"月潮结界","genre":"结界玩法","mechanic":"单环潮线","summary":"依据潮汐刻印选取边线，织出一条没有岔路的月潮封印环。","preview":"./assets/previews/lunar-tide-seal.jpg","accent":"#d7b8ff"},
+    {"slug":"orbital-formation","title":"轨道编队调度","genre":"调度玩法","mechanic":"行列环移","summary":"循环平移整条轨道，让四散的信号模块重新汇成一个连通编队。","preview":"./assets/previews/orbital-formation.jpg","accent":"#76e4e0"},
+    {"slug":"archipelago-guard","title":"群岛边防署","genre":"划界玩法","mechanic":"等编制区","summary":"在岛格之间划定巡防边界，组织出等人数、连续相接的守备区。","preview":"./assets/previews/archipelago-guard.jpg","accent":"#f2c879"},
+    {"slug":"shadow-print-lab","title":"影印净化室","genre":"净化玩法","mechanic":"去重连通","summary":"屏蔽重复的幽影印记，却要让余下的明亮档案始终连成一片。","preview":"./assets/previews/shadow-print-lab.jpg","accent":"#d8a6ef"},
+    {"slug":"orbit-atlas","title":"环轨星图台","genre":"校图玩法","mechanic":"无隙轮转","summary":"推动行列环轨，让十六枚星标在没有空隙的天图上归回序位。","preview":"./assets/previews/orbit-atlas.jpg","accent":"#8cccf6"},
+    {"slug":"stellar-archive","title":"星图档案院","genre":"归档玩法","mechanic":"宫格秩序","summary":"补全观星档案，让每条星带、竖卷与档案宫都只保留一枚同阶星符。","preview":"./assets/previews/stellar-archive.jpg","accent":"#f2ab82"},
+    {"slug":"balance-terrace","title":"天平阶梯庭","genre":"阶位玩法","mechanic":"不等拉丁","summary":"填入阶位数字，使横竖秩序无重且每一道天平符文都成立。","preview":"./assets/previews/balance-terrace.jpg","accent":"#b7df82"},
+    {"slug":"daynight-loom","title":"昼夜织机","genre":"织造玩法","mechanic":"黑白均衡","summary":"编织昼与夜的经纬，保持每行列均衡且绝不让三枚相同纹样连在一起。","preview":"./assets/previews/daynight-loom.jpg","accent":"#f6da7d"}
+  ]
+}

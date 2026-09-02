@@ -1,0 +1,23 @@
+import assert from "node:assert/strict";
+import { readFile } from "node:fs/promises";
+import { fileURLToPath } from "node:url";
+import path from "node:path";
+import { BLACK, CIRCLED, PRACTICE_SOLUTION, WHITE, analyze, cycleMode, freshState, isComplete, normalizeState, setMode, tutorialCards } from "./logic.mjs";
+
+const start = freshState();
+assert.equal(analyze(start.modes).valid, false, "the starter contains duplicate prints");
+const black = setMode(start, 1, BLACK);
+assert.equal(black.modes[1], BLACK);
+assert.equal(setMode(black, 0, BLACK).moves, 2);
+assert.equal(analyze(setMode(black, 0, BLACK).modes).touching.size, 2, "orthogonal black prints conflict");
+assert.equal(cycleMode(black, 2).modes[2], BLACK);
+assert.equal(cycleMode(cycleMode(black, 2), 2).modes[2], CIRCLED);
+assert.equal(cycleMode(cycleMode(cycleMode(black, 2), 2), 2).modes[2], WHITE);
+assert.equal(isComplete(normalizeState({ modes: PRACTICE_SOLUTION, moves: 2 })), true);
+assert.equal(normalizeState({ modes: Array(16).fill(9), moves: 0 }), null);
+assert.equal(tutorialCards().length, 3);
+for (const card of tutorialCards()) assert.match(card.svg, /role="img"[\s\S]*viewBox="0 0 404 404"[\s\S]*preserveAspectRatio="xMidYMid meet"[\s\S]*data-state=/);
+const here = path.dirname(fileURLToPath(import.meta.url));
+const css = await readFile(path.join(here, "styles.css"), "utf8");
+assert.match(css, /width: min\(100%, 486px\); grid-template-columns: repeat\(4, minmax\(44px, 1fr\)\)/, "four print cells shrink within the available panel width instead of clipping on narrow screens");
+console.log("shadow-print-lab Hitori constraints, marks and true tutorial cards: all assertions passed.");

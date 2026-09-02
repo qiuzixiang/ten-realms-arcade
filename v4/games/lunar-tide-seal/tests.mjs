@@ -1,0 +1,26 @@
+import assert from "node:assert/strict";
+import { readFile } from "node:fs/promises";
+import { fileURLToPath } from "node:url";
+import path from "node:path";
+import { CLUES, EDGE_KEYS, EXCLUDED, SELECTED, SOLUTION, UNKNOWN, analyze, cycleEdge, freshState, isComplete, normalizeState, setEdge, tutorialCards } from "./logic.mjs";
+
+const start = freshState();
+assert.equal(EDGE_KEYS.length, 24);
+assert.equal(analyze(start.edges).selected.length, 0);
+const one = setEdge(start, "h:0:0", SELECTED);
+assert.equal(one.edges["h:0:0"], SELECTED);
+assert.equal(analyze(one.edges).degreeErrors.size, 2, "a single selected edge has two open endpoints");
+assert.equal(cycleEdge(one, "h:0:0").edges["h:0:0"], EXCLUDED);
+assert.equal(cycleEdge(cycleEdge(one, "h:0:0"), "h:0:0").edges["h:0:0"], UNKNOWN);
+const solved = analyze(SOLUTION);
+assert.equal(solved.clueErrors.size, 0);
+assert.equal(solved.singleLoop, true);
+assert.equal(isComplete(normalizeState({ edges: SOLUTION, moves: 12 })), true);
+assert.equal(normalizeState({ edges: { ...start.edges, "h:0:0": 9 }, moves: 0 }), null);
+assert.equal(tutorialCards().length, 3);
+for (const card of tutorialCards()) assert.match(card.svg, /role="img"[\s\S]*viewBox="0 0 404 404"[\s\S]*preserveAspectRatio="xMidYMid meet"[\s\S]*data-state=/);
+const here = path.dirname(fileURLToPath(import.meta.url));
+const [app, css] = await Promise.all(["app.mjs", "styles.css"].map((name) => readFile(path.join(here, name), "utf8")));
+assert.match(app, /loopy-edge-line[\s\S]*loopy-edge-hit/, "rendering separates visual strokes from independent edge controls");
+assert.match(css, /width: 100%; max-width: 410px;[\s\S]*width: 44px; height: 44px;[\s\S]*clip-path: polygon\(50% 0, 100% 50%, 50% 100%, 0 50%\)[\s\S]*translate\(-50%, -50%\)[\s\S]*max-width: 340px/, "each edge has an isolated 44px midpoint touch control without intersection overlap on a narrow board");
+console.log("lunar-tide-seal Loopy edges, unique loop and true tutorial cards: all assertions passed.");

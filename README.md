@@ -1,6 +1,6 @@
 # 十境谜游馆 · Ten Realms Arcade
 
-一个以经典逻辑规则为骨架、重新设计视觉叙事与交互手感的浏览器小游戏项目。仓库保留三个相互隔离的十款合集：根路径是初代 **1.0**，`/v2/` 是可稳定回退的 **2.0**，`/v3/` 是最新 **3.0**。各版本的导览、教程、奖励、离线缓存与本地进度互不覆盖。
+一个以经典逻辑规则为骨架、重新设计视觉叙事与交互手感的浏览器小游戏项目。仓库保留四个相互隔离的十款合集：根路径是初代 **1.0**，`/v2/` 是可稳定回退的 **2.0**，`/v3/` 是第三批 **3.0**，`/v4/` 是最新 **4.0**。各版本的导览、教程、奖励、离线缓存与本地进度互不覆盖。
 
 每款游戏都包含首次自动弹出的三步图片教程（元素、一次合法操作、真实通关状态），可跳过或随时重看；同时提供首次通关、个人最佳、效率线、徽章、今日首胜与连游等不重复刷分的激励。项目没有运行时第三方依赖，支持手机与桌面浏览器，所有进度仅保存在当前浏览器。
 
@@ -9,6 +9,7 @@
 - 1.0：[Vercel](https://ten-realms-arcade.vercel.app/) · [GitHub Pages](https://qiuzixiang.github.io/ten-realms-arcade/)
 - 2.0：[Vercel](https://ten-realms-arcade.vercel.app/v2/) · [GitHub Pages](https://qiuzixiang.github.io/ten-realms-arcade/v2/)
 - 3.0：[Vercel](https://ten-realms-arcade.vercel.app/v3/) · [GitHub Pages](https://qiuzixiang.github.io/ten-realms-arcade/v3/)
+- 4.0：[Vercel](https://ten-realms-arcade.vercel.app/v4/) · [GitHub Pages](https://qiuzixiang.github.io/ten-realms-arcade/v4/)
 - [GitHub 源码仓库](https://github.com/qiuzixiang/ten-realms-arcade)
 
 ## 1.0 · 原十款
@@ -60,13 +61,28 @@
 
 历史 `v2.5.0` 标签保留，可用于还原当时的十五款扩展快照；常规访问请使用稳定的 `/v2/` 与 `/v3/` 十款入口。
 
+## 4.0 · 第四批十款
+
+| 游戏 | 规则原型 | 新主题 |
+| --- | --- | --- |
+| [时序货舱](./v4/games/time-cargo-bay/) | Fifteen | 在时序货柜间滑动货物，恢复装卸序列 |
+| [量子配方馆](./v4/games/quantum-apothecary/) | Keen | 调整粒子配方，使反应笼与行列同时成立 |
+| [月潮结界](./v4/games/lunar-tide-seal/) | Loopy | 依据月潮刻印织出唯一闭合的封印环 |
+| [轨道编队调度](./v4/games/orbital-formation/) | Netslide | 轮换轨道编队，让能量网络完整连通 |
+| [群岛边防署](./v4/games/archipelago-guard/) | Palisade | 在海图上划分连续、等编制的巡防区 |
+| [影印净化室](./v4/games/shadow-print-lab/) | Singles | 用遮罩消除重复印记，并保留连通白纸 |
+| [环轨星图台](./v4/games/orbit-atlas/) | Sixteen | 旋转星轨，校准四行四列的星图顺序 |
+| [星图档案院](./v4/games/stellar-archive/) | Solo | 修复每行、列和星区都完整的档案星图 |
+| [天平阶梯庭](./v4/games/balance-terrace/) | Unequal | 让阶石的行列与高低刻印同时平衡 |
+| [昼夜织机](./v4/games/daynight-loom/) | Unruly | 编织昼夜纹样，保持均衡且没有三连 |
+
 ## 本地运行
 
 ```bash
 npm run serve
 ```
 
-打开 <http://localhost:4173/> 查看 1.0，<http://localhost:4173/v2/> 查看 2.0，或打开 <http://localhost:4173/v3/> 查看 3.0。
+打开 <http://localhost:4173/> 查看 1.0，<http://localhost:4173/v2/> 查看 2.0，<http://localhost:4173/v3/> 查看 3.0，或打开 <http://localhost:4173/v4/> 查看 4.0。
 
 ## 验证与构建
 
@@ -75,16 +91,17 @@ npm test
 npm run build
 ```
 
-`npm test` 会校验三套入口、V2/V3 各十款注册表、规则测试、原生教程素材、资源路径、存档命名空间和离线缓存边界。构建产物位于 `dist/`：1.0 位于根目录，2.0 位于 `dist/v2/`，3.0 位于 `dist/v3/`。GitHub Actions 在 `main` 更新后会发布 GitHub Pages，并对 Pages 与 Vercel 的三个 scope 进行线上烟测。
+`npm test` 会校验四套入口、各十款注册表、规则测试、真实三卡教程、资源路径、存档命名空间和离线缓存边界。构建产物位于 `dist/`：1.0 位于根目录，2.0 位于 `dist/v2/`，3.0 位于 `dist/v3/`，4.0 位于 `dist/v4/`。GitHub Actions 在 `main` 更新后会发布 GitHub Pages，并对 Pages 与 Vercel 的四个 scope 进行线上烟测。
 
 ## 存档与缓存隔离
 
 - 1.0 延续原存档键，共享成长档案为 `ten-realms:progress:v1`。
 - 2.0 继续使用 `ten-realms-v2:` 前缀，保留前十款的既有进度。
 - 3.0 仅使用 `ten-realms-v3:` 前缀，绝不读取、覆盖或清理 V2 存档。
+- 4.0 仅使用 `ten-realms-v4:` 前缀；每局完成事件进入持久 outbox，奖励宿主暂不可用时会在下次进入安全重试。
 
-三个版本各有独立 Service Worker scope 与预缓存清单；根 Service Worker 会绕过 `/v2/`、`/v3/`，因此不会以初代离线页面替代后续版本。
+四个版本各有独立 Service Worker scope 与预缓存清单；根 Service Worker 会绕过 `/v2/`、`/v3/`、`/v4/`，因此不会以初代离线页面替代后续版本。
 
 ## 规则与许可
 
-规则参考 [Simon Tatham's Portable Puzzle Collection](https://www.chiark.greenend.org.uk/~sgtatham/puzzles/) 及 [ebnbin/puzzles](https://github.com/ebnbin/puzzles) 的中文网页版本。主题包装、视觉资产和本仓库中的游戏实现均为本项目重新制作。详细许可与署名见 [1.0 第三方声明](THIRD_PARTY_NOTICES.md)、[2.0 第三方声明](v2/THIRD_PARTY_NOTICES.md) 与 [3.0 第三方声明](v3/THIRD_PARTY_NOTICES.md)。
+规则参考 [Simon Tatham's Portable Puzzle Collection](https://www.chiark.greenend.org.uk/~sgtatham/puzzles/) 及 [ebnbin/puzzles](https://github.com/ebnbin/puzzles) 的中文网页版本。4.0 固定参考 `ebnbin/puzzles` 的指定提交，详情见 [4.0 规则契约](v4/RULES.md)。主题包装、视觉资产和本仓库中的游戏实现均为本项目重新制作。详细许可与署名见 [1.0 第三方声明](THIRD_PARTY_NOTICES.md)、[2.0 第三方声明](v2/THIRD_PARTY_NOTICES.md)、[3.0 第三方声明](v3/THIRD_PARTY_NOTICES.md) 与 [4.0 第三方声明](v4/THIRD_PARTY_NOTICES.md)。

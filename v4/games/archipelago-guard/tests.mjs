@@ -1,0 +1,25 @@
+import assert from "node:assert/strict";
+import { readFile } from "node:fs/promises";
+import { fileURLToPath } from "node:url";
+import path from "node:path";
+import { CLUES, EDGE_CLEAR, EDGE_WALL, EDGE_KEYS, REGION_SIZE, SOLUTION, analyze, boundaryCount, components, cycleEdge, freshState, isComplete, normalizeState, setEdge, tutorialCards } from "./logic.mjs";
+
+const start = freshState();
+assert.equal(EDGE_KEYS.length, 24);
+assert.equal(components(start.edges).length, 1);
+assert.equal(components(start.edges)[0].length, 16);
+assert.equal(boundaryCount(SOLUTION, 0, 0), CLUES[0]);
+assert.equal(boundaryCount(SOLUTION, 1, 1), CLUES[5]);
+assert.equal(analyze(SOLUTION).groups.every((group) => group.length === REGION_SIZE), true);
+assert.equal(isComplete(normalizeState({ edges: SOLUTION, moves: 12 })), true);
+const wall = setEdge(start, "h:1:0", EDGE_WALL);
+assert.equal(wall.edges["h:1:0"], EDGE_WALL);
+assert.equal(cycleEdge(wall, "h:1:0").edges["h:1:0"], EDGE_CLEAR);
+assert.equal(normalizeState({ edges: { ...start.edges, nope: 1 }, moves: 0 }), null, "stored edge keys are closed over the real board");
+assert.equal(tutorialCards().length, 3);
+for (const card of tutorialCards()) assert.match(card.svg, /role="img"[\s\S]*viewBox="0 0 404 404"[\s\S]*preserveAspectRatio="xMidYMid meet"[\s\S]*data-state=/);
+const here = path.dirname(fileURLToPath(import.meta.url));
+const [app, css] = await Promise.all(["app.mjs", "styles.css"].map((name) => readFile(path.join(here, name), "utf8")));
+assert.match(app, /palisade-edge-line[\s\S]*palisade-edge-hit/, "rendering separates visual walls from independent edge controls");
+assert.match(css, /body:has\(\.palisade-board\) \.v4-board-wrap \{ overflow: visible; padding: 25px 0; \}[\s\S]*width: 44px; height: 44px;[\s\S]*clip-path: polygon\(50% 0, 100% 50%, 50% 100%, 0 50%\)[\s\S]*translate\(-50%, -50%\)/, "outer and inner boundaries retain isolated non-overlapping 44px midpoint touch controls");
+console.log("archipelago-guard Palisade boundaries, components and true tutorial cards: all assertions passed.");
