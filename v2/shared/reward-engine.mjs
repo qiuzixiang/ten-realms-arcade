@@ -3,11 +3,6 @@ export const DEFAULT_MASTERY_TARGET = 9;
 export const REALM_MASTERY_TARGETS = Object.freeze({
   "polar-railway": 6,
   "aurora-magnet-lab": 6,
-  "time-sand-post": 6,
-  "molten-core-vent": 6,
-  "paper-crane-sanctuary": 6,
-  "resonance-bell-room": 6,
-  "four-spirit-habitat": 6,
 });
 export const RANKS = Object.freeze([
   { name: "新境访客", threshold: 0 },

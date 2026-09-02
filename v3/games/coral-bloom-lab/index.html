@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="zh-CN" data-realm="coral-bloom-lab">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#102b3a" />
+    <meta name="description" content="珊瑚孢群培育所：让每个正交连通的同数字孢群，恰好长成标示容量。" />
+    <title>珊瑚孢群培育所 · 十境谜游馆 3.0</title>
+    <link rel="stylesheet" href="../../shared/realm-ui.css" />
+    <link rel="stylesheet" href="./styles.css" />
+    <script type="module" src="../../shared/realm-ui.mjs"></script>
+    <script type="module" src="./app.mjs"></script>
+  </head>
+  <body>
+    <div class="water-caustics" aria-hidden="true"></div>
+    <header class="game-header">
+      <a href="../../" class="back-link">← 返回 3.0 谜游馆</a>
+      <div><small>REALM 08 · CORAL BLOOM LAB</small><h1>珊瑚孢群培育所</h1></div>
+      <button id="tutorial-button" type="button">图解培育册</button>
+    </header>
+
+    <main>
+      <aside class="story-panel" aria-labelledby="mission-title">
+        <p class="eyebrow">深海培育委托</p>
+        <h2 id="mission-title">让每簇珊瑚恰好盛放</h2>
+        <p>每颗带数字的孢核会长出一簇同型珊瑚。填入数字，使每个正交相连的同数字孢群面积恰好等于那个数字。</p>
+        <div class="level-list" data-levels aria-label="选择培育池"></div>
+        <div class="rule-note"><i aria-hidden="true">✦</i><p><b>对角相触不连通</b><br />候选孢子只是笔记，不能代替正式培育。</p></div>
+      </aside>
+
+      <section class="play-panel" aria-labelledby="board-title">
+        <header class="play-heading">
+          <div><small data-difficulty>入门</small><h2 id="board-title" data-level-title>潮汐育苗池</h2></div>
+          <div class="stats"><span><b data-moves>0</b><small>培育步</small></span><span><b data-left>0</b><small>待填格</small></span></div>
+        </header>
+        <p class="status" data-status role="status" aria-live="polite">选择孢群容量，再点按一格。</p>
+        <div class="board-wrap"><div class="coral-board" data-board aria-label="珊瑚孢群棋盘"></div></div>
+        <div class="capacity-panel" data-capacities aria-label="选择孢群容量"></div>
+        <div class="toolbar">
+          <button type="button" data-note aria-pressed="false">候选孢子：关</button>
+          <button type="button" data-clear>清除格</button>
+          <button type="button" data-undo>撤销</button>
+          <button type="button" data-reset>重开培育池</button>
+        </div>
+      </section>
+    </main>
+
+    <dialog class="tutorial-dialog" data-tutorial aria-labelledby="tutorial-title">
+      <div class="tutorial-shell">
+        <header><div><small>THREE TRUE STATES</small><h2 id="tutorial-title" data-tutorial-title>认识孢群</h2></div><button type="button" data-tutorial-close aria-label="跳过教程">跳过</button></header>
+        <img data-tutorial-image src="./assets/tutorial-elements.svg" alt="潮汐育苗池的真实初始题面" />
+        <p data-tutorial-copy></p><ul data-tutorial-bullets></ul>
+        <footer><button type="button" data-tutorial-prev>上一张</button><span data-tutorial-position>1 / 3</span><button type="button" data-tutorial-next>下一张</button></footer>
+      </div>
+    </dialog>
+
+    <dialog class="win-dialog" data-win aria-labelledby="win-title">
+      <div><span class="win-mark" aria-hidden="true">珊瑚盛放</span><h2 id="win-title">培育记录完成</h2><p data-win-copy></p><div><button type="button" data-win-close>留在此池</button><button type="button" data-win-next>下一培育池</button></div></div>
+    </dialog>
+  </body>
+</html>

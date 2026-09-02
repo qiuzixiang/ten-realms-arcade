@@ -1,0 +1,15 @@
+{
+  "name": "十境谜游馆 3.0",
+  "short_name": "谜游馆 3.0",
+  "description": "十款主题鲜明、完整规则的独立浏览器谜题游戏。",
+  "id": "./",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#071019",
+  "theme_color": "#071019",
+  "lang": "zh-CN",
+  "icons": [
+    { "src": "./assets/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}

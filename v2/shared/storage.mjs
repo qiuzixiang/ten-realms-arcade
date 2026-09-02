@@ -16,7 +16,7 @@ export function gameStorageKey(slug, name, version = 1) {
 }
 
 export function readStoredValue(key) {
-  if (!String(key).startsWith(V2_STORAGE_PREFIX)) throw new TypeError("2.5 storage keys must use the ten-realms-v2: prefix.");
+  if (!String(key).startsWith(V2_STORAGE_PREFIX)) throw new TypeError("2.0 storage keys must use the ten-realms-v2: prefix.");
   try {
     return window.localStorage.getItem(key);
   } catch {
@@ -25,7 +25,7 @@ export function readStoredValue(key) {
 }
 
 export function writeStoredValue(key, value) {
-  if (!String(key).startsWith(V2_STORAGE_PREFIX)) throw new TypeError("2.5 storage keys must use the ten-realms-v2: prefix.");
+  if (!String(key).startsWith(V2_STORAGE_PREFIX)) throw new TypeError("2.0 storage keys must use the ten-realms-v2: prefix.");
   try {
     window.localStorage.setItem(key, value);
     return true;

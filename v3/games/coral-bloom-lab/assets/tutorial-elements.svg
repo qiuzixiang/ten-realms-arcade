@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" preserveAspectRatio="xMidYMid meet" role="img" aria-labelledby="title desc" data-game="coral-bloom-lab" data-level-id="tidal-nursery" data-state="initial" data-board-size="4x4" data-source="filling">
+  <title id="title">潮汐育苗池的真实初始状态</title>
+  <desc id="desc">4乘4棋盘显示八个固定孢核、八个空格，以及同数字正交连接才形成同一孢群的提示。</desc>
+  <defs><linearGradient id="bg" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#06243a"/><stop offset="1" stop-color="#153f54"/></linearGradient><style>.k{fill:#0c5363;stroke:#a9edf0;stroke-opacity:.35}.g{fill:#e88779;stroke:#fff0bd;stroke-width:3}.n{fill:#f5f8e9;font:700 26px Georgia,serif;text-anchor:middle}.s{fill:#9ee5e5;font:700 13px sans-serif;letter-spacing:2px}.p{fill:#d3e8e7;font:600 16px sans-serif}.tag{fill:#fff0bd;font:700 11px sans-serif;text-anchor:middle}</style></defs>
+  <rect width="640" height="360" rx="25" fill="url(#bg)"/>
+  <text x="32" y="43" class="s">真实首关 · 初始状态</text><text x="32" y="76" fill="#fff4dd" font-family="Georgia,serif" font-size="26" font-weight="700">潮汐育苗池</text>
+  <text x="32" y="126" class="p">带“核”的格已固定，</text><text x="32" y="152" class="p">不能修改。</text>
+  <path d="M204 143 C244 143 257 124 298 124" fill="none" stroke="#ffc9b8" stroke-width="3" stroke-linecap="round"/><circle cx="298" cy="124" r="5" fill="#ffc9b8"/>
+  <text x="32" y="224" class="p">每簇同数字珊瑚的</text><text x="32" y="250" class="p">正交连通面积 = 数字。</text>
+  <path d="M230 242 C270 242 275 259 305 259" fill="none" stroke="#8de5dd" stroke-width="3" stroke-linecap="round"/><circle cx="305" cy="259" r="5" fill="#8de5dd"/>
+  <g aria-label="4乘4真实初始棋盘">
+    <rect x="304" y="50" width="256" height="256" rx="16" fill="#06202f" stroke="#bff7f1" stroke-opacity=".45" stroke-width="2"/>
+    <g class="k"><rect x="312" y="58" width="56" height="56" rx="9"/><rect x="372" y="58" width="56" height="56" rx="9"/><rect x="432" y="58" width="56" height="56" rx="9"/><rect x="492" y="58" width="56" height="56" rx="9"/><rect x="312" y="118" width="56" height="56" rx="9"/><rect x="372" y="118" width="56" height="56" rx="9"/><rect x="432" y="118" width="56" height="56" rx="9"/><rect x="492" y="118" width="56" height="56" rx="9"/><rect x="312" y="178" width="56" height="56" rx="9"/><rect x="372" y="178" width="56" height="56" rx="9"/><rect x="432" y="178" width="56" height="56" rx="9"/><rect x="492" y="178" width="56" height="56" rx="9"/><rect x="312" y="238" width="56" height="56" rx="9"/><rect x="372" y="238" width="56" height="56" rx="9"/><rect x="432" y="238" width="56" height="56" rx="9"/><rect x="492" y="238" width="56" height="56" rx="9"/></g>
+    <g class="g"><rect x="372" y="118" width="56" height="56" rx="9"/><rect x="432" y="118" width="56" height="56" rx="9"/><rect x="492" y="118" width="56" height="56" rx="9"/><rect x="312" y="178" width="56" height="56" rx="9"/><rect x="372" y="178" width="56" height="56" rx="9"/><rect x="492" y="178" width="56" height="56" rx="9"/><rect x="432" y="238" width="56" height="56" rx="9"/><rect x="492" y="238" width="56" height="56" rx="9"/></g>
+    <g class="n"><text x="400" y="155">4</text><text x="460" y="155">5</text><text x="520" y="155">3</text><text x="340" y="215">1</text><text x="400" y="215">3</text><text x="520" y="215">5</text><text x="460" y="275">5</text><text x="520" y="275">5</text></g>
+    <g class="tag"><circle cx="414" cy="130" r="10" fill="#fff0bd"/><text x="414" y="134" fill="#183641">核</text><circle cx="474" cy="130" r="10" fill="#fff0bd"/><text x="474" y="134" fill="#183641">核</text><circle cx="534" cy="130" r="10" fill="#fff0bd"/><text x="534" y="134" fill="#183641">核</text></g>
+  </g>
+  <text x="312" y="336" fill="#a9cfd2" font-family="sans-serif" font-size="12">空格等待正式种下数字；候选笔记不会改变它们。</text>
+</svg>

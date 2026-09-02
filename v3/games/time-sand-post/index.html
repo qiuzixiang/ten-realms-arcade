@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="zh-CN" data-realm="time-sand-post">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#170f2c">
+    <meta name="description" content="时砂邮路局：沿八向时流箭头连接全部浮空驿站，组成从 1 到终点的连续邮路。">
+    <title>时砂邮路局 · 十境谜游馆 3.0</title>
+    <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../../shared/realm-ui.css">
+    <link rel="stylesheet" href="./styles.css">
+    <script type="module" src="../../shared/realm-ui.mjs"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#post-board">跳到时序邮盘</a>
+
+    <div class="sand-sky" aria-hidden="true">
+      <i></i><i></i><i></i><i></i>
+    </div>
+
+    <header class="site-header">
+      <a class="museum-link" href="../../" aria-label="返回十境谜游馆 3.0">
+        <span class="museum-seal" aria-hidden="true">砂</span>
+        <span><small>TEN REALMS 3.0</small>返回谜游馆</span>
+      </a>
+      <nav class="header-actions" aria-label="邮路操作">
+        <button id="new-level-button" type="button"><span aria-hidden="true">✦</span><b>换件</b></button>
+        <button id="undo-button" type="button" disabled><span aria-hidden="true">↶</span><b>撤销</b></button>
+        <button id="restart-button" type="button"><span aria-hidden="true">↺</span><b>重开</b></button>
+        <button id="tutorial-button" type="button"><span aria-hidden="true">▣</span><b>教程</b></button>
+        <button id="rules-button" type="button"><span aria-hidden="true">?</span><b>规则</b></button>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="page-title">
+        <div>
+          <p class="eyebrow">CHRONO POST · SORTING DECK 11</p>
+          <h1 id="page-title">时砂<em>邮路局</em></h1>
+          <p>让每封跨越时代的急件，沿驿站箭头抵达下一枚时间戳。把整座邮局接成一条从 1 到终钟的完整邮路。</p>
+        </div>
+        <div class="save-beacon" role="status" aria-live="polite"><i aria-hidden="true"></i><span id="save-message">本机邮袋已就绪</span></div>
+      </section>
+
+      <section class="game-layout" aria-label="时砂邮路分拣区">
+        <aside class="panel dispatch-panel" aria-labelledby="dispatch-heading">
+          <div class="panel-heading"><p>DISPATCH MANIFEST</p><h2 id="dispatch-heading">今日急件</h2></div>
+          <fieldset class="difficulty-picker">
+            <legend>邮路密级</legend>
+            <div id="difficulty-buttons" class="segmented-control"></div>
+            <p id="difficulty-note">4 × 4 · 时间戳较密</p>
+          </fieldset>
+          <article class="mission-card">
+            <p id="level-kicker">EASY · CHRONO MAIL</p>
+            <h3 id="level-title">晨钟首邮</h3>
+            <span id="level-subtitle">4 × 4 · 初级时序校准</span>
+            <p id="level-note">从时间戳 1 出发。</p>
+            <code id="level-seed">SEED · 11021</code>
+          </article>
+          <div class="level-buttons" id="level-buttons" aria-label="选择急件"></div>
+          <dl class="instrument-grid" aria-label="邮路实时数据">
+            <div><dt>已接邮段</dt><dd><b id="link-count">0</b><span id="link-total"> / 15</span></dd></div>
+            <div><dt>已定序驿站</dt><dd><b id="numbered-count">8</b><span id="cell-total"> / 16</span></dd></div>
+            <div><dt>独立短链</dt><dd><b id="chain-count">16</b><span> 条</span></dd></div>
+            <div><dt>操作</dt><dd><b id="move-count">0</b><span> 步</span></dd></div>
+          </dl>
+        </aside>
+
+        <section class="panel board-panel" aria-labelledby="board-heading">
+          <header class="board-heading">
+            <div><p>FLOATING SORTING TABLE</p><h2 id="board-heading">时序分拣盘</h2></div>
+            <div class="board-actions">
+              <button id="clear-button" type="button">拆所选格</button>
+              <button id="clear-chain-button" type="button">拆代数链</button>
+            </div>
+          </header>
+          <div class="legend" aria-label="棋盘图例">
+            <span><i class="legend-arrow" aria-hidden="true">↗</i>箭头限定后继射线</span>
+            <span><i class="legend-stamp" aria-hidden="true">12</i>金色时间戳不可更改</span>
+            <span><i class="legend-dot" aria-hidden="true"></i>紫色光路是已接邮段</span>
+          </div>
+          <div class="board-viewport" id="board-viewport">
+            <div class="board-shell" id="board-shell">
+              <svg id="connection-layer" class="connection-layer" aria-hidden="true" preserveAspectRatio="none"></svg>
+              <div id="post-board" class="post-board" role="grid" aria-label="时砂邮路棋盘" aria-describedby="board-instructions"></div>
+            </div>
+          </div>
+          <p id="board-instructions" class="board-instructions">点一个有箭头的驿站，再点高亮目标完成连接。方向键移动，Enter 或 Space 选择，Delete 拆单格，Shift+Delete 或右键拆代数链，Esc 取消。</p>
+          <div class="status-card" id="status-card" role="status" aria-live="polite">
+            <span aria-hidden="true">⌁</span>
+            <p><strong id="status-title">等待首段邮路</strong><small id="status-copy">先点时间戳 1，再点它箭头射线上的后继驿站。</small></p>
+          </div>
+        </section>
+
+        <aside class="panel archive-panel" aria-labelledby="archive-heading">
+          <div class="panel-heading"><p>LOCAL STAMP ARCHIVE</p><h2 id="archive-heading">时邮纪念册</h2></div>
+          <p>每张急件首次送达都会留下本机邮戳；重复刷新同一完成事件不会增加记录。</p>
+          <ol id="archive-list" class="archive-list" aria-label="急件完成记录"></ol>
+          <div class="archive-summary">
+            <span><small>已收邮戳</small><b><span id="clear-count">0</span> / 6</b></span>
+            <span><small>累计送达</small><b id="win-count">0</b></span>
+          </div>
+          <section class="best-record">
+            <p>BEST ROUTE</p>
+            <h3>当前急件最佳操作</h3>
+            <strong id="best-moves">—</strong>
+            <span>建议步数按自动补线后仍需手动建立的邮段计算。</span>
+          </section>
+          <button id="archive-tutorial-button" class="text-action" type="button">重看三张真实图片教程</button>
+        </aside>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>时砂邮路局 · 十境谜游馆 3.0</p>
+      <p>规则原型 Signpost / Pfeilpfad。参考 <a href="https://github.com/ebnbin/puzzles/blob/5a9e1795a3324e0f6433b79fbe31cbd9b12048a3/doc-zh/signpost.html" target="_blank" rel="noreferrer">固定版本中文规则</a>与 <a href="https://github.com/ebnbin/puzzles/blob/5a9e1795a3324e0f6433b79fbe31cbd9b12048a3/vendor/sgtpuzzles/signpost.c" target="_blank" rel="noreferrer">上游实现</a>重新实现；上游按 MIT License 发布。<a href="../../THIRD_PARTY_NOTICES.md">MIT 致谢</a></p>
+    </footer>
+
+    <dialog id="rules-dialog" class="game-dialog" aria-labelledby="rules-title">
+      <div class="dialog-shell">
+        <header><p>POSTAL PROTOCOL / SIGNPOST</p><button id="rules-close-button" type="button" aria-label="关闭规则">×</button></header>
+        <div class="dialog-content">
+          <p class="dialog-kicker">时序投递规程</p>
+          <h2 id="rules-title">每一站只有一个前站与一个后站</h2>
+          <ol class="rule-list">
+            <li><b>01</b><div><h3>从 1 接到终钟</h3><p>把全部驿站排成连续序列。数字 1 的后继是 2，2 的后继是 3，直到棋盘总格数 N。</p></div></li>
+            <li><b>02</b><div><h3>后继必须落在箭头射线上</h3><p>每个非终点驿站有一个八向箭头。距离可以跨越多格，但目标必须与箭头严格同向；偏一格也不合法。</p></div></li>
+            <li><b>03</b><div><h3>每站各进各出一次</h3><p>除 1 没有前驱、N 没有后继外，每站恰好有一个前驱和一个后继。不能形成提前闭合的小环。</p></div></li>
+            <li><b>04</b><div><h3>数字链与代数链</h3><p>带时间戳的链会推定真实序号；未锚定链显示 a、a+1、b 等代数标记。接出 0、负数、重复数或错误方向是可撤销的红色错误态。</p></div></li>
+            <li><b>05</b><div><h3>重接、单拆与整链拆除</h3><p>合法重接会释放旧端点；同一短链内重接会在释放前拒绝。Delete 拆所选格的入出线，Shift+Delete 或右键可一次拆掉未锚定代数链。</p></div></li>
+            <li><b>06</b><div><h3>连续数字会自动接线</h3><p>只要 n 与 n+1 已显示且箭头正确，规则会自动补线。所有 1…N 各出现一次且方向正确时才会盖下完成邮戳。</p></div></li>
+          </ol>
+          <p class="license-note">规则源流：Janko 的 Pfeilpfad → James Harvey / Simon Tatham’s Portable Puzzle Collection → ebnbin/puzzles 中文网页版本。本作主题、界面、关卡与规则代码为独立重新实现。</p>
+        </div>
+      </div>
+    </dialog>
+
+    <dialog id="tutorial-dialog" class="game-dialog tutorial-dialog" aria-labelledby="tutorial-title" aria-describedby="tutorial-body">
+      <div class="dialog-shell tutorial-shell">
+        <header><p>FIRST SHIFT BRIEFING</p><button id="tutorial-skip-button" type="button">跳过，直接分拣</button></header>
+        <article class="tutorial-card">
+          <div class="tutorial-visual"><img id="tutorial-image" src="./assets/tutorial-elements.svg?tutorial=2" alt=""></div>
+          <div class="tutorial-copy">
+            <p class="dialog-kicker" id="tutorial-step">01 · 认识驿站</p>
+            <h2 id="tutorial-title">先看时间戳，再看八向箭头</h2>
+            <p id="tutorial-body">金色数字是固定时间戳；每个非终点驿站的箭头，规定下一站必须位于哪条射线上。</p>
+            <ul id="tutorial-bullets"><li>距离可以跨越多格</li><li>终点没有箭头</li></ul>
+            <p id="tutorial-announcement" class="visually-hidden" aria-live="polite"></p>
+          </div>
+        </article>
+        <footer><button id="tutorial-previous-button" type="button" disabled>上一张</button><span id="tutorial-counter">1 / 3</span><button id="tutorial-next-button" type="button">下一张</button></footer>
+      </div>
+    </dialog>
+
+    <dialog id="victory-dialog" class="game-dialog victory-dialog" aria-labelledby="victory-title">
+      <div class="dialog-shell victory-shell">
+        <div class="victory-hourglass" aria-hidden="true">⌛</div>
+        <p class="dialog-kicker">DELIVERED ACROSS TIME</p>
+        <h2 id="victory-title">终钟已经签收</h2>
+        <p id="victory-copy">所有驿站已接成一条连续邮路。</p>
+        <dl><div><dt>急件</dt><dd id="victory-level">—</dd></div><div><dt>操作</dt><dd id="victory-moves">0</dd></div><div><dt>建议</dt><dd id="victory-par">0</dd></div><div><dt>用时</dt><dd id="victory-time">00:00</dd></div></dl>
+        <p id="victory-reward">新邮戳已写入本机纪念册。</p>
+        <div class="dialog-actions"><button id="next-level-button" class="primary-action" type="button">下一张急件</button><button id="stay-button" type="button">留在终钟前</button></div>
+      </div>
+    </dialog>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+    <p id="assertive-status" class="visually-hidden" role="alert" aria-live="assertive"></p>
+    <script type="module" src="./app.mjs"></script>
+  </body>
+</html>

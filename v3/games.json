@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "edition": "3.0",
+  "status": "ready",
+  "expectedGames": 10,
+  "games": [
+    {"slug":"time-sand-post","title":"时砂邮路局","genre":"投递玩法","mechanic":"箭向序链","summary":"沿时砂邮塔指向的方向接续号码，把全部站点串成唯一完整邮路。","preview":"./assets/previews/time-sand-post.webp","accent":"#ffc96b"},
+    {"slug":"molten-core-vent","title":"熔心泄压站","genre":"泄压玩法","mechanic":"斜管配额","summary":"在热交换格中安装两向泄压管，精确满足节点配额，同时阻止斜管回路锁死熔心。","preview":"./assets/previews/molten-core-vent.webp","accent":"#5fe5de"},
+    {"slug":"paper-crane-sanctuary","title":"纸鹤归巢台","genre":"归巢玩法","mechanic":"越鹤消子","summary":"让纸鹤越过相邻同伴落入空栖位，直到庭中只余最后一鹤。","preview":"./assets/previews/paper-crane-sanctuary.webp","accent":"#efb4b1"},
+    {"slug":"resonance-bell-room","title":"万象共振钟房","genre":"调律玩法","mechanic":"矩阵翻响","summary":"敲响一口主钟会联动翻转一组共振钟，让整座钟房同时齐鸣。","preview":"./assets/previews/resonance-bell-room.webp","accent":"#f4c56a"},
+    {"slug":"four-spirit-habitat","title":"四灵栖境署","genre":"栖境玩法","mechanic":"四色邻域","summary":"为相连地貌划分四类栖境，让任何接壤区域都不与同色灵兽争夺领地。","preview":"./assets/previews/four-spirit-habitat.webp","accent":"#e8d48f"},
+    {"slug":"star-dial-bureau","title":"星盘校准局","genre":"校准玩法","mechanic":"四象轮转","summary":"转动相邻四枚星仪，让紊乱星盘重新按天序归位，开启穹顶观测窗。","preview":"./assets/previews/star-dial-bureau.webp","accent":"#a99cff"},
+    {"slug":"stardust-survey","title":"星屑勘测站","genre":"勘测玩法","mechanic":"晶核避险","summary":"扫描安全地层、标出不稳定晶核，让整片星屑矿层在零误触中显影。","preview":"./assets/previews/stardust-survey.webp","accent":"#efbc5b"},
+    {"slug":"coral-bloom-lab","title":"珊瑚孢群培育所","genre":"培育玩法","mechanic":"群落容量","summary":"让每一群同类珊瑚恰好长成线索所示的连通栖位数量。","preview":"./assets/previews/coral-bloom-lab.webp","accent":"#f07f73"},
+    {"slug":"eclipse-watch","title":"蚀光巡检署","genre":"巡检玩法","mechanic":"视界封锁","summary":"关闭故障遮光塔，使观测数字、白域连通与安全间距同时成立。","preview":"./assets/previews/eclipse-watch.webp","accent":"#79d9f4"},
+    {"slug":"celestial-mural","title":"天象壁画修复室","genre":"修复玩法","mechanic":"邻域显影","summary":"依据每枚残片周围的深色颜料数量，复原一幅完整的天象壁画。","preview":"./assets/previews/celestial-mural.webp","accent":"#8ed6c0"}
+  ]
+}

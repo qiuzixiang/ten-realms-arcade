@@ -741,7 +741,7 @@ await testAsync("HTML、SVG、CSS 与完成 API 接线满足教程/无障碍/集
     ...["tutorial-elements.svg", "tutorial-action.svg", "tutorial-goal.svg"].map((name) => readFile(path.join(directory, "assets", name), "utf8")),
   ]);
 
-  check(/href="\.\.\/\.\.\/"[^>]*aria-label="返回十境谜游馆 2\.5"/.test(html), "返回按钮必须指向 ../../");
+  check(/href="\.\.\/\.\.\/"[^>]*aria-label="返回十境谜游馆 2\.0"/.test(html), "返回按钮必须指向 ../../");
   check(html.includes('data-realm="yokai-inn"'));
   check(html.includes('../../shared/realm-ui.css'));
   check(html.includes('../../shared/realm-ui.mjs'));

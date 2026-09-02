@@ -1,10 +1,10 @@
-# Ten Realms Arcade 2.5 · Third-party notices
+# Ten Realms Arcade 2.0 · Third-party notices
 
-本文件适用于仓库中的 `/v2/` 独立合集。
+本文件适用于仓库中的 `/v2/` 独立十款合集。
 
 ## 规则参考与上游致谢
 
-2.5 的谜题规则主要参考 **Simon Tatham's Portable Puzzle Collection**，该合集由 Simon Tatham 及贡献者维护，以 MIT License 发布：
+2.0 的谜题规则主要参考 **Simon Tatham's Portable Puzzle Collection**，该合集由 Simon Tatham 及贡献者维护，以 MIT License 发布：
 
 - 项目与游戏文档：<https://www.chiark.greenend.org.uk/~sgtatham/puzzles/>
 - 上游源码：<https://git.tartarus.org/?p=simon/puzzles.git>
@@ -15,21 +15,12 @@
 - 项目：<https://github.com/ebnbin/puzzles>
 - MIT 许可文本：<https://github.com/ebnbin/puzzles/blob/main/LICENSE>
 
-V2.5 新增五款还以 `ebnbin/puzzles` 提交 `5a9e1795a3324e0f6433b79fbe31cbd9b12048a3` 的规则与中文说明作为固定审计快照：
-
-- **Signpost** → `/v2/games/time-sand-post/`
-- **Slant** → `/v2/games/molten-core-vent/`
-- **Pegs** → `/v2/games/paper-crane-sanctuary/`
-- **Flip** → `/v2/games/resonance-bell-room/`
-- **Map** → `/v2/games/four-spirit-habitat/`
-
-以上链接和映射用于说明规则来源、进一步阅读与保留署名，不表示 `/v2/` 捆绑或再分发了上游源码、可执行文件或美术资产。2.5 各游戏的规则逻辑为本项目依据公开规则重新实现；主题、界面、文案、动画、声音与视觉素材为本项目自制。
+本版的十款规则原型为 Tents、Pattern、Guess、Galaxies、Towers、Tracks、Flood、Dominosa、Magnets 与 Rectangles。以上链接和映射用于说明规则来源、进一步阅读与保留署名，不表示 `/v2/` 捆绑或再分发了上游源码、可执行文件或美术资产。规则逻辑由本项目依据公开规则重新实现；主题、界面、文案、动画、声音与视觉素材为本项目自制。
 
 ## 特定谜题的原始署名
 
-- **Signpost / Pfeilpfad**（`/v2/games/time-sand-post/`）：原谜题 **Pfeilpfad** 归功于 **Janko**；**James Harvey** 将其以 Signpost 名称贡献给 Simon Tatham’s Portable Puzzle Collection。参见 [Signpost 文档](https://www.chiark.greenend.org.uk/~sgtatham/puzzles/doc/signpost.html) 与 [Janko 谜题站](https://www.janko.at/Raetsel/)。
 - **Dominosa**（`/v2/games/yokai-inn/`）：原始设计归功于 **O. S. Adler**。参见 Portable Puzzle Collection 的 [Dominosa 文档](https://www.chiark.greenend.org.uk/~sgtatham/puzzles/doc/dominosa.html)。
-- **Magnets**（`/v2/games/aurora-magnet-lab/`）：Portable Puzzle Collection 的文档将该谜题的规则来源指向 **Janko**，并注明由 **James Harvey** 将此游戏贡献给该合集。参见 [Magnets 文档](https://www.chiark.greenend.org.uk/~sgtatham/puzzles/doc/magnets.html) 与 [Janko 谜题站](https://www.janko.at/Raetsel/)。
+- **Magnets**（`/v2/games/aurora-magnet-lab/`）：Portable Puzzle Collection 的文档将规则来源指向 **Janko**，并注明由 **James Harvey** 将此游戏贡献给该合集。参见 [Magnets 文档](https://www.chiark.greenend.org.uk/~sgtatham/puzzles/doc/magnets.html) 与 [Janko 谜题站](https://www.janko.at/Raetsel/)。
 
 ## 本项目许可
 

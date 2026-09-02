@@ -8,7 +8,7 @@ const realmId = document.documentElement.dataset.realm
 const config = REALM_CONFIGS[realmId];
 const tutorial = REALM_TUTORIALS[realmId];
 
-// Games can be opened from a deep link without visiting the V2.5 guide first.
+// Games can be opened from a deep link without visiting the V2.0 guide first.
 // Register from this shared bootstrap so those entries still receive v2 offline support.
 if ("serviceWorker" in navigator) {
   const workerUrl = new URL("../sw.js", import.meta.url);
@@ -56,7 +56,7 @@ if (config) {
   function buildDock() {
     const node = document.createElement("aside");
     node.className = "realm-utility-dock";
-    node.setAttribute("aria-label", "2.5 探索进度与教程");
+    node.setAttribute("aria-label", "2.0 探索进度与教程");
     applyAccent(node);
     node.innerHTML = `
       <div><small>SECOND EXPEDITION · LOCAL</small><button type="button" data-rank>新境访客</button></div>
@@ -76,14 +76,14 @@ if (config) {
     applyAccent(node);
     node.innerHTML = `
       <div class="realm-progress-dialog__shell">
-        <header><div><small>SECOND EXPEDITION · REWARD MAP</small><h2 id="v2-progress-title">2.5 成长图鉴</h2></div><button type="button" data-progress-close aria-label="关闭成长图鉴">×</button></header>
+        <header><div><small>SECOND EXPEDITION · REWARD MAP</small><h2 id="v2-progress-title">2.0 成长图鉴</h2></div><button type="button" data-progress-close aria-label="关闭成长图鉴">×</button></header>
         <section class="realm-progress-dialog__summary">
           <small>当前称号</small><strong data-progress-rank>新境访客</strong>
           <p><b data-progress-xp>0</b> XP · 下一称号 <b data-progress-next>探路新星</b></p>
           <i><em data-progress-bar></em></i><p data-progress-quest></p>
         </section>
         <section><div class="realm-progress-dialog__heading"><h3>本境徽章</h3><span data-progress-clears>0 个关卡</span></div><ul class="realm-progress-dialog__badges" data-progress-badges></ul></section>
-        <section><div class="realm-progress-dialog__heading"><h3>如何获得 XP</h3><span>2.5 十五款共享</span></div>
+        <section><div class="realm-progress-dialog__heading"><h3>如何获得 XP</h3><span>2.0 十款共享</span></div>
           <ul class="realm-progress-dialog__earning">
             <li><b>120 / 180 / 260 XP</b><span>按难度首次通关</span></li>
             <li><b>约 43 / 65 / 94 XP</b><span>刷新个人最佳</span></li>
@@ -249,9 +249,9 @@ if (config) {
   function complete(payload = {}) {
     progress = mergeProgress(progress, normalizeProgress(readStoredJson(V2_PROGRESS_KEY, null)));
     const result = awardCompletion(progress, { ...payload, realm: realmId });
-    if (!result.accepted) throw new TypeError("V2.5 completion requires one stable, canonical event identity.");
+    if (!result.accepted) throw new TypeError("V2.0 completion requires one stable, canonical event identity.");
     if (!writeStoredJson(V2_PROGRESS_KEY, result.progress)) {
-      throw new Error("Unable to persist V2.5 shared progress.");
+      throw new Error("Unable to persist V2.0 shared progress.");
     }
     progress = result.progress;
     updateDock();

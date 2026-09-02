@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" preserveAspectRatio="xMidYMid meet" role="img" aria-labelledby="title desc" data-game="coral-bloom-lab" data-level-id="tidal-nursery" data-state="action" data-action="fill:0:4" data-before-value="0" data-after-value="4" data-source="filling">
+  <title id="title">潮汐育苗池的一次真实合法操作</title>
+  <desc id="desc">在首关左上角原本空白的内部格零填入数字四；它与右下对角的固定四不算连通，因此仍是一簇面积一的四号珊瑚。</desc>
+  <defs><linearGradient id="bg" x1="0" x2="1"><stop stop-color="#082942"/><stop offset="1" stop-color="#5b344d"/></linearGradient><style>.cell{fill:#0a5265;stroke:#baf4ef;stroke-opacity:.3}.given{fill:#e88779;stroke:#fff0bd;stroke-width:2}.grown{fill:#e88779;stroke:#fff0bd;stroke-width:3}.n{fill:#f5f8e9;font:700 25px Georgia,serif;text-anchor:middle}.copy{fill:#d9ebea;font:600 15px sans-serif}.tiny{fill:#aee6e3;font:700 12px sans-serif;letter-spacing:1px}</style></defs>
+  <rect width="640" height="360" rx="25" fill="url(#bg)"/>
+  <text x="32" y="42" class="tiny">真实操作 · fill:0:4</text><text x="32" y="76" fill="#fff1de" font-family="Georgia,serif" font-size="26" font-weight="700">种下一枚 4 号孢子</text>
+  <g transform="translate(35 115)"><rect width="155" height="112" rx="18" fill="#071f30" stroke="#a7e8e7" stroke-opacity=".35"/><text x="77" y="31" class="tiny" text-anchor="middle">操作前</text><rect x="54" y="44" width="48" height="48" rx="10" class="cell"/><text x="78" y="76" fill="#a7e8e7" font-family="Georgia,serif" font-size="30" text-anchor="middle">·</text></g>
+  <path d="M209 170 H274" stroke="#ffc7b5" stroke-width="5" stroke-linecap="round"/><path d="M265 159 L281 170 L265 181" fill="none" stroke="#ffc7b5" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <g transform="translate(294 115)"><rect width="155" height="112" rx="18" fill="#071f30" stroke="#ffc7b5" stroke-width="2"/><text x="77" y="31" class="tiny" text-anchor="middle">操作后</text><rect x="54" y="44" width="48" height="48" rx="10" class="grown"/><text x="78" y="77" class="n">4</text><circle cx="111" cy="46" r="7" fill="#c6ffc9"/><text x="77" y="106" fill="#c6ffc9" font-family="sans-serif" font-size="11" text-anchor="middle">正式培育 +1 步</text></g>
+  <g transform="translate(487 80)" aria-label="真实首关局部棋盘">
+    <text x="55" y="10" class="tiny" text-anchor="middle">首关局部</text>
+    <rect x="0" y="22" width="112" height="112" rx="13" fill="#061f30" stroke="#bff8ee" stroke-opacity=".45"/>
+    <rect x="8" y="30" width="44" height="44" rx="7" class="grown"/><text x="30" y="60" class="n">4</text>
+    <rect x="60" y="30" width="44" height="44" rx="7" class="cell"/>
+    <rect x="8" y="82" width="44" height="44" rx="7" class="cell"/>
+    <rect x="60" y="82" width="44" height="44" rx="7" class="given"/><text x="82" y="112" class="n">4</text><circle cx="95" cy="92" r="7" fill="#fff0bd"/><text x="95" y="95" fill="#163440" font-family="sans-serif" font-size="7" font-weight="700" text-anchor="middle">核</text>
+  </g>
+  <text x="32" y="273" class="copy">本次只改变一个空格；数字面板和键盘 1–9 都会执行同一种正式填数。</text>
+  <text x="32" y="304" class="copy">若这簇 4 号珊瑚连接后超过 4 格，或再也无法长到 4 格，棋盘会亮起警示环。</text>
+  <text x="32" y="335" fill="#b8dddf" font-family="sans-serif" font-size="12">候选孢子模式只写推理笔记，不计步、不参与通关。</text>
+</svg>

@@ -45,7 +45,7 @@ function validateRegistry(registry) {
   if (!registry || typeof registry !== "object" || Array.isArray(registry)) {
     throw new TypeError("registry must be an object");
   }
-  if (registry.schemaVersion !== 1 || registry.edition !== "2.5" || registry.status !== "ready") {
+  if (registry.schemaVersion !== 1 || registry.edition !== "2.0" || registry.status !== "ready") {
     throw new TypeError("registry release metadata is inconsistent");
   }
   if (!Array.isArray(registry.games)) throw new TypeError("registry games must be an array");

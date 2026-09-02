@@ -507,7 +507,7 @@ test("a host throw retries the identical persisted event without duplicating loc
   const retried = confirmCampCompletion(duplicateLocal.state, (payload) => {
     deliveries.push(payload.eventId);
     const replay = awardCompletion(sharedProgress, { ...payload, realm: "cloud-camp" }, new Date("2026-08-31T08:00:02Z"));
-    assert.equal(replay.duplicateEvent, true, "the V2.5 host contract deduplicates a repeated stable event");
+    assert.equal(replay.duplicateEvent, true, "the V2.0 host contract deduplicates a repeated stable event");
     sharedProgress = replay.progress;
     return replay;
   });

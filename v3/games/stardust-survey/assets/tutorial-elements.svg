@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" preserveAspectRatio="xMidYMid meet" role="img" aria-labelledby="title desc" data-tutorial-level="orbit-window" data-level-id="orbit-window" data-state="initial" data-action="none" data-mines="4,10,20,24" data-first-safe="0" data-seed="31011">
+  <title id="title">星屑勘测站：真实初始局面</title>
+  <desc id="desc">舷窗零校准的五乘五固定棋盘。所有格子尚未扫描，左上角第零格是教程所用的首扫安全格。</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#071a36"/><stop offset="1" stop-color="#160c35"/></linearGradient>
+    <linearGradient id="covered" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#1f5786"/><stop offset="1" stop-color="#10355e"/></linearGradient>
+    <filter id="glow"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <g id="covered-cell"><rect width="52" height="52" rx="9" fill="url(#covered)" stroke="#b8edff" stroke-opacity=".35"/><circle cx="26" cy="26" r="11" fill="none" stroke="#b7f8ff" stroke-opacity=".72"/><path d="M26 12v28M12 26h28" stroke="#d9fbff" stroke-opacity=".42"/></g>
+  </defs>
+  <rect width="800" height="450" rx="24" fill="url(#bg)"/>
+  <g fill="#fff" opacity=".58"><circle cx="34" cy="40" r="1"/><circle cx="492" cy="38" r="1.2"/><circle cx="735" cy="111" r="1"/><circle cx="694" cy="402" r="1.2"/><circle cx="434" cy="349" r=".8"/><circle cx="62" cy="420" r="1"/></g>
+  <text x="48" y="48" fill="#86f1eb" font-family="system-ui, sans-serif" font-size="13" font-weight="700" letter-spacing="2">真实教程关 · 初始状态</text>
+  <text x="48" y="76" fill="#ecf8ff" font-family="Georgia, serif" font-size="25" font-weight="700">舷窗零校准 / 5 × 5</text>
+  <g transform="translate(48 100)">
+    <rect x="-10" y="-10" width="312" height="312" rx="18" fill="#06142a" stroke="#7dece5" stroke-opacity=".34"/>
+    <g transform="translate(0 0)"><use href="#covered-cell"/><circle cx="26" cy="26" r="22" fill="none" stroke="#ffe888" stroke-width="3" filter="url(#glow)"/></g>
+    <g transform="translate(60 0)"><use href="#covered-cell"/></g><g transform="translate(120 0)"><use href="#covered-cell"/></g><g transform="translate(180 0)"><use href="#covered-cell"/></g><g transform="translate(240 0)"><use href="#covered-cell"/></g>
+    <g transform="translate(0 60)"><use href="#covered-cell"/></g><g transform="translate(60 60)"><use href="#covered-cell"/></g><g transform="translate(120 60)"><use href="#covered-cell"/></g><g transform="translate(180 60)"><use href="#covered-cell"/></g><g transform="translate(240 60)"><use href="#covered-cell"/></g>
+    <g transform="translate(0 120)"><use href="#covered-cell"/></g><g transform="translate(60 120)"><use href="#covered-cell"/></g><g transform="translate(120 120)"><use href="#covered-cell"/></g><g transform="translate(180 120)"><use href="#covered-cell"/></g><g transform="translate(240 120)"><use href="#covered-cell"/></g>
+    <g transform="translate(0 180)"><use href="#covered-cell"/></g><g transform="translate(60 180)"><use href="#covered-cell"/></g><g transform="translate(120 180)"><use href="#covered-cell"/></g><g transform="translate(180 180)"><use href="#covered-cell"/></g><g transform="translate(240 180)"><use href="#covered-cell"/></g>
+    <g transform="translate(0 240)"><use href="#covered-cell"/></g><g transform="translate(60 240)"><use href="#covered-cell"/></g><g transform="translate(120 240)"><use href="#covered-cell"/></g><g transform="translate(180 240)"><use href="#covered-cell"/></g><g transform="translate(240 240)"><use href="#covered-cell"/></g>
+  </g>
+  <path d="M155 132 C365 97 400 120 454 128" fill="none" stroke="#ffe888" stroke-width="2" stroke-dasharray="5 6"/><path d="M454 128l-12-7v14z" fill="#ffe888"/>
+  <g transform="translate(446 111)"><rect width="307" height="128" rx="18" fill="#ffffff0d" stroke="#f9e481" stroke-opacity=".5"/><text x="22" y="35" fill="#ffe993" font-family="system-ui, sans-serif" font-size="14" font-weight="700">首扫保护</text><text x="22" y="62" fill="#d8e7f5" font-family="system-ui, sans-serif" font-size="14">教程从左上角 index 0 开始。</text><text x="22" y="85" fill="#d8e7f5" font-family="system-ui, sans-serif" font-size="14">若首扫意外落在扰动，仪器会移位</text><text x="22" y="108" fill="#d8e7f5" font-family="system-ui, sans-serif" font-size="14">并重新计算这张固定扇区的读数。</text></g>
+  <g transform="translate(446 270)"><rect width="307" height="117" rx="18" fill="#ffffff0a" stroke="#a5eaff" stroke-opacity=".25"/><circle cx="34" cy="33" r="12" fill="none" stroke="#a5f7ff"/><path d="M34 19v28M20 33h28" stroke="#d7fbff" stroke-opacity=".6"/><text x="60" y="38" fill="#ecf8ff" font-family="system-ui, sans-serif" font-size="15" font-weight="700">覆盖星域</text><text x="22" y="70" fill="#bcd1e5" font-family="system-ui, sans-serif" font-size="13">现在还不知道它是否安全。</text><text x="22" y="94" fill="#bcd1e5" font-family="system-ui, sans-serif" font-size="13">先扫描，再让八向读数提供线索。</text></g>
+  <text x="48" y="430" fill="#8fa9c7" font-family="ui-monospace, monospace" font-size="11">data-state=initial · data-action=none · mines=4,10,20,24</text>
+</svg>

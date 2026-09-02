@@ -522,7 +522,7 @@ test("a host throw retries the identical photo event without repeating local or 
   const retried = confirmPhotoCompletion(duplicateLocal.state, (payload) => {
     deliveries.push(payload.eventId);
     const replay = awardCompletion(sharedProgress, { ...payload, realm: "mist-photo-studio" }, new Date("2026-08-31T08:00:02Z"));
-    assert.equal(replay.duplicateEvent, true, "the V2.5 host contract deduplicates repeated stable events");
+    assert.equal(replay.duplicateEvent, true, "the V2.0 host contract deduplicates repeated stable events");
     sharedProgress = replay.progress;
     return replay;
   });

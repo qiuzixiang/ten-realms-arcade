@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" viewBox="0 0 720 420" role="img" aria-labelledby="title description" data-tutorial-version="1" data-game-id="molten-core-vent" data-level-id="ember-gate-1101" data-state="initial" data-filled="0" data-total-cells="16" data-total-clues="17" data-clues="1,0,.,.,0|0,3,.,1,.|1,.,2,2,1|2,.,.,2,0|0,1,.,1,1">
+  <title id="title">余烬一号闸的真实初始状态</title>
+  <desc id="description">4 乘 4 泄压舱全部留空，17 个压力数字测点位于网格交点。</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#160e1d"/><stop offset=".55" stop-color="#2b1519"/><stop offset="1" stop-color="#071d22"/></linearGradient>
+    <linearGradient id="stone" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#3d3235"/><stop offset=".5" stop-color="#1c1c23"/><stop offset="1" stop-color="#0e1419"/></linearGradient>
+    <radialGradient id="gauge" cx="35%" cy="28%"><stop stop-color="#fff0bd"/><stop offset=".55" stop-color="#eaa85c"/><stop offset="1" stop-color="#8f4f30"/></radialGradient>
+    <filter id="glow"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <rect width="720" height="420" rx="28" fill="url(#bg)"/>
+  <path d="M0 318 C170 270 248 405 430 342 S655 267 720 292 V420 H0Z" fill="#ff7a2b" opacity=".07"/>
+  <g fill="none" stroke="#ff8a42" opacity=".16"><path d="M18 90H159"/><path d="M562 105H700"/><path d="M34 362H178"/></g>
+
+  <g font-family="system-ui, -apple-system, 'Noto Sans SC', sans-serif">
+    <text x="28" y="42" fill="#ffbe78" font-size="14" font-weight="800" letter-spacing="2">01 · 认识泄压舱</text>
+    <text x="28" y="68" fill="#fff6e8" font-size="22" font-weight="750">真实初始态</text>
+    <text x="28" y="107" fill="#b9aab0" font-size="13">黑曜石舱格</text>
+    <text x="28" y="128" fill="#81757d" font-size="11">16 格都在等待导流板</text>
+    <path d="M152 119 L208 137" stroke="#ff9c55" stroke-width="1.5" fill="none"/>
+    <circle cx="208" cy="137" r="3" fill="#ff9c55"/>
+
+    <text x="528" y="88" fill="#fff6e8" font-size="14" font-weight="750">压力数字测点</text>
+    <text x="528" y="110" fill="#9faeb0" font-size="11">最终在该点端接的</text>
+    <text x="528" y="127" fill="#9faeb0" font-size="11">导流板数必须精确相等</text>
+    <path d="M522 137 L493 143" stroke="#63e6db" stroke-width="1.5" fill="none"/>
+    <circle cx="493" cy="143" r="3" fill="#63e6db"/>
+
+    <text x="528" y="282" fill="#fff6e8" font-size="14" font-weight="750">没有数字 ≠ 0</text>
+    <text x="528" y="304" fill="#9faeb0" font-size="11">无数字交点仍受</text>
+    <text x="528" y="321" fill="#9faeb0" font-size="11">“不得形成闭环”约束</text>
+    <path d="M522 310 L493 280" stroke="#ff9c55" stroke-width="1.5" fill="none"/>
+  </g>
+
+  <g data-board="true" transform="translate(210 70)">
+    <rect width="280" height="280" rx="14" fill="#0b1116" stroke="#6b4d43" stroke-width="4"/>
+    <g fill="url(#stone)" stroke="#5a4946" stroke-width="1.4">
+      <rect x="4" y="4" width="66" height="66" rx="8"/><rect x="72" y="4" width="66" height="66" rx="8"/><rect x="142" y="4" width="66" height="66" rx="8"/><rect x="212" y="4" width="64" height="66" rx="8"/>
+      <rect x="4" y="72" width="66" height="66" rx="8"/><rect x="72" y="72" width="66" height="66" rx="8"/><rect x="142" y="72" width="66" height="66" rx="8"/><rect x="212" y="72" width="64" height="66" rx="8"/>
+      <rect x="4" y="142" width="66" height="66" rx="8"/><rect x="72" y="142" width="66" height="66" rx="8"/><rect x="142" y="142" width="66" height="66" rx="8"/><rect x="212" y="142" width="64" height="66" rx="8"/>
+      <rect x="4" y="212" width="66" height="64" rx="8"/><rect x="72" y="212" width="66" height="64" rx="8"/><rect x="142" y="212" width="66" height="64" rx="8"/><rect x="212" y="212" width="64" height="64" rx="8"/>
+    </g>
+    <g fill="#776a68" opacity=".7">
+      <circle cx="35" cy="35" r="3"/><circle cx="105" cy="35" r="3"/><circle cx="175" cy="35" r="3"/><circle cx="245" cy="35" r="3"/>
+      <circle cx="35" cy="105" r="3"/><circle cx="105" cy="105" r="3"/><circle cx="175" cy="105" r="3"/><circle cx="245" cy="105" r="3"/>
+      <circle cx="35" cy="175" r="3"/><circle cx="105" cy="175" r="3"/><circle cx="175" cy="175" r="3"/><circle cx="245" cy="175" r="3"/>
+      <circle cx="35" cy="245" r="3"/><circle cx="105" cy="245" r="3"/><circle cx="175" cy="245" r="3"/><circle cx="245" cy="245" r="3"/>
+    </g>
+    <g fill="url(#gauge)" stroke="#351b18" stroke-width="2" font-family="system-ui, sans-serif" font-size="12" font-weight="900" text-anchor="middle" dominant-baseline="central" filter="url(#glow)">
+      <g transform="translate(0 0)"><circle r="13"/><text fill="#2b1515">1</text></g><g transform="translate(70 0)"><circle r="13"/><text fill="#2b1515">0</text></g><g transform="translate(280 0)"><circle r="13"/><text fill="#2b1515">0</text></g>
+      <g transform="translate(0 70)"><circle r="13"/><text fill="#2b1515">0</text></g><g transform="translate(70 70)"><circle r="13"/><text fill="#2b1515">3</text></g><g transform="translate(210 70)"><circle r="13"/><text fill="#2b1515">1</text></g>
+      <g transform="translate(0 140)"><circle r="13"/><text fill="#2b1515">1</text></g><g transform="translate(140 140)"><circle r="13"/><text fill="#2b1515">2</text></g><g transform="translate(210 140)"><circle r="13"/><text fill="#2b1515">2</text></g><g transform="translate(280 140)"><circle r="13"/><text fill="#2b1515">1</text></g>
+      <g transform="translate(0 210)"><circle r="13"/><text fill="#2b1515">2</text></g><g transform="translate(210 210)"><circle r="13"/><text fill="#2b1515">2</text></g><g transform="translate(280 210)"><circle r="13"/><text fill="#2b1515">0</text></g>
+      <g transform="translate(0 280)"><circle r="13"/><text fill="#2b1515">0</text></g><g transform="translate(70 280)"><circle r="13"/><text fill="#2b1515">1</text></g><g transform="translate(210 280)"><circle r="13"/><text fill="#2b1515">1</text></g><g transform="translate(280 280)"><circle r="13"/><text fill="#2b1515">1</text></g>
+    </g>
+  </g>
+  <text x="350" y="394" fill="#8fa0a3" font-family="system-ui, sans-serif" font-size="12" text-anchor="middle">EMBER GATE 1101 · 4 × 4 · 0 / 16 导流板</text>
+</svg>

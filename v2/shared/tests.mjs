@@ -127,10 +127,7 @@ const merged = mergeProgress(first.progress, other.progress);
 assert.ok(merged.realms["sample-realm"]);
 assert.ok(merged.realms["second-realm"]);
 assert.deepEqual(mergeProgress(merged, merged), merged);
-assert.equal(badgeRulesForRealm("time-sand-post").at(-1).clears, 6);
-assert.equal(badgeRulesForRealm("time-sand-post").at(-2).clears, 5, "six-level realms need distinct attainable badge thresholds");
 assert.equal(badgeRulesForRealm("aurora-magnet-lab").at(-1).clears, 6);
-assert.equal(badgeRulesForRealm("molten-core-vent").at(-1).clears, 6);
 assert.equal(badgeRulesForRealm("sample-realm").at(-1).clears, 9);
 
 const expectedTutorialRealms = [
@@ -148,14 +145,9 @@ const expectedConfiguredRealms = [
   "yokai-inn",
   "aurora-magnet-lab",
   "dream-hotel",
-  "time-sand-post",
-  "molten-core-vent",
-  "paper-crane-sanctuary",
-  "resonance-bell-room",
-  "four-spirit-habitat",
 ];
 assert.deepEqual(Object.keys(REALM_CONFIGS).sort(), [...expectedConfiguredRealms].sort());
-assert.equal(expectedConfiguredRealms.length, 15);
+assert.equal(expectedConfiguredRealms.length, 10);
 for (const realmId of expectedConfiguredRealms) {
   const config = REALM_CONFIGS[realmId];
   assert.ok(config.title);
@@ -209,7 +201,7 @@ assert.match(uiSource, /__realmCompletionQueue \?\?= \[\]\)\.push\(payload\)/);
 assert.match(uiSource, /data-progress-badges/);
 assert.match(uiSource, /如何获得 XP/);
 assert.match(uiSource, /单纯重复同一成绩不会刷分/);
-assert.match(uiSource, /2\.5 十五款共享/);
+assert.match(uiSource, /2\.0 十款共享/);
 assert.doesNotMatch(uiSource, /ten-realms:progress/);
 assert.match(uiStyles, /\[data-rank\]\s*\{[^}]*min-height:\s*44px/, "the shared rank control needs a full mobile touch target");
 assert.match(uiStyles, /button\[data-next\]:is\(:hover, :focus-visible, :active\)/, "game footer hover rules must not hide the tutorial CTA");

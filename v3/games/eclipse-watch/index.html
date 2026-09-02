@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="zh-CN" data-realm="eclipse-watch">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#11182d" />
+    <meta name="description" content="蚀光巡检署：布置互不相邻的黑格，让每枚读数灯看见准确数量的白格。" />
+    <title>蚀光巡检署 · 十境谜游馆 3.0</title>
+    <link rel="stylesheet" href="../../shared/realm-ui.css" />
+    <link rel="stylesheet" href="./styles.css" />
+    <script type="module" src="../../shared/realm-ui.mjs"></script>
+    <script type="module" src="./app.mjs"></script>
+  </head>
+  <body>
+    <div class="eclipse-sky" aria-hidden="true"></div>
+    <header class="game-header">
+      <a href="../../" class="back-link">← 返回 3.0 谜游馆</a>
+      <div><small>REALM 09 · ECLIPSE WATCH</small><h1>蚀光巡检署</h1></div>
+      <button id="tutorial-button" type="button">巡检图解</button>
+    </header>
+    <main>
+      <aside class="story-panel" aria-labelledby="mission-title">
+        <p class="eyebrow">边界光束巡检</p>
+        <h2 id="mission-title">让每盏读数灯准确可见</h2>
+        <p>把必要方格标为黑影。黑影不能正交相邻，所有白色区域必须连通；每盏读数灯看到的白格数量必须刚好吻合它的数字。</p>
+        <div class="level-list" data-levels aria-label="选择巡检档案"></div>
+        <div class="rule-note"><i aria-hidden="true">☼</i><p><b>读数灯永远是白格</b><br />白点是笔记：它不会截断光束，也不会单独触发通关。</p></div>
+      </aside>
+      <section class="play-panel" aria-labelledby="board-title">
+        <header class="play-heading">
+          <div><small data-difficulty>入门巡检</small><h2 id="board-title" data-level-title>初蚀光幕</h2></div>
+          <div class="stats"><span><b data-moves>0</b><small>黑影操作</small></span><span><b data-lights>0</b><small>合格读数</small></span></div>
+        </header>
+        <p class="status" data-status role="status" aria-live="polite">选择一盏读数灯，观察它的实时光束。</p>
+        <div class="board-wrap"><div class="eclipse-board" data-board aria-label="蚀光巡检棋盘"></div></div>
+        <div class="mark-tools" aria-label="选择巡检标记">
+          <button type="button" data-mark="1" aria-pressed="true"><i aria-hidden="true"></i><span><b>黑影标记</b><small>截断光束</small></span></button>
+          <button type="button" data-mark="0" aria-pressed="false"><i aria-hidden="true">·</i><span><b>白点笔记</b><small>不参与通关</small></span></button>
+          <button type="button" data-mark="-1" aria-pressed="false"><i aria-hidden="true">×</i><span><b>恢复未知</b><small>清除标记</small></span></button>
+        </div>
+        <div class="toolbar"><button type="button" data-undo>撤销</button><button type="button" data-reset>重开巡检</button><button type="button" data-focus>切换读数灯</button></div>
+      </section>
+    </main>
+    <dialog class="tutorial-dialog" data-tutorial aria-labelledby="tutorial-title">
+      <div class="tutorial-shell"><header><div><small>THREE TRUE STATES</small><h2 id="tutorial-title" data-tutorial-title>认识蚀光巡检</h2></div><button type="button" data-tutorial-close aria-label="跳过教程">跳过</button></header><img data-tutorial-image src="./assets/tutorial-elements.svg" alt="初蚀光幕真实初始棋盘" /><p data-tutorial-copy></p><ul data-tutorial-bullets></ul><footer><button type="button" data-tutorial-prev>上一张</button><span data-tutorial-position>1 / 3</span><button type="button" data-tutorial-next>下一张</button></footer></div>
+    </dialog>
+    <dialog class="win-dialog" data-win aria-labelledby="win-title"><div><span class="win-mark" aria-hidden="true">巡界无误</span><h2 id="win-title">蚀光巡检完成</h2><p data-win-copy></p><div><button type="button" data-win-close>留在此档</button><button type="button" data-win-next>下一巡检档</button></div></div></dialog>
+  </body>
+</html>

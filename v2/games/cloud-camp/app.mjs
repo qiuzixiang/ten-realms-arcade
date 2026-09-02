@@ -559,7 +559,7 @@ function pushHistory() {
 
 function reportRealmCompletion(payload) {
   if (typeof window.RealmArcade?.complete !== "function") {
-    throw new Error("V2.5 shared reward host is not ready.");
+    throw new Error("V2.0 shared reward host is not ready.");
   }
   return window.RealmArcade.complete(payload);
 }

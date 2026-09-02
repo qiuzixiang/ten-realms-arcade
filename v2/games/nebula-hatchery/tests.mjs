@@ -1156,11 +1156,11 @@ test("第三方声明、九关宗师目标和独立验证入口保留可审计�
     badgeRulesForRealm("nebula-hatchery").find(({ name }) => name === "本境宗师")?.description,
     "完成本境 9 个不同关卡",
   );
-  match(validatorSource, /const discoveredV2Tests\s*=\s*files/);
-  match(validatorSource, /\^v2\\\/games\\\/.+\\\/tests\\\.mjs\$/);
-  match(validatorSource, /expectedV2TestPaths\s*=\s*new Set\(v2Games\.map/);
-  match(validatorSource, /Unregistered v2 game test suite found/);
-  match(validatorSource, /v2 game test suite is missing/);
+  match(validatorSource, /const testSpecs\s*=\s*\[/);
+  match(validatorSource, /directory:\s*"v2"/);
+  match(validatorSource, /directory:\s*"v3"/);
+  match(validatorSource, /Realm test suite is missing/);
+  match(validatorSource, /Unregistered realm test suite found/);
 });
 
 let failures = 0;

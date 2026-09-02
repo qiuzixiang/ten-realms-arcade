@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="zh-CN" data-realm="stardust-survey">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#071529" />
+    <meta name="description" content="星屑勘测站：扫描深场里的安全星域，以八向读数标记暗物质扰动。" />
+    <title>星屑勘测站 · 十境谜游馆 3.0</title>
+    <link rel="stylesheet" href="../../shared/realm-ui.css" />
+    <link rel="stylesheet" href="./styles.css" />
+    <script type="module" src="../../shared/realm-ui.mjs"></script>
+    <script type="module" src="./app.mjs"></script>
+  </head>
+  <body>
+    <div class="starfield" aria-hidden="true"></div>
+    <header class="game-header">
+      <a class="back-link" href="../../">← 返回 3.0 谜游馆</a>
+      <div><small>REALM · STARDUST SURVEY</small><h1>星屑勘测站</h1></div>
+      <button id="tutorial-button" type="button">图片教程</button>
+    </header>
+
+    <main>
+      <aside class="briefing" aria-labelledby="briefing-title">
+        <p class="eyebrow">DEEP FIELD DISPATCH</p>
+        <h2 id="briefing-title">标出暗物质扰动</h2>
+        <p>每次扫描会给出周围八格的扰动数。扫开全部安全星域即可完成测绘；标记只是推理笔记，错标后合鸣可能触发失稳。</p>
+        <div class="level-list" data-levels aria-label="选择勘测扇区"></div>
+        <section class="protocol" aria-label="勘测协议">
+          <span aria-hidden="true">✦</span>
+          <p><b>首扫保护已启用</b><br />第一次真正扫描若落在扰动上，会自动移位并重新计算读数。</p>
+        </section>
+        <section class="reward-note" aria-label="本机勋章">
+          <small>LOCAL FIELD LOG</small>
+          <p data-records>首次完成新扇区、刷新更少操作数，都会留在本机勘测日志。</p>
+        </section>
+      </aside>
+
+      <section class="console" aria-labelledby="board-title">
+        <header class="console-heading">
+          <div><small data-difficulty>入门</small><h2 id="board-title" data-level-title>舷窗零校准</h2></div>
+          <div class="stats" aria-label="当前进度">
+            <span><b data-moves>0</b><small>操作</small></span>
+            <span><b data-safe>0</b><small>安全待扫</small></span>
+            <span><b data-flags>0</b><small>标记</small></span>
+          </div>
+        </header>
+        <p class="status" data-status role="status" aria-live="polite">选择“扫描”或“标记”，再点按星域。</p>
+
+        <div class="board-frame">
+          <div class="survey-board" data-board role="grid" aria-label="星屑勘测棋盘"></div>
+        </div>
+
+        <div class="mode-tools" aria-label="勘测模式">
+          <button type="button" data-mode="scan" aria-pressed="true"><i aria-hidden="true">⌕</i><span>扫描</span></button>
+          <button type="button" data-mode="mark" aria-pressed="false"><i aria-hidden="true">⚑</i><span>标记扰动</span></button>
+          <button type="button" data-chord><i aria-hidden="true">✧</i><span>合鸣扫描</span></button>
+        </div>
+        <div class="utility-tools" aria-label="局面工具">
+          <button type="button" data-undo>撤销</button>
+          <button type="button" data-reset>重启本次勘测</button>
+        </div>
+        <p class="keyboard-note">键盘：方向键移动 · Enter 执行 · M 切换标记 · C 合鸣 · U 撤销</p>
+      </section>
+    </main>
+
+    <dialog class="tutorial-dialog" data-tutorial aria-labelledby="tutorial-title">
+      <div class="tutorial-shell">
+        <header><div><small>THREE TRUE STATES</small><h2 id="tutorial-title" data-tutorial-title>认识勘测仪</h2></div><button type="button" data-tutorial-close aria-label="跳过教程">跳过</button></header>
+        <img data-tutorial-image src="./assets/tutorial-elements.svg?tutorial=1" alt="舷窗零校准的真实初始勘测棋盘" />
+        <p data-tutorial-copy></p>
+        <ul data-tutorial-bullets></ul>
+        <footer><button type="button" data-tutorial-prev>上一张</button><span data-tutorial-position>1 / 3</span><button type="button" data-tutorial-next>下一张</button></footer>
+      </div>
+    </dialog>
+
+    <dialog class="win-dialog" data-win aria-labelledby="win-title">
+      <div>
+        <span class="win-mark" aria-hidden="true">FIELD CLEAR</span>
+        <h2 id="win-title">星域测绘完成</h2>
+        <p data-win-copy></p>
+        <div><button type="button" data-win-close>留在本扇区</button><button type="button" data-win-next>前往下一扇区</button></div>
+      </div>
+    </dialog>
+  </body>
+</html>

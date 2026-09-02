@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="zh-CN" data-realm="star-dial-bureau">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#10132b">
+  <meta name="description" content="星盘校准局：旋转四枚相邻星环，恢复 1 到 16 的完整星历。">
+  <title>星盘校准局 · 十境谜游馆 V3.0</title>
+  <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../../shared/realm-ui.css">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#star-dial-board">跳到星盘</a>
+  <div class="astral-dust" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+
+  <header class="site-header">
+    <a class="back-link" href="../../" aria-label="返回 V3.0 游戏导览">
+      <span class="back-seal" aria-hidden="true">✦</span>
+      <span><small>V3.0 · STAR DIAL ARCHIVE</small><b>返回导览</b></span>
+    </a>
+    <nav class="header-actions" aria-label="星盘局操作">
+      <button id="new-run-button" type="button"><span aria-hidden="true">✦</span><b>换星历</b></button>
+      <button id="undo-button" type="button"><span aria-hidden="true">↶</span><b>撤销</b></button>
+      <button id="restart-button" type="button"><span aria-hidden="true">↺</span><b>重开</b></button>
+      <button id="tutorial-button" type="button"><span aria-hidden="true">▣</span><b>图片教程</b></button>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" aria-labelledby="page-title">
+      <div>
+        <p class="eyebrow">ASTRAL CALIBRATION BUREAU · SECTOR 04</p>
+        <h1 id="page-title">星盘<em>校准局</em></h1>
+        <p>十六枚星历环被流星潮拨乱。选定相邻四环，明确地顺时针或逆时针校回，让编号 <b>1 → 16</b> 重返天球秩序。</p>
+      </div>
+      <p id="save-status" class="save-status" role="status" aria-live="polite"><i aria-hidden="true"></i>本机星历档案已就绪</p>
+    </section>
+
+    <section class="game-layout" aria-label="星盘校准工作台">
+      <aside class="panel archive-panel" aria-labelledby="archive-title">
+        <div class="panel-heading"><p>CALIBRATION ARCHIVE</p><h2 id="archive-title">选择星历</h2></div>
+        <fieldset class="difficulty-field">
+          <legend>干扰等级</legend>
+          <div id="difficulty-picker" class="difficulty-picker" aria-label="按难度筛选"></div>
+        </fieldset>
+        <div id="level-picker" class="level-picker" aria-label="星历关卡"></div>
+        <article class="archive-record" aria-labelledby="record-title">
+          <p>LOCAL CONSTELLATION LOG</p>
+          <h3 id="record-title">校准档案</h3>
+          <dl><div><dt>已复位星历</dt><dd id="clear-count">0 / 6</dd></div><div><dt>获得校签</dt><dd id="reward-count">0</dd></div></dl>
+          <p>首次复位、刷新个人校准记录，以及达到可复算的参考回放都会留下校签。相同完成事件不会重复入账。</p>
+        </article>
+      </aside>
+
+      <section class="panel console-panel" aria-labelledby="level-title">
+        <header class="board-heading">
+          <div><p id="level-kicker">EASY · 4 × 4 DIAL</p><h2 id="level-title">北冠初校</h2><span id="level-subtitle">一枚偏航的北冠环</span></div>
+          <dl class="board-metrics" aria-label="本局数据">
+            <div><dt>已对准</dt><dd id="aligned-count">0 / 16</dd></div>
+            <div><dt>校准</dt><dd id="move-count">0</dd></div>
+            <div><dt>参考</dt><dd id="par-count">—</dd></div>
+          </dl>
+        </header>
+
+        <div class="dial-stage" id="dial-stage">
+          <div id="star-dial-board" class="star-dial-board" role="grid" aria-label="十六枚星历环" aria-describedby="board-help"></div>
+          <div id="zone-grid" class="zone-grid" aria-label="选择相邻四枚星环的校准区"></div>
+        </div>
+        <p id="board-help" class="board-help">先点星盘交点选择 2 × 2 星环，再按一个方向。方向键移动校准区；Enter 为逆时针，Space 为顺时针。</p>
+
+        <section class="rotation-console" aria-labelledby="rotation-title">
+          <div class="selected-zone"><p id="rotation-title">当前校准窗</p><b id="selected-zone-label">第 1 行 · 第 1 列四环</b><span id="selected-zone-copy">四枚相邻星环会绕共同中心转动。</span></div>
+          <div class="rotation-buttons" aria-label="明确选择旋转方向">
+            <button id="ccw-button" type="button" class="turn-button ccw"><span aria-hidden="true">↺</span><b>逆时针</b><small>左旋四环</small></button>
+            <button id="cw-button" type="button" class="turn-button cw"><span aria-hidden="true">↻</span><b>顺时针</b><small>右旋四环</small></button>
+          </div>
+          <div class="truth-strip"><span aria-hidden="true">◌</span><p><b>固定规则：</b>每次只能旋转 2 × 2 相邻星环；编号不是可编辑数字，只有全部升序才会复位。</p></div>
+        </section>
+      </section>
+
+      <aside class="panel protocol-panel" aria-labelledby="protocol-title">
+        <div class="panel-heading"><p>ORIENTATION PROTOCOL</p><h2 id="protocol-title">读懂旋转</h2></div>
+        <div class="orientation-card"><span class="orientation-glyph" aria-hidden="true">↺</span><div><b>逆时针校准</b><p>左上环会移到左下。键盘 Enter。</p></div></div>
+        <div class="orientation-card"><span class="orientation-glyph" aria-hidden="true">↻</span><div><b>顺时针校准</b><p>左上环会移到右上。键盘 Space。</p></div></div>
+        <section class="route-note">
+          <p>VERIFIED REPLAY</p>
+          <strong id="reference-note">本关有一条 1 步参考回放</strong>
+          <span>参考回放由固定扰动序列精确逆转；它不是“理论最少步数”的承诺。</span>
+        </section>
+        <button id="replay-button" class="text-action" type="button">查看本关扰动来源</button>
+      </aside>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>星盘校准局 · 十境谜游馆 V3.0</p>
+    <p>规则原型 <strong>Twiddle</strong>。参考 <a href="https://github.com/ebnbin/puzzles/blob/5a9e1795a3324e0f6433b79fbe31cbd9b12048a3/doc-zh/twiddle.html" target="_blank" rel="noreferrer">固定版本中文规则</a>、<a href="https://github.com/ebnbin/puzzles/blob/5a9e1795a3324e0f6433b79fbe31cbd9b12048a3/vendor/sgtpuzzles/twiddle.c" target="_blank" rel="noreferrer">上游实现</a> 与 <a href="https://github.com/ebnbin/puzzles/blob/5a9e1795a3324e0f6433b79fbe31cbd9b12048a3/src/games/twiddle.ts" target="_blank" rel="noreferrer">适配参考</a>；上游按 MIT License 发布。本作主题、美术与实现为独立创作。</p>
+  </footer>
+
+  <dialog id="tutorial-dialog" class="game-dialog tutorial-dialog" aria-labelledby="tutorial-title" aria-describedby="tutorial-body">
+    <div class="dialog-shell tutorial-shell">
+      <header><div><p id="tutorial-step">01 · 识别星历环</p><h2 id="tutorial-title">编号是星历，不是按钮</h2></div><button id="tutorial-skip-button" type="button">跳过，直接校准</button></header>
+      <article class="tutorial-card">
+        <div class="tutorial-art"><img id="tutorial-image" src="./assets/tutorial-elements.svg?tutorial=3" alt=""></div>
+        <div class="tutorial-copy"><p id="tutorial-body"></p><ul id="tutorial-bullets"></ul></div>
+      </article>
+      <footer><button id="tutorial-previous-button" type="button">上一张</button><span id="tutorial-position">1 / 3</span><button id="tutorial-next-button" class="primary-action" type="button">下一张</button></footer>
+    </div>
+  </dialog>
+
+  <dialog id="replay-dialog" class="game-dialog replay-dialog" aria-labelledby="replay-title">
+    <div class="dialog-shell"><header><div><p>TRACEABLE DISTURBANCE</p><h2 id="replay-title">本关由真实旋转序列产生</h2></div><button id="replay-close-button" type="button" aria-label="关闭">×</button></header><div class="dialog-copy"><p id="replay-copy"></p><ol id="replay-list"></ol><p>按反向、反方向依次旋转即可得到一条可复算的参考回放。</p></div></div>
+  </dialog>
+
+  <dialog id="victory-dialog" class="game-dialog victory-dialog" aria-labelledby="victory-title">
+    <div class="dialog-shell victory-shell"><div class="victory-orbit" aria-hidden="true">✦</div><p>CALIBRATION COMPLETE</p><h2 id="victory-title">星历重回秩序</h2><p id="victory-copy">十六枚星环已按 1 到 16 升序对准。</p><dl><div><dt>星历</dt><dd id="victory-level">—</dd></div><div><dt>校准</dt><dd id="victory-moves">0</dd></div><div><dt>参考</dt><dd id="victory-par">0</dd></div><div><dt>新校签</dt><dd id="victory-rewards">0</dd></div></dl><div class="victory-actions"><button id="victory-stay-button" type="button">查看星盘</button><button id="victory-next-button" class="primary-action" type="button">下一张星历</button></div></div>
+  </dialog>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <p id="live-status" class="visually-hidden" role="status" aria-live="polite"></p>
+  <script type="module" src="../../shared/realm-ui.mjs"></script>
+  <script type="module" src="./app.mjs"></script>
+</body>
+</html>

@@ -1,13 +1,14 @@
 # 十境谜游馆 · Ten Realms Arcade
 
-一个以经典逻辑规则为骨架、重新设计视觉叙事与交互手感的浏览器小游戏项目。仓库同时保留两套独立合集：根路径是原十款 **1.0**，`/v2/` 是扩展至十五款的 **2.5**。两个版本的导览、游戏进度和本地存档互不干扰。
+一个以经典逻辑规则为骨架、重新设计视觉叙事与交互手感的浏览器小游戏项目。仓库保留三个相互隔离的十款合集：根路径是初代 **1.0**，`/v2/` 是可稳定回退的 **2.0**，`/v3/` 是最新 **3.0**。各版本的导览、教程、奖励、离线缓存与本地进度互不覆盖。
 
-每款游戏都有独立页面、首次进入时的三张图片教程、可跳过或重新查看的规则说明，以及通关、个人最佳、建议步数、今日首胜和连续游玩等激励。项目无运行时第三方依赖，适配手机和桌面浏览器，所有进度仅保存在当前浏览器中。
+每款游戏都包含首次自动弹出的三步图片教程（元素、一次合法操作、真实通关状态），可跳过或随时重看；同时提供首次通关、个人最佳、效率线、徽章、今日首胜与连游等不重复刷分的激励。项目没有运行时第三方依赖，支持手机与桌面浏览器，所有进度仅保存在当前浏览器。
 
 ## 在线体验
 
 - 1.0：[Vercel](https://ten-realms-arcade.vercel.app/) · [GitHub Pages](https://qiuzixiang.github.io/ten-realms-arcade/)
-- 2.5：[Vercel](https://ten-realms-arcade.vercel.app/v2/) · [GitHub Pages](https://qiuzixiang.github.io/ten-realms-arcade/v2/)
+- 2.0：[Vercel](https://ten-realms-arcade.vercel.app/v2/) · [GitHub Pages](https://qiuzixiang.github.io/ten-realms-arcade/v2/)
+- 3.0：[Vercel](https://ten-realms-arcade.vercel.app/v3/) · [GitHub Pages](https://qiuzixiang.github.io/ten-realms-arcade/v3/)
 - [GitHub 源码仓库](https://github.com/qiuzixiang/ten-realms-arcade)
 
 ## 1.0 · 原十款
@@ -25,7 +26,7 @@
 | [灵龙巡脉](./games/spirit-dragon/) | Pearl | 遵循天地珠律铺成唯一龙脉闭环 |
 | [镜影大剧院](./games/mirror-theatre/) | Undead | 借镜面视线安排三类演员的位置 |
 
-## 2.5 · 扩展十五款
+## 2.0 · 第二批十款
 
 | 游戏 | 规则原型 |
 | --- | --- |
@@ -39,11 +40,25 @@
 | [妖怪旅店](./v2/games/yokai-inn/) | Dominosa |
 | [极光磁场实验室](./v2/games/aurora-magnet-lab/) | Magnets |
 | [梦境旅舍](./v2/games/dream-hotel/) | Rectangles |
-| [时砂邮路局](./v2/games/time-sand-post/) | Signpost |
-| [熔心泄压站](./v2/games/molten-core-vent/) | Slant |
-| [纸鹤归巢台](./v2/games/paper-crane-sanctuary/) | Pegs |
-| [万象共振钟房](./v2/games/resonance-bell-room/) | Flip |
-| [四灵栖境署](./v2/games/four-spirit-habitat/) | Map |
+
+## 3.0 · 第三批十款
+
+前五款来自原 2.5 扩展的后半批，后五款为本次新改编；它们现在作为完整独立的 3.0 版本发布。
+
+| 游戏 | 规则原型 |
+| --- | --- |
+| [时砂邮路局](./v3/games/time-sand-post/) | Signpost |
+| [熔心泄压站](./v3/games/molten-core-vent/) | Slant |
+| [纸鹤归巢台](./v3/games/paper-crane-sanctuary/) | Pegs |
+| [万象共振钟房](./v3/games/resonance-bell-room/) | Flip |
+| [四灵栖境署](./v3/games/four-spirit-habitat/) | Map |
+| [星盘校准局](./v3/games/star-dial-bureau/) | Twiddle |
+| [星屑勘测站](./v3/games/stardust-survey/) | Mines |
+| [珊瑚孢群培育所](./v3/games/coral-bloom-lab/) | Filling |
+| [蚀光巡检署](./v3/games/eclipse-watch/) | Range |
+| [天象壁画修复室](./v3/games/celestial-mural/) | Mosaic |
+
+历史 `v2.5.0` 标签保留，可用于还原当时的十五款扩展快照；常规访问请使用稳定的 `/v2/` 与 `/v3/` 十款入口。
 
 ## 本地运行
 
@@ -51,7 +66,7 @@
 npm run serve
 ```
 
-打开 <http://localhost:4173/> 查看 1.0，或打开 <http://localhost:4173/v2/> 查看 2.5。项目不需要安装第三方包。
+打开 <http://localhost:4173/> 查看 1.0，<http://localhost:4173/v2/> 查看 2.0，或打开 <http://localhost:4173/v3/> 查看 3.0。
 
 ## 验证与构建
 
@@ -60,12 +75,16 @@ npm test
 npm run build
 ```
 
-`npm test` 同时检查两个版本的游戏清单、路径、静态资源、存档命名空间和离线预缓存边界。构建产物位于 `dist/`：1.0 保持在根目录，2.5 位于 `dist/v2/`。GitHub Actions 会在 `main` 分支更新后发布 GitHub Pages。
+`npm test` 会校验三套入口、V2/V3 各十款注册表、规则测试、原生教程素材、资源路径、存档命名空间和离线缓存边界。构建产物位于 `dist/`：1.0 位于根目录，2.0 位于 `dist/v2/`，3.0 位于 `dist/v3/`。GitHub Actions 在 `main` 更新后会发布 GitHub Pages，并对 Pages 与 Vercel 的三个 scope 进行线上烟测。
 
-## 存档隔离
+## 存档与缓存隔离
 
-1.0 继续使用原有存档键，其共享成长档案为 `ten-realms:progress:v1`。2.5 延续原 2.0 的共享成长、教程状态及每款游戏私有存档，继续使用 `ten-realms-v2:` 前缀；因此升级 2.5 不会丢失原十款进度，也不会覆盖 1.0 存档。
+- 1.0 延续原存档键，共享成长档案为 `ten-realms:progress:v1`。
+- 2.0 继续使用 `ten-realms-v2:` 前缀，保留前十款的既有进度。
+- 3.0 仅使用 `ten-realms-v3:` 前缀，绝不读取、覆盖或清理 V2 存档。
+
+三个版本各有独立 Service Worker scope 与预缓存清单；根 Service Worker 会绕过 `/v2/`、`/v3/`，因此不会以初代离线页面替代后续版本。
 
 ## 规则与许可
 
-规则参考 [Simon Tatham's Portable Puzzle Collection](https://www.chiark.greenend.org.uk/~sgtatham/puzzles/) 及 [ebnbin/puzzles](https://github.com/ebnbin/puzzles) 的中文网页版本。主题包装、视觉资产和本仓库中的游戏实现由本项目重新制作。详细许可与署名见 [1.0 第三方声明](THIRD_PARTY_NOTICES.md) 和 [2.5 第三方声明](v2/THIRD_PARTY_NOTICES.md)。
+规则参考 [Simon Tatham's Portable Puzzle Collection](https://www.chiark.greenend.org.uk/~sgtatham/puzzles/) 及 [ebnbin/puzzles](https://github.com/ebnbin/puzzles) 的中文网页版本。主题包装、视觉资产和本仓库中的游戏实现均为本项目重新制作。详细许可与署名见 [1.0 第三方声明](THIRD_PARTY_NOTICES.md)、[2.0 第三方声明](v2/THIRD_PARTY_NOTICES.md) 与 [3.0 第三方声明](v3/THIRD_PARTY_NOTICES.md)。

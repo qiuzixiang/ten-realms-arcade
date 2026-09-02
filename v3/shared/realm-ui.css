@@ -1,0 +1,110 @@
+.realm-utility-dock, .realm-guide-dialog, .realm-progress-dialog, .realm-reward-toast { box-sizing: border-box; font-family: ui-sans-serif, system-ui, sans-serif; }
+.realm-utility-dock *, .realm-guide-dialog *, .realm-progress-dialog * { box-sizing: border-box; }
+.realm-utility-dock {
+  --realm-accent: #70f0d0;
+  --realm-accent-rgb: 112, 240, 208;
+  position: relative;
+  z-index: 20;
+  width: min(1120px, calc(100% - 24px));
+  min-height: 60px;
+  margin: 10px auto 6px;
+  padding: 9px 11px 9px 15px;
+  display: grid;
+  grid-template-columns: auto minmax(130px, 240px) auto auto;
+  gap: 14px;
+  align-items: center;
+  color: #f7fffc;
+  border: 1px solid rgba(var(--realm-accent-rgb), .36);
+  border-radius: 18px;
+  background: rgba(7, 17, 27, .94);
+  box-shadow: 0 16px 38px #0005;
+}
+.realm-utility-dock > div:first-child { min-width: 0; }
+.realm-utility-dock > div:first-child small, .realm-utility-dock__stat small { display: block; overflow: hidden; color: #a8b9b8; font-size: 9px; letter-spacing: .08em; text-overflow: ellipsis; white-space: nowrap; }
+.realm-utility-dock > div:first-child [data-rank] { display: block; min-height: 44px; margin: 0; padding: 2px 0; color: #fff; background: transparent; font-size: 14px; text-align: left; }
+.realm-utility-dock > div:first-child [data-rank]:hover { color: var(--realm-accent); }
+.realm-utility-dock__progress { display: grid; gap: 5px; font-size: 11px; }
+.realm-utility-dock__progress > span { text-align: right; }
+.realm-utility-dock__progress > span b { color: var(--realm-accent); font-size: 14px; }
+.realm-utility-dock__progress > i { height: 6px; overflow: hidden; border-radius: 9px; background: #ffffff18; }
+.realm-utility-dock__progress > i em { display: block; width: 0; height: 100%; border-radius: inherit; background: var(--realm-accent); transition: width .35s ease; }
+.realm-utility-dock__stat { min-width: 54px; padding: 5px 8px; text-align: center; border: 1px solid #ffffff15; border-radius: 11px; }
+.realm-utility-dock__stat b { display: block; }
+.realm-utility-dock button { min-height: 44px; padding: 0 14px; color: #071019; border: 0; border-radius: 12px; background: var(--realm-accent); font: inherit; font-weight: 800; cursor: pointer; }
+
+.realm-guide-dialog { --realm-accent: #70f0d0; width: 620px; max-width: calc(100% - 24px); max-height: min(780px, calc(100dvh - 24px)); padding: 0; overflow: auto; overscroll-behavior: contain; color: #f7fffc; border: 1px solid rgba(var(--realm-accent-rgb), .42); border-radius: 24px; background: #0a1721; box-shadow: 0 30px 90px #000c; }
+.realm-guide-dialog::backdrop { background: #02060bd9; backdrop-filter: blur(8px); }
+.realm-guide-dialog__shell { padding: clamp(18px, 4vw, 30px); }
+.realm-guide-dialog header, .realm-guide-dialog footer { display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+.realm-guide-dialog header small { color: var(--realm-accent); font-size: 9px; letter-spacing: .13em; }
+.realm-guide-dialog h2 { margin: 5px 0 0; font-size: clamp(23px, 5vw, 34px); }
+.realm-guide-dialog button { min-width: 44px; min-height: 44px; padding: 0 16px; color: #071019; border: 0; border-radius: 12px; background: var(--realm-accent); font: inherit; font-weight: 800; cursor: pointer; }
+.realm-guide-dialog header button { color: #d5e0de; border: 1px solid #ffffff20; background: transparent; }
+.realm-guide-dialog .realm-guide-dialog__shell > footer > button[data-next],
+.realm-guide-dialog .realm-guide-dialog__shell > footer > button[data-next]:is(:hover, :focus-visible, :active) { color: #071019; background: var(--realm-accent); }
+.realm-guide-dialog button:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
+.realm-guide-dialog__art { height: clamp(180px, 37vw, 260px); margin: 22px 0 18px; display: grid; place-items: center; overflow: hidden; border: 1px solid #ffffff18; border-radius: 18px; background: #061018; }
+.realm-guide-dialog__art svg { display: block; width: 100%; height: 100%; object-fit: contain; }
+.realm-guide-dialog__shell > p { color: #c2d1cf; line-height: 1.7; }
+.realm-guide-dialog ul { padding-left: 20px; color: #a8b9b8; line-height: 1.7; }
+.realm-guide-dialog footer { padding-top: 15px; border-top: 1px solid #ffffff14; }
+.realm-guide-dialog footer span { color: #a8b9b8; font: 700 11px/1 ui-monospace, monospace; }
+
+html:has(.realm-guide-dialog[open]),
+body:has(.realm-guide-dialog[open]),
+html:has(.realm-progress-dialog[open]),
+body:has(.realm-progress-dialog[open]),
+html:has(dialog[open]),
+body:has(dialog[open]) { overflow: hidden; overscroll-behavior: none; }
+
+.realm-progress-dialog { --realm-accent: #70f0d0; width: 680px; max-width: calc(100% - 24px); max-height: calc(100dvh - 24px); padding: 0; overflow: auto; color: #f7fffc; border: 1px solid rgba(var(--realm-accent-rgb), .42); border-radius: 24px; background: #0a1721; box-shadow: 0 30px 90px #000c; }
+.realm-progress-dialog::backdrop { background: #02060bd9; backdrop-filter: blur(8px); }
+.realm-progress-dialog__shell { padding: clamp(18px, 4vw, 30px); }
+.realm-progress-dialog header, .realm-progress-dialog__heading { display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+.realm-progress-dialog header small { color: var(--realm-accent); font-size: 9px; letter-spacing: .13em; }
+.realm-progress-dialog h2 { margin: 5px 0 0; font-size: clamp(24px, 5vw, 34px); }
+.realm-progress-dialog h3 { margin: 0; font-size: 15px; }
+.realm-progress-dialog header button { width: 44px; height: 44px; flex: 0 0 auto; color: #d5e0de; border: 1px solid #ffffff20; border-radius: 50%; background: transparent; font-size: 24px; cursor: pointer; }
+.realm-progress-dialog__shell > section { margin-top: 18px; padding: 18px; border: 1px solid #ffffff14; border-radius: 17px; background: #ffffff07; }
+.realm-progress-dialog__summary > small { color: #a8b9b8; }
+.realm-progress-dialog__summary > strong { display: block; margin-top: 4px; color: var(--realm-accent); font-size: 26px; }
+.realm-progress-dialog__summary > p { margin: 8px 0; color: #c6d4d2; font-size: 12px; line-height: 1.55; }
+.realm-progress-dialog__summary > i { display: block; height: 7px; overflow: hidden; border-radius: 8px; background: #ffffff18; }
+.realm-progress-dialog__summary > i em { display: block; width: 0; height: 100%; border-radius: inherit; background: var(--realm-accent); transition: width .35s ease; }
+.realm-progress-dialog__heading span { color: #8fa5a3; font-size: 10px; }
+.realm-progress-dialog ul, .realm-progress-dialog ol { margin: 13px 0 0; padding: 0; list-style: none; }
+.realm-progress-dialog__badges { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+.realm-progress-dialog__badges li { min-width: 0; padding: 10px; display: flex; gap: 9px; color: #718481; border: 1px solid #ffffff0e; border-radius: 11px; }
+.realm-progress-dialog__badges li.is-unlocked { color: #f7fffc; border-color: rgba(var(--realm-accent-rgb), .3); }
+.realm-progress-dialog__badges i { color: var(--realm-accent); font-style: normal; }
+.realm-progress-dialog__badges b, .realm-progress-dialog__badges small { display: block; }
+.realm-progress-dialog__badges b { font-size: 12px; }
+.realm-progress-dialog__badges small { margin-top: 2px; color: #8fa5a3; font-size: 9px; line-height: 1.35; }
+.realm-progress-dialog__earning { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+.realm-progress-dialog__earning li { padding: 9px 10px; border-radius: 10px; background: #ffffff07; }
+.realm-progress-dialog__earning b, .realm-progress-dialog__earning span { display: block; }
+.realm-progress-dialog__earning b { color: var(--realm-accent); font-size: 11px; }
+.realm-progress-dialog__earning span { margin-top: 3px; color: #9bafac; font-size: 10px; }
+.realm-progress-dialog__ranks { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 7px; }
+.realm-progress-dialog__ranks li { min-width: 0; padding: 9px; color: #6f817f; border-radius: 10px; background: #ffffff06; }
+.realm-progress-dialog__ranks li.is-reached { color: #f7fffc; }
+.realm-progress-dialog__ranks span { color: var(--realm-accent); }
+.realm-progress-dialog__ranks b, .realm-progress-dialog__ranks small { display: block; overflow-wrap: anywhere; }
+.realm-progress-dialog__ranks b { margin-top: 3px; font-size: 11px; }
+.realm-progress-dialog__ranks small { margin-top: 2px; color: #8fa5a3; font-size: 9px; }
+.realm-progress-dialog__privacy { margin: 15px 2px 0; color: #819492; font-size: 10px; line-height: 1.6; }
+.realm-reward-toast { --realm-accent: #70f0d0; position: fixed; z-index: 100; top: 18px; left: 50%; padding: 14px 18px; color: #071019; border-radius: 999px; background: var(--realm-accent); box-shadow: 0 16px 40px #0008; font-weight: 900; opacity: 0; pointer-events: none; transform: translate(-50%, -16px); transition: .25s ease; }
+.realm-reward-toast.is-visible { opacity: 1; transform: translate(-50%, 0); }
+@media (max-width: 640px) {
+  .realm-utility-dock { grid-template-columns: minmax(0, 1fr) auto; }
+  .realm-utility-dock__progress { grid-column: 1 / -1; grid-row: 2; }
+  .realm-utility-dock > [data-tutorial] { grid-column: 1 / -1; grid-row: 3; width: 100%; }
+  .realm-guide-dialog__shell { padding: 18px; }
+  .realm-guide-dialog, .realm-progress-dialog { max-width: calc(100% - 16px); }
+  .realm-progress-dialog { max-height: calc(100dvh - 16px); border-radius: 18px; }
+  .realm-progress-dialog__shell { padding: 14px; }
+  .realm-progress-dialog__shell > section { padding: 13px; }
+  .realm-progress-dialog__badges, .realm-progress-dialog__earning { grid-template-columns: 1fr; }
+  .realm-progress-dialog__ranks { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (prefers-reduced-motion: reduce) { .realm-utility-dock *, .realm-reward-toast { transition: none !important; } }
