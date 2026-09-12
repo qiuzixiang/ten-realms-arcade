@@ -15,5 +15,10 @@ export async function buildStandalone() {
   }
 }
 if (process.argv[2] === 'test') {
-  for (const { slug } of games) execFileSync('npm', ['test'], { cwd: path.join(root, 'standalone', slug), stdio: 'inherit' });
+  for (const { slug } of games) {
+    const cwd = path.join(root, 'standalone', slug);
+    // Bundle regression tests read dist/xhs, so prepare it on clean checkouts.
+    execFileSync('npm', ['run', 'build'], { cwd, stdio: 'inherit' });
+    execFileSync('npm', ['test'], { cwd, stdio: 'inherit' });
+  }
 }
