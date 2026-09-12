@@ -1,0 +1,32 @@
+{
+  "ok": true,
+  "createdAt": "2026-09-12T15:59:02.416Z",
+  "fileCount": 15,
+  "textBytes": 191465,
+  "zipBytes": 65529,
+  "entry": "index.html",
+  "classicScript": true,
+  "networkCalls": false,
+  "workers": false,
+  "modules": false,
+  "inlineScript": false,
+  "chrome61Baseline": "static source review, runtime not tested",
+  "entries": [
+    "index.html",
+    "styles.css",
+    "license.json",
+    "assets/",
+    "assets/chapter-6.svg",
+    "assets/chapter-5.svg",
+    "assets/chapter-4.svg",
+    "assets/icon.svg",
+    "assets/chapter-1.svg",
+    "assets/chapter-3.svg",
+    "assets/chapter-2.svg",
+    "assets/scene.svg",
+    "assets/tutorial-1.svg",
+    "assets/tutorial-3.svg",
+    "assets/tutorial-2.svg",
+    "app.js"
+  ]
+}

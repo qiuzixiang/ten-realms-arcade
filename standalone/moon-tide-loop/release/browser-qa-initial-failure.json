@@ -1,0 +1,8 @@
+{
+  "error": "Error: Missing [data-action=\"tutorial-done\"]",
+  "errors": [],
+  "checks": [
+    "First-entry tutorial appears, actual SVG loads, skip opens playable board"
+  ],
+  "layouts": []
+}

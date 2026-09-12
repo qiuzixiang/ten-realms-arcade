@@ -1,0 +1,32 @@
+[
+  {
+    "slug": "cloud-camp-journey",
+    "title": "云野露营",
+    "levels": 60,
+    "description": "帐篷与树林的逻辑露营"
+  },
+  {
+    "slug": "mistwood-album",
+    "title": "雾窗显影",
+    "levels": 60,
+    "description": "用数字线索显影森林画册"
+  },
+  {
+    "slug": "season-dye-journey",
+    "title": "四季染旅",
+    "levels": 72,
+    "description": "在色彩蔓延中规划染色顺序"
+  },
+  {
+    "slug": "paper-crane-journey",
+    "title": "纸鹤归旅",
+    "levels": 60,
+    "description": "跳跃消除，寻找纸鹤归路"
+  },
+  {
+    "slug": "moon-tide-loop",
+    "title": "月潮回环",
+    "levels": 72,
+    "description": "循着线索连成月光回环"
+  }
+]

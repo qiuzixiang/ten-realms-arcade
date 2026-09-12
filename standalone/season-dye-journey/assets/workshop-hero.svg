@@ -1,0 +1,143 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="620" viewBox="0 0 1000 620" role="img" aria-labelledby="title desc">
+  <title id="title">四季染旅·东方染织工坊</title>
+  <desc id="desc">木轴悬着一匹层染山水纹织物，周围放着三只陶瓷染碟、折叠布样与线轴，枝叶从右侧伸入。此为装饰插画。</desc>
+  <defs>
+    <pattern id="paper" width="43" height="39" patternUnits="userSpaceOnUse"><path d="M3 8h7m19 16h9M14 34h4" stroke="#c8bba5" stroke-width=".7" opacity=".27"/><circle cx="20" cy="14" r=".6" fill="#c8bba5" opacity=".3"/></pattern>
+    <pattern id="weave" width="7" height="7" patternUnits="userSpaceOnUse"><path d="M.5 0v7M0 .5h7" stroke="#f2ecdf" stroke-width=".35" opacity=".22"/><path d="M3.8 0v7M0 3.8h7" stroke="#254c49" stroke-width=".25" opacity=".06"/></pattern>
+    <pattern id="smallWeave" width="5" height="5" patternUnits="userSpaceOnUse"><path d="M0 .5h5M.5 0v5" stroke="#f2ecdf" stroke-width=".5" opacity=".36"/></pattern>
+    <linearGradient id="wood" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#d7ad68"/><stop offset=".5" stop-color="#c8bba5"/><stop offset="1" stop-color="#ba694e"/></linearGradient>
+    <linearGradient id="clothShade" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#254c49" stop-opacity=".09"/><stop offset=".07" stop-color="#f2ecdf" stop-opacity="0"/><stop offset=".83" stop-color="#f2ecdf" stop-opacity="0"/><stop offset="1" stop-color="#254c49" stop-opacity=".13"/></linearGradient>
+    <linearGradient id="ceramic" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#f2ecdf"/><stop offset="1" stop-color="#c8bba5"/></linearGradient>
+    <filter id="soft" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="13"/></filter>
+    <filter id="objectShadow" x="-30%" y="-30%" width="160%" height="170%"><feDropShadow dx="0" dy="9" stdDeviation="8" flood-color="#254c49" flood-opacity=".11"/></filter>
+    <clipPath id="cloth"><path d="M282 119H681L688 461Q686 491 663 496L300 510Q281 509 281 491Z"/></clipPath>
+  </defs>
+  <rect width="1000" height="620" fill="#f2ecdf"/>
+  <rect width="1000" height="620" fill="url(#paper)"/>
+  <ellipse cx="480" cy="318" rx="292" ry="247" fill="#ecd9cd" opacity=".33"/>
+  <path d="M79 525Q296 507 470 514T927 516" fill="none" stroke="#c8bba5" stroke-width="1.1" opacity=".6"/>
+  <ellipse cx="496" cy="535" rx="329" ry="30" fill="#254c49" opacity=".07" filter="url(#soft)"/>
+  <!-- Hanging cord and warm timber roller -->
+  <path d="M265 111L482 41 699 111" fill="none" stroke="#c8bba5" stroke-width="3"/>
+  <path d="M263 112L482 44 701 112" fill="none" stroke="#f2ecdf" stroke-width="1"/>
+  <circle cx="482" cy="42" r="5" fill="#587d72"/>
+  <g filter="url(#objectShadow)">
+    <path d="M289 132H686L700 471Q698 501 670 508L303 523Z" fill="#254c49" opacity=".09"/>
+    <rect x="246" y="101" width="472" height="27" rx="13.5" fill="url(#wood)"/>
+    <ellipse cx="246" cy="114.5" rx="8" ry="13.5" fill="#ba694e"/>
+    <ellipse cx="716" cy="114.5" rx="8" ry="13.5" fill="#c8bba5"/>
+    <path d="M259 109H702m-435 8H696" stroke="#f2ecdf" opacity=".35" stroke-width="1.5"/>
+    <path d="M282 119H681L688 461Q686 491 663 496L300 510Q281 509 281 491Z" fill="#ecd9cd"/>
+    <g clip-path="url(#cloth)">
+      <path d="M282 119H681V510H282Z" fill="#ecd9cd"/>
+      <path d="M278 176C342 134 386 156 443 175S546 207 604 172 666 141 710 155V300H278Z" fill="#879cad"/>
+      <path d="M269 209C318 189 357 175 398 192S477 245 527 210 601 165 703 207V330H269Z" fill="#f2ecdf"/>
+      <path d="M274 275C323 250 351 225 397 239S455 290 504 260 543 208 583 223 639 250 701 214V369H274Z" fill="#d7ad68"/>
+      <path d="M271 316C328 289 345 286 378 301S436 335 480 305 523 258 562 269 627 301 705 256V394H271Z" fill="#ba694e"/>
+      <path d="M274 349C326 319 371 349 423 350S486 307 534 318 613 351 709 295V425H274Z" fill="#ecd9cd"/>
+      <path d="M274 393C331 353 369 397 418 388S481 348 530 359 620 389 710 341V462H274Z" fill="#587d72"/>
+      <path d="M272 429C333 389 375 445 429 426S488 395 538 412 623 418 710 378V522H272Z" fill="#254c49"/>
+      <path d="M280 487C339 442 384 484 436 468S504 451 551 462 630 459 692 441V527H280Z" fill="#879cad"/>
+      <!-- Small wash boundaries make each terrace feel hand dyed -->
+      <path d="M282 284C329 255 354 236 397 248S455 298 505 267 546 220 580 233 640 261 688 234M282 401C332 365 370 405 421 397S481 359 529 368 620 398 688 363" fill="none" stroke="#f2ecdf" stroke-width="2" opacity=".32"/>
+      <path d="M286 182C347 145 389 166 442 182M291 437C334 411 371 450 405 439M443 477C487 457 508 463 546 470" fill="none" stroke="#f2ecdf" stroke-width="1.5" opacity=".43"/>
+      <path d="M515 157C536 155 551 148 562 133" fill="none" stroke="#f2ecdf" stroke-width="1.2" opacity=".6"/>
+      <!-- Delicate crest motifs, not a game state -->
+      <g fill="none" stroke="#f2ecdf" stroke-width="1.3" opacity=".48">
+        <path d="M312 219q8-9 16 0m4 0q8-9 16 0M320 225q8-9 16 0"/>
+        <path d="M590 397q8-9 16 0m4 0q8-9 16 0M598 403q8-9 16 0"/>
+        <path d="M551 292l5-9 5 9-5 9Z"/>
+        <path d="M356 368l5-9 5 9-5 9Z"/>
+      </g>
+      <rect x="278" y="119" width="419" height="403" fill="url(#weave)"/>
+      <rect x="278" y="119" width="419" height="403" fill="url(#clothShade)"/>
+      <path d="M292 119V491M669 119L676 463" fill="none" stroke="#f2ecdf" stroke-width="1.8" opacity=".45"/>
+      <path d="M297 122V490M665 122L672 463" fill="none" stroke="#254c49" stroke-width=".7" opacity=".15"/>
+    </g>
+    <path d="M681 464Q677 484 645 483L621 498 663 496Q685 492 688 461Z" fill="#f2ecdf" opacity=".76"/>
+    <path d="M621 498L646 483Q663 485 676 479" fill="none" stroke="#c8bba5" stroke-width="1.2"/>
+    <path d="M302 505L610 494" fill="none" stroke="#f2ecdf" stroke-width="2" opacity=".65"/>
+    <path d="M307 510v8m8-8v7m9-8v8m9-8v7m9-8v8m9-8v7m9-8v8m9-8v7m9-8v8m9-8v7m9-8v8m9-8v7m9-8v8m9-8v7m9-8v8m9-8v7m9-8v8m9-8v7m9-8v8m9-8v7m9-8v8m9-8v7m9-8v8m9-8v7m9-8v8m9-8v7m9-8v8m9-8v7m9-8v8m9-8v7m9-8v8m9-8v7m9-8v8" stroke="#c8bba5" stroke-width="1.4"/>
+  </g>
+  <!-- Folds and loose thread at the left of the loom -->
+  <g filter="url(#objectShadow)">
+    <path d="M117 480L238 455 292 487 172 520 117 504Z" fill="#879cad"/>
+    <path d="M117 480L172 499 292 467 238 447Z" fill="#c8bba5"/>
+    <path d="M117 480L172 499 292 467V487L172 518 117 501Z" fill="#879cad"/>
+    <path d="M125 487L172 505 285 475M132 498L172 512 282 483" fill="none" stroke="#f2ecdf" opacity=".38"/>
+    <path d="M132 452L236 430 285 451 175 481 132 466Z" fill="#587d72"/>
+    <path d="M132 452L175 470 285 440 236 423Z" fill="#587d72"/>
+    <path d="M132 452L175 470 285 440V453L175 483 132 467Z" fill="#254c49"/>
+    <path d="M142 459L176 474 277 447" fill="none" stroke="#f2ecdf" opacity=".32"/>
+    <path d="M155 430L224 413 269 431 195 452 155 443Z" fill="#ba694e"/>
+    <path d="M155 430L195 446 269 425 224 409Z" fill="#ecd9cd"/>
+    <path d="M165 431L196 443 258 426" fill="none" stroke="#ba694e" stroke-width="1.2" opacity=".5"/>
+    <path d="M165 429L226 414" fill="none" stroke="#c8bba5" stroke-width="2" stroke-dasharray="2 3"/>
+  </g>
+  <g transform="translate(155 319) rotate(-9 37 58)">
+    <ellipse cx="36" cy="104" rx="35" ry="8" fill="#254c49" opacity=".07"/>
+    <rect x="23" y="7" width="27" height="95" rx="5" fill="#d7ad68"/>
+    <ellipse cx="36" cy="15" rx="30" ry="10" fill="#c8bba5"/>
+    <path d="M10 24Q36 36 62 24V86Q36 98 10 86Z" fill="#ecd9cd"/>
+    <path d="M11 29Q36 40 61 29m-50 7q25 11 50 0m-50 7q25 11 50 0m-50 7q25 11 50 0m-50 7q25 11 50 0m-50 7q25 11 50 0m-50 7q25 11 50 0m-50 7q25 11 50 0" stroke="#c8bba5" stroke-width="2" fill="none"/>
+    <ellipse cx="36" cy="90" rx="30" ry="10" fill="#d7ad68"/>
+    <path d="M16 32Q-29 66 2 111T69 133" fill="none" stroke="#c8bba5" stroke-width="2"/>
+    <ellipse cx="36" cy="11" rx="13" ry="4" fill="#f2ecdf" opacity=".42"/>
+  </g>
+  <!-- Quiet branch, with thin stems visible between leaves -->
+  <g fill="none" stroke="#587d72" stroke-linecap="round">
+    <path d="M749 395Q829 294 814 175Q811 148 825 127" stroke-width="3"/>
+    <path d="M799 300L868 259m-56-18-47-35m49 9 43-42m-44 10-36-35M779 342l72-15" stroke-width="1.6"/>
+  </g>
+  <g fill="#587d72">
+    <path d="M818 164Q790 149 797 128Q820 132 818 164Z"/>
+    <path d="M818 166Q849 150 848 133Q824 134 818 166Z"/>
+    <path d="M811 234Q779 224 764 201Q795 199 811 234Z"/>
+    <path d="M827 200Q854 201 867 168Q836 172 827 200Z"/>
+    <path d="M811 293Q846 278 850 253Q820 259 811 293Z"/>
+    <path d="M845 275Q876 281 890 253Q864 248 845 275Z"/>
+    <path d="M790 334Q782 302 761 299Q757 323 790 334Z"/>
+    <path d="M822 333Q849 347 869 324Q842 309 822 333Z"/>
+  </g>
+  <g fill="#879cad" opacity=".67">
+    <path d="M814 195Q788 183 777 147Q806 151 814 195Z"/>
+    <path d="M798 318Q824 309 823 287Q805 294 798 318Z"/>
+  </g>
+  <!-- Three glazed bowls and a resting bamboo dye brush -->
+  <g filter="url(#objectShadow)">
+    <g transform="translate(700 402)">
+      <path d="M0 20Q4 61 48 63T96 20Z" fill="url(#ceramic)"/>
+      <ellipse cx="48" cy="20" rx="48" ry="22" fill="#f2ecdf"/>
+      <ellipse cx="48" cy="20" rx="38" ry="15" fill="#c8bba5"/>
+      <ellipse cx="48" cy="22" rx="35" ry="12" fill="#ba694e"/>
+      <path d="M25 22q13-9 31-7" fill="none" stroke="#ecd9cd" stroke-width="2" opacity=".65"/>
+      <path d="M13 36q35 19 70 0" fill="none" stroke="#c8bba5" stroke-width="1.2"/>
+    </g>
+    <g transform="translate(793 468)">
+      <path d="M0 18Q4 51 45 54T90 18Z" fill="url(#ceramic)"/>
+      <ellipse cx="45" cy="18" rx="45" ry="21" fill="#f2ecdf"/>
+      <ellipse cx="45" cy="19" rx="36" ry="14" fill="#c8bba5"/>
+      <ellipse cx="45" cy="21" rx="33" ry="11" fill="#d7ad68"/>
+      <path d="M26 21q10-7 28-6" fill="none" stroke="#f2ecdf" stroke-width="2" opacity=".65"/>
+    </g>
+    <g transform="translate(681 501)">
+      <path d="M0 20Q3 59 49 60T98 20Z" fill="url(#ceramic)"/>
+      <ellipse cx="49" cy="20" rx="49" ry="23" fill="#f2ecdf"/>
+      <ellipse cx="49" cy="21" rx="40" ry="16" fill="#c8bba5"/>
+      <ellipse cx="49" cy="23" rx="37" ry="13" fill="#254c49"/>
+      <path d="M25 22q17-10 32-6" fill="none" stroke="#879cad" stroke-width="2"/>
+      <path d="M17 39q32 12 64 0" fill="none" stroke="#c8bba5" stroke-width="1.2"/>
+    </g>
+  </g>
+  <g transform="rotate(20 775 404)">
+    <path d="M722 404H834" stroke="#d7ad68" stroke-width="6" stroke-linecap="round"/>
+    <path d="M728 402h98" stroke="#f2ecdf" stroke-width="1" opacity=".5"/>
+    <path d="M712 398h22v12h-22q-10-6 0-12Z" fill="#254c49"/>
+    <path d="M728 398v12m3-12v12" stroke="#c8bba5" stroke-width="1.4"/>
+  </g>
+  <g transform="translate(575 526) rotate(-5)">
+    <path d="M0 0h37v37H0Z" fill="#ba694e"/>
+    <path d="M5 5h27v27H5ZM11 10v8h8v-8m4 0v16m-12-4v5h8m4 4h7" stroke="#f2ecdf" stroke-width="2" fill="none" opacity=".86"/>
+  </g>
+  <path d="M376 552Q430 564 485 551" fill="none" stroke="#c8bba5" stroke-width="1" opacity=".65"/>
+</svg>

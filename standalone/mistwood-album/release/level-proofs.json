@@ -1,0 +1,545 @@
+{
+  "method": "Independent row-mask enumeration and column automata; limit=2",
+  "proofs": [
+    {
+      "id": "candle",
+      "chapter": "first-light",
+      "width": 5,
+      "height": 5,
+      "count": 1,
+      "exhausted": true,
+      "nodes": 6
+    },
+    {
+      "id": "cup",
+      "chapter": "first-light",
+      "width": 5,
+      "height": 5,
+      "count": 1,
+      "exhausted": true,
+      "nodes": 8
+    },
+    {
+      "id": "key",
+      "chapter": "first-light",
+      "width": 5,
+      "height": 5,
+      "count": 1,
+      "exhausted": true,
+      "nodes": 9
+    },
+    {
+      "id": "letter",
+      "chapter": "first-light",
+      "width": 5,
+      "height": 5,
+      "count": 1,
+      "exhausted": true,
+      "nodes": 6
+    },
+    {
+      "id": "frame",
+      "chapter": "first-light",
+      "width": 5,
+      "height": 5,
+      "count": 1,
+      "exhausted": true,
+      "nodes": 6
+    },
+    {
+      "id": "lamp",
+      "chapter": "first-light",
+      "width": 5,
+      "height": 5,
+      "count": 1,
+      "exhausted": true,
+      "nodes": 6
+    },
+    {
+      "id": "timer",
+      "chapter": "first-light",
+      "width": 5,
+      "height": 5,
+      "count": 1,
+      "exhausted": true,
+      "nodes": 8
+    },
+    {
+      "id": "ink",
+      "chapter": "first-light",
+      "width": 5,
+      "height": 5,
+      "count": 1,
+      "exhausted": true,
+      "nodes": 6
+    },
+    {
+      "id": "bow",
+      "chapter": "first-light",
+      "width": 5,
+      "height": 5,
+      "count": 1,
+      "exhausted": true,
+      "nodes": 6
+    },
+    {
+      "id": "book",
+      "chapter": "first-light",
+      "width": 5,
+      "height": 5,
+      "count": 1,
+      "exhausted": true,
+      "nodes": 6
+    },
+    {
+      "id": "leaf",
+      "chapter": "windowsill",
+      "width": 5,
+      "height": 5,
+      "count": 1,
+      "exhausted": true,
+      "nodes": 17
+    },
+    {
+      "id": "sprout",
+      "chapter": "windowsill",
+      "width": 5,
+      "height": 5,
+      "count": 1,
+      "exhausted": true,
+      "nodes": 6
+    },
+    {
+      "id": "pine",
+      "chapter": "windowsill",
+      "width": 5,
+      "height": 5,
+      "count": 1,
+      "exhausted": true,
+      "nodes": 8
+    },
+    {
+      "id": "blossom",
+      "chapter": "windowsill",
+      "width": 5,
+      "height": 5,
+      "count": 1,
+      "exhausted": true,
+      "nodes": 7
+    },
+    {
+      "id": "mushroom",
+      "chapter": "windowsill",
+      "width": 5,
+      "height": 5,
+      "count": 1,
+      "exhausted": true,
+      "nodes": 6
+    },
+    {
+      "id": "apple",
+      "chapter": "windowsill",
+      "width": 5,
+      "height": 5,
+      "count": 1,
+      "exhausted": true,
+      "nodes": 8
+    },
+    {
+      "id": "pear",
+      "chapter": "windowsill",
+      "width": 5,
+      "height": 5,
+      "count": 1,
+      "exhausted": true,
+      "nodes": 6
+    },
+    {
+      "id": "tulip",
+      "chapter": "windowsill",
+      "width": 5,
+      "height": 5,
+      "count": 1,
+      "exhausted": true,
+      "nodes": 6
+    },
+    {
+      "id": "cactus",
+      "chapter": "windowsill",
+      "width": 5,
+      "height": 5,
+      "count": 1,
+      "exhausted": true,
+      "nodes": 6
+    },
+    {
+      "id": "watering-can",
+      "chapter": "windowsill",
+      "width": 5,
+      "height": 5,
+      "count": 1,
+      "exhausted": true,
+      "nodes": 7
+    },
+    {
+      "id": "cottage",
+      "chapter": "old-lane",
+      "width": 7,
+      "height": 7,
+      "count": 1,
+      "exhausted": true,
+      "nodes": 8
+    },
+    {
+      "id": "gate",
+      "chapter": "old-lane",
+      "width": 7,
+      "height": 7,
+      "count": 1,
+      "exhausted": true,
+      "nodes": 14
+    },
+    {
+      "id": "mailbox",
+      "chapter": "old-lane",
+      "width": 7,
+      "height": 7,
+      "count": 1,
+      "exhausted": true,
+      "nodes": 8
+    },
+    {
+      "id": "tram",
+      "chapter": "old-lane",
+      "width": 7,
+      "height": 7,
+      "count": 1,
+      "exhausted": true,
+      "nodes": 26
+    },
+    {
+      "id": "umbrella",
+      "chapter": "old-lane",
+      "width": 7,
+      "height": 7,
+      "count": 1,
+      "exhausted": true,
+      "nodes": 14
+    },
+    {
+      "id": "bridge",
+      "chapter": "old-lane",
+      "width": 7,
+      "height": 7,
+      "count": 1,
+      "exhausted": true,
+      "nodes": 16
+    },
+    {
+      "id": "bench",
+      "chapter": "old-lane",
+      "width": 7,
+      "height": 7,
+      "count": 1,
+      "exhausted": true,
+      "nodes": 8
+    },
+    {
+      "id": "windmill",
+      "chapter": "old-lane",
+      "width": 7,
+      "height": 7,
+      "count": 1,
+      "exhausted": true,
+      "nodes": 8
+    },
+    {
+      "id": "lantern",
+      "chapter": "old-lane",
+      "width": 7,
+      "height": 7,
+      "count": 1,
+      "exhausted": true,
+      "nodes": 12
+    },
+    {
+      "id": "bicycle",
+      "chapter": "old-lane",
+      "width": 7,
+      "height": 7,
+      "count": 1,
+      "exhausted": true,
+      "nodes": 8
+    },
+    {
+      "id": "butterfly",
+      "chapter": "forest-mail",
+      "width": 7,
+      "height": 7,
+      "count": 1,
+      "exhausted": true,
+      "nodes": 19
+    },
+    {
+      "id": "songbird",
+      "chapter": "forest-mail",
+      "width": 7,
+      "height": 7,
+      "count": 1,
+      "exhausted": true,
+      "nodes": 16
+    },
+    {
+      "id": "rabbit",
+      "chapter": "forest-mail",
+      "width": 7,
+      "height": 7,
+      "count": 1,
+      "exhausted": true,
+      "nodes": 8
+    },
+    {
+      "id": "cat",
+      "chapter": "forest-mail",
+      "width": 7,
+      "height": 7,
+      "count": 1,
+      "exhausted": true,
+      "nodes": 8
+    },
+    {
+      "id": "snail",
+      "chapter": "forest-mail",
+      "width": 7,
+      "height": 7,
+      "count": 1,
+      "exhausted": true,
+      "nodes": 8
+    },
+    {
+      "id": "fox",
+      "chapter": "forest-mail",
+      "width": 7,
+      "height": 7,
+      "count": 1,
+      "exhausted": true,
+      "nodes": 16
+    },
+    {
+      "id": "squirrel",
+      "chapter": "forest-mail",
+      "width": 7,
+      "height": 7,
+      "count": 1,
+      "exhausted": true,
+      "nodes": 11
+    },
+    {
+      "id": "deer",
+      "chapter": "forest-mail",
+      "width": 7,
+      "height": 7,
+      "count": 1,
+      "exhausted": true,
+      "nodes": 8
+    },
+    {
+      "id": "owl",
+      "chapter": "forest-mail",
+      "width": 7,
+      "height": 7,
+      "count": 1,
+      "exhausted": true,
+      "nodes": 58
+    },
+    {
+      "id": "paw",
+      "chapter": "forest-mail",
+      "width": 7,
+      "height": 7,
+      "count": 1,
+      "exhausted": true,
+      "nodes": 8
+    },
+    {
+      "id": "sailboat",
+      "chapter": "tide-notes",
+      "width": 7,
+      "height": 7,
+      "count": 1,
+      "exhausted": true,
+      "nodes": 9
+    },
+    {
+      "id": "lighthouse",
+      "chapter": "tide-notes",
+      "width": 7,
+      "height": 7,
+      "count": 1,
+      "exhausted": true,
+      "nodes": 8
+    },
+    {
+      "id": "shell",
+      "chapter": "tide-notes",
+      "width": 7,
+      "height": 7,
+      "count": 1,
+      "exhausted": true,
+      "nodes": 12
+    },
+    {
+      "id": "anchor",
+      "chapter": "tide-notes",
+      "width": 7,
+      "height": 7,
+      "count": 1,
+      "exhausted": true,
+      "nodes": 16
+    },
+    {
+      "id": "fish",
+      "chapter": "tide-notes",
+      "width": 7,
+      "height": 7,
+      "count": 1,
+      "exhausted": true,
+      "nodes": 18
+    },
+    {
+      "id": "whale",
+      "chapter": "tide-notes",
+      "width": 7,
+      "height": 7,
+      "count": 1,
+      "exhausted": true,
+      "nodes": 12
+    },
+    {
+      "id": "jellyfish",
+      "chapter": "tide-notes",
+      "width": 7,
+      "height": 7,
+      "count": 1,
+      "exhausted": true,
+      "nodes": 24
+    },
+    {
+      "id": "crab",
+      "chapter": "tide-notes",
+      "width": 7,
+      "height": 7,
+      "count": 1,
+      "exhausted": true,
+      "nodes": 8
+    },
+    {
+      "id": "penguin",
+      "chapter": "tide-notes",
+      "width": 7,
+      "height": 7,
+      "count": 1,
+      "exhausted": true,
+      "nodes": 14
+    },
+    {
+      "id": "seagull",
+      "chapter": "tide-notes",
+      "width": 7,
+      "height": 7,
+      "count": 1,
+      "exhausted": true,
+      "nodes": 49
+    },
+    {
+      "id": "moon",
+      "chapter": "night-return",
+      "width": 7,
+      "height": 7,
+      "count": 1,
+      "exhausted": true,
+      "nodes": 13
+    },
+    {
+      "id": "star",
+      "chapter": "night-return",
+      "width": 7,
+      "height": 7,
+      "count": 1,
+      "exhausted": true,
+      "nodes": 56
+    },
+    {
+      "id": "comet",
+      "chapter": "night-return",
+      "width": 7,
+      "height": 7,
+      "count": 1,
+      "exhausted": true,
+      "nodes": 47
+    },
+    {
+      "id": "planet",
+      "chapter": "night-return",
+      "width": 7,
+      "height": 7,
+      "count": 1,
+      "exhausted": true,
+      "nodes": 14
+    },
+    {
+      "id": "mountain",
+      "chapter": "night-return",
+      "width": 7,
+      "height": 7,
+      "count": 1,
+      "exhausted": true,
+      "nodes": 8
+    },
+    {
+      "id": "teapot",
+      "chapter": "night-return",
+      "width": 7,
+      "height": 7,
+      "count": 1,
+      "exhausted": true,
+      "nodes": 12
+    },
+    {
+      "id": "gramophone",
+      "chapter": "night-return",
+      "width": 7,
+      "height": 7,
+      "count": 1,
+      "exhausted": true,
+      "nodes": 12
+    },
+    {
+      "id": "camera",
+      "chapter": "night-return",
+      "width": 7,
+      "height": 7,
+      "count": 1,
+      "exhausted": true,
+      "nodes": 18
+    },
+    {
+      "id": "clocktower",
+      "chapter": "night-return",
+      "width": 7,
+      "height": 7,
+      "count": 1,
+      "exhausted": true,
+      "nodes": 8
+    },
+    {
+      "id": "darkroom",
+      "chapter": "night-return",
+      "width": 7,
+      "height": 7,
+      "count": 1,
+      "exhausted": true,
+      "nodes": 8
+    }
+  ]
+}

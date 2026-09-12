@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">月潮回环图标</title>
+  <desc id="desc">一轮银月悬于珊瑚小岛上，一条青绿闭合潮线环绕岛屿，深靛蓝海面宁静柔和，无文字。</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2=".7" y2="1"><stop stop-color="#1c354a"/><stop offset="1" stop-color="#112738"/></linearGradient>
+    <radialGradient id="light"><stop stop-color="#c2d6c1" stop-opacity=".17"/><stop offset="1" stop-color="#b4d0c2" stop-opacity="0"/></radialGradient>
+    <linearGradient id="moon" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fff0d5"/><stop offset=".55" stop-color="#e5e6d5"/><stop offset="1" stop-color="#a8c4c1"/></linearGradient>
+    <linearGradient id="sand" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#aaae94"/><stop offset="1" stop-color="#607c78"/></linearGradient>
+    <linearGradient id="coral" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#efb49f"/><stop offset="1" stop-color="#bd8580"/></linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="112" fill="url(#bg)"/>
+  <circle cx="285" cy="166" r="170" fill="url(#light)"/>
+  <g fill="none" stroke="#a9c9bd" stroke-width="1.5" stroke-linecap="round" opacity=".12"><path d="M76 268h83m183-17h77M58 360h35m337 11h28M134 426h66m117 0h77"/><path d="M80 208h34m280-14h38"/></g>
+  <circle cx="286" cy="148" r="72" fill="url(#moon)"/>
+  <path d="M246 97c-19 11-30 32-30 51" fill="none" stroke="#fff3db" stroke-opacity=".6" stroke-width="2.3" stroke-linecap="round"/>
+  <g fill="#7faaa7" opacity=".12"><circle cx="307" cy="126" r="15"/><ellipse cx="273" cy="173" rx="19" ry="13"/><circle cx="312" cy="176" r="7"/></g>
+  <g fill="#cbb997"><path d="m135 132 3 9 9 3-9 3-3 9-3-9-9-3 9-3Z"/><path d="m390 107 2 6 6 2-6 2-2 6-2-6-6-2 6-2Z"/><circle cx="180" cy="91" r="2.5"/></g>
+  <path d="M103 301C108 261 146 251 191 250S245 227 285 237 325 266 366 271 420 299 417 332 397 373 356 378 307 397 261 396 205 378 167 379 101 359 103 329Z" fill="none" stroke="#87c5b3" stroke-width="9" stroke-linejoin="round"/>
+  <path d="m156 326 20-25 34-5 28-16 37 4 20 14 40 5 25 17 6 18-26 17-44 7-44-8-37 7-39-14Z" fill="#3d5862"/>
+  <path d="m157 323 26-21 31-1 25-17 35 6 19 14 39 5 25 15-23 14-39 6-44-6-37 8-36-13Z" fill="url(#sand)"/>
+  <path d="m170 339 41 15 40-9 44 7 41-9" fill="none" stroke="#c6d4b8" stroke-opacity=".45" stroke-width="2.5"/>
+  <path d="m213 317 15-15 28 2 16 12 26 2 20 13-46 6-41-10-32 7Z" fill="#799789"/>
+  <g fill="none" stroke="url(#coral)" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M291 323c-2-22 4-47 0-78m0 36c-20-4-28-17-29-34m2 10-13-7m40 18c13-3 21-15 22-32m-2 12 13-8" stroke-width="8.5"/>
+    <path d="M292 310c17-4 25-15 31-29m-5 10 17-3m-44-40-9-12" stroke-width="6"/>
+  </g>
+  <g fill="none" stroke="#cfaa9a" stroke-width="4" stroke-linecap="round"><path d="M200 322c-1-22-10-39-24-48m24 48c4-23 12-40 23-53m-23 53c-1-27 0-44 4-62m-4 62c-12-20-25-29-40-33m40 33c14-14 26-21 40-23"/><path d="m184 280-1-12m30 11 0-12m-48 24-7-9m68 25 12 1" stroke-width="2.5"/></g>
+  <g fill="none" stroke="#adc7a4" stroke-width="4" stroke-linecap="round"><path d="M244 328c-4-8-7-17-5-25m6 25c4-11 8-18 14-23"/></g>
+  <ellipse cx="311" cy="338" rx="6" ry="3" fill="#d9c6a4"/><ellipse cx="224" cy="340" rx="4" ry="2" fill="#d9c6a4"/>
+  <path d="M170 411c37 6 62 9 99 6m47-7 27-4" fill="none" stroke="#9fc6b7" stroke-opacity=".25" stroke-width="2" stroke-linecap="round"/>
+</svg>

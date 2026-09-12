@@ -1,0 +1,24 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { execFileSync } from 'node:child_process';
+import assert from 'node:assert/strict';
+const base=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..'),out=path.join(base,'dist/xhs');
+const zip=path.join(base,'dist/paper-crane-journey-xhs.zip');
+const walk=dir=>fs.readdirSync(dir,{withFileTypes:true}).flatMap(item=>item.isDirectory()?walk(path.join(dir,item.name)):[path.join(dir,item.name)]);
+const files=walk(out),html=fs.readFileSync(path.join(out,'index.html'),'utf8'),js=fs.readFileSync(path.join(out,'app.js'),'utf8'),css=fs.readFileSync(path.join(out,'style.css'),'utf8');
+assert(fs.statSync(zip).size<=10*1024*1024,'ZIP must be <=10MiB');
+const list=execFileSync('unzip',['-Z1',zip],{encoding:'utf8'}).trim().split('\n');
+assert(list.includes('index.html'),'Entry must be at ZIP root');assert.equal(list.filter(f=>f.endsWith('.html')).length,1);
+assert(files.every(f=>/\.(html|js|css|json|svg|png|webp|jpg|jpeg|gif|woff2?)$/.test(f)));
+assert(!list.some(f=>/node_modules|\.git|\.DS_Store|\.map$|(?:vite|webpack)\.config/.test(f)));
+assert(!/<script(?![^>]*\bsrc=)[^>]*>|\bon\w+=|javascript:|type=["']module|<base\b|<iframe\b|<object\b|http-equiv=["']Content-Security-Policy/i.test(html));
+assert(!/\b(?:fetch\s*\(|XMLHttpRequest|WebSocket|EventSource|Worker\s*\(|SharedWorker\s*\(|eval\s*\(|WebAssembly|new\s+Function|import\s*\(|export\s+(?:const|function)|serviceWorker|localStorage\.clear|window\.open|window\.prompt|navigator\.(?:geolocation|clipboard|bluetooth|usb|hid|serial|credentials|locks)|requestFullscreen|DeviceMotionEvent|DeviceOrientationEvent)/.test(js));
+assert(!/\?\.|\?\?|\b(?:BigInt|structuredClone)\s*\(|\.replaceAll\s*\(|\.at\s*\(|Object\.hasOwn\s*\(/.test(js),'No unsupported modern syntax / runtime APIs');
+assert(!/\baspect-ratio:|\bclamp\(|:has\(|@container|@layer|\b(?:dvh|svh|lvh)\b|\bcolor-mix\(|\binset\s*:|(?:^|[;{])\s*gap\s*:/.test(css),'CSS Chrome61 baseline');
+for(const match of html.matchAll(/(?:src|href)="([^\"]+)"/g)){assert(match[1].startsWith('./'));assert(fs.existsSync(path.join(out,match[1])));}
+for(const text of [html,css,js])assert(!/(?:src=["']|url\(['"]?)https?:\/\//.test(text),'No remote assets');
+for(const name of ['tutorial-1.svg','tutorial-2.svg','tutorial-3.svg','cover.svg','icon.svg'])assert(fs.statSync(path.join(out,'assets',name)).size>300);
+const largest=files.map(f=>({path:path.relative(out,f),bytes:fs.statSync(f).size})).sort((a,b)=>b.bytes-a.bytes);
+const report={passed:true,zipBytes:fs.statSync(zip).size,uncompressedBytes:largest.reduce((s,f)=>s+f.bytes,0),fileCount:files.length,largest:largest.slice(0,3),checks:['root-index','allowed-extensions','local-assets','classic-script','forbidden-capabilities','ES2017-baseline-scan','Chrome61-CSS-baseline-scan','package-size'],compatibility:'Static compliance only; actual Chrome 61 / Android 8.1 not tested'};
+fs.writeFileSync(path.join(base,'release/zip-audit.json'),JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify(report,null,2));

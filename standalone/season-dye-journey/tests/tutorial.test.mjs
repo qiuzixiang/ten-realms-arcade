@@ -1,0 +1,8 @@
+import test from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs';import crypto from 'node:crypto';import {tutorialStates,loadGame} from '../scripts/tutorial.mjs';
+test('all three actual tutorial assets match replayed truth, renderer and image metadata',()=>{
+ const states=tutorialStates(),truth=JSON.parse(fs.readFileSync(new URL('../assets/tutorial-truth.json',import.meta.url)));
+ states.forEach((s,i)=>{const {svg,...meta}=s;assert.deepEqual(meta,truth[i]);assert.equal(fs.readFileSync(new URL('../assets/tutorial-'+s.key+'.svg',import.meta.url),'utf8'),svg);const png=fs.readFileSync(new URL('../assets/tutorial-'+s.key+'.png',import.meta.url));assert.equal(png.subarray(1,4).toString(),'PNG');assert.equal(png.readUInt32BE(16),720);assert.equal(png.readUInt32BE(20),720);assert.equal((svg.match(/data-cell=/g)||[]).length,16);assert.ok(svg.includes('data-controlled="'+s.controlled+'"'));});
+ assert.deepEqual(states.map(s=>s.moves),[0,1,2]);assert.deepEqual(states.map(s=>s.controlled),[4,12,16]);assert.equal(states[2].status,'won');
+});
+test('every dye has a distinct visible vector motif independent of hue',()=>{const R=loadGame().Render;assert.equal(R.colours.length,6);assert.equal(new Set(R.colours.map(c=>c.motif)).size,6);assert.equal(new Set(R.colours.map((_,i)=>R.glyph(i,20,20,40))).size,6);});
+test('generated production script exactly combines independently maintained source modules',()=>{const built=fs.readFileSync(new URL('../dist/xhs/app.js',import.meta.url),'utf8');for(const file of ['engine','levels','render','storage','app'])assert.ok(built.includes(fs.readFileSync(new URL('../src/'+file+'.js',import.meta.url),'utf8')),file+' differs from build');});

@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "files": 20,
+  "zipBytes": 163440,
+  "expandedBytes": 324538,
+  "externalResources": 0,
+  "classicScript": true,
+  "forbiddenCapabilities": 0,
+  "checks": "Offline paths, JS/CSS baseline scan, ZIP entries and byte equality; Chrome61 device not run"
+}

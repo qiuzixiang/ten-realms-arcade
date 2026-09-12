@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="240" viewBox="0 0 480 240" role="img" aria-labelledby="title desc"><title id="title">秋·山色成绢</title><desc id="desc">一匹秋山纹织物呈现杏黄、赭红与松绿的层染，枫叶、线轴与赭红染碟在周围相伴。装饰性章节插画。</desc><defs>
+ <pattern id="paper" width="31" height="27" patternUnits="userSpaceOnUse"><path d="M3 7h7m13 12h5" stroke="#c8bba5" stroke-width=".6" opacity=".35"/></pattern>
+ <pattern id="weave" width="5" height="5" patternUnits="userSpaceOnUse"><path d="M.5 0v5M0 .5h5" stroke="#f2ecdf" stroke-width=".4" opacity=".16"/></pattern>
+ <linearGradient id="wood" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#d7ad68"/><stop offset="1" stop-color="#c8bba5"/></linearGradient>
+ <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="5" stdDeviation="5" flood-color="#254c49" flood-opacity=".1"/></filter>
+</defs><rect width="480" height="240" fill="#f2ecdf"/><rect width="480" height="240" fill="url(#paper)"/>
+ <ellipse cx="237" cy="119" rx="166" ry="107" fill="#d7ad68" opacity=".18"/>
+ <circle cx="316" cy="58" r="28" fill="#d7ad68" opacity=".67"/>
+ <path d="M22 208Q173 194 318 203T457 204" stroke="#c8bba5" opacity=".5" fill="none"/>
+ <g filter="url(#shadow)">
+  <rect x="102" y="51" width="259" height="15" rx="7.5" fill="url(#wood)"/>
+  <ellipse cx="103" cy="58.5" rx="4.5" ry="7.5" fill="#ba694e"/>
+  <path d="M121 64H344L349 172Q347 189 330 193L144 207Q122 206 122 188Z" fill="#ecd9cd"/>
+  <path d="M122 96C165 108 188 67 229 78S301 122 346 90L348 143H122Z" fill="#879cad"/>
+  <path d="M122 123C165 134 187 95 229 105S300 149 346 117L349 172H122Z" fill="#d7ad68"/>
+  <path d="M122 155C165 166 188 126 231 137S302 180 348 149L349 175Q347 190 330 193L145 207Q122 206 122 189Z" fill="#ba694e"/>
+  <path d="M122 183C165 194 189 154 230 165S301 208 348 177L349 183 330 196 145 209 122 199Z" fill="#254c49"/>
+  <path d="M123 132C165 143 189 104 230 114M123 162C165 173 189 134 231 145" fill="none" stroke="#f2ecdf" opacity=".43"/>
+  <path d="M121 64H344L349 172Q347 189 330 193L144 207Q122 206 122 188Z" fill="url(#weave)"/>
+  <path d="M131 67V189M335 67l4 103" stroke="#f2ecdf" opacity=".5"/>
+  <path d="M123 54h220" stroke="#f2ecdf" opacity=".45"/>
+ </g>
+ <g stroke="#ba694e" fill="none" stroke-linecap="round"><path d="M371 217Q379 140 421 43" stroke-width="2.6"/><path d="M392 137l-27-37m37 13 42-12m-28-49-29-17M380 181l43-14" stroke-width="1.3"/></g>
+ <g fill="#ba694e">
+  <path d="M414 69l-14-12 8-5-6-13 14 5 5-17 6 18 13-5-6 13 9 5-17 11-6 9Z"/>
+  <path d="M365 115l-14-9 6-6-8-12 13 2 2-16 8 15 12-7-3 13 9 3-15 13-2 10Z"/>
+  <path d="M425 175l-12-10 7-4-5-12 12 4 5-14 4 15 12-3-5 11 7 4-14 9-5 7Z" fill="#d7ad68"/>
+  <path d="M445 110l-11-9 6-4-5-11 12 4 4-13 4 14 10-4-4 10 7 4-13 9-5 7Z" fill="#d7ad68"/>
+  <path d="M389 59l-11-10 6-4-4-10 11 3 4-13 4 14 11-3-5 10 7 4-13 9-4 6Z" opacity=".65"/>
+ </g>
+ <g fill="none" stroke="#f2ecdf" stroke-width=".9" opacity=".46"><path d="M420 69l1-27m-1 19-10-7m10 7 11-7M369 112l-5-24m4 17-11-4m11 4 10-8M431 175v-24m0 16-9-6m9 6 10-6"/></g>
+ <g transform="translate(45 179)"><path d="M0 12q2 27 29 28t30-28Z" fill="#c8bba5"/><ellipse cx="29.5" cy="12" rx="29.5" ry="13" fill="#f2ecdf"/><ellipse cx="29.5" cy="12" rx="23" ry="8" fill="#ba694e"/><path d="M15 11q10-4 20-3" stroke="#ecd9cd" stroke-width="1.3" fill="none"/></g>
+ <g transform="translate(57 105) rotate(-18)"><rect x="10" y="0" width="15" height="62" rx="3" fill="#d7ad68"/><ellipse cx="17.5" cy="8" rx="20" ry="7" fill="#c8bba5"/><path d="M0 14q18 8 35 0v37q-18 8-35 0Z" fill="#d7ad68"/><path d="M1 18q16 7 33 0m-33 5q16 7 33 0m-33 5q16 7 33 0m-33 5q16 7 33 0m-33 5q16 7 33 0m-33 5q16 7 33 0" stroke="#f2ecdf" opacity=".4" fill="none"/><ellipse cx="17.5" cy="54" rx="20" ry="7" fill="#c8bba5"/></g>
+ <path d="M239 220q9-10 17-7-4 13-17 7Zm-25-180q7-8 12-6-1 10-12 6Z" fill="#ba694e" opacity=".7"/>
+</svg>

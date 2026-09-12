@@ -56,6 +56,8 @@ self.addEventListener("fetch", (event) => {
   // Later editions own their own shells, caches and service-worker scopes.
   // Let their requests reach the network (or their scoped workers) without
   // falling back to the 1.0 shell.
+  const standalonePath = new URL("./standalone/", self.registration.scope).pathname;
+  if (url.pathname === standalonePath.slice(0, -1) || url.pathname.startsWith(standalonePath)) return;
   const v2Path = new URL("./v2/", self.registration.scope).pathname;
   const v3Path = new URL("./v3/", self.registration.scope).pathname;
   const v4Path = new URL("./v4/", self.registration.scope).pathname;

@@ -39,3 +39,8 @@ jobs:
           PAGES_BASE_URL: ${{ steps.deployment.outputs.page_url }}
           VERCEL_BASE_URL: https://ten-realms-arcade.vercel.app/
         run: node scripts/online-smoke.mjs
+
+      - name: Verify five standalone games and downloads
+        env:
+          PAGES_BASE_URL: ${{ steps.deployment.outputs.page_url }}
+        run: node scripts/standalone-smoke.mjs

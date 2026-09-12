@@ -1,0 +1,1097 @@
+{
+  "status": "PASS",
+  "browser": {
+    "protocolVersion": "1.3",
+    "product": "Chrome/152.0.7977.77",
+    "revision": "@529d9a34b491745086b59458f58a5aae8292adaa",
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/152.0.0.0 Safari/537.36",
+    "jsVersion": "15.2.124.19"
+  },
+  "url": "http://127.0.0.1:4285",
+  "checks": [
+    "First-entry tutorial appears, actual SVG loads, skip opens playable board",
+    "Reopen and complete all three tutorial cards",
+    "Direct taps toggle; four swipes work; ambiguous and cancelled gestures do not commit",
+    "Real cell-direction input, identical operation no-op, undo",
+    "Excluded mark is saved, reload resumes stable runId",
+    "Contextual hint explains and applies a step; restart creates fresh run",
+    "First puzzle completed entirely with real browser pointer clicks; completion persists across refresh",
+    "Full first-level completion with 12 direct taps",
+    "Repeat clear creates separate attempt; idempotent rewards covered by storage tests",
+    "Daily and Chinese seed bottle modes enter and resume",
+    "6x6 swipe at 320px and optional precise mode",
+    "Escape closes modal; background unlocks",
+    "Reduced-motion CSS media emulation"
+  ],
+  "layouts": [
+    {
+      "width": 390,
+      "height": 844,
+      "scroll": 390,
+      "client": 390,
+      "board": {
+        "top": 140,
+        "bottom": 494
+      },
+      "toolsBottom": 701,
+      "minCell": 104.109375,
+      "buttons": [
+        {
+          "text": "← 海图",
+          "w": 54.25,
+          "h": 44
+        },
+        {
+          "text": "? 玩法",
+          "w": 57.53125,
+          "h": 44
+        },
+        {
+          "text": "切换精确模式",
+          "w": 86,
+          "h": 44
+        },
+        {
+          "text": "━ 画线",
+          "w": 115.328125,
+          "h": 44
+        },
+        {
+          "text": "× 排除",
+          "w": 115.34375,
+          "h": 44
+        },
+        {
+          "text": "· 擦除",
+          "w": 115.328125,
+          "h": 44
+        },
+        {
+          "text": "↶ 撤销",
+          "w": 118,
+          "h": 44
+        },
+        {
+          "text": "↻ 重开",
+          "w": 118,
+          "h": 44
+        },
+        {
+          "text": "✧ 听潮提示",
+          "w": 118,
+          "h": 44
+        }
+      ],
+      "label": "play-390"
+    },
+    {
+      "width": 320,
+      "height": 720,
+      "scroll": 320,
+      "client": 320,
+      "board": {
+        "top": 121,
+        "bottom": 417
+      },
+      "toolsBottom": 621,
+      "minCell": 46.25,
+      "buttons": [
+        {
+          "text": "← 海图",
+          "w": 54.25,
+          "h": 44
+        },
+        {
+          "text": "? 玩法",
+          "w": 57.53125,
+          "h": 44
+        },
+        {
+          "text": "切换精确模式",
+          "w": 86,
+          "h": 44
+        },
+        {
+          "text": "━ 画线",
+          "w": 96,
+          "h": 44
+        },
+        {
+          "text": "× 排除",
+          "w": 96,
+          "h": 44
+        },
+        {
+          "text": "· 擦除",
+          "w": 96,
+          "h": 44
+        },
+        {
+          "text": "↶ 撤销",
+          "w": 98.65625,
+          "h": 44
+        },
+        {
+          "text": "↻ 重开",
+          "w": 98.671875,
+          "h": 44
+        },
+        {
+          "text": "✧ 听潮提示",
+          "w": 98.671875,
+          "h": 44
+        }
+      ],
+      "label": "max-board-320"
+    },
+    {
+      "width": 349,
+      "height": 720,
+      "scroll": 349,
+      "client": 349,
+      "board": {
+        "top": 121,
+        "bottom": 446
+      },
+      "toolsBottom": 650,
+      "minCell": 50.78125,
+      "buttons": [
+        {
+          "text": "← 海图",
+          "w": 54.25,
+          "h": 44
+        },
+        {
+          "text": "? 玩法",
+          "w": 57.53125,
+          "h": 44
+        },
+        {
+          "text": "切换精确模式",
+          "w": 86,
+          "h": 44
+        },
+        {
+          "text": "━ 画线",
+          "w": 105.65625,
+          "h": 44
+        },
+        {
+          "text": "× 排除",
+          "w": 105.671875,
+          "h": 44
+        },
+        {
+          "text": "· 擦除",
+          "w": 105.671875,
+          "h": 44
+        },
+        {
+          "text": "↶ 撤销",
+          "w": 108.328125,
+          "h": 44
+        },
+        {
+          "text": "↻ 重开",
+          "w": 108.34375,
+          "h": 44
+        },
+        {
+          "text": "✧ 听潮提示",
+          "w": 108.328125,
+          "h": 44
+        }
+      ],
+      "label": "max-board-349"
+    },
+    {
+      "width": 350,
+      "height": 720,
+      "scroll": 350,
+      "client": 350,
+      "board": {
+        "top": 121,
+        "bottom": 447
+      },
+      "toolsBottom": 651,
+      "minCell": 50.9375,
+      "buttons": [
+        {
+          "text": "← 海图",
+          "w": 54.25,
+          "h": 44
+        },
+        {
+          "text": "? 玩法",
+          "w": 57.53125,
+          "h": 44
+        },
+        {
+          "text": "切换精确模式",
+          "w": 86,
+          "h": 44
+        },
+        {
+          "text": "━ 画线",
+          "w": 106,
+          "h": 44
+        },
+        {
+          "text": "× 排除",
+          "w": 106,
+          "h": 44
+        },
+        {
+          "text": "· 擦除",
+          "w": 106,
+          "h": 44
+        },
+        {
+          "text": "↶ 撤销",
+          "w": 108.65625,
+          "h": 44
+        },
+        {
+          "text": "↻ 重开",
+          "w": 108.671875,
+          "h": 44
+        },
+        {
+          "text": "✧ 听潮提示",
+          "w": 108.671875,
+          "h": 44
+        }
+      ],
+      "label": "max-board-350"
+    },
+    {
+      "width": 351,
+      "height": 720,
+      "scroll": 351,
+      "client": 351,
+      "board": {
+        "top": 140,
+        "bottom": 455
+      },
+      "toolsBottom": 662,
+      "minCell": 49.21875,
+      "buttons": [
+        {
+          "text": "← 海图",
+          "w": 54.25,
+          "h": 44
+        },
+        {
+          "text": "? 玩法",
+          "w": 57.53125,
+          "h": 44
+        },
+        {
+          "text": "切换精确模式",
+          "w": 86,
+          "h": 44
+        },
+        {
+          "text": "━ 画线",
+          "w": 102.328125,
+          "h": 44
+        },
+        {
+          "text": "× 排除",
+          "w": 102.34375,
+          "h": 44
+        },
+        {
+          "text": "· 擦除",
+          "w": 102.328125,
+          "h": 44
+        },
+        {
+          "text": "↶ 撤销",
+          "w": 105,
+          "h": 44
+        },
+        {
+          "text": "↻ 重开",
+          "w": 105,
+          "h": 44
+        },
+        {
+          "text": "✧ 听潮提示",
+          "w": 105,
+          "h": 44
+        }
+      ],
+      "label": "max-board-351"
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "scroll": 390,
+      "client": 390,
+      "board": {
+        "top": 140,
+        "bottom": 494
+      },
+      "toolsBottom": 701,
+      "minCell": 55.3125,
+      "buttons": [
+        {
+          "text": "← 海图",
+          "w": 54.25,
+          "h": 44
+        },
+        {
+          "text": "? 玩法",
+          "w": 57.53125,
+          "h": 44
+        },
+        {
+          "text": "切换精确模式",
+          "w": 86,
+          "h": 44
+        },
+        {
+          "text": "━ 画线",
+          "w": 115.328125,
+          "h": 44
+        },
+        {
+          "text": "× 排除",
+          "w": 115.34375,
+          "h": 44
+        },
+        {
+          "text": "· 擦除",
+          "w": 115.328125,
+          "h": 44
+        },
+        {
+          "text": "↶ 撤销",
+          "w": 118,
+          "h": 44
+        },
+        {
+          "text": "↻ 重开",
+          "w": 118,
+          "h": 44
+        },
+        {
+          "text": "✧ 听潮提示",
+          "w": 118,
+          "h": 44
+        }
+      ],
+      "label": "max-board-390"
+    },
+    {
+      "width": 699,
+      "height": 844,
+      "scroll": 699,
+      "client": 699,
+      "board": {
+        "top": 140,
+        "bottom": 540
+      },
+      "toolsBottom": 747,
+      "minCell": 62.5,
+      "buttons": [
+        {
+          "text": "← 海图",
+          "w": 54.25,
+          "h": 44
+        },
+        {
+          "text": "? 玩法",
+          "w": 57.53125,
+          "h": 44
+        },
+        {
+          "text": "切换精确模式",
+          "w": 86,
+          "h": 44
+        },
+        {
+          "text": "━ 画线",
+          "w": 155.328125,
+          "h": 44
+        },
+        {
+          "text": "× 排除",
+          "w": 155.34375,
+          "h": 44
+        },
+        {
+          "text": "· 擦除",
+          "w": 155.328125,
+          "h": 44
+        },
+        {
+          "text": "↶ 撤销",
+          "w": 158,
+          "h": 44
+        },
+        {
+          "text": "↻ 重开",
+          "w": 158,
+          "h": 44
+        },
+        {
+          "text": "✧ 听潮提示",
+          "w": 158,
+          "h": 44
+        }
+      ],
+      "label": "max-board-699"
+    },
+    {
+      "width": 700,
+      "height": 844,
+      "scroll": 700,
+      "client": 700,
+      "board": {
+        "top": 140,
+        "bottom": 540
+      },
+      "toolsBottom": 747,
+      "minCell": 62.5,
+      "buttons": [
+        {
+          "text": "← 海图",
+          "w": 54.25,
+          "h": 44
+        },
+        {
+          "text": "? 玩法",
+          "w": 57.53125,
+          "h": 44
+        },
+        {
+          "text": "切换精确模式",
+          "w": 86,
+          "h": 44
+        },
+        {
+          "text": "━ 画线",
+          "w": 155.328125,
+          "h": 44
+        },
+        {
+          "text": "× 排除",
+          "w": 155.34375,
+          "h": 44
+        },
+        {
+          "text": "· 擦除",
+          "w": 155.328125,
+          "h": 44
+        },
+        {
+          "text": "↶ 撤销",
+          "w": 158,
+          "h": 44
+        },
+        {
+          "text": "↻ 重开",
+          "w": 158,
+          "h": 44
+        },
+        {
+          "text": "✧ 听潮提示",
+          "w": 158,
+          "h": 44
+        }
+      ],
+      "label": "max-board-700"
+    },
+    {
+      "width": 701,
+      "height": 844,
+      "scroll": 701,
+      "client": 701,
+      "board": {
+        "top": 140,
+        "bottom": 540
+      },
+      "toolsBottom": 747,
+      "minCell": 62.5,
+      "buttons": [
+        {
+          "text": "← 海图",
+          "w": 54.25,
+          "h": 44
+        },
+        {
+          "text": "? 玩法",
+          "w": 57.53125,
+          "h": 44
+        },
+        {
+          "text": "切换精确模式",
+          "w": 86,
+          "h": 44
+        },
+        {
+          "text": "━ 画线",
+          "w": 155.328125,
+          "h": 44
+        },
+        {
+          "text": "× 排除",
+          "w": 155.34375,
+          "h": 44
+        },
+        {
+          "text": "· 擦除",
+          "w": 155.328125,
+          "h": 44
+        },
+        {
+          "text": "↶ 撤销",
+          "w": 158,
+          "h": 44
+        },
+        {
+          "text": "↻ 重开",
+          "w": 158,
+          "h": 44
+        },
+        {
+          "text": "✧ 听潮提示",
+          "w": 158,
+          "h": 44
+        }
+      ],
+      "label": "max-board-701"
+    },
+    {
+      "width": 819,
+      "height": 844,
+      "scroll": 819,
+      "client": 819,
+      "board": {
+        "top": 140,
+        "bottom": 540
+      },
+      "toolsBottom": 747,
+      "minCell": 62.5,
+      "buttons": [
+        {
+          "text": "← 海图",
+          "w": 54.25,
+          "h": 44
+        },
+        {
+          "text": "? 玩法",
+          "w": 57.53125,
+          "h": 44
+        },
+        {
+          "text": "切换精确模式",
+          "w": 86,
+          "h": 44
+        },
+        {
+          "text": "━ 画线",
+          "w": 155.328125,
+          "h": 44
+        },
+        {
+          "text": "× 排除",
+          "w": 155.34375,
+          "h": 44
+        },
+        {
+          "text": "· 擦除",
+          "w": 155.328125,
+          "h": 44
+        },
+        {
+          "text": "↶ 撤销",
+          "w": 158,
+          "h": 44
+        },
+        {
+          "text": "↻ 重开",
+          "w": 158,
+          "h": 44
+        },
+        {
+          "text": "✧ 听潮提示",
+          "w": 158,
+          "h": 44
+        }
+      ],
+      "label": "max-board-819"
+    },
+    {
+      "width": 820,
+      "height": 844,
+      "scroll": 820,
+      "client": 820,
+      "board": {
+        "top": 140,
+        "bottom": 540
+      },
+      "toolsBottom": 747,
+      "minCell": 62.5,
+      "buttons": [
+        {
+          "text": "← 海图",
+          "w": 54.25,
+          "h": 44
+        },
+        {
+          "text": "? 玩法",
+          "w": 57.53125,
+          "h": 44
+        },
+        {
+          "text": "切换精确模式",
+          "w": 86,
+          "h": 44
+        },
+        {
+          "text": "━ 画线",
+          "w": 155.328125,
+          "h": 44
+        },
+        {
+          "text": "× 排除",
+          "w": 155.34375,
+          "h": 44
+        },
+        {
+          "text": "· 擦除",
+          "w": 155.328125,
+          "h": 44
+        },
+        {
+          "text": "↶ 撤销",
+          "w": 158,
+          "h": 44
+        },
+        {
+          "text": "↻ 重开",
+          "w": 158,
+          "h": 44
+        },
+        {
+          "text": "✧ 听潮提示",
+          "w": 158,
+          "h": 44
+        }
+      ],
+      "label": "max-board-820"
+    },
+    {
+      "width": 821,
+      "height": 844,
+      "scroll": 821,
+      "client": 821,
+      "board": {
+        "top": 175,
+        "bottom": 575
+      },
+      "toolsBottom": 523.5,
+      "minCell": 62.5,
+      "buttons": [
+        {
+          "text": "← 海图",
+          "w": 46.25,
+          "h": 44
+        },
+        {
+          "text": "? 玩法",
+          "w": 57.53125,
+          "h": 44
+        },
+        {
+          "text": "切换精确模式",
+          "w": 86,
+          "h": 44
+        },
+        {
+          "text": "━ 画线",
+          "w": 92.328125,
+          "h": 44
+        },
+        {
+          "text": "× 排除",
+          "w": 92.34375,
+          "h": 44
+        },
+        {
+          "text": "· 擦除",
+          "w": 92.328125,
+          "h": 44
+        },
+        {
+          "text": "↶ 撤销",
+          "w": 95,
+          "h": 44
+        },
+        {
+          "text": "↻ 重开",
+          "w": 95,
+          "h": 44
+        },
+        {
+          "text": "✧ 听潮提示",
+          "w": 95,
+          "h": 44
+        }
+      ],
+      "label": "max-board-821"
+    },
+    {
+      "width": 1280,
+      "height": 720,
+      "scroll": 1280,
+      "client": 1280,
+      "board": {
+        "top": 175,
+        "bottom": 575
+      },
+      "toolsBottom": 523.5,
+      "minCell": 62.5,
+      "buttons": [
+        {
+          "text": "← 海图",
+          "w": 46.25,
+          "h": 44
+        },
+        {
+          "text": "? 玩法",
+          "w": 57.53125,
+          "h": 44
+        },
+        {
+          "text": "切换精确模式",
+          "w": 86,
+          "h": 44
+        },
+        {
+          "text": "━ 画线",
+          "w": 92.328125,
+          "h": 44
+        },
+        {
+          "text": "× 排除",
+          "w": 92.34375,
+          "h": 44
+        },
+        {
+          "text": "· 擦除",
+          "w": 92.328125,
+          "h": 44
+        },
+        {
+          "text": "↶ 撤销",
+          "w": 95,
+          "h": 44
+        },
+        {
+          "text": "↻ 重开",
+          "w": 95,
+          "h": 44
+        },
+        {
+          "text": "✧ 听潮提示",
+          "w": 95,
+          "h": 44
+        }
+      ],
+      "label": "max-board-1280"
+    },
+    {
+      "width": 320,
+      "height": 720,
+      "scroll": 320,
+      "client": 320,
+      "board": {
+        "top": 121,
+        "bottom": 417
+      },
+      "toolsBottom": 677,
+      "minCell": 46.25,
+      "buttons": [
+        {
+          "text": "← 海图",
+          "w": 54.25,
+          "h": 44
+        },
+        {
+          "text": "? 玩法",
+          "w": 57.53125,
+          "h": 44
+        },
+        {
+          "text": "返回手势画线",
+          "w": 86,
+          "h": 44
+        },
+        {
+          "text": "━ 画线",
+          "w": 96,
+          "h": 44
+        },
+        {
+          "text": "× 排除",
+          "w": 96,
+          "h": 44
+        },
+        {
+          "text": "· 擦除",
+          "w": 96,
+          "h": 44
+        },
+        {
+          "text": "↑上边",
+          "w": 69.5,
+          "h": 46
+        },
+        {
+          "text": "→右边",
+          "w": 69.5,
+          "h": 46
+        },
+        {
+          "text": "↓下边",
+          "w": 69.5,
+          "h": 46
+        },
+        {
+          "text": "←左边",
+          "w": 69.5,
+          "h": 46
+        },
+        {
+          "text": "↶ 撤销",
+          "w": 98.65625,
+          "h": 44
+        },
+        {
+          "text": "↻ 重开",
+          "w": 98.671875,
+          "h": 44
+        },
+        {
+          "text": "✧ 听潮提示",
+          "w": 98.671875,
+          "h": 44
+        }
+      ],
+      "label": "precise-320"
+    },
+    {
+      "width": 320,
+      "height": 720,
+      "scroll": 320,
+      "client": 320,
+      "board": {
+        "top": 121,
+        "bottom": 417
+      },
+      "toolsBottom": 621,
+      "minCell": 46.25,
+      "buttons": [
+        {
+          "text": "← 海图",
+          "w": 54.25,
+          "h": 44
+        },
+        {
+          "text": "? 玩法",
+          "w": 57.53125,
+          "h": 44
+        },
+        {
+          "text": "切换精确模式",
+          "w": 86,
+          "h": 44
+        },
+        {
+          "text": "━ 画线",
+          "w": 96,
+          "h": 44
+        },
+        {
+          "text": "× 排除",
+          "w": 96,
+          "h": 44
+        },
+        {
+          "text": "· 擦除",
+          "w": 96,
+          "h": 44
+        },
+        {
+          "text": "↶ 撤销",
+          "w": 98.65625,
+          "h": 44
+        },
+        {
+          "text": "↻ 重开",
+          "w": 98.671875,
+          "h": 44
+        },
+        {
+          "text": "✧ 听潮提示",
+          "w": 98.671875,
+          "h": 44
+        },
+        {
+          "text": "跳过",
+          "w": 44,
+          "h": 44
+        },
+        {
+          "text": "下一张 →",
+          "w": 256,
+          "h": 46
+        }
+      ],
+      "label": "tutorial-320"
+    },
+    {
+      "width": 320,
+      "height": 720,
+      "scroll": 320,
+      "client": 320,
+      "board": null,
+      "toolsBottom": null,
+      "minCell": null,
+      "buttons": [
+        {
+          "text": "玩法手记",
+          "w": 72,
+          "h": 44
+        },
+        {
+          "text": "ISLAND 01初月沙洲数字与四边 · 1/12",
+          "w": 141,
+          "h": 118
+        },
+        {
+          "text": "ISLAND 02珊瑚浅湾共享角点 · 0/12",
+          "w": 141,
+          "h": 118
+        },
+        {
+          "text": "ISLAND 03潮声石径空白与排除 · 0/12",
+          "w": 141,
+          "h": 118
+        },
+        {
+          "text": "ISLAND 04蓝泪环礁连续延伸 · 0/12",
+          "w": 141,
+          "h": 118
+        },
+        {
+          "text": "ISLAND 05银沙群岛避免提前闭环 · 0/12",
+          "w": 141,
+          "h": 118
+        },
+        {
+          "text": "ISLAND 06满月深海整体单环 · 0/12",
+          "w": 141,
+          "h": 118
+        },
+        {
+          "text": "继续潮汐手记满月·环心↗",
+          "w": 292,
+          "h": 76
+        },
+        {
+          "text": "赴今日之约 ↗",
+          "w": 96.65625,
+          "h": 46
+        },
+        {
+          "text": "瓶中潮汐　→",
+          "w": 292,
+          "h": 44
+        },
+        {
+          "text": "规则与来源",
+          "w": 79,
+          "h": 44
+        }
+      ],
+      "label": "home-320"
+    },
+    {
+      "width": 1280,
+      "height": 720,
+      "scroll": 1280,
+      "client": 1280,
+      "board": null,
+      "toolsBottom": null,
+      "minCell": null,
+      "buttons": [
+        {
+          "text": "玩法手记",
+          "w": 72,
+          "h": 44
+        },
+        {
+          "text": "ISLAND 01初月沙洲数字与四边 · 1/12",
+          "w": 340,
+          "h": 125
+        },
+        {
+          "text": "ISLAND 02珊瑚浅湾共享角点 · 0/12",
+          "w": 340,
+          "h": 125
+        },
+        {
+          "text": "ISLAND 03潮声石径空白与排除 · 0/12",
+          "w": 340,
+          "h": 125
+        },
+        {
+          "text": "ISLAND 04蓝泪环礁连续延伸 · 0/12",
+          "w": 340,
+          "h": 125
+        },
+        {
+          "text": "ISLAND 05银沙群岛避免提前闭环 · 0/12",
+          "w": 340,
+          "h": 125
+        },
+        {
+          "text": "ISLAND 06满月深海整体单环 · 0/12",
+          "w": 340,
+          "h": 125
+        },
+        {
+          "text": "继续潮汐手记满月·环心↗",
+          "w": 310,
+          "h": 76
+        },
+        {
+          "text": "赴今日之约 ↗",
+          "w": 260,
+          "h": 46
+        },
+        {
+          "text": "瓶中潮汐　→",
+          "w": 310,
+          "h": 44
+        },
+        {
+          "text": "规则与来源",
+          "w": 79,
+          "h": 44
+        }
+      ],
+      "label": "home-desktop"
+    }
+  ],
+  "errors": [],
+  "limitations": [
+    "Desktop Chromium touch/viewport emulation, not physical mobile",
+    "Chrome61 / iOS Safari / Xiaohongshu native container not available"
+  ]
+}

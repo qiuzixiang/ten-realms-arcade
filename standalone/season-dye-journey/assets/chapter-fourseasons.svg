@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="240" viewBox="0 0 480 240" role="img" aria-labelledby="title desc"><title id="title">四时·山河合卷</title><desc id="desc">青绿、杏黄、赭红与黛蓝汇入横展的山河长卷，留白河流穿过层层山色，四碟染料陈列在卷前。装饰性章节插画。</desc><defs>
+ <pattern id="paper" width="31" height="27" patternUnits="userSpaceOnUse"><path d="M3 7h7m13 12h5" stroke="#c8bba5" stroke-width=".6" opacity=".35"/></pattern>
+ <pattern id="weave" width="5" height="5" patternUnits="userSpaceOnUse"><path d="M.5 0v5M0 .5h5" stroke="#f2ecdf" stroke-width=".4" opacity=".16"/></pattern>
+ <linearGradient id="wood" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#d7ad68"/><stop offset="1" stop-color="#c8bba5"/></linearGradient>
+ <linearGradient id="roller" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#c8bba5"/><stop offset=".28" stop-color="#f2ecdf"/><stop offset=".72" stop-color="#ecd9cd"/><stop offset="1" stop-color="#c8bba5"/></linearGradient>
+ <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#254c49" flood-opacity=".1"/></filter>
+</defs><rect width="480" height="240" fill="#f2ecdf"/><rect width="480" height="240" fill="url(#paper)"/>
+ <ellipse cx="244" cy="127" rx="195" ry="105" fill="#ecd9cd" opacity=".35"/>
+ <circle cx="309" cy="54" r="26" fill="#d7ad68" opacity=".63"/>
+ <path d="M15 211Q158 199 294 207T466 206" stroke="#c8bba5" opacity=".5" fill="none"/>
+ <!-- A horizontal landscape scroll: one panorama, with all four dye families. -->
+ <g filter="url(#shadow)">
+  <path d="M79 76Q240 63 403 78V187Q237 174 79 193Z" fill="#c8bba5" opacity=".55"/>
+  <path d="M78 64Q241 55 404 69V178Q241 163 78 182Z" fill="#f2ecdf"/>
+  <path d="M82 98C111 91 122 70 150 84S185 110 215 82 257 96 280 81 316 85 339 79 378 87 401 83V141H82Z" fill="#879cad" opacity=".68"/>
+  <path d="M82 115C115 113 131 88 159 111S193 114 214 106 253 126 278 113 315 96 339 110 371 114 401 108V153H82Z" fill="#d7ad68"/>
+  <path d="M82 132C110 120 131 135 157 122S187 138 215 131 248 128 274 124 309 125 339 128 371 126 401 120V167H82Z" fill="#ba694e"/>
+  <path d="M82 141C102 118 117 117 137 130S164 155 187 143 219 141 241 144 275 152 300 139 334 140 360 138 381 134 401 139V174L82 177Z" fill="#587d72"/>
+  <path d="M82 162C110 141 128 150 151 155S184 170 210 158 243 162 268 155 300 158 328 153 375 164 401 153V177Q241 163 82 182Z" fill="#254c49"/>
+  <!-- The river remains a pale, readable thread between the mountains. -->
+  <path d="M287 100C265 109 315 116 274 126S229 135 251 144 283 157 246 172L273 171C307 156 280 147 266 141S274 133 291 127 325 112 296 102Z" fill="#f2ecdf"/>
+  <path d="M342 80l-22 18q12-2 20-10l10 8 10-9 13 3q-22-16-31-10Z" fill="#f2ecdf"/>
+  <path d="M83 150C112 127 129 146 150 140M181 119q17 5 35-5m107 29q21-6 41-1" fill="none" stroke="#f2ecdf" stroke-width="1.1" opacity=".5"/>
+  <path d="M78 64Q241 55 404 69V178Q241 163 78 182Z" fill="url(#weave)"/>
+  <path d="M82 69Q241 61 399 74M83 176Q241 158 398 173" fill="none" stroke="#c8bba5" stroke-width="1" opacity=".65"/>
+  <!-- Turned textile rolls at both ends of the panorama. -->
+  <path d="M68 55Q82 48 94 56V185Q82 192 68 185Z" fill="url(#roller)"/>
+  <ellipse cx="81" cy="55" rx="13" ry="6" fill="#ecd9cd"/>
+  <ellipse cx="81" cy="55" rx="6" ry="3" fill="#c8bba5"/>
+  <path d="M392 60Q405 54 419 62V188Q406 195 392 187Z" fill="url(#roller)"/>
+  <ellipse cx="405.5" cy="60" rx="13.5" ry="6" fill="#ecd9cd"/>
+  <ellipse cx="405.5" cy="60" rx="6" ry="3" fill="#c8bba5"/>
+  <path d="M74 56V183m324-122v124" stroke="#f2ecdf" opacity=".65"/>
+  <path d="M67 62q15 7 28 0v13q-14 6-28-1Z" fill="#587d72"/>
+  <path d="M67 95q15 7 28 0v13q-14 6-28-1Z" fill="#d7ad68"/>
+  <path d="M391 114q15 7 29 0v14q-15 6-29-1Z" fill="#ba694e"/>
+  <path d="M391 150q15 7 29 0v14q-15 6-29-1Z" fill="#879cad"/>
+  <rect x="75" y="43" width="12" height="8" rx="3" fill="#d7ad68"/>
+  <rect x="75" y="189" width="12" height="8" rx="3" fill="#d7ad68"/>
+  <rect x="400" y="49" width="12" height="8" rx="3" fill="#d7ad68"/>
+  <rect x="400" y="191" width="12" height="8" rx="3" fill="#d7ad68"/>
+ </g>
+ <!-- Four small dye dishes echo the chapter journey without becoming a board. -->
+ <g transform="translate(149 203)">
+  <g><path d="M0 0q2 16 21 17T42 0" fill="#c8bba5"/><ellipse cx="21" cy="0" rx="21" ry="9" fill="#f2ecdf"/><ellipse cx="21" cy="0" rx="15" ry="5.5" fill="#587d72"/></g>
+  <g transform="translate(52 0)"><path d="M0 0q2 16 21 17T42 0" fill="#c8bba5"/><ellipse cx="21" cy="0" rx="21" ry="9" fill="#f2ecdf"/><ellipse cx="21" cy="0" rx="15" ry="5.5" fill="#d7ad68"/></g>
+  <g transform="translate(104 0)"><path d="M0 0q2 16 21 17T42 0" fill="#c8bba5"/><ellipse cx="21" cy="0" rx="21" ry="9" fill="#f2ecdf"/><ellipse cx="21" cy="0" rx="15" ry="5.5" fill="#ba694e"/></g>
+  <g transform="translate(156 0)"><path d="M0 0q2 16 21 17T42 0" fill="#c8bba5"/><ellipse cx="21" cy="0" rx="21" ry="9" fill="#f2ecdf"/><ellipse cx="21" cy="0" rx="15" ry="5.5" fill="#879cad"/></g>
+ </g>
+ <g fill="none" stroke="#587d72" stroke-linecap="round"><path d="M31 188q24-39 12-70m-6 49 17-14m-15-3-15-14M447 182l-10-51m7 38 14-11m-19-15-13-13" stroke-width="1.4"/></g>
+ <g fill="#587d72"><path d="M40 158q-19-5-18-18 15 2 18 18Z"/><path d="M38 174q18-3 18-17-14 2-18 17Z"/></g>
+ <g fill="#ba694e"><circle cx="43" cy="119" r="4"/><circle cx="438" cy="131" r="3.5"/><circle cx="427" cy="132" r="3"/><circle cx="458" cy="158" r="3"/></g>
+ <g transform="translate(354 180) rotate(-7)"><rect width="21" height="21" rx="2" fill="#ba694e"/><path d="M5 4v12h11V4ZM10 5v10M5 10h11" stroke="#f2ecdf" stroke-width="1.2" fill="none"/></g>
+ <path d="M128 43q8-5 15 0m5 0q8-5 15 0M346 45q7-4 13 0m4 0q7-4 13 0" stroke="#879cad" stroke-width="1.1" opacity=".6" fill="none"/>
+</svg>

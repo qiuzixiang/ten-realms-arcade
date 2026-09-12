@@ -1,0 +1,13 @@
+{
+  "name": "moon-tide-loop",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test tests/*.test.mjs",
+    "build": "node scripts/build.mjs",
+    "serve": "node scripts/serve.mjs",
+    "qa:browser": "node scripts/browser-qa.mjs",
+    "audit": "node scripts/audit.mjs"
+  }
+}

@@ -1,0 +1,104 @@
+{
+  "passed": true,
+  "date": "2026-09-12T05:02:39.828Z",
+  "browser": "153.0.8010.36",
+  "layouts": [
+    {
+      "width": 320,
+      "height": 720,
+      "scrollWidth": 320,
+      "toolsBottom": 613.140625,
+      "minCell": 46
+    },
+    {
+      "width": 358,
+      "height": 720,
+      "scrollWidth": 358,
+      "toolsBottom": 631.140625,
+      "minCell": 49
+    },
+    {
+      "width": 359,
+      "height": 720,
+      "scrollWidth": 359,
+      "toolsBottom": 631.140625,
+      "minCell": 49
+    },
+    {
+      "width": 360,
+      "height": 720,
+      "scrollWidth": 360,
+      "toolsBottom": 633.796875,
+      "minCell": 50
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "toolsBottom": 688.796875,
+      "minCell": 55
+    },
+    {
+      "width": 699,
+      "height": 740,
+      "scrollWidth": 699,
+      "toolsBottom": 651.796875,
+      "minCell": 53
+    },
+    {
+      "width": 700,
+      "height": 740,
+      "scrollWidth": 700,
+      "toolsBottom": 651.796875,
+      "minCell": 53
+    },
+    {
+      "width": 701,
+      "height": 740,
+      "scrollWidth": 701,
+      "toolsBottom": 650.796875,
+      "minCell": 52
+    },
+    {
+      "width": 1280,
+      "height": 720,
+      "scrollWidth": 1280,
+      "toolsBottom": 632.796875,
+      "minCell": 49
+    },
+    {
+      "width": 390,
+      "height": 739,
+      "scrollWidth": 390,
+      "toolsBottom": 651.796875,
+      "minCell": 53
+    },
+    {
+      "width": 390,
+      "height": 741,
+      "scrollWidth": 390,
+      "toolsBottom": 646.796875,
+      "minCell": 48
+    }
+  ],
+  "errors": [],
+  "flows": [
+    "first tutorial",
+    "skip",
+    "reopen all tutorial cards",
+    "legal move",
+    "undo",
+    "refresh continue",
+    "win",
+    "undo win and re-win",
+    "reward dedup",
+    "daily hint",
+    "seeded hint",
+    "last-level layouts",
+    "reduced motion"
+  ],
+  "limitations": [
+    "Browser emulation only; no physical device or XHS container",
+    "Chrome61 not tested"
+  ]
+}

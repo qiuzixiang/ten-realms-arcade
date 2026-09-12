@@ -12,6 +12,20 @@
 - 4.0：[Vercel](https://ten-realms-arcade.vercel.app/v4/) · [GitHub Pages](https://qiuzixiang.github.io/ten-realms-arcade/v4/)
 - [GitHub 源码仓库](https://github.com/qiuzixiang/ten-realms-arcade)
 
+## 五款多关卡独立游戏
+
+[打开试玩合集](https://qiuzixiang.github.io/ten-realms-arcade/standalone/) · 每款提供离线 ZIP 下载。
+
+| 游戏 | 主线关卡 | 源码 |
+| --- | --- | --- |
+| [云野露营](https://qiuzixiang.github.io/ten-realms-arcade/standalone/cloud-camp-journey/) | 60 | [目录](./standalone/cloud-camp-journey/) |
+| [雾窗显影](https://qiuzixiang.github.io/ten-realms-arcade/standalone/mistwood-album/) | 60 | [目录](./standalone/mistwood-album/) |
+| [四季染旅](https://qiuzixiang.github.io/ten-realms-arcade/standalone/season-dye-journey/) | 72 | [目录](./standalone/season-dye-journey/) |
+| [纸鹤归旅](https://qiuzixiang.github.io/ten-realms-arcade/standalone/paper-crane-journey/) | 60 | [目录](./standalone/paper-crane-journey/) |
+| [月潮回环](https://qiuzixiang.github.io/ten-realms-arcade/standalone/moon-tide-loop/) | 72 | [目录](./standalone/moon-tide-loop/) |
+
+运行 `npm test` 验证全部合集及五款独立游戏，`npm run build` 构建网站和离线包。
+
 ## 1.0 · 原十款
 
 | 游戏 | 规则原型 | 新主题 |

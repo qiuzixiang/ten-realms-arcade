@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="240" viewBox="0 0 480 240" role="img" aria-labelledby="title desc"><title id="title">暮春·溪桥晾绸</title><desc id="desc">清浅溪流穿过弧形石桥，三幅层染丝绸在木桩间晾晒，岸边花枝与细草相伴。装饰性章节插画。</desc><defs>
+ <pattern id="paper" width="31" height="27" patternUnits="userSpaceOnUse"><path d="M3 7h7m13 12h5" stroke="#c8bba5" stroke-width=".6" opacity=".35"/></pattern>
+ <pattern id="weave" width="5" height="5" patternUnits="userSpaceOnUse"><path d="M.5 0v5M0 .5h5" stroke="#f2ecdf" stroke-width=".4" opacity=".16"/></pattern>
+ <linearGradient id="wood" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#d7ad68"/><stop offset="1" stop-color="#c8bba5"/></linearGradient>
+ <linearGradient id="roller" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#c8bba5"/><stop offset=".28" stop-color="#f2ecdf"/><stop offset=".72" stop-color="#ecd9cd"/><stop offset="1" stop-color="#c8bba5"/></linearGradient>
+ <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#254c49" flood-opacity=".1"/></filter>
+</defs><rect width="480" height="240" fill="#f2ecdf"/><rect width="480" height="240" fill="url(#paper)"/>
+ <ellipse cx="257" cy="124" rx="178" ry="104" fill="#587d72" opacity=".07"/>
+ <circle cx="335" cy="59" r="27" fill="#d7ad68" opacity=".45"/>
+ <!-- A quiet stream winds through the bridge, rather than a textile rectangle. -->
+ <path d="M266 116C212 139 306 151 271 170S228 207 265 240H392C335 209 387 191 346 169S313 137 335 119Z" fill="#879cad" opacity=".38"/>
+ <path d="M280 119C230 137 324 151 291 171S257 206 295 240" stroke="#f2ecdf" stroke-width="2" opacity=".8" fill="none"/>
+ <path d="M319 139C304 151 355 171 336 185S310 210 336 227M306 184q-10 9 1 15" stroke="#f2ecdf" stroke-width="1.2" opacity=".7" fill="none"/>
+ <path d="M5 219Q86 187 186 211T251 240H0Z" fill="#c8bba5" opacity=".18"/>
+ <path d="M373 205Q410 182 480 199V240H393Q365 225 373 205Z" fill="#587d72" opacity=".17"/>
+ <!-- Two little timber posts carry a line of separate silk lengths. -->
+ <g stroke-linecap="round"><path d="M109 40L107 143M368 32L365 138" stroke="#c8bba5" stroke-width="6"/><path d="M110 42L108 139M369 34L366 134" stroke="#f2ecdf" stroke-width="1" opacity=".65"/><path d="M95 45Q241 64 381 36" stroke="#587d72" stroke-width="1.7" fill="none"/></g>
+ <g filter="url(#shadow)">
+  <path d="M129 49L174 52Q168 87 181 124L137 133Q125 99 129 49Z" fill="#587d72"/>
+  <path d="M129 49L174 52Q171 70 173 83L130 86Q128 68 129 49Z" fill="#ecd9cd"/>
+  <path d="M130 79C143 69 158 87 172 76L173 88C158 100 144 82 130 93Z" fill="#879cad"/>
+  <path d="M129 49L174 52Q168 87 181 124L137 133Q125 99 129 49Z" fill="url(#weave)"/>
+  <path d="M134 53Q131 101 141 126M169 56Q165 89 176 121" stroke="#f2ecdf" stroke-width=".8" opacity=".5" fill="none"/>
+  <path d="M139 129l2 7m5-9 2 7m5-9 2 7m5-9 2 7m5-9 2 7m5-9 2 7" stroke="#c8bba5"/>
+  <path d="M208 53L252 52Q244 92 260 136L215 143Q201 99 208 53Z" fill="#879cad"/>
+  <path d="M208 53L252 52Q248 71 249 87C231 73 223 96 205 84Q205 69 208 53Z" fill="#f2ecdf"/>
+  <path d="M206 95C225 106 234 83 250 97L253 111C234 97 225 119 208 108Z" fill="#d7ad68"/>
+  <path d="M208 53L252 52Q244 92 260 136L215 143Q201 99 208 53Z" fill="url(#weave)"/>
+  <path d="M213 57Q207 100 219 137M247 56Q241 96 255 132" stroke="#f2ecdf" stroke-width=".8" opacity=".5" fill="none"/>
+  <path d="M217 142l2 6m5-8 2 6m5-8 2 6m5-8 2 6m5-8 2 6m5-8 2 6" stroke="#c8bba5"/>
+  <path d="M289 48L332 43Q317 79 330 117L289 124Q276 88 289 48Z" fill="#ba694e"/>
+  <path d="M289 48L332 43Q327 55 324 72C309 85 299 70 282 83Q283 64 289 48Z" fill="#ecd9cd"/>
+  <path d="M282 81C301 68 309 85 324 73L323 86C308 97 299 81 281 95Z" fill="#d7ad68"/>
+  <path d="M289 48L332 43Q317 79 330 117L289 124Q276 88 289 48Z" fill="url(#weave)"/>
+  <path d="M293 52Q281 89 293 119M325 48Q313 83 325 113" stroke="#f2ecdf" stroke-width=".8" opacity=".5" fill="none"/>
+  <path d="M291 123l2 6m5-8 2 6m5-8 2 6m5-8 2 6m5-8 2 6" stroke="#c8bba5"/>
+ </g>
+ <g fill="#d7ad68"><rect x="135" y="45" width="3" height="10" rx="1"/><rect x="162" y="48" width="3" height="10" rx="1"/><rect x="215" y="49" width="3" height="10" rx="1"/><rect x="241" y="48" width="3" height="10" rx="1"/><rect x="295" y="44" width="3" height="10" rx="1"/><rect x="320" y="40" width="3" height="10" rx="1"/></g>
+ <!-- A broad pale stone arch ties the scene together. -->
+ <g filter="url(#shadow)">
+  <path d="M80 164Q221 109 387 153L387 181 358 183Q238 135 116 193L80 197Z" fill="#c8bba5"/>
+  <path d="M80 164Q221 109 387 153L385 162Q226 122 82 174Z" fill="#f2ecdf"/>
+  <path d="M91 177Q222 131 376 169" fill="none" stroke="#f2ecdf" stroke-width="1" opacity=".4"/>
+  <path d="M106 155l1 33m26-41 3 25m28-34 2 24m29-30 1 21m28-26 1 22m30-22-1 23m31-20-2 24m31-19-4 26m32-17-5 28m30-15-4 28" stroke="#f2ecdf" stroke-width="1.3" opacity=".5"/>
+ </g>
+ <g fill="none" stroke="#587d72" stroke-linecap="round"><path d="M43 216Q75 148 59 103M64 169l22-18m-28 43-27-19M431 217l-13-44m8 29 20-27m-19 30-23-13" stroke-width="1.7"/></g>
+ <g fill="#587d72"><path d="M66 153Q42 148 43 131Q61 134 66 153Z"/><path d="M68 173Q75 149 92 151Q92 170 68 173Z"/><path d="M55 194Q32 193 29 175Q49 176 55 194Z"/><path d="M62 128Q47 122 49 110Q61 111 62 128Z"/></g>
+ <g fill="#ecd9cd" stroke="#ba694e" stroke-width=".7"><path d="M61 105q-9 2-10-5t9-4q-3-9 4-10t4 9q9-3 10 4t-9 4q3 9-4 10t-4-8Z"/><path d="M83 146q-7 2-8-4t7-3q-2-7 3-8t3 7q7-2 8 3t-7 3q2 7-3 8t-3-6Z"/></g>
+ <g fill="#c8bba5"><ellipse cx="198" cy="211" rx="14" ry="5"/><ellipse cx="380" cy="208" rx="13" ry="4"/><ellipse cx="182" cy="218" rx="7" ry="3"/></g>
+ <path d="M91 97q7-5 10-1-3 7-10 1Zm286-21q7-4 9 0-4 6-9 0Z" fill="#ba694e" opacity=".55"/>
+</svg>

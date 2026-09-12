@@ -221,3 +221,6 @@ for (const spec of editions) {
 console.log(
   `Built ${rootPrecache.length} V1 assets (cache ${rootRevision}), ${editionPrecache.get("v2").length} V2 assets (cache ${editionRevisions.get("v2")}), ${editionPrecache.get("v3").length} V3 assets (cache ${editionRevisions.get("v3")}), and ${editionPrecache.get("v4").length} V4 assets (cache ${editionRevisions.get("v4")}) into dist/.`,
 );
+
+// Build standalone games after edition precaches to keep their assets isolated.
+await import("./standalone.mjs").then(({ buildStandalone }) => buildStandalone());

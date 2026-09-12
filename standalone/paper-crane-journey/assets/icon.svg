@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img"><title>Paper Crane Journey icon</title>
+  <rect width="512" height="512" rx="108" fill="#f4ead5"/>
+  <rect x="24" y="24" width="464" height="464" rx="89" fill="#264f46"/>
+  <circle cx="263" cy="185" r="136" fill="#658271"/>
+  <circle cx="263" cy="185" r="116" fill="#244d44"/>
+  <circle cx="281" cy="145" r="61" fill="#d4c49f"/>
+  <path d="M51 360q140-27 267 6t144 0M72 397q156-19 372 0" stroke="#d5d9b3" stroke-width="2" fill="none" opacity=".27"/>
+  <svg x="92" y="212" width="327" height="327" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" aria-hidden="true" focusable="false"><ellipse cx="50" cy="69" rx="40" ry="19" fill="#163f39" opacity=".18"/><path d="M52 15C28 11 10 29 10 51c0 22 18 34 41 34 23 0 41-15 40-36C90 26 76 15 58 14L50 48Z" fill="#608977"/><path d="M50 48 52 15C28 11 10 29 10 51c0 22 18 34 41 34Z" fill="#71947d"/><path d="m50 48 24 22m-24-22-27 18m27-18-4 29m4-29 30-9m-30 9-25-14" stroke="#afbe91" stroke-width="1" opacity=".55" fill="none"/><circle cx="50" cy="49" r="11" fill="#315e52" stroke="#c2caa1" stroke-width="1.5" stroke-dasharray="2 3"/></svg>
+  <svg x="97" y="92" width="322" height="322" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" aria-hidden="true" focusable="false"><ellipse cx="50" cy="80" rx="29" ry="7" fill="#143d39" opacity=".22"/><path d="M47 52 9 20 27 63 49 73Z" fill="#fff9e9"/><path d="M47 52 9 20 38 60Z" fill="#e8cfac"/><path d="M47 52 79 9 75 60 53 73Z" fill="#fffdf4"/><path d="M47 52 79 9 59 60Z" fill="#f4ddbc"/><path d="M25 63 42 53 66 62 52 80Z" fill="#f7e7cf"/><path d="M42 53 52 80 66 62Z" fill="#e8b487"/><path d="M54 71 65 44 80 36 92 43 81 42 72 49 65 67Z" fill="#fffbed"/><path d="M65 44 65 67 54 71 72 49Z" fill="#eed3ae"/><path d="M80 36 92 43 81 42Z" fill="#be744c"/><path d="M26 64 12 54 37 60Z" fill="#e6b88d"/><path d="m42 53 10 27m-5-28 12 8m6-16 7 5" fill="none" stroke="#bc9876" stroke-width=".75" opacity=".7"/></svg>
+  <path d="m411 62-5 61m-1-40-29-20m29 39-34-10" stroke="#9ca982" stroke-width="3" fill="none"/>
+</svg>

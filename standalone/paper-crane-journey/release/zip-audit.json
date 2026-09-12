@@ -1,0 +1,31 @@
+{
+  "passed": true,
+  "zipBytes": 46497,
+  "uncompressedBytes": 201224,
+  "fileCount": 9,
+  "largest": [
+    {
+      "path": "app.js",
+      "bytes": 149856
+    },
+    {
+      "path": "style.css",
+      "bytes": 14863
+    },
+    {
+      "path": "assets/tutorial-1.svg",
+      "bytes": 8577
+    }
+  ],
+  "checks": [
+    "root-index",
+    "allowed-extensions",
+    "local-assets",
+    "classic-script",
+    "forbidden-capabilities",
+    "ES2017-baseline-scan",
+    "Chrome61-CSS-baseline-scan",
+    "package-size"
+  ],
+  "compatibility": "Static compliance only; actual Chrome 61 / Android 8.1 not tested"
+}

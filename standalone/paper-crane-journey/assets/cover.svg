@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img"><title>An origami crane rests above an emerald garden pond. Promotional illustration, not a game board.</title>
+  <defs>
+    <linearGradient id="water" x2="0" y2="1"><stop stop-color="#39665a"/><stop offset="1" stop-color="#173e3b"/></linearGradient>
+    <linearGradient id="paper" x2="0" y2="1"><stop stop-color="#faf3e4"/><stop offset="1" stop-color="#e4d4b7"/></linearGradient>
+    <pattern id="grain" width="22" height="18" patternUnits="userSpaceOnUse"><path d="M2 4h5m6 9h3M19 2v2" stroke="#bbaa83" stroke-width=".6" opacity=".14"/></pattern>
+  </defs>
+  <rect width="1600" height="900" fill="#f5ecd9"/>
+  <path d="M0 236 252 149 547 206 891 110 1170 172 1600 42V655H0Z" fill="#e5ddc7"/>
+  <path d="m0 272 282-70 275 61 340-108 259 61 444-119v368H0Z" fill="#eee4cf"/>
+  <path d="M0 370Q320 287 749 336T1600 233V900H0Z" fill="url(#water)"/>
+  <path d="M0 364Q344 288 729 331T1600 230" fill="none" stroke="#d4c6a8" stroke-width="24"/>
+  <path d="M0 350Q355 285 734 320T1600 218" fill="none" stroke="#f8f0db" stroke-width="20"/>
+  <circle cx="1250" cy="238" r="157" fill="#d4c6a7"/>
+  <circle cx="1242" cy="226" r="157" fill="#f9f0dc"/>
+  <circle cx="1242" cy="226" r="126" fill="#dcd5bd"/>
+  <path d="M1129 281q95-132 229-18v107h-229" fill="#b5bca5"/>
+  <circle cx="1213" cy="171" r="40" fill="#f3e4c5"/>
+  <path d="M1116 286q115-33 252 3v75h-252" fill="#467363"/>
+  <path d="M1111 329q132-29 264 3" stroke="#a3af8e" stroke-width="2" fill="none"/>
+  <path d="m1538 69-42 291m28-215-90-53m80 105-126-42m116 97-117-9m101 76-69 21" stroke="#657c64" stroke-width="7" fill="none"/>
+  <g fill="#758970"><path d="m1427 90-64-21 45 51Z"/><path d="m1447 138-76-7 54 41Z"/><path d="m1383 164-84-9 57 42Z"/><path d="m1385 231-66-28 36 55Z"/><path d="m1447 246 44-64-6 71Z"/><path d="m1425 340-69 14 60-44Z"/></g>
+  <g fill="none" stroke="#b2c1a2" opacity=".20"><path d="M86 447q223-57 391 0t456 0 510-3"/><path d="M175 473q180-25 300 2m644-22q230-26 390 9"/><ellipse cx="695" cy="699" rx="411" ry="103"/><ellipse cx="695" cy="699" rx="466" ry="125"/><path d="M0 820q330-75 557 8m445-156q238-76 598-33"/></g>
+  <path d="M1214 719 1427 647 1555 698 1335 779Z" fill="#152f2d" opacity=".25"/>
+  <path d="M1245 663 1430 608 1555 657 1364 723Z" fill="#ded0b2"/><path d="M1245 663v27l119 62v-29Z" fill="#bbaa89"/><path d="m1364 723 191-66v27l-191 68Z" fill="#cbbb98"/>
+  <path d="m1378 807 192-72 130 61-203 82Z" fill="#e5d8bd"/><path d="m1378 807v24l119 65v-18Z" fill="#c4b496"/>
+  <path d="M91 856 43 784 88 685 134 768Z" fill="#566d59"/><path d="M91 856 88 685 102 771Z" fill="#8b9c77"/>
+  <path d="M172 900 159 763 235 666 222 802Z" fill="#607759"/><path d="M172 900 235 666 194 805Z" fill="#8a9e79"/>
+  <svg x="408" y="442" width="552" height="552" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" aria-hidden="true" focusable="false"><ellipse cx="50" cy="69" rx="40" ry="19" fill="#163f39" opacity=".18"/><path d="M52 15C28 11 10 29 10 51c0 22 18 34 41 34 23 0 41-15 40-36C90 26 76 15 58 14L50 48Z" fill="#608977"/><path d="M50 48 52 15C28 11 10 29 10 51c0 22 18 34 41 34Z" fill="#71947d"/><path d="m50 48 24 22m-24-22-27 18m27-18-4 29m4-29 30-9m-30 9-25-14" stroke="#afbe91" stroke-width="1" opacity=".55" fill="none"/><circle cx="50" cy="49" r="11" fill="#315e52" stroke="#c2caa1" stroke-width="1.5" stroke-dasharray="2 3"/></svg>
+  <svg x="441" y="293" width="501" height="501" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" aria-hidden="true" focusable="false"><ellipse cx="50" cy="80" rx="29" ry="7" fill="#143d39" opacity=".22"/><path d="M47 52 9 20 27 63 49 73Z" fill="#fff9e9"/><path d="M47 52 9 20 38 60Z" fill="#e8cfac"/><path d="M47 52 79 9 75 60 53 73Z" fill="#fffdf4"/><path d="M47 52 79 9 59 60Z" fill="#f4ddbc"/><path d="M25 63 42 53 66 62 52 80Z" fill="#f7e7cf"/><path d="M42 53 52 80 66 62Z" fill="#e8b487"/><path d="M54 71 65 44 80 36 92 43 81 42 72 49 65 67Z" fill="#fffbed"/><path d="M65 44 65 67 54 71 72 49Z" fill="#eed3ae"/><path d="M80 36 92 43 81 42Z" fill="#be744c"/><path d="M26 64 12 54 37 60Z" fill="#e6b88d"/><path d="m42 53 10 27m-5-28 12 8m6-16 7 5" fill="none" stroke="#bc9876" stroke-width=".75" opacity=".7"/></svg>
+  <svg x="180" y="426" width="151" height="151" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" aria-hidden="true" focusable="false"><ellipse cx="50" cy="69" rx="40" ry="19" fill="#163f39" opacity=".18"/><path d="M52 15C28 11 10 29 10 51c0 22 18 34 41 34 23 0 41-15 40-36C90 26 76 15 58 14L50 48Z" fill="#608977"/><path d="M50 48 52 15C28 11 10 29 10 51c0 22 18 34 41 34Z" fill="#71947d"/><path d="m50 48 24 22m-24-22-27 18m27-18-4 29m4-29 30-9m-30 9-25-14" stroke="#afbe91" stroke-width="1" opacity=".55" fill="none"/><circle cx="50" cy="49" r="11" fill="#315e52" stroke="#c2caa1" stroke-width="1.5" stroke-dasharray="2 3"/></svg>
+  <svg x="1025" y="454" width="114" height="114" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" aria-hidden="true" focusable="false"><ellipse cx="50" cy="69" rx="40" ry="19" fill="#163f39" opacity=".18"/><path d="M52 15C28 11 10 29 10 51c0 22 18 34 41 34 23 0 41-15 40-36C90 26 76 15 58 14L50 48Z" fill="#608977"/><path d="M50 48 52 15C28 11 10 29 10 51c0 22 18 34 41 34Z" fill="#71947d"/><path d="m50 48 24 22m-24-22-27 18m27-18-4 29m4-29 30-9m-30 9-25-14" stroke="#afbe91" stroke-width="1" opacity=".55" fill="none"/><circle cx="50" cy="49" r="11" fill="#315e52" stroke="#c2caa1" stroke-width="1.5" stroke-dasharray="2 3"/></svg>
+  <g fill="#efbb95"><path d="m1067 529 8-27 9 27 26-8-13 21-24 5-23-15Z"/><path d="m247 520 6-19 8 18 16-6-8 15-17 3-18-9Z"/></g>
+  <g fill="#e9c395" opacity=".8"><path d="m909 177 22 11-12 4Z"/><path d="m930 166 20 9-11 3Z"/></g>
+  <rect width="1600" height="900" fill="url(#grain)"/>
+</svg>

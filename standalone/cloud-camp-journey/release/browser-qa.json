@@ -1,0 +1,248 @@
+{
+  "testedAt": "2026-09-09T23:58:17.305Z",
+  "browser": "Codex In-app Browser",
+  "productionURL": "http://127.0.0.1:4281",
+  "checks": [
+    "First-entry tutorial already verified in fresh tab; complete three-card replay and skip are usable",
+    "Real cell selection; tree input disabled; mark/erase; place; refresh; undo; restart cancel/confirm; current-board hint; actual completion",
+    "Refresh and a second full play preserve first-clear progress",
+    "Daily and named seed journey enter and refresh correctly",
+    "7x7 precision controls and keyboard arrow input; all required widths and both responsive breakpoints",
+    "No browser console errors",
+    "Completed seed station resumes to station 2 after returning home and refreshing",
+    "Final height-breakpoint checks 759, 761, 819, 821 passed after short-screen fix"
+  ],
+  "layouts": [
+    {
+      "cellWidth": 32.140625,
+      "directions": [
+        {
+          "height": 44,
+          "width": 44
+        },
+        {
+          "height": 44,
+          "width": 44
+        },
+        {
+          "height": 44,
+          "width": 44
+        },
+        {
+          "height": 44,
+          "width": 44
+        }
+      ],
+      "height": 720,
+      "imagesComplete": true,
+      "scrollHeight": 722,
+      "scrollWidth": 305,
+      "toolsBottom": 683.609375,
+      "width": 320
+    },
+    {
+      "cellWidth": 34.28125,
+      "directions": [
+        {
+          "height": 44,
+          "width": 44
+        },
+        {
+          "height": 44,
+          "width": 44
+        },
+        {
+          "height": 44,
+          "width": 44
+        },
+        {
+          "height": 44,
+          "width": 44
+        }
+      ],
+      "height": 720,
+      "imagesComplete": true,
+      "scrollHeight": 737,
+      "scrollWidth": 344,
+      "toolsBottom": 698.703125,
+      "width": 359
+    },
+    {
+      "cellWidth": 34.28125,
+      "directions": [
+        {
+          "height": 44,
+          "width": 44
+        },
+        {
+          "height": 44,
+          "width": 44
+        },
+        {
+          "height": 44,
+          "width": 44
+        },
+        {
+          "height": 44,
+          "width": 44
+        }
+      ],
+      "height": 720,
+      "imagesComplete": true,
+      "scrollHeight": 750,
+      "scrollWidth": 345,
+      "toolsBottom": 710.453125,
+      "width": 360
+    },
+    {
+      "cellWidth": 42.5625,
+      "directions": [
+        {
+          "height": 44,
+          "width": 44
+        },
+        {
+          "height": 44,
+          "width": 44
+        },
+        {
+          "height": 44,
+          "width": 44
+        },
+        {
+          "height": 44,
+          "width": 44
+        }
+      ],
+      "height": 844,
+      "imagesComplete": true,
+      "scrollHeight": 844,
+      "scrollWidth": 390,
+      "toolsBottom": 794.421875,
+      "width": 390
+    },
+    {
+      "cellWidth": 42.84375,
+      "directions": [
+        {
+          "height": 44,
+          "width": 44
+        },
+        {
+          "height": 44,
+          "width": 44
+        },
+        {
+          "height": 44,
+          "width": 44
+        },
+        {
+          "height": 44,
+          "width": 44
+        }
+      ],
+      "height": 844,
+      "imagesComplete": true,
+      "scrollHeight": 844,
+      "scrollWidth": 700,
+      "toolsBottom": 796.390625,
+      "width": 700
+    },
+    {
+      "cellWidth": 38.40625,
+      "directions": [
+        {
+          "height": 44,
+          "width": 44
+        },
+        {
+          "height": 44,
+          "width": 44
+        },
+        {
+          "height": 44,
+          "width": 44
+        },
+        {
+          "height": 44,
+          "width": 44
+        }
+      ],
+      "height": 844,
+      "imagesComplete": true,
+      "scrollHeight": 844,
+      "scrollWidth": 701,
+      "toolsBottom": 511.65625,
+      "width": 701
+    },
+    {
+      "cellWidth": 51.421875,
+      "directions": [
+        {
+          "height": 44,
+          "width": 44
+        },
+        {
+          "height": 44,
+          "width": 44
+        },
+        {
+          "height": 44,
+          "width": 44
+        },
+        {
+          "height": 44,
+          "width": 44
+        }
+      ],
+      "height": 720,
+      "imagesComplete": true,
+      "scrollHeight": 720,
+      "scrollWidth": 1280,
+      "toolsBottom": 529.21875,
+      "width": 1280
+    }
+  ],
+  "screenshots": [
+    "cover-mobile.jpg",
+    "chapter-map.jpg",
+    "tutorial-mobile.jpg",
+    "gameplay-390.jpg",
+    "completion-mobile.jpg",
+    "gameplay-320.jpg",
+    "gameplay-7x7.jpg",
+    "desktop-1280.jpg",
+    "tutorial-320.jpg",
+    "collection-mobile.jpg",
+    "cover-mobile.jpg"
+  ],
+  "consoleErrors": [],
+  "ok": true,
+  "additionalLayouts": [
+    {
+      "height": 759,
+      "scrollWidth": 390,
+      "toolsBottom": 710.453125,
+      "width": 390
+    },
+    {
+      "height": 761,
+      "scrollWidth": 390,
+      "toolsBottom": 710.453125,
+      "width": 390
+    },
+    {
+      "height": 819,
+      "scrollWidth": 390,
+      "toolsBottom": 710.453125,
+      "width": 390
+    },
+    {
+      "height": 821,
+      "scrollWidth": 375,
+      "toolsBottom": 779.4375,
+      "width": 390
+    }
+  ],
+  "finalRetestAt": "2026-09-10T00:02:11.494Z"
+}

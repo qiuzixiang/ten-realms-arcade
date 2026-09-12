@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="240" viewBox="0 0 480 240" role="img" aria-labelledby="title desc"><title id="title">夏·水影入蓝</title><desc id="desc">轻叠的蓝绿染布像夏日水面，莲叶与浅粉莲瓣立在右侧，一只青蓝染碟置于布边。装饰性章节插画。</desc><defs>
+ <pattern id="paper" width="31" height="27" patternUnits="userSpaceOnUse"><path d="M3 7h7m13 12h5" stroke="#c8bba5" stroke-width=".6" opacity=".35"/></pattern>
+ <pattern id="weave" width="5" height="5" patternUnits="userSpaceOnUse"><path d="M.5 0v5M0 .5h5" stroke="#f2ecdf" stroke-width=".4" opacity=".16"/></pattern>
+ <linearGradient id="wood" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#d7ad68"/><stop offset="1" stop-color="#c8bba5"/></linearGradient>
+ <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="5" stdDeviation="5" flood-color="#254c49" flood-opacity=".1"/></filter>
+</defs><rect width="480" height="240" fill="#f2ecdf"/><rect width="480" height="240" fill="url(#paper)"/>
+ <ellipse cx="262" cy="121" rx="162" ry="105" fill="#879cad" opacity=".12"/>
+ <circle cx="325" cy="57" r="24" fill="#d7ad68" opacity=".53"/>
+ <path d="M17 207Q215 191 461 206" stroke="#c8bba5" opacity=".5" fill="none"/>
+ <g filter="url(#shadow)">
+  <path d="M97 64L329 48 355 179 115 201Z" fill="#ecd9cd"/>
+  <path d="M114 66L329 51 352 171 139 193Z" fill="#f2ecdf"/>
+  <path d="M101 92C169 61 205 123 272 94S311 78 337 82L351 151 113 180Z" fill="#879cad"/>
+  <path d="M107 123C157 101 207 153 267 124S315 107 343 113L354 177 115 198Z" fill="#587d72"/>
+  <path d="M112 151C161 123 212 179 272 149S320 139 348 141L355 180 116 203Z" fill="#254c49"/>
+  <path d="M97 64L329 48 355 179 115 201Z" fill="url(#weave)"/>
+  <path d="M109 65l18 124M318 53l24 115" stroke="#f2ecdf" opacity=".46"/>
+  <path d="M125 128C167 113 210 160 268 132M129 156C169 145 216 183 274 157" stroke="#f2ecdf" opacity=".38" fill="none"/>
+  <path d="M330 48L347 65 368 194 355 179Z" fill="#879cad"/>
+  <path d="M115 201L355 179 368 194 132 219Z" fill="#ecd9cd"/>
+  <path d="M130 209l219-23" stroke="#c8bba5" stroke-width="1.2"/>
+  <path d="M97 64l18 137 17 18-15-138Z" fill="#c8bba5" opacity=".45"/>
+ </g>
+ <g fill="none" stroke="#587d72" stroke-linecap="round"><path d="M363 229Q367 174 399 112M409 223Q407 178 431 148" stroke-width="2.1"/><path d="M376 189q-4-40-37-57" stroke-width="1.6"/></g>
+ <path d="M398 117C375 122 361 102 376 87S419 66 435 90 423 122 398 117Z" fill="#587d72"/>
+ <path d="M398 117l-2-24m2 24-19-22m19 22 21-25m-21 25 29-5" stroke="#f2ecdf" opacity=".45" stroke-width="1.2" fill="none"/>
+ <path d="M339 135C322 145 303 125 309 109S338 97 349 113 353 131 339 135Z" fill="#254c49"/>
+ <path d="M339 135l-14-22m14 22-24-9m24 9 6-18" stroke="#f2ecdf" opacity=".34" stroke-width="1.1"/>
+ <path d="M431 151q-24-11-26-30 19-4 28 18 7-24 20-26 10 23-22 38Z" fill="#ecd9cd" stroke="#ba694e" stroke-width=".7"/>
+ <path d="M431 151q-14-20-3-34 15 10 3 34Z" fill="#ecd9cd" stroke="#ba694e" stroke-width=".7"/>
+ <g transform="translate(31 169)"><path d="M0 12q2 31 34 31t34-31Z" fill="#c8bba5"/><ellipse cx="34" cy="12" rx="34" ry="15" fill="#f2ecdf"/><ellipse cx="34" cy="12" rx="27" ry="10" fill="#879cad"/><path d="M18 11q11-5 23-4" stroke="#f2ecdf" stroke-width="1.4" opacity=".7" fill="none"/></g>
+ <path d="M52 123q20-4 28 1m-22 5q12-2 22 2M370 40q8-4 14 0m6 0q8-4 14 0" stroke="#879cad" stroke-width="1.3" opacity=".6" fill="none"/>
+ <g transform="translate(169 179) rotate(-6)"><rect width="20" height="20" rx="2" fill="#ba694e"/><path d="M5 4v11h10V4Zm5 1v9M5 9h10" stroke="#f2ecdf" stroke-width="1.2" fill="none"/></g>
+</svg>

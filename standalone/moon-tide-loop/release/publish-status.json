@@ -1,0 +1,21 @@
+{
+  "game": "月潮回环",
+  "validation": {
+    "tests": "36/36 PASS",
+    "zipAudit": "PASS, 9 files, 0 warnings",
+    "zipBytes": 39815,
+    "skill": "cached minitool-zip-builder 1.6.0; remote download failed DNS"
+  },
+  "deployment": "success",
+  "simulator": "tutorial rendered",
+  "simulatorURL": "https://creator.xiaohongshu.com/miniapp-simulator/d458542c-ea4d-4b3a-b167-f0914a7a0c49/index.html",
+  "publication": "pending explicit terms acceptance confirmation",
+  "note": {
+    "title": "把月光连成一圈，我做了72关谜题",
+    "status": "draft saved; platform displayed 保存成功",
+    "images": [
+      "release/cover-xhs.png"
+    ],
+    "attachment": "awaiting game publication"
+  }
+}

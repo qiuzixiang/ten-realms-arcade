@@ -1,0 +1,74 @@
+{
+  "error": "Error: Missing [data-action=\"next\"]",
+  "errors": [],
+  "checks": [
+    "First-entry tutorial appears, actual SVG loads, skip opens playable board",
+    "Reopen and complete all three tutorial cards",
+    "Direct taps toggle; four swipes work; ambiguous and cancelled gestures do not commit",
+    "Real cell-direction input, identical operation no-op, undo",
+    "Excluded mark is saved, reload resumes stable runId",
+    "Contextual hint explains and applies a step; restart creates fresh run"
+  ],
+  "layouts": [
+    {
+      "width": 390,
+      "height": 844,
+      "scroll": 390,
+      "client": 390,
+      "board": {
+        "top": 140,
+        "bottom": 494
+      },
+      "toolsBottom": 701,
+      "minCell": 104.109375,
+      "buttons": [
+        {
+          "text": "← 海图",
+          "w": 54.25,
+          "h": 44
+        },
+        {
+          "text": "? 玩法",
+          "w": 57.53125,
+          "h": 44
+        },
+        {
+          "text": "切换精确模式",
+          "w": 86,
+          "h": 44
+        },
+        {
+          "text": "━ 画线",
+          "w": 115.328125,
+          "h": 44
+        },
+        {
+          "text": "× 排除",
+          "w": 115.34375,
+          "h": 44
+        },
+        {
+          "text": "· 擦除",
+          "w": 115.328125,
+          "h": 44
+        },
+        {
+          "text": "↶ 撤销",
+          "w": 118,
+          "h": 44
+        },
+        {
+          "text": "↻ 重开",
+          "w": 118,
+          "h": 44
+        },
+        {
+          "text": "✧ 听潮提示",
+          "w": 118,
+          "h": 44
+        }
+      ],
+      "label": "play-390"
+    }
+  ]
+}

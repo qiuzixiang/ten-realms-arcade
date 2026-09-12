@@ -1,0 +1,17 @@
+{
+  "name": "paper-crane-journey",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "纸鹤归旅 · 60关纸艺庭院 Pegs",
+  "scripts": {
+    "test": "node --test tests/*.test.mjs",
+    "generate": "node scripts/generate-levels.mjs && node scripts/generate-art.mjs",
+    "build": "node scripts/build.mjs",
+    "audit": "node scripts/audit.mjs",
+    "serve": "node scripts/serve.mjs",
+    "qa:browser": "node scripts/browser-qa.mjs"
+  },
+  "engines": { "node": ">=18" },
+  "license": "MIT"
+}

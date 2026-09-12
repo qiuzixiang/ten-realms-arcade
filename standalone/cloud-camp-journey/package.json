@@ -1,0 +1,14 @@
+{
+  "name": "cloud-camp-journey",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "云野露营 · 六章纸景逻辑旅途",
+  "scripts": {
+    "test": "node --test tests/*.test.mjs",
+    "build": "node scripts/build.mjs",
+    "serve": "node scripts/serve.mjs",
+    "qa:browser": "node scripts/browser-qa.mjs",
+    "audit": "node scripts/audit.mjs"
+  }
+}

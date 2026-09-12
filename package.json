@@ -1,12 +1,14 @@
 {
   "name": "ten-realms-arcade",
   "version": "4.0.0",
-  "engines": { "node": "22.x" },
+  "engines": {
+    "node": "22.x"
+  },
   "private": true,
   "type": "module",
   "scripts": {
     "build": "node scripts/build.mjs",
-    "test": "node scripts/validate.mjs",
+    "test": "node scripts/validate.mjs && node scripts/standalone.mjs test",
     "serve": "python3 -m http.server 4173"
   }
 }

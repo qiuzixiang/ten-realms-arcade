@@ -1,0 +1,49 @@
+
+> mistwood-album@1.0.0 test
+> node --test tests/*.test.mjs
+
+✔ 60 hand-drawn photographs in six 10-photo chapters; first twenty 5×5, rest 7×7 (2.789083ms)
+✔ all 60 photo designs are distinct, even after every rotation and reflection (0.693958ms)
+✔ independent exhaustive row-mask oracle proves all 60 clue sets unique (cap=2) (6.545958ms)
+✔ oracle actually detects multiple solutions and impossible clue sets (0.189125ms)
+✔ independent oracle and production solver agree on every binary 3×3 photograph (9.085333ms)
+✔ cell updates preserve unknown / filled / excluded states and are immutable (0.222375ms)
+✔ completion requires every cell decided and every line correct, without reading a stored answer (9.118958ms)
+✔ empty clues and separated run semantics are exact; exclusions are binding (0.135666ms)
+✔ current-state hints solve every photo without reading rows or applying an unsupported value (138.74925ms)
+✔ hints explain a row contradiction without silently fixing or penalizing it (0.320708ms)
+✔ hints catch global conflicts even when every individual line still has a candidate (0.108625ms)
+✔ daily mode deterministically selects a verified library photo and says it is a replay (0.101875ms)
+✔ storage keys are private and tutorial version is independent (0.67575ms)
+✔ immutable actions retain unknown, filled and excluded; illegal/no-op inputs do not count (1.591958ms)
+✔ undo replays previous values but preserves historical moves and hint use (0.594916ms)
+✔ restoration reconstructs board, history and metrics; cached flags and claims have no authority (0.1875ms)
+✔ invalid replay actions, impossible undo, run metadata and unknown levels are rejected (0.306542ms)
+✔ unfinished grid and a forged completed grid without actions cannot settle (0.206667ms)
+✔ a real completion produces the strict payload, verified record and stable reward IDs (0.80725ms)
+✔ repeated settlement and refresh are idempotent; restart gets a new run with no duplicate claims (0.312375ms)
+✔ independent completion can be earned on replay after a hinted first win (0.184291ms)
+✔ daily first-win claim is stable across runs and daily level/date mismatches are rejected (0.269875ms)
+✔ record evidence is revalidated and malformed or duplicate records cannot award progress (0.233917ms)
+✔ a cached no-hint counter cannot erase hint events when restoring completed records (0.122833ms)
+✔ corrupt or inaccessible storage falls back without removing unrelated or tutorial keys (0.160084ms)
+✔ save failure is explicit and preserves prior persisted state (0.12275ms)
+✔ no host still persists completion and keeps its outbox available (0.222875ms)
+✔ host is called only after persistence; confirmed completion is not sent again after refresh (0.254125ms)
+✔ throwing or non-acknowledging hosts retry the exact same completion ID and claims (0.509ms)
+✔ storage failure before host dispatch prevents any external completion callback (0.101125ms)
+✔ storage failure after host acknowledgement retains stable payload for a safe retry (0.282625ms)
+✔ read failure after acknowledgement does not remove queued evidence (0.122209ms)
+✔ host payload mutation does not alter persistent reward or metric evidence (0.295667ms)
+✔ a slow host acknowledgement preserves newer gameplay saved while it was waiting (0.249334ms)
+✔ real level catalog works with the store default lookup and survives reload (1.553875ms)
+✔ all three tutorial assets reproduce real initial, legal-action and complete states (2.066166ms)
+✔ source page loads classic dependencies in order and stays completely local (0.929333ms)
+ℹ tests 37
+ℹ suites 0
+ℹ pass 37
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 205.343667
