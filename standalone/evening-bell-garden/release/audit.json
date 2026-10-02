@@ -1,0 +1,12 @@
+{
+  "files": 17,
+  "uncompressedBytes": 134472,
+  "zipBytes": 35051,
+  "crc": "PASS",
+  "xml": "PASS",
+  "zipMatchesDirectory": true,
+  "es2017": "PASS",
+  "prohibitedAPIs": "PASS",
+  "localReferences": "PASS",
+  "compatibilityNote": "Static ES2017/CSS61 checks; actual Chrome61 and device WebViews not tested"
+}

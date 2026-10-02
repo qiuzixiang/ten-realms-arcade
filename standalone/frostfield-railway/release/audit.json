@@ -1,0 +1,63 @@
+{
+  "passed": true,
+  "checks": [
+    "ES2017 classic-script parse",
+    "Chrome 61 runtime API scan",
+    "All local references exist",
+    "No external resource or prohibited API",
+    "Exactly one HTML at ZIP root",
+    "All file suffixes allowed",
+    "ZIP CRC passed",
+    "SVG XML parsed",
+    "MIT notice included"
+  ],
+  "zipBytes": 31801,
+  "uncompressedBytes": 104258,
+  "sha256": "3843c810542d64d34f576718c02443fb231a2b83accf99dab07df222443d9c87",
+  "files": [
+    {
+      "path": "app.js",
+      "bytes": 64537
+    },
+    {
+      "path": "assets/icon.svg",
+      "bytes": 1031
+    },
+    {
+      "path": "assets/snowfield.svg",
+      "bytes": 10605
+    },
+    {
+      "path": "assets/station-1.svg",
+      "bytes": 2299
+    },
+    {
+      "path": "assets/station-2.svg",
+      "bytes": 2280
+    },
+    {
+      "path": "assets/station-3.svg",
+      "bytes": 2270
+    },
+    {
+      "path": "assets/station-4.svg",
+      "bytes": 2250
+    },
+    {
+      "path": "assets/station-5.svg",
+      "bytes": 2352
+    },
+    {
+      "path": "assets/station-6.svg",
+      "bytes": 2453
+    },
+    {
+      "path": "index.html",
+      "bytes": 547
+    },
+    {
+      "path": "style.css",
+      "bytes": 13634
+    }
+  ]
+}

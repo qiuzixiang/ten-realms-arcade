@@ -1,0 +1,129 @@
+{
+  "schemaVersion": 1,
+  "gameId": "scent-letter",
+  "title": "香笺秘方",
+  "version": "1.0.0",
+  "status": "LOCAL_VERIFIED",
+  "platformReady": false,
+  "date": "2026-09-14",
+  "sourceCommit": "55cdddb75cf57c17baee80bac4121bd3be1687c6",
+  "worktreeBase": "374d2eee951c8f6aa0bbc829e9cceaa127596b7c",
+  "commit": null,
+  "changesScope": "standalone/scent-letter/",
+  "levelCount": 60,
+  "chapters": 6,
+  "initialCandidateRange": [
+    3,
+    1303
+  ],
+  "maxReferenceRounds": 6,
+  "maxStrategyWorstCaseRounds": 8,
+  "build": {
+    "entry": "dist/xhs/index.html",
+    "zip": "dist/scent-letter-xhs.zip",
+    "bytes": 22996,
+    "sha256": "2331b886c7593d8256e97b027770aae5adb26ffb8ade7eb9c5bfad9b7a742a6a",
+    "es2017": true,
+    "offlineStaticAudit": true,
+    "crc": "ZIP CRC, paths, tutorial XML passed"
+  },
+  "tests": {
+    "ruleGroups": 9,
+    "exhaustiveFeedbackPairs": 65536,
+    "browserViewports": [
+      {
+        "width": 320,
+        "height": 720
+      },
+      {
+        "width": 390,
+        "height": 844
+      },
+      {
+        "width": 1280,
+        "height": 720
+      },
+      {
+        "width": 358,
+        "height": 720
+      },
+      {
+        "width": 359,
+        "height": 720
+      },
+      {
+        "width": 360,
+        "height": 720
+      },
+      {
+        "width": 758,
+        "height": 844
+      },
+      {
+        "width": 759,
+        "height": 844
+      },
+      {
+        "width": 760,
+        "height": 844
+      }
+    ],
+    "browserChecks": "release/browser-report.json",
+    "externalRequests": 0,
+    "safeArea": {
+      "top": 44,
+      "bottom": 34
+    },
+    "minTapTarget": 44
+  },
+  "artifacts": {
+    "icon": "release/icon.png",
+    "cover": "release/cover.png",
+    "gameplay": "release/gameplay-mobile.png",
+    "tutorial": "release/tutorial-mobile.png",
+    "completion": "release/completion-mobile.png",
+    "copy": "release/COPY.zh-CN.md",
+    "screenshotOrigin": "HTTP build; Chrome simulated 390x844 viewport",
+    "artwork": "Original code-native SVG exported to PNG; no generated raster images"
+  },
+  "limitations": [
+    "Real iOS/Android not tested",
+    "Xiaohongshu container not tested",
+    "Independent human/agent review pending",
+    "No human difficulty study",
+    "Latest platform and upstream help not revalidated over network"
+  ],
+  "platformDraftStatus": "NOT_CREATED",
+  "uploadStatus": "NOT_UPLOADED",
+  "reviewStatus": "NOT_SUBMITTED",
+  "publishStatus": "NOT_PUBLISHED",
+  "gitCommitStatus": "NOT_COMMITTED",
+  "gitPushStatus": "NOT_PUSHED",
+  "notePublication": {
+    "title": "这瓶香，藏着一道推理题",
+    "publishedAtObserved": "2026-09-15T21:10:37.889830+08:00",
+    "platform": "小红书",
+    "status": "PUBLISH_SUCCESS_CONFIRMED",
+    "evidence": "发布提交后，创作平台显示“发布成功”，URL为 /publish/success",
+    "visibility": "公开可见",
+    "imageCount": 4,
+    "images": [
+      "01-cover.png",
+      "02-gameplay.png",
+      "03-tutorial.png",
+      "04-completion.png"
+    ],
+    "attachedTool": "香笺秘方",
+    "toolStatusObserved": "已发布 V1.0.0",
+    "contentDeclaration": "笔记含AI合成内容",
+    "reviewStatus": "NOT_SEPARATELY_VERIFIED",
+    "noteUrl": null,
+    "managerUrl": "https://creator.xiaohongshu.com/new/note-manager"
+  },
+  "platformToolObservation": {
+    "status": "已发布",
+    "version": "V1.0.0",
+    "observedAt": "2026-09-15T21:10:37.889830+08:00",
+    "source": "创作平台小工具列表；非本轮上传"
+  }
+}

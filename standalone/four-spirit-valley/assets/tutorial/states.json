@@ -1,0 +1,14 @@
+{
+  "levelId": "valley-01-01",
+  "seed": 20570384,
+  "action": {
+    "region": 3,
+    "colour": 0
+  },
+  "moveCounts": [
+    0,
+    1,
+    2
+  ],
+  "solved": true
+}

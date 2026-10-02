@@ -1,0 +1,10 @@
+{
+  "status": "PASS",
+  "files": 9,
+  "uncompressedBytes": 104517,
+  "zipBytes": 39350,
+  "sha256": "c5b49c64c8ccb2b61aa7d6d85ba9e23735d19e2af3693e4e57aef368423a16a3",
+  "syntax": "ES2017 classic (Acorn)",
+  "zipCRC": "PASS",
+  "limits": "under 2 MiB project target; under 10 MiB hard cap"
+}

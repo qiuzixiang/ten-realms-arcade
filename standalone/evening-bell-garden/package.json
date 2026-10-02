@@ -1,0 +1,16 @@
+{
+  "name": "evening-bell-garden",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "audit": "node scripts/audit.mjs",
+    "qa:browser": "node scripts/browser-qa.mjs",
+    "preview": "node scripts/serve.mjs"
+  },
+  "devDependencies": {
+    "acorn": "8.18.0"
+  }
+}

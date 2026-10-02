@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "gameId": "dream-isle-hotel",
+  "title": "梦屿旅舍",
+  "version": "1.0.0",
+  "status": "BUILT_LOCAL_VALIDATED",
+  "releaseReady": false,
+  "developmentAuthorized": true,
+  "sourceCommit": "55cdddb75cf57c17baee80bac4121bd3be1687c6",
+  "worktreeBase": "374d2eee951c8f6aa0bbc829e9cceaa127596b7c",
+  "commit": null,
+  "levels": 60,
+  "chapters": 6,
+  "uniqueness": "60/60 independently verified, plus tutorial",
+  "symmetryDeduplication": "clues and answer tilings",
+  "zip": "dist/dream-isle-hotel-xhs.zip",
+  "zipBytes": 38393,
+  "zipSha256": "6b00c05bc8b918305c5a76b189fe3926f33f93f21240528a756bf14cb1cf7e97",
+  "tests": {
+    "dedicated": "11/11 PASS",
+    "browser": "PASS",
+    "layoutCases": 27,
+    "browserVersion": "153.0.8010.36",
+    "cleanCopy": "PASS",
+    "zipReproducible": true,
+    "repository": "PASS"
+  },
+  "screenshots": [
+    "release/gameplay-mobile.png",
+    "release/tutorial-mobile.png",
+    "release/completion-mobile.png"
+  ],
+  "promotionalAssets": [
+    "release/icon.png",
+    "release/cover.png",
+    "release/COPY.zh-CN.md"
+  ],
+  "assetProvenance": "Project-original SVG artwork rendered to PNG; real renderer tutorial SVG; no image-model-generated assets",
+  "license": "MIT; see LICENSE, THIRD_PARTY_NOTICES.md and assets/license.json",
+  "platformSpec": "Archived minitool-zip-builder 1.6.0; current requirements not rechecked online",
+  "platform": {
+    "draft": "NOT_CREATED",
+    "upload": "NOT_UPLOADED",
+    "review": "NOT_SUBMITTED",
+    "publication": "NOT_PUBLISHED"
+  },
+  "notCovered": [
+    "Real iOS/Android devices",
+    "Actual Chrome61",
+    "XHS container and platform simulator",
+    "Human difficulty playtesting",
+    "External independent human review",
+    "Clean network dependency install"
+  ],
+  "writeScope": "standalone/dream-isle-hotel only",
+  "localPreview": "http://127.0.0.1:4178"
+}

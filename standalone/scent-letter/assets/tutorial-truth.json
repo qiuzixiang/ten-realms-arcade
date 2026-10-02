@@ -1,0 +1,51 @@
+{
+  "id": "scent-letter-tutorial-v1",
+  "seed": "scent-letter-tutorial-v1:15",
+  "secret": [
+    1,
+    1,
+    2,
+    3
+  ],
+  "guess": [
+    1,
+    2,
+    1,
+    4
+  ],
+  "states": [
+    {
+      "pegs": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "f": null
+    },
+    {
+      "pegs": [
+        1,
+        2,
+        1,
+        4
+      ],
+      "f": {
+        "exact": 1,
+        "misplaced": 2
+      }
+    },
+    {
+      "pegs": [
+        1,
+        1,
+        2,
+        3
+      ],
+      "f": {
+        "exact": 4,
+        "misplaced": 0
+      }
+    }
+  ]
+}

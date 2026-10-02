@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#332d39">
+  <title>百妖合宿</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="masthead">
+      <div class="masthead-inner">
+        <div class="brand-mark" aria-hidden="true"><span>✦</span><span>◕</span></div>
+        <div class="brand-copy"><p>月见町 · 妖怪旅舍</p><h1>百妖合宿</h1></div>
+        <button type="button" id="tutorial-button" class="header-help">玩法说明</button>
+      </div>
+    </header>
+    <main id="main-content">
+      <section id="screen-map" class="screen" aria-label="章节地图">
+        <div class="hero-panel">
+          <div class="hero-copy"><span class="eyebrow">THE YOKAI PAIRING HOUSE</span><h2>今夜，把每位客人<br>安排进对的房间。</h2><p>两位相邻妖怪住一间。每种数字组合只用一次，直到整座旅舍满房。</p><div class="hero-progress">旅舍进度 <strong id="campaign-progress">0 / 60</strong> 张房卡</div></div>
+          <div class="hero-illustration" aria-hidden="true"><div class="lantern lantern-one">✦</div><div class="lantern lantern-two">✦</div><div class="roof"></div><div class="house"><span>◕</span><span>◇</span><span>✦</span><span>☾</span></div><div class="ground"></div></div>
+        </div>
+        <div class="section-heading"><div><span class="eyebrow">CHAPTERS · 六章</span><h2>旅舍手账</h2></div><p>60道主线题，每章10道。</p></div>
+        <div id="chapter-tabs" class="chapter-tabs" aria-label="选择章节"></div>
+        <section class="chapter-panel"><div class="chapter-intro"><span class="seal" aria-hidden="true">宿</span><div><h3 id="chapter-heading"></h3><p id="chapter-description"></p></div></div><div id="level-grid" class="level-grid"></div></section>
+        <section class="daily-panel"><div><span class="eyebrow">DAILY CHECK-IN</span><h3>今日入住</h3><p id="daily-info"></p></div><button type="button" id="daily-button" class="primary-button">玩今日题</button></section>
+      </section>
+
+      <section id="screen-play" class="screen" aria-label="游玩" hidden>
+        <div class="play-heading"><div><span class="eyebrow" id="level-meta"></span><h2 id="level-heading"></h2><p id="order-description"></p></div><div class="move-pill">步数 <strong id="move-count">0</strong></div></div>
+        <div class="play-layout"><div class="board-card"><div class="board-topline"><span>妖怪客房</span><span id="board-progress">0 / 0 格</span></div><div id="board" class="board" role="group" aria-label="妖怪客房棋盘"></div><p class="board-caption">先选一位，再选相邻的一位。数字 0 也是客人。</p></div>
+          <div class="sidebar"><div class="inventory-card"><div class="card-heading"><div><span class="eyebrow">ROOM REGISTER</span><h3>组合清单</h3></div><strong id="room-progress">0 / 0</strong></div><p id="conflict-message" class="conflict-message">每种组合只能用一次</p><div id="inventory" class="inventory"></div></div><div class="tool-card"><h3>安排工具</h3><div class="tool-row"><button id="tool-room" type="button" class="tool-button is-active">⌂ 安排客房</button><button id="tool-exclude" type="button" class="tool-button">╳ 排除笔记</button></div><div class="action-row"><button type="button" id="undo-button" class="subtle-button">↶ 撤销</button><button type="button" id="restart-button" class="subtle-button">重开</button><button type="button" id="hint-button" class="subtle-button">提示</button></div><p id="game-status" class="game-status" role="status">先点一位妖怪，再点正交相邻的一位。</p></div></div></div>
+      </section>
+
+      <section id="screen-collection" class="screen" aria-label="客房手账" hidden><div class="collection-heading"><span class="eyebrow">GUEST BOOK</span><h2>客房手账</h2><p>每道主线首通收下一张房卡。章节满房后，摆件会点亮。</p><div class="collection-stats"><strong id="collection-total">0</strong><span>张房卡</span><strong id="daily-count">0</strong><span>次今日入住</span></div></div><div id="collection-grid" class="collection-grid"></div></section>
+    </main>
+    <nav class="bottom-nav" aria-label="主导航"><button type="button" id="nav-map" class="is-active">⌂<span>章节</span></button><button type="button" id="nav-play">◇<span>游玩</span></button><button type="button" id="nav-collection">▤<span>手账</span></button></nav>
+  </div>
+  <div id="live-status" class="visually-hidden" aria-live="polite"></div>
+
+  <div id="tutorial-modal" class="modal-layer" hidden><div class="modal-card tutorial-card" role="dialog" aria-modal="true" aria-labelledby="tutorial-heading"><div class="modal-top"><span class="eyebrow">HOW TO PLAY · 真实首关</span><button id="tutorial-close" type="button" class="icon-button" aria-label="关闭教程">×</button></div><h2 id="tutorial-heading"></h2><p id="tutorial-description"></p><div class="tutorial-figure"><div id="tutorial-board" class="board tutorial-board" aria-label="真实关卡状态"></div><p id="tutorial-pairs"></p></div><div class="modal-actions"><button type="button" id="tutorial-skip" class="subtle-button">跳过</button><span id="tutorial-counter">1 / 3</span><button type="button" id="tutorial-back" class="subtle-button">上一张</button><button type="button" id="tutorial-next" class="primary-button">下一张</button></div></div></div>
+  <div id="replace-modal" class="modal-layer" hidden><div class="modal-card small-modal" role="dialog" aria-modal="true" aria-labelledby="replace-title"><h2 id="replace-title">重新安排客房？</h2><p id="replace-description"></p><div class="modal-actions"><button type="button" id="replace-cancel" class="subtle-button">取消</button><button type="button" id="replace-confirm" class="primary-button">确认替换</button></div></div></div>
+  <div id="hint-modal" class="modal-layer" hidden><div class="modal-card small-modal" role="dialog" aria-modal="true" aria-labelledby="hint-title"><h2 id="hint-title">给你一条线索</h2><p id="hint-description"></p><p class="hint-note">预览不算使用提示；放入这间房后，本局记为使用提示。</p><div class="modal-actions"><button type="button" id="hint-close" class="subtle-button">再想想</button><button type="button" id="hint-action" class="primary-button">帮我放入</button></div></div></div>
+  <div id="win-modal" class="modal-layer" hidden><div class="modal-card small-modal win-card" role="dialog" aria-modal="true" aria-labelledby="win-title"><button id="win-close" type="button" class="icon-button win-close" aria-label="关闭通关提示">×</button><div class="win-emblem" aria-hidden="true">✦</div><span class="eyebrow">FULL HOUSE</span><h2 id="win-title"></h2><p id="win-description"></p><div id="win-reward" class="reward-banner"></div><div class="modal-actions"><button type="button" id="win-map" class="subtle-button">章节地图</button><button type="button" id="win-next" class="primary-button">继续游玩</button></div></div></div>
+  <script src="./app.js"></script>
+</body>
+</html>

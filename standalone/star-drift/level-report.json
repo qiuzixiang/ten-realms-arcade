@@ -1,0 +1,1006 @@
+{
+  "generatorVersion": 1,
+  "levelCount": 48,
+  "distinctUnderRotationAndReflection": 48,
+  "proof": "Breadth-first search in position × remaining energy; no deaths accepted; exact shortest successful slide count.",
+  "chapters": [
+    {
+      "chapter": 0,
+      "count": 8,
+      "minPar": 1,
+      "maxPar": 4
+    },
+    {
+      "chapter": 1,
+      "count": 8,
+      "minPar": 4,
+      "maxPar": 6
+    },
+    {
+      "chapter": 2,
+      "count": 8,
+      "minPar": 6,
+      "maxPar": 8
+    },
+    {
+      "chapter": 3,
+      "count": 8,
+      "minPar": 7,
+      "maxPar": 10
+    },
+    {
+      "chapter": 4,
+      "count": 8,
+      "minPar": 9,
+      "maxPar": 12
+    },
+    {
+      "chapter": 5,
+      "count": 8,
+      "minPar": 12,
+      "maxPar": 17
+    }
+  ],
+  "levels": [
+    {
+      "id": "campaign-01",
+      "name": "点火",
+      "chapter": 0,
+      "par": 1,
+      "seed": "handcrafted-1",
+      "proof": {
+        "algorithm": "BFS",
+        "visited": 1,
+        "shortest": true
+      },
+      "metrics": {
+        "diagonalMoves": 0,
+        "anchorStops": 0,
+        "homeStops": 0,
+        "emptyMoves": 0,
+        "dangerOptions": 0,
+        "directionVariety": 1
+      }
+    },
+    {
+      "id": "campaign-02",
+      "name": "借墙转向",
+      "chapter": 0,
+      "par": 2,
+      "seed": "handcrafted-2",
+      "proof": {
+        "algorithm": "BFS",
+        "visited": 4,
+        "shortest": true
+      },
+      "metrics": {
+        "diagonalMoves": 0,
+        "anchorStops": 0,
+        "homeStops": 0,
+        "emptyMoves": 0,
+        "dangerOptions": 0,
+        "directionVariety": 2
+      }
+    },
+    {
+      "id": "campaign-03",
+      "name": "斜线航道",
+      "chapter": 0,
+      "par": 1,
+      "seed": "handcrafted-3",
+      "proof": {
+        "algorithm": "BFS",
+        "visited": 2,
+        "shortest": true
+      },
+      "metrics": {
+        "diagonalMoves": 1,
+        "anchorStops": 0,
+        "homeStops": 0,
+        "emptyMoves": 0,
+        "dangerOptions": 0,
+        "directionVariety": 1
+      }
+    },
+    {
+      "id": "campaign-04",
+      "name": "掠过星光",
+      "chapter": 0,
+      "par": 1,
+      "seed": "handcrafted-4",
+      "proof": {
+        "algorithm": "BFS",
+        "visited": 1,
+        "shortest": true
+      },
+      "metrics": {
+        "diagonalMoves": 0,
+        "anchorStops": 0,
+        "homeStops": 0,
+        "emptyMoves": 0,
+        "dangerOptions": 0,
+        "directionVariety": 1
+      }
+    },
+    {
+      "id": "campaign-05",
+      "name": "引力停泊",
+      "chapter": 0,
+      "par": 2,
+      "seed": "handcrafted-5",
+      "proof": {
+        "algorithm": "BFS",
+        "visited": 5,
+        "shortest": true
+      },
+      "metrics": {
+        "diagonalMoves": 1,
+        "anchorStops": 1,
+        "homeStops": 0,
+        "emptyMoves": 1,
+        "dangerOptions": 0,
+        "directionVariety": 2
+      }
+    },
+    {
+      "id": "campaign-06",
+      "name": "归航信标",
+      "chapter": 0,
+      "par": 4,
+      "seed": "handcrafted-6",
+      "proof": {
+        "algorithm": "BFS",
+        "visited": 33,
+        "shortest": true
+      },
+      "metrics": {
+        "diagonalMoves": 1,
+        "anchorStops": 1,
+        "homeStops": 1,
+        "emptyMoves": 2,
+        "dangerOptions": 0,
+        "directionVariety": 4
+      }
+    },
+    {
+      "id": "campaign-07",
+      "name": "危险余程",
+      "chapter": 0,
+      "par": 2,
+      "seed": "handcrafted-7",
+      "proof": {
+        "algorithm": "BFS",
+        "visited": 3,
+        "shortest": true
+      },
+      "metrics": {
+        "diagonalMoves": 1,
+        "anchorStops": 1,
+        "homeStops": 0,
+        "emptyMoves": 1,
+        "dangerOptions": 2,
+        "directionVariety": 2
+      }
+    },
+    {
+      "id": "campaign-08",
+      "name": "试航毕业",
+      "chapter": 0,
+      "par": 4,
+      "seed": "handcrafted-8",
+      "proof": {
+        "algorithm": "BFS",
+        "visited": 53,
+        "shortest": true
+      },
+      "metrics": {
+        "diagonalMoves": 2,
+        "anchorStops": 1,
+        "homeStops": 0,
+        "emptyMoves": 1,
+        "dangerOptions": 1,
+        "directionVariety": 4
+      }
+    },
+    {
+      "id": "campaign-09",
+      "name": "折光门",
+      "chapter": 1,
+      "par": 4,
+      "seed": "star-drift-campaign-v1-9:0",
+      "proof": {
+        "algorithm": "BFS",
+        "visited": 33,
+        "shortest": true
+      },
+      "metrics": {
+        "diagonalMoves": 1,
+        "anchorStops": 0,
+        "homeStops": 0,
+        "emptyMoves": 2,
+        "dangerOptions": 0,
+        "directionVariety": 3
+      }
+    },
+    {
+      "id": "campaign-10",
+      "name": "边界回声",
+      "chapter": 1,
+      "par": 4,
+      "seed": "star-drift-campaign-v1-10:0",
+      "proof": {
+        "algorithm": "BFS",
+        "visited": 32,
+        "shortest": true
+      },
+      "metrics": {
+        "diagonalMoves": 2,
+        "anchorStops": 0,
+        "homeStops": 0,
+        "emptyMoves": 1,
+        "dangerOptions": 0,
+        "directionVariety": 3
+      }
+    },
+    {
+      "id": "campaign-11",
+      "name": "舷窗之间",
+      "chapter": 1,
+      "par": 4,
+      "seed": "star-drift-campaign-v1-11:2",
+      "proof": {
+        "algorithm": "BFS",
+        "visited": 25,
+        "shortest": true
+      },
+      "metrics": {
+        "diagonalMoves": 2,
+        "anchorStops": 0,
+        "homeStops": 0,
+        "emptyMoves": 2,
+        "dangerOptions": 0,
+        "directionVariety": 4
+      }
+    },
+    {
+      "id": "campaign-12",
+      "name": "切角航线",
+      "chapter": 1,
+      "par": 5,
+      "seed": "star-drift-campaign-v1-12:7",
+      "proof": {
+        "algorithm": "BFS",
+        "visited": 30,
+        "shortest": true
+      },
+      "metrics": {
+        "diagonalMoves": 3,
+        "anchorStops": 0,
+        "homeStops": 0,
+        "emptyMoves": 2,
+        "dangerOptions": 0,
+        "directionVariety": 3
+      }
+    },
+    {
+      "id": "campaign-13",
+      "name": "双层船坞",
+      "chapter": 1,
+      "par": 5,
+      "seed": "star-drift-campaign-v1-13:24",
+      "proof": {
+        "algorithm": "BFS",
+        "visited": 59,
+        "shortest": true
+      },
+      "metrics": {
+        "diagonalMoves": 1,
+        "anchorStops": 0,
+        "homeStops": 0,
+        "emptyMoves": 3,
+        "dangerOptions": 0,
+        "directionVariety": 4
+      }
+    },
+    {
+      "id": "campaign-14",
+      "name": "残骸缺口",
+      "chapter": 1,
+      "par": 5,
+      "seed": "star-drift-campaign-v1-14:3",
+      "proof": {
+        "algorithm": "BFS",
+        "visited": 83,
+        "shortest": true
+      },
+      "metrics": {
+        "diagonalMoves": 2,
+        "anchorStops": 0,
+        "homeStops": 0,
+        "emptyMoves": 2,
+        "dangerOptions": 0,
+        "directionVariety": 3
+      }
+    },
+    {
+      "id": "campaign-15",
+      "name": "长距折返",
+      "chapter": 1,
+      "par": 6,
+      "seed": "star-drift-campaign-v1-15:77",
+      "proof": {
+        "algorithm": "BFS",
+        "visited": 142,
+        "shortest": true
+      },
+      "metrics": {
+        "diagonalMoves": 1,
+        "anchorStops": 1,
+        "homeStops": 1,
+        "emptyMoves": 3,
+        "dangerOptions": 0,
+        "directionVariety": 5
+      }
+    },
+    {
+      "id": "campaign-16",
+      "name": "几何之眼",
+      "chapter": 1,
+      "par": 6,
+      "seed": "star-drift-campaign-v1-16:115",
+      "proof": {
+        "algorithm": "BFS",
+        "visited": 126,
+        "shortest": true
+      },
+      "metrics": {
+        "diagonalMoves": 1,
+        "anchorStops": 0,
+        "homeStops": 0,
+        "emptyMoves": 3,
+        "dangerOptions": 0,
+        "directionVariety": 5
+      }
+    },
+    {
+      "id": "campaign-17",
+      "name": "微引力井",
+      "chapter": 2,
+      "par": 6,
+      "seed": "star-drift-campaign-v1-17:7",
+      "proof": {
+        "algorithm": "BFS",
+        "visited": 213,
+        "shortest": true
+      },
+      "metrics": {
+        "diagonalMoves": 3,
+        "anchorStops": 1,
+        "homeStops": 0,
+        "emptyMoves": 2,
+        "dangerOptions": 0,
+        "directionVariety": 4
+      }
+    },
+    {
+      "id": "campaign-18",
+      "name": "双锚接力",
+      "chapter": 2,
+      "par": 6,
+      "seed": "star-drift-campaign-v1-18:0",
+      "proof": {
+        "algorithm": "BFS",
+        "visited": 265,
+        "shortest": true
+      },
+      "metrics": {
+        "diagonalMoves": 2,
+        "anchorStops": 1,
+        "homeStops": 1,
+        "emptyMoves": 3,
+        "dangerOptions": 0,
+        "directionVariety": 5
+      }
+    },
+    {
+      "id": "campaign-19",
+      "name": "停泊顺序",
+      "chapter": 2,
+      "par": 6,
+      "seed": "star-drift-campaign-v1-19:3",
+      "proof": {
+        "algorithm": "BFS",
+        "visited": 158,
+        "shortest": true
+      },
+      "metrics": {
+        "diagonalMoves": 3,
+        "anchorStops": 2,
+        "homeStops": 0,
+        "emptyMoves": 2,
+        "dangerOptions": 0,
+        "directionVariety": 6
+      }
+    },
+    {
+      "id": "campaign-20",
+      "name": "中途改线",
+      "chapter": 2,
+      "par": 7,
+      "seed": "star-drift-campaign-v1-20:25",
+      "proof": {
+        "algorithm": "BFS",
+        "visited": 275,
+        "shortest": true
+      },
+      "metrics": {
+        "diagonalMoves": 3,
+        "anchorStops": 1,
+        "homeStops": 0,
+        "emptyMoves": 3,
+        "dangerOptions": 0,
+        "directionVariety": 5
+      }
+    },
+    {
+      "id": "campaign-21",
+      "name": "环心停靠",
+      "chapter": 2,
+      "par": 7,
+      "seed": "star-drift-campaign-v1-21:69",
+      "proof": {
+        "algorithm": "BFS",
+        "visited": 267,
+        "shortest": true
+      },
+      "metrics": {
+        "diagonalMoves": 3,
+        "anchorStops": 1,
+        "homeStops": 0,
+        "emptyMoves": 3,
+        "dangerOptions": 0,
+        "directionVariety": 3
+      }
+    },
+    {
+      "id": "campaign-22",
+      "name": "远近之间",
+      "chapter": 2,
+      "par": 7,
+      "seed": "star-drift-campaign-v1-22:67",
+      "proof": {
+        "algorithm": "BFS",
+        "visited": 244,
+        "shortest": true
+      },
+      "metrics": {
+        "diagonalMoves": 2,
+        "anchorStops": 2,
+        "homeStops": 0,
+        "emptyMoves": 3,
+        "dangerOptions": 0,
+        "directionVariety": 6
+      }
+    },
+    {
+      "id": "campaign-23",
+      "name": "交叉中继",
+      "chapter": 2,
+      "par": 8,
+      "seed": "star-drift-campaign-v1-23:1031",
+      "proof": {
+        "algorithm": "BFS",
+        "visited": 305,
+        "shortest": true
+      },
+      "metrics": {
+        "diagonalMoves": 2,
+        "anchorStops": 3,
+        "homeStops": 0,
+        "emptyMoves": 4,
+        "dangerOptions": 0,
+        "directionVariety": 6
+      }
+    },
+    {
+      "id": "campaign-24",
+      "name": "无声枢纽",
+      "chapter": 2,
+      "par": 8,
+      "seed": "star-drift-campaign-v1-24:684",
+      "proof": {
+        "algorithm": "BFS",
+        "visited": 293,
+        "shortest": true
+      },
+      "metrics": {
+        "diagonalMoves": 1,
+        "anchorStops": 3,
+        "homeStops": 1,
+        "emptyMoves": 4,
+        "dangerOptions": 0,
+        "directionVariety": 5
+      }
+    },
+    {
+      "id": "campaign-25",
+      "name": "红区边缘",
+      "chapter": 3,
+      "par": 8,
+      "seed": "star-drift-campaign-v1-25:1",
+      "proof": {
+        "algorithm": "BFS",
+        "visited": 122,
+        "shortest": true
+      },
+      "metrics": {
+        "diagonalMoves": 3,
+        "anchorStops": 2,
+        "homeStops": 1,
+        "emptyMoves": 4,
+        "dangerOptions": 10,
+        "directionVariety": 5
+      }
+    },
+    {
+      "id": "campaign-26",
+      "name": "危险尾迹",
+      "chapter": 3,
+      "par": 7,
+      "seed": "star-drift-campaign-v1-26:8",
+      "proof": {
+        "algorithm": "BFS",
+        "visited": 52,
+        "shortest": true
+      },
+      "metrics": {
+        "diagonalMoves": 1,
+        "anchorStops": 2,
+        "homeStops": 0,
+        "emptyMoves": 3,
+        "dangerOptions": 6,
+        "directionVariety": 4
+      }
+    },
+    {
+      "id": "campaign-27",
+      "name": "安全着陆",
+      "chapter": 3,
+      "par": 7,
+      "seed": "star-drift-campaign-v1-27:1",
+      "proof": {
+        "algorithm": "BFS",
+        "visited": 145,
+        "shortest": true
+      },
+      "metrics": {
+        "diagonalMoves": 2,
+        "anchorStops": 2,
+        "homeStops": 0,
+        "emptyMoves": 3,
+        "dangerOptions": 10,
+        "directionVariety": 5
+      }
+    },
+    {
+      "id": "campaign-28",
+      "name": "侧翼切入",
+      "chapter": 3,
+      "par": 8,
+      "seed": "star-drift-campaign-v1-28:4",
+      "proof": {
+        "algorithm": "BFS",
+        "visited": 276,
+        "shortest": true
+      },
+      "metrics": {
+        "diagonalMoves": 2,
+        "anchorStops": 2,
+        "homeStops": 2,
+        "emptyMoves": 4,
+        "dangerOptions": 5,
+        "directionVariety": 6
+      }
+    },
+    {
+      "id": "campaign-29",
+      "name": "余程检查",
+      "chapter": 3,
+      "par": 9,
+      "seed": "star-drift-campaign-v1-29:22",
+      "proof": {
+        "algorithm": "BFS",
+        "visited": 255,
+        "shortest": true
+      },
+      "metrics": {
+        "diagonalMoves": 4,
+        "anchorStops": 1,
+        "homeStops": 0,
+        "emptyMoves": 5,
+        "dangerOptions": 12,
+        "directionVariety": 6
+      }
+    },
+    {
+      "id": "campaign-30",
+      "name": "穿针航道",
+      "chapter": 3,
+      "par": 8,
+      "seed": "star-drift-campaign-v1-30:27",
+      "proof": {
+        "algorithm": "BFS",
+        "visited": 199,
+        "shortest": true
+      },
+      "metrics": {
+        "diagonalMoves": 5,
+        "anchorStops": 1,
+        "homeStops": 0,
+        "emptyMoves": 4,
+        "dangerOptions": 6,
+        "directionVariety": 5
+      }
+    },
+    {
+      "id": "campaign-31",
+      "name": "窄门之后",
+      "chapter": 3,
+      "par": 9,
+      "seed": "star-drift-campaign-v1-31:14",
+      "proof": {
+        "algorithm": "BFS",
+        "visited": 292,
+        "shortest": true
+      },
+      "metrics": {
+        "diagonalMoves": 4,
+        "anchorStops": 3,
+        "homeStops": 1,
+        "emptyMoves": 5,
+        "dangerOptions": 10,
+        "directionVariety": 5
+      }
+    },
+    {
+      "id": "campaign-32",
+      "name": "寂静雷区",
+      "chapter": 3,
+      "par": 10,
+      "seed": "star-drift-campaign-v1-32:25",
+      "proof": {
+        "algorithm": "BFS",
+        "visited": 234,
+        "shortest": true
+      },
+      "metrics": {
+        "diagonalMoves": 6,
+        "anchorStops": 1,
+        "homeStops": 0,
+        "emptyMoves": 6,
+        "dangerOptions": 10,
+        "directionVariety": 8
+      }
+    },
+    {
+      "id": "campaign-33",
+      "name": "多点回收",
+      "chapter": 4,
+      "par": 9,
+      "seed": "star-drift-campaign-v1-33:14",
+      "proof": {
+        "algorithm": "BFS",
+        "visited": 330,
+        "shortest": true
+      },
+      "metrics": {
+        "diagonalMoves": 3,
+        "anchorStops": 2,
+        "homeStops": 0,
+        "emptyMoves": 4,
+        "dangerOptions": 8,
+        "directionVariety": 5
+      }
+    },
+    {
+      "id": "campaign-34",
+      "name": "逆向思考",
+      "chapter": 4,
+      "par": 9,
+      "seed": "star-drift-campaign-v1-34:0",
+      "proof": {
+        "algorithm": "BFS",
+        "visited": 651,
+        "shortest": true
+      },
+      "metrics": {
+        "diagonalMoves": 4,
+        "anchorStops": 2,
+        "homeStops": 0,
+        "emptyMoves": 4,
+        "dangerOptions": 9,
+        "directionVariety": 7
+      }
+    },
+    {
+      "id": "campaign-35",
+      "name": "错层废墟",
+      "chapter": 4,
+      "par": 11,
+      "seed": "star-drift-campaign-v1-35:4",
+      "proof": {
+        "algorithm": "BFS",
+        "visited": 514,
+        "shortest": true
+      },
+      "metrics": {
+        "diagonalMoves": 4,
+        "anchorStops": 1,
+        "homeStops": 0,
+        "emptyMoves": 6,
+        "dangerOptions": 13,
+        "directionVariety": 7
+      }
+    },
+    {
+      "id": "campaign-36",
+      "name": "最后一枚",
+      "chapter": 4,
+      "par": 10,
+      "seed": "star-drift-campaign-v1-36:6",
+      "proof": {
+        "algorithm": "BFS",
+        "visited": 190,
+        "shortest": true
+      },
+      "metrics": {
+        "diagonalMoves": 6,
+        "anchorStops": 1,
+        "homeStops": 0,
+        "emptyMoves": 5,
+        "dangerOptions": 12,
+        "directionVariety": 7
+      }
+    },
+    {
+      "id": "campaign-37",
+      "name": "内环外环",
+      "chapter": 4,
+      "par": 10,
+      "seed": "star-drift-campaign-v1-37:2",
+      "proof": {
+        "algorithm": "BFS",
+        "visited": 853,
+        "shortest": true
+      },
+      "metrics": {
+        "diagonalMoves": 7,
+        "anchorStops": 1,
+        "homeStops": 1,
+        "emptyMoves": 5,
+        "dangerOptions": 11,
+        "directionVariety": 6
+      }
+    },
+    {
+      "id": "campaign-38",
+      "name": "一线之隔",
+      "chapter": 4,
+      "par": 10,
+      "seed": "star-drift-campaign-v1-38:9",
+      "proof": {
+        "algorithm": "BFS",
+        "visited": 366,
+        "shortest": true
+      },
+      "metrics": {
+        "diagonalMoves": 5,
+        "anchorStops": 1,
+        "homeStops": 0,
+        "emptyMoves": 6,
+        "dangerOptions": 7,
+        "directionVariety": 6
+      }
+    },
+    {
+      "id": "campaign-39",
+      "name": "曲折星桥",
+      "chapter": 4,
+      "par": 12,
+      "seed": "star-drift-campaign-v1-39:19",
+      "proof": {
+        "algorithm": "BFS",
+        "visited": 333,
+        "shortest": true
+      },
+      "metrics": {
+        "diagonalMoves": 4,
+        "anchorStops": 4,
+        "homeStops": 1,
+        "emptyMoves": 7,
+        "dangerOptions": 17,
+        "directionVariety": 7
+      }
+    },
+    {
+      "id": "campaign-40",
+      "name": "航线编织",
+      "chapter": 4,
+      "par": 11,
+      "seed": "star-drift-campaign-v1-40:1",
+      "proof": {
+        "algorithm": "BFS",
+        "visited": 395,
+        "shortest": true
+      },
+      "metrics": {
+        "diagonalMoves": 5,
+        "anchorStops": 3,
+        "homeStops": 0,
+        "emptyMoves": 6,
+        "dangerOptions": 12,
+        "directionVariety": 6
+      }
+    },
+    {
+      "id": "campaign-41",
+      "name": "深空入口",
+      "chapter": 5,
+      "par": 12,
+      "seed": "star-drift-campaign-v1-41:1",
+      "proof": {
+        "algorithm": "BFS",
+        "visited": 1407,
+        "shortest": true
+      },
+      "metrics": {
+        "diagonalMoves": 8,
+        "anchorStops": 1,
+        "homeStops": 1,
+        "emptyMoves": 6,
+        "dangerOptions": 13,
+        "directionVariety": 7
+      }
+    },
+    {
+      "id": "campaign-42",
+      "name": "失落造船厂",
+      "chapter": 5,
+      "par": 12,
+      "seed": "star-drift-campaign-v1-42:1",
+      "proof": {
+        "algorithm": "BFS",
+        "visited": 1122,
+        "shortest": true
+      },
+      "metrics": {
+        "diagonalMoves": 6,
+        "anchorStops": 4,
+        "homeStops": 0,
+        "emptyMoves": 6,
+        "dangerOptions": 11,
+        "directionVariety": 7
+      }
+    },
+    {
+      "id": "campaign-43",
+      "name": "无光中继",
+      "chapter": 5,
+      "par": 12,
+      "seed": "star-drift-campaign-v1-43:3",
+      "proof": {
+        "algorithm": "BFS",
+        "visited": 658,
+        "shortest": true
+      },
+      "metrics": {
+        "diagonalMoves": 7,
+        "anchorStops": 3,
+        "homeStops": 0,
+        "emptyMoves": 6,
+        "dangerOptions": 19,
+        "directionVariety": 7
+      }
+    },
+    {
+      "id": "campaign-44",
+      "name": "暗潮航路",
+      "chapter": 5,
+      "par": 15,
+      "seed": "star-drift-campaign-v1-44:31",
+      "proof": {
+        "algorithm": "BFS",
+        "visited": 729,
+        "shortest": true
+      },
+      "metrics": {
+        "diagonalMoves": 8,
+        "anchorStops": 1,
+        "homeStops": 1,
+        "emptyMoves": 9,
+        "dangerOptions": 23,
+        "directionVariety": 8
+      }
+    },
+    {
+      "id": "campaign-45",
+      "name": "反应堆群",
+      "chapter": 5,
+      "par": 13,
+      "seed": "star-drift-campaign-v1-45:16",
+      "proof": {
+        "algorithm": "BFS",
+        "visited": 1157,
+        "shortest": true
+      },
+      "metrics": {
+        "diagonalMoves": 5,
+        "anchorStops": 2,
+        "homeStops": 0,
+        "emptyMoves": 8,
+        "dangerOptions": 16,
+        "directionVariety": 7
+      }
+    },
+    {
+      "id": "campaign-46",
+      "name": "破碎星环",
+      "chapter": 5,
+      "par": 13,
+      "seed": "star-drift-campaign-v1-46:5",
+      "proof": {
+        "algorithm": "BFS",
+        "visited": 1256,
+        "shortest": true
+      },
+      "metrics": {
+        "diagonalMoves": 7,
+        "anchorStops": 1,
+        "homeStops": 0,
+        "emptyMoves": 8,
+        "dangerOptions": 11,
+        "directionVariety": 8
+      }
+    },
+    {
+      "id": "campaign-47",
+      "name": "引力交响",
+      "chapter": 5,
+      "par": 17,
+      "seed": "star-drift-campaign-v1-47:115",
+      "proof": {
+        "algorithm": "BFS",
+        "visited": 1287,
+        "shortest": true
+      },
+      "metrics": {
+        "diagonalMoves": 7,
+        "anchorStops": 5,
+        "homeStops": 1,
+        "emptyMoves": 11,
+        "dangerOptions": 26,
+        "directionVariety": 7
+      }
+    },
+    {
+      "id": "campaign-48",
+      "name": "向星海进发",
+      "chapter": 5,
+      "par": 15,
+      "seed": "star-drift-campaign-v1-48:138",
+      "proof": {
+        "algorithm": "BFS",
+        "visited": 2153,
+        "shortest": true
+      },
+      "metrics": {
+        "diagonalMoves": 5,
+        "anchorStops": 2,
+        "homeStops": 0,
+        "emptyMoves": 9,
+        "dangerOptions": 17,
+        "directionVariety": 8
+      }
+    }
+  ]
+}

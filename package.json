@@ -7,8 +7,9 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "node scripts/build.mjs",
+    "build": "node scripts/build.mjs && python3 scripts/validate-standalone.py",
     "test": "node scripts/validate.mjs && node scripts/standalone.mjs test",
-    "serve": "python3 -m http.server 4173"
+    "serve": "python3 -m http.server 4173",
+    "setup": "node scripts/standalone.mjs install"
   }
 }

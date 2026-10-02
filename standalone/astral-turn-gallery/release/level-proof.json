@@ -1,0 +1,785 @@
+{
+  "seed": 20260922,
+  "count": 60,
+  "canonicalUnique": 60,
+  "shallowBFSStates": 3076,
+  "levels": [
+    {
+      "id": "astral-01",
+      "aligned": 12,
+      "cycles": [
+        4
+      ],
+      "lowerBound": 1,
+      "exactShortest": 1,
+      "searchStates": 3076,
+      "searchDepth": 3,
+      "reference": 1
+    },
+    {
+      "id": "astral-02",
+      "aligned": 8,
+      "cycles": [
+        4,
+        4
+      ],
+      "lowerBound": 2,
+      "exactShortest": 2,
+      "searchStates": 3076,
+      "searchDepth": 3,
+      "reference": 2
+    },
+    {
+      "id": "astral-03",
+      "aligned": 11,
+      "cycles": [
+        5
+      ],
+      "lowerBound": 2,
+      "exactShortest": 2,
+      "searchStates": 3076,
+      "searchDepth": 3,
+      "reference": 2
+    },
+    {
+      "id": "astral-04",
+      "aligned": 8,
+      "cycles": [
+        4,
+        4
+      ],
+      "lowerBound": 2,
+      "exactShortest": 2,
+      "searchStates": 3076,
+      "searchDepth": 3,
+      "reference": 2
+    },
+    {
+      "id": "astral-05",
+      "aligned": 4,
+      "cycles": [
+        4,
+        4,
+        4
+      ],
+      "lowerBound": 3,
+      "exactShortest": 3,
+      "searchStates": 3076,
+      "searchDepth": 3,
+      "reference": 3
+    },
+    {
+      "id": "astral-06",
+      "aligned": 12,
+      "cycles": [
+        4
+      ],
+      "lowerBound": 1,
+      "exactShortest": 1,
+      "searchStates": 3076,
+      "searchDepth": 3,
+      "reference": 3
+    },
+    {
+      "id": "astral-07",
+      "aligned": 8,
+      "cycles": [
+        3,
+        3,
+        2
+      ],
+      "lowerBound": 3,
+      "exactShortest": 3,
+      "searchStates": 3076,
+      "searchDepth": 3,
+      "reference": 3
+    },
+    {
+      "id": "astral-08",
+      "aligned": 7,
+      "cycles": [
+        6,
+        3
+      ],
+      "lowerBound": 3,
+      "exactShortest": 3,
+      "searchStates": 3076,
+      "searchDepth": 3,
+      "reference": 3
+    },
+    {
+      "id": "astral-09",
+      "aligned": 7,
+      "cycles": [
+        6,
+        3
+      ],
+      "lowerBound": 3,
+      "exactShortest": 3,
+      "searchStates": 3076,
+      "searchDepth": 3,
+      "reference": 3
+    },
+    {
+      "id": "astral-10",
+      "aligned": 10,
+      "cycles": [
+        6
+      ],
+      "lowerBound": 2,
+      "exactShortest": 3,
+      "searchStates": 3076,
+      "searchDepth": 3,
+      "reference": 3
+    },
+    {
+      "id": "astral-11",
+      "aligned": 10,
+      "cycles": [
+        4,
+        2
+      ],
+      "lowerBound": 3,
+      "exactShortest": null,
+      "searchStates": 3076,
+      "searchDepth": 3,
+      "reference": 4
+    },
+    {
+      "id": "astral-12",
+      "aligned": 6,
+      "cycles": [
+        8,
+        2
+      ],
+      "lowerBound": 4,
+      "exactShortest": null,
+      "searchStates": 3076,
+      "searchDepth": 3,
+      "reference": 4
+    },
+    {
+      "id": "astral-13",
+      "aligned": 5,
+      "cycles": [
+        4,
+        4,
+        3
+      ],
+      "lowerBound": 4,
+      "exactShortest": null,
+      "searchStates": 3076,
+      "searchDepth": 3,
+      "reference": 4
+    },
+    {
+      "id": "astral-14",
+      "aligned": 2,
+      "cycles": [
+        4,
+        4,
+        3,
+        3
+      ],
+      "lowerBound": 4,
+      "exactShortest": null,
+      "searchStates": 3076,
+      "searchDepth": 3,
+      "reference": 4
+    },
+    {
+      "id": "astral-15",
+      "aligned": 7,
+      "cycles": [
+        5,
+        4
+      ],
+      "lowerBound": 4,
+      "exactShortest": null,
+      "searchStates": 3076,
+      "searchDepth": 3,
+      "reference": 5
+    },
+    {
+      "id": "astral-16",
+      "aligned": 6,
+      "cycles": [
+        4,
+        3,
+        3
+      ],
+      "lowerBound": 4,
+      "exactShortest": null,
+      "searchStates": 3076,
+      "searchDepth": 3,
+      "reference": 5
+    },
+    {
+      "id": "astral-17",
+      "aligned": 6,
+      "cycles": [
+        10
+      ],
+      "lowerBound": 4,
+      "exactShortest": null,
+      "searchStates": 3076,
+      "searchDepth": 3,
+      "reference": 5
+    },
+    {
+      "id": "astral-18",
+      "aligned": 3,
+      "cycles": [
+        9,
+        4
+      ],
+      "lowerBound": 4,
+      "exactShortest": null,
+      "searchStates": 3076,
+      "searchDepth": 3,
+      "reference": 5
+    },
+    {
+      "id": "astral-19",
+      "aligned": 5,
+      "cycles": [
+        11
+      ],
+      "lowerBound": 4,
+      "exactShortest": null,
+      "searchStates": 3076,
+      "searchDepth": 3,
+      "reference": 6
+    },
+    {
+      "id": "astral-20",
+      "aligned": 3,
+      "cycles": [
+        13
+      ],
+      "lowerBound": 5,
+      "exactShortest": null,
+      "searchStates": 3076,
+      "searchDepth": 3,
+      "reference": 6
+    },
+    {
+      "id": "astral-21",
+      "aligned": 11,
+      "cycles": [
+        3,
+        2
+      ],
+      "lowerBound": 2,
+      "exactShortest": null,
+      "searchStates": 3076,
+      "searchDepth": 3,
+      "reference": 5
+    },
+    {
+      "id": "astral-22",
+      "aligned": 7,
+      "cycles": [
+        7,
+        2
+      ],
+      "lowerBound": 4,
+      "exactShortest": null,
+      "searchStates": 3076,
+      "searchDepth": 3,
+      "reference": 5
+    },
+    {
+      "id": "astral-23",
+      "aligned": 10,
+      "cycles": [
+        6
+      ],
+      "lowerBound": 3,
+      "exactShortest": null,
+      "searchStates": 3076,
+      "searchDepth": 3,
+      "reference": 5
+    },
+    {
+      "id": "astral-24",
+      "aligned": 7,
+      "cycles": [
+        6,
+        3
+      ],
+      "lowerBound": 5,
+      "exactShortest": null,
+      "searchStates": 3076,
+      "searchDepth": 3,
+      "reference": 5
+    },
+    {
+      "id": "astral-25",
+      "aligned": 9,
+      "cycles": [
+        7
+      ],
+      "lowerBound": 4,
+      "exactShortest": null,
+      "searchStates": 3076,
+      "searchDepth": 3,
+      "reference": 6
+    },
+    {
+      "id": "astral-26",
+      "aligned": 8,
+      "cycles": [
+        5,
+        3
+      ],
+      "lowerBound": 4,
+      "exactShortest": null,
+      "searchStates": 3076,
+      "searchDepth": 3,
+      "reference": 6
+    },
+    {
+      "id": "astral-27",
+      "aligned": 9,
+      "cycles": [
+        7
+      ],
+      "lowerBound": 4,
+      "exactShortest": null,
+      "searchStates": 3076,
+      "searchDepth": 3,
+      "reference": 6
+    },
+    {
+      "id": "astral-28",
+      "aligned": 9,
+      "cycles": [
+        7
+      ],
+      "lowerBound": 3,
+      "exactShortest": null,
+      "searchStates": 3076,
+      "searchDepth": 3,
+      "reference": 6
+    },
+    {
+      "id": "astral-29",
+      "aligned": 8,
+      "cycles": [
+        8
+      ],
+      "lowerBound": 4,
+      "exactShortest": null,
+      "searchStates": 3076,
+      "searchDepth": 3,
+      "reference": 7
+    },
+    {
+      "id": "astral-30",
+      "aligned": 8,
+      "cycles": [
+        4,
+        2,
+        2
+      ],
+      "lowerBound": 4,
+      "exactShortest": null,
+      "searchStates": 3076,
+      "searchDepth": 3,
+      "reference": 7
+    },
+    {
+      "id": "astral-31",
+      "aligned": 6,
+      "cycles": [
+        8,
+        2
+      ],
+      "lowerBound": 5,
+      "exactShortest": null,
+      "searchStates": 3076,
+      "searchDepth": 3,
+      "reference": 6
+    },
+    {
+      "id": "astral-32",
+      "aligned": 6,
+      "cycles": [
+        7,
+        3
+      ],
+      "lowerBound": 5,
+      "exactShortest": null,
+      "searchStates": 3076,
+      "searchDepth": 3,
+      "reference": 6
+    },
+    {
+      "id": "astral-33",
+      "aligned": 10,
+      "cycles": [
+        4,
+        2
+      ],
+      "lowerBound": 3,
+      "exactShortest": null,
+      "searchStates": 3076,
+      "searchDepth": 3,
+      "reference": 6
+    },
+    {
+      "id": "astral-34",
+      "aligned": 11,
+      "cycles": [
+        5
+      ],
+      "lowerBound": 2,
+      "exactShortest": null,
+      "searchStates": 3076,
+      "searchDepth": 3,
+      "reference": 6
+    },
+    {
+      "id": "astral-35",
+      "aligned": 5,
+      "cycles": [
+        7,
+        4
+      ],
+      "lowerBound": 5,
+      "exactShortest": null,
+      "searchStates": 3076,
+      "searchDepth": 3,
+      "reference": 7
+    },
+    {
+      "id": "astral-36",
+      "aligned": 5,
+      "cycles": [
+        8,
+        3
+      ],
+      "lowerBound": 6,
+      "exactShortest": null,
+      "searchStates": 3076,
+      "searchDepth": 3,
+      "reference": 7
+    },
+    {
+      "id": "astral-37",
+      "aligned": 6,
+      "cycles": [
+        10
+      ],
+      "lowerBound": 4,
+      "exactShortest": null,
+      "searchStates": 3076,
+      "searchDepth": 3,
+      "reference": 7
+    },
+    {
+      "id": "astral-38",
+      "aligned": 8,
+      "cycles": [
+        8
+      ],
+      "lowerBound": 3,
+      "exactShortest": null,
+      "searchStates": 3076,
+      "searchDepth": 3,
+      "reference": 7
+    },
+    {
+      "id": "astral-39",
+      "aligned": 10,
+      "cycles": [
+        3,
+        3
+      ],
+      "lowerBound": 3,
+      "exactShortest": null,
+      "searchStates": 3076,
+      "searchDepth": 3,
+      "reference": 8
+    },
+    {
+      "id": "astral-40",
+      "aligned": 7,
+      "cycles": [
+        9
+      ],
+      "lowerBound": 6,
+      "exactShortest": null,
+      "searchStates": 3076,
+      "searchDepth": 3,
+      "reference": 8
+    },
+    {
+      "id": "astral-41",
+      "aligned": 1,
+      "cycles": [
+        15
+      ],
+      "lowerBound": 7,
+      "exactShortest": null,
+      "searchStates": 3076,
+      "searchDepth": 3,
+      "reference": 8
+    },
+    {
+      "id": "astral-42",
+      "aligned": 7,
+      "cycles": [
+        9
+      ],
+      "lowerBound": 4,
+      "exactShortest": null,
+      "searchStates": 3076,
+      "searchDepth": 3,
+      "reference": 8
+    },
+    {
+      "id": "astral-43",
+      "aligned": 3,
+      "cycles": [
+        6,
+        4,
+        3
+      ],
+      "lowerBound": 5,
+      "exactShortest": null,
+      "searchStates": 3076,
+      "searchDepth": 3,
+      "reference": 8
+    },
+    {
+      "id": "astral-44",
+      "aligned": 0,
+      "cycles": [
+        5,
+        4,
+        4,
+        3
+      ],
+      "lowerBound": 6,
+      "exactShortest": null,
+      "searchStates": 3076,
+      "searchDepth": 3,
+      "reference": 8
+    },
+    {
+      "id": "astral-45",
+      "aligned": 7,
+      "cycles": [
+        7,
+        2
+      ],
+      "lowerBound": 4,
+      "exactShortest": null,
+      "searchStates": 3076,
+      "searchDepth": 3,
+      "reference": 9
+    },
+    {
+      "id": "astral-46",
+      "aligned": 1,
+      "cycles": [
+        13,
+        2
+      ],
+      "lowerBound": 7,
+      "exactShortest": null,
+      "searchStates": 3076,
+      "searchDepth": 3,
+      "reference": 9
+    },
+    {
+      "id": "astral-47",
+      "aligned": 1,
+      "cycles": [
+        8,
+        7
+      ],
+      "lowerBound": 6,
+      "exactShortest": null,
+      "searchStates": 3076,
+      "searchDepth": 3,
+      "reference": 9
+    },
+    {
+      "id": "astral-48",
+      "aligned": 1,
+      "cycles": [
+        11,
+        4
+      ],
+      "lowerBound": 8,
+      "exactShortest": null,
+      "searchStates": 3076,
+      "searchDepth": 3,
+      "reference": 9
+    },
+    {
+      "id": "astral-49",
+      "aligned": 1,
+      "cycles": [
+        15
+      ],
+      "lowerBound": 7,
+      "exactShortest": null,
+      "searchStates": 3076,
+      "searchDepth": 3,
+      "reference": 10
+    },
+    {
+      "id": "astral-50",
+      "aligned": 3,
+      "cycles": [
+        9,
+        2,
+        2
+      ],
+      "lowerBound": 4,
+      "exactShortest": null,
+      "searchStates": 3076,
+      "searchDepth": 3,
+      "reference": 10
+    },
+    {
+      "id": "astral-51",
+      "aligned": 3,
+      "cycles": [
+        6,
+        4,
+        3
+      ],
+      "lowerBound": 4,
+      "exactShortest": null,
+      "searchStates": 3076,
+      "searchDepth": 3,
+      "reference": 10
+    },
+    {
+      "id": "astral-52",
+      "aligned": 4,
+      "cycles": [
+        8,
+        4
+      ],
+      "lowerBound": 5,
+      "exactShortest": null,
+      "searchStates": 3076,
+      "searchDepth": 3,
+      "reference": 10
+    },
+    {
+      "id": "astral-53",
+      "aligned": 5,
+      "cycles": [
+        4,
+        4,
+        3
+      ],
+      "lowerBound": 6,
+      "exactShortest": null,
+      "searchStates": 3076,
+      "searchDepth": 3,
+      "reference": 10
+    },
+    {
+      "id": "astral-54",
+      "aligned": 4,
+      "cycles": [
+        7,
+        5
+      ],
+      "lowerBound": 7,
+      "exactShortest": null,
+      "searchStates": 3076,
+      "searchDepth": 3,
+      "reference": 10
+    },
+    {
+      "id": "astral-55",
+      "aligned": 2,
+      "cycles": [
+        5,
+        3,
+        2,
+        2,
+        2
+      ],
+      "lowerBound": 6,
+      "exactShortest": null,
+      "searchStates": 3076,
+      "searchDepth": 3,
+      "reference": 11
+    },
+    {
+      "id": "astral-56",
+      "aligned": 7,
+      "cycles": [
+        7,
+        2
+      ],
+      "lowerBound": 5,
+      "exactShortest": null,
+      "searchStates": 3076,
+      "searchDepth": 3,
+      "reference": 11
+    },
+    {
+      "id": "astral-57",
+      "aligned": 5,
+      "cycles": [
+        8,
+        3
+      ],
+      "lowerBound": 5,
+      "exactShortest": null,
+      "searchStates": 3076,
+      "searchDepth": 3,
+      "reference": 11
+    },
+    {
+      "id": "astral-58",
+      "aligned": 3,
+      "cycles": [
+        10,
+        3
+      ],
+      "lowerBound": 6,
+      "exactShortest": null,
+      "searchStates": 3076,
+      "searchDepth": 3,
+      "reference": 11
+    },
+    {
+      "id": "astral-59",
+      "aligned": 3,
+      "cycles": [
+        8,
+        3,
+        2
+      ],
+      "lowerBound": 6,
+      "exactShortest": null,
+      "searchStates": 3076,
+      "searchDepth": 3,
+      "reference": 12
+    },
+    {
+      "id": "astral-60",
+      "aligned": 3,
+      "cycles": [
+        13
+      ],
+      "lowerBound": 5,
+      "exactShortest": null,
+      "searchStates": 3076,
+      "searchDepth": 3,
+      "reference": 12
+    }
+  ]
+}

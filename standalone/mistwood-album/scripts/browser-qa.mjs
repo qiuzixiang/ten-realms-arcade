@@ -5,7 +5,7 @@ import {createRequire} from 'node:module';
 import assert from 'node:assert/strict';
 const require=createRequire(import.meta.url), root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 let pw;
-try{pw=require('playwright');}catch{pw=require(process.env.PLAYWRIGHT_MODULE||'/Users/qiu/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright');}
+try{pw=require('playwright');}catch{pw=require(process.env.PLAYWRIGHT_MODULE||'playwright');}
 const L=require('../src/levels.js');
 const url=process.env.QA_URL||'http://127.0.0.1:4283';
 const browser=await pw.chromium.launch({headless:true,channel:process.env.BROWSER_CHANNEL||'chrome'});

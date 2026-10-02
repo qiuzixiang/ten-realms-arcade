@@ -1,0 +1,20 @@
+{
+  "status": "PASS",
+  "sourceCommit": "44739d597e83a77b80687f77110c058592d8e809",
+  "commands": [
+    {
+      "command": "npm run build",
+      "exitCode": 0
+    },
+    {
+      "command": "npm test",
+      "exitCode": 0
+    },
+    {
+      "command": "npm run audit",
+      "exitCode": 0
+    }
+  ],
+  "productionFilesIdentical": true,
+  "generatorReproducible": true
+}

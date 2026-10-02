@@ -1,0 +1,20 @@
+{
+  "commit": "8ff2118",
+  "build": true,
+  "tests": 11,
+  "audit": true,
+  "runtimeFileHashesMatch": true,
+  "files": {
+    "renderer.js": "027b37993f5ff7267ad82fc66072e15cd85c1d8784bf104df6913129bb91db8d",
+    "index.html": "3970674da149261f62c1daabb00c573f8baa43beb5e3614f6506e5a637653203",
+    "styles.css": "0380ee59e81c49b60e6dc3a8194d165a2ad281229ea8cd52417d02c87ba61f1a",
+    "session.js": "063f2b74dc202af8d8c0fd88278055723acc41eaac405673bcec488bc595c06f",
+    "oracle.js": "48c6691032ef77bb5e2df6c62196d2f7b481a4cd5e131a0813ad258ee828c035",
+    "levels.js": "932e19933bdade27190c4960cace9fbc2a22028accf22d1f46108e251ecc9cc1",
+    "engine.js": "ed856b7f28bfdfad673b3ab4e891ea6f0bedf6bd0ea5dd34b088981102d2cb1a",
+    "tutorial-1.svg": "b95eaa13d1a1a397cc495030522e585b1e2f6a55e98d70ea13e6ce1915ccd982",
+    "app.js": "34042bcbb1e5c98ca207e136891fa5c1e82a3945cb41fa2521e307c5fe5322d3",
+    "tutorial-3.svg": "fc266567bbf6be89729fcc5a46c735b6407f60bba58eb8272730e8516e5ddd6b",
+    "tutorial-2.svg": "15b9cd83ac523090ba7790b71669aff3252aea2d891acbcea70caf3e493b2feb"
+  }
+}

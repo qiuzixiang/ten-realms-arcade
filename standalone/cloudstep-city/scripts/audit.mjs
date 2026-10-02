@@ -1,0 +1,7 @@
+import fs from 'node:fs';import assert from 'node:assert/strict';import vm from 'node:vm';import {execFileSync} from 'node:child_process';
+const dir='dist/xhs',js=fs.readFileSync(dir+'/app.js','utf8'),html=fs.readFileSync(dir+'/index.html','utf8'),css=fs.readFileSync(dir+'/styles.css','utf8');new vm.Script(js);
+for(const re of [/\bfetch\s*\(/,/XMLHttpRequest/,/\b(?:eval|Worker|SharedWorker|WebSocket)\s*\(/,/new Function/,/WebAssembly/,/serviceWorker/,/localStorage\.clear/,/\b(?:import|export)\s/,/\?\./,/\?\?/,/\.flat\(/,/\.at\(/,/Object\.fromEntries/])assert.ok(!re.test(js),String(re));
+assert.ok(!/<(?:iframe|object|base)\b|\son\w+=|type="module"|http-equiv/i.test(html));for(const m of html.matchAll(/(?:src|href)="([^"]+)"/g)){assert.ok(m[1].startsWith('./'));assert.ok(fs.existsSync(dir+'/'+m[1]));}assert.ok(!/\b(?:clamp|color-mix)\(|aspect-ratio|(?:^|[;{])gap:|\binset:/.test(css));
+const list=execFileSync('unzip',['-Z1','dist/cloudstep-city-xhs.zip'],{encoding:'utf8'}).trim().split('\n');assert.equal(list.filter(x=>x==='index.html').length,1);assert.ok(!list.some(x=>/node_modules|\.map$|\.DS_Store|^\.\./.test(x)));execFileSync('unzip',['-t','dist/cloudstep-city-xhs.zip']);const size=fs.statSync('dist/cloudstep-city-xhs.zip').size;assert.ok(size<2*1024*1024);console.log('Audit passed; ZIP CRC valid;',size,'bytes');
+
+execFileSync('python3',['scripts/platform-audit.py',dir],{stdio:'inherit'});execFileSync('python3',['scripts/platform-audit.py','dist/cloudstep-city-xhs.zip'],{stdio:'inherit'});

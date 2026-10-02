@@ -1,0 +1,5303 @@
+[
+  {
+    "id": "chapter-01-level-01",
+    "chapter": 1,
+    "index": 1,
+    "title": "雾窗",
+    "chapterName": "初识香材",
+    "seed": "scent-letter:v1:0:0:2",
+    "params": {
+      "colours": 4,
+      "slots": 4,
+      "guesses": 6,
+      "allowBlank": false,
+      "allowDuplicates": true
+    },
+    "mode": "chapter",
+    "clues": [
+      {
+        "pegs": [
+          1,
+          3,
+          2,
+          3
+        ],
+        "feedback": {
+          "exact": 2,
+          "misplaced": 1
+        }
+      },
+      {
+        "pegs": [
+          2,
+          2,
+          3,
+          3
+        ],
+        "feedback": {
+          "exact": 1,
+          "misplaced": 1
+        }
+      },
+      {
+        "pegs": [
+          3,
+          1,
+          1,
+          4
+        ],
+        "feedback": {
+          "exact": 1,
+          "misplaced": 2
+        }
+      }
+    ],
+    "referenceRounds": 2,
+    "initialCandidates": 3,
+    "worstCaseRounds": 2,
+    "proof": {
+      "strategy": "first-consistent-v1",
+      "trace": [
+        {
+          "pegs": [
+            1,
+            3,
+            3,
+            4
+          ],
+          "feedback": {
+            "exact": 1,
+            "misplaced": 3
+          },
+          "candidates": 3
+        },
+        {
+          "pegs": [
+            4,
+            3,
+            1,
+            3
+          ],
+          "feedback": {
+            "exact": 4,
+            "misplaced": 0
+          },
+          "candidates": 1
+        }
+      ],
+      "signature": "1123/1134/1441/2313|4"
+    }
+  },
+  {
+    "id": "chapter-01-level-02",
+    "chapter": 1,
+    "index": 2,
+    "title": "纸上花园",
+    "chapterName": "初识香材",
+    "seed": "scent-letter:v1:0:1:0",
+    "params": {
+      "colours": 4,
+      "slots": 4,
+      "guesses": 6,
+      "allowBlank": false,
+      "allowDuplicates": true
+    },
+    "mode": "chapter",
+    "clues": [
+      {
+        "pegs": [
+          4,
+          1,
+          3,
+          2
+        ],
+        "feedback": {
+          "exact": 0,
+          "misplaced": 3
+        }
+      },
+      {
+        "pegs": [
+          1,
+          2,
+          3,
+          3
+        ],
+        "feedback": {
+          "exact": 1,
+          "misplaced": 1
+        }
+      },
+      {
+        "pegs": [
+          2,
+          1,
+          1,
+          4
+        ],
+        "feedback": {
+          "exact": 1,
+          "misplaced": 1
+        }
+      }
+    ],
+    "referenceRounds": 1,
+    "initialCandidates": 5,
+    "worstCaseRounds": 2,
+    "proof": {
+      "strategy": "first-consistent-v1",
+      "trace": [
+        {
+          "pegs": [
+            1,
+            3,
+            4,
+            4
+          ],
+          "feedback": {
+            "exact": 4,
+            "misplaced": 0
+          },
+          "candidates": 5
+        }
+      ],
+      "signature": "1123/1242/3324/4312|4"
+    }
+  },
+  {
+    "id": "chapter-01-level-03",
+    "chapter": 1,
+    "index": 3,
+    "title": "雨后的信",
+    "chapterName": "初识香材",
+    "seed": "scent-letter:v1:0:2:0",
+    "params": {
+      "colours": 4,
+      "slots": 4,
+      "guesses": 6,
+      "allowBlank": false,
+      "allowDuplicates": true
+    },
+    "mode": "chapter",
+    "clues": [
+      {
+        "pegs": [
+          4,
+          3,
+          4,
+          3
+        ],
+        "feedback": {
+          "exact": 1,
+          "misplaced": 1
+        }
+      },
+      {
+        "pegs": [
+          2,
+          4,
+          2,
+          4
+        ],
+        "feedback": {
+          "exact": 0,
+          "misplaced": 1
+        }
+      }
+    ],
+    "referenceRounds": 3,
+    "initialCandidates": 8,
+    "worstCaseRounds": 3,
+    "proof": {
+      "strategy": "first-consistent-v1",
+      "trace": [
+        {
+          "pegs": [
+            1,
+            2,
+            3,
+            3
+          ],
+          "feedback": {
+            "exact": 2,
+            "misplaced": 2
+          },
+          "candidates": 8
+        },
+        {
+          "pegs": [
+            1,
+            3,
+            3,
+            2
+          ],
+          "feedback": {
+            "exact": 0,
+            "misplaced": 4
+          },
+          "candidates": 2
+        },
+        {
+          "pegs": [
+            3,
+            2,
+            1,
+            3
+          ],
+          "feedback": {
+            "exact": 4,
+            "misplaced": 0
+          },
+          "candidates": 1
+        }
+      ],
+      "signature": "1123/1414/4242|4"
+    }
+  },
+  {
+    "id": "chapter-01-level-04",
+    "chapter": 1,
+    "index": 4,
+    "title": "晚风来客",
+    "chapterName": "初识香材",
+    "seed": "scent-letter:v1:0:3:0",
+    "params": {
+      "colours": 4,
+      "slots": 4,
+      "guesses": 6,
+      "allowBlank": false,
+      "allowDuplicates": true
+    },
+    "mode": "chapter",
+    "clues": [
+      {
+        "pegs": [
+          2,
+          1,
+          1,
+          3
+        ],
+        "feedback": {
+          "exact": 1,
+          "misplaced": 2
+        }
+      },
+      {
+        "pegs": [
+          1,
+          1,
+          4,
+          1
+        ],
+        "feedback": {
+          "exact": 2,
+          "misplaced": 0
+        }
+      }
+    ],
+    "referenceRounds": 3,
+    "initialCandidates": 5,
+    "worstCaseRounds": 3,
+    "proof": {
+      "strategy": "first-consistent-v1",
+      "trace": [
+        {
+          "pegs": [
+            1,
+            1,
+            2,
+            2
+          ],
+          "feedback": {
+            "exact": 1,
+            "misplaced": 1
+          },
+          "candidates": 5
+        },
+        {
+          "pegs": [
+            1,
+            2,
+            4,
+            3
+          ],
+          "feedback": {
+            "exact": 0,
+            "misplaced": 2
+          },
+          "candidates": 2
+        },
+        {
+          "pegs": [
+            3,
+            1,
+            3,
+            1
+          ],
+          "feedback": {
+            "exact": 4,
+            "misplaced": 0
+          },
+          "candidates": 1
+        }
+      ],
+      "signature": "1122/1113/1241|4"
+    }
+  },
+  {
+    "id": "chapter-01-level-05",
+    "chapter": 1,
+    "index": 5,
+    "title": "铜印",
+    "chapterName": "初识香材",
+    "seed": "scent-letter:v1:0:4:0",
+    "params": {
+      "colours": 4,
+      "slots": 4,
+      "guesses": 6,
+      "allowBlank": false,
+      "allowDuplicates": true
+    },
+    "mode": "chapter",
+    "clues": [
+      {
+        "pegs": [
+          1,
+          4,
+          2,
+          2
+        ],
+        "feedback": {
+          "exact": 1,
+          "misplaced": 1
+        }
+      },
+      {
+        "pegs": [
+          1,
+          2,
+          4,
+          3
+        ],
+        "feedback": {
+          "exact": 1,
+          "misplaced": 1
+        }
+      }
+    ],
+    "referenceRounds": 3,
+    "initialCandidates": 6,
+    "worstCaseRounds": 3,
+    "proof": {
+      "strategy": "first-consistent-v1",
+      "trace": [
+        {
+          "pegs": [
+            1,
+            1,
+            1,
+            4
+          ],
+          "feedback": {
+            "exact": 0,
+            "misplaced": 0
+          },
+          "candidates": 6
+        },
+        {
+          "pegs": [
+            2,
+            2,
+            3,
+            2
+          ],
+          "feedback": {
+            "exact": 3,
+            "misplaced": 0
+          },
+          "candidates": 3
+        },
+        {
+          "pegs": [
+            3,
+            2,
+            3,
+            2
+          ],
+          "feedback": {
+            "exact": 4,
+            "misplaced": 0
+          },
+          "candidates": 1
+        }
+      ],
+      "signature": "1122/1234/3114|4"
+    }
+  },
+  {
+    "id": "chapter-01-level-06",
+    "chapter": 1,
+    "index": 6,
+    "title": "旧书页",
+    "chapterName": "初识香材",
+    "seed": "scent-letter:v1:0:5:0",
+    "params": {
+      "colours": 4,
+      "slots": 4,
+      "guesses": 6,
+      "allowBlank": false,
+      "allowDuplicates": true
+    },
+    "mode": "chapter",
+    "clues": [
+      {
+        "pegs": [
+          1,
+          1,
+          4,
+          1
+        ],
+        "feedback": {
+          "exact": 0,
+          "misplaced": 1
+        }
+      },
+      {
+        "pegs": [
+          3,
+          1,
+          2,
+          4
+        ],
+        "feedback": {
+          "exact": 1,
+          "misplaced": 2
+        }
+      }
+    ],
+    "referenceRounds": 2,
+    "initialCandidates": 13,
+    "worstCaseRounds": 3,
+    "proof": {
+      "strategy": "first-consistent-v1",
+      "trace": [
+        {
+          "pegs": [
+            2,
+            2,
+            3,
+            4
+          ],
+          "feedback": {
+            "exact": 0,
+            "misplaced": 3
+          },
+          "candidates": 13
+        },
+        {
+          "pegs": [
+            4,
+            3,
+            2,
+            3
+          ],
+          "feedback": {
+            "exact": 4,
+            "misplaced": 0
+          },
+          "candidates": 2
+        }
+      ],
+      "signature": "1123/2413/4442|4"
+    }
+  },
+  {
+    "id": "chapter-01-level-07",
+    "chapter": 1,
+    "index": 7,
+    "title": "温室微光",
+    "chapterName": "初识香材",
+    "seed": "scent-letter:v1:0:6:1",
+    "params": {
+      "colours": 4,
+      "slots": 4,
+      "guesses": 6,
+      "allowBlank": false,
+      "allowDuplicates": true
+    },
+    "mode": "chapter",
+    "clues": [
+      {
+        "pegs": [
+          2,
+          1,
+          1,
+          2
+        ],
+        "feedback": {
+          "exact": 1,
+          "misplaced": 0
+        }
+      },
+      {
+        "pegs": [
+          4,
+          4,
+          1,
+          1
+        ],
+        "feedback": {
+          "exact": 1,
+          "misplaced": 1
+        }
+      }
+    ],
+    "referenceRounds": 1,
+    "initialCandidates": 7,
+    "worstCaseRounds": 3,
+    "proof": {
+      "strategy": "first-consistent-v1",
+      "trace": [
+        {
+          "pegs": [
+            2,
+            4,
+            3,
+            4
+          ],
+          "feedback": {
+            "exact": 4,
+            "misplaced": 0
+          },
+          "candidates": 7
+        }
+      ],
+      "signature": "1123/1414/4224|4"
+    }
+  },
+  {
+    "id": "chapter-01-level-08",
+    "chapter": 1,
+    "index": 8,
+    "title": "月下独白",
+    "chapterName": "初识香材",
+    "seed": "scent-letter:v1:0:7:2",
+    "params": {
+      "colours": 4,
+      "slots": 4,
+      "guesses": 6,
+      "allowBlank": false,
+      "allowDuplicates": true
+    },
+    "mode": "chapter",
+    "clues": [
+      {
+        "pegs": [
+          1,
+          4,
+          3,
+          1
+        ],
+        "feedback": {
+          "exact": 1,
+          "misplaced": 1
+        }
+      },
+      {
+        "pegs": [
+          2,
+          3,
+          2,
+          3
+        ],
+        "feedback": {
+          "exact": 1,
+          "misplaced": 2
+        }
+      }
+    ],
+    "referenceRounds": 1,
+    "initialCandidates": 6,
+    "worstCaseRounds": 2,
+    "proof": {
+      "strategy": "first-consistent-v1",
+      "trace": [
+        {
+          "pegs": [
+            2,
+            1,
+            3,
+            2
+          ],
+          "feedback": {
+            "exact": 4,
+            "misplaced": 0
+          },
+          "candidates": 6
+        }
+      ],
+      "signature": "1123/1212/3324|4"
+    }
+  },
+  {
+    "id": "chapter-01-level-09",
+    "chapter": 1,
+    "index": 9,
+    "title": "远方回音",
+    "chapterName": "初识香材",
+    "seed": "scent-letter:v1:0:8:0",
+    "params": {
+      "colours": 4,
+      "slots": 4,
+      "guesses": 6,
+      "allowBlank": false,
+      "allowDuplicates": true
+    },
+    "mode": "chapter",
+    "clues": [
+      {
+        "pegs": [
+          4,
+          3,
+          3,
+          1
+        ],
+        "feedback": {
+          "exact": 1,
+          "misplaced": 1
+        }
+      }
+    ],
+    "referenceRounds": 3,
+    "initialCandidates": 46,
+    "worstCaseRounds": 4,
+    "proof": {
+      "strategy": "first-consistent-v1",
+      "trace": [
+        {
+          "pegs": [
+            1,
+            1,
+            3,
+            2
+          ],
+          "feedback": {
+            "exact": 1,
+            "misplaced": 2
+          },
+          "candidates": 46
+        },
+        {
+          "pegs": [
+            1,
+            2,
+            4,
+            1
+          ],
+          "feedback": {
+            "exact": 2,
+            "misplaced": 2
+          },
+          "candidates": 5
+        },
+        {
+          "pegs": [
+            1,
+            4,
+            2,
+            1
+          ],
+          "feedback": {
+            "exact": 4,
+            "misplaced": 0
+          },
+          "candidates": 2
+        }
+      ],
+      "signature": "1123/1244|4"
+    }
+  },
+  {
+    "id": "chapter-01-level-10",
+    "chapter": 1,
+    "index": 10,
+    "title": "封存的春天",
+    "chapterName": "初识香材",
+    "seed": "scent-letter:v1:0:9:0",
+    "params": {
+      "colours": 4,
+      "slots": 4,
+      "guesses": 6,
+      "allowBlank": false,
+      "allowDuplicates": true
+    },
+    "mode": "chapter",
+    "clues": [
+      {
+        "pegs": [
+          1,
+          4,
+          4,
+          3
+        ],
+        "feedback": {
+          "exact": 1,
+          "misplaced": 1
+        }
+      }
+    ],
+    "referenceRounds": 2,
+    "initialCandidates": 46,
+    "worstCaseRounds": 4,
+    "proof": {
+      "strategy": "first-consistent-v1",
+      "trace": [
+        {
+          "pegs": [
+            1,
+            1,
+            1,
+            4
+          ],
+          "feedback": {
+            "exact": 1,
+            "misplaced": 0
+          },
+          "candidates": 46
+        },
+        {
+          "pegs": [
+            1,
+            2,
+            3,
+            2
+          ],
+          "feedback": {
+            "exact": 4,
+            "misplaced": 0
+          },
+          "candidates": 15
+        }
+      ],
+      "signature": "1123/2443|4"
+    }
+  },
+  {
+    "id": "chapter-02-level-01",
+    "chapter": 2,
+    "index": 1,
+    "title": "雾窗",
+    "chapterName": "同香重叠",
+    "seed": "scent-letter:v1:1:0:1",
+    "params": {
+      "colours": 4,
+      "slots": 4,
+      "guesses": 6,
+      "allowBlank": false,
+      "allowDuplicates": true
+    },
+    "mode": "chapter",
+    "clues": [
+      {
+        "pegs": [
+          2,
+          4,
+          2,
+          2
+        ],
+        "feedback": {
+          "exact": 1,
+          "misplaced": 2
+        }
+      },
+      {
+        "pegs": [
+          1,
+          2,
+          4,
+          3
+        ],
+        "feedback": {
+          "exact": 2,
+          "misplaced": 1
+        }
+      },
+      {
+        "pegs": [
+          3,
+          2,
+          2,
+          1
+        ],
+        "feedback": {
+          "exact": 2,
+          "misplaced": 1
+        }
+      }
+    ],
+    "referenceRounds": 2,
+    "initialCandidates": 4,
+    "worstCaseRounds": 2,
+    "proof": {
+      "strategy": "first-consistent-v1",
+      "trace": [
+        {
+          "pegs": [
+            1,
+            2,
+            2,
+            4
+          ],
+          "feedback": {
+            "exact": 1,
+            "misplaced": 2
+          },
+          "candidates": 4
+        },
+        {
+          "pegs": [
+            3,
+            2,
+            4,
+            2
+          ],
+          "feedback": {
+            "exact": 4,
+            "misplaced": 0
+          },
+          "candidates": 1
+        }
+      ],
+      "signature": "1123/1211/3124/4113|4"
+    }
+  },
+  {
+    "id": "chapter-02-level-02",
+    "chapter": 2,
+    "index": 2,
+    "title": "纸上花园",
+    "chapterName": "同香重叠",
+    "seed": "scent-letter:v1:1:1:1",
+    "params": {
+      "colours": 4,
+      "slots": 4,
+      "guesses": 6,
+      "allowBlank": false,
+      "allowDuplicates": true
+    },
+    "mode": "chapter",
+    "clues": [
+      {
+        "pegs": [
+          2,
+          4,
+          4,
+          4
+        ],
+        "feedback": {
+          "exact": 0,
+          "misplaced": 1
+        }
+      },
+      {
+        "pegs": [
+          1,
+          3,
+          3,
+          4
+        ],
+        "feedback": {
+          "exact": 1,
+          "misplaced": 0
+        }
+      },
+      {
+        "pegs": [
+          4,
+          1,
+          4,
+          4
+        ],
+        "feedback": {
+          "exact": 0,
+          "misplaced": 1
+        }
+      }
+    ],
+    "referenceRounds": 3,
+    "initialCandidates": 4,
+    "worstCaseRounds": 3,
+    "proof": {
+      "strategy": "first-consistent-v1",
+      "trace": [
+        {
+          "pegs": [
+            1,
+            2,
+            1,
+            1
+          ],
+          "feedback": {
+            "exact": 3,
+            "misplaced": 0
+          },
+          "candidates": 4
+        },
+        {
+          "pegs": [
+            1,
+            2,
+            1,
+            2
+          ],
+          "feedback": {
+            "exact": 2,
+            "misplaced": 2
+          },
+          "candidates": 2
+        },
+        {
+          "pegs": [
+            1,
+            2,
+            2,
+            1
+          ],
+          "feedback": {
+            "exact": 4,
+            "misplaced": 0
+          },
+          "candidates": 1
+        }
+      ],
+      "signature": "1122/1344/2333/3313|4"
+    }
+  },
+  {
+    "id": "chapter-02-level-03",
+    "chapter": 2,
+    "index": 3,
+    "title": "雨后的信",
+    "chapterName": "同香重叠",
+    "seed": "scent-letter:v1:1:2:0",
+    "params": {
+      "colours": 4,
+      "slots": 4,
+      "guesses": 6,
+      "allowBlank": false,
+      "allowDuplicates": true
+    },
+    "mode": "chapter",
+    "clues": [
+      {
+        "pegs": [
+          1,
+          1,
+          1,
+          3
+        ],
+        "feedback": {
+          "exact": 2,
+          "misplaced": 0
+        }
+      },
+      {
+        "pegs": [
+          4,
+          4,
+          3,
+          2
+        ],
+        "feedback": {
+          "exact": 1,
+          "misplaced": 1
+        }
+      }
+    ],
+    "referenceRounds": 2,
+    "initialCandidates": 7,
+    "worstCaseRounds": 3,
+    "proof": {
+      "strategy": "first-consistent-v1",
+      "trace": [
+        {
+          "pegs": [
+            1,
+            1,
+            4,
+            2
+          ],
+          "feedback": {
+            "exact": 1,
+            "misplaced": 1
+          },
+          "candidates": 7
+        },
+        {
+          "pegs": [
+            1,
+            2,
+            3,
+            3
+          ],
+          "feedback": {
+            "exact": 4,
+            "misplaced": 0
+          },
+          "candidates": 2
+        }
+      ],
+      "signature": "1123/1222/3144|4"
+    }
+  },
+  {
+    "id": "chapter-02-level-04",
+    "chapter": 2,
+    "index": 4,
+    "title": "晚风来客",
+    "chapterName": "同香重叠",
+    "seed": "scent-letter:v1:1:3:1",
+    "params": {
+      "colours": 4,
+      "slots": 4,
+      "guesses": 6,
+      "allowBlank": false,
+      "allowDuplicates": true
+    },
+    "mode": "chapter",
+    "clues": [
+      {
+        "pegs": [
+          3,
+          1,
+          1,
+          3
+        ],
+        "feedback": {
+          "exact": 2,
+          "misplaced": 0
+        }
+      },
+      {
+        "pegs": [
+          3,
+          2,
+          3,
+          3
+        ],
+        "feedback": {
+          "exact": 0,
+          "misplaced": 1
+        }
+      }
+    ],
+    "referenceRounds": 2,
+    "initialCandidates": 5,
+    "worstCaseRounds": 3,
+    "proof": {
+      "strategy": "first-consistent-v1",
+      "trace": [
+        {
+          "pegs": [
+            1,
+            1,
+            1,
+            2
+          ],
+          "feedback": {
+            "exact": 2,
+            "misplaced": 2
+          },
+          "candidates": 5
+        },
+        {
+          "pegs": [
+            2,
+            1,
+            1,
+            1
+          ],
+          "feedback": {
+            "exact": 4,
+            "misplaced": 0
+          },
+          "candidates": 1
+        }
+      ],
+      "signature": "1112/1133/2333|4"
+    }
+  },
+  {
+    "id": "chapter-02-level-05",
+    "chapter": 2,
+    "index": 5,
+    "title": "铜印",
+    "chapterName": "同香重叠",
+    "seed": "scent-letter:v1:1:4:0",
+    "params": {
+      "colours": 4,
+      "slots": 4,
+      "guesses": 6,
+      "allowBlank": false,
+      "allowDuplicates": true
+    },
+    "mode": "chapter",
+    "clues": [
+      {
+        "pegs": [
+          1,
+          3,
+          3,
+          2
+        ],
+        "feedback": {
+          "exact": 1,
+          "misplaced": 2
+        }
+      },
+      {
+        "pegs": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "feedback": {
+          "exact": 0,
+          "misplaced": 0
+        }
+      }
+    ],
+    "referenceRounds": 3,
+    "initialCandidates": 10,
+    "worstCaseRounds": 3,
+    "proof": {
+      "strategy": "first-consistent-v1",
+      "trace": [
+        {
+          "pegs": [
+            2,
+            2,
+            3,
+            3
+          ],
+          "feedback": {
+            "exact": 2,
+            "misplaced": 1
+          },
+          "candidates": 10
+        },
+        {
+          "pegs": [
+            2,
+            3,
+            4,
+            3
+          ],
+          "feedback": {
+            "exact": 0,
+            "misplaced": 4
+          },
+          "candidates": 2
+        },
+        {
+          "pegs": [
+            3,
+            2,
+            3,
+            4
+          ],
+          "feedback": {
+            "exact": 4,
+            "misplaced": 0
+          },
+          "candidates": 1
+        }
+      ],
+      "signature": "1123/1412/4444|4"
+    }
+  },
+  {
+    "id": "chapter-02-level-06",
+    "chapter": 2,
+    "index": 6,
+    "title": "旧书页",
+    "chapterName": "同香重叠",
+    "seed": "scent-letter:v1:1:5:0",
+    "params": {
+      "colours": 4,
+      "slots": 4,
+      "guesses": 6,
+      "allowBlank": false,
+      "allowDuplicates": true
+    },
+    "mode": "chapter",
+    "clues": [
+      {
+        "pegs": [
+          1,
+          1,
+          2,
+          3
+        ],
+        "feedback": {
+          "exact": 0,
+          "misplaced": 3
+        }
+      },
+      {
+        "pegs": [
+          1,
+          1,
+          4,
+          3
+        ],
+        "feedback": {
+          "exact": 0,
+          "misplaced": 3
+        }
+      }
+    ],
+    "referenceRounds": 2,
+    "initialCandidates": 9,
+    "worstCaseRounds": 3,
+    "proof": {
+      "strategy": "first-consistent-v1",
+      "trace": [
+        {
+          "pegs": [
+            2,
+            3,
+            1,
+            4
+          ],
+          "feedback": {
+            "exact": 2,
+            "misplaced": 0
+          },
+          "candidates": 9
+        },
+        {
+          "pegs": [
+            3,
+            3,
+            1,
+            1
+          ],
+          "feedback": {
+            "exact": 4,
+            "misplaced": 0
+          },
+          "candidates": 1
+        }
+      ],
+      "signature": "1122/2213/2214|4"
+    }
+  },
+  {
+    "id": "chapter-02-level-07",
+    "chapter": 2,
+    "index": 7,
+    "title": "温室微光",
+    "chapterName": "同香重叠",
+    "seed": "scent-letter:v1:1:6:0",
+    "params": {
+      "colours": 4,
+      "slots": 4,
+      "guesses": 6,
+      "allowBlank": false,
+      "allowDuplicates": true
+    },
+    "mode": "chapter",
+    "clues": [
+      {
+        "pegs": [
+          2,
+          2,
+          4,
+          4
+        ],
+        "feedback": {
+          "exact": 1,
+          "misplaced": 1
+        }
+      },
+      {
+        "pegs": [
+          3,
+          4,
+          4,
+          2
+        ],
+        "feedback": {
+          "exact": 2,
+          "misplaced": 1
+        }
+      }
+    ],
+    "referenceRounds": 2,
+    "initialCandidates": 5,
+    "worstCaseRounds": 2,
+    "proof": {
+      "strategy": "first-consistent-v1",
+      "trace": [
+        {
+          "pegs": [
+            1,
+            3,
+            4,
+            2
+          ],
+          "feedback": {
+            "exact": 0,
+            "misplaced": 3
+          },
+          "candidates": 5
+        },
+        {
+          "pegs": [
+            3,
+            4,
+            1,
+            4
+          ],
+          "feedback": {
+            "exact": 4,
+            "misplaced": 0
+          },
+          "candidates": 1
+        }
+      ],
+      "signature": "1123/1413/4114|4"
+    }
+  },
+  {
+    "id": "chapter-02-level-08",
+    "chapter": 2,
+    "index": 8,
+    "title": "月下独白",
+    "chapterName": "同香重叠",
+    "seed": "scent-letter:v1:1:7:0",
+    "params": {
+      "colours": 4,
+      "slots": 4,
+      "guesses": 6,
+      "allowBlank": false,
+      "allowDuplicates": true
+    },
+    "mode": "chapter",
+    "clues": [
+      {
+        "pegs": [
+          4,
+          2,
+          1,
+          3
+        ],
+        "feedback": {
+          "exact": 0,
+          "misplaced": 3
+        }
+      },
+      {
+        "pegs": [
+          1,
+          1,
+          2,
+          4
+        ],
+        "feedback": {
+          "exact": 1,
+          "misplaced": 2
+        }
+      }
+    ],
+    "referenceRounds": 2,
+    "initialCandidates": 7,
+    "worstCaseRounds": 3,
+    "proof": {
+      "strategy": "first-consistent-v1",
+      "trace": [
+        {
+          "pegs": [
+            1,
+            3,
+            4,
+            1
+          ],
+          "feedback": {
+            "exact": 2,
+            "misplaced": 0
+          },
+          "candidates": 7
+        },
+        {
+          "pegs": [
+            1,
+            4,
+            4,
+            2
+          ],
+          "feedback": {
+            "exact": 4,
+            "misplaced": 0
+          },
+          "candidates": 1
+        }
+      ],
+      "signature": "1123/2313/3241|4"
+    }
+  },
+  {
+    "id": "chapter-02-level-09",
+    "chapter": 2,
+    "index": 9,
+    "title": "远方回音",
+    "chapterName": "同香重叠",
+    "seed": "scent-letter:v1:1:8:0",
+    "params": {
+      "colours": 4,
+      "slots": 4,
+      "guesses": 6,
+      "allowBlank": false,
+      "allowDuplicates": true
+    },
+    "mode": "chapter",
+    "clues": [
+      {
+        "pegs": [
+          1,
+          4,
+          2,
+          4
+        ],
+        "feedback": {
+          "exact": 0,
+          "misplaced": 1
+        }
+      }
+    ],
+    "referenceRounds": 3,
+    "initialCandidates": 16,
+    "worstCaseRounds": 4,
+    "proof": {
+      "strategy": "first-consistent-v1",
+      "trace": [
+        {
+          "pegs": [
+            2,
+            2,
+            3,
+            2
+          ],
+          "feedback": {
+            "exact": 0,
+            "misplaced": 1
+          },
+          "candidates": 16
+        },
+        {
+          "pegs": [
+            3,
+            1,
+            1,
+            1
+          ],
+          "feedback": {
+            "exact": 2,
+            "misplaced": 0
+          },
+          "candidates": 5
+        },
+        {
+          "pegs": [
+            3,
+            3,
+            1,
+            3
+          ],
+          "feedback": {
+            "exact": 4,
+            "misplaced": 0
+          },
+          "candidates": 1
+        }
+      ],
+      "signature": "1112/2334|4"
+    }
+  },
+  {
+    "id": "chapter-02-level-10",
+    "chapter": 2,
+    "index": 10,
+    "title": "封存的春天",
+    "chapterName": "同香重叠",
+    "seed": "scent-letter:v1:1:9:0",
+    "params": {
+      "colours": 4,
+      "slots": 4,
+      "guesses": 7,
+      "allowBlank": false,
+      "allowDuplicates": true
+    },
+    "mode": "chapter",
+    "clues": [
+      {
+        "pegs": [
+          1,
+          4,
+          2,
+          4
+        ],
+        "feedback": {
+          "exact": 0,
+          "misplaced": 2
+        }
+      }
+    ],
+    "referenceRounds": 3,
+    "initialCandidates": 42,
+    "worstCaseRounds": 5,
+    "proof": {
+      "strategy": "first-consistent-v1",
+      "trace": [
+        {
+          "pegs": [
+            2,
+            1,
+            1,
+            1
+          ],
+          "feedback": {
+            "exact": 2,
+            "misplaced": 0
+          },
+          "candidates": 42
+        },
+        {
+          "pegs": [
+            2,
+            1,
+            3,
+            2
+          ],
+          "feedback": {
+            "exact": 2,
+            "misplaced": 1
+          },
+          "candidates": 12
+        },
+        {
+          "pegs": [
+            2,
+            2,
+            1,
+            2
+          ],
+          "feedback": {
+            "exact": 4,
+            "misplaced": 0
+          },
+          "candidates": 2
+        }
+      ],
+      "signature": "1112/2331|4"
+    }
+  },
+  {
+    "id": "chapter-03-level-01",
+    "chapter": 3,
+    "index": 1,
+    "title": "雾窗",
+    "chapterName": "位置试探",
+    "seed": "scent-letter:v1:2:0:0",
+    "params": {
+      "colours": 4,
+      "slots": 4,
+      "guesses": 6,
+      "allowBlank": false,
+      "allowDuplicates": true
+    },
+    "mode": "chapter",
+    "clues": [
+      {
+        "pegs": [
+          1,
+          3,
+          1,
+          3
+        ],
+        "feedback": {
+          "exact": 3,
+          "misplaced": 0
+        }
+      },
+      {
+        "pegs": [
+          3,
+          1,
+          3,
+          1
+        ],
+        "feedback": {
+          "exact": 1,
+          "misplaced": 2
+        }
+      },
+      {
+        "pegs": [
+          1,
+          3,
+          1,
+          3
+        ],
+        "feedback": {
+          "exact": 3,
+          "misplaced": 0
+        }
+      }
+    ],
+    "referenceRounds": 1,
+    "initialCandidates": 4,
+    "worstCaseRounds": 3,
+    "proof": {
+      "strategy": "first-consistent-v1",
+      "trace": [
+        {
+          "pegs": [
+            1,
+            1,
+            1,
+            3
+          ],
+          "feedback": {
+            "exact": 4,
+            "misplaced": 0
+          },
+          "candidates": 4
+        }
+      ],
+      "signature": "1112/1122/1122/2211|4"
+    }
+  },
+  {
+    "id": "chapter-03-level-02",
+    "chapter": 3,
+    "index": 2,
+    "title": "纸上花园",
+    "chapterName": "位置试探",
+    "seed": "scent-letter:v1:2:1:0",
+    "params": {
+      "colours": 4,
+      "slots": 4,
+      "guesses": 6,
+      "allowBlank": false,
+      "allowDuplicates": true
+    },
+    "mode": "chapter",
+    "clues": [
+      {
+        "pegs": [
+          3,
+          2,
+          3,
+          1
+        ],
+        "feedback": {
+          "exact": 3,
+          "misplaced": 0
+        }
+      },
+      {
+        "pegs": [
+          2,
+          3,
+          1,
+          3
+        ],
+        "feedback": {
+          "exact": 0,
+          "misplaced": 3
+        }
+      },
+      {
+        "pegs": [
+          3,
+          1,
+          3,
+          2
+        ],
+        "feedback": {
+          "exact": 1,
+          "misplaced": 2
+        }
+      }
+    ],
+    "referenceRounds": 2,
+    "initialCandidates": 4,
+    "worstCaseRounds": 3,
+    "proof": {
+      "strategy": "first-consistent-v1",
+      "trace": [
+        {
+          "pegs": [
+            1,
+            2,
+            3,
+            1
+          ],
+          "feedback": {
+            "exact": 2,
+            "misplaced": 1
+          },
+          "candidates": 4
+        },
+        {
+          "pegs": [
+            3,
+            2,
+            2,
+            1
+          ],
+          "feedback": {
+            "exact": 4,
+            "misplaced": 0
+          },
+          "candidates": 2
+        }
+      ],
+      "signature": "1123/1223/2312/3221|4"
+    }
+  },
+  {
+    "id": "chapter-03-level-03",
+    "chapter": 3,
+    "index": 3,
+    "title": "雨后的信",
+    "chapterName": "位置试探",
+    "seed": "scent-letter:v1:2:2:0",
+    "params": {
+      "colours": 4,
+      "slots": 4,
+      "guesses": 6,
+      "allowBlank": false,
+      "allowDuplicates": true
+    },
+    "mode": "chapter",
+    "clues": [
+      {
+        "pegs": [
+          4,
+          3,
+          3,
+          2
+        ],
+        "feedback": {
+          "exact": 1,
+          "misplaced": 2
+        }
+      },
+      {
+        "pegs": [
+          3,
+          3,
+          2,
+          4
+        ],
+        "feedback": {
+          "exact": 1,
+          "misplaced": 2
+        }
+      }
+    ],
+    "referenceRounds": 3,
+    "initialCandidates": 18,
+    "worstCaseRounds": 4,
+    "proof": {
+      "strategy": "first-consistent-v1",
+      "trace": [
+        {
+          "pegs": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "feedback": {
+            "exact": 0,
+            "misplaced": 4
+          },
+          "candidates": 18
+        },
+        {
+          "pegs": [
+            2,
+            3,
+            4,
+            1
+          ],
+          "feedback": {
+            "exact": 0,
+            "misplaced": 4
+          },
+          "candidates": 4
+        },
+        {
+          "pegs": [
+            3,
+            4,
+            1,
+            2
+          ],
+          "feedback": {
+            "exact": 4,
+            "misplaced": 0
+          },
+          "candidates": 2
+        }
+      ],
+      "signature": "1234/1123/2131|4"
+    }
+  },
+  {
+    "id": "chapter-03-level-04",
+    "chapter": 3,
+    "index": 4,
+    "title": "晚风来客",
+    "chapterName": "位置试探",
+    "seed": "scent-letter:v1:2:3:0",
+    "params": {
+      "colours": 4,
+      "slots": 4,
+      "guesses": 6,
+      "allowBlank": false,
+      "allowDuplicates": true
+    },
+    "mode": "chapter",
+    "clues": [
+      {
+        "pegs": [
+          2,
+          4,
+          2,
+          2
+        ],
+        "feedback": {
+          "exact": 2,
+          "misplaced": 0
+        }
+      },
+      {
+        "pegs": [
+          4,
+          2,
+          2,
+          2
+        ],
+        "feedback": {
+          "exact": 0,
+          "misplaced": 2
+        }
+      }
+    ],
+    "referenceRounds": 2,
+    "initialCandidates": 9,
+    "worstCaseRounds": 4,
+    "proof": {
+      "strategy": "first-consistent-v1",
+      "trace": [
+        {
+          "pegs": [
+            2,
+            4,
+            1,
+            1
+          ],
+          "feedback": {
+            "exact": 3,
+            "misplaced": 0
+          },
+          "candidates": 9
+        },
+        {
+          "pegs": [
+            2,
+            4,
+            1,
+            3
+          ],
+          "feedback": {
+            "exact": 4,
+            "misplaced": 0
+          },
+          "candidates": 4
+        }
+      ],
+      "signature": "1234/1114/4111|4"
+    }
+  },
+  {
+    "id": "chapter-03-level-05",
+    "chapter": 3,
+    "index": 5,
+    "title": "铜印",
+    "chapterName": "位置试探",
+    "seed": "scent-letter:v1:2:4:0",
+    "params": {
+      "colours": 4,
+      "slots": 4,
+      "guesses": 6,
+      "allowBlank": false,
+      "allowDuplicates": true
+    },
+    "mode": "chapter",
+    "clues": [
+      {
+        "pegs": [
+          4,
+          2,
+          2,
+          2
+        ],
+        "feedback": {
+          "exact": 2,
+          "misplaced": 0
+        }
+      },
+      {
+        "pegs": [
+          2,
+          2,
+          2,
+          4
+        ],
+        "feedback": {
+          "exact": 2,
+          "misplaced": 0
+        }
+      }
+    ],
+    "referenceRounds": 2,
+    "initialCandidates": 10,
+    "worstCaseRounds": 3,
+    "proof": {
+      "strategy": "first-consistent-v1",
+      "trace": [
+        {
+          "pegs": [
+            1,
+            2,
+            2,
+            1
+          ],
+          "feedback": {
+            "exact": 2,
+            "misplaced": 0
+          },
+          "candidates": 10
+        },
+        {
+          "pegs": [
+            3,
+            2,
+            2,
+            3
+          ],
+          "feedback": {
+            "exact": 4,
+            "misplaced": 0
+          },
+          "candidates": 1
+        }
+      ],
+      "signature": "1122/1113/1131|4"
+    }
+  },
+  {
+    "id": "chapter-03-level-06",
+    "chapter": 3,
+    "index": 6,
+    "title": "旧书页",
+    "chapterName": "位置试探",
+    "seed": "scent-letter:v1:2:5:0",
+    "params": {
+      "colours": 4,
+      "slots": 4,
+      "guesses": 6,
+      "allowBlank": false,
+      "allowDuplicates": true
+    },
+    "mode": "chapter",
+    "clues": [
+      {
+        "pegs": [
+          1,
+          1,
+          3,
+          2
+        ],
+        "feedback": {
+          "exact": 1,
+          "misplaced": 2
+        }
+      },
+      {
+        "pegs": [
+          1,
+          3,
+          2,
+          1
+        ],
+        "feedback": {
+          "exact": 3,
+          "misplaced": 0
+        }
+      }
+    ],
+    "referenceRounds": 2,
+    "initialCandidates": 6,
+    "worstCaseRounds": 4,
+    "proof": {
+      "strategy": "first-consistent-v1",
+      "trace": [
+        {
+          "pegs": [
+            1,
+            2,
+            2,
+            1
+          ],
+          "feedback": {
+            "exact": 3,
+            "misplaced": 0
+          },
+          "candidates": 6
+        },
+        {
+          "pegs": [
+            1,
+            4,
+            2,
+            1
+          ],
+          "feedback": {
+            "exact": 4,
+            "misplaced": 0
+          },
+          "candidates": 1
+        }
+      ],
+      "signature": "1123/1124/1241|4"
+    }
+  },
+  {
+    "id": "chapter-03-level-07",
+    "chapter": 3,
+    "index": 7,
+    "title": "温室微光",
+    "chapterName": "位置试探",
+    "seed": "scent-letter:v1:2:6:0",
+    "params": {
+      "colours": 4,
+      "slots": 4,
+      "guesses": 6,
+      "allowBlank": false,
+      "allowDuplicates": true
+    },
+    "mode": "chapter",
+    "clues": [
+      {
+        "pegs": [
+          3,
+          2,
+          4,
+          2
+        ],
+        "feedback": {
+          "exact": 0,
+          "misplaced": 2
+        }
+      },
+      {
+        "pegs": [
+          2,
+          4,
+          2,
+          3
+        ],
+        "feedback": {
+          "exact": 1,
+          "misplaced": 1
+        }
+      }
+    ],
+    "referenceRounds": 3,
+    "initialCandidates": 16,
+    "worstCaseRounds": 3,
+    "proof": {
+      "strategy": "first-consistent-v1",
+      "trace": [
+        {
+          "pegs": [
+            1,
+            1,
+            2,
+            4
+          ],
+          "feedback": {
+            "exact": 1,
+            "misplaced": 2
+          },
+          "candidates": 16
+        },
+        {
+          "pegs": [
+            1,
+            4,
+            3,
+            1
+          ],
+          "feedback": {
+            "exact": 2,
+            "misplaced": 1
+          },
+          "candidates": 3
+        },
+        {
+          "pegs": [
+            2,
+            1,
+            3,
+            1
+          ],
+          "feedback": {
+            "exact": 4,
+            "misplaced": 0
+          },
+          "candidates": 1
+        }
+      ],
+      "signature": "1123/2234/3422|4"
+    }
+  },
+  {
+    "id": "chapter-03-level-08",
+    "chapter": 3,
+    "index": 8,
+    "title": "月下独白",
+    "chapterName": "位置试探",
+    "seed": "scent-letter:v1:2:7:1",
+    "params": {
+      "colours": 4,
+      "slots": 4,
+      "guesses": 6,
+      "allowBlank": false,
+      "allowDuplicates": true
+    },
+    "mode": "chapter",
+    "clues": [
+      {
+        "pegs": [
+          4,
+          4,
+          2,
+          1
+        ],
+        "feedback": {
+          "exact": 1,
+          "misplaced": 1
+        }
+      },
+      {
+        "pegs": [
+          4,
+          2,
+          1,
+          4
+        ],
+        "feedback": {
+          "exact": 1,
+          "misplaced": 1
+        }
+      }
+    ],
+    "referenceRounds": 2,
+    "initialCandidates": 16,
+    "worstCaseRounds": 4,
+    "proof": {
+      "strategy": "first-consistent-v1",
+      "trace": [
+        {
+          "pegs": [
+            1,
+            2,
+            2,
+            2
+          ],
+          "feedback": {
+            "exact": 2,
+            "misplaced": 0
+          },
+          "candidates": 16
+        },
+        {
+          "pegs": [
+            1,
+            2,
+            3,
+            1
+          ],
+          "feedback": {
+            "exact": 4,
+            "misplaced": 0
+          },
+          "candidates": 1
+        }
+      ],
+      "signature": "1123/1434/4413|4"
+    }
+  },
+  {
+    "id": "chapter-03-level-09",
+    "chapter": 3,
+    "index": 9,
+    "title": "远方回音",
+    "chapterName": "位置试探",
+    "seed": "scent-letter:v1:2:8:0",
+    "params": {
+      "colours": 4,
+      "slots": 4,
+      "guesses": 7,
+      "allowBlank": false,
+      "allowDuplicates": true
+    },
+    "mode": "chapter",
+    "clues": [
+      {
+        "pegs": [
+          4,
+          1,
+          4,
+          1
+        ],
+        "feedback": {
+          "exact": 0,
+          "misplaced": 1
+        }
+      }
+    ],
+    "referenceRounds": 2,
+    "initialCandidates": 32,
+    "worstCaseRounds": 5,
+    "proof": {
+      "strategy": "first-consistent-v1",
+      "trace": [
+        {
+          "pegs": [
+            1,
+            2,
+            2,
+            2
+          ],
+          "feedback": {
+            "exact": 0,
+            "misplaced": 1
+          },
+          "candidates": 32
+        },
+        {
+          "pegs": [
+            2,
+            3,
+            3,
+            4
+          ],
+          "feedback": {
+            "exact": 4,
+            "misplaced": 0
+          },
+          "candidates": 3
+        }
+      ],
+      "signature": "1123/2442|4"
+    }
+  },
+  {
+    "id": "chapter-03-level-10",
+    "chapter": 3,
+    "index": 10,
+    "title": "封存的春天",
+    "chapterName": "位置试探",
+    "seed": "scent-letter:v1:2:9:0",
+    "params": {
+      "colours": 4,
+      "slots": 4,
+      "guesses": 6,
+      "allowBlank": false,
+      "allowDuplicates": true
+    },
+    "mode": "chapter",
+    "clues": [
+      {
+        "pegs": [
+          1,
+          3,
+          3,
+          1
+        ],
+        "feedback": {
+          "exact": 1,
+          "misplaced": 1
+        }
+      }
+    ],
+    "referenceRounds": 3,
+    "initialCandidates": 56,
+    "worstCaseRounds": 4,
+    "proof": {
+      "strategy": "first-consistent-v1",
+      "trace": [
+        {
+          "pegs": [
+            1,
+            1,
+            1,
+            2
+          ],
+          "feedback": {
+            "exact": 1,
+            "misplaced": 2
+          },
+          "candidates": 56
+        },
+        {
+          "pegs": [
+            2,
+            1,
+            2,
+            1
+          ],
+          "feedback": {
+            "exact": 2,
+            "misplaced": 2
+          },
+          "candidates": 6
+        },
+        {
+          "pegs": [
+            2,
+            2,
+            1,
+            1
+          ],
+          "feedback": {
+            "exact": 4,
+            "misplaced": 0
+          },
+          "candidates": 1
+        }
+      ],
+      "signature": "1122/1313|4"
+    }
+  },
+  {
+    "id": "chapter-04-level-01",
+    "chapter": 4,
+    "index": 1,
+    "title": "雾窗",
+    "chapterName": "新香入笺",
+    "seed": "scent-letter:v1:3:0:0",
+    "params": {
+      "colours": 6,
+      "slots": 4,
+      "guesses": 8,
+      "allowBlank": false,
+      "allowDuplicates": true
+    },
+    "mode": "chapter",
+    "clues": [
+      {
+        "pegs": [
+          2,
+          3,
+          1,
+          2
+        ],
+        "feedback": {
+          "exact": 0,
+          "misplaced": 2
+        }
+      },
+      {
+        "pegs": [
+          4,
+          5,
+          2,
+          5
+        ],
+        "feedback": {
+          "exact": 0,
+          "misplaced": 2
+        }
+      },
+      {
+        "pegs": [
+          1,
+          3,
+          3,
+          6
+        ],
+        "feedback": {
+          "exact": 2,
+          "misplaced": 0
+        }
+      }
+    ],
+    "referenceRounds": 2,
+    "initialCandidates": 3,
+    "worstCaseRounds": 2,
+    "proof": {
+      "strategy": "first-consistent-v1",
+      "trace": [
+        {
+          "pegs": [
+            1,
+            2,
+            4,
+            6
+          ],
+          "feedback": {
+            "exact": 3,
+            "misplaced": 0
+          },
+          "candidates": 3
+        },
+        {
+          "pegs": [
+            1,
+            2,
+            5,
+            6
+          ],
+          "feedback": {
+            "exact": 4,
+            "misplaced": 0
+          },
+          "candidates": 1
+        }
+      ],
+      "signature": "1234/1255/3351/6443|6"
+    }
+  },
+  {
+    "id": "chapter-04-level-02",
+    "chapter": 4,
+    "index": 2,
+    "title": "纸上花园",
+    "chapterName": "新香入笺",
+    "seed": "scent-letter:v1:3:1:0",
+    "params": {
+      "colours": 6,
+      "slots": 4,
+      "guesses": 8,
+      "allowBlank": false,
+      "allowDuplicates": true
+    },
+    "mode": "chapter",
+    "clues": [
+      {
+        "pegs": [
+          6,
+          5,
+          4,
+          5
+        ],
+        "feedback": {
+          "exact": 0,
+          "misplaced": 1
+        }
+      },
+      {
+        "pegs": [
+          4,
+          4,
+          3,
+          1
+        ],
+        "feedback": {
+          "exact": 1,
+          "misplaced": 2
+        }
+      },
+      {
+        "pegs": [
+          6,
+          2,
+          4,
+          4
+        ],
+        "feedback": {
+          "exact": 0,
+          "misplaced": 2
+        }
+      }
+    ],
+    "referenceRounds": 3,
+    "initialCandidates": 5,
+    "worstCaseRounds": 3,
+    "proof": {
+      "strategy": "first-consistent-v1",
+      "trace": [
+        {
+          "pegs": [
+            1,
+            4,
+            2,
+            3
+          ],
+          "feedback": {
+            "exact": 2,
+            "misplaced": 2
+          },
+          "candidates": 5
+        },
+        {
+          "pegs": [
+            2,
+            4,
+            1,
+            3
+          ],
+          "feedback": {
+            "exact": 1,
+            "misplaced": 3
+          },
+          "candidates": 2
+        },
+        {
+          "pegs": [
+            4,
+            1,
+            2,
+            3
+          ],
+          "feedback": {
+            "exact": 4,
+            "misplaced": 0
+          },
+          "candidates": 1
+        }
+      ],
+      "signature": "1234/1123/5411/5661|6"
+    }
+  },
+  {
+    "id": "chapter-04-level-03",
+    "chapter": 4,
+    "index": 3,
+    "title": "雨后的信",
+    "chapterName": "新香入笺",
+    "seed": "scent-letter:v1:3:2:0",
+    "params": {
+      "colours": 6,
+      "slots": 4,
+      "guesses": 8,
+      "allowBlank": false,
+      "allowDuplicates": true
+    },
+    "mode": "chapter",
+    "clues": [
+      {
+        "pegs": [
+          4,
+          2,
+          6,
+          3
+        ],
+        "feedback": {
+          "exact": 3,
+          "misplaced": 0
+        }
+      },
+      {
+        "pegs": [
+          1,
+          6,
+          6,
+          2
+        ],
+        "feedback": {
+          "exact": 1,
+          "misplaced": 1
+        }
+      }
+    ],
+    "referenceRounds": 2,
+    "initialCandidates": 6,
+    "worstCaseRounds": 4,
+    "proof": {
+      "strategy": "first-consistent-v1",
+      "trace": [
+        {
+          "pegs": [
+            2,
+            2,
+            6,
+            3
+          ],
+          "feedback": {
+            "exact": 2,
+            "misplaced": 0
+          },
+          "candidates": 6
+        },
+        {
+          "pegs": [
+            4,
+            1,
+            6,
+            3
+          ],
+          "feedback": {
+            "exact": 4,
+            "misplaced": 0
+          },
+          "candidates": 3
+        }
+      ],
+      "signature": "1234/1125/1534|6"
+    }
+  },
+  {
+    "id": "chapter-04-level-04",
+    "chapter": 4,
+    "index": 4,
+    "title": "晚风来客",
+    "chapterName": "新香入笺",
+    "seed": "scent-letter:v1:3:3:0",
+    "params": {
+      "colours": 6,
+      "slots": 4,
+      "guesses": 8,
+      "allowBlank": false,
+      "allowDuplicates": true
+    },
+    "mode": "chapter",
+    "clues": [
+      {
+        "pegs": [
+          1,
+          5,
+          3,
+          5
+        ],
+        "feedback": {
+          "exact": 1,
+          "misplaced": 1
+        }
+      },
+      {
+        "pegs": [
+          6,
+          2,
+          4,
+          3
+        ],
+        "feedback": {
+          "exact": 0,
+          "misplaced": 3
+        }
+      }
+    ],
+    "referenceRounds": 3,
+    "initialCandidates": 25,
+    "worstCaseRounds": 3,
+    "proof": {
+      "strategy": "first-consistent-v1",
+      "trace": [
+        {
+          "pegs": [
+            1,
+            3,
+            2,
+            4
+          ],
+          "feedback": {
+            "exact": 1,
+            "misplaced": 1
+          },
+          "candidates": 25
+        },
+        {
+          "pegs": [
+            2,
+            3,
+            6,
+            5
+          ],
+          "feedback": {
+            "exact": 3,
+            "misplaced": 0
+          },
+          "candidates": 6
+        },
+        {
+          "pegs": [
+            4,
+            3,
+            6,
+            5
+          ],
+          "feedback": {
+            "exact": 4,
+            "misplaced": 0
+          },
+          "candidates": 1
+        }
+      ],
+      "signature": "1234/1125/2643|6"
+    }
+  },
+  {
+    "id": "chapter-04-level-05",
+    "chapter": 4,
+    "index": 5,
+    "title": "铜印",
+    "chapterName": "新香入笺",
+    "seed": "scent-letter:v1:3:4:0",
+    "params": {
+      "colours": 6,
+      "slots": 4,
+      "guesses": 8,
+      "allowBlank": false,
+      "allowDuplicates": true
+    },
+    "mode": "chapter",
+    "clues": [
+      {
+        "pegs": [
+          2,
+          1,
+          1,
+          6
+        ],
+        "feedback": {
+          "exact": 2,
+          "misplaced": 1
+        }
+      },
+      {
+        "pegs": [
+          4,
+          6,
+          2,
+          4
+        ],
+        "feedback": {
+          "exact": 0,
+          "misplaced": 1
+        }
+      }
+    ],
+    "referenceRounds": 3,
+    "initialCandidates": 16,
+    "worstCaseRounds": 4,
+    "proof": {
+      "strategy": "first-consistent-v1",
+      "trace": [
+        {
+          "pegs": [
+            1,
+            1,
+            1,
+            2
+          ],
+          "feedback": {
+            "exact": 1,
+            "misplaced": 2
+          },
+          "candidates": 16
+        },
+        {
+          "pegs": [
+            2,
+            1,
+            3,
+            1
+          ],
+          "feedback": {
+            "exact": 2,
+            "misplaced": 2
+          },
+          "candidates": 5
+        },
+        {
+          "pegs": [
+            2,
+            3,
+            1,
+            1
+          ],
+          "feedback": {
+            "exact": 4,
+            "misplaced": 0
+          },
+          "candidates": 1
+        }
+      ],
+      "signature": "1123/1413/3545|6"
+    }
+  },
+  {
+    "id": "chapter-04-level-06",
+    "chapter": 4,
+    "index": 6,
+    "title": "旧书页",
+    "chapterName": "新香入笺",
+    "seed": "scent-letter:v1:3:5:1",
+    "params": {
+      "colours": 6,
+      "slots": 4,
+      "guesses": 8,
+      "allowBlank": false,
+      "allowDuplicates": true
+    },
+    "mode": "chapter",
+    "clues": [
+      {
+        "pegs": [
+          4,
+          5,
+          2,
+          6
+        ],
+        "feedback": {
+          "exact": 0,
+          "misplaced": 3
+        }
+      },
+      {
+        "pegs": [
+          3,
+          3,
+          5,
+          1
+        ],
+        "feedback": {
+          "exact": 0,
+          "misplaced": 2
+        }
+      }
+    ],
+    "referenceRounds": 2,
+    "initialCandidates": 30,
+    "worstCaseRounds": 3,
+    "proof": {
+      "strategy": "first-consistent-v1",
+      "trace": [
+        {
+          "pegs": [
+            1,
+            2,
+            4,
+            5
+          ],
+          "feedback": {
+            "exact": 2,
+            "misplaced": 0
+          },
+          "candidates": 30
+        },
+        {
+          "pegs": [
+            6,
+            2,
+            3,
+            5
+          ],
+          "feedback": {
+            "exact": 4,
+            "misplaced": 0
+          },
+          "candidates": 1
+        }
+      ],
+      "signature": "1234/2345/3161|6"
+    }
+  },
+  {
+    "id": "chapter-04-level-07",
+    "chapter": 4,
+    "index": 7,
+    "title": "温室微光",
+    "chapterName": "新香入笺",
+    "seed": "scent-letter:v1:3:6:0",
+    "params": {
+      "colours": 6,
+      "slots": 4,
+      "guesses": 8,
+      "allowBlank": false,
+      "allowDuplicates": true
+    },
+    "mode": "chapter",
+    "clues": [
+      {
+        "pegs": [
+          3,
+          4,
+          1,
+          2
+        ],
+        "feedback": {
+          "exact": 0,
+          "misplaced": 1
+        }
+      },
+      {
+        "pegs": [
+          2,
+          4,
+          5,
+          4
+        ],
+        "feedback": {
+          "exact": 0,
+          "misplaced": 1
+        }
+      }
+    ],
+    "referenceRounds": 4,
+    "initialCandidates": 38,
+    "worstCaseRounds": 4,
+    "proof": {
+      "strategy": "first-consistent-v1",
+      "trace": [
+        {
+          "pegs": [
+            1,
+            1,
+            6,
+            5
+          ],
+          "feedback": {
+            "exact": 1,
+            "misplaced": 1
+          },
+          "candidates": 38
+        },
+        {
+          "pegs": [
+            5,
+            3,
+            6,
+            3
+          ],
+          "feedback": {
+            "exact": 3,
+            "misplaced": 0
+          },
+          "candidates": 9
+        },
+        {
+          "pegs": [
+            5,
+            3,
+            6,
+            6
+          ],
+          "feedback": {
+            "exact": 2,
+            "misplaced": 2
+          },
+          "candidates": 3
+        },
+        {
+          "pegs": [
+            5,
+            6,
+            6,
+            3
+          ],
+          "feedback": {
+            "exact": 4,
+            "misplaced": 0
+          },
+          "candidates": 1
+        }
+      ],
+      "signature": "1123/2454/6435|6"
+    }
+  },
+  {
+    "id": "chapter-04-level-08",
+    "chapter": 4,
+    "index": 8,
+    "title": "月下独白",
+    "chapterName": "新香入笺",
+    "seed": "scent-letter:v1:3:7:0",
+    "params": {
+      "colours": 6,
+      "slots": 4,
+      "guesses": 8,
+      "allowBlank": false,
+      "allowDuplicates": true
+    },
+    "mode": "chapter",
+    "clues": [
+      {
+        "pegs": [
+          6,
+          6,
+          6,
+          4
+        ],
+        "feedback": {
+          "exact": 0,
+          "misplaced": 1
+        }
+      },
+      {
+        "pegs": [
+          6,
+          3,
+          6,
+          4
+        ],
+        "feedback": {
+          "exact": 0,
+          "misplaced": 1
+        }
+      }
+    ],
+    "referenceRounds": 4,
+    "initialCandidates": 138,
+    "worstCaseRounds": 5,
+    "proof": {
+      "strategy": "first-consistent-v1",
+      "trace": [
+        {
+          "pegs": [
+            1,
+            1,
+            1,
+            6
+          ],
+          "feedback": {
+            "exact": 1,
+            "misplaced": 0
+          },
+          "candidates": 138
+        },
+        {
+          "pegs": [
+            1,
+            2,
+            4,
+            2
+          ],
+          "feedback": {
+            "exact": 1,
+            "misplaced": 1
+          },
+          "candidates": 38
+        },
+        {
+          "pegs": [
+            1,
+            4,
+            5,
+            5
+          ],
+          "feedback": {
+            "exact": 1,
+            "misplaced": 0
+          },
+          "candidates": 6
+        },
+        {
+          "pegs": [
+            2,
+            2,
+            5,
+            6
+          ],
+          "feedback": {
+            "exact": 4,
+            "misplaced": 0
+          },
+          "candidates": 1
+        }
+      ],
+      "signature": "1123/2242/2542|6"
+    }
+  },
+  {
+    "id": "chapter-04-level-09",
+    "chapter": 4,
+    "index": 9,
+    "title": "远方回音",
+    "chapterName": "新香入笺",
+    "seed": "scent-letter:v1:3:8:0",
+    "params": {
+      "colours": 6,
+      "slots": 4,
+      "guesses": 9,
+      "allowBlank": false,
+      "allowDuplicates": true
+    },
+    "mode": "chapter",
+    "clues": [
+      {
+        "pegs": [
+          4,
+          3,
+          3,
+          3
+        ],
+        "feedback": {
+          "exact": 0,
+          "misplaced": 1
+        }
+      }
+    ],
+    "referenceRounds": 5,
+    "initialCandidates": 308,
+    "worstCaseRounds": 7,
+    "proof": {
+      "strategy": "first-consistent-v1",
+      "trace": [
+        {
+          "pegs": [
+            1,
+            1,
+            1,
+            4
+          ],
+          "feedback": {
+            "exact": 0,
+            "misplaced": 0
+          },
+          "candidates": 308
+        },
+        {
+          "pegs": [
+            3,
+            2,
+            2,
+            2
+          ],
+          "feedback": {
+            "exact": 2,
+            "misplaced": 0
+          },
+          "candidates": 27
+        },
+        {
+          "pegs": [
+            3,
+            2,
+            5,
+            5
+          ],
+          "feedback": {
+            "exact": 1,
+            "misplaced": 1
+          },
+          "candidates": 12
+        },
+        {
+          "pegs": [
+            3,
+            6,
+            2,
+            6
+          ],
+          "feedback": {
+            "exact": 2,
+            "misplaced": 2
+          },
+          "candidates": 2
+        },
+        {
+          "pegs": [
+            3,
+            6,
+            6,
+            2
+          ],
+          "feedback": {
+            "exact": 4,
+            "misplaced": 0
+          },
+          "candidates": 1
+        }
+      ],
+      "signature": "1123/2242|6"
+    }
+  },
+  {
+    "id": "chapter-04-level-10",
+    "chapter": 4,
+    "index": 10,
+    "title": "封存的春天",
+    "chapterName": "新香入笺",
+    "seed": "scent-letter:v1:3:9:0",
+    "params": {
+      "colours": 6,
+      "slots": 4,
+      "guesses": 8,
+      "allowBlank": false,
+      "allowDuplicates": true
+    },
+    "mode": "chapter",
+    "clues": [
+      {
+        "pegs": [
+          6,
+          6,
+          5,
+          2
+        ],
+        "feedback": {
+          "exact": 2,
+          "misplaced": 0
+        }
+      }
+    ],
+    "referenceRounds": 5,
+    "initialCandidates": 105,
+    "worstCaseRounds": 6,
+    "proof": {
+      "strategy": "first-consistent-v1",
+      "trace": [
+        {
+          "pegs": [
+            1,
+            1,
+            5,
+            2
+          ],
+          "feedback": {
+            "exact": 1,
+            "misplaced": 0
+          },
+          "candidates": 105
+        },
+        {
+          "pegs": [
+            2,
+            6,
+            2,
+            2
+          ],
+          "feedback": {
+            "exact": 0,
+            "misplaced": 1
+          },
+          "candidates": 36
+        },
+        {
+          "pegs": [
+            6,
+            3,
+            5,
+            3
+          ],
+          "feedback": {
+            "exact": 3,
+            "misplaced": 0
+          },
+          "candidates": 9
+        },
+        {
+          "pegs": [
+            6,
+            3,
+            5,
+            4
+          ],
+          "feedback": {
+            "exact": 2,
+            "misplaced": 2
+          },
+          "candidates": 4
+        },
+        {
+          "pegs": [
+            6,
+            4,
+            5,
+            3
+          ],
+          "feedback": {
+            "exact": 4,
+            "misplaced": 0
+          },
+          "candidates": 1
+        }
+      ],
+      "signature": "1234/1135|6"
+    }
+  },
+  {
+    "id": "chapter-05-level-01",
+    "chapter": 5,
+    "index": 1,
+    "title": "雾窗",
+    "chapterName": "复杂来信",
+    "seed": "scent-letter:v1:4:0:0",
+    "params": {
+      "colours": 6,
+      "slots": 4,
+      "guesses": 8,
+      "allowBlank": false,
+      "allowDuplicates": true
+    },
+    "mode": "chapter",
+    "clues": [
+      {
+        "pegs": [
+          4,
+          6,
+          3,
+          5
+        ],
+        "feedback": {
+          "exact": 0,
+          "misplaced": 1
+        }
+      },
+      {
+        "pegs": [
+          1,
+          1,
+          6,
+          3
+        ],
+        "feedback": {
+          "exact": 1,
+          "misplaced": 0
+        }
+      },
+      {
+        "pegs": [
+          6,
+          2,
+          1,
+          4
+        ],
+        "feedback": {
+          "exact": 0,
+          "misplaced": 2
+        }
+      }
+    ],
+    "referenceRounds": 2,
+    "initialCandidates": 5,
+    "worstCaseRounds": 2,
+    "proof": {
+      "strategy": "first-consistent-v1",
+      "trace": [
+        {
+          "pegs": [
+            1,
+            5,
+            2,
+            2
+          ],
+          "feedback": {
+            "exact": 2,
+            "misplaced": 2
+          },
+          "candidates": 5
+        },
+        {
+          "pegs": [
+            5,
+            1,
+            2,
+            2
+          ],
+          "feedback": {
+            "exact": 4,
+            "misplaced": 0
+          },
+          "candidates": 1
+        }
+      ],
+      "signature": "1123/2415/5622/6354|6"
+    }
+  },
+  {
+    "id": "chapter-05-level-02",
+    "chapter": 5,
+    "index": 2,
+    "title": "纸上花园",
+    "chapterName": "复杂来信",
+    "seed": "scent-letter:v1:4:1:0",
+    "params": {
+      "colours": 6,
+      "slots": 4,
+      "guesses": 8,
+      "allowBlank": false,
+      "allowDuplicates": true
+    },
+    "mode": "chapter",
+    "clues": [
+      {
+        "pegs": [
+          4,
+          6,
+          2,
+          5
+        ],
+        "feedback": {
+          "exact": 0,
+          "misplaced": 2
+        }
+      },
+      {
+        "pegs": [
+          3,
+          4,
+          6,
+          4
+        ],
+        "feedback": {
+          "exact": 2,
+          "misplaced": 0
+        }
+      },
+      {
+        "pegs": [
+          6,
+          1,
+          3,
+          4
+        ],
+        "feedback": {
+          "exact": 0,
+          "misplaced": 2
+        }
+      }
+    ],
+    "referenceRounds": 3,
+    "initialCandidates": 7,
+    "worstCaseRounds": 3,
+    "proof": {
+      "strategy": "first-consistent-v1",
+      "trace": [
+        {
+          "pegs": [
+            3,
+            2,
+            6,
+            2
+          ],
+          "feedback": {
+            "exact": 2,
+            "misplaced": 0
+          },
+          "candidates": 7
+        },
+        {
+          "pegs": [
+            3,
+            5,
+            6,
+            3
+          ],
+          "feedback": {
+            "exact": 3,
+            "misplaced": 0
+          },
+          "candidates": 2
+        },
+        {
+          "pegs": [
+            3,
+            5,
+            6,
+            6
+          ],
+          "feedback": {
+            "exact": 4,
+            "misplaced": 0
+          },
+          "candidates": 1
+        }
+      ],
+      "signature": "1123/1424/2415/6341|6"
+    }
+  },
+  {
+    "id": "chapter-05-level-03",
+    "chapter": 5,
+    "index": 3,
+    "title": "雨后的信",
+    "chapterName": "复杂来信",
+    "seed": "scent-letter:v1:4:2:1",
+    "params": {
+      "colours": 6,
+      "slots": 4,
+      "guesses": 8,
+      "allowBlank": false,
+      "allowDuplicates": true
+    },
+    "mode": "chapter",
+    "clues": [
+      {
+        "pegs": [
+          3,
+          5,
+          1,
+          6
+        ],
+        "feedback": {
+          "exact": 3,
+          "misplaced": 0
+        }
+      },
+      {
+        "pegs": [
+          2,
+          3,
+          1,
+          5
+        ],
+        "feedback": {
+          "exact": 1,
+          "misplaced": 1
+        }
+      }
+    ],
+    "referenceRounds": 3,
+    "initialCandidates": 7,
+    "worstCaseRounds": 4,
+    "proof": {
+      "strategy": "first-consistent-v1",
+      "trace": [
+        {
+          "pegs": [
+            1,
+            5,
+            1,
+            6
+          ],
+          "feedback": {
+            "exact": 3,
+            "misplaced": 0
+          },
+          "candidates": 7
+        },
+        {
+          "pegs": [
+            4,
+            5,
+            1,
+            6
+          ],
+          "feedback": {
+            "exact": 3,
+            "misplaced": 0
+          },
+          "candidates": 3
+        },
+        {
+          "pegs": [
+            5,
+            5,
+            1,
+            6
+          ],
+          "feedback": {
+            "exact": 4,
+            "misplaced": 0
+          },
+          "candidates": 2
+        }
+      ],
+      "signature": "1123/1423/4513|6"
+    }
+  },
+  {
+    "id": "chapter-05-level-04",
+    "chapter": 5,
+    "index": 4,
+    "title": "晚风来客",
+    "chapterName": "复杂来信",
+    "seed": "scent-letter:v1:4:3:0",
+    "params": {
+      "colours": 6,
+      "slots": 4,
+      "guesses": 8,
+      "allowBlank": false,
+      "allowDuplicates": true
+    },
+    "mode": "chapter",
+    "clues": [
+      {
+        "pegs": [
+          1,
+          6,
+          4,
+          5
+        ],
+        "feedback": {
+          "exact": 1,
+          "misplaced": 2
+        }
+      },
+      {
+        "pegs": [
+          4,
+          3,
+          5,
+          2
+        ],
+        "feedback": {
+          "exact": 0,
+          "misplaced": 3
+        }
+      }
+    ],
+    "referenceRounds": 3,
+    "initialCandidates": 18,
+    "worstCaseRounds": 3,
+    "proof": {
+      "strategy": "first-consistent-v1",
+      "trace": [
+        {
+          "pegs": [
+            1,
+            5,
+            2,
+            4
+          ],
+          "feedback": {
+            "exact": 1,
+            "misplaced": 1
+          },
+          "candidates": 18
+        },
+        {
+          "pegs": [
+            3,
+            5,
+            4,
+            6
+          ],
+          "feedback": {
+            "exact": 0,
+            "misplaced": 4
+          },
+          "candidates": 3
+        },
+        {
+          "pegs": [
+            5,
+            6,
+            3,
+            4
+          ],
+          "feedback": {
+            "exact": 4,
+            "misplaced": 0
+          },
+          "candidates": 1
+        }
+      ],
+      "signature": "1234/1345/2463|6"
+    }
+  },
+  {
+    "id": "chapter-05-level-05",
+    "chapter": 5,
+    "index": 5,
+    "title": "铜印",
+    "chapterName": "复杂来信",
+    "seed": "scent-letter:v1:4:4:0",
+    "params": {
+      "colours": 6,
+      "slots": 4,
+      "guesses": 8,
+      "allowBlank": false,
+      "allowDuplicates": true
+    },
+    "mode": "chapter",
+    "clues": [
+      {
+        "pegs": [
+          5,
+          6,
+          6,
+          5
+        ],
+        "feedback": {
+          "exact": 0,
+          "misplaced": 0
+        }
+      },
+      {
+        "pegs": [
+          3,
+          2,
+          4,
+          4
+        ],
+        "feedback": {
+          "exact": 2,
+          "misplaced": 1
+        }
+      }
+    ],
+    "referenceRounds": 2,
+    "initialCandidates": 20,
+    "worstCaseRounds": 3,
+    "proof": {
+      "strategy": "first-consistent-v1",
+      "trace": [
+        {
+          "pegs": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "feedback": {
+            "exact": 1,
+            "misplaced": 2
+          },
+          "candidates": 20
+        },
+        {
+          "pegs": [
+            2,
+            1,
+            4,
+            4
+          ],
+          "feedback": {
+            "exact": 4,
+            "misplaced": 0
+          },
+          "candidates": 5
+        }
+      ],
+      "signature": "1123/1134/5656|6"
+    }
+  },
+  {
+    "id": "chapter-05-level-06",
+    "chapter": 5,
+    "index": 6,
+    "title": "旧书页",
+    "chapterName": "复杂来信",
+    "seed": "scent-letter:v1:4:5:0",
+    "params": {
+      "colours": 6,
+      "slots": 4,
+      "guesses": 8,
+      "allowBlank": false,
+      "allowDuplicates": true
+    },
+    "mode": "chapter",
+    "clues": [
+      {
+        "pegs": [
+          5,
+          6,
+          2,
+          6
+        ],
+        "feedback": {
+          "exact": 2,
+          "misplaced": 1
+        }
+      },
+      {
+        "pegs": [
+          3,
+          1,
+          2,
+          4
+        ],
+        "feedback": {
+          "exact": 0,
+          "misplaced": 1
+        }
+      }
+    ],
+    "referenceRounds": 2,
+    "initialCandidates": 9,
+    "worstCaseRounds": 4,
+    "proof": {
+      "strategy": "first-consistent-v1",
+      "trace": [
+        {
+          "pegs": [
+            1,
+            6,
+            5,
+            6
+          ],
+          "feedback": {
+            "exact": 1,
+            "misplaced": 3
+          },
+          "candidates": 9
+        },
+        {
+          "pegs": [
+            5,
+            6,
+            6,
+            1
+          ],
+          "feedback": {
+            "exact": 4,
+            "misplaced": 0
+          },
+          "candidates": 1
+        }
+      ],
+      "signature": "1123/1413/2456|6"
+    }
+  },
+  {
+    "id": "chapter-05-level-07",
+    "chapter": 5,
+    "index": 7,
+    "title": "温室微光",
+    "chapterName": "复杂来信",
+    "seed": "scent-letter:v1:4:6:0",
+    "params": {
+      "colours": 6,
+      "slots": 4,
+      "guesses": 8,
+      "allowBlank": false,
+      "allowDuplicates": true
+    },
+    "mode": "chapter",
+    "clues": [
+      {
+        "pegs": [
+          1,
+          5,
+          6,
+          6
+        ],
+        "feedback": {
+          "exact": 0,
+          "misplaced": 2
+        }
+      },
+      {
+        "pegs": [
+          5,
+          4,
+          3,
+          6
+        ],
+        "feedback": {
+          "exact": 0,
+          "misplaced": 2
+        }
+      }
+    ],
+    "referenceRounds": 4,
+    "initialCandidates": 60,
+    "worstCaseRounds": 4,
+    "proof": {
+      "strategy": "first-consistent-v1",
+      "trace": [
+        {
+          "pegs": [
+            2,
+            1,
+            4,
+            5
+          ],
+          "feedback": {
+            "exact": 1,
+            "misplaced": 2
+          },
+          "candidates": 60
+        },
+        {
+          "pegs": [
+            2,
+            3,
+            5,
+            1
+          ],
+          "feedback": {
+            "exact": 1,
+            "misplaced": 1
+          },
+          "candidates": 8
+        },
+        {
+          "pegs": [
+            2,
+            6,
+            1,
+            4
+          ],
+          "feedback": {
+            "exact": 1,
+            "misplaced": 1
+          },
+          "candidates": 3
+        },
+        {
+          "pegs": [
+            4,
+            1,
+            5,
+            4
+          ],
+          "feedback": {
+            "exact": 4,
+            "misplaced": 0
+          },
+          "candidates": 1
+        }
+      ],
+      "signature": "1123/2434/3415|6"
+    }
+  },
+  {
+    "id": "chapter-05-level-08",
+    "chapter": 5,
+    "index": 8,
+    "title": "月下独白",
+    "chapterName": "复杂来信",
+    "seed": "scent-letter:v1:4:7:0",
+    "params": {
+      "colours": 6,
+      "slots": 4,
+      "guesses": 8,
+      "allowBlank": false,
+      "allowDuplicates": true
+    },
+    "mode": "chapter",
+    "clues": [
+      {
+        "pegs": [
+          5,
+          6,
+          4,
+          6
+        ],
+        "feedback": {
+          "exact": 1,
+          "misplaced": 1
+        }
+      },
+      {
+        "pegs": [
+          4,
+          3,
+          1,
+          5
+        ],
+        "feedback": {
+          "exact": 0,
+          "misplaced": 3
+        }
+      }
+    ],
+    "referenceRounds": 4,
+    "initialCandidates": 27,
+    "worstCaseRounds": 4,
+    "proof": {
+      "strategy": "first-consistent-v1",
+      "trace": [
+        {
+          "pegs": [
+            1,
+            4,
+            3,
+            6
+          ],
+          "feedback": {
+            "exact": 1,
+            "misplaced": 1
+          },
+          "candidates": 27
+        },
+        {
+          "pegs": [
+            1,
+            5,
+            4,
+            1
+          ],
+          "feedback": {
+            "exact": 0,
+            "misplaced": 2
+          },
+          "candidates": 9
+        },
+        {
+          "pegs": [
+            5,
+            2,
+            3,
+            4
+          ],
+          "feedback": {
+            "exact": 1,
+            "misplaced": 2
+          },
+          "candidates": 3
+        },
+        {
+          "pegs": [
+            5,
+            4,
+            5,
+            3
+          ],
+          "feedback": {
+            "exact": 4,
+            "misplaced": 0
+          },
+          "candidates": 1
+        }
+      ],
+      "signature": "1123/1244/2531|6"
+    }
+  },
+  {
+    "id": "chapter-05-level-09",
+    "chapter": 5,
+    "index": 9,
+    "title": "远方回音",
+    "chapterName": "复杂来信",
+    "seed": "scent-letter:v1:4:8:0",
+    "params": {
+      "colours": 6,
+      "slots": 4,
+      "guesses": 8,
+      "allowBlank": false,
+      "allowDuplicates": true
+    },
+    "mode": "chapter",
+    "clues": [
+      {
+        "pegs": [
+          6,
+          1,
+          5,
+          4
+        ],
+        "feedback": {
+          "exact": 1,
+          "misplaced": 1
+        }
+      }
+    ],
+    "referenceRounds": 4,
+    "initialCandidates": 252,
+    "worstCaseRounds": 6,
+    "proof": {
+      "strategy": "first-consistent-v1",
+      "trace": [
+        {
+          "pegs": [
+            1,
+            1,
+            1,
+            5
+          ],
+          "feedback": {
+            "exact": 1,
+            "misplaced": 0
+          },
+          "candidates": 252
+        },
+        {
+          "pegs": [
+            1,
+            2,
+            2,
+            4
+          ],
+          "feedback": {
+            "exact": 0,
+            "misplaced": 2
+          },
+          "candidates": 69
+        },
+        {
+          "pegs": [
+            2,
+            1,
+            3,
+            6
+          ],
+          "feedback": {
+            "exact": 2,
+            "misplaced": 2
+          },
+          "candidates": 10
+        },
+        {
+          "pegs": [
+            2,
+            1,
+            6,
+            3
+          ],
+          "feedback": {
+            "exact": 4,
+            "misplaced": 0
+          },
+          "candidates": 1
+        }
+      ],
+      "signature": "1234/1356|6"
+    }
+  },
+  {
+    "id": "chapter-05-level-10",
+    "chapter": 5,
+    "index": 10,
+    "title": "封存的春天",
+    "chapterName": "复杂来信",
+    "seed": "scent-letter:v1:4:9:0",
+    "params": {
+      "colours": 6,
+      "slots": 4,
+      "guesses": 9,
+      "allowBlank": false,
+      "allowDuplicates": true
+    },
+    "mode": "chapter",
+    "clues": [
+      {
+        "pegs": [
+          3,
+          5,
+          3,
+          5
+        ],
+        "feedback": {
+          "exact": 0,
+          "misplaced": 0
+        }
+      }
+    ],
+    "referenceRounds": 4,
+    "initialCandidates": 256,
+    "worstCaseRounds": 7,
+    "proof": {
+      "strategy": "first-consistent-v1",
+      "trace": [
+        {
+          "pegs": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "feedback": {
+            "exact": 1,
+            "misplaced": 0
+          },
+          "candidates": 256
+        },
+        {
+          "pegs": [
+            1,
+            2,
+            2,
+            2
+          ],
+          "feedback": {
+            "exact": 0,
+            "misplaced": 2
+          },
+          "candidates": 108
+        },
+        {
+          "pegs": [
+            2,
+            1,
+            4,
+            4
+          ],
+          "feedback": {
+            "exact": 1,
+            "misplaced": 1
+          },
+          "candidates": 12
+        },
+        {
+          "pegs": [
+            2,
+            6,
+            1,
+            6
+          ],
+          "feedback": {
+            "exact": 4,
+            "misplaced": 0
+          },
+          "candidates": 2
+        }
+      ],
+      "signature": "1123/4455|6"
+    }
+  },
+  {
+    "id": "chapter-06-level-01",
+    "chapter": 6,
+    "index": 1,
+    "title": "雾窗",
+    "chapterName": "秘方档案",
+    "seed": "scent-letter:v1:5:0:0",
+    "params": {
+      "colours": 6,
+      "slots": 5,
+      "guesses": 8,
+      "allowBlank": false,
+      "allowDuplicates": true
+    },
+    "mode": "chapter",
+    "clues": [
+      {
+        "pegs": [
+          1,
+          3,
+          3,
+          1,
+          3
+        ],
+        "feedback": {
+          "exact": 0,
+          "misplaced": 1
+        }
+      },
+      {
+        "pegs": [
+          3,
+          6,
+          4,
+          3,
+          4
+        ],
+        "feedback": {
+          "exact": 0,
+          "misplaced": 2
+        }
+      },
+      {
+        "pegs": [
+          6,
+          1,
+          4,
+          2,
+          6
+        ],
+        "feedback": {
+          "exact": 0,
+          "misplaced": 2
+        }
+      }
+    ],
+    "referenceRounds": 3,
+    "initialCandidates": 8,
+    "worstCaseRounds": 4,
+    "proof": {
+      "strategy": "first-consistent-v1",
+      "trace": [
+        {
+          "pegs": [
+            4,
+            4,
+            1,
+            4,
+            5
+          ],
+          "feedback": {
+            "exact": 2,
+            "misplaced": 2
+          },
+          "candidates": 8
+        },
+        {
+          "pegs": [
+            4,
+            4,
+            5,
+            5,
+            1
+          ],
+          "feedback": {
+            "exact": 3,
+            "misplaced": 2
+          },
+          "candidates": 3
+        },
+        {
+          "pegs": [
+            4,
+            5,
+            5,
+            4,
+            1
+          ],
+          "feedback": {
+            "exact": 5,
+            "misplaced": 0
+          },
+          "candidates": 2
+        }
+      ],
+      "signature": "11223/23454/24662/66336|6"
+    }
+  },
+  {
+    "id": "chapter-06-level-02",
+    "chapter": 6,
+    "index": 2,
+    "title": "纸上花园",
+    "chapterName": "秘方档案",
+    "seed": "scent-letter:v1:5:1:0",
+    "params": {
+      "colours": 6,
+      "slots": 5,
+      "guesses": 8,
+      "allowBlank": false,
+      "allowDuplicates": true
+    },
+    "mode": "chapter",
+    "clues": [
+      {
+        "pegs": [
+          6,
+          4,
+          3,
+          5,
+          6
+        ],
+        "feedback": {
+          "exact": 3,
+          "misplaced": 0
+        }
+      },
+      {
+        "pegs": [
+          2,
+          2,
+          3,
+          3,
+          3
+        ],
+        "feedback": {
+          "exact": 2,
+          "misplaced": 0
+        }
+      },
+      {
+        "pegs": [
+          5,
+          5,
+          3,
+          5,
+          5
+        ],
+        "feedback": {
+          "exact": 3,
+          "misplaced": 0
+        }
+      }
+    ],
+    "referenceRounds": 2,
+    "initialCandidates": 6,
+    "worstCaseRounds": 3,
+    "proof": {
+      "strategy": "first-consistent-v1",
+      "trace": [
+        {
+          "pegs": [
+            2,
+            4,
+            3,
+            5,
+            5
+          ],
+          "feedback": {
+            "exact": 2,
+            "misplaced": 2
+          },
+          "candidates": 6
+        },
+        {
+          "pegs": [
+            5,
+            2,
+            3,
+            5,
+            6
+          ],
+          "feedback": {
+            "exact": 5,
+            "misplaced": 0
+          },
+          "candidates": 1
+        }
+      ],
+      "signature": "11234/11114/12254/43434|6"
+    }
+  },
+  {
+    "id": "chapter-06-level-03",
+    "chapter": 6,
+    "index": 3,
+    "title": "雨后的信",
+    "chapterName": "秘方档案",
+    "seed": "scent-letter:v1:5:2:0",
+    "params": {
+      "colours": 6,
+      "slots": 5,
+      "guesses": 8,
+      "allowBlank": false,
+      "allowDuplicates": true
+    },
+    "mode": "chapter",
+    "clues": [
+      {
+        "pegs": [
+          5,
+          1,
+          5,
+          6,
+          1
+        ],
+        "feedback": {
+          "exact": 0,
+          "misplaced": 2
+        }
+      },
+      {
+        "pegs": [
+          4,
+          2,
+          1,
+          6,
+          6
+        ],
+        "feedback": {
+          "exact": 0,
+          "misplaced": 3
+        }
+      }
+    ],
+    "referenceRounds": 5,
+    "initialCandidates": 195,
+    "worstCaseRounds": 5,
+    "proof": {
+      "strategy": "first-consistent-v1",
+      "trace": [
+        {
+          "pegs": [
+            1,
+            3,
+            2,
+            1,
+            4
+          ],
+          "feedback": {
+            "exact": 0,
+            "misplaced": 2
+          },
+          "candidates": 195
+        },
+        {
+          "pegs": [
+            2,
+            4,
+            6,
+            2,
+            5
+          ],
+          "feedback": {
+            "exact": 1,
+            "misplaced": 2
+          },
+          "candidates": 26
+        },
+        {
+          "pegs": [
+            3,
+            6,
+            6,
+            5,
+            2
+          ],
+          "feedback": {
+            "exact": 1,
+            "misplaced": 3
+          },
+          "candidates": 5
+        },
+        {
+          "pegs": [
+            6,
+            5,
+            6,
+            4,
+            3
+          ],
+          "feedback": {
+            "exact": 1,
+            "misplaced": 4
+          },
+          "candidates": 3
+        },
+        {
+          "pegs": [
+            6,
+            6,
+            4,
+            3,
+            5
+          ],
+          "feedback": {
+            "exact": 5,
+            "misplaced": 0
+          },
+          "candidates": 1
+        }
+      ],
+      "signature": "11234/25512/46115|6"
+    }
+  },
+  {
+    "id": "chapter-06-level-04",
+    "chapter": 6,
+    "index": 4,
+    "title": "晚风来客",
+    "chapterName": "秘方档案",
+    "seed": "scent-letter:v1:5:3:0",
+    "params": {
+      "colours": 6,
+      "slots": 5,
+      "guesses": 8,
+      "allowBlank": false,
+      "allowDuplicates": true
+    },
+    "mode": "chapter",
+    "clues": [
+      {
+        "pegs": [
+          6,
+          4,
+          5,
+          1,
+          2
+        ],
+        "feedback": {
+          "exact": 1,
+          "misplaced": 3
+        }
+      },
+      {
+        "pegs": [
+          4,
+          3,
+          4,
+          4,
+          5
+        ],
+        "feedback": {
+          "exact": 0,
+          "misplaced": 3
+        }
+      }
+    ],
+    "referenceRounds": 3,
+    "initialCandidates": 48,
+    "worstCaseRounds": 4,
+    "proof": {
+      "strategy": "first-consistent-v1",
+      "trace": [
+        {
+          "pegs": [
+            1,
+            2,
+            5,
+            3,
+            4
+          ],
+          "feedback": {
+            "exact": 1,
+            "misplaced": 4
+          },
+          "candidates": 48
+        },
+        {
+          "pegs": [
+            1,
+            4,
+            2,
+            5,
+            3
+          ],
+          "feedback": {
+            "exact": 2,
+            "misplaced": 3
+          },
+          "candidates": 4
+        },
+        {
+          "pegs": [
+            5,
+            4,
+            2,
+            3,
+            1
+          ],
+          "feedback": {
+            "exact": 5,
+            "misplaced": 0
+          },
+          "candidates": 1
+        }
+      ],
+      "signature": "12345/13456/21511|6"
+    }
+  },
+  {
+    "id": "chapter-06-level-05",
+    "chapter": 6,
+    "index": 5,
+    "title": "铜印",
+    "chapterName": "秘方档案",
+    "seed": "scent-letter:v1:5:4:0",
+    "params": {
+      "colours": 6,
+      "slots": 5,
+      "guesses": 8,
+      "allowBlank": false,
+      "allowDuplicates": true
+    },
+    "mode": "chapter",
+    "clues": [
+      {
+        "pegs": [
+          4,
+          2,
+          2,
+          2,
+          3
+        ],
+        "feedback": {
+          "exact": 0,
+          "misplaced": 2
+        }
+      },
+      {
+        "pegs": [
+          2,
+          2,
+          4,
+          1,
+          1
+        ],
+        "feedback": {
+          "exact": 0,
+          "misplaced": 1
+        }
+      }
+    ],
+    "referenceRounds": 6,
+    "initialCandidates": 259,
+    "worstCaseRounds": 6,
+    "proof": {
+      "strategy": "first-consistent-v1",
+      "trace": [
+        {
+          "pegs": [
+            3,
+            3,
+            3,
+            3,
+            2
+          ],
+          "feedback": {
+            "exact": 2,
+            "misplaced": 0
+          },
+          "candidates": 259
+        },
+        {
+          "pegs": [
+            3,
+            3,
+            5,
+            4,
+            4
+          ],
+          "feedback": {
+            "exact": 0,
+            "misplaced": 2
+          },
+          "candidates": 95
+        },
+        {
+          "pegs": [
+            5,
+            5,
+            3,
+            5,
+            2
+          ],
+          "feedback": {
+            "exact": 3,
+            "misplaced": 0
+          },
+          "candidates": 10
+        },
+        {
+          "pegs": [
+            5,
+            6,
+            3,
+            6,
+            2
+          ],
+          "feedback": {
+            "exact": 3,
+            "misplaced": 2
+          },
+          "candidates": 3
+        },
+        {
+          "pegs": [
+            6,
+            5,
+            3,
+            6,
+            2
+          ],
+          "feedback": {
+            "exact": 3,
+            "misplaced": 2
+          },
+          "candidates": 2
+        },
+        {
+          "pegs": [
+            6,
+            6,
+            3,
+            5,
+            2
+          ],
+          "feedback": {
+            "exact": 5,
+            "misplaced": 0
+          },
+          "candidates": 1
+        }
+      ],
+      "signature": "11234/22556/26422|6"
+    }
+  },
+  {
+    "id": "chapter-06-level-06",
+    "chapter": 6,
+    "index": 6,
+    "title": "旧书页",
+    "chapterName": "秘方档案",
+    "seed": "scent-letter:v1:5:5:0",
+    "params": {
+      "colours": 6,
+      "slots": 5,
+      "guesses": 8,
+      "allowBlank": false,
+      "allowDuplicates": true
+    },
+    "mode": "chapter",
+    "clues": [
+      {
+        "pegs": [
+          6,
+          5,
+          6,
+          2,
+          5
+        ],
+        "feedback": {
+          "exact": 2,
+          "misplaced": 0
+        }
+      },
+      {
+        "pegs": [
+          1,
+          2,
+          2,
+          6,
+          4
+        ],
+        "feedback": {
+          "exact": 0,
+          "misplaced": 2
+        }
+      }
+    ],
+    "referenceRounds": 3,
+    "initialCandidates": 95,
+    "worstCaseRounds": 5,
+    "proof": {
+      "strategy": "first-consistent-v1",
+      "trace": [
+        {
+          "pegs": [
+            2,
+            3,
+            3,
+            2,
+            5
+          ],
+          "feedback": {
+            "exact": 0,
+            "misplaced": 1
+          },
+          "candidates": 95
+        },
+        {
+          "pegs": [
+            6,
+            1,
+            6,
+            1,
+            3
+          ],
+          "feedback": {
+            "exact": 2,
+            "misplaced": 1
+          },
+          "candidates": 9
+        },
+        {
+          "pegs": [
+            6,
+            4,
+            6,
+            3,
+            6
+          ],
+          "feedback": {
+            "exact": 5,
+            "misplaced": 0
+          },
+          "candidates": 2
+        }
+      ],
+      "signature": "11123/11445/56251|6"
+    }
+  },
+  {
+    "id": "chapter-06-level-07",
+    "chapter": 6,
+    "index": 7,
+    "title": "温室微光",
+    "chapterName": "秘方档案",
+    "seed": "scent-letter:v1:5:6:0",
+    "params": {
+      "colours": 6,
+      "slots": 5,
+      "guesses": 8,
+      "allowBlank": false,
+      "allowDuplicates": true
+    },
+    "mode": "chapter",
+    "clues": [
+      {
+        "pegs": [
+          6,
+          6,
+          5,
+          6,
+          5
+        ],
+        "feedback": {
+          "exact": 1,
+          "misplaced": 1
+        }
+      },
+      {
+        "pegs": [
+          4,
+          2,
+          1,
+          5,
+          4
+        ],
+        "feedback": {
+          "exact": 1,
+          "misplaced": 3
+        }
+      }
+    ],
+    "referenceRounds": 4,
+    "initialCandidates": 65,
+    "worstCaseRounds": 5,
+    "proof": {
+      "strategy": "first-consistent-v1",
+      "trace": [
+        {
+          "pegs": [
+            1,
+            2,
+            5,
+            4,
+            6
+          ],
+          "feedback": {
+            "exact": 1,
+            "misplaced": 3
+          },
+          "candidates": 65
+        },
+        {
+          "pegs": [
+            1,
+            4,
+            2,
+            5,
+            5
+          ],
+          "feedback": {
+            "exact": 1,
+            "misplaced": 2
+          },
+          "candidates": 12
+        },
+        {
+          "pegs": [
+            1,
+            5,
+            4,
+            6,
+            4
+          ],
+          "feedback": {
+            "exact": 1,
+            "misplaced": 3
+          },
+          "candidates": 4
+        },
+        {
+          "pegs": [
+            5,
+            6,
+            2,
+            4,
+            4
+          ],
+          "feedback": {
+            "exact": 5,
+            "misplaced": 0
+          },
+          "candidates": 1
+        }
+      ],
+      "signature": "11234/12145/23332|6"
+    }
+  },
+  {
+    "id": "chapter-06-level-08",
+    "chapter": 6,
+    "index": 8,
+    "title": "月下独白",
+    "chapterName": "秘方档案",
+    "seed": "scent-letter:v1:5:7:0",
+    "params": {
+      "colours": 6,
+      "slots": 5,
+      "guesses": 8,
+      "allowBlank": false,
+      "allowDuplicates": true
+    },
+    "mode": "chapter",
+    "clues": [
+      {
+        "pegs": [
+          2,
+          4,
+          4,
+          3,
+          4
+        ],
+        "feedback": {
+          "exact": 1,
+          "misplaced": 3
+        }
+      },
+      {
+        "pegs": [
+          4,
+          2,
+          2,
+          6,
+          5
+        ],
+        "feedback": {
+          "exact": 0,
+          "misplaced": 2
+        }
+      }
+    ],
+    "referenceRounds": 2,
+    "initialCandidates": 6,
+    "worstCaseRounds": 3,
+    "proof": {
+      "strategy": "first-consistent-v1",
+      "trace": [
+        {
+          "pegs": [
+            1,
+            3,
+            4,
+            4,
+            2
+          ],
+          "feedback": {
+            "exact": 4,
+            "misplaced": 0
+          },
+          "candidates": 6
+        },
+        {
+          "pegs": [
+            3,
+            3,
+            4,
+            4,
+            2
+          ],
+          "feedback": {
+            "exact": 5,
+            "misplaced": 0
+          },
+          "candidates": 1
+        }
+      ],
+      "signature": "11223/12131/34315|6"
+    }
+  },
+  {
+    "id": "chapter-06-level-09",
+    "chapter": 6,
+    "index": 9,
+    "title": "远方回音",
+    "chapterName": "秘方档案",
+    "seed": "scent-letter:v1:5:8:0",
+    "params": {
+      "colours": 6,
+      "slots": 5,
+      "guesses": 10,
+      "allowBlank": false,
+      "allowDuplicates": true
+    },
+    "mode": "chapter",
+    "clues": [
+      {
+        "pegs": [
+          3,
+          2,
+          1,
+          5,
+          1
+        ],
+        "feedback": {
+          "exact": 0,
+          "misplaced": 2
+        }
+      }
+    ],
+    "referenceRounds": 5,
+    "initialCandidates": 1303,
+    "worstCaseRounds": 8,
+    "proof": {
+      "strategy": "first-consistent-v1",
+      "trace": [
+        {
+          "pegs": [
+            1,
+            1,
+            4,
+            1,
+            4
+          ],
+          "feedback": {
+            "exact": 2,
+            "misplaced": 1
+          },
+          "candidates": 1303
+        },
+        {
+          "pegs": [
+            1,
+            1,
+            6,
+            4,
+            6
+          ],
+          "feedback": {
+            "exact": 2,
+            "misplaced": 1
+          },
+          "candidates": 105
+        },
+        {
+          "pegs": [
+            1,
+            4,
+            4,
+            2,
+            6
+          ],
+          "feedback": {
+            "exact": 1,
+            "misplaced": 3
+          },
+          "candidates": 20
+        },
+        {
+          "pegs": [
+            1,
+            6,
+            3,
+            4,
+            4
+          ],
+          "feedback": {
+            "exact": 4,
+            "misplaced": 0
+          },
+          "candidates": 4
+        },
+        {
+          "pegs": [
+            1,
+            6,
+            5,
+            4,
+            4
+          ],
+          "feedback": {
+            "exact": 5,
+            "misplaced": 0
+          },
+          "candidates": 1
+        }
+      ],
+      "signature": "11234/23356|6"
+    }
+  },
+  {
+    "id": "chapter-06-level-10",
+    "chapter": 6,
+    "index": 10,
+    "title": "封存的春天",
+    "chapterName": "秘方档案",
+    "seed": "scent-letter:v1:5:9:0",
+    "params": {
+      "colours": 6,
+      "slots": 5,
+      "guesses": 9,
+      "allowBlank": false,
+      "allowDuplicates": true
+    },
+    "mode": "chapter",
+    "clues": [
+      {
+        "pegs": [
+          3,
+          1,
+          5,
+          5,
+          4
+        ],
+        "feedback": {
+          "exact": 0,
+          "misplaced": 2
+        }
+      }
+    ],
+    "referenceRounds": 4,
+    "initialCandidates": 1303,
+    "worstCaseRounds": 7,
+    "proof": {
+      "strategy": "first-consistent-v1",
+      "trace": [
+        {
+          "pegs": [
+            1,
+            2,
+            1,
+            1,
+            3
+          ],
+          "feedback": {
+            "exact": 2,
+            "misplaced": 1
+          },
+          "candidates": 1303
+        },
+        {
+          "pegs": [
+            1,
+            2,
+            2,
+            3,
+            2
+          ],
+          "feedback": {
+            "exact": 2,
+            "misplaced": 0
+          },
+          "candidates": 111
+        },
+        {
+          "pegs": [
+            1,
+            2,
+            4,
+            4,
+            1
+          ],
+          "feedback": {
+            "exact": 4,
+            "misplaced": 0
+          },
+          "candidates": 16
+        },
+        {
+          "pegs": [
+            1,
+            2,
+            4,
+            6,
+            1
+          ],
+          "feedback": {
+            "exact": 5,
+            "misplaced": 0
+          },
+          "candidates": 2
+        }
+      ],
+      "signature": "11234/25616|6"
+    }
+  }
+]

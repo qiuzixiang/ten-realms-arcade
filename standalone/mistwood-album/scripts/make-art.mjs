@@ -166,7 +166,7 @@ if (!process.argv.includes('--svg-only')) {
   for (const candidate of [
     'sharp',
     process.env.MISTWOOD_SHARP_PATH,
-    '/Users/qiu/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/sharp'
+    'sharp'
   ].filter(Boolean)) {
     try { sharp = require(candidate); break; } catch {}
   }

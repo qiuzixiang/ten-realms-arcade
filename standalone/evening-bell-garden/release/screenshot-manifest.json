@@ -1,0 +1,89 @@
+{
+  "source": "HTTP dist/xhs via Playwright; no generated fake gameplay",
+  "images": [
+    {
+      "path": "release/cover.png",
+      "kind": "original-vector-art",
+      "pixels": [
+        1080,
+        1440
+      ],
+      "sha256": "f1ead9e3a5a546bc1a356f739007919f8373b2d3bc68c625eaeab13faa7cdf1e"
+    },
+    {
+      "path": "release/icon.png",
+      "kind": "original-vector-art",
+      "pixels": [
+        512,
+        512
+      ],
+      "sha256": "0d95adb6b74b6e076d1506efab3b9facac6901eb66f5f364668860d70eda1fd8"
+    },
+    {
+      "path": "release/gameplay-mobile.png",
+      "kind": "real-built-ui",
+      "pixels": [
+        390,
+        844
+      ],
+      "sha256": "8b186d39c9d1b5aac9cabea53ea32847da62b9a53e0a0b3ff3ce7686f882da6a"
+    },
+    {
+      "path": "release/operation-mobile.png",
+      "kind": "real-built-ui",
+      "pixels": [
+        390,
+        844
+      ],
+      "sha256": "0784508c4c9e9f76360b620f2800cd1c6d009bb93b7fc7f6718e76f44bca53a5"
+    },
+    {
+      "path": "release/tutorial-mobile.png",
+      "kind": "real-built-ui",
+      "pixels": [
+        390,
+        844
+      ],
+      "sha256": "06a3787cf06327ebae20348d4194337fdeb570506b0b8b97a30f6827a2a51bea"
+    },
+    {
+      "path": "release/completion-mobile.png",
+      "kind": "real-built-ui",
+      "pixels": [
+        390,
+        844
+      ],
+      "sha256": "e634a7e6be39f101c13e1d88dcee4cd7bc0b20c0709131824f1873946aa3b616"
+    }
+  ],
+  "gameplay": {
+    "levelId": "chapter-03-level-04",
+    "beforeHistory": [],
+    "afterHistory": [
+      4
+    ],
+    "selectedZeroBased": 4,
+    "safeArea": {
+      "top": 44,
+      "bottom": 34
+    }
+  },
+  "tutorial": {
+    "levelId": "evening-bell-garden-tutorial-v1",
+    "history": [],
+    "safeArea": {
+      "top": 0,
+      "bottom": 0
+    }
+  },
+  "completion": {
+    "levelId": "chapter-01-level-01",
+    "history": [
+      0
+    ],
+    "safeArea": {
+      "top": 0,
+      "bottom": 0
+    }
+  }
+}

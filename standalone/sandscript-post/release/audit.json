@@ -1,0 +1,45 @@
+{
+  "at": "2026-09-21T09:34:33.449Z",
+  "zipBytes": 21353,
+  "sha256": "6c95a4ab02f6736339efaafd1ab5808e7c79107ccae1db6bcb4e8c0c4f9c439e",
+  "files": [
+    {
+      "name": "app.js",
+      "bytes": 46079
+    },
+    {
+      "name": "index.html",
+      "bytes": 3526
+    },
+    {
+      "name": "styles.css",
+      "bytes": 8077
+    },
+    {
+      "name": "tutorial-0.svg",
+      "bytes": 4235
+    },
+    {
+      "name": "tutorial-1.svg",
+      "bytes": 4337
+    },
+    {
+      "name": "tutorial-2.svg",
+      "bytes": 5060
+    }
+  ],
+  "checks": [
+    "root index",
+    "classic external JS",
+    "relative resources",
+    "no forbidden network/dynamic APIs",
+    "JS syntax",
+    "SVG XML",
+    "ZIP CRC",
+    "under 2 MiB"
+  ],
+  "limits": [
+    "Chrome61 static compatibility reviewed, old kernel not run",
+    "physical mobile device not tested"
+  ]
+}

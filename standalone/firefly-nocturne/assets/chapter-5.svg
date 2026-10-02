@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 320" fill="none" aria-hidden="true">
+  <defs>
+    <linearGradient id="night" x1="360" y1="0" x2="360" y2="320" gradientUnits="userSpaceOnUse"><stop stop-color="#0D2830"/><stop offset="1" stop-color="#27535A"/></linearGradient>
+    <linearGradient id="water" x1="360" y1="177" x2="360" y2="320" gradientUnits="userSpaceOnUse"><stop stop-color="#285C63"/><stop offset="1" stop-color="#0C333D"/></linearGradient>
+    <linearGradient id="stone" x1="440" y1="205" x2="440" y2="321" gradientUnits="userSpaceOnUse"><stop stop-color="#879E91"/><stop offset="1" stop-color="#405E5B"/></linearGradient>
+  </defs>
+  <rect width="720" height="320" fill="url(#night)"/>
+  <circle cx="583" cy="57" r="32" fill="#EAF4DC" opacity=".82"/>
+  <path d="M0 163c116-47 188-19 277-26 117-9 179-42 288-26 55 8 109 8 155-1v210H0V163Z" fill="#234A48"/>
+  <path d="M0 188c142-20 235 11 351-12 124-25 238 6 369-12v156H0V188Z" fill="url(#water)"/>
+  <path d="M16 230c98-10 187-6 265 10m147-20c87-11 170-8 247 10M36 287c109-11 209-4 304 16m46-34c112-10 211-6 301 9" stroke="#83C8D1" stroke-opacity=".29" stroke-width="5" stroke-linecap="round"/>
+  <path d="M55 130h258l-31 22H80l-25-22Z" fill="#789282" stroke="#BDDFA7" stroke-width="4"/>
+  <path d="M101 102h165l57 28H46l55-28Z" fill="#1A3B40" stroke="#A7B39C" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M109 101 127 49h112l20 52H109Z" fill="#365751" stroke="#8DA18C" stroke-width="5"/>
+  <path d="m115 50 69-39 65 39H115Z" fill="#18383D" stroke="#B9C9AA" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M101 150v61m167-61v61M117 207h137" stroke="#4A645E" stroke-width="15"/>
+  <path d="M135 152v53m97-53v53" stroke="#BDDFA7" stroke-opacity=".37" stroke-width="4"/>
+  <path d="m317 210 90-8 24 26-74 16-40-34Zm87 43 94-20 27 27-83 28-38-35Zm105 33 102-21 38 29-106 26-34-34Z" fill="url(#stone)" stroke="#B9CEAE" stroke-opacity=".68" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M118 242c-17-24-29-46-38-76m35 72c20-19 39-21 54-11-12 20-30 24-54 11Zm-37-13c-26-3-40-17-45-35 25-2 40 11 45 35ZM674 253c-5-39-1-74 16-105m-23 73c-20-24-38-25-52-18 9 20 25 28 52 18Z" fill="#6E9979" stroke="#173D42" stroke-width="5" stroke-linecap="round"/>
+  <circle cx="320" cy="174" r="6" fill="#F5D678"/><circle cx="622" cy="141" r="4" fill="#F5D678"/>
+</svg>

@@ -1,0 +1,614 @@
+{
+  "generatorVersion": 1,
+  "seed": 20260922,
+  "attempts": 996,
+  "poolCounts": {
+    "4": 90,
+    "5": 90,
+    "6": 90
+  },
+  "count": 60,
+  "proof": "independent binary CSP exhausted with limit=2; D4 duplicate-constraint-graph canonicalization",
+  "levels": [
+    {
+      "id": "ma-v1-01",
+      "seed": 699101345,
+      "n": 4,
+      "solutions": 1,
+      "exhausted": true,
+      "nodes": 5,
+      "depth": 2,
+      "connectivityPrunes": 1
+    },
+    {
+      "id": "ma-v1-02",
+      "seed": 484066115,
+      "n": 4,
+      "solutions": 1,
+      "exhausted": true,
+      "nodes": 5,
+      "depth": 2,
+      "connectivityPrunes": 2
+    },
+    {
+      "id": "ma-v1-03",
+      "seed": 2445042066,
+      "n": 4,
+      "solutions": 1,
+      "exhausted": true,
+      "nodes": 5,
+      "depth": 2,
+      "connectivityPrunes": 2
+    },
+    {
+      "id": "ma-v1-04",
+      "seed": 3694552794,
+      "n": 4,
+      "solutions": 1,
+      "exhausted": true,
+      "nodes": 5,
+      "depth": 2,
+      "connectivityPrunes": 1
+    },
+    {
+      "id": "ma-v1-05",
+      "seed": 887294218,
+      "n": 4,
+      "solutions": 1,
+      "exhausted": true,
+      "nodes": 5,
+      "depth": 2,
+      "connectivityPrunes": 1
+    },
+    {
+      "id": "ma-v1-06",
+      "seed": 986914899,
+      "n": 4,
+      "solutions": 1,
+      "exhausted": true,
+      "nodes": 5,
+      "depth": 2,
+      "connectivityPrunes": 2
+    },
+    {
+      "id": "ma-v1-07",
+      "seed": 2487060522,
+      "n": 4,
+      "solutions": 1,
+      "exhausted": true,
+      "nodes": 5,
+      "depth": 2,
+      "connectivityPrunes": 1
+    },
+    {
+      "id": "ma-v1-08",
+      "seed": 1208755670,
+      "n": 4,
+      "solutions": 1,
+      "exhausted": true,
+      "nodes": 5,
+      "depth": 2,
+      "connectivityPrunes": 1
+    },
+    {
+      "id": "ma-v1-09",
+      "seed": 1212633702,
+      "n": 4,
+      "solutions": 1,
+      "exhausted": true,
+      "nodes": 5,
+      "depth": 2,
+      "connectivityPrunes": 1
+    },
+    {
+      "id": "ma-v1-10",
+      "seed": 4202934964,
+      "n": 4,
+      "solutions": 1,
+      "exhausted": true,
+      "nodes": 5,
+      "depth": 2,
+      "connectivityPrunes": 1
+    },
+    {
+      "id": "ma-v1-11",
+      "seed": 2176976638,
+      "n": 4,
+      "solutions": 1,
+      "exhausted": true,
+      "nodes": 5,
+      "depth": 2,
+      "connectivityPrunes": 1
+    },
+    {
+      "id": "ma-v1-12",
+      "seed": 3781741430,
+      "n": 4,
+      "solutions": 1,
+      "exhausted": true,
+      "nodes": 5,
+      "depth": 2,
+      "connectivityPrunes": 1
+    },
+    {
+      "id": "ma-v1-13",
+      "seed": 4088823110,
+      "n": 4,
+      "solutions": 1,
+      "exhausted": true,
+      "nodes": 7,
+      "depth": 3,
+      "connectivityPrunes": 2
+    },
+    {
+      "id": "ma-v1-14",
+      "seed": 1801037446,
+      "n": 4,
+      "solutions": 1,
+      "exhausted": true,
+      "nodes": 7,
+      "depth": 3,
+      "connectivityPrunes": 2
+    },
+    {
+      "id": "ma-v1-15",
+      "seed": 3553975731,
+      "n": 4,
+      "solutions": 1,
+      "exhausted": true,
+      "nodes": 7,
+      "depth": 3,
+      "connectivityPrunes": 2
+    },
+    {
+      "id": "ma-v1-16",
+      "seed": 74893612,
+      "n": 4,
+      "solutions": 1,
+      "exhausted": true,
+      "nodes": 7,
+      "depth": 3,
+      "connectivityPrunes": 2
+    },
+    {
+      "id": "ma-v1-17",
+      "seed": 1757542641,
+      "n": 4,
+      "solutions": 1,
+      "exhausted": true,
+      "nodes": 7,
+      "depth": 3,
+      "connectivityPrunes": 3
+    },
+    {
+      "id": "ma-v1-18",
+      "seed": 900960387,
+      "n": 4,
+      "solutions": 1,
+      "exhausted": true,
+      "nodes": 7,
+      "depth": 3,
+      "connectivityPrunes": 3
+    },
+    {
+      "id": "ma-v1-19",
+      "seed": 1280385582,
+      "n": 4,
+      "solutions": 1,
+      "exhausted": true,
+      "nodes": 7,
+      "depth": 3,
+      "connectivityPrunes": 2
+    },
+    {
+      "id": "ma-v1-20",
+      "seed": 318072016,
+      "n": 4,
+      "solutions": 1,
+      "exhausted": true,
+      "nodes": 7,
+      "depth": 3,
+      "connectivityPrunes": 2
+    },
+    {
+      "id": "ma-v1-21",
+      "seed": 4219759768,
+      "n": 4,
+      "solutions": 1,
+      "exhausted": true,
+      "nodes": 11,
+      "depth": 5,
+      "connectivityPrunes": 5
+    },
+    {
+      "id": "ma-v1-22",
+      "seed": 552999986,
+      "n": 4,
+      "solutions": 1,
+      "exhausted": true,
+      "nodes": 11,
+      "depth": 5,
+      "connectivityPrunes": 5
+    },
+    {
+      "id": "ma-v1-23",
+      "seed": 3094257639,
+      "n": 4,
+      "solutions": 1,
+      "exhausted": true,
+      "nodes": 11,
+      "depth": 5,
+      "connectivityPrunes": 5
+    },
+    {
+      "id": "ma-v1-24",
+      "seed": 3945477193,
+      "n": 4,
+      "solutions": 1,
+      "exhausted": true,
+      "nodes": 11,
+      "depth": 5,
+      "connectivityPrunes": 5
+    },
+    {
+      "id": "ma-v1-25",
+      "seed": 2747881730,
+      "n": 4,
+      "solutions": 1,
+      "exhausted": true,
+      "nodes": 11,
+      "depth": 5,
+      "connectivityPrunes": 5
+    },
+    {
+      "id": "ma-v1-26",
+      "seed": 2869639931,
+      "n": 4,
+      "solutions": 1,
+      "exhausted": true,
+      "nodes": 11,
+      "depth": 5,
+      "connectivityPrunes": 5
+    },
+    {
+      "id": "ma-v1-27",
+      "seed": 3622014598,
+      "n": 4,
+      "solutions": 1,
+      "exhausted": true,
+      "nodes": 11,
+      "depth": 5,
+      "connectivityPrunes": 5
+    },
+    {
+      "id": "ma-v1-28",
+      "seed": 1727498969,
+      "n": 4,
+      "solutions": 1,
+      "exhausted": true,
+      "nodes": 13,
+      "depth": 6,
+      "connectivityPrunes": 6
+    },
+    {
+      "id": "ma-v1-29",
+      "seed": 2856068017,
+      "n": 4,
+      "solutions": 1,
+      "exhausted": true,
+      "nodes": 15,
+      "depth": 7,
+      "connectivityPrunes": 6
+    },
+    {
+      "id": "ma-v1-30",
+      "seed": 1415028998,
+      "n": 4,
+      "solutions": 1,
+      "exhausted": true,
+      "nodes": 19,
+      "depth": 7,
+      "connectivityPrunes": 9
+    },
+    {
+      "id": "ma-v1-31",
+      "seed": 2966982891,
+      "n": 5,
+      "solutions": 1,
+      "exhausted": true,
+      "nodes": 3,
+      "depth": 1,
+      "connectivityPrunes": 0
+    },
+    {
+      "id": "ma-v1-32",
+      "seed": 1543434060,
+      "n": 5,
+      "solutions": 1,
+      "exhausted": true,
+      "nodes": 3,
+      "depth": 1,
+      "connectivityPrunes": 0
+    },
+    {
+      "id": "ma-v1-33",
+      "seed": 1456360216,
+      "n": 5,
+      "solutions": 1,
+      "exhausted": true,
+      "nodes": 3,
+      "depth": 1,
+      "connectivityPrunes": 0
+    },
+    {
+      "id": "ma-v1-34",
+      "seed": 3659537273,
+      "n": 5,
+      "solutions": 1,
+      "exhausted": true,
+      "nodes": 5,
+      "depth": 2,
+      "connectivityPrunes": 1
+    },
+    {
+      "id": "ma-v1-35",
+      "seed": 2449559199,
+      "n": 5,
+      "solutions": 1,
+      "exhausted": true,
+      "nodes": 5,
+      "depth": 2,
+      "connectivityPrunes": 1
+    },
+    {
+      "id": "ma-v1-36",
+      "seed": 2067091241,
+      "n": 5,
+      "solutions": 1,
+      "exhausted": true,
+      "nodes": 5,
+      "depth": 2,
+      "connectivityPrunes": 1
+    },
+    {
+      "id": "ma-v1-37",
+      "seed": 2288675263,
+      "n": 5,
+      "solutions": 1,
+      "exhausted": true,
+      "nodes": 5,
+      "depth": 2,
+      "connectivityPrunes": 1
+    },
+    {
+      "id": "ma-v1-38",
+      "seed": 1967730955,
+      "n": 5,
+      "solutions": 1,
+      "exhausted": true,
+      "nodes": 5,
+      "depth": 2,
+      "connectivityPrunes": 1
+    },
+    {
+      "id": "ma-v1-39",
+      "seed": 4077999884,
+      "n": 5,
+      "solutions": 1,
+      "exhausted": true,
+      "nodes": 5,
+      "depth": 2,
+      "connectivityPrunes": 1
+    },
+    {
+      "id": "ma-v1-40",
+      "seed": 2319522813,
+      "n": 5,
+      "solutions": 1,
+      "exhausted": true,
+      "nodes": 7,
+      "depth": 3,
+      "connectivityPrunes": 2
+    },
+    {
+      "id": "ma-v1-41",
+      "seed": 4129334091,
+      "n": 5,
+      "solutions": 1,
+      "exhausted": true,
+      "nodes": 13,
+      "depth": 6,
+      "connectivityPrunes": 6
+    },
+    {
+      "id": "ma-v1-42",
+      "seed": 3942210651,
+      "n": 5,
+      "solutions": 1,
+      "exhausted": true,
+      "nodes": 15,
+      "depth": 7,
+      "connectivityPrunes": 7
+    },
+    {
+      "id": "ma-v1-43",
+      "seed": 445629242,
+      "n": 5,
+      "solutions": 1,
+      "exhausted": true,
+      "nodes": 15,
+      "depth": 7,
+      "connectivityPrunes": 7
+    },
+    {
+      "id": "ma-v1-44",
+      "seed": 2962067557,
+      "n": 5,
+      "solutions": 1,
+      "exhausted": true,
+      "nodes": 17,
+      "depth": 8,
+      "connectivityPrunes": 7
+    },
+    {
+      "id": "ma-v1-45",
+      "seed": 1477920068,
+      "n": 5,
+      "solutions": 1,
+      "exhausted": true,
+      "nodes": 19,
+      "depth": 9,
+      "connectivityPrunes": 8
+    },
+    {
+      "id": "ma-v1-46",
+      "seed": 629436297,
+      "n": 5,
+      "solutions": 1,
+      "exhausted": true,
+      "nodes": 19,
+      "depth": 9,
+      "connectivityPrunes": 8
+    },
+    {
+      "id": "ma-v1-47",
+      "seed": 155968960,
+      "n": 5,
+      "solutions": 1,
+      "exhausted": true,
+      "nodes": 21,
+      "depth": 7,
+      "connectivityPrunes": 9
+    },
+    {
+      "id": "ma-v1-48",
+      "seed": 1781567378,
+      "n": 5,
+      "solutions": 1,
+      "exhausted": true,
+      "nodes": 21,
+      "depth": 8,
+      "connectivityPrunes": 9
+    },
+    {
+      "id": "ma-v1-49",
+      "seed": 1046620027,
+      "n": 5,
+      "solutions": 1,
+      "exhausted": true,
+      "nodes": 23,
+      "depth": 11,
+      "connectivityPrunes": 10
+    },
+    {
+      "id": "ma-v1-50",
+      "seed": 4126927525,
+      "n": 5,
+      "solutions": 1,
+      "exhausted": true,
+      "nodes": 23,
+      "depth": 10,
+      "connectivityPrunes": 9
+    },
+    {
+      "id": "ma-v1-51",
+      "seed": 264494732,
+      "n": 6,
+      "solutions": 1,
+      "exhausted": true,
+      "nodes": 7,
+      "depth": 3,
+      "connectivityPrunes": 2
+    },
+    {
+      "id": "ma-v1-52",
+      "seed": 1828602513,
+      "n": 6,
+      "solutions": 1,
+      "exhausted": true,
+      "nodes": 9,
+      "depth": 4,
+      "connectivityPrunes": 2
+    },
+    {
+      "id": "ma-v1-53",
+      "seed": 2232443214,
+      "n": 6,
+      "solutions": 1,
+      "exhausted": true,
+      "nodes": 11,
+      "depth": 5,
+      "connectivityPrunes": 4
+    },
+    {
+      "id": "ma-v1-54",
+      "seed": 4007620152,
+      "n": 6,
+      "solutions": 1,
+      "exhausted": true,
+      "nodes": 11,
+      "depth": 5,
+      "connectivityPrunes": 4
+    },
+    {
+      "id": "ma-v1-55",
+      "seed": 948829358,
+      "n": 6,
+      "solutions": 1,
+      "exhausted": true,
+      "nodes": 13,
+      "depth": 6,
+      "connectivityPrunes": 5
+    },
+    {
+      "id": "ma-v1-56",
+      "seed": 2467296186,
+      "n": 6,
+      "solutions": 1,
+      "exhausted": true,
+      "nodes": 13,
+      "depth": 6,
+      "connectivityPrunes": 5
+    },
+    {
+      "id": "ma-v1-57",
+      "seed": 478289879,
+      "n": 6,
+      "solutions": 1,
+      "exhausted": true,
+      "nodes": 15,
+      "depth": 7,
+      "connectivityPrunes": 5
+    },
+    {
+      "id": "ma-v1-58",
+      "seed": 495770588,
+      "n": 6,
+      "solutions": 1,
+      "exhausted": true,
+      "nodes": 17,
+      "depth": 8,
+      "connectivityPrunes": 7
+    },
+    {
+      "id": "ma-v1-59",
+      "seed": 3253525360,
+      "n": 6,
+      "solutions": 1,
+      "exhausted": true,
+      "nodes": 19,
+      "depth": 9,
+      "connectivityPrunes": 8
+    },
+    {
+      "id": "ma-v1-60",
+      "seed": 4144552780,
+      "n": 6,
+      "solutions": 1,
+      "exhausted": true,
+      "nodes": 27,
+      "depth": 9,
+      "connectivityPrunes": 12
+    }
+  ]
+}

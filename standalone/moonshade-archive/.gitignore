@@ -1,0 +1,5 @@
+release/platform/
+release/platform-*.png
+release/platform-*.json
+release/clean-check/
+release/*.log

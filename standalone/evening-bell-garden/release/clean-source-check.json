@@ -1,0 +1,6 @@
+{
+  "status": "PASS",
+  "method": "fresh source copy without dist or node_modules; npm ci --offline, build, test, audit",
+  "zipSha256": "2041f056a9c49357918b0befd25fa9ec8d8457d11e8f431c3105385c150e7f0b",
+  "identicalRebuild": true
+}

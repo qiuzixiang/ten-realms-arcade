@@ -1,0 +1,13 @@
+{
+  "runtime": "v0.1.9-e6d2af8846e7-2d59be02a957",
+  "type": "Official desktop embedded simulator",
+  "passedChecks": [
+    "First tutorial visible",
+    "Skip and begin",
+    "DOM click events completed first puzzle and showed success",
+    "No horizontal overflow at 390px",
+    "Portal re-upload/restart retained the completed first-level record"
+  ],
+  "physicalDevices": false,
+  "refreshLimitation": "Direct location.reload() of simulator temporary app URL returned Path Not Found. The portal restored normal preview after uploading the same package again; browser production refresh is separately covered by browser-report.json."
+}

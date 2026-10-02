@@ -1,0 +1,23 @@
+{
+  "title": "霜野铁道",
+  "description": "按行列数字铺出雪原铁路",
+  "version": "1.0.0",
+  "target": "xiaohongshu-mini-tool",
+  "userAuthorized": true,
+  "agreementAuthorized": true,
+  "agreementChecked": true,
+  "agreementUrl": "https://agree.xiaohongshu.com/h5/terms/ZXXY20260630004/-1",
+  "agreementLabelOnPlatform": "小工具发布安全规范",
+  "status": "submitted_pending_review",
+  "platformConfirmation": "发布成功",
+  "verifiedBy": "Creator tool list after reload",
+  "verifiedAt": "2026-09-22T13:18:04.117Z",
+  "cardText": "霜野铁道\n按行列数字铺出雪原铁路\n撤回\n审核中\n-\nV1.0.0",
+  "managementUrl": "https://creator.xiaohongshu.com/new/red-app",
+  "note": "local_draft_not_published",
+  "github": "not_requested",
+  "physicalDeviceQA": "not_tested",
+  "zipSha256": "3843c810542d64d34f576718c02443fb231a2b83accf99dab07df222443d9c87",
+  "toolId": "6ab27fcc4098b3001566a05b",
+  "toolIdSource": "Visible app-card data-impression contentId"
+}

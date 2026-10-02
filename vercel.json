@@ -1,5 +1,5 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "buildCommand": "npm test && npm run build",
+  "buildCommand": "node scripts/standalone.mjs install && npm test && npm run build",
   "outputDirectory": "dist"
 }

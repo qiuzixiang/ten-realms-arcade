@@ -1,0 +1,25 @@
+{
+  "passed": true,
+  "browser": "153.0.8010.48",
+  "environment": "Headless desktop Chrome; responsive simulations, not physical devices",
+  "checks": [
+    "First tutorial, skip, reopen, three truth states and restored focus",
+    "Real clicks: fixed tile no-op, shared edges, candidates, exclude, undo/restart, win and refresh/replay reward dedup",
+    "Specific hint records assistance; apply and finish a middle chapter",
+    "Viewport 320×720, safe area 44/34, no horizontal overflow, targets >=44, modal trap",
+    "Viewport 359×720, safe area 44/34, no horizontal overflow, targets >=44, modal trap",
+    "Viewport 360×720, safe area 44/34, no horizontal overflow, targets >=44, modal trap",
+    "Viewport 361×720, safe area 44/34, no horizontal overflow, targets >=44, modal trap",
+    "Viewport 390×844, safe area 44/34, no horizontal overflow, targets >=44, modal trap",
+    "Viewport 759×844, safe area 44/34, no horizontal overflow, targets >=44, modal trap",
+    "Viewport 760×844, safe area 44/34, no horizontal overflow, targets >=44, modal trap",
+    "Viewport 761×844, safe area 44/34, no horizontal overflow, targets >=44, modal trap",
+    "Viewport 1280×720, safe area 44/34, no horizontal overflow, targets >=44, modal trap",
+    "Last 6×6 puzzle completed through real buttons with reduced motion",
+    "Maximum 60-completion/6-collection fixture renders without overflow",
+    "Native storage bridge mock on client 9.46.2",
+    "No page exceptions or external runtime requests under restricted CSP"
+  ],
+  "errors": [],
+  "external": []
+}

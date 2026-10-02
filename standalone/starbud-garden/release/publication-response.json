@@ -1,0 +1,38 @@
+{
+  "time": "2026-09-22T09:14:30.681Z",
+  "events": [
+    {
+      "url": "https://edith.xiaohongshu.com/api/sns/v1/creator/red_app/save",
+      "status": 200,
+      "body": {
+        "code": 0,
+        "success": true,
+        "msg": "成功",
+        "data": {
+          "app_id": "6ab246f2454c510015180a00",
+          "version": "1.0.0",
+          "preview_url": "xhsdiscover://miniTool/6ab246f2454c510015180a00_develop?xhsMpScreenMode=full",
+          "status": 1
+        }
+      }
+    },
+    {
+      "url": "https://edith.xiaohongshu.com/api/sns/v1/creator/red_app/banner_info",
+      "status": 200,
+      "body": {
+        "msg": "成功",
+        "data": {
+          "result": {
+            "success": true,
+            "code": 0,
+            "message": "成功"
+          },
+          "text": "小工具支持保存图片、发笔记api、storage api啦",
+          "link": "https://miniapp-sandbox.xiaohongshu.com/minitool/doc"
+        },
+        "code": 0,
+        "success": true
+      }
+    }
+  ]
+}

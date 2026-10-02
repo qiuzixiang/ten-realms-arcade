@@ -1,0 +1,8 @@
+{
+  "sourceCommit": "2d69ba1",
+  "method": "Git archive, remove archived dist before build, npm ci --offline --ignore-scripts, npm run build, npm test, npm run audit",
+  "passed": true,
+  "testsPassed": 21,
+  "productionFilesIdentical": 11,
+  "zipTimestampNote": "ZIP timestamps differ across builds; all 11 uncompressed production files match byte-for-byte"
+}

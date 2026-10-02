@@ -1,0 +1,5 @@
+import fs from 'node:fs';import path from 'node:path';import {fileURLToPath} from 'node:url';import {execFileSync} from 'node:child_process';
+const root=fileURLToPath(new URL('../',import.meta.url)),out=path.join(root,'dist/xhs');fs.mkdirSync(out,{recursive:true});
+for(const [from,to] of [['index.html','index.html'],['style.css','style.css']])fs.writeFileSync(path.join(out,to),fs.readFileSync(path.join(root,'src',from),'utf8').replace('<script src="./engine.js"></script><script src="./levels.js"></script><script src="./ui.js"></script>','<script src="./app.js"></script>'));
+fs.writeFileSync(path.join(out,'app.js'),'/*\n'+fs.readFileSync(path.join(root,'LICENSE'),'utf8')+'\n*/\n'+['engine.js','levels.js','ui.js'].map(f=>fs.readFileSync(path.join(root,'src',f),'utf8')).join('\n'));
+execFileSync('python3',['-c',"import zipfile,sys,pathlib; p=pathlib.Path(sys.argv[1]); z=zipfile.ZipFile(sys.argv[2],'w',zipfile.ZIP_DEFLATED); [z.write(f,f.name) for f in sorted(p.iterdir()) if f.is_file()]; z.close()",out,path.join(root,'dist/astral-turn-gallery-xhs.zip')]);console.log('Built classic offline ZIP');

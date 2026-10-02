@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 320" fill="none" aria-hidden="true">
+  <defs>
+    <linearGradient id="night" x1="360" y1="0" x2="360" y2="320" gradientUnits="userSpaceOnUse"><stop stop-color="#102C32"/><stop offset="1" stop-color="#2D514C"/></linearGradient>
+    <linearGradient id="stone" x1="360" y1="160" x2="360" y2="317" gradientUnits="userSpaceOnUse"><stop stop-color="#84968B"/><stop offset="1" stop-color="#405C57"/></linearGradient>
+    <radialGradient id="light" cx="0" cy="0" r="1" gradientTransform="translate(351 227) scale(180 86)"><stop stop-color="#F5D678" stop-opacity=".23"/><stop offset="1" stop-color="#F5D678" stop-opacity="0"/></radialGradient>
+  </defs>
+  <rect width="720" height="320" fill="url(#night)"/>
+  <path d="M0 162c106-34 163-12 250-20 140-11 185-29 274-11 78 16 139 12 196-10v199H0V162Z" fill="#234440"/>
+  <path d="M0 207c125-43 211-6 332-30 103-20 154 21 255 14 45-3 89-19 133-37v166H0V207Z" fill="#35584F"/>
+  <ellipse cx="356" cy="260" rx="284" ry="108" fill="#254746" stroke="#8BA294" stroke-width="11"/>
+  <ellipse cx="356" cy="260" rx="247" ry="81" fill="#40635A" stroke="#A1B397" stroke-opacity=".45" stroke-width="5"/>
+  <ellipse cx="351" cy="227" rx="182" ry="89" fill="url(#light)"/>
+  <path d="M160 228c-14-21-11-57 5-83 15-25 43-27 58-6 13 18 12 57 4 89-19 9-47 9-67 0Zm160-74c-8-27 2-58 23-75 25-19 52-12 61 12 9 22 3 48-8 67-23 10-54 9-76-4Zm185 71c-9-23-8-59 9-83 18-25 45-23 58 1 12 23 13 59 1 83-20 9-46 8-68-1Z" fill="url(#stone)" stroke="#9DAC9A" stroke-width="5"/>
+  <path d="M171 169c11-8 26-9 42-5m131-38c14-8 32-7 47 2m127 39c13-7 30-7 43 0" stroke="#EAF4DC" stroke-opacity=".35" stroke-width="4" stroke-linecap="round"/>
+  <path d="M271 253c26-14 62-13 82 4m56-14c19-11 41-9 59 3" stroke="#BCD6AD" stroke-opacity=".39" stroke-width="6" stroke-linecap="round"/>
+  <path d="M265 266c-1-19-6-36-14-48m12 31c-17-15-29-15-39-8 8 17 21 19 39 8Zm-10-17c6-19 19-23 29-21-2 17-12 24-29 21ZM455 279c3-24 7-42 17-59m-13 38c14-15 27-17 38-10-7 17-21 21-38 10Z" fill="#BDDFA7" stroke="#17373A" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="277" cy="204" r="6" fill="#F5D678"/><circle cx="442" cy="221" r="5" fill="#F5D678"/>
+  <circle cx="629" cy="67" r="31" fill="#EAF4DC" opacity=".73"/>
+</svg>

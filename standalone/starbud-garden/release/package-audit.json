@@ -1,0 +1,29 @@
+{
+  "files": [
+    {
+      "name": "app.js",
+      "bytes": 75939
+    },
+    {
+      "name": "icon.svg",
+      "bytes": 962
+    },
+    {
+      "name": "index.html",
+      "bytes": 4105
+    },
+    {
+      "name": "styles.css",
+      "bytes": 10461
+    }
+  ],
+  "zipBytes": 23170,
+  "sha256": "5e7085a16d25b9f4405935c45e9ec9688c88bc953f02bf554d0a0d0022242360",
+  "classic": true,
+  "offline": true,
+  "syntax": "node parse + ES2017 feature audit",
+  "limitations": [
+    "Chrome61 runtime not available",
+    "iOS/Android physical devices not tested"
+  ]
+}

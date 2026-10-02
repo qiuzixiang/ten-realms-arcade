@@ -9,7 +9,7 @@ import { createRequire } from 'node:module';
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const require = createRequire(import.meta.url);
 let sharp;
-for (const candidate of [process.env.CLOUD_CAMP_SHARP, 'sharp', '/Users/qiu/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/sharp'].filter(Boolean)) {
+for (const candidate of [process.env.CLOUD_CAMP_SHARP, 'sharp', 'sharp'].filter(Boolean)) {
   try { sharp = require(candidate); break; } catch { /* Try the next explicitly configured runtime. */ }
 }
 if (!sharp) throw new Error('PNG regeneration needs sharp. Install it locally or set CLOUD_CAMP_SHARP to its module path.');

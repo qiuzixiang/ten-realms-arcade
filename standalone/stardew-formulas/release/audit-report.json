@@ -1,0 +1,37 @@
+{
+  "version": 1,
+  "files": [
+    {
+      "name": "app.js",
+      "bytes": 52334
+    },
+    {
+      "name": "icon.svg",
+      "bytes": 552
+    },
+    {
+      "name": "index.html",
+      "bytes": 4048
+    },
+    {
+      "name": "licenses.json",
+      "bytes": 4172
+    },
+    {
+      "name": "styles.css",
+      "bytes": 12632
+    }
+  ],
+  "zipSize": 20035,
+  "sha256": "0f0f9ffd5331e30c118c2b1a074b872f61b8c32f579511b2f78cc7261b912916",
+  "checks": [
+    "ES2017 parsed",
+    "relative references exist",
+    "classic external script",
+    "prohibited API scan",
+    "ZIP root and CRC",
+    "under historical 2MiB recommendation"
+  ],
+  "platformBaseline": "minitool 1.6.0 cached; current version unverified",
+  "realContainer": false
+}

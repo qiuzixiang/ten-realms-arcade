@@ -1,0 +1,181 @@
+{
+  "status": "PASS",
+  "browser": "153.0.8010.36",
+  "viewports": [
+    320,
+    349,
+    350,
+    351,
+    390,
+    479,
+    480,
+    481,
+    759,
+    760,
+    761,
+    1280
+  ],
+  "safeArea": {
+    "top": 44,
+    "bottom": 34
+  },
+  "reports": [
+    {
+      "label": "home",
+      "viewport": 390,
+      "status": "PASS"
+    },
+    {
+      "label": "first tutorial",
+      "viewport": 390,
+      "status": "PASS"
+    },
+    {
+      "label": "max board safe area 320",
+      "viewport": 320,
+      "status": "PASS"
+    },
+    {
+      "label": "tutorial safe area 320",
+      "viewport": 320,
+      "status": "PASS"
+    },
+    {
+      "label": "max board safe area 349",
+      "viewport": 349,
+      "status": "PASS"
+    },
+    {
+      "label": "tutorial safe area 349",
+      "viewport": 349,
+      "status": "PASS"
+    },
+    {
+      "label": "max board safe area 350",
+      "viewport": 350,
+      "status": "PASS"
+    },
+    {
+      "label": "tutorial safe area 350",
+      "viewport": 350,
+      "status": "PASS"
+    },
+    {
+      "label": "max board safe area 351",
+      "viewport": 351,
+      "status": "PASS"
+    },
+    {
+      "label": "tutorial safe area 351",
+      "viewport": 351,
+      "status": "PASS"
+    },
+    {
+      "label": "max board safe area 390",
+      "viewport": 390,
+      "status": "PASS"
+    },
+    {
+      "label": "tutorial safe area 390",
+      "viewport": 390,
+      "status": "PASS"
+    },
+    {
+      "label": "max board safe area 479",
+      "viewport": 479,
+      "status": "PASS"
+    },
+    {
+      "label": "tutorial safe area 479",
+      "viewport": 479,
+      "status": "PASS"
+    },
+    {
+      "label": "max board safe area 480",
+      "viewport": 480,
+      "status": "PASS"
+    },
+    {
+      "label": "tutorial safe area 480",
+      "viewport": 480,
+      "status": "PASS"
+    },
+    {
+      "label": "max board safe area 481",
+      "viewport": 481,
+      "status": "PASS"
+    },
+    {
+      "label": "tutorial safe area 481",
+      "viewport": 481,
+      "status": "PASS"
+    },
+    {
+      "label": "max board safe area 759",
+      "viewport": 759,
+      "status": "PASS"
+    },
+    {
+      "label": "tutorial safe area 759",
+      "viewport": 759,
+      "status": "PASS"
+    },
+    {
+      "label": "max board safe area 760",
+      "viewport": 760,
+      "status": "PASS"
+    },
+    {
+      "label": "tutorial safe area 760",
+      "viewport": 760,
+      "status": "PASS"
+    },
+    {
+      "label": "max board safe area 761",
+      "viewport": 761,
+      "status": "PASS"
+    },
+    {
+      "label": "tutorial safe area 761",
+      "viewport": 761,
+      "status": "PASS"
+    },
+    {
+      "label": "max board safe area 1280",
+      "viewport": 1280,
+      "status": "PASS"
+    },
+    {
+      "label": "tutorial safe area 1280",
+      "viewport": 1280,
+      "status": "PASS"
+    },
+    {
+      "label": "collection",
+      "viewport": 390,
+      "status": "PASS"
+    }
+  ],
+  "errors": [],
+  "externalRequests": [],
+  "flows": [
+    "first tutorial",
+    "skip/reopen/complete",
+    "place/remove/undo",
+    "refresh replay",
+    "win/repeat dedupe",
+    "hint confirm",
+    "keyboard notes",
+    "daily",
+    "collection",
+    "reduced motion",
+    "drag/cancel",
+    "illegal atomic placement",
+    "storage denied still playable",
+    "corrupt storage fallback"
+  ],
+  "limits": [
+    "Desktop Chromium emulation only",
+    "No actual iOS/Android/Chrome61/XHS container"
+  ]
+}

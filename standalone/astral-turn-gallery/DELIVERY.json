@@ -1,0 +1,93 @@
+{
+  "slug": "astral-turn-gallery",
+  "title": "星仪回廊",
+  "version": "1.0.0",
+  "status": "published_platform_status_verified",
+  "source": {
+    "rule": "Twiddle",
+    "commit": "55cdddb75cf57c17baee80bac4121bd3be1687c6",
+    "license": "MIT; independent implementation; rule attribution retained"
+  },
+  "targetLevelCount": 60,
+  "verifiedLevelCount": 60,
+  "chapters": 6,
+  "generatorVersion": 1,
+  "checks": {
+    "coreTests": {
+      "passed": 7,
+      "failed": 0
+    },
+    "repositoryValidation": "passed, 381 files on isolated baseline",
+    "sourceOnlyCleanRebuild": "passed before trailing-whitespace-only cleanup; uploaded 3 files reproduced exactly",
+    "independentOracle": "all 60 solutions and 18 operations per board",
+    "canonicalD4Unique": 60,
+    "completeBFSDepth3States": 3076,
+    "browserWidths": [
+      320,
+      349,
+      351,
+      390,
+      649,
+      651,
+      1280
+    ],
+    "CSPInteraction": "passed tutorial, solve, refresh, undo, restart, hint, assisted record",
+    "zipCRC": "passed"
+  },
+  "artifacts": [
+    {
+      "path": "dist/astral-turn-gallery-xhs.zip",
+      "bytes": 14472,
+      "sha256": "31489938b976e4c0c99e15e8224d5e6d9faf99849c33599511e642e33f583234"
+    },
+    {
+      "path": "release/icon-512.png",
+      "bytes": 38185,
+      "sha256": "98dd84192f2d74c890531173323d8bd47f6cf5953391e7f20e772ccb2cc0b113"
+    },
+    {
+      "path": "release/cover-1080x1440.png",
+      "bytes": 170346,
+      "sha256": "9bd1de9e49eed916c966465190d19a3e10b379fa56fe773645d155bd2f99eb7d"
+    },
+    {
+      "path": "release/gameplay-320.png",
+      "bytes": 33440,
+      "sha256": "1ce639a2969675124ba5dc14559484bd1d7abb0010dd32e95bdbd2c9d8997bf3"
+    },
+    {
+      "path": "release/published-status.png",
+      "bytes": 102602,
+      "sha256": "93a93e18e30121e7c583acd00ca345c25bd7a280c3a413081fe73592701d8943"
+    },
+    {
+      "path": "release/NOTE-DRAFT.md",
+      "bytes": 1147,
+      "sha256": "5d60105a6ceee45b632eae866820b8402d1e12a9784083435ddf503493545241"
+    },
+    {
+      "path": "release/clean-check.json",
+      "bytes": 1061,
+      "sha256": "cc572aee5b34a4bcc25af583a218c268866d06368fe5eea57374cad37ea32cb0"
+    }
+  ],
+  "publication": {
+    "xhsTool": "published",
+    "verifiedAt": "2026-09-23",
+    "evidence": "release/published-status.png",
+    "version": "1.0.0",
+    "finalSubmissionObserved": false,
+    "xhsNote": "local_draft_only",
+    "github": "not_requested",
+    "uploadedZipSha256": "05aef0a3851abcd7f387ba925013a23eab4a738f43d65a1b842bfa490e67353b",
+    "localPackagingNote": "Final local source removes one trailing CSS space; no gameplay changes from uploaded version."
+  },
+  "limitations": [
+    "No physical iOS/Android or Chrome61 execution",
+    "Platform simulator interaction not completed in this thread",
+    "No public share URL captured",
+    "1.7.0 spec appeared on 2026-09-23; download timed out, package uses upload-day 1.6.0",
+    "Safe-area 44/34 CSS contract implemented; explicit injected safe-area test not completed",
+    "No optimality claim for deeper puzzles or human difficulty validation"
+  ]
+}

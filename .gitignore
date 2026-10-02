@@ -4,3 +4,12 @@ dist/
 
 .vercel
 .env*
+
+node_modules/
+
+# Local verification copies, never publish duplicate development trees
+standalone/*/.verify/
+standalone/*/release/clean-check/
+standalone/*/platform/*.skill
+standalone/*/release/*.skill
+standalone/color-linez/releases/*.zip

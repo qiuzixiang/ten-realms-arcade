@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#17342c">
+  <meta name="description" content="在纸雕山谷中为四种守护灵安排山居，共享边界的邻居不能相同。">
+  <title>四灵山居 · 山谷巡境</title>
+  <link rel="icon" href="./assets/icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./styles.css">
+  <script src="./app.js" defer></script>
+</head>
+<body>
+  <div class="mountain-wash" aria-hidden="true"></div>
+  <header class="site-header">
+    <div class="brand"><span class="brand-mark" aria-hidden="true">灵</span><div><small>FOUR SPIRIT VALLEY</small><h1>四灵山居</h1></div></div>
+    <button class="header-tutorial" type="button" data-tutorial-open>玩法图册</button>
+  </header>
+  <main>
+    <section class="screen home-screen" data-home>
+      <div class="welcome-card">
+        <p class="eyebrow">纸雕山谷 · 巡境手记</p>
+        <h2>让四位守护灵<br>各安其居</h2>
+        <p>每片山居迎来一位守护灵。共享边界的邻居不能相同，只在角上相遇的山居各自安宁。</p>
+        <div class="spirit-strip" aria-label="水麟、火羽、月狐、森龟">
+          <span class="spirit-chip water"><b>麟</b>水麟</span><span class="spirit-chip flame"><b>羽</b>火羽</span><span class="spirit-chip moon"><b>狐</b>月狐</span><span class="spirit-chip leaf"><b>龟</b>森龟</span>
+        </div>
+        <div class="welcome-actions"><button type="button" class="primary-button" data-daily>今日小谷</button><button type="button" class="quiet-button" data-journal-open>守护灵手账</button></div>
+        <p class="daily-note">今日题取自固定的 60 道已验证题库，按日期轮换，60 天后重复。</p>
+      </div>
+      <section class="chapter-section" aria-labelledby="chapter-heading"><div class="section-heading"><div><p class="eyebrow">THE SIX RIDGES</p><h2 id="chapter-heading">巡境路线</h2></div><p data-total-progress>0 / 60 境已安居</p></div><div class="chapter-list" data-chapters></div></section>
+    </section>
+
+    <section class="screen game-screen" data-game hidden>
+      <div class="game-topline"><button type="button" class="back-button" data-home-button>‹ 山谷地图</button><button type="button" class="quiet-button" data-hint>给我一点线索</button></div>
+      <section class="play-card" aria-labelledby="level-title">
+        <div class="play-heading"><div><p class="eyebrow" data-chapter-title></p><h2 id="level-title" data-level-title></h2><p class="level-meta" data-level-meta></p></div><div class="count-badge"><b data-moves>0</b><span>次安置</span></div></div>
+        <p class="live-status" data-status role="status" aria-live="polite">先点选一片山居，再选择守护灵。</p>
+        <div class="board-frame"><div class="game-board" data-board role="img" aria-label="山居地图预览"></div></div>
+        <div class="region-selector" data-regions aria-label="精确选择山居"></div>
+        <div class="selected-line" data-selected-line aria-live="polite">尚未选中山居</div>
+        <div class="palette" data-palette aria-label="选择守护灵">
+          <button type="button" class="palette-button water" data-spirit="0" aria-pressed="false"><b>麟</b><span>水麟</span></button>
+          <button type="button" class="palette-button flame" data-spirit="1" aria-pressed="false"><b>羽</b><span>火羽</span></button>
+          <button type="button" class="palette-button moon" data-spirit="2" aria-pressed="false"><b>狐</b><span>月狐</span></button>
+          <button type="button" class="palette-button leaf" data-spirit="3" aria-pressed="false"><b>龟</b><span>森龟</span></button>
+        </div>
+        <div class="tool-row"><button type="button" class="tool-button" data-notes aria-pressed="false">候选印：关</button><button type="button" class="tool-button" data-erase>清除所选</button><button type="button" class="tool-button" data-undo>撤销一步</button><button type="button" class="tool-button" data-reset>重开此境</button></div>
+        <div class="game-footnote"><span>固定神龛 ✦</span><span>共享边界才算相邻</span><span>候选印不计入胜负</span></div>
+      </section>
+      <section class="level-nav" aria-label="本章关卡"><button type="button" data-prev-level>上一境</button><span data-level-position></span><button type="button" data-next-level>下一境</button></section>
+    </section>
+  </main>
+
+  <dialog class="modal tutorial-modal" data-tutorial aria-labelledby="tutorial-title">
+    <div class="modal-shell"><header class="modal-header"><div><p class="eyebrow">A TRUE MAP, THREE MOMENTS</p><h2 id="tutorial-title" data-tutorial-title></h2></div><button class="close-button" type="button" data-tutorial-close aria-label="关闭教程">×</button></header><img class="tutorial-map" data-tutorial-image alt="由第一关真实地图生成的规则图解"><p class="tutorial-copy" data-tutorial-copy></p><ul class="tutorial-bullets" data-tutorial-bullets></ul><footer class="tutorial-footer"><button type="button" class="quiet-button" data-tutorial-prev>上一张</button><span data-tutorial-position>1 / 3</span><button type="button" class="primary-button" data-tutorial-next>下一张</button></footer></div>
+  </dialog>
+  <dialog class="modal result-modal" data-result aria-labelledby="result-title"><div class="result-shell"><span class="result-seal" aria-hidden="true">四灵和鸣</span><p class="eyebrow">VALLEY RESTORED</p><h2 id="result-title">这片山居安定下来了</h2><p data-result-copy></p><div class="result-actions"><button type="button" class="quiet-button" data-result-close>留在本境</button><button type="button" class="primary-button" data-result-next>去下一境</button></div></div></dialog>
+  <dialog class="modal journal-modal" data-journal aria-labelledby="journal-title"><div class="modal-shell"><header class="modal-header"><div><p class="eyebrow">FIELD NOTES</p><h2 id="journal-title">守护灵手账</h2></div><button class="close-button" type="button" data-journal-close aria-label="关闭手账">×</button></header><p class="journal-intro">每完成一境，山谷里便多一处安稳的家。这里记录已经点亮的山居。</p><div class="journal-grid" data-journal-grid></div></div></dialog>
+  <footer class="site-footer"><p>规则参考 Simon Tatham 谜题集 Map；本作独立实现与主题设计。<button type="button" data-license-open>规则来源与许可</button></p><p>本地游玩 · 无需登录 · 进度保存在当前设备</p></footer>
+  <dialog class="modal license-modal" data-license aria-labelledby="license-title"><div class="modal-shell"><header class="modal-header"><div><p class="eyebrow">RULES & ATTRIBUTION</p><h2 id="license-title">规则来源与许可</h2></div><button class="close-button" type="button" data-license-close aria-label="关闭许可说明">×</button></header><p>本作参考 Simon Tatham’s Portable Puzzle Collection 中的 Map 规则，以及 ebnbin/puzzles 在固定版本 5a9e1795a3324e0f6433b79fbe31cbd9b12048a3 的中文规则说明。游戏规则、题库、主题、界面与图形由本项目独立实现；未捆绑上游代码或美术。</p><p>上游项目按 MIT License 发布。来源链接：<a href="https://github.com/ebnbin/puzzles/blob/5a9e1795a3324e0f6433b79fbe31cbd9b12048a3/doc-zh/map.html" target="_blank" rel="noreferrer">规则说明</a> · <a href="https://github.com/ebnbin/puzzles/blob/5a9e1795a3324e0f6433b79fbe31cbd9b12048a3/LICENSE" target="_blank" rel="noreferrer">许可证</a>。本游戏原创部分采用 MIT License。</p></div></dialog>
+</body>
+</html>

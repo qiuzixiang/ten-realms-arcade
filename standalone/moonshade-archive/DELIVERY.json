@@ -1,0 +1,52 @@
+{
+  "slug": "moonshade-archive",
+  "title": "月影书斋",
+  "version": "1.0.0",
+  "status": "submitted_for_xhs_review",
+  "source": {
+    "path": "v4/games/shadow-print-lab",
+    "commit": "55cdddb75cf57c17baee80bac4121bd3be1687c6",
+    "license": "MIT",
+    "rule": "Hitori / Singles"
+  },
+  "verifiedLevelCount": 60,
+  "chapters": 6,
+  "tests": {
+    "node": "15/15 passed",
+    "fullRepository": "npm test passed",
+    "browser": "8 widths passed; touch/keyboard/storage/tutorial/completion verified",
+    "uniqueSolutions": "60 complete independent searches; 30 full 4x4 enumerations",
+    "officialPackageAudit": "6 files, 0 warnings",
+    "cleanCheckout": "PASS; production files identical; generation reproducible",
+    "xhsSimulator": "PASS; tutorial, circle/undo, actual first puzzle completion, no horizontal overflow"
+  },
+  "artifact": {
+    "path": "dist/moonshade-archive-xhs.zip",
+    "bytes": 19982,
+    "sha256": "1ff203fe16ad977a99ec7d2d4d9085316fb7f5ae8c27074129042b0638206e16"
+  },
+  "publication": {
+    "github": "not_requested; no push",
+    "xhsTool": "submitted; platform toast 发布成功; list 审核中",
+    "xhsNote": "local_copy_and_images_prepared_not_published",
+    "agreement": {
+      "authorized": true,
+      "url": "https://agree.xiaohongshu.com/h5/terms/ZXXY20260630004/-1",
+      "checked": true,
+      "displayedTitle": "小工具发布安全规范"
+    }
+  },
+  "limitations": [
+    "No physical iOS/Android/Chrome61 runtime testing",
+    "No physical Xiaohongshu container testing",
+    "Difficulty metrics not user playtest data"
+  ],
+  "sourceCommit": "44739d597e83a77b80687f77110c058592d8e809",
+  "evidence": [
+    "release/puzzle-proof.json",
+    "release/browser-qa.json",
+    "release/package-audit.json",
+    "release/clean-check.json",
+    "release/publish-status.json"
+  ]
+}

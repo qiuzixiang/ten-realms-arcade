@@ -1,0 +1,5 @@
+dist/
+release/clean-check/
+release/debug-*.png
+release/desktop.png
+release/phone-initial.png

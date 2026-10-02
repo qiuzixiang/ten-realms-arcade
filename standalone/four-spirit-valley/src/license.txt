@@ -1,0 +1,7 @@
+The game rules take inspiration from Map in Simon Tatham's Portable Puzzle Collection and the ebnbin/puzzles project. The puzzle rules are independently implemented here; no upstream source code or artwork is included.
+
+Simon Tatham's Portable Puzzle Collection and ebnbin/puzzles are distributed under the MIT License. Copyright notices and license text are available at:
+https://git.tartarus.org/?p=simon/puzzles.git;a=blob;f=LICENCE
+https://github.com/ebnbin/puzzles/blob/5a9e1795a3324e0f6433b79fbe31cbd9b12048a3/LICENSE
+
+The Four Spirit Valley source code, original game text, interface, puzzle layouts, and vector artwork are provided under the MIT License. Copyright (c) 2026.

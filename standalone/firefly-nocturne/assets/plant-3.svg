@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="160" viewBox="0 0 128 160" fill="none" aria-hidden="true">
+  <path d="M62 148c-23-21-16-45 11-67 29-23 23-45-8-65M67 105c-18-20-32-23-49-20m54-19c10-23 22-31 42-33m-60 95c19-18 38-21 56-18" stroke="#A9CEAA" stroke-width="3.4" stroke-linecap="round"/>
+  <path d="M59 136c-20 1-32-8-36-23 18-4 31 4 36 23Zm13-47c-21 3-34-6-39-19 19-5 32 2 39 19Zm14-24c14-17 29-19 42-13-8 16-22 22-42 13ZM51 43c-19-3-28-15-27-30 19 1 28 13 27 30Zm23 65c18-7 31-2 39 10-14 11-28 10-39-10Z" fill="#53856E" stroke="#BDDFA7" stroke-width="2" stroke-linejoin="round"/>
+  <path d="M23 113c13 7 23 13 36 23M33 70c13 7 25 13 39 19m56-37c-13 4-27 8-42 13M24 13c8 14 17 24 27 30m62 75c-12-5-25-8-39-10" stroke="#D9E9C7" stroke-opacity=".38" stroke-width="1.5" stroke-linecap="round"/>
+  <g fill="#D8E8D4" stroke="#F5D678" stroke-width="1.4">
+    <ellipse cx="81" cy="23" rx="6" ry="11" transform="rotate(-16 81 23)"/><ellipse cx="96" cy="27" rx="6" ry="11" transform="rotate(54 96 27)"/><ellipse cx="98" cy="43" rx="6" ry="11" transform="rotate(126 98 43)"/><ellipse cx="82" cy="48" rx="6" ry="11" transform="rotate(198 82 48)"/><ellipse cx="72" cy="36" rx="6" ry="11" transform="rotate(270 72 36)"/>
+    <ellipse cx="28" cy="82" rx="4" ry="8" transform="rotate(-20 28 82)"/><ellipse cx="40" cy="84" rx="4" ry="8" transform="rotate(60 40 84)"/><ellipse cx="42" cy="96" rx="4" ry="8" transform="rotate(140 42 96)"/><ellipse cx="30" cy="99" rx="4" ry="8" transform="rotate(220 30 99)"/><ellipse cx="22" cy="91" rx="4" ry="8" transform="rotate(300 22 91)"/>
+    <ellipse cx="96" cy="92" rx="4" ry="8" transform="rotate(-20 96 92)"/><ellipse cx="108" cy="94" rx="4" ry="8" transform="rotate(60 108 94)"/><ellipse cx="110" cy="106" rx="4" ry="8" transform="rotate(140 110 106)"/><ellipse cx="98" cy="109" rx="4" ry="8" transform="rotate(220 98 109)"/><ellipse cx="90" cy="101" rx="4" ry="8" transform="rotate(300 90 101)"/>
+  </g>
+  <circle cx="87" cy="35" r="7" fill="#F5D678"/><circle cx="34" cy="91" r="5" fill="#F5D678"/><circle cx="102" cy="101" r="5" fill="#F5D678"/>
+  <path d="M22 149c27-6 55-6 84 0" stroke="#F5D678" stroke-opacity=".78" stroke-width="2" stroke-linecap="round"/>
+</svg>

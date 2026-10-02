@@ -1,0 +1,13 @@
+import {readFile,mkdir,writeFile,cp,rm} from 'node:fs/promises';
+import {execFileSync} from 'node:child_process';
+import path from 'node:path';
+import {fileURLToPath} from 'node:url';
+const root=path.dirname(fileURLToPath(import.meta.url)),out=path.join(root,'dist');await mkdir(out,{recursive:true});await mkdir(path.join(out,'xhs'),{recursive:true});
+const three=await readFile(path.join(root,'vendor/three.module.js'),'utf8');const matched=three.match(/export \{ ([\s\S]*?) \};?\s*$/);if(!matched)throw Error('Cannot resolve Three exports');const bindings=matched[1].split(',').map(s=>s.trim().split(/\s+as\s+/)).map(([a,b])=>`${b||a}:${a}`).join(',');const vendor=`const THREE=(function(){${three.slice(0,matched.index)}\nreturn {${bindings}};})();\n`;
+const files=['core.mjs','view.mjs','app.mjs'];let code=vendor;for(const f of files)code+='\n'+(await readFile(path.join(root,f),'utf8')).replace(/^import .*?;\n/gm,'').replace(/^export /gm,'');code=`(function(){'use strict';\n${code}\n})();`;
+// Modern syntax in app source is lowered explicitly for the platform baseline.
+code=code.replace(/\{ \.\.\.range \}/g,'Object.assign({}, range)').replace(/catch\s*\{/g,'catch (ignoredError) {').replace(/raw\.stars\?\.\[i\]/g,'(raw.stars && raw.stars[i])').replace(/raw\.best\?\.\[i\]/g,'(raw.best && raw.best[i])');
+let html=await readFile(path.join(root,'index.html'),'utf8');html=html.replace('<script type="module" src="./app.mjs"></script>','<script src="./app.js"></script>');await writeFile(path.join(out,'xhs/index.html'),html);await writeFile(path.join(out,'xhs/app.js'),code);await cp(path.join(root,'style.css'),path.join(out,'xhs/style.css'));const license=await readFile(path.join(root,'vendor/THREE-LICENSE.txt'),'utf8');
+await writeFile(path.join(out,'xhs/THREE-LICENSE.json'),JSON.stringify({name:'Three.js',version:'r160',license:'MIT',text:license},null,2));
+for(const old of ['THREE-LICENSE.txt','THREE-LICENSE.html'])await rm(path.join(out,'xhs',old),{force:true});
+execFileSync('python3',['-c',`import zipfile,pathlib\np=pathlib.Path(${JSON.stringify(out)})\nwith zipfile.ZipFile(p/'rolling-town-xhs.zip','w',zipfile.ZIP_DEFLATED,9) as z:\n for name in ['index.html','app.js','style.css','THREE-LICENSE.json']: z.write(p/'xhs'/name,name)\nprint('ZIP', (p/'rolling-town-xhs.zip').stat().st_size, 'bytes')`],{stdio:'inherit'});await writeFile(path.join(out,'build-info.json'),JSON.stringify({version:'1.0.0',entry:'xhs/index.html',three:'r160',runtimeNetwork:false,sourceFiles:files},null,2));await cp(path.join(root,'assets/icon.png'),path.join(out,'icon.png'));await cp(path.join(root,'THIRD_PARTY_NOTICES.md'),path.join(out,'THIRD_PARTY_NOTICES.md'));console.log(out);

@@ -1,0 +1,122 @@
+{
+  "browser": "Chrome headless desktop simulation",
+  "reports": [
+    {
+      "width": 320,
+      "height": 720,
+      "safeArea": "44/34",
+      "layout": {
+        "overflow": false,
+        "minCell": 46.796875,
+        "boardBottom": 505.484375,
+        "toolsBottom": 624.484375
+      },
+      "status": "pass"
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "safeArea": "44/34",
+      "layout": {
+        "overflow": false,
+        "minCell": 60.796875,
+        "boardBottom": 511.5,
+        "toolsBottom": 630.5
+      },
+      "status": "pass"
+    },
+    {
+      "width": 1280,
+      "height": 720,
+      "safeArea": "44/34",
+      "layout": {
+        "overflow": false,
+        "minCell": 66,
+        "boardBottom": 557,
+        "toolsBottom": 680
+      },
+      "status": "pass"
+    },
+    {
+      "width": 399,
+      "height": 720,
+      "safeArea": "44/34",
+      "layout": {
+        "overflow": false,
+        "minCell": 62.59375,
+        "boardBottom": 511.5,
+        "toolsBottom": 630.5
+      },
+      "status": "pass"
+    },
+    {
+      "width": 400,
+      "height": 720,
+      "safeArea": "44/34",
+      "layout": {
+        "overflow": false,
+        "minCell": 62.796875,
+        "boardBottom": 511.5,
+        "toolsBottom": 630.5
+      },
+      "status": "pass"
+    },
+    {
+      "width": 401,
+      "height": 720,
+      "safeArea": "44/34",
+      "layout": {
+        "overflow": false,
+        "minCell": 55.796875,
+        "boardBottom": 552.5,
+        "toolsBottom": 675.5
+      },
+      "status": "pass"
+    },
+    {
+      "width": 759,
+      "height": 720,
+      "safeArea": "44/34",
+      "layout": {
+        "overflow": false,
+        "minCell": 66,
+        "boardBottom": 552.5,
+        "toolsBottom": 675.5
+      },
+      "status": "pass"
+    },
+    {
+      "width": 760,
+      "height": 720,
+      "safeArea": "44/34",
+      "layout": {
+        "overflow": false,
+        "minCell": 66,
+        "boardBottom": 552.5,
+        "toolsBottom": 675.5
+      },
+      "status": "pass"
+    },
+    {
+      "width": 761,
+      "height": 720,
+      "safeArea": "44/34",
+      "layout": {
+        "overflow": false,
+        "minCell": 66,
+        "boardBottom": 557,
+        "toolsBottom": 680
+      },
+      "status": "pass"
+    },
+    {
+      "suite": "touch, tutorial skip/reopen/focus, hint cancel/confirm, collection paging, daily, corrupted save",
+      "status": "pass"
+    },
+    {
+      "suite": "interrupted settlement recovery, reload deduplication, storage quota failure",
+      "status": "pass"
+    }
+  ],
+  "errors": []
+}

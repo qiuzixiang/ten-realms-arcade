@@ -125,7 +125,7 @@ function fail(message) {
 
 async function walk(directory) {
   for (const entry of await readdir(directory, { withFileTypes: true })) {
-    if (ignored.has(entry.name)) continue;
+    if (ignored.has(entry.name) || (directory === root && entry.name === "standalone")) continue;
     const file = path.join(directory, entry.name);
     if (entry.isDirectory()) await walk(file);
     else files.push(file);

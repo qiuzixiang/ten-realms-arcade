@@ -1,0 +1,5 @@
+import http from 'node:http';import fs from 'node:fs';import path from 'node:path';import {fileURLToPath} from 'node:url';
+const root=fileURLToPath(new URL('../dist/xhs/',import.meta.url)),port=Number(process.env.PORT||4187);
+http.createServer((req,res)=>{const route=decodeURIComponent(req.url.split('?')[0]);const file=path.resolve(root,'.'+(route==='/'?'/index.html':route));if(!file.startsWith(root)||!fs.existsSync(file)||!fs.statSync(file).isFile()){res.writeHead(404);res.end();return;}
+res.setHeader('Content-Type',({'.html':'text/html; charset=utf-8','.js':'application/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.svg':'image/svg+xml','.json':'application/json'})[path.extname(file)]||'application/octet-stream');
+res.setHeader('Content-Security-Policy',"default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; connect-src 'none'; object-src 'none'; worker-src 'none'");res.end(fs.readFileSync(file));}).listen(port,'127.0.0.1',()=>console.log('星露配方 http://127.0.0.1:'+port));

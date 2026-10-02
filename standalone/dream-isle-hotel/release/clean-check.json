@@ -1,0 +1,13 @@
+{
+  "status": "PASS",
+  "commands": [
+    "build",
+    "test",
+    "audit",
+    "qa:browser"
+  ],
+  "source": "Fresh source copy without dist, reusing installed local dev dependencies",
+  "zipIdentical": true,
+  "sha256": "c5b49c64c8ccb2b61aa7d6d85ba9e23735d19e2af3693e4e57aef368423a16a3",
+  "networkInstall": "Not exercised; network DNS unavailable in session"
+}

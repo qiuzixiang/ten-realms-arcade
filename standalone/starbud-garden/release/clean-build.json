@@ -1,0 +1,13 @@
+{
+  "sourceCommit": "210d7b9",
+  "steps": [
+    "generate",
+    "build",
+    "test (11 passed)",
+    "audit",
+    "browser (9 scenario groups)"
+  ],
+  "levelsRegeneratedIdentically": true,
+  "zipByteIdentical": true,
+  "sha256": "5e7085a16d25b9f4405935c45e9ec9688c88bc953f02bf554d0a0d0022242360"
+}

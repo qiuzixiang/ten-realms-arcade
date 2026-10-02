@@ -1,0 +1,19 @@
+{
+  "date": "2026-09-22T09:11:56.246Z",
+  "browser": "153.0.8010.48",
+  "checks": [
+    "tutorial initial/action/win, skip, scroll lock and focus restore",
+    "9 viewport/breakpoint checks and 44px edge buttons",
+    "real touch/keyboard wall, undo and refresh restore",
+    "full level solved using only UI controls, completion reload and reward retained on restart",
+    "answer hint, favorite, collection and maximum 7x7 board",
+    "mobile settings, reduced motion, modal scrolling and finite daily rotation",
+    "edge-core, vertex-core and final mixed 7x7 representatives solved through UI",
+    "storage write failure stays playable with warning",
+    "native Storage API used on supported client (mocked)"
+  ],
+  "errors": [],
+  "external": [],
+  "physicalDevices": "not tested",
+  "platformContainer": "separate publication preview"
+}

@@ -19,4 +19,4 @@ async function verify(directory = root) {
   }
 }
 await verify();
-console.log('Five standalone games: all deployed files and ZIP downloads match the build.');
+console.log('All standalone games: all deployed files and ZIP downloads match the build.');

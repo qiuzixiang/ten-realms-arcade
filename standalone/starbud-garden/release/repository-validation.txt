@@ -1,0 +1,574 @@
+Abyss Echo logic: 18/18 tests passed.
+✓ cell helpers distinguish plots, ruins, and numbered runes
+✓ puzzle parsing rejects empty, ragged, zero-width, and invalid grids
+✓ plain ruins and numbered runes both stop a ray
+✓ light travels orthogonally but never diagonally
+✓ mutually visible bulbs conflict, diagonal or blocked bulbs do not
+✓ numbered runes report under, exact, over, and impossible states
+✓ runes count only orthogonally adjacent bulbs
+✓ an unnumbered ruin blocks light but imposes no adjacent-bulb constraint
+✓ marks can be cleared and reject bulb placement
+✓ a bulb or an illuminated plot rejects a new mark
+✓ a mark is an annotation, not a blocker for later light
+✓ normalization filters invalid keys and prevents bulb/mark overlap
+✓ moves reject walls, runes, out-of-bounds coordinates, and unknown actions
+✓ victory fails independently when any one invariant is false
+✓ all six declared board transforms map rows correctly
+✓ level library exposes four variants for each of three difficulties
+✓ every declared level solution is legal and completes all three rules
+✓ page wires the shared guide and guards completion rewards across restore and undo
+✓ firefly entities and illuminated range use redundant visual encodings
+
+19/19 firefly-garden tests passed.
+✓ Memory Ark · 四个方向保持精确的立方体朝向映射
+✓ Memory Ark · 视觉翻滚轴与规则朝向一致，东西向不再被误画成原地转身
+✓ Memory Ark · 六个物理表面始终具有互不重复的刻度标识
+✓ Memory Ark · 版本化入口沿整条模块依赖链绕过旧缓存
+✓ Memory Ark · 相反滚动复原朝向；同向四滚也复原
+✓ Memory Ark · 合法滚动恰好产生 24 个朝向，且校验只接受这 24 个
+✓ Memory Ark · 交换两个表面造成的不可能朝向会被存档校验拒绝
+✓ Memory Ark · 落地后目标地格与新的底面严格交换符印
+✓ Memory Ark · 有符印底面落到空格会留下压印
+✓ Memory Ark · 地格与底面同为有色或同为无色时二值状态不变
+✓ Memory Ark · 边界外滚动被拒绝且不增加步数
+✓ Memory Ark · 逆生成步骤和正向步骤逐方向完全互逆
+✓ Memory Ark · 胜利只在六枚符印全部位于六个表面时成立
+✓ Memory Ark · 多组随机种子都生成标准 4×4、地面六符印且可回放求解
+✓ Memory Ark · 存档仅接受结构与六枚唯一符印都有效的状态
+✓ Memory Ark · 撤销历史必须由逐步相邻且规则可重放的状态组成
+Memory Ark logic: 1006 assertions passed.
+✓ 镜影大剧院 · 主题映射保留 Ghost / Vampire / Zombie 的可见性真值
+✓ 镜影大剧院 · 每个非镜格必须恰好放一位演员，三类总数必须覆盖全部地板
+✓ 镜影大剧院 · / 与 \ 镜面在四个入射方向上精确反射
+✓ 镜影大剧院 · 边缘线索按顺时针排列，从边界格起步并在对边退出
+✓ 镜影大剧院 · 首次反射后 hasReflected 永久为 true，多镜不会按奇偶切回直视
+✓ 镜影大剧院 · 同一格被同一条光路重复经过时按 occurrence 计数，partial upper 也不去重
+✓ 镜影大剧院 · 每条边缘光路从出口反向入射时，格子序列严格互逆
+✓ 镜影大剧院 · 四镜封闭环由 (row,column,direction) visited state 截断，不会无限循环
+✓ 镜影大剧院 · 候选标记不填格、不计全局总数，也不计边缘可见数
+✓ 镜影大剧院 · 过量与不可能达成的全局/边缘线索会进入明确错误状态
+✓ 镜影大剧院 · 移动 API 完整循环三类演员与候选，且拒绝镜格和非法操作
+✓ 镜影大剧院 · 求解上限 0 会立即停止，非法上限不会悄悄退化为完整枚举
+✓ 镜影大剧院 · 打开规则或胜利模态时，所有游戏快捷键都与背后棋局隔离
+✓ 镜影大剧院 · 难度按钮重建后仅为键盘或辅助技术激活恢复焦点
+✓ 镜影大剧院 · 三类演员在演员表、工具栏与谢幕画面统一使用角色肖像结构
+✓ 镜影大剧院 · 六张内置题的完整答案同时满足全局数与全部边缘线索，且各自唯一解
+Mirror Theatre logic: 16 tests, 344 assertions passed.
+✓ Night Market Spirits · 规则常量采用上游默认计分，而非变体或常见清盘奖
+✓ Night Market Spirits · 棋盘校验、边界与坐标助手拒绝畸形输入
+✓ Night Market Spirits · 洪泛只沿正交方向，并返回完整最大同色分量
+✓ Night Market Spirits · 对角同色不连接，单只不是合法群组
+✓ Night Market Spirits · 单只与空摊位完全不改变棋盘、步数或得分
+✓ Night Market Spirits · 预览完整群组及预计分数，但本身是纯只读操作
+✓ Night Market Spirits · 首次选组重建棋盘时仅键盘路径恢复 roving 焦点
+✓ Night Market Spirits · 终局弹窗关闭后按盘面状态选择合理焦点目标
+✓ Night Market Spirits · 返回入口与页脚独立触控目标声明至少 44 × 44
+✓ Night Market Spirits · 320px 手机完整显示最高难度摊位而不要求横滑
+✓ Night Market Spirits · 移除后先逐列稳定下落，再稳定向左合并非空列
+✓ Night Market Spirits · 列合并保持每列内部次序与各非空列相对次序
+✓ Night Market Spirits · 坠落形成的新群只成为下一手机会，不会自动连消或加分
+✓ Night Market Spirits · 清空优先判胜，最终两只得零分且没有隐藏清盘奖励
+✓ Night Market Spirits · 非空且无同色正交邻接对时结束为残局失败
+✓ Night Market Spirits · 应用合法操作只删除该最大分量并精确累计真实计分
+✓ Night Market Spirits · 种子归一化稳定，三档难度同时改变尺寸与颜色数
+✓ Night Market Spirits · 多档多种子都构造出可程序重放至空盘的可靠题面
+✓ Night Market Spirits · 存档往返严格保留盘面，损坏或不一致数据安全回退
+✓ Night Market Spirits · 辅助路径可识别普通无解残局而不伪造答案
+Night Market Spirits logic: 643 assertions across 20 tests passed.
+✓ detects a standard strict crossing
+✓ shared logical endpoints do not count as crossings
+✓ parallel and collinear-separated segments do not cross
+✓ closed segments count collinear overlap and every boundary touch
+✓ different logical vertices at the same coordinate still intersect
+✓ finds crossing edge pairs once and recognises victory
+✓ the solved graph is planar and generated puzzles are deterministic
+✓ difficulty tiers increase size and density with unique safe slots
+✓ many seeds keep all tiers solvable, separated, and initially tangled
+✓ completed drawings remain undoable whenever move history exists
+✓ a genuine completed save restores with an undoable final move
+✓ saved node ids must be exactly the complete zero-based range
+✓ malformed saves and reconstruction failures are cleared without escaping
+
+13/13 red-thread-office rule tests passed.
+Sky Bridges: 34/34 cases, 438 assertions, 6 unique levels.
+✓ 灵龙巡脉 · 棋盘使用单一 group 语义并隐藏纯视觉与指针命中层
+✓ 灵龙巡脉 · 节点、边解析与无向边规范化
+✓ 灵龙巡脉 · 格心边界、节点集与可用边集精确
+✓ 灵龙巡脉 · 题面解析拒绝越界、重珠、非规范边和伪解
+✓ 灵龙巡脉 · 画线、排除标记与清空三态原子互斥
+✓ 灵龙巡脉 · 操作层拒绝第三条线，分析层仍能识别手造度数3分叉
+✓ 灵龙巡脉 · 空盘与未闭合路径都不误判，且只报告已确定信息
+✓ 灵龙巡脉 · 唯一闭环经过并满足所有珠时才胜利
+✓ 灵龙巡脉 · 未经全部珠子的小环被标记为过早闭合
+✓ 灵龙巡脉 · 两个小环永远不能冒充唯一龙脉
+✓ 灵龙巡脉 · 合法环外任何多余线段也会阻止胜利
+✓ 灵龙巡脉 · 地珠正例：珠上转弯且两侧邻格延续直行
+✓ 灵龙巡脉 · 地珠反例：珠上直行或紧邻转弯都精确冲突
+✓ 灵龙巡脉 · 地珠边界：向内转弯可成立，向边外无法延直立即冲突
+✓ 灵龙巡脉 · 天珠正例：珠上直穿，珠前或珠后任一紧邻处转弯
+✓ 灵龙巡脉 · 天珠反例：珠上转弯或珠前珠后都直行会精确冲突
+✓ 灵龙巡脉 · 天珠边界：沿边直穿可成立，朝边外续直则不可能
+✓ 灵龙巡脉 · 存档序列化稳定，恢复严格，状态可安全用于撤销快照
+✓ 灵龙巡脉 · 三档九关的内置解都是完整单环且经过所有珠
+✓ 灵龙巡脉 · 排除标记只是笔记，不影响已完成单环的胜利判定
+✓ 灵龙巡脉 · 求解器不读存储答案，九关都在上限2内只找到1解
+Spirit Dragon logic: 21 tests, 606 assertions passed; 9/9 stored solutions valid; 9/9 levels uniquely solvable.
+star-drift: 335 assertions passed across 9 proven levels.
+✓ direction masks rotate clockwise and preserve module shape
+✓ port and module helpers distinguish every legal shape
+✓ coordinate helpers reject malformed and out-of-board cells
+✓ a legal spanning tree satisfies every explicit Net invariant
+✓ the outer border is closed and cannot receive a connector
+✓ a one-sided connector is dangling and carries no lighthouse energy
+✓ separate reciprocal subnetworks remain unpowered and cannot win
+✓ two disconnected closed loops are both detected and cannot win
+✓ level construction rejects malformed, altered, solved, or illegal data
+✓ the deterministic generator builds cross-free spanning trees
+✓ scrambling rotates in place without changing cable shapes
+✓ the constraint solver counts only complete, border-safe, loop-free networks
+✓ rotation, inverse rotation, and lock actions are immutable
+✓ locks never alter the rule evaluation or make an invalid board valid
+✓ invalid, no-op, fixed, and post-win rotations are rejected
+✓ restart restores the authored scramble and clears locks and moves
+✓ level catalogue supplies three genuinely different difficulty sizes
+✓ every built-in starts unsolved and carries a proven legal answer
+✓ rotating each built-in to its stored answer completes the game
+✓ save round-trip preserves orientation, locks, moves, and derived energy
+✓ save restoration refuses corrupt, stale, foreign, and shape-changing data
+✓ victory dialog traps its lifecycle and restores focus only on dismissal
+✓ victory prompt has a native labelled modal contract
+✓ page wires shared progression and defers victory behind any open guide
+✓ phone layout does not force the document wider than the visual viewport
+
+storm-lanterns: 1150 assertions passed across 25 tests and 9 proven levels.
+✓ 极光磁场实验室 · 三种完成状态在双格两端展开为精确的 +−、−+ 与中性
+✓ 极光磁场实验室 · 矩形题盘由不重叠的正交双格槽位完整覆盖
+✓ 极光磁场实验室 · 奇数题盘恰保留一个不可操作且永久中性的固定空位
+✓ 极光磁场实验室 · 非法布局拒绝漏格、额外空位、非矩形、非正交或非双格标签
+✓ 极光磁场实验室 · 声明答案长度、代码与规则都经过生成器防御校验
+✓ 极光磁场实验室 · 四周线索从合法答案生成，顶部/底部与左侧/右侧的极性映射不混淆
+✓ 极光磁场实验室 · 缺失线索与数字 0 严格区分，缺失项不施加隐式中性约束
+✓ 极光磁场实验室 · 部分盘面报告超量与无法补足，但无错误绝不等同胜利
+✓ 极光磁场实验室 · 同性正交相邻冲突，异性、对角同极与中性相邻均合法
+✓ 极光磁场实验室 · 候选问号不填槽、不计极性、不影响冲突、求解或胜利
+✓ 极光磁场实验室 · 主操作严格按被点端循环 +、−、清空，并拒绝直接覆盖中性
+✓ 极光磁场实验室 · 中性操作严格循环未填、中性、两问号、未填，并拒绝磁铁
+✓ 极光磁场实验室 · 直接工具、候选与清空 API 严格校验槽位且保持不可变
+✓ 极光磁场实验室 · 位置归一化拒绝未知槽、非法状态、占用槽候选与非规范坐标
+✓ 极光磁场实验室 · 完整搜索区分唯一、无解、多解和搜索截断，不把 limit=1 冒充唯一
+✓ 极光磁场实验室 · 求解器遵守固定正式状态、忽略候选，并且绝不读取声明答案
+✓ 极光磁场实验室 · 六个稳定 seed 题面覆盖三档，并由完整求解器逐题证明唯一
+✓ 极光磁场实验室 · 三档题面线索稀疏度与规模递进，且奇数磁暴题保留固定空位
+✓ 极光磁场实验室 · 难度选题、换题与题面指纹完全可复现
+✓ 极光磁场实验室 · 存档键全部位于 2.0 游戏私有前缀，绝不接触 1.0 键
+✓ 极光磁场实验室 · 活动盘面、历史、候选和线索笔记严格往返存档
+✓ 极光磁场实验室 · 每局 runId 独立且持久，旧 session 缺少 runId 时确定性安全迁移
+✓ 极光磁场实验室 · 恢复时重新计算完成状态，不信任伪造布尔值，并保留已上报胜利
+✓ 极光磁场实验室 · 损坏 JSON、未知题目、非法状态与过长历史只清理本游戏会话并安全回退
+✓ 极光磁场实验室 · 不可用 storage 不抛错，偏好与首次教程也严格使用私有键
+✓ 极光磁场实验室 · 光谱、首次完成、零冲突与最佳操作使用稳定奖励 ID 去重
+✓ 极光磁场实验室 · 同一实验结算跨刷新幂等，共享上报可重试但不重复累计通关
+✓ 极光磁场实验室 · 宿主完成回调失败时入队且去重，所有兼容通道失败也不抛错
+✓ 极光磁场实验室 · 新 run 的完成事件跨局唯一、同局跨刷新稳定，旧 pending 不会确认新局
+✓ 极光磁场实验室 · 完成 proof 必须由正式关卡复算且与 settlement 全字段一致，伪造载荷绝不投递
+✓ 极光磁场实验室 · 宿主记账后抛错会跨刷新以同 ID 重试，由宿主去重后才清空持久 outbox
+✓ 极光磁场实验室 · 宿主成功后的 profile/outbox 任一落盘中断都按确认状态机安全恢复
+✓ 极光磁场实验室 · 伪造或孤立 confirmed 墓碑不能确认未投递 settlement，宿主成功状态持久后才可转墓碑
+✓ 极光磁场实验室 · outbox 合并写不会覆盖其他标签页，确认墓碑阻止陈旧快照复活，且 2001 条不裁剪
+✓ 极光磁场实验室 · 损坏 outbox 整份 fail-closed、原文不被空文档覆盖，storage 缺失不误报成功
+✓ 极光磁场实验室 · profile 与 outbox 的部分写入可从 settlement 重建，多标签奖励合并且状态只前进
+✓ 极光磁场实验室 · profile 首写失败时已解局不可离开，solved session 刷新后以同一 run 和 event 重试
+✓ 极光磁场实验室 · 旧 profile/session 迁移保留历史 eventId，绑定 legacy run 后不会换成新公式
+✓ 极光磁场实验室 · 稀有磁暴和有冲突完成记录分别产生正确、可去重的长期档案
+✓ 极光磁场实验室 · 档案严格往返，损坏档案安全回退且总通关数必须自洽
+✓ 极光磁场实验室 · 完成载荷包含 v2 标准事件、兼容字段与 JSON 可序列化去重信息
+✓ 极光磁场实验室 · UI 辅助函数提供触控工具、空间导航、三重极性朗读与快捷键隔离
+✓ 极光磁场实验室 · 历史快照深拷贝位置，避免撤销记录被后续写入污染
+✓ 极光磁场实验室 · 模态控制器圈闭 Tab、处理 Escape/cancel，并在关闭后恢复焦点
+✓ 极光磁场实验室 · 焦点索引包装在空集合、正向与反向边界都确定
+✓ 极光磁场实验室 · 独立 HTML、CSS、应用接线与三张真实 SVG 教程满足静态契约
+Aurora Magnet Lab: 46 tests, 620 assertions passed.
+✓ coordinate helpers and neighbour searches respect corners and both adjacency systems
+✓ puzzle validation rejects malformed dimensions, clues, trees, totals, and solutions
+✓ tent, grass, and unknown form three reversible states while trees remain immutable
+✓ normalization filters bounds, trees, malformed keys, and state overlap
+✓ horizontal, vertical, and both diagonal tent contact are all conflicts
+✓ row and column clues distinguish under, exact, over, and impossible-by-grass
+✓ a tent requires an orthogonally adjacent tree, never only a diagonal tree
+✓ maximum matching follows augmenting paths instead of making a greedy fixed pairing
+✓ local neighbours are insufficient when Hall's global matching condition fails
+✓ a solved placement with multiple possible tree-tent matchings is still a legal player win
+✓ grass and untouched unknown cells are notes only and never required for victory
+✓ the exact solver reports zero, one, and multiple layouts without confusing matchings for layouts
+✓ all nine seeded levels are reproducible, distinct, solved legally, and solver-proven unique
+✓ the deterministic generator repeats one seed and varies another seed
+✓ snapshots and full saves round-trip strict three-state history
+✓ corrupt, old, foreign, overlapping, tree-tampered, negative, and forged-history saves fall back safely
+✓ a save shortened by undo after the history cap still restores safely
+✓ history is bounded and solved saves preserve independent local and shared completion markers
+✓ run and event identities are stable across refresh but change for a genuinely new camp
+✓ a host throw retries the identical persisted event without duplicating local or shared settlement
+✓ every pending camp completion survives beyond the former queue capacity
+✓ camp records defend streaks, bests, flawless runs, and efficiency milestones
+✓ nine distinct clears unlock four decorations, all difficulty visitors, and progress counters
+✓ shared tutorial uses three rule-accurate v2 scenes without covering the row and column labels
+✓ page wiring keeps engine, save, shared rewards, tutorials, source, audio, and accessibility connected
+
+25/25 cloud-camp tests passed.
+✓ Dream Hotel · 规则常量只暴露三种笔记/成房工具与三档正式难度
+✓ Dream Hotel · 拖拽终点四向正规化为同一个含首尾格的矩形
+✓ Dream Hotel · 坐标、矩形与面积助手保持格线几何不变量
+✓ Dream Hotel · 合法客房必须恰含一个数字且面积相等
+✓ Dream Hotel · 零数字、多数字、错面积与越界矩形均被原子拒绝
+✓ Dream Hotel · 单间合法的客房也不得与已成房边界重叠
+✓ Dream Hotel · 重叠、遗漏或数字覆盖异常均不能误报通关
+✓ Dream Hotel · 候选框与排除记号只是笔记，即使保留也不影响胜负
+✓ Dream Hotel · 成房、轻点拆房、工具分派与错误工具都有明确语义
+✓ Dream Hotel · 撤销恢复房间与笔记快照，重开清盘但保留评级用返工计数
+✓ Dream Hotel · 完成摘要将一次成房、无返工与星级按真实指标计算
+✓ Dream Hotel · 题面构建只接受无重叠无遗漏的完整矩形分割
+✓ Dream Hotel · 九道正式题覆盖三档、全部合法且可复现
+✓ Dream Hotel · 九道正式题都由 exact-cover 穷尽证明恰好一解且与作者答案一致
+✓ Dream Hotel · 换题只在当前难度内循环，题库查询不暴露虚构题
+✓ Dream Hotel · 状态序列化完整往返房间、候选、排除与评级指标
+✓ Dream Hotel · 所有私有存档键严格使用 2.0 游戏前缀且绝不读写 1.0 进度
+✓ Dream Hotel · 每个 session 必须携带合法 runId，丢失或畸形运行标识拒绝保存与恢复
+✓ Dream Hotel · session 持久化未完成/待交付/已交付状态，并拒绝损坏 completion 标记
+✓ Dream Hotel · 设置、局面、教程与长期记录均可安全往返
+✓ Dream Hotel · 损坏、过界、未知版本或拒绝访问的存档会安全回退
+✓ Dream Hotel · 房型图鉴、一次成房、无返工与星级奖励全部按稳定 ID 去重
+✓ Dream Hotel · 结算台账超过旧上限后仍永久保留最早 runId 并阻止重复奖励
+✓ Dream Hotel · 本地结算拒绝缺少 runId、非法摘要、时长与时间戳
+✓ Dream Hotel · 完成 payload 包含 2.0 集成必需字段、稳定事件 ID 与去重奖励
+✓ Dream Hotel · 完成 tier 将 easy、medium、hard 精确映射为全局奖励引擎的 1、2、3
+✓ Dream Hotel · 完成 payload 构建与发布拒绝非法关卡、摘要、奖励、时间和伪造 eventId
+✓ Dream Hotel · 通关同时接线 RealmArcade.complete 与 DOM CustomEvent
+✓ Dream Hotel · 共享 complete API 抛错时回落持久队列，仍只保留与镜像一次
+✓ Dream Hotel · 共享 API 尚未加载时完成 payload 进入持久队列且不遗忘旧事件
+✓ Dream Hotel · 预置队列已含 eventId 时不重复调 API、入队或派发镜像事件
+✓ Dream Hotel · 宿主 complete 同步重入 publishCompletion 时，调用前去重锁阻止二次传输
+✓ Dream Hotel · 刷新可从 pending session 幂等重建原奖励 payload，成功交付后持久化 delivered
+✓ Dream Hotel · 游戏 API 以 dream-hotel 命名空间安装且保留其他 2.0 游戏
+✓ Dream Hotel · 模态以 showModal 隔离背景、首次聚焦并在关闭后恢复触发器
+✓ Dream Hotel · 模态 Tab 聚焦在内部首尾循环，cancel 与背景点击可控关闭
+✓ Dream Hotel · 无内部控件的模态仍将焦点留在 dialog 本身
+✓ Dream Hotel · 延迟胜利调度可取消、不重入，且只在原 generation 与原关卡仍完成时显示
+✓ Dream Hotel · generation、levelId 或 completed 变化时，旧胜利回调即使被调用也必须忽略
+✓ Dream Hotel · HTML 语义、本地资源、返回路径与规则源流接线完整
+✓ Dream Hotel · HTML 的 id 唯一，App 查询的所有静态元素都真实存在
+✓ Dream Hotel · 主界面完整接线拖拽预览、触控捕获、键盘、撤销、重开、换题与静音
+✓ Dream Hotel · 完成只上报一次，并暴露后续 v2/shared 可接入的 API
+✓ Dream Hotel · 应用层先持久化 pending，本地结算幂等，交付确认后再刷新 session
+✓ Dream Hotel · 应用层将胜利延迟回调与 generation、关卡切换及教程/规则模态互斥
+✓ Dream Hotel · 首次教程自动打开、可跳过与重看，三张卡片使用三个独立素材
+✓ Dream Hotel · 三张教程 SVG 均独立、可访问且保持完整宽高比
+✓ Dream Hotel · 规则信息在小格中优先显示，错误、候选与排除不只依赖颜色
+✓ Dream Hotel · 主要交互目标至少 44px，对话框不被视口裁切
+✓ Dream Hotel · 320px、390px、平板与桌面断点均有无横向溢出的收缩约束
+✓ Dream Hotel · 动画在 reduced-motion 下全面收敛，棋盘完成与错误边界仍清晰
+✓ Dream Hotel · 长期激励在 UI 中可见，教程、规则和胜利模态都由焦点控制器托管
+Dream Hotel: 52 tests, 1418 assertions passed.
+✓ three states are mutually exclusive and Enter/Space cycles are exact inverses
+✓ clues preserve run order, edge runs, empty lines, and multi-digit lengths
+✓ clue validation accepts empty lines and rejects non-positive or overfull runs
+✓ line enumeration separates possible partial lines from exact completed matches
+✓ victory requires every cell decided and every row and column clue exact
+✓ solver counts zero, one, and multiple solutions without reading stored photo pixels
+✓ the catalogue has three reproducible levels per difficulty and every one is solver-proven unique
+✓ photo transforms are deterministic and preserve dimensions
+✓ atomic moves and strokes reject boundaries, preserve idempotence, and match upstream axis rules
+✓ daily film selection is stable for the local day and uses only declared levels
+✓ photo collection unlocks first, flawless, reference, best, and daily streak only once
+✓ collection normalization discards forged ids, bad scores, duplicate days, and wrong versions
+✓ collection merging preserves monotonic unlocks and the best score across tabs
+✓ session restoration round-trips valid state and safely rejects corrupt or forged saves
+✓ photo run and completion ids survive refresh and rotate only for a new exposure
+✓ a host throw retries the identical photo event without repeating local or shared settlement
+✓ every pending photo completion survives beyond the former queue capacity
+✓ the shared tutorial exposes three distinct authentic nonogram states
+✓ page wiring is offline, accessible, reward-safe, responsive, and visually distinguishes fill from exclusion
+✓ compact photo boards show 5, 10, and 15 column negatives without horizontal scrolling
+Mist Photo Studio logic: 20/20 tests passed; 9/9 photos solver-proven unique.
+✓ three named difficulties preserve upstream Standard and Super exactly
+✓ parameter validation enforces every upstream boundary
+✓ seed normalization and deterministic generator are reproducible
+✓ random colour sampling is balanced and no-duplicate generation is legal
+✓ archive and daily recipe descriptors are stable, finite, and strict
+✓ feedback handles duplicate colours without double counting
+✓ feedback formula matches independent two-stage matching exhaustively with blanks
+✓ blank and duplicate submission edges match upstream markability
+✓ guess normalization rejects wrong lengths, fractions, and out-of-range pegs
+✓ draft edits enforce slot and colour bounds while allowing reversible duplicates
+✓ hold marks copy matching positions to the next row and remain editable
+✓ winning, losing, final-attempt priority, and terminal locks are exact
+✓ suggestions use only public feedback and stay consistent
+✓ remaining-round rating and bottle identity are deterministic
+✓ game replay recomputes all public feedback and rejects damaged snapshots
+✓ save round-trip stores no secret and restores strict undo history
+✓ run ids are opaque, stable across refresh, migrated in place, and renewed only for a new attempt
+✓ outbox migration and deduplication preserve every one of 65 unconfirmed events
+✓ save normalization safely rejects corrupt versions, recipes, state, and history
+✓ undo history must be a contiguous chain of reachable playing states
+✓ terminal saves preserve pending settlement and shared-report markers
+✓ a host throw after awarding retries one persisted event without repeating local or shared settlement
+✓ a failed completion survives a new recipe and refresh without changing the new run id
+✓ revealed recipe eligibility is persistent, monotonic, and recipe-scoped
+✓ collection, streak, daily, personal-best, and rare bottle incentives persist safely
+✓ stats normalization filters dangerous keys and malformed records
+✓ bounded collection and personal-best maps retain the newest valid entries
+✓ page wiring includes shared realm UI, exact source links, offline assets, and all controls
+✓ three tutorial cards use distinct real-game SVG states
+
+29/29 mystic-perfumery tests passed.
+Nebula Hatchery: 37/37 cases, 813 assertions, 9 exhaustively unique levels.
+✓ the authoritative 4×4 fixture has the exact four-direction clues
+✓ visibility counts rising, falling, plateaus, and saw-tooth skylines
+✓ top, bottom, left, and right use the same index without mirroring it
+✓ coordinate and clue keys are canonical and reject malformed values
+✓ Latin validation requires every in-range height once in each row and column
+✓ puzzle construction rejects invalid Latin, clues, and givens
+✓ evaluation catches row and column duplicates and never completes with a hole
+✓ missing clues are ignored by evaluation and cannot be marked done
+✓ partial clue conflicts match all four upstream Towers boundary cases
+✓ given towers cannot be changed, cleared, or annotated
+✓ candidate toggles, fill-all, and real values follow upstream pencil semantics
+✓ candidate digits and clue-done marks never affect evaluation or victory
+✓ moves are pure and every illegal move is an atomic no-op
+✓ strict positions reject malformed values, notes, givens, and clue marks
+✓ solver distinguishes unique, impossible, and ambiguous puzzles
+✓ the cell solver preserves the upstream 3..9 size boundary
+✓ Latin and puzzle generators are deterministic, varied, legal, and unique
+✓ the library contains nine proven unique levels at three real scales and densities
+✓ session moves snapshot history, undo exactly, restart cleanly, and cap history
+✓ undo never erases the fact that a planning conflict occurred
+✓ rejected session moves preserve the exact session object and move count
+✓ strict saves round-trip and every malformed active field safely returns null
+✓ legacy saves migrate one opaque run id and later refreshes preserve it
+✓ outbox migration and queue deduplication retain all 65 pending skyline events
+✓ a host throw after awarding retries one event without duplicating local or shared city settlement
+✓ a pending skyline completion survives switching districts and refreshing
+✓ completion records keep best operations, conflict-free and efficiency flags
+✓ an all-given district preserves a legitimate zero-operation personal best
+✓ city progress unlocks landmarks from distinct levels, not repeat farming
+✓ stat merging deduplicates clears, preserves flags, and chooses the best operation record
+✓ the three tutorial cards render three independent real-game SVG states
+✓ page source wires shared systems, all four clues, dialogs, flat view, and responsive safeguards
+
+32/32 neon-skyline tests passed (704 assertions).
+✓ Tracks constants encode exactly six non-crossing two-port rail pieces
+✓ coordinate and shared-edge helpers are canonical and orthogonal
+✓ A is fixed on the left and B is fixed on the bottom
+✓ puzzle validation rejects malformed endpoints, clues, and non-integer givens
+✓ preset rail shapes and their shared edges are immutable
+✓ one track on a shared edge connects both adjacent cells exactly once
+✓ edge/cell state transitions are immutable, mutually exclusive, and count rework
+✓ row and column quotas count occupied cells rather than track edges
+✓ candidate and exclusion notes never substitute for actual rail directions
+✓ crossings and branches are rejected during input and detected in imported state
+✓ dead ends, stray rails, wrong loops, and quota mismatches cannot win
+✓ only one complete A-to-B component with exact pieces and quotas wins
+✓ all six bundled levels are valid, reproducible, and solver-proven unique
+✓ path generation is deterministic and exports clues/givens but no answer
+✓ board serialization round-trips sets and corrupted saves safely return null
+✓ records normalize damage, deduplicate completions, and retain bests
+✓ the completion ledger retains the oldest id retry-safe after the former limit
+✓ route atlas progress unlocks each engine and carriage exactly once
+✓ completion envelopes expose the standardized v2 integration payload
+✓ delivery falls back to a de-duplicated queue when RealmArcade throws
+✓ delivery never confirms when both the host API and fallback queue fail
+✓ refresh retry restores the same pending payload without duplicating local rewards
+✓ the modal controller uses a modal surface and restores the exact opener
+✓ keyboard shortcut filtering leaves form controls and editors alone
+✓ all private storage keys are isolated to the polar-railway v2 namespace
+✓ the UI wires save fallback, undo/restart/switching, sound, pointer, and keyboard controls
+✓ completion is dispatched once to the event, RealmArcade API, or fallback queue
+✓ app persists unconfirmed delivery and marks reported only after acceptance
+✓ delayed victory UI is generation-guarded and cannot leak into a new attempt
+✓ the page has a v2 return path, semantic dialogs, live status, and no remote runtime
+✓ three first-run tutorial slides use distinct, contain-fitted real SVG scenes
+✓ accessibility and responsive CSS preserve 44px controls and compact board cells
+✓ compact rail boards fit every difficulty with both quota axes visible
+✓ rail candidates/exclusions have shape cues and the train animation stays inside the grid
+
+Polar Railway: 34/34 tests passed · 828 assertions · 738ms
+✓ Season Dyehouse · 七组上游预设、默认值与参数边界逐项保留
+✓ Season Dyehouse · 起点连通块只认正交连接，队列顺序为右下左上
+✓ Season Dyehouse · 填色只改写旧起点块，再自然吸收接壤目标色链
+✓ Season Dyehouse · 同色严格无效；任意其他色即使零扩张也合法计步
+✓ Season Dyehouse · 胜负精确遵循步限，超限后可继续但不再获胜
+✓ Season Dyehouse · 种子、日期题面可复现，宽限只改步限不改布面
+✓ Season Dyehouse · 全部发布参数的多种子参考路线均可靠合幅
+✓ Season Dyehouse · 撤销、重开与不可变操作完整恢复规则状态
+✓ Season Dyehouse · 存档只保留种子与操作日志，损坏或伪造数据安全拒绝
+✓ Season Dyehouse · 所有本地存储键均使用 v2 游戏私有前缀，损坏 session 仅移除自身
+✓ Season Dyehouse · 织物图鉴、少步、无空染与每日布样奖励全部稳定去重
+✓ Season Dyehouse · 每局完成 ID 稳定、真实回放可证，内存队列不冒充宿主确认
+✓ Season Dyehouse · 换题、重开或撤销会取消延迟胜利弹窗，旧局回调不得覆盖新布面
+✓ Season Dyehouse · 三张教程使用可由规则引擎复算的真实元素、操作与通关状态
+✓ Season Dyehouse · 页面语义、规则源流、模态与所有交互接线完整
+✓ Season Dyehouse · 触控尺寸、手机完整棋盘、纹理、动画辨识与系统偏好均有静态保障
+Season Dyehouse: 2144 assertions across 16 tests passed.
+✓ 妖怪旅店 · 手机棋盘尺寸计算让三档在 320/390px 可用宽度内完整显示
+✓ 妖怪旅店 · 阶数公式、完整牌组和每值出现次数精确
+✓ 妖怪旅店 · 无序数对规范化对称、稠密且包含双数对
+✓ 妖怪旅店 · 相邻判定使用曼哈顿距离并拒绝行尾绕接、对角与越界
+✓ 妖怪旅店 · 题面校验拒绝错误长度、越界值、非整数和不平衡次数
+✓ 妖怪旅店 · exact-cover 分辨唯一、至少两解与无解，而不读取存储答案
+✓ 妖怪旅店 · 求解器严格处理确定边、排除边及冲突前置条件
+✓ 妖怪旅店 · 三档固定种子生成可复现、合法、可解且唯一声明都有证明
+✓ 妖怪旅店 · 关闭唯一选项仍保留构造见证与求解验证，但不伪称多解
+✓ 妖怪旅店 · 确定配对再次操作拆房，排除线只在两端未入住时切换
+✓ 妖怪旅店 · 新房原子拆掉一端或两端旧房，并清除两端全部排除线
+✓ 妖怪旅店 · 满格但重复牌型标记所有副本且绝不误判通关
+✓ 妖怪旅店 · 严格存档位置拒绝非法边、重叠、重复数组与触及房间的排除线
+✓ 妖怪旅店 · 同数字追踪最多两组，第三组不挤掉已有选择
+✓ 妖怪旅店 · 全部本地键使用专属 v2 games 前缀，教程也不越界
+✓ 妖怪旅店 · 损坏 profile 只清本游戏 profile 键并安全回退，不碰其他数据
+✓ 妖怪旅店 · session 往返保留原子历史，完成态由规则重算并防止重复上报
+✓ 妖怪旅店 · 完成 outbox 按 attemptId 稳定重试，并保留同题的不同重开局
+✓ 妖怪旅店 · outbox 派发只采用官方题面重算的奖励结果
+✓ 妖怪旅店 · 兼容完成适配器异常时按稳定 completionId 入队，成功时可确认送达
+✓ 妖怪旅店 · 异题、越界状态与超长历史 session 全部整份回退
+✓ 妖怪旅店 · 图鉴、稀有组合、无误排房与奖励 ID 均可去重
+✓ 妖怪旅店 · profile 拒绝伪造奖励元数据与未达成里程碑
+✓ 妖怪旅店 · 五星里程碑是递进长期目标且不信任存档中的 starLevel
+✓ 妖怪旅店 · HTML、SVG、CSS 与完成 API 接线满足教程/无障碍/集成合同
+Yokai Inn: 25/25 cases passed, 504 assertions; 3 scales and exact-cover proofs verified.
+✓ Mosaic 邻域包含自身，角落和中央都会按边界裁切
+✓ 左、右三态循环和显式清除严格保留 Mosaic 输入语义
+✓ 未定格、矛盾线索与完成边界彼此分离
+✓ 五个固定壁画均能重算线索、完成且不误称唯一
+✓ 历史完整重放；完成后操作无效，撤回会恢复未完成态
+✓ 存档只写本游戏命名空间、恢复时重放并拒绝篡改历史
+✓ 完成 payload 只能由真实完成历史生成；本地账本、outbox 和宿主均幂等
+✓ 三张教程图绑定同一真实空盘、一次合法操作和完成态
+✓ 教程 SVG 可通过 XML 语法校验，且不存在脚本注入
+✓ 入口、原生教程、完整浏览焦点回归、移动格与版本隔离合同均已接入
+
+10 tests · 264 assertions · celestial-mural passed
+Coral Bloom Lab: 106 assertions passed.
+Eclipse Watch: 107 assertions passed.
+Four Spirit Habitat: 471 assertions passed.
+熔心泄压站：864 assertions passed
+纸鹤归巢台：552 assertions passed
+✓ 六个固定题面覆盖三档真实规模
+✓ 每格独立模板合法、包含自身、连通且无重复
+✓ 坐标换算端到端一致，越界严格返回无效
+✓ 一次敲击只翻转该格真实模板且不修改输入
+✓ 非法敲击是原子 no-op 且不计步
+✓ 同格两敲抵消灯光但保留两次真实移动
+✓ 敲击顺序满足 GF(2) 可交换律
+✓ 撤回完整恢复上一状态，空历史撤回 no-op
+✓ 只有全部点亮才完成，八亮仍是未完成
+✓ 独立 GF(2) 求解器复算六关并证明建议最少
+✓ 小盘以全状态枚举独立核验最少敲击与多解数
+✓ 求解器可从教程单步中间态继续求解
+✓ 不一致 GF(2) 方程诚实报告无解
+✓ 损坏关卡结构不会进入规则引擎
+✓ 会话只存敲击历史，刷新后从官方初始盘重放
+✓ 伪造灯光或 completed 字段不能伪造完成
+✓ 损坏会话仅清理本游戏会话键并安全回退
+✓ 教程版本键独立且不清除进度
+✓ 默认档案可严格往返，损坏档案只清自己的键
+✓ 真实最少解结算首次、最佳与最少敲击三个幂等奖励
+✓ 结算拒绝未完成、伪造和越界数据
+✓ 完成证明必须携带可重放的真实敲击历史
+✓ 个人最佳可改善但同成绩与刷新不能刷奖励
+✓ completion outbox 先持久化、按稳定 ID 去重并成功派发后删除
+✓ outbox 适配器抛错时保留原项，未落档结算不外发
+✓ storage 读写或删除失败时 outbox 全程 fail-closed
+✓ 缺失证明的档案与 outbox fail-closed，不能调用宿主
+✓ outbox 的真实路径必须与已落档 settlement 完全一致
+✓ 超过旧容量后仍保留每个待投递事件与 settled run
+✓ 损坏 outbox 只移除本游戏 outbox
+✓ 三张教程 SVG 元数据可由真实规则链逐项复算
+✓ 教程入口统一缓存版本并提供跳过、看完与重看路径
+✓ 页面具备 V3.0 接入、规范返回与脚本顺序
+✓ CSS 固化 44px、320px、教程 contain 与 reduced-motion 门槛
+✓ 生产代码只使用私有存储前缀且不执行全量清理
+✓ RULES 可追溯来源、许可证、教程真值与多解边界
+resonance-bell-room: 36 tests, 780 assertions passed
+✓ 4×4 星盘从一到十六构成唯一排列
+✓ Twiddle 顺时针的四格位置映射精确且不改其它格
+✓ 逆时针严格是顺时针的逆动作
+✓ 非法窗口、方向和损坏棋盘均为 no-op
+✓ 六个固定星历均从列出的扰动产生并能反向完成
+✓ 状态历史可复放，完成后禁止再旋转，撤销可恢复未完成态
+✓ 存档只保存本游戏键、重放历史并拒绝篡改
+✓ 完成 payload 由真实完成历史证明，局部账本和宿主递送均幂等
+✓ 三张教程图都绑定同一真实关卡、动作和完成态
+✓ 教程 SVG 可通过 XML 语法校验（若宿主提供 xmllint）
+✓ 入口保留 V3 共享装载、原生教程、触屏命中和版本隔离合同
+
+11 tests · 148 assertions · star-dial-bureau passed
+Stardust Survey: 149 assertions passed.
+✓ 八向常量的顺序、向量、字形与文字同源
+✓ 坐标转换在边界和非整数上安全
+✓ 渲染线段沿单位向量在两端留下固定数字安全区
+✓ 六个正式题面按三档各两个且结构合法
+✓ 六关开局自动边与固定 C 真源逐项一致
+✓ 六关参考操作逐步改变局面并在真实 par 时完成
+✓ 六关均由不读内置答案的 limit=2 搜索证明唯一
+✓ 首关的真实唯一路径与教程基准固定
+✓ 合法连线改变恰好两个端点，非射线操作为原子 no-op
+✓ 开局自动边保留 pre-auto DSF，下一次相同 L 操作仍由上游接受
+✓ 为起点重选后继会释放旧后继端
+✓ 同链重接 12 → 4 会在释放 12 → 0 → 4 前按上游 DSF 原子拒绝
+✓ 为目标重选前驱会释放旧前驱端
+✓ 同链反向重接会在释放占用端点前原子拒绝
+✓ 固定时间戳冲突保持局面原状
+✓ ispointing 在端点与 DSF 前拒绝固定或可变的当前 raw N
+✓ 拆线同时释放所选格的入边与出边
+✓ 未锚定短链显示代数组，C 只拆单格而 X 按 raw set 整组拆除
+✓ 单轮 auto 释放出的 stale 代数孤格不能误发 X 并拆掉同组边
+✓ clever=false 允许形成负数、零与错向红色错误态
+✓ pre-auto numsi 在端点替换后仍精确保留重复 real-number 覆盖顺序
+✓ sticky impossible 只保留诊断，不伪造 FLAG_ERROR 或永久阻断完成
+✓ 单轮 auto 可形成上游合法错误小环，且能序列化与 C/X 拆除
+✓ 最后一次玩家操作之前未完成，同轮自动收口后才完成
+✓ position v2 结构 decoder 拒绝损坏边集并保留完整快照
+✓ 六关可达确定性随机游走的 position v2 每一步都无损 round-trip
+✓ 存档前缀只属于时砂邮路局
+✓ 设置、教程标记与其他本地键互不干扰
+✓ 会话可完整恢复局面、历史、焦点、选中与用时
+✓ 刷新恢复后的 undo 使用完整 position v2，而不是只凭相同 links 猜状态
+✓ 完成后撤销回到终钟前且 records/outbox 与同 run 奖励保持幂等
+✓ 损坏或伪造会话安全回退，不删其他数据
+✓ run ID 与 event ID 的安全格式稳定
+✓ 本地完成记录按稳定 event ID 幂等，新 run 可重玩
+✓ 记录恢复会丢弃原型链、未知关卡与损坏日期
+✓ outbox 只保留合法且唯一的完成 payload
+✓ 长期离线时 outbox 与本地完成台账都不逐出旧事件
+✓ 完成 payload 包含共享引擎所需的稳定字段
+✓ 完成证明白名单可重放 clear-chain，且拒绝任何额外字段
+✓ RealmArcade 交付与观察事件在同页按 event ID 去重
+✓ TenRealmsV3 是优先且可确认的完成通道
+✓ 队列与 DOM 只是未确认提示，同页 API 就绪后会真实重试
+✓ 私有 outbox 只在 API 确认后于 realm:ready 重试并移除
+✓ HTML 保持 v3.0 返回路径、共享层顺序与原生教程入口
+✓ CSS 保证无横滚、44px 触控、320/340 窄屏与减少动态
+✓ 游戏 app 包含触摸、键盘、右键拆线、教程强制入口与焦点恢复
+✓ 三张 SVG 使用同一真实关卡、完整比例与十六格
+✓ 元素卡是含两条上游自动边的真实初始局面
+✓ 操作卡的 8 → 12 由玩家同源函数复算为合法
+✓ 通关卡的路径、十五边与格内数字均可由引擎复算
+✓ app 对三张教程图均使用明确缓存版本
+✓ 完成处理的源码顺序是先本地记录与 outbox，再交付宿主
+✓ RULES 完整记录固定来源、许可、归属、真值与事件合同
+
+53 tests · 2484 assertions · time-sand-post passed
+archipelago-guard Palisade boundaries, components and true tutorial cards: all assertions passed.
+Balance Terrace: 23 assertions passed.
+daynight-loom rules, state recovery and true tutorial cards: all assertions passed.
+lunar-tide-seal Loopy edges, unique loop and true tutorial cards: all assertions passed.
+orbit-atlas: Sixteen cyclic row/column semantics, true tutorial states, persistence contract and compact touch controls passed.
+orbital-formation: Netslide row/column cycles, true Net connectivity, tutorial truth chain and mobile controls passed.
+Quantum Apothecary: 22 assertions passed.
+shadow-print-lab Hitori constraints, marks and true tutorial cards: all assertions passed.
+Stellar Archive: 24 assertions passed.
+time-cargo-bay: Fifteen rules, real tutorial states, persistence contract and mobile controls passed.
+Realm reward engine: all assertions passed.
+V2 shared reward, storage and tutorial contracts: all assertions passed.
+V3 shared reward, storage, native tutorial and cache contracts: all assertions passed.
+V4 shared reward, storage, native tutorial and cache contracts: all assertions passed.
+Validated 795 files.

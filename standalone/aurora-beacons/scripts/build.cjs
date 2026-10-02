@@ -1,0 +1,5 @@
+const fs=require('node:fs'),path=require('node:path'),cp=require('node:child_process');const root=path.resolve(__dirname,'..'),out=path.join(root,'dist/xhs');fs.rmSync(out,{recursive:true,force:true});fs.mkdirSync(out,{recursive:true});
+for(const f of ['index.html','styles.css','engine.js','oracle.js','levels.js','session.js','renderer.js','app.js'])fs.copyFileSync(path.join(root,'src',f),path.join(out,f));
+const L=require('../src/levels.js'),R=require('../src/renderer.js');R.tutorial(L[0]).forEach((svg,i)=>fs.writeFileSync(path.join(out,'tutorial-'+(i+1)+'.svg'),svg));
+const license=fs.readFileSync(path.join(root,'LICENSE'),'utf8');for(const f of ['engine.js','oracle.js','levels.js','session.js','renderer.js','app.js']){const file=path.join(out,f);fs.writeFileSync(file,'/*\n'+license+'\n*/\n'+fs.readFileSync(file,'utf8'));}
+cp.execFileSync('python3',['-c','import os,zipfile,sys\np=sys.argv[1]\nwith zipfile.ZipFile(sys.argv[2],"w",zipfile.ZIP_DEFLATED) as z:\n for name in sorted(os.listdir(p)): z.write(os.path.join(p,name),name)',out,path.join(root,'dist/aurora-beacons-xhs.zip')]);console.log('Built',out);

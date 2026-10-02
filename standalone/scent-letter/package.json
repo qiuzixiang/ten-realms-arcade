@@ -1,0 +1,19 @@
+{
+  "name": "scent-letter",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "generate": "node scripts/generate.mjs",
+    "build": "node scripts/build.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "audit": "node scripts/audit.mjs",
+    "qa:browser": "node scripts/browser.mjs",
+    "serve": "node scripts/serve.mjs",
+    "media": "node scripts/media.mjs"
+  },
+  "devDependencies": {
+    "esbuild": "0.27.3",
+    "acorn": "8.18.0"
+  }
+}

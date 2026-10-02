@@ -1,0 +1,119 @@
+{
+  "viewports": [
+    {
+      "width": 320,
+      "height": 720,
+      "safeTop": 44,
+      "safeBottom": 34,
+      "minCell": {
+        "w": 44.328125,
+        "h": 44
+      },
+      "noHorizontalOverflow": true
+    },
+    {
+      "width": 359,
+      "height": 720,
+      "safeTop": 44,
+      "safeBottom": 34,
+      "minCell": {
+        "w": 50.828125,
+        "h": 44
+      },
+      "noHorizontalOverflow": true
+    },
+    {
+      "width": 360,
+      "height": 720,
+      "safeTop": 44,
+      "safeBottom": 34,
+      "minCell": {
+        "w": 51,
+        "h": 44
+      },
+      "noHorizontalOverflow": true
+    },
+    {
+      "width": 361,
+      "height": 720,
+      "safeTop": 44,
+      "safeBottom": 34,
+      "minCell": {
+        "w": 49,
+        "h": 52
+      },
+      "noHorizontalOverflow": true
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "safeTop": 44,
+      "safeBottom": 34,
+      "minCell": {
+        "w": 53.828125,
+        "h": 52
+      },
+      "noHorizontalOverflow": true
+    },
+    {
+      "width": 759,
+      "height": 720,
+      "safeTop": 44,
+      "safeBottom": 34,
+      "minCell": {
+        "w": 60.15625,
+        "h": 52
+      },
+      "noHorizontalOverflow": true
+    },
+    {
+      "width": 760,
+      "height": 720,
+      "safeTop": 44,
+      "safeBottom": 34,
+      "minCell": {
+        "w": 60.15625,
+        "h": 52
+      },
+      "noHorizontalOverflow": true
+    },
+    {
+      "width": 761,
+      "height": 720,
+      "safeTop": 44,
+      "safeBottom": 34,
+      "minCell": {
+        "w": 63.5,
+        "h": 58
+      },
+      "noHorizontalOverflow": true
+    },
+    {
+      "width": 1280,
+      "height": 720,
+      "safeTop": 44,
+      "safeBottom": 34,
+      "minCell": {
+        "w": 63.5,
+        "h": 58
+      },
+      "noHorizontalOverflow": true
+    }
+  ],
+  "flows": [
+    "first tutorial / skip / full tutorial / reopen / focus restore",
+    "fixed cell no-op",
+    "candidate notes separated",
+    "legal input / undo / reload replay",
+    "hint explanation / confirm / cancel",
+    "restart confirmation",
+    "real UI completion / reload / repeat completion no duplicate claim",
+    "collection pagination / Escape",
+    "corrupted storage isolated",
+    "daily entry"
+  ],
+  "errors": [],
+  "externalRequests": [],
+  "csp": "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'none'; object-src 'none'; frame-src 'none'; worker-src 'none'; font-src 'self'",
+  "device": "Playwright Chromium desktop/mobile viewport simulation; no physical device"
+}

@@ -1,0 +1,74 @@
+[
+  {
+    "path": "index.html",
+    "contentType": "text/html",
+    "bytes": 7599,
+    "matchesBuild": true
+  },
+  {
+    "path": "styles.css",
+    "contentType": "text/css",
+    "bytes": 27462,
+    "matchesBuild": true
+  },
+  {
+    "path": "app.mjs",
+    "contentType": "text/javascript",
+    "bytes": 36636,
+    "matchesBuild": true
+  },
+  {
+    "path": "core.mjs",
+    "contentType": "text/javascript",
+    "bytes": 15828,
+    "matchesBuild": true
+  },
+  {
+    "path": "levels.mjs",
+    "contentType": "text/javascript",
+    "bytes": 53594,
+    "matchesBuild": true
+  },
+  {
+    "path": "generate.mjs",
+    "contentType": "text/javascript",
+    "bytes": 4523,
+    "matchesBuild": true
+  },
+  {
+    "path": "renderer.mjs",
+    "contentType": "text/javascript",
+    "bytes": 15099,
+    "matchesBuild": true
+  },
+  {
+    "path": "storage.mjs",
+    "contentType": "text/javascript",
+    "bytes": 13768,
+    "matchesBuild": true
+  },
+  {
+    "path": "worker.mjs",
+    "contentType": "text/javascript",
+    "bytes": 496,
+    "matchesBuild": true
+  },
+  {
+    "path": "assets/nebula.png",
+    "contentType": "image/png",
+    "bytes": 1768363,
+    "matchesBuild": true
+  },
+  {
+    "path": "assets/icon.svg",
+    "contentType": "image/svg+xml",
+    "bytes": 240,
+    "matchesBuild": true
+  },
+  {
+    "path": "THIRD_PARTY_NOTICES.md",
+    "contentType": "text/markdown",
+    "bytes": 2858,
+    "matchesBuild": true
+  }
+]

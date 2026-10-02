@@ -1,0 +1,40 @@
+{
+  "gameId": "yokai-pairing-house",
+  "name": "百妖合宿",
+  "version": "1.0.0",
+  "campaign": {
+    "chapters": 6,
+    "levels": 60,
+    "proof": "Each level has exactly one solution under an independent two-solution search."
+  },
+  "source": {
+    "game": "v2/games/yokai-inn",
+    "commit": "55cdddb75cf57c17baee80bac4121bd3be1687c6",
+    "ruleOrigin": "Simon Tatham's Dominosa",
+    "license": "LICENSE.source"
+  },
+  "artifact": {
+    "path": "dist/yokai-pairing-house-xhs.zip",
+    "sha256": "a07a1cf379f9e07edbd627541ca81679cf612de568ba1b882c183a87a0f596c7",
+    "rootFiles": ["index.html", "app.js", "styles.css"],
+    "reproducibleBuild": true
+  },
+  "releaseAssets": ["release/icon.png", "release/cover.png", "release/NOTE-COPY.md"],
+  "verification": {
+    "independentUniqueSolutionSearch": "passed: 60/60",
+    "engineAndReplayTests": "passed",
+    "zipAudit": "passed: 3 files, 0 warnings",
+    "zipCrc": "passed",
+    "productionBrowser": "passed at 320x720, 390x844 and desktop; restricted CSP basic flow passed",
+    "platformSimulator": "passed: tutorial to first-level completion, reward and level 2 unlock",
+    "androidDevice": "not tested",
+    "iosDevice": "not tested"
+  },
+  "platform": {
+    "upload": "deployed successfully in creator simulator",
+    "submission": "pending user confirmation to accept the Small Tool Service Agreement",
+    "review": "not submitted",
+    "publicAvailability": "not verified"
+  },
+  "note": "Local copy is prepared; no Xiaohongshu note has been saved or published."
+}

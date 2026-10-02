@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f2e8d4">
+  <meta name="description" content="从一处勘测口开始，用八邻读数一步步挖出安全地层。">
+  <title>琥珀勘探队</title>
+  <link rel="stylesheet" href="./styles.css">
+  <script type="module" src="./app.mjs"></script>
+</head>
+<body>
+  <div class="site-shell">
+    <header class="site-header">
+      <button class="brand" type="button" data-home aria-label="回到勘探营"><span class="brand-seal" aria-hidden="true">◈</span><span>琥珀勘探队<small>AMBER STRATA SURVEY</small></span></button>
+      <nav aria-label="主要导航"><button type="button" data-book>任务簿</button><button type="button" data-specimens>标本册</button><button type="button" data-tutorial>怎么玩</button></nav>
+    </header>
+
+    <main>
+      <section class="page home" id="home" aria-labelledby="home-title">
+        <div class="home-copy"><p class="eyebrow">FIELD NOTES / 01</p><h1 id="home-title">把线索，<br>一点点挖出来。</h1><p>沿着浅砂地层读懂每一处数字，标记有依据的气囊，找到全部安全土层。六层地质档案，六十次安静的发现。</p><div class="home-actions"><button class="primary" type="button" data-continue>继续主线 <span aria-hidden="true">↗</span></button><button class="text-button" type="button" data-practice>经典自由练习</button></div><p class="mode-caption">主线从每关指定的「勘测口」开始，并经逐步推理验证；自由练习可任选首格，仅保证第一次探测安全。</p></div>
+        <div class="hero-art" aria-hidden="true"><div class="hero-ring"></div><div class="amber"><span class="vein vein-a"></span><span class="vein vein-b"></span><span class="vein vein-c"></span></div><div class="soil soil-a"></div><div class="soil soil-b"></div><div class="soil soil-c"></div><div class="probe"></div><span class="hero-label">SPECIMEN / 001</span></div>
+      </section>
+
+      <section class="page book" id="book" hidden aria-labelledby="book-title"><div class="section-heading"><p class="eyebrow">THE FIELD JOURNAL</p><h1 id="book-title">地层任务簿</h1><p>每章十关。已完成的勘探会留在本机记录中。</p><div class="book-mode" role="group" aria-label="关卡模式"><button type="button" data-book-mode="campaign" aria-pressed="true">推理认证 · 指定起点</button><button type="button" data-book-mode="practice" aria-pressed="false">自由练习 · 自选首格</button></div></div><div id="chapter-list"></div></section>
+      <section class="page specimens" id="specimens" hidden aria-labelledby="specimens-title"><div class="section-heading"><p class="eyebrow">AMBER COLLECTION</p><h1 id="specimens-title">标本册</h1><p>每层完成第一关，就能留下一枚地层标本。</p></div><div id="specimen-list" class="specimen-list"></div></section>
+
+      <section class="page play" id="play" hidden aria-labelledby="board-title">
+        <div class="play-top"><button type="button" class="back-button" data-book>← 任务簿</button><div><p class="eyebrow" id="chapter-label">第 1 层</p><h1 id="board-title">树脂初光</h1></div><span class="mode-badge" id="mode-badge">推理认证</span></div>
+        <div class="play-layout">
+          <div class="board-panel"><div class="stats"><span><b id="safe-left">0</b><small>安全格待开</small></span><span><b id="flag-count">0</b><small>旗记</small></span><span><b id="move-count">0</b><small>操作</small></span></div><div class="board-wrap"><div class="board" id="board" role="grid" aria-label="勘探盘"></div></div><div class="board-meta"><span id="coordinate">选择一格</span><span id="board-state">准备勘探</span></div></div>
+          <aside class="tools-panel"><div class="tool-intro"><p class="eyebrow">FIELD INSTRUMENTS</p><h2>勘探工具</h2><p id="tool-copy">选择探测，再点按封土格。读数表示周围八格的危险数量。</p></div><div class="mode-switch" role="group" aria-label="当前操作模式"><button type="button" id="scan-mode" aria-pressed="true"><span aria-hidden="true">⌕</span>探测</button><button type="button" id="flag-mode" aria-pressed="false"><span aria-hidden="true">⚑</span>旗记</button></div><div class="selected-reading" id="reading-panel">点按一个已开数字，可查看它的八邻读数。</div><button class="secondary wide" type="button" id="chord-button" disabled>合并探测 · 先选数字</button><div class="tool-row"><button type="button" id="hint-button">推理提示</button><button type="button" id="undo-button">撤销</button><button type="button" id="restart-button">重开</button></div><p class="tool-note">旗记只是笔记。合并探测会打开未插旗的相邻格；错旗可能触雷，执行前会再次确认。提示次数单独记录，不增加操作数。</p></aside>
+        </div>
+        <div class="start-panel" id="start-panel" hidden><div><p class="eyebrow">CERTIFIED ENTRY</p><h2>从勘测口开始</h2><p id="start-copy">这一关的起点已经验证。按下按钮后，引擎会真实探测该格。</p><button class="primary" id="start-button" type="button">从勘测口开始</button></div></div>
+        <div class="feedback" id="feedback" role="status" aria-live="polite">选择一格开始。</div>
+      </section>
+    </main>
+    <footer class="site-footer"><span>AMBER STRATA / FIELD ARCHIVE</span><span>规则参考 Simon Tatham 与 ebnbin/puzzles</span><span>所有进度仅存于本机浏览器</span></footer>
+  </div>
+
+  <dialog id="tutorial-dialog" aria-labelledby="tutorial-title"><div class="dialog-shell"><div class="dialog-top"><p class="eyebrow">THREE TRUE STATES</p><button type="button" data-close-tutorial aria-label="关闭教程">关闭</button></div><h2 id="tutorial-title">认识八邻读数</h2><div id="tutorial-board" class="tutorial-board"></div><p id="tutorial-copy"></p><div class="dialog-actions"><button type="button" id="tutorial-prev">上一张</button><span id="tutorial-index">1 / 3</span><button class="primary" type="button" id="tutorial-next">下一张</button></div></div></dialog>
+  <dialog id="chord-dialog" aria-labelledby="chord-title"><div class="dialog-shell"><p class="eyebrow">MULTI SCAN</p><h2 id="chord-title">确认合并探测</h2><p id="chord-copy"></p><p class="warning">只核对旗的数量，不核对位置。错旗会使未标出的气囊触发。</p><div class="dialog-actions"><button type="button" data-cancel-chord>取消</button><button class="primary" type="button" id="confirm-chord">确认打开</button></div></div></dialog>
+  <dialog id="finish-dialog" aria-labelledby="finish-title"><div class="dialog-shell"><p class="eyebrow">SPECIMEN SEALED</p><div class="finish-amber" aria-hidden="true">◈</div><h2 id="finish-title">勘探完成</h2><p id="finish-copy"></p><div class="dialog-actions"><button type="button" data-finish-book>任务簿</button><button class="primary" type="button" data-next-level>下一关</button></div></div></dialog>
+</body>
+</html>

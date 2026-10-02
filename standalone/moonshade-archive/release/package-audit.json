@@ -1,0 +1,22 @@
+{
+  "status": "PASS",
+  "zipBytes": 19982,
+  "sha256": "1ff203fe16ad977a99ec7d2d4d9085316fb7f5ae8c27074129042b0638206e16",
+  "files": [
+    "index.html",
+    "styles.css",
+    "assets/study.svg",
+    "assets/icon.svg",
+    "assets/licenses.json",
+    "app.js"
+  ],
+  "checks": [
+    "ZIP root and CRC",
+    "allowed file types",
+    "all references local",
+    "classic external JS",
+    "blocked API scan",
+    "SVG XML parsing",
+    "under 2 MiB"
+  ]
+}

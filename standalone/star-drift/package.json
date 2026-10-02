@@ -1,0 +1,13 @@
+{
+  "name": "star-drift-standalone",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "星际漂流：48 关独立浏览器惯性解谜游戏",
+  "scripts": {
+    "test": "node --test tests/*.test.mjs",
+    "build": "node tools/build.mjs",
+    "serve": "python3 -m http.server 4173"
+  },
+  "license": "MIT"
+}

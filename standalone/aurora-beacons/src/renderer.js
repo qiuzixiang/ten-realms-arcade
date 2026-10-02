@@ -1,0 +1,13 @@
+(function(root){'use strict';const E=typeof module!=='undefined'?require('./engine.js'):root.AuroraEngine;
+function board(p,s,selected,interactive){const ev=E.inspect(p,s),size=48,x=38,y=34,W=p.w*size+76,H=p.h*size+68;let out='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 '+W+' '+H+'" role="'+(interactive?'group':'img')+'" aria-label="信标棋盘，顶部与左侧为正极配额，底部与右侧为负极配额" data-level="'+p.id+'">';
+ function text(a,b,t,color,sz){return '<text x="'+a+'" y="'+b+'" fill="'+color+'" font-size="'+(sz||14)+'" font-family="system-ui,sans-serif" text-anchor="middle" dominant-baseline="central">'+t+'</text>';}
+ out+='<rect width="'+W+'" height="'+H+'" rx="18" fill="#10252f"/>';
+ function clue(k,i,cx,cy){let target=p.clues[k][i],v=target===null?'·':target;let color=target===null?'#738d95':ev.bad.indexOf(k+i)>=0?'#ff978c':ev.counts[k][i]===target?'#8be1c5':k[1]==='p'?'#f6c289':'#a9c9ed';return text(cx,cy,v,color,17);}
+ for(let c=0;c<p.w;c++){out+=clue('cp',c,x+c*size+24,17)+clue('cm',c,x+c*size+24,H-17);}for(let r=0;r<p.h;r++){out+=clue('rp',r,17,y+r*size+24)+clue('rm',r,W-17,y+r*size+24);}
+ out+=text(16,16,'+', '#f6c289',12)+text(W-16,H-16,'−','#a9c9ed',12);
+ p.slots.forEach((q,i)=>{let a=q[0],b=q[1],col=a%p.w,row=Math.floor(a/p.w),vertical=b-a===p.w,sx=x+col*size+3,sy=y+row*size+3,sw=vertical?42:90,sh=vertical?90:42,v=s.values[i],conflict=ev.conflicts.some(pair=>pair.some(c=>q.indexOf(c)>=0));const label='信标'+(i+1)+'，'+(vertical?'竖向上到下':'横向左到右')+'，'+(v===null?'未填':v===0?'中性':v===1?'正负':'负正')+(s.notes[i]?'，有笔记':'');
+ out+='<g '+(interactive?'role="button" tabindex="0" data-slot="'+i+'" aria-label="'+label+'"':'')+'><rect x="'+sx+'" y="'+sy+'" width="'+sw+'" height="'+sh+'" rx="11" fill="'+(v===null?'#173642':v===0?'#31454c':'#31424a')+'" stroke="'+(selected===i?'#fff2cf':conflict?'#ff8a80':v===null?'#50707a':'#bd9165')+'" stroke-width="'+(selected===i?3:1.4)+'" '+(v===null?'stroke-dasharray="3 3"':'')+'/>';
+ q.forEach((cell,end)=>{let cx=x+cell%p.w*size+24,cy=y+Math.floor(cell/p.w)*size+24,pole=end?-v:v;out+=text(cx,cy,v===null?'?':v===0?'○':pole===1?'+':'−',v===null?'#a1b8c0':v===0?'#bfd5d7':pole===1?'#ffd29a':'#c1defe',v===0?21:26);});if(s.notes[i])out+=text(sx+sw-8,sy+8,'✧','#fff2cf',12);out+='</g>';});return out+'</svg>';}
+function tutorial(p){let a=E.initial(p),b=E.move(p,a,{type:'set',slot:0,value:p.solution[0]}),c=a;p.solution.forEach((value,slot)=>{c=E.move(p,c,{type:'set',slot,value});});if(!E.inspect(p,c).complete)throw Error('Tutorial not solved');return [a,b,c].map(s=>board(p,s,-1,false));}
+const api={board,tutorial};if(typeof module!=='undefined')module.exports=api;else root.AuroraRenderer=api;
+})(typeof window!=='undefined'?window:globalThis);

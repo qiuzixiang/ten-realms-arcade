@@ -1,0 +1,80 @@
+{
+  "checks": [
+    "8 viewport/breakpoint widths; safe areas 44/34; 6x6 targets >=44px; tutorial/hint fit; reduced motion; modal focus restore",
+    "touch + keyboard complete; reload replay; undo/restart; same-run and replay reward deduplication",
+    "daily/hint flow; all six collections layout using validated completion fixtures",
+    "corrupt save recovers without wiping tutorial preference",
+    "storage failure remains playable and visibly reported"
+  ],
+  "layouts": [
+    {
+      "width": 320,
+      "height": 720,
+      "safeAreaTop": 44,
+      "safeAreaBottom": 34,
+      "minCellWidth": 44.828125,
+      "noHorizontalOverflow": true
+    },
+    {
+      "width": 359,
+      "height": 720,
+      "safeAreaTop": 44,
+      "safeAreaBottom": 34,
+      "minCellWidth": 51.328125,
+      "noHorizontalOverflow": true
+    },
+    {
+      "width": 360,
+      "height": 720,
+      "safeAreaTop": 44,
+      "safeAreaBottom": 34,
+      "minCellWidth": 48,
+      "noHorizontalOverflow": true
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "safeAreaTop": 44,
+      "safeAreaBottom": 34,
+      "minCellWidth": 53,
+      "noHorizontalOverflow": true
+    },
+    {
+      "width": 599,
+      "height": 720,
+      "safeAreaTop": 44,
+      "safeAreaBottom": 34,
+      "minCellWidth": 71.328125,
+      "noHorizontalOverflow": true
+    },
+    {
+      "width": 600,
+      "height": 720,
+      "safeAreaTop": 44,
+      "safeAreaBottom": 34,
+      "minCellWidth": 71.328125,
+      "noHorizontalOverflow": true
+    },
+    {
+      "width": 601,
+      "height": 720,
+      "safeAreaTop": 44,
+      "safeAreaBottom": 34,
+      "minCellWidth": 68.65625,
+      "noHorizontalOverflow": true
+    },
+    {
+      "width": 1280,
+      "height": 720,
+      "safeAreaTop": 44,
+      "safeAreaBottom": 34,
+      "minCellWidth": 68.65625,
+      "noHorizontalOverflow": true
+    }
+  ],
+  "errors": [],
+  "externalRequests": [],
+  "engine": "153.0.8010.48",
+  "boundary": "desktop Chrome responsive simulation; not physical phones",
+  "status": "PASS"
+}

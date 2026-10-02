@@ -5,7 +5,7 @@ import {fileURLToPath} from 'node:url';
 import assert from 'node:assert/strict';
 const base=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const require=createRequire(import.meta.url);
-const packages=process.env.QA_NODE_MODULES || '/Users/qiu/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules';
+const packages=process.env.QA_NODE_MODULES || 'node_modules';
 const {chromium}=require(path.join(packages,'playwright'));
 const sharp=require(path.join(packages,'sharp'));
 for(const name of ['icon','cover'])await sharp(path.join(base,'release',name+'.svg')).png().toFile(path.join(base,'release',name+'.png'));

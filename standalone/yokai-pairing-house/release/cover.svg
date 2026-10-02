@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1440" viewBox="0 0 1080 1440">
+<defs><linearGradient id="bg" x2="0" y2="1"><stop stop-color="#342d3a"/><stop offset=".65" stop-color="#654753"/><stop offset="1" stop-color="#9c6260"/></linearGradient><linearGradient id="window" x2="0" y2="1"><stop stop-color="#ffe9ba"/><stop offset="1" stop-color="#d89562"/></linearGradient><filter id="glow"><feGaussianBlur stdDeviation="26"/></filter></defs>
+<rect width="1080" height="1440" fill="url(#bg)"/>
+<circle cx="800" cy="188" r="112" fill="#f6d89a" opacity=".38" filter="url(#glow)"/><circle cx="800" cy="188" r="83" fill="#f2dba5"/><circle cx="827" cy="161" r="73" fill="#3b303c"/>
+<g fill="#e8b982" opacity=".9"><circle cx="155" cy="215" r="5"/><circle cx="246" cy="129" r="4"/><circle cx="918" cy="341" r="6"/><path d="M420 199l7-22 7 22 22 7-22 7-7 22-7-22-22-7z"/></g>
+<text x="90" y="157" fill="#e6bd82" font-size="26" letter-spacing="8" font-family="sans-serif">月见町 · 妖怪旅舍</text>
+<text x="85" y="290" fill="#fff4df" font-size="108" letter-spacing="11" font-weight="bold" font-family="Songti SC,STSong,serif">百妖合宿</text>
+<text x="93" y="362" fill="#f0cfab" font-size="35" font-family="sans-serif">相邻两位住一间 · 每种组合只用一次</text>
+<g transform="translate(82 455)"><path d="M0 230 130 75h656l130 155-42 36H42z" fill="#ae6a65" stroke="#edb880" stroke-width="17" stroke-linejoin="round"/><rect x="85" y="266" width="746" height="569" rx="26" fill="#e2ad82" stroke="#633f4b" stroke-width="22"/><path d="M458 266v569M85 552h746" stroke="#633f4b" stroke-width="21"/>
+<g fill="#503a48" stroke="#b77c70" stroke-width="11"><rect x="122" y="308" width="299" height="206" rx="78"/><rect x="496" y="308" width="299" height="206" rx="78"/><rect x="122" y="591" width="299" height="206" rx="78"/><rect x="496" y="591" width="299" height="206" rx="78"/></g>
+<g font-family="serif" text-anchor="middle" font-size="116"><text x="271" y="465" fill="#ffd79a">◕</text><text x="646" y="465" fill="#f6b4aa">◇</text><text x="271" y="748" fill="#f4ca7c">✦</text><text x="646" y="748" fill="#c1d6ce">☾</text></g>
+<g fill="url(#window)" stroke="#7c4f53" stroke-width="8"><rect x="203" y="0" width="80" height="112" rx="31"/><rect x="637" y="-18" width="80" height="112" rx="31"/></g><path d="M243-33V3M677-55v40" stroke="#e7bd81" stroke-width="6"/></g>
+<rect x="76" y="1315" width="928" height="82" rx="41" fill="#f7e5c6"/><text x="540" y="1368" text-anchor="middle" fill="#694451" font-size="39" font-weight="bold" font-family="sans-serif">六章 · 60 道完整配对谜题</text>
+</svg>

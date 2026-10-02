@@ -1,0 +1,1267 @@
+{
+  "generator": "symmetric-growth-v1",
+  "attempts": 772,
+  "count": 60,
+  "levels": [
+    {
+      "id": "sg-01",
+      "seed": 100081,
+      "metrics": {
+        "nonrect": 0,
+        "bottleneck": 2,
+        "maxArea": 5,
+        "cell": 13,
+        "edge": 0,
+        "vertex": 0
+      },
+      "proof": {
+        "method": "connected symmetric regions + exact cover, limit 2",
+        "count": 1,
+        "exhausted": true,
+        "regions": 20,
+        "nodes": 14,
+        "branches": 0,
+        "depth": 0
+      }
+    },
+    {
+      "id": "sg-02",
+      "seed": 100305,
+      "metrics": {
+        "nonrect": 1,
+        "bottleneck": 1,
+        "maxArea": 7,
+        "cell": 11,
+        "edge": 0,
+        "vertex": 0
+      },
+      "proof": {
+        "method": "connected symmetric regions + exact cover, limit 2",
+        "count": 1,
+        "exhausted": true,
+        "regions": 19,
+        "nodes": 12,
+        "branches": 0,
+        "depth": 0
+      }
+    },
+    {
+      "id": "sg-03",
+      "seed": 100074,
+      "metrics": {
+        "nonrect": 1,
+        "bottleneck": 1,
+        "maxArea": 9,
+        "cell": 13,
+        "edge": 0,
+        "vertex": 0
+      },
+      "proof": {
+        "method": "connected symmetric regions + exact cover, limit 2",
+        "count": 1,
+        "exhausted": true,
+        "regions": 20,
+        "nodes": 14,
+        "branches": 0,
+        "depth": 0
+      }
+    },
+    {
+      "id": "sg-04",
+      "seed": 100093,
+      "metrics": {
+        "nonrect": 0,
+        "bottleneck": 0,
+        "maxArea": 9,
+        "cell": 13,
+        "edge": 0,
+        "vertex": 0
+      },
+      "proof": {
+        "method": "connected symmetric regions + exact cover, limit 2",
+        "count": 1,
+        "exhausted": true,
+        "regions": 28,
+        "nodes": 19,
+        "branches": 1,
+        "depth": 1
+      }
+    },
+    {
+      "id": "sg-05",
+      "seed": 100313,
+      "metrics": {
+        "nonrect": 0,
+        "bottleneck": 2,
+        "maxArea": 9,
+        "cell": 9,
+        "edge": 0,
+        "vertex": 0
+      },
+      "proof": {
+        "method": "connected symmetric regions + exact cover, limit 2",
+        "count": 1,
+        "exhausted": true,
+        "regions": 30,
+        "nodes": 15,
+        "branches": 1,
+        "depth": 1
+      }
+    },
+    {
+      "id": "sg-06",
+      "seed": 100283,
+      "metrics": {
+        "nonrect": 1,
+        "bottleneck": 1,
+        "maxArea": 9,
+        "cell": 13,
+        "edge": 0,
+        "vertex": 0
+      },
+      "proof": {
+        "method": "connected symmetric regions + exact cover, limit 2",
+        "count": 1,
+        "exhausted": true,
+        "regions": 23,
+        "nodes": 16,
+        "branches": 1,
+        "depth": 1
+      }
+    },
+    {
+      "id": "sg-07",
+      "seed": 100161,
+      "metrics": {
+        "nonrect": 0,
+        "bottleneck": 0,
+        "maxArea": 9,
+        "cell": 13,
+        "edge": 0,
+        "vertex": 0
+      },
+      "proof": {
+        "method": "connected symmetric regions + exact cover, limit 2",
+        "count": 1,
+        "exhausted": true,
+        "regions": 33,
+        "nodes": 19,
+        "branches": 1,
+        "depth": 1
+      }
+    },
+    {
+      "id": "sg-08",
+      "seed": 100203,
+      "metrics": {
+        "nonrect": 1,
+        "bottleneck": 2,
+        "maxArea": 9,
+        "cell": 9,
+        "edge": 0,
+        "vertex": 0
+      },
+      "proof": {
+        "method": "connected symmetric regions + exact cover, limit 2",
+        "count": 1,
+        "exhausted": true,
+        "regions": 27,
+        "nodes": 12,
+        "branches": 1,
+        "depth": 1
+      }
+    },
+    {
+      "id": "sg-09",
+      "seed": 100180,
+      "metrics": {
+        "nonrect": 0,
+        "bottleneck": 1,
+        "maxArea": 9,
+        "cell": 11,
+        "edge": 0,
+        "vertex": 0
+      },
+      "proof": {
+        "method": "connected symmetric regions + exact cover, limit 2",
+        "count": 1,
+        "exhausted": true,
+        "regions": 29,
+        "nodes": 18,
+        "branches": 2,
+        "depth": 2
+      }
+    },
+    {
+      "id": "sg-10",
+      "seed": 100087,
+      "metrics": {
+        "nonrect": 1,
+        "bottleneck": 1,
+        "maxArea": 9,
+        "cell": 7,
+        "edge": 0,
+        "vertex": 0
+      },
+      "proof": {
+        "method": "connected symmetric regions + exact cover, limit 2",
+        "count": 1,
+        "exhausted": true,
+        "regions": 47,
+        "nodes": 22,
+        "branches": 4,
+        "depth": 3
+      }
+    },
+    {
+      "id": "sg-11",
+      "seed": 200096,
+      "metrics": {
+        "nonrect": 1,
+        "bottleneck": 1,
+        "maxArea": 5,
+        "cell": 13,
+        "edge": 0,
+        "vertex": 0
+      },
+      "proof": {
+        "method": "connected symmetric regions + exact cover, limit 2",
+        "count": 1,
+        "exhausted": true,
+        "regions": 19,
+        "nodes": 14,
+        "branches": 0,
+        "depth": 0
+      }
+    },
+    {
+      "id": "sg-12",
+      "seed": 200132,
+      "metrics": {
+        "nonrect": 1,
+        "bottleneck": 1,
+        "maxArea": 9,
+        "cell": 11,
+        "edge": 0,
+        "vertex": 0
+      },
+      "proof": {
+        "method": "connected symmetric regions + exact cover, limit 2",
+        "count": 1,
+        "exhausted": true,
+        "regions": 21,
+        "nodes": 12,
+        "branches": 0,
+        "depth": 0
+      }
+    },
+    {
+      "id": "sg-13",
+      "seed": 200091,
+      "metrics": {
+        "nonrect": 1,
+        "bottleneck": 2,
+        "maxArea": 7,
+        "cell": 13,
+        "edge": 0,
+        "vertex": 0
+      },
+      "proof": {
+        "method": "connected symmetric regions + exact cover, limit 2",
+        "count": 1,
+        "exhausted": true,
+        "regions": 23,
+        "nodes": 16,
+        "branches": 1,
+        "depth": 1
+      }
+    },
+    {
+      "id": "sg-14",
+      "seed": 200125,
+      "metrics": {
+        "nonrect": 1,
+        "bottleneck": 2,
+        "maxArea": 9,
+        "cell": 11,
+        "edge": 0,
+        "vertex": 0
+      },
+      "proof": {
+        "method": "connected symmetric regions + exact cover, limit 2",
+        "count": 1,
+        "exhausted": true,
+        "regions": 23,
+        "nodes": 14,
+        "branches": 1,
+        "depth": 1
+      }
+    },
+    {
+      "id": "sg-15",
+      "seed": 200110,
+      "metrics": {
+        "nonrect": 1,
+        "bottleneck": 1,
+        "maxArea": 9,
+        "cell": 13,
+        "edge": 0,
+        "vertex": 0
+      },
+      "proof": {
+        "method": "connected symmetric regions + exact cover, limit 2",
+        "count": 1,
+        "exhausted": true,
+        "regions": 27,
+        "nodes": 19,
+        "branches": 1,
+        "depth": 1
+      }
+    },
+    {
+      "id": "sg-16",
+      "seed": 200103,
+      "metrics": {
+        "nonrect": 2,
+        "bottleneck": 2,
+        "maxArea": 7,
+        "cell": 13,
+        "edge": 0,
+        "vertex": 0
+      },
+      "proof": {
+        "method": "connected symmetric regions + exact cover, limit 2",
+        "count": 1,
+        "exhausted": true,
+        "regions": 24,
+        "nodes": 16,
+        "branches": 1,
+        "depth": 1
+      }
+    },
+    {
+      "id": "sg-17",
+      "seed": 200080,
+      "metrics": {
+        "nonrect": 1,
+        "bottleneck": 1,
+        "maxArea": 11,
+        "cell": 13,
+        "edge": 0,
+        "vertex": 0
+      },
+      "proof": {
+        "method": "connected symmetric regions + exact cover, limit 2",
+        "count": 1,
+        "exhausted": true,
+        "regions": 32,
+        "nodes": 21,
+        "branches": 1,
+        "depth": 1
+      }
+    },
+    {
+      "id": "sg-18",
+      "seed": 200181,
+      "metrics": {
+        "nonrect": 1,
+        "bottleneck": 1,
+        "maxArea": 11,
+        "cell": 9,
+        "edge": 0,
+        "vertex": 0
+      },
+      "proof": {
+        "method": "connected symmetric regions + exact cover, limit 2",
+        "count": 1,
+        "exhausted": true,
+        "regions": 35,
+        "nodes": 17,
+        "branches": 1,
+        "depth": 1
+      }
+    },
+    {
+      "id": "sg-19",
+      "seed": 200088,
+      "metrics": {
+        "nonrect": 2,
+        "bottleneck": 2,
+        "maxArea": 11,
+        "cell": 9,
+        "edge": 0,
+        "vertex": 0
+      },
+      "proof": {
+        "method": "connected symmetric regions + exact cover, limit 2",
+        "count": 1,
+        "exhausted": true,
+        "regions": 30,
+        "nodes": 16,
+        "branches": 2,
+        "depth": 2
+      }
+    },
+    {
+      "id": "sg-20",
+      "seed": 200145,
+      "metrics": {
+        "nonrect": 1,
+        "bottleneck": 1,
+        "maxArea": 11,
+        "cell": 7,
+        "edge": 0,
+        "vertex": 0
+      },
+      "proof": {
+        "method": "connected symmetric regions + exact cover, limit 2",
+        "count": 1,
+        "exhausted": true,
+        "regions": 35,
+        "nodes": 21,
+        "branches": 5,
+        "depth": 3
+      }
+    },
+    {
+      "id": "sg-21",
+      "seed": 300117,
+      "metrics": {
+        "nonrect": 1,
+        "bottleneck": 0,
+        "maxArea": 4,
+        "cell": 9,
+        "edge": 3,
+        "vertex": 0
+      },
+      "proof": {
+        "method": "connected symmetric regions + exact cover, limit 2",
+        "count": 1,
+        "exhausted": true,
+        "regions": 18,
+        "nodes": 13,
+        "branches": 0,
+        "depth": 0
+      }
+    },
+    {
+      "id": "sg-22",
+      "seed": 300111,
+      "metrics": {
+        "nonrect": 1,
+        "bottleneck": 1,
+        "maxArea": 5,
+        "cell": 11,
+        "edge": 2,
+        "vertex": 0
+      },
+      "proof": {
+        "method": "connected symmetric regions + exact cover, limit 2",
+        "count": 1,
+        "exhausted": true,
+        "regions": 20,
+        "nodes": 14,
+        "branches": 0,
+        "depth": 0
+      }
+    },
+    {
+      "id": "sg-23",
+      "seed": 300116,
+      "metrics": {
+        "nonrect": 1,
+        "bottleneck": 0,
+        "maxArea": 6,
+        "cell": 9,
+        "edge": 4,
+        "vertex": 0
+      },
+      "proof": {
+        "method": "connected symmetric regions + exact cover, limit 2",
+        "count": 1,
+        "exhausted": true,
+        "regions": 18,
+        "nodes": 15,
+        "branches": 1,
+        "depth": 1
+      }
+    },
+    {
+      "id": "sg-24",
+      "seed": 300133,
+      "metrics": {
+        "nonrect": 1,
+        "bottleneck": 1,
+        "maxArea": 8,
+        "cell": 9,
+        "edge": 4,
+        "vertex": 0
+      },
+      "proof": {
+        "method": "connected symmetric regions + exact cover, limit 2",
+        "count": 1,
+        "exhausted": true,
+        "regions": 19,
+        "nodes": 15,
+        "branches": 1,
+        "depth": 1
+      }
+    },
+    {
+      "id": "sg-25",
+      "seed": 300077,
+      "metrics": {
+        "nonrect": 1,
+        "bottleneck": 0,
+        "maxArea": 6,
+        "cell": 7,
+        "edge": 4,
+        "vertex": 0
+      },
+      "proof": {
+        "method": "connected symmetric regions + exact cover, limit 2",
+        "count": 1,
+        "exhausted": true,
+        "regions": 19,
+        "nodes": 14,
+        "branches": 2,
+        "depth": 2
+      }
+    },
+    {
+      "id": "sg-26",
+      "seed": 300091,
+      "metrics": {
+        "nonrect": 2,
+        "bottleneck": 1,
+        "maxArea": 8,
+        "cell": 9,
+        "edge": 4,
+        "vertex": 0
+      },
+      "proof": {
+        "method": "connected symmetric regions + exact cover, limit 2",
+        "count": 1,
+        "exhausted": true,
+        "regions": 21,
+        "nodes": 16,
+        "branches": 1,
+        "depth": 1
+      }
+    },
+    {
+      "id": "sg-27",
+      "seed": 300126,
+      "metrics": {
+        "nonrect": 0,
+        "bottleneck": 1,
+        "maxArea": 10,
+        "cell": 5,
+        "edge": 2,
+        "vertex": 0
+      },
+      "proof": {
+        "method": "connected symmetric regions + exact cover, limit 2",
+        "count": 1,
+        "exhausted": true,
+        "regions": 27,
+        "nodes": 13,
+        "branches": 2,
+        "depth": 2
+      }
+    },
+    {
+      "id": "sg-28",
+      "seed": 300102,
+      "metrics": {
+        "nonrect": 2,
+        "bottleneck": 0,
+        "maxArea": 10,
+        "cell": 9,
+        "edge": 3,
+        "vertex": 0
+      },
+      "proof": {
+        "method": "connected symmetric regions + exact cover, limit 2",
+        "count": 1,
+        "exhausted": true,
+        "regions": 26,
+        "nodes": 18,
+        "branches": 1,
+        "depth": 1
+      }
+    },
+    {
+      "id": "sg-29",
+      "seed": 300119,
+      "metrics": {
+        "nonrect": 1,
+        "bottleneck": 1,
+        "maxArea": 13,
+        "cell": 7,
+        "edge": 2,
+        "vertex": 0
+      },
+      "proof": {
+        "method": "connected symmetric regions + exact cover, limit 2",
+        "count": 1,
+        "exhausted": true,
+        "regions": 38,
+        "nodes": 18,
+        "branches": 2,
+        "depth": 2
+      }
+    },
+    {
+      "id": "sg-30",
+      "seed": 300080,
+      "metrics": {
+        "nonrect": 2,
+        "bottleneck": 0,
+        "maxArea": 16,
+        "cell": 3,
+        "edge": 3,
+        "vertex": 0
+      },
+      "proof": {
+        "method": "connected symmetric regions + exact cover, limit 2",
+        "count": 1,
+        "exhausted": true,
+        "regions": 78,
+        "nodes": 38,
+        "branches": 1,
+        "depth": 1
+      }
+    },
+    {
+      "id": "sg-31",
+      "seed": 400170,
+      "metrics": {
+        "nonrect": 1,
+        "bottleneck": 1,
+        "maxArea": 6,
+        "cell": 7,
+        "edge": 2,
+        "vertex": 2
+      },
+      "proof": {
+        "method": "connected symmetric regions + exact cover, limit 2",
+        "count": 1,
+        "exhausted": true,
+        "regions": 15,
+        "nodes": 12,
+        "branches": 0,
+        "depth": 0
+      }
+    },
+    {
+      "id": "sg-32",
+      "seed": 400148,
+      "metrics": {
+        "nonrect": 1,
+        "bottleneck": 1,
+        "maxArea": 8,
+        "cell": 7,
+        "edge": 3,
+        "vertex": 1
+      },
+      "proof": {
+        "method": "connected symmetric regions + exact cover, limit 2",
+        "count": 1,
+        "exhausted": true,
+        "regions": 15,
+        "nodes": 12,
+        "branches": 0,
+        "depth": 0
+      }
+    },
+    {
+      "id": "sg-33",
+      "seed": 400185,
+      "metrics": {
+        "nonrect": 0,
+        "bottleneck": 1,
+        "maxArea": 6,
+        "cell": 5,
+        "edge": 3,
+        "vertex": 1
+      },
+      "proof": {
+        "method": "connected symmetric regions + exact cover, limit 2",
+        "count": 1,
+        "exhausted": true,
+        "regions": 17,
+        "nodes": 11,
+        "branches": 1,
+        "depth": 1
+      }
+    },
+    {
+      "id": "sg-34",
+      "seed": 400072,
+      "metrics": {
+        "nonrect": 0,
+        "bottleneck": 0,
+        "maxArea": 8,
+        "cell": 9,
+        "edge": 2,
+        "vertex": 1
+      },
+      "proof": {
+        "method": "connected symmetric regions + exact cover, limit 2",
+        "count": 1,
+        "exhausted": true,
+        "regions": 17,
+        "nodes": 14,
+        "branches": 1,
+        "depth": 1
+      }
+    },
+    {
+      "id": "sg-35",
+      "seed": 400087,
+      "metrics": {
+        "nonrect": 0,
+        "bottleneck": 0,
+        "maxArea": 8,
+        "cell": 11,
+        "edge": 1,
+        "vertex": 1
+      },
+      "proof": {
+        "method": "connected symmetric regions + exact cover, limit 2",
+        "count": 1,
+        "exhausted": true,
+        "regions": 19,
+        "nodes": 15,
+        "branches": 1,
+        "depth": 1
+      }
+    },
+    {
+      "id": "sg-36",
+      "seed": 400158,
+      "metrics": {
+        "nonrect": 2,
+        "bottleneck": 2,
+        "maxArea": 6,
+        "cell": 7,
+        "edge": 2,
+        "vertex": 1
+      },
+      "proof": {
+        "method": "connected symmetric regions + exact cover, limit 2",
+        "count": 1,
+        "exhausted": true,
+        "regions": 17,
+        "nodes": 11,
+        "branches": 0,
+        "depth": 0
+      }
+    },
+    {
+      "id": "sg-37",
+      "seed": 400077,
+      "metrics": {
+        "nonrect": 1,
+        "bottleneck": 1,
+        "maxArea": 8,
+        "cell": 7,
+        "edge": 3,
+        "vertex": 1
+      },
+      "proof": {
+        "method": "connected symmetric regions + exact cover, limit 2",
+        "count": 1,
+        "exhausted": true,
+        "regions": 19,
+        "nodes": 14,
+        "branches": 1,
+        "depth": 1
+      }
+    },
+    {
+      "id": "sg-38",
+      "seed": 400166,
+      "metrics": {
+        "nonrect": 2,
+        "bottleneck": 0,
+        "maxArea": 8,
+        "cell": 7,
+        "edge": 3,
+        "vertex": 1
+      },
+      "proof": {
+        "method": "connected symmetric regions + exact cover, limit 2",
+        "count": 1,
+        "exhausted": true,
+        "regions": 16,
+        "nodes": 13,
+        "branches": 1,
+        "depth": 1
+      }
+    },
+    {
+      "id": "sg-39",
+      "seed": 400121,
+      "metrics": {
+        "nonrect": 0,
+        "bottleneck": 0,
+        "maxArea": 9,
+        "cell": 5,
+        "edge": 1,
+        "vertex": 1
+      },
+      "proof": {
+        "method": "connected symmetric regions + exact cover, limit 2",
+        "count": 1,
+        "exhausted": true,
+        "regions": 23,
+        "nodes": 14,
+        "branches": 2,
+        "depth": 2
+      }
+    },
+    {
+      "id": "sg-40",
+      "seed": 400139,
+      "metrics": {
+        "nonrect": 1,
+        "bottleneck": 1,
+        "maxArea": 11,
+        "cell": 5,
+        "edge": 1,
+        "vertex": 1
+      },
+      "proof": {
+        "method": "connected symmetric regions + exact cover, limit 2",
+        "count": 1,
+        "exhausted": true,
+        "regions": 28,
+        "nodes": 16,
+        "branches": 2,
+        "depth": 2
+      }
+    },
+    {
+      "id": "sg-41",
+      "seed": 500117,
+      "metrics": {
+        "nonrect": 2,
+        "bottleneck": 3,
+        "maxArea": 6,
+        "cell": 16,
+        "edge": 0,
+        "vertex": 3
+      },
+      "proof": {
+        "method": "connected symmetric regions + exact cover, limit 2",
+        "count": 1,
+        "exhausted": true,
+        "regions": 24,
+        "nodes": 20,
+        "branches": 0,
+        "depth": 0
+      }
+    },
+    {
+      "id": "sg-42",
+      "seed": 500116,
+      "metrics": {
+        "nonrect": 3,
+        "bottleneck": 2,
+        "maxArea": 8,
+        "cell": 12,
+        "edge": 1,
+        "vertex": 3
+      },
+      "proof": {
+        "method": "connected symmetric regions + exact cover, limit 2",
+        "count": 1,
+        "exhausted": true,
+        "regions": 22,
+        "nodes": 17,
+        "branches": 0,
+        "depth": 0
+      }
+    },
+    {
+      "id": "sg-43",
+      "seed": 500168,
+      "metrics": {
+        "nonrect": 3,
+        "bottleneck": 2,
+        "maxArea": 8,
+        "cell": 14,
+        "edge": 3,
+        "vertex": 0
+      },
+      "proof": {
+        "method": "connected symmetric regions + exact cover, limit 2",
+        "count": 1,
+        "exhausted": true,
+        "regions": 30,
+        "nodes": 18,
+        "branches": 0,
+        "depth": 0
+      }
+    },
+    {
+      "id": "sg-44",
+      "seed": 500125,
+      "metrics": {
+        "nonrect": 2,
+        "bottleneck": 3,
+        "maxArea": 10,
+        "cell": 12,
+        "edge": 2,
+        "vertex": 0
+      },
+      "proof": {
+        "method": "connected symmetric regions + exact cover, limit 2",
+        "count": 1,
+        "exhausted": true,
+        "regions": 34,
+        "nodes": 17,
+        "branches": 1,
+        "depth": 1
+      }
+    },
+    {
+      "id": "sg-45",
+      "seed": 500189,
+      "metrics": {
+        "nonrect": 2,
+        "bottleneck": 3,
+        "maxArea": 9,
+        "cell": 14,
+        "edge": 1,
+        "vertex": 1
+      },
+      "proof": {
+        "method": "connected symmetric regions + exact cover, limit 2",
+        "count": 1,
+        "exhausted": true,
+        "regions": 35,
+        "nodes": 20,
+        "branches": 2,
+        "depth": 2
+      }
+    },
+    {
+      "id": "sg-46",
+      "seed": 500138,
+      "metrics": {
+        "nonrect": 3,
+        "bottleneck": 2,
+        "maxArea": 8,
+        "cell": 12,
+        "edge": 3,
+        "vertex": 0
+      },
+      "proof": {
+        "method": "connected symmetric regions + exact cover, limit 2",
+        "count": 1,
+        "exhausted": true,
+        "regions": 32,
+        "nodes": 19,
+        "branches": 2,
+        "depth": 2
+      }
+    },
+    {
+      "id": "sg-47",
+      "seed": 500087,
+      "metrics": {
+        "nonrect": 4,
+        "bottleneck": 2,
+        "maxArea": 11,
+        "cell": 10,
+        "edge": 3,
+        "vertex": 0
+      },
+      "proof": {
+        "method": "connected symmetric regions + exact cover, limit 2",
+        "count": 1,
+        "exhausted": true,
+        "regions": 37,
+        "nodes": 19,
+        "branches": 1,
+        "depth": 1
+      }
+    },
+    {
+      "id": "sg-48",
+      "seed": 500136,
+      "metrics": {
+        "nonrect": 2,
+        "bottleneck": 3,
+        "maxArea": 8,
+        "cell": 8,
+        "edge": 3,
+        "vertex": 0
+      },
+      "proof": {
+        "method": "connected symmetric regions + exact cover, limit 2",
+        "count": 1,
+        "exhausted": true,
+        "regions": 32,
+        "nodes": 17,
+        "branches": 4,
+        "depth": 4
+      }
+    },
+    {
+      "id": "sg-49",
+      "seed": 500194,
+      "metrics": {
+        "nonrect": 2,
+        "bottleneck": 2,
+        "maxArea": 16,
+        "cell": 8,
+        "edge": 3,
+        "vertex": 1
+      },
+      "proof": {
+        "method": "connected symmetric regions + exact cover, limit 2",
+        "count": 1,
+        "exhausted": true,
+        "regions": 64,
+        "nodes": 33,
+        "branches": 1,
+        "depth": 1
+      }
+    },
+    {
+      "id": "sg-50",
+      "seed": 500132,
+      "metrics": {
+        "nonrect": 2,
+        "bottleneck": 3,
+        "maxArea": 12,
+        "cell": 10,
+        "edge": 2,
+        "vertex": 0
+      },
+      "proof": {
+        "method": "connected symmetric regions + exact cover, limit 2",
+        "count": 1,
+        "exhausted": true,
+        "regions": 55,
+        "nodes": 23,
+        "branches": 4,
+        "depth": 3
+      }
+    },
+    {
+      "id": "sg-51",
+      "seed": 600082,
+      "metrics": {
+        "nonrect": 4,
+        "bottleneck": 2,
+        "maxArea": 8,
+        "cell": 21,
+        "edge": 4,
+        "vertex": 1
+      },
+      "proof": {
+        "method": "connected symmetric regions + exact cover, limit 2",
+        "count": 1,
+        "exhausted": true,
+        "regions": 36,
+        "nodes": 27,
+        "branches": 0,
+        "depth": 0
+      }
+    },
+    {
+      "id": "sg-52",
+      "seed": 600125,
+      "metrics": {
+        "nonrect": 3,
+        "bottleneck": 2,
+        "maxArea": 10,
+        "cell": 21,
+        "edge": 3,
+        "vertex": 1
+      },
+      "proof": {
+        "method": "connected symmetric regions + exact cover, limit 2",
+        "count": 1,
+        "exhausted": true,
+        "regions": 36,
+        "nodes": 27,
+        "branches": 1,
+        "depth": 1
+      }
+    },
+    {
+      "id": "sg-53",
+      "seed": 600110,
+      "metrics": {
+        "nonrect": 3,
+        "bottleneck": 3,
+        "maxArea": 10,
+        "cell": 15,
+        "edge": 2,
+        "vertex": 3
+      },
+      "proof": {
+        "method": "connected symmetric regions + exact cover, limit 2",
+        "count": 1,
+        "exhausted": true,
+        "regions": 36,
+        "nodes": 24,
+        "branches": 2,
+        "depth": 2
+      }
+    },
+    {
+      "id": "sg-54",
+      "seed": 600126,
+      "metrics": {
+        "nonrect": 2,
+        "bottleneck": 4,
+        "maxArea": 10,
+        "cell": 19,
+        "edge": 3,
+        "vertex": 1
+      },
+      "proof": {
+        "method": "connected symmetric regions + exact cover, limit 2",
+        "count": 1,
+        "exhausted": true,
+        "regions": 47,
+        "nodes": 26,
+        "branches": 2,
+        "depth": 2
+      }
+    },
+    {
+      "id": "sg-55",
+      "seed": 600121,
+      "metrics": {
+        "nonrect": 2,
+        "bottleneck": 2,
+        "maxArea": 14,
+        "cell": 21,
+        "edge": 3,
+        "vertex": 1
+      },
+      "proof": {
+        "method": "connected symmetric regions + exact cover, limit 2",
+        "count": 1,
+        "exhausted": true,
+        "regions": 47,
+        "nodes": 30,
+        "branches": 2,
+        "depth": 2
+      }
+    },
+    {
+      "id": "sg-56",
+      "seed": 600094,
+      "metrics": {
+        "nonrect": 3,
+        "bottleneck": 3,
+        "maxArea": 12,
+        "cell": 17,
+        "edge": 1,
+        "vertex": 2
+      },
+      "proof": {
+        "method": "connected symmetric regions + exact cover, limit 2",
+        "count": 1,
+        "exhausted": true,
+        "regions": 51,
+        "nodes": 25,
+        "branches": 2,
+        "depth": 2
+      }
+    },
+    {
+      "id": "sg-57",
+      "seed": 600152,
+      "metrics": {
+        "nonrect": 3,
+        "bottleneck": 2,
+        "maxArea": 14,
+        "cell": 17,
+        "edge": 2,
+        "vertex": 1
+      },
+      "proof": {
+        "method": "connected symmetric regions + exact cover, limit 2",
+        "count": 1,
+        "exhausted": true,
+        "regions": 60,
+        "nodes": 35,
+        "branches": 3,
+        "depth": 3
+      }
+    },
+    {
+      "id": "sg-58",
+      "seed": 600159,
+      "metrics": {
+        "nonrect": 4,
+        "bottleneck": 4,
+        "maxArea": 14,
+        "cell": 11,
+        "edge": 3,
+        "vertex": 1
+      },
+      "proof": {
+        "method": "connected symmetric regions + exact cover, limit 2",
+        "count": 1,
+        "exhausted": true,
+        "regions": 77,
+        "nodes": 39,
+        "branches": 4,
+        "depth": 4
+      }
+    },
+    {
+      "id": "sg-59",
+      "seed": 600158,
+      "metrics": {
+        "nonrect": 3,
+        "bottleneck": 2,
+        "maxArea": 13,
+        "cell": 15,
+        "edge": 1,
+        "vertex": 1
+      },
+      "proof": {
+        "method": "connected symmetric regions + exact cover, limit 2",
+        "count": 1,
+        "exhausted": true,
+        "regions": 130,
+        "nodes": 39,
+        "branches": 5,
+        "depth": 4
+      }
+    },
+    {
+      "id": "sg-60",
+      "seed": 600074,
+      "metrics": {
+        "nonrect": 3,
+        "bottleneck": 3,
+        "maxArea": 24,
+        "cell": 7,
+        "edge": 3,
+        "vertex": 1
+      },
+      "proof": {
+        "method": "connected symmetric regions + exact cover, limit 2",
+        "count": 1,
+        "exhausted": true,
+        "regions": 576,
+        "nodes": 182,
+        "branches": 3,
+        "depth": 3
+      }
+    }
+  ]
+}

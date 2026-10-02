@@ -1,0 +1,8357 @@
+{
+  "version": "bank-v1",
+  "seed": 13092026,
+  "count": 72,
+  "canonicalTransforms": 16,
+  "levels": [
+    {
+      "id": "chapter-01-level-01",
+      "seed": 2133000391,
+      "fixed": 12,
+      "oracleNodes": 5,
+      "unique": true,
+      "logicSteps": 4,
+      "kinds": [
+        "triple"
+      ],
+      "trace": [
+        {
+          "i": 8,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 9,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 13,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 14,
+          "v": 1,
+          "kind": "triple"
+        }
+      ],
+      "solution": [
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        1,
+        1,
+        1,
+        0,
+        0,
+        1,
+        0,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "chapter-01-level-02",
+      "seed": 4211622478,
+      "fixed": 12,
+      "oracleNodes": 5,
+      "unique": true,
+      "logicSteps": 4,
+      "kinds": [
+        "triple"
+      ],
+      "trace": [
+        {
+          "i": 4,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 12,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 7,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 10,
+          "v": 1,
+          "kind": "triple"
+        }
+      ],
+      "solution": [
+        1,
+        0,
+        0,
+        1,
+        0,
+        1,
+        1,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "chapter-01-level-03",
+      "seed": 3888649578,
+      "fixed": 11,
+      "oracleNodes": 5,
+      "unique": true,
+      "logicSteps": 5,
+      "kinds": [
+        "balance",
+        "sandwich",
+        "triple"
+      ],
+      "trace": [
+        {
+          "i": 0,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 4,
+          "v": 0,
+          "kind": "sandwich"
+        },
+        {
+          "i": 13,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 14,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 15,
+          "v": 0,
+          "kind": "triple"
+        }
+      ],
+      "solution": [
+        1,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        1,
+        1,
+        0,
+        0,
+        1,
+        0,
+        1,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "chapter-01-level-04",
+      "seed": 593264003,
+      "fixed": 11,
+      "oracleNodes": 8,
+      "unique": true,
+      "logicSteps": 5,
+      "kinds": [
+        "balance",
+        "sandwich"
+      ],
+      "trace": [
+        {
+          "i": 12,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 1,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 2,
+          "v": 1,
+          "kind": "sandwich"
+        },
+        {
+          "i": 14,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 15,
+          "v": 1,
+          "kind": "balance"
+        }
+      ],
+      "solution": [
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1
+      ]
+    },
+    {
+      "id": "chapter-01-level-05",
+      "seed": 93580723,
+      "fixed": 11,
+      "oracleNodes": 5,
+      "unique": true,
+      "logicSteps": 5,
+      "kinds": [
+        "triple",
+        "balance"
+      ],
+      "trace": [
+        {
+          "i": 5,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 9,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 13,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 14,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 15,
+          "v": 1,
+          "kind": "triple"
+        }
+      ],
+      "solution": [
+        0,
+        1,
+        1,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        1,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "id": "chapter-01-level-06",
+      "seed": 37416191,
+      "fixed": 11,
+      "oracleNodes": 12,
+      "unique": true,
+      "logicSteps": 5,
+      "kinds": [
+        "balance",
+        "sandwich"
+      ],
+      "trace": [
+        {
+          "i": 1,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 2,
+          "v": 0,
+          "kind": "sandwich"
+        },
+        {
+          "i": 12,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 4,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 7,
+          "v": 0,
+          "kind": "balance"
+        }
+      ],
+      "solution": [
+        0,
+        1,
+        0,
+        1,
+        1,
+        1,
+        0,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "chapter-01-level-07",
+      "seed": 1999139754,
+      "fixed": 10,
+      "oracleNodes": 9,
+      "unique": true,
+      "logicSteps": 6,
+      "kinds": [
+        "balance"
+      ],
+      "trace": [
+        {
+          "i": 4,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 1,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 0,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 8,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 11,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 15,
+          "v": 0,
+          "kind": "balance"
+        }
+      ],
+      "solution": [
+        1,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        1,
+        1,
+        1,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "chapter-01-level-08",
+      "seed": 1846454802,
+      "fixed": 10,
+      "oracleNodes": 6,
+      "unique": true,
+      "logicSteps": 6,
+      "kinds": [
+        "balance",
+        "triple"
+      ],
+      "trace": [
+        {
+          "i": 0,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 4,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 8,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 9,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 10,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 11,
+          "v": 0,
+          "kind": "balance"
+        }
+      ],
+      "solution": [
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        1,
+        1,
+        1,
+        0,
+        1,
+        0,
+        1,
+        1,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "chapter-01-level-09",
+      "seed": 1973599212,
+      "fixed": 10,
+      "oracleNodes": 7,
+      "unique": true,
+      "logicSteps": 6,
+      "kinds": [
+        "sandwich",
+        "triple",
+        "balance"
+      ],
+      "trace": [
+        {
+          "i": 5,
+          "v": 1,
+          "kind": "sandwich"
+        },
+        {
+          "i": 9,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 13,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 10,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 2,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 3,
+          "v": 0,
+          "kind": "triple"
+        }
+      ],
+      "solution": [
+        0,
+        1,
+        1,
+        0,
+        0,
+        1,
+        0,
+        1,
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "chapter-01-level-10",
+      "seed": 358102102,
+      "fixed": 10,
+      "oracleNodes": 10,
+      "unique": true,
+      "logicSteps": 6,
+      "kinds": [
+        "balance",
+        "sandwich",
+        "triple"
+      ],
+      "trace": [
+        {
+          "i": 9,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 5,
+          "v": 0,
+          "kind": "sandwich"
+        },
+        {
+          "i": 4,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 0,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 2,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 14,
+          "v": 0,
+          "kind": "balance"
+        }
+      ],
+      "solution": [
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "id": "chapter-01-level-11",
+      "seed": 3667993304,
+      "fixed": 9,
+      "oracleNodes": 8,
+      "unique": true,
+      "logicSteps": 7,
+      "kinds": [
+        "balance",
+        "triple"
+      ],
+      "trace": [
+        {
+          "i": 4,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 5,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 9,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 14,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 13,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 1,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 3,
+          "v": 0,
+          "kind": "balance"
+        }
+      ],
+      "solution": [
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "id": "chapter-01-level-12",
+      "seed": 2363248491,
+      "fixed": 9,
+      "oracleNodes": 13,
+      "unique": true,
+      "logicSteps": 7,
+      "kinds": [
+        "balance",
+        "triple"
+      ],
+      "trace": [
+        {
+          "i": 9,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 8,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 0,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 2,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 12,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 6,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 7,
+          "v": 1,
+          "kind": "balance"
+        }
+      ],
+      "solution": [
+        1,
+        0,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "chapter-02-level-01",
+      "seed": 1211525223,
+      "fixed": 10,
+      "oracleNodes": 7,
+      "unique": true,
+      "logicSteps": 6,
+      "kinds": [
+        "sandwich",
+        "triple"
+      ],
+      "trace": [
+        {
+          "i": 8,
+          "v": 1,
+          "kind": "sandwich"
+        },
+        {
+          "i": 5,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 13,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 10,
+          "v": 0,
+          "kind": "sandwich"
+        },
+        {
+          "i": 11,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 15,
+          "v": 0,
+          "kind": "triple"
+        }
+      ],
+      "solution": [
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        0,
+        0,
+        1,
+        0,
+        1,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "chapter-02-level-02",
+      "seed": 602801400,
+      "fixed": 10,
+      "oracleNodes": 9,
+      "unique": true,
+      "logicSteps": 6,
+      "kinds": [
+        "sandwich",
+        "triple"
+      ],
+      "trace": [
+        {
+          "i": 8,
+          "v": 1,
+          "kind": "sandwich"
+        },
+        {
+          "i": 9,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 1,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 3,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 6,
+          "v": 1,
+          "kind": "sandwich"
+        },
+        {
+          "i": 7,
+          "v": 0,
+          "kind": "triple"
+        }
+      ],
+      "solution": [
+        1,
+        0,
+        0,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "chapter-02-level-03",
+      "seed": 4177037513,
+      "fixed": 9,
+      "oracleNodes": 7,
+      "unique": true,
+      "logicSteps": 7,
+      "kinds": [
+        "balance",
+        "triple"
+      ],
+      "trace": [
+        {
+          "i": 3,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 12,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 5,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 9,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 10,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 11,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 15,
+          "v": 1,
+          "kind": "balance"
+        }
+      ],
+      "solution": [
+        0,
+        0,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "chapter-02-level-04",
+      "seed": 3652822428,
+      "fixed": 9,
+      "oracleNodes": 13,
+      "unique": true,
+      "logicSteps": 7,
+      "kinds": [
+        "balance",
+        "sandwich"
+      ],
+      "trace": [
+        {
+          "i": 4,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 8,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 5,
+          "v": 1,
+          "kind": "sandwich"
+        },
+        {
+          "i": 9,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 10,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 11,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 15,
+          "v": 0,
+          "kind": "balance"
+        }
+      ],
+      "solution": [
+        1,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "chapter-02-level-05",
+      "seed": 1848894126,
+      "fixed": 9,
+      "oracleNodes": 8,
+      "unique": true,
+      "logicSteps": 7,
+      "kinds": [
+        "triple",
+        "sandwich",
+        "balance"
+      ],
+      "trace": [
+        {
+          "i": 3,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 9,
+          "v": 1,
+          "kind": "sandwich"
+        },
+        {
+          "i": 5,
+          "v": 0,
+          "kind": "sandwich"
+        },
+        {
+          "i": 13,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 6,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 7,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 15,
+          "v": 1,
+          "kind": "triple"
+        }
+      ],
+      "solution": [
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        1,
+        1,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "id": "chapter-02-level-06",
+      "seed": 970350120,
+      "fixed": 9,
+      "oracleNodes": 9,
+      "unique": true,
+      "logicSteps": 7,
+      "kinds": [
+        "triple",
+        "balance"
+      ],
+      "trace": [
+        {
+          "i": 0,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 12,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 10,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 11,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 14,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 2,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 3,
+          "v": 1,
+          "kind": "balance"
+        }
+      ],
+      "solution": [
+        0,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "chapter-02-level-07",
+      "seed": 1200181083,
+      "fixed": 8,
+      "oracleNodes": 11,
+      "unique": true,
+      "logicSteps": 8,
+      "kinds": [
+        "sandwich",
+        "balance"
+      ],
+      "trace": [
+        {
+          "i": 8,
+          "v": 1,
+          "kind": "sandwich"
+        },
+        {
+          "i": 0,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 1,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 2,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 5,
+          "v": 1,
+          "kind": "sandwich"
+        },
+        {
+          "i": 7,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 11,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 14,
+          "v": 1,
+          "kind": "balance"
+        }
+      ],
+      "solution": [
+        1,
+        0,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        0,
+        1,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "chapter-02-level-08",
+      "seed": 2709712899,
+      "fixed": 8,
+      "oracleNodes": 10,
+      "unique": true,
+      "logicSteps": 8,
+      "kinds": [
+        "balance",
+        "sandwich",
+        "triple"
+      ],
+      "trace": [
+        {
+          "i": 12,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 5,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 9,
+          "v": 1,
+          "kind": "sandwich"
+        },
+        {
+          "i": 1,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 2,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 10,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 11,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 14,
+          "v": 1,
+          "kind": "balance"
+        }
+      ],
+      "solution": [
+        1,
+        1,
+        0,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        1,
+        1,
+        0,
+        0,
+        0,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "chapter-02-level-09",
+      "seed": 27561748,
+      "fixed": 8,
+      "oracleNodes": 9,
+      "unique": true,
+      "logicSteps": 8,
+      "kinds": [
+        "balance",
+        "sandwich",
+        "triple"
+      ],
+      "trace": [
+        {
+          "i": 8,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 5,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 6,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 9,
+          "v": 1,
+          "kind": "sandwich"
+        },
+        {
+          "i": 1,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 3,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 14,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 15,
+          "v": 0,
+          "kind": "balance"
+        }
+      ],
+      "solution": [
+        1,
+        0,
+        0,
+        1,
+        0,
+        1,
+        1,
+        0,
+        0,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "chapter-02-level-10",
+      "seed": 3757859667,
+      "fixed": 8,
+      "oracleNodes": 8,
+      "unique": true,
+      "logicSteps": 8,
+      "kinds": [
+        "triple",
+        "balance",
+        "sandwich"
+      ],
+      "trace": [
+        {
+          "i": 12,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 6,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 2,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 1,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 14,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 13,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 9,
+          "v": 1,
+          "kind": "sandwich"
+        },
+        {
+          "i": 11,
+          "v": 0,
+          "kind": "triple"
+        }
+      ],
+      "solution": [
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "id": "chapter-02-level-11",
+      "seed": 548331743,
+      "fixed": 7,
+      "oracleNodes": 14,
+      "unique": true,
+      "logicSteps": 9,
+      "kinds": [
+        "sandwich",
+        "balance",
+        "triple"
+      ],
+      "trace": [
+        {
+          "i": 8,
+          "v": 0,
+          "kind": "sandwich"
+        },
+        {
+          "i": 0,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 6,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 9,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 13,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 10,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 2,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 3,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 15,
+          "v": 1,
+          "kind": "triple"
+        }
+      ],
+      "solution": [
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "id": "chapter-02-level-12",
+      "seed": 3686449592,
+      "fixed": 7,
+      "oracleNodes": 14,
+      "unique": true,
+      "logicSteps": 9,
+      "kinds": [
+        "triple",
+        "balance"
+      ],
+      "trace": [
+        {
+          "i": 12,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 9,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 13,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 5,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 1,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 2,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 14,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 6,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 7,
+          "v": 1,
+          "kind": "triple"
+        }
+      ],
+      "solution": [
+        0,
+        0,
+        1,
+        1,
+        1,
+        0,
+        0,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "chapter-03-level-01",
+      "seed": 1888188568,
+      "fixed": 8,
+      "oracleNodes": 9,
+      "unique": true,
+      "logicSteps": 8,
+      "kinds": [
+        "balance",
+        "triple"
+      ],
+      "trace": [
+        {
+          "i": 5,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 9,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 10,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 11,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 12,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 0,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 3,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 15,
+          "v": 1,
+          "kind": "triple"
+        }
+      ],
+      "solution": [
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        0,
+        1,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "id": "chapter-03-level-02",
+      "seed": 1982880400,
+      "fixed": 8,
+      "oracleNodes": 10,
+      "unique": true,
+      "logicSteps": 8,
+      "kinds": [
+        "balance",
+        "triple"
+      ],
+      "trace": [
+        {
+          "i": 13,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 8,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 4,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 0,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 3,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 6,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 14,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 15,
+          "v": 0,
+          "kind": "balance"
+        }
+      ],
+      "solution": [
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        1,
+        0,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "chapter-03-level-03",
+      "seed": 2491072252,
+      "fixed": 7,
+      "oracleNodes": 7,
+      "unique": true,
+      "logicSteps": 9,
+      "kinds": [
+        "balance",
+        "sandwich",
+        "triple"
+      ],
+      "trace": [
+        {
+          "i": 3,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 4,
+          "v": 1,
+          "kind": "sandwich"
+        },
+        {
+          "i": 12,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 5,
+          "v": 0,
+          "kind": "sandwich"
+        },
+        {
+          "i": 7,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 9,
+          "v": 1,
+          "kind": "sandwich"
+        },
+        {
+          "i": 10,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 14,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 15,
+          "v": 1,
+          "kind": "triple"
+        }
+      ],
+      "solution": [
+        0,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "id": "chapter-03-level-04",
+      "seed": 3931421293,
+      "fixed": 7,
+      "oracleNodes": 5,
+      "unique": true,
+      "logicSteps": 9,
+      "kinds": [
+        "triple",
+        "balance"
+      ],
+      "trace": [
+        {
+          "i": 2,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 3,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 6,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 13,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 8,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 12,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 11,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 14,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 15,
+          "v": 0,
+          "kind": "triple"
+        }
+      ],
+      "solution": [
+        0,
+        0,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        1,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "chapter-03-level-05",
+      "seed": 1425672525,
+      "fixed": 7,
+      "oracleNodes": 14,
+      "unique": true,
+      "logicSteps": 9,
+      "kinds": [
+        "triple",
+        "balance",
+        "sandwich"
+      ],
+      "trace": [
+        {
+          "i": 6,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 7,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 2,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 1,
+          "v": 1,
+          "kind": "sandwich"
+        },
+        {
+          "i": 3,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 9,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 12,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 8,
+          "v": 0,
+          "kind": "sandwich"
+        },
+        {
+          "i": 11,
+          "v": 1,
+          "kind": "balance"
+        }
+      ],
+      "solution": [
+        0,
+        1,
+        0,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        0,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "chapter-03-level-06",
+      "seed": 1393980490,
+      "fixed": 7,
+      "oracleNodes": 6,
+      "unique": true,
+      "logicSteps": 9,
+      "kinds": [
+        "sandwich",
+        "balance",
+        "triple"
+      ],
+      "trace": [
+        {
+          "i": 2,
+          "v": 1,
+          "kind": "sandwich"
+        },
+        {
+          "i": 0,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 8,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 6,
+          "v": 0,
+          "kind": "sandwich"
+        },
+        {
+          "i": 5,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 13,
+          "v": 1,
+          "kind": "sandwich"
+        },
+        {
+          "i": 9,
+          "v": 0,
+          "kind": "sandwich"
+        },
+        {
+          "i": 11,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 15,
+          "v": 1,
+          "kind": "balance"
+        }
+      ],
+      "solution": [
+        1,
+        0,
+        1,
+        0,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        1
+      ]
+    },
+    {
+      "id": "chapter-03-level-07",
+      "seed": 1872199368,
+      "fixed": 6,
+      "oracleNodes": 11,
+      "unique": true,
+      "logicSteps": 10,
+      "kinds": [
+        "balance",
+        "triple",
+        "sandwich"
+      ],
+      "trace": [
+        {
+          "i": 1,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 2,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 5,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 10,
+          "v": 0,
+          "kind": "sandwich"
+        },
+        {
+          "i": 8,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 4,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 6,
+          "v": 1,
+          "kind": "sandwich"
+        },
+        {
+          "i": 7,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 14,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 15,
+          "v": 0,
+          "kind": "triple"
+        }
+      ],
+      "solution": [
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "chapter-03-level-08",
+      "seed": 2075860624,
+      "fixed": 6,
+      "oracleNodes": 12,
+      "unique": true,
+      "logicSteps": 10,
+      "kinds": [
+        "triple",
+        "balance",
+        "sandwich"
+      ],
+      "trace": [
+        {
+          "i": 9,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 13,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 10,
+          "v": 1,
+          "kind": "sandwich"
+        },
+        {
+          "i": 8,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 14,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 6,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 2,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 0,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 4,
+          "v": 0,
+          "kind": "sandwich"
+        },
+        {
+          "i": 7,
+          "v": 1,
+          "kind": "balance"
+        }
+      ],
+      "solution": [
+        1,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "chapter-03-level-09",
+      "seed": 2942211197,
+      "fixed": 6,
+      "oracleNodes": 31,
+      "unique": true,
+      "logicSteps": 10,
+      "kinds": [
+        "sandwich",
+        "triple",
+        "balance"
+      ],
+      "trace": [
+        {
+          "i": 9,
+          "v": 0,
+          "kind": "sandwich"
+        },
+        {
+          "i": 1,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 11,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 14,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 6,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 4,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 0,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 7,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 2,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 3,
+          "v": 1,
+          "kind": "balance"
+        }
+      ],
+      "solution": [
+        0,
+        1,
+        0,
+        1,
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        0,
+        1,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "chapter-03-level-10",
+      "seed": 1444294968,
+      "fixed": 6,
+      "oracleNodes": 13,
+      "unique": true,
+      "logicSteps": 10,
+      "kinds": [
+        "sandwich",
+        "balance",
+        "triple"
+      ],
+      "trace": [
+        {
+          "i": 4,
+          "v": 0,
+          "kind": "sandwich"
+        },
+        {
+          "i": 12,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 5,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 6,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 13,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 10,
+          "v": 0,
+          "kind": "sandwich"
+        },
+        {
+          "i": 11,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 2,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 3,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 15,
+          "v": 0,
+          "kind": "triple"
+        }
+      ],
+      "solution": [
+        1,
+        0,
+        0,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        1,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "chapter-03-level-11",
+      "seed": 914368754,
+      "fixed": 5,
+      "oracleNodes": 26,
+      "unique": true,
+      "logicSteps": 11,
+      "kinds": [
+        "balance",
+        "sandwich",
+        "triple"
+      ],
+      "trace": [
+        {
+          "i": 5,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 4,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 8,
+          "v": 1,
+          "kind": "sandwich"
+        },
+        {
+          "i": 0,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 9,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 10,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 11,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 2,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 3,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 14,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 15,
+          "v": 1,
+          "kind": "balance"
+        }
+      ],
+      "solution": [
+        1,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "chapter-03-level-12",
+      "seed": 3294597576,
+      "fixed": 5,
+      "oracleNodes": 7,
+      "unique": true,
+      "logicSteps": 11,
+      "kinds": [
+        "triple",
+        "balance",
+        "sandwich"
+      ],
+      "trace": [
+        {
+          "i": 2,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 3,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 12,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 9,
+          "v": 0,
+          "kind": "sandwich"
+        },
+        {
+          "i": 5,
+          "v": 1,
+          "kind": "sandwich"
+        },
+        {
+          "i": 13,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 11,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 6,
+          "v": 0,
+          "kind": "sandwich"
+        },
+        {
+          "i": 7,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 14,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 15,
+          "v": 0,
+          "kind": "balance"
+        }
+      ],
+      "solution": [
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        1,
+        1,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "chapter-04-level-01",
+      "seed": 2348172214,
+      "fixed": 19,
+      "oracleNodes": 21,
+      "unique": true,
+      "logicSteps": 17,
+      "kinds": [
+        "triple",
+        "sandwich",
+        "balance"
+      ],
+      "trace": [
+        {
+          "i": 13,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 7,
+          "v": 0,
+          "kind": "sandwich"
+        },
+        {
+          "i": 9,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 11,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 31,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 12,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 2,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 22,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 24,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 29,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 34,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 30,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 33,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 3,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 0,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 18,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 23,
+          "v": 1,
+          "kind": "balance"
+        }
+      ],
+      "solution": [
+        1,
+        1,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        1,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        1
+      ]
+    },
+    {
+      "id": "chapter-04-level-02",
+      "seed": 2827210943,
+      "fixed": 19,
+      "oracleNodes": 12,
+      "unique": true,
+      "logicSteps": 17,
+      "kinds": [
+        "sandwich",
+        "triple",
+        "balance"
+      ],
+      "trace": [
+        {
+          "i": 2,
+          "v": 0,
+          "kind": "sandwich"
+        },
+        {
+          "i": 18,
+          "v": 0,
+          "kind": "sandwich"
+        },
+        {
+          "i": 6,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 9,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 10,
+          "v": 1,
+          "kind": "sandwich"
+        },
+        {
+          "i": 13,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 15,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 22,
+          "v": 0,
+          "kind": "sandwich"
+        },
+        {
+          "i": 27,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 33,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 28,
+          "v": 1,
+          "kind": "sandwich"
+        },
+        {
+          "i": 35,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 30,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 0,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 4,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 16,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 17,
+          "v": 1,
+          "kind": "balance"
+        }
+      ],
+      "solution": [
+        0,
+        1,
+        0,
+        1,
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "id": "chapter-04-level-03",
+      "seed": 2620273979,
+      "fixed": 18,
+      "oracleNodes": 60,
+      "unique": true,
+      "logicSteps": 18,
+      "kinds": [
+        "triple",
+        "balance",
+        "sandwich"
+      ],
+      "trace": [
+        {
+          "i": 3,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 25,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 1,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 2,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 9,
+          "v": 0,
+          "kind": "sandwich"
+        },
+        {
+          "i": 21,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 28,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 10,
+          "v": 1,
+          "kind": "sandwich"
+        },
+        {
+          "i": 34,
+          "v": 1,
+          "kind": "sandwich"
+        },
+        {
+          "i": 22,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 18,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 20,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 8,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 30,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 6,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 12,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 11,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 17,
+          "v": 1,
+          "kind": "balance"
+        }
+      ],
+      "solution": [
+        1,
+        1,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        1,
+        1,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "chapter-04-level-04",
+      "seed": 1383547139,
+      "fixed": 18,
+      "oracleNodes": 40,
+      "unique": true,
+      "logicSteps": 18,
+      "kinds": [
+        "triple",
+        "sandwich",
+        "balance"
+      ],
+      "trace": [
+        {
+          "i": 9,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 11,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 13,
+          "v": 1,
+          "kind": "sandwich"
+        },
+        {
+          "i": 21,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 20,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 28,
+          "v": 1,
+          "kind": "sandwich"
+        },
+        {
+          "i": 4,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 16,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 14,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 26,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 2,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 1,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 25,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 31,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 24,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 30,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 0,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 5,
+          "v": 1,
+          "kind": "balance"
+        }
+      ],
+      "solution": [
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        0,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "chapter-04-level-05",
+      "seed": 3347598059,
+      "fixed": 18,
+      "oracleNodes": 18,
+      "unique": true,
+      "logicSteps": 18,
+      "kinds": [
+        "triple",
+        "balance",
+        "sandwich"
+      ],
+      "trace": [
+        {
+          "i": 8,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 10,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 11,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 1,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 14,
+          "v": 1,
+          "kind": "sandwich"
+        },
+        {
+          "i": 18,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 21,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 23,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 3,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 4,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 0,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 12,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 24,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 30,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 16,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 17,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 28,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 35,
+          "v": 1,
+          "kind": "balance"
+        }
+      ],
+      "solution": [
+        1,
+        0,
+        1,
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        1,
+        0,
+        0,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "chapter-04-level-06",
+      "seed": 678153880,
+      "fixed": 18,
+      "oracleNodes": 58,
+      "unique": true,
+      "logicSteps": 18,
+      "kinds": [
+        "triple",
+        "balance",
+        "sandwich"
+      ],
+      "trace": [
+        {
+          "i": 25,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 15,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 12,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 0,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 14,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 8,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 11,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 26,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 21,
+          "v": 0,
+          "kind": "sandwich"
+        },
+        {
+          "i": 3,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 4,
+          "v": 1,
+          "kind": "sandwich"
+        },
+        {
+          "i": 1,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 2,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 31,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 32,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 28,
+          "v": 0,
+          "kind": "sandwich"
+        },
+        {
+          "i": 22,
+          "v": 1,
+          "kind": "sandwich"
+        },
+        {
+          "i": 23,
+          "v": 0,
+          "kind": "balance"
+        }
+      ],
+      "solution": [
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        0,
+        1,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        1,
+        0,
+        0,
+        1,
+        0,
+        1
+      ]
+    },
+    {
+      "id": "chapter-04-level-07",
+      "seed": 3833580143,
+      "fixed": 17,
+      "oracleNodes": 23,
+      "unique": true,
+      "logicSteps": 19,
+      "kinds": [
+        "triple",
+        "balance",
+        "sandwich"
+      ],
+      "trace": [
+        {
+          "i": 3,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 18,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 30,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 13,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 25,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 20,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 4,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 5,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 22,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 23,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 28,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 27,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 15,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 33,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 9,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 8,
+          "v": 1,
+          "kind": "sandwich"
+        },
+        {
+          "i": 11,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 14,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 17,
+          "v": 1,
+          "kind": "balance"
+        }
+      ],
+      "solution": [
+        1,
+        0,
+        0,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "chapter-04-level-08",
+      "seed": 2668367471,
+      "fixed": 17,
+      "oracleNodes": 11,
+      "unique": true,
+      "logicSteps": 19,
+      "kinds": [
+        "triple",
+        "balance",
+        "sandwich"
+      ],
+      "trace": [
+        {
+          "i": 9,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 11,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 12,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 24,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 2,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 3,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 4,
+          "v": 0,
+          "kind": "sandwich"
+        },
+        {
+          "i": 20,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 32,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 21,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 23,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 25,
+          "v": 0,
+          "kind": "sandwich"
+        },
+        {
+          "i": 31,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 27,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 33,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 16,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 17,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 34,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 35,
+          "v": 0,
+          "kind": "triple"
+        }
+      ],
+      "solution": [
+        1,
+        0,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        1,
+        0,
+        0,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "chapter-04-level-09",
+      "seed": 433992214,
+      "fixed": 17,
+      "oracleNodes": 13,
+      "unique": true,
+      "logicSteps": 19,
+      "kinds": [
+        "triple",
+        "balance",
+        "sandwich"
+      ],
+      "trace": [
+        {
+          "i": 1,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 5,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 18,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 14,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 16,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 17,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 21,
+          "v": 1,
+          "kind": "sandwich"
+        },
+        {
+          "i": 19,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 7,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 25,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 31,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 27,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 33,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 28,
+          "v": 1,
+          "kind": "sandwich"
+        },
+        {
+          "i": 10,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 11,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 8,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 32,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 35,
+          "v": 1,
+          "kind": "balance"
+        }
+      ],
+      "solution": [
+        1,
+        1,
+        0,
+        0,
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        1
+      ]
+    },
+    {
+      "id": "chapter-04-level-10",
+      "seed": 3422771790,
+      "fixed": 17,
+      "oracleNodes": 18,
+      "unique": true,
+      "logicSteps": 19,
+      "kinds": [
+        "sandwich",
+        "triple",
+        "balance"
+      ],
+      "trace": [
+        {
+          "i": 8,
+          "v": 0,
+          "kind": "sandwich"
+        },
+        {
+          "i": 16,
+          "v": 0,
+          "kind": "sandwich"
+        },
+        {
+          "i": 14,
+          "v": 1,
+          "kind": "sandwich"
+        },
+        {
+          "i": 13,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 12,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 3,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 2,
+          "v": 1,
+          "kind": "sandwich"
+        },
+        {
+          "i": 21,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 19,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 31,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 33,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 26,
+          "v": 0,
+          "kind": "sandwich"
+        },
+        {
+          "i": 32,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 24,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 18,
+          "v": 1,
+          "kind": "sandwich"
+        },
+        {
+          "i": 23,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 30,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 6,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 11,
+          "v": 1,
+          "kind": "balance"
+        }
+      ],
+      "solution": [
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        1,
+        0,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "chapter-04-level-11",
+      "seed": 1601035707,
+      "fixed": 16,
+      "oracleNodes": 8,
+      "unique": true,
+      "logicSteps": 20,
+      "kinds": [
+        "sandwich",
+        "triple",
+        "balance"
+      ],
+      "trace": [
+        {
+          "i": 6,
+          "v": 1,
+          "kind": "sandwich"
+        },
+        {
+          "i": 18,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 9,
+          "v": 0,
+          "kind": "sandwich"
+        },
+        {
+          "i": 11,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 1,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 2,
+          "v": 0,
+          "kind": "sandwich"
+        },
+        {
+          "i": 4,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 31,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 14,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 20,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 15,
+          "v": 1,
+          "kind": "sandwich"
+        },
+        {
+          "i": 16,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 17,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 26,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 32,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 28,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 27,
+          "v": 1,
+          "kind": "sandwich"
+        },
+        {
+          "i": 33,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 29,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 35,
+          "v": 1,
+          "kind": "triple"
+        }
+      ],
+      "solution": [
+        0,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "id": "chapter-04-level-12",
+      "seed": 1530142176,
+      "fixed": 16,
+      "oracleNodes": 22,
+      "unique": true,
+      "logicSteps": 20,
+      "kinds": [
+        "sandwich",
+        "triple",
+        "balance"
+      ],
+      "trace": [
+        {
+          "i": 4,
+          "v": 0,
+          "kind": "sandwich"
+        },
+        {
+          "i": 10,
+          "v": 0,
+          "kind": "sandwich"
+        },
+        {
+          "i": 19,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 13,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 7,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 16,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 21,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 20,
+          "v": 1,
+          "kind": "sandwich"
+        },
+        {
+          "i": 26,
+          "v": 0,
+          "kind": "sandwich"
+        },
+        {
+          "i": 28,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 29,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 34,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 30,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 35,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 17,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 12,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 6,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 0,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 2,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 8,
+          "v": 1,
+          "kind": "triple"
+        }
+      ],
+      "solution": [
+        1,
+        0,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        1,
+        0,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "chapter-05-level-01",
+      "seed": 2826406748,
+      "fixed": 15,
+      "oracleNodes": 15,
+      "unique": true,
+      "logicSteps": 21,
+      "kinds": [
+        "balance",
+        "triple",
+        "sandwich"
+      ],
+      "trace": [
+        {
+          "i": 6,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 0,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 18,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 24,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 8,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 17,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 13,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 19,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 25,
+          "v": 1,
+          "kind": "sandwich"
+        },
+        {
+          "i": 3,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 2,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 5,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 21,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 33,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 26,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 20,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 32,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 22,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 28,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 29,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 34,
+          "v": 0,
+          "kind": "balance"
+        }
+      ],
+      "solution": [
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        1
+      ]
+    },
+    {
+      "id": "chapter-05-level-02",
+      "seed": 3326187601,
+      "fixed": 15,
+      "oracleNodes": 10,
+      "unique": true,
+      "logicSteps": 21,
+      "kinds": [
+        "triple",
+        "sandwich",
+        "balance"
+      ],
+      "trace": [
+        {
+          "i": 0,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 3,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 4,
+          "v": 1,
+          "kind": "sandwich"
+        },
+        {
+          "i": 18,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 9,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 11,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 13,
+          "v": 1,
+          "kind": "sandwich"
+        },
+        {
+          "i": 14,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 16,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 17,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 20,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 26,
+          "v": 0,
+          "kind": "sandwich"
+        },
+        {
+          "i": 21,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 22,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 23,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 33,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 25,
+          "v": 1,
+          "kind": "sandwich"
+        },
+        {
+          "i": 31,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 29,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 34,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 35,
+          "v": 1,
+          "kind": "triple"
+        }
+      ],
+      "solution": [
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        1,
+        1,
+        1,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "id": "chapter-05-level-03",
+      "seed": 2856428596,
+      "fixed": 14,
+      "oracleNodes": 21,
+      "unique": true,
+      "logicSteps": 22,
+      "kinds": [
+        "triple",
+        "balance",
+        "sandwich"
+      ],
+      "trace": [
+        {
+          "i": 12,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 30,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 2,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 1,
+          "v": 0,
+          "kind": "sandwich"
+        },
+        {
+          "i": 3,
+          "v": 0,
+          "kind": "sandwich"
+        },
+        {
+          "i": 5,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 20,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 23,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 19,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 7,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 25,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 31,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 10,
+          "v": 0,
+          "kind": "sandwich"
+        },
+        {
+          "i": 11,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 28,
+          "v": 1,
+          "kind": "sandwich"
+        },
+        {
+          "i": 26,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 32,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 29,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 33,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 15,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 17,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 35,
+          "v": 1,
+          "kind": "triple"
+        }
+      ],
+      "solution": [
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "id": "chapter-05-level-04",
+      "seed": 300095910,
+      "fixed": 14,
+      "oracleNodes": 46,
+      "unique": true,
+      "logicSteps": 22,
+      "kinds": [
+        "sandwich",
+        "triple",
+        "balance"
+      ],
+      "trace": [
+        {
+          "i": 4,
+          "v": 1,
+          "kind": "sandwich"
+        },
+        {
+          "i": 20,
+          "v": 1,
+          "kind": "sandwich"
+        },
+        {
+          "i": 8,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 9,
+          "v": 1,
+          "kind": "sandwich"
+        },
+        {
+          "i": 26,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 18,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 27,
+          "v": 1,
+          "kind": "sandwich"
+        },
+        {
+          "i": 15,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 13,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 7,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 11,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 31,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 16,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 24,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 34,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 32,
+          "v": 1,
+          "kind": "sandwich"
+        },
+        {
+          "i": 2,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 0,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 12,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 30,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 17,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 35,
+          "v": 1,
+          "kind": "balance"
+        }
+      ],
+      "solution": [
+        1,
+        1,
+        0,
+        0,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        1,
+        1,
+        1,
+        1,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "chapter-05-level-05",
+      "seed": 4071495503,
+      "fixed": 14,
+      "oracleNodes": 46,
+      "unique": true,
+      "logicSteps": 22,
+      "kinds": [
+        "triple",
+        "sandwich",
+        "balance"
+      ],
+      "trace": [
+        {
+          "i": 2,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 13,
+          "v": 1,
+          "kind": "sandwich"
+        },
+        {
+          "i": 7,
+          "v": 0,
+          "kind": "sandwich"
+        },
+        {
+          "i": 19,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 25,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 15,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 20,
+          "v": 1,
+          "kind": "sandwich"
+        },
+        {
+          "i": 32,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 22,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 24,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 30,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 6,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 9,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 11,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 27,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 33,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 3,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 4,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 5,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 34,
+          "v": 1,
+          "kind": "sandwich"
+        },
+        {
+          "i": 28,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 29,
+          "v": 1,
+          "kind": "balance"
+        }
+      ],
+      "solution": [
+        1,
+        1,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        1,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "chapter-05-level-06",
+      "seed": 3044032285,
+      "fixed": 14,
+      "oracleNodes": 51,
+      "unique": true,
+      "logicSteps": 22,
+      "kinds": [
+        "triple",
+        "balance",
+        "sandwich"
+      ],
+      "trace": [
+        {
+          "i": 9,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 6,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 12,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 18,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 8,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 19,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 13,
+          "v": 0,
+          "kind": "sandwich"
+        },
+        {
+          "i": 1,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 20,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 14,
+          "v": 1,
+          "kind": "sandwich"
+        },
+        {
+          "i": 23,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 15,
+          "v": 1,
+          "kind": "sandwich"
+        },
+        {
+          "i": 17,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 26,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 2,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 27,
+          "v": 0,
+          "kind": "sandwich"
+        },
+        {
+          "i": 33,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 3,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 4,
+          "v": 0,
+          "kind": "sandwich"
+        },
+        {
+          "i": 29,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 34,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 35,
+          "v": 0,
+          "kind": "balance"
+        }
+      ],
+      "solution": [
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        1,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        1,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "chapter-05-level-07",
+      "seed": 2111446601,
+      "fixed": 13,
+      "oracleNodes": 72,
+      "unique": true,
+      "logicSteps": 23,
+      "kinds": [
+        "triple",
+        "sandwich",
+        "balance"
+      ],
+      "trace": [
+        {
+          "i": 24,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 14,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 13,
+          "v": 1,
+          "kind": "sandwich"
+        },
+        {
+          "i": 7,
+          "v": 0,
+          "kind": "sandwich"
+        },
+        {
+          "i": 17,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 20,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 8,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 10,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 11,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 2,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 19,
+          "v": 1,
+          "kind": "sandwich"
+        },
+        {
+          "i": 31,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 3,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 4,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 21,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 22,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 23,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 27,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 29,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 5,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 0,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 30,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 35,
+          "v": 0,
+          "kind": "balance"
+        }
+      ],
+      "solution": [
+        0,
+        1,
+        0,
+        0,
+        1,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        1,
+        1,
+        0,
+        0,
+        1,
+        0,
+        0,
+        1,
+        1,
+        1,
+        0,
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "chapter-05-level-08",
+      "seed": 1833137977,
+      "fixed": 13,
+      "oracleNodes": 131,
+      "unique": true,
+      "logicSteps": 23,
+      "kinds": [
+        "sandwich",
+        "balance",
+        "triple"
+      ],
+      "trace": [
+        {
+          "i": 25,
+          "v": 0,
+          "kind": "sandwich"
+        },
+        {
+          "i": 14,
+          "v": 1,
+          "kind": "sandwich"
+        },
+        {
+          "i": 16,
+          "v": 1,
+          "kind": "sandwich"
+        },
+        {
+          "i": 12,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 24,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 0,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 20,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 26,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 8,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 7,
+          "v": 1,
+          "kind": "sandwich"
+        },
+        {
+          "i": 1,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 3,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 27,
+          "v": 0,
+          "kind": "sandwich"
+        },
+        {
+          "i": 21,
+          "v": 1,
+          "kind": "sandwich"
+        },
+        {
+          "i": 22,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 23,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 29,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 33,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 9,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 10,
+          "v": 0,
+          "kind": "sandwich"
+        },
+        {
+          "i": 4,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 5,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 35,
+          "v": 1,
+          "kind": "triple"
+        }
+      ],
+      "solution": [
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "id": "chapter-05-level-09",
+      "seed": 995367486,
+      "fixed": 13,
+      "oracleNodes": 75,
+      "unique": true,
+      "logicSteps": 23,
+      "kinds": [
+        "sandwich",
+        "balance",
+        "triple"
+      ],
+      "trace": [
+        {
+          "i": 7,
+          "v": 0,
+          "kind": "sandwich"
+        },
+        {
+          "i": 11,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 20,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 32,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 24,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 18,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 12,
+          "v": 0,
+          "kind": "sandwich"
+        },
+        {
+          "i": 0,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 27,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 16,
+          "v": 0,
+          "kind": "sandwich"
+        },
+        {
+          "i": 4,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 3,
+          "v": 1,
+          "kind": "sandwich"
+        },
+        {
+          "i": 31,
+          "v": 1,
+          "kind": "sandwich"
+        },
+        {
+          "i": 19,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 13,
+          "v": 1,
+          "kind": "sandwich"
+        },
+        {
+          "i": 1,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 5,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 15,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 17,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 21,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 23,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 33,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 35,
+          "v": 0,
+          "kind": "triple"
+        }
+      ],
+      "solution": [
+        1,
+        0,
+        0,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "chapter-05-level-10",
+      "seed": 4222521181,
+      "fixed": 13,
+      "oracleNodes": 23,
+      "unique": true,
+      "logicSteps": 23,
+      "kinds": [
+        "triple",
+        "balance",
+        "sandwich"
+      ],
+      "trace": [
+        {
+          "i": 15,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 12,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 6,
+          "v": 1,
+          "kind": "sandwich"
+        },
+        {
+          "i": 18,
+          "v": 1,
+          "kind": "sandwich"
+        },
+        {
+          "i": 30,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 7,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 8,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 14,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 20,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 26,
+          "v": 0,
+          "kind": "sandwich"
+        },
+        {
+          "i": 19,
+          "v": 0,
+          "kind": "sandwich"
+        },
+        {
+          "i": 25,
+          "v": 1,
+          "kind": "sandwich"
+        },
+        {
+          "i": 29,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 22,
+          "v": 0,
+          "kind": "sandwich"
+        },
+        {
+          "i": 21,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 33,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 3,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 31,
+          "v": 0,
+          "kind": "sandwich"
+        },
+        {
+          "i": 1,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 5,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 4,
+          "v": 1,
+          "kind": "sandwich"
+        },
+        {
+          "i": 34,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 35,
+          "v": 1,
+          "kind": "triple"
+        }
+      ],
+      "solution": [
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        1,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "id": "chapter-05-level-11",
+      "seed": 2769967982,
+      "fixed": 12,
+      "oracleNodes": 32,
+      "unique": true,
+      "logicSteps": 24,
+      "kinds": [
+        "triple",
+        "sandwich",
+        "balance"
+      ],
+      "trace": [
+        {
+          "i": 9,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 26,
+          "v": 0,
+          "kind": "sandwich"
+        },
+        {
+          "i": 8,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 7,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 6,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 14,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 13,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 1,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 19,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 25,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 16,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 3,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 4,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 0,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 21,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 22,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 18,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 12,
+          "v": 1,
+          "kind": "sandwich"
+        },
+        {
+          "i": 24,
+          "v": 1,
+          "kind": "sandwich"
+        },
+        {
+          "i": 17,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 33,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 29,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 34,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 35,
+          "v": 0,
+          "kind": "balance"
+        }
+      ],
+      "solution": [
+        1,
+        0,
+        1,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "chapter-05-level-12",
+      "seed": 3588534469,
+      "fixed": 12,
+      "oracleNodes": 18,
+      "unique": true,
+      "logicSteps": 24,
+      "kinds": [
+        "sandwich",
+        "triple",
+        "balance"
+      ],
+      "trace": [
+        {
+          "i": 1,
+          "v": 0,
+          "kind": "sandwich"
+        },
+        {
+          "i": 3,
+          "v": 0,
+          "kind": "sandwich"
+        },
+        {
+          "i": 12,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 8,
+          "v": 0,
+          "kind": "sandwich"
+        },
+        {
+          "i": 9,
+          "v": 1,
+          "kind": "sandwich"
+        },
+        {
+          "i": 20,
+          "v": 1,
+          "kind": "sandwich"
+        },
+        {
+          "i": 26,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 32,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 22,
+          "v": 1,
+          "kind": "sandwich"
+        },
+        {
+          "i": 18,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 24,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 30,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 25,
+          "v": 1,
+          "kind": "sandwich"
+        },
+        {
+          "i": 27,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 15,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 13,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 7,
+          "v": 1,
+          "kind": "sandwich"
+        },
+        {
+          "i": 11,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 31,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 16,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 17,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 33,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 34,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 35,
+          "v": 1,
+          "kind": "balance"
+        }
+      ],
+      "solution": [
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1
+      ]
+    },
+    {
+      "id": "chapter-06-level-01",
+      "seed": 255151284,
+      "fixed": 13,
+      "oracleNodes": 20,
+      "unique": true,
+      "logicSteps": 23,
+      "kinds": [
+        "triple",
+        "balance",
+        "sandwich"
+      ],
+      "trace": [
+        {
+          "i": 3,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 8,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 6,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 11,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 14,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 17,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 26,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 32,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 18,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 24,
+          "v": 0,
+          "kind": "sandwich"
+        },
+        {
+          "i": 12,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 13,
+          "v": 1,
+          "kind": "sandwich"
+        },
+        {
+          "i": 21,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 22,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 27,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 33,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 28,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 29,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 25,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 31,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 34,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 4,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 5,
+          "v": 0,
+          "kind": "triple"
+        }
+      ],
+      "solution": [
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "id": "chapter-06-level-02",
+      "seed": 1889595768,
+      "fixed": 13,
+      "oracleNodes": 37,
+      "unique": true,
+      "logicSteps": 23,
+      "kinds": [
+        "triple",
+        "balance",
+        "sandwich"
+      ],
+      "trace": [
+        {
+          "i": 6,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 9,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 19,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 13,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 14,
+          "v": 1,
+          "kind": "sandwich"
+        },
+        {
+          "i": 2,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 0,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 3,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 5,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 20,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 32,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 21,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 23,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 33,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 29,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 24,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 30,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 12,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 16,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 10,
+          "v": 1,
+          "kind": "sandwich"
+        },
+        {
+          "i": 11,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 34,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 35,
+          "v": 0,
+          "kind": "balance"
+        }
+      ],
+      "solution": [
+        1,
+        0,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "chapter-06-level-03",
+      "seed": 144231923,
+      "fixed": 12,
+      "oracleNodes": 17,
+      "unique": true,
+      "logicSteps": 24,
+      "kinds": [
+        "triple",
+        "balance",
+        "sandwich"
+      ],
+      "trace": [
+        {
+          "i": 1,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 4,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 0,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 5,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 24,
+          "v": 0,
+          "kind": "sandwich"
+        },
+        {
+          "i": 13,
+          "v": 1,
+          "kind": "sandwich"
+        },
+        {
+          "i": 7,
+          "v": 0,
+          "kind": "sandwich"
+        },
+        {
+          "i": 8,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 9,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 11,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 15,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 16,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 21,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 20,
+          "v": 1,
+          "kind": "sandwich"
+        },
+        {
+          "i": 23,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 27,
+          "v": 1,
+          "kind": "sandwich"
+        },
+        {
+          "i": 28,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 34,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 32,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 26,
+          "v": 0,
+          "kind": "sandwich"
+        },
+        {
+          "i": 25,
+          "v": 1,
+          "kind": "sandwich"
+        },
+        {
+          "i": 31,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 29,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 35,
+          "v": 1,
+          "kind": "triple"
+        }
+      ],
+      "solution": [
+        1,
+        1,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "id": "chapter-06-level-04",
+      "seed": 3647497295,
+      "fixed": 12,
+      "oracleNodes": 18,
+      "unique": true,
+      "logicSteps": 24,
+      "kinds": [
+        "triple",
+        "balance",
+        "sandwich"
+      ],
+      "trace": [
+        {
+          "i": 0,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 3,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 5,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 12,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 13,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 19,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 31,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 14,
+          "v": 0,
+          "kind": "sandwich"
+        },
+        {
+          "i": 17,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 8,
+          "v": 1,
+          "kind": "sandwich"
+        },
+        {
+          "i": 20,
+          "v": 1,
+          "kind": "sandwich"
+        },
+        {
+          "i": 32,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 18,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 24,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 30,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 21,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 22,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 9,
+          "v": 0,
+          "kind": "sandwich"
+        },
+        {
+          "i": 27,
+          "v": 1,
+          "kind": "sandwich"
+        },
+        {
+          "i": 28,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 10,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 11,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 34,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 35,
+          "v": 1,
+          "kind": "triple"
+        }
+      ],
+      "solution": [
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "id": "chapter-06-level-05",
+      "seed": 196279029,
+      "fixed": 12,
+      "oracleNodes": 68,
+      "unique": true,
+      "logicSteps": 24,
+      "kinds": [
+        "triple",
+        "balance",
+        "sandwich"
+      ],
+      "trace": [
+        {
+          "i": 24,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 13,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 16,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 17,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 26,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 2,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 3,
+          "v": 1,
+          "kind": "sandwich"
+        },
+        {
+          "i": 19,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 7,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 25,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 1,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 0,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 5,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 30,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 22,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 23,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 9,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 10,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 11,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 33,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 28,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 29,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 34,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 35,
+          "v": 0,
+          "kind": "balance"
+        }
+      ],
+      "solution": [
+        1,
+        0,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        1,
+        0,
+        0,
+        1,
+        0,
+        1,
+        1,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "chapter-06-level-06",
+      "seed": 2790461804,
+      "fixed": 12,
+      "oracleNodes": 29,
+      "unique": true,
+      "logicSteps": 24,
+      "kinds": [
+        "sandwich",
+        "triple",
+        "balance"
+      ],
+      "trace": [
+        {
+          "i": 8,
+          "v": 0,
+          "kind": "sandwich"
+        },
+        {
+          "i": 13,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 1,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 31,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 2,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 3,
+          "v": 0,
+          "kind": "sandwich"
+        },
+        {
+          "i": 5,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 20,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 26,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 32,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 24,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 29,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 22,
+          "v": 0,
+          "kind": "sandwich"
+        },
+        {
+          "i": 23,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 18,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 12,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 30,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 6,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 11,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 34,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 33,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 15,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 17,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 35,
+          "v": 1,
+          "kind": "triple"
+        }
+      ],
+      "solution": [
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "id": "chapter-06-level-07",
+      "seed": 3520793646,
+      "fixed": 11,
+      "oracleNodes": 66,
+      "unique": true,
+      "logicSteps": 25,
+      "kinds": [
+        "sandwich",
+        "balance",
+        "triple"
+      ],
+      "trace": [
+        {
+          "i": 15,
+          "v": 1,
+          "kind": "sandwich"
+        },
+        {
+          "i": 12,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 13,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 1,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 19,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 21,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 28,
+          "v": 1,
+          "kind": "sandwich"
+        },
+        {
+          "i": 25,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 31,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 26,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 32,
+          "v": 1,
+          "kind": "sandwich"
+        },
+        {
+          "i": 20,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 8,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 6,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 11,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 2,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 0,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 18,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 30,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 34,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 22,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 23,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 4,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 5,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 35,
+          "v": 1,
+          "kind": "balance"
+        }
+      ],
+      "solution": [
+        1,
+        0,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "chapter-06-level-08",
+      "seed": 97979453,
+      "fixed": 11,
+      "oracleNodes": 32,
+      "unique": true,
+      "logicSteps": 25,
+      "kinds": [
+        "triple",
+        "sandwich",
+        "balance"
+      ],
+      "trace": [
+        {
+          "i": 8,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 7,
+          "v": 0,
+          "kind": "sandwich"
+        },
+        {
+          "i": 11,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 13,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 19,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 15,
+          "v": 1,
+          "kind": "sandwich"
+        },
+        {
+          "i": 14,
+          "v": 0,
+          "kind": "sandwich"
+        },
+        {
+          "i": 33,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 3,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 26,
+          "v": 1,
+          "kind": "sandwich"
+        },
+        {
+          "i": 4,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 2,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 0,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 5,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 12,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 17,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 22,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 32,
+          "v": 0,
+          "kind": "sandwich"
+        },
+        {
+          "i": 20,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 18,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 24,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 23,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 34,
+          "v": 0,
+          "kind": "sandwich"
+        },
+        {
+          "i": 28,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 29,
+          "v": 0,
+          "kind": "balance"
+        }
+      ],
+      "solution": [
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1
+      ]
+    },
+    {
+      "id": "chapter-06-level-09",
+      "seed": 3435837366,
+      "fixed": 11,
+      "oracleNodes": 48,
+      "unique": true,
+      "logicSteps": 25,
+      "kinds": [
+        "sandwich",
+        "triple",
+        "balance"
+      ],
+      "trace": [
+        {
+          "i": 12,
+          "v": 0,
+          "kind": "sandwich"
+        },
+        {
+          "i": 14,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 13,
+          "v": 1,
+          "kind": "sandwich"
+        },
+        {
+          "i": 17,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 32,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 19,
+          "v": 0,
+          "kind": "sandwich"
+        },
+        {
+          "i": 22,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 23,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 9,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 8,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 7,
+          "v": 0,
+          "kind": "sandwich"
+        },
+        {
+          "i": 11,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 2,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 3,
+          "v": 1,
+          "kind": "sandwich"
+        },
+        {
+          "i": 27,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 33,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 28,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 34,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 29,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 24,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 25,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 1,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 0,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 30,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 35,
+          "v": 0,
+          "kind": "balance"
+        }
+      ],
+      "solution": [
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "chapter-06-level-10",
+      "seed": 2909742835,
+      "fixed": 11,
+      "oracleNodes": 221,
+      "unique": true,
+      "logicSteps": 25,
+      "kinds": [
+        "sandwich",
+        "triple",
+        "balance"
+      ],
+      "trace": [
+        {
+          "i": 19,
+          "v": 1,
+          "kind": "sandwich"
+        },
+        {
+          "i": 2,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 20,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 22,
+          "v": 1,
+          "kind": "sandwich"
+        },
+        {
+          "i": 34,
+          "v": 0,
+          "kind": "sandwich"
+        },
+        {
+          "i": 4,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 10,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 9,
+          "v": 0,
+          "kind": "sandwich"
+        },
+        {
+          "i": 31,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 1,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 7,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 6,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 11,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 32,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 26,
+          "v": 1,
+          "kind": "sandwich"
+        },
+        {
+          "i": 17,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 15,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 3,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 0,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 21,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 23,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 18,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 24,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 27,
+          "v": 0,
+          "kind": "sandwich"
+        },
+        {
+          "i": 29,
+          "v": 1,
+          "kind": "triple"
+        }
+      ],
+      "solution": [
+        0,
+        1,
+        0,
+        1,
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        1,
+        0,
+        1
+      ]
+    },
+    {
+      "id": "chapter-06-level-11",
+      "seed": 2442039184,
+      "fixed": 10,
+      "oracleNodes": 471,
+      "unique": true,
+      "logicSteps": 26,
+      "kinds": [
+        "sandwich",
+        "triple",
+        "balance"
+      ],
+      "trace": [
+        {
+          "i": 25,
+          "v": 0,
+          "kind": "sandwich"
+        },
+        {
+          "i": 16,
+          "v": 1,
+          "kind": "sandwich"
+        },
+        {
+          "i": 27,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 21,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 9,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 7,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 10,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 3,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 28,
+          "v": 0,
+          "kind": "sandwich"
+        },
+        {
+          "i": 32,
+          "v": 0,
+          "kind": "sandwich"
+        },
+        {
+          "i": 20,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 14,
+          "v": 0,
+          "kind": "sandwich"
+        },
+        {
+          "i": 13,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 1,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 2,
+          "v": 1,
+          "kind": "sandwich"
+        },
+        {
+          "i": 12,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 18,
+          "v": 0,
+          "kind": "sandwich"
+        },
+        {
+          "i": 34,
+          "v": 0,
+          "kind": "sandwich"
+        },
+        {
+          "i": 22,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 23,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 4,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 30,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 11,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 6,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 0,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 5,
+          "v": 0,
+          "kind": "balance"
+        }
+      ],
+      "solution": [
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        1,
+        0,
+        0,
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1
+      ]
+    },
+    {
+      "id": "chapter-06-level-12",
+      "seed": 2773438176,
+      "fixed": 11,
+      "oracleNodes": 10,
+      "unique": true,
+      "logicSteps": 25,
+      "kinds": [
+        "sandwich",
+        "balance",
+        "triple"
+      ],
+      "trace": [
+        {
+          "i": 2,
+          "v": 0,
+          "kind": "sandwich"
+        },
+        {
+          "i": 4,
+          "v": 0,
+          "kind": "sandwich"
+        },
+        {
+          "i": 0,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 13,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 14,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 12,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 17,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 8,
+          "v": 1,
+          "kind": "sandwich"
+        },
+        {
+          "i": 6,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 24,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 30,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 9,
+          "v": 0,
+          "kind": "triple"
+        },
+        {
+          "i": 10,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 26,
+          "v": 1,
+          "kind": "triple"
+        },
+        {
+          "i": 32,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 19,
+          "v": 1,
+          "kind": "sandwich"
+        },
+        {
+          "i": 25,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 31,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 29,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 28,
+          "v": 1,
+          "kind": "sandwich"
+        },
+        {
+          "i": 22,
+          "v": 0,
+          "kind": "sandwich"
+        },
+        {
+          "i": 21,
+          "v": 1,
+          "kind": "sandwich"
+        },
+        {
+          "i": 33,
+          "v": 0,
+          "kind": "balance"
+        },
+        {
+          "i": 34,
+          "v": 1,
+          "kind": "balance"
+        },
+        {
+          "i": 35,
+          "v": 0,
+          "kind": "balance"
+        }
+      ],
+      "solution": [
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0
+      ]
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "files": 14,
+  "uncompressedBytes": 79609,
+  "zipBytes": 21742,
+  "sha256": "4700ccf1cbb077633a866435dff9a178a35dbea3016d406fad282e53ea293659",
+  "classicScript": true,
+  "networkAPIs": false,
+  "crc": "passed",
+  "compatibility": "ES2017 source review; Chrome61 physical runtime untested"
+}

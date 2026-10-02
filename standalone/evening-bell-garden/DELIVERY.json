@@ -1,0 +1,138 @@
+{
+  "schemaVersion": 1,
+  "gameId": "evening-bell-garden",
+  "title": "晚风铃庭",
+  "version": "1.0.0",
+  "date": "2026-09-15",
+  "status": "LOCAL_VERIFIED_AWAITING_COORDINATOR_REVIEW",
+  "developmentImplemented": true,
+  "ready": false,
+  "directory": "standalone/evening-bell-garden",
+  "baseCommit": "374d2eee951c8f6aa0bbc829e9cceaa127596b7c",
+  "referenceCommit": "55cdddb75cf57c17baee80bac4121bd3be1687c6",
+  "implementationCommit": null,
+  "levelCount": 60,
+  "chapterCount": 6,
+  "tutorialId": "evening-bell-garden-tutorial-v1",
+  "puzzleBankVersion": 1,
+  "artifactStatus": "BUILT",
+  "zip": {
+    "path": "dist/evening-bell-garden-xhs.zip",
+    "bytes": 35051,
+    "sha256": "2041f056a9c49357918b0befd25fa9ec8d8457d11e8f431c3105385c150e7f0b",
+    "rootEntry": "index.html",
+    "directory": "dist/xhs",
+    "reproducible": true
+  },
+  "platformSpecVersion": "minitool-zip-builder 1.6.0 (archived; latest online version not verified)",
+  "validation": {
+    "unitGroups": 11,
+    "unitStatus": "PASS",
+    "repositoryTests": "PASS",
+    "repositoryLog": "release/repository-tests.log",
+    "audit": "release/audit.json",
+    "browser": "release/browser-qa.json",
+    "browserVersion": "153.0.8010.36",
+    "viewportCount": 9,
+    "safeArea": {
+      "top": 44,
+      "bottom": 34
+    },
+    "minimumBellTargetCssPx": 44,
+    "cleanSourceRebuild": "release/clean-source-check.json",
+    "independentMinimumOracle": "meet-in-the-middle XOR enumeration",
+    "deduplication": "D4 and exact coloured directed graph isomorphism",
+    "visualSelfReview": "all six chapter proof sheets and real UI screenshots inspected by task model"
+  },
+  "uncovered": [
+    "Coordinator independent review and integration",
+    "Real iOS Safari",
+    "Real Android Chrome",
+    "Actual Chrome 61 JS/CSS",
+    "Xiaohongshu PC simulator and native container",
+    "Human playtesting and retention",
+    "Multi-tab transaction merge",
+    "Latest platform policy and mount availability"
+  ],
+  "platform": {
+    "uploaded": false,
+    "draftCreated": false,
+    "reviewed": false,
+    "published": false,
+    "uploadAuthorized": false,
+    "toolObservedStatus": "已发布 V1.0.0 (observed 2026-09-17; uploaded outside this task)",
+    "note": {
+      "title": "敲一下，整座庭院都在回应",
+      "submissionSucceeded": true,
+      "status": "UNDER_REVIEW",
+      "mountedTool": "晚风铃庭",
+      "submittedAtLocal": "2026-09-17 22:05 Asia/Shanghai",
+      "publicAvailabilityVerified": false,
+      "evidence": "release/note-publish-request.json"
+    }
+  },
+  "git": {
+    "committed": false,
+    "pushed": false,
+    "sharedRootModified": false,
+    "sourceGamesModified": false
+  },
+  "assets": [
+    {
+      "path": "release/cover.png",
+      "kind": "original-vector-art",
+      "pixels": [
+        1080,
+        1440
+      ],
+      "sha256": "f1ead9e3a5a546bc1a356f739007919f8373b2d3bc68c625eaeab13faa7cdf1e"
+    },
+    {
+      "path": "release/icon.png",
+      "kind": "original-vector-art",
+      "pixels": [
+        512,
+        512
+      ],
+      "sha256": "0d95adb6b74b6e076d1506efab3b9facac6901eb66f5f364668860d70eda1fd8"
+    },
+    {
+      "path": "release/gameplay-mobile.png",
+      "kind": "real-built-ui",
+      "pixels": [
+        390,
+        844
+      ],
+      "sha256": "8b186d39c9d1b5aac9cabea53ea32847da62b9a53e0a0b3ff3ce7686f882da6a"
+    },
+    {
+      "path": "release/operation-mobile.png",
+      "kind": "real-built-ui",
+      "pixels": [
+        390,
+        844
+      ],
+      "sha256": "0784508c4c9e9f76360b620f2800cd1c6d009bb93b7fc7f6718e76f44bca53a5"
+    },
+    {
+      "path": "release/tutorial-mobile.png",
+      "kind": "real-built-ui",
+      "pixels": [
+        390,
+        844
+      ],
+      "sha256": "06a3787cf06327ebae20348d4194337fdeb570506b0b8b97a30f6827a2a51bea"
+    },
+    {
+      "path": "release/completion-mobile.png",
+      "kind": "real-built-ui",
+      "pixels": [
+        390,
+        844
+      ],
+      "sha256": "e634a7e6be39f101c13e1d88dcee4cd7bc0b20c0709131824f1873946aa3b616"
+    }
+  ],
+  "copy": "release/COPY.zh-CN.md",
+  "license": "MIT; original SVG art and AI-assisted implementation; Flip rule attribution retained"
+}

@@ -1,0 +1,69 @@
+{
+  "slug": "four-spirit-valley",
+  "title": "四灵山居",
+  "source": {
+    "path": "v3/games/four-spirit-habitat",
+    "commit": "55cdddb75cf57c17baee80bac4121bd3be1687c6",
+    "rulePrototype": "Simon Tatham Portable Puzzle Collection Map",
+    "license": "MIT rule reference; independent implementation"
+  },
+  "status": {
+    "plan": "complete",
+    "development": "complete",
+    "uniquePuzzleProof": "60 of 60 independently verified",
+    "tests": "pass",
+    "offlinePackage": "pass",
+    "browserQA": "pass in desktop browser and XHS desktop simulator; first-level legal placement verified (0 to 1); physical iOS/Android QA pending",
+    "xhsUpload": "uploaded_and_deployed",
+    "xhsServiceAgreement": "accepted",
+    "xhsSubmission": "submitted_successfully",
+    "xhsReview": "pending",
+    "xhsAvailability": "not_public_until_review_approval",
+    "note": "local_draft_only"
+  },
+  "levelCount": 60,
+  "chapterCount": 6,
+  "artifacts": [
+    "dist/four-spirit-valley-xhs.zip",
+    "release/cover.svg",
+    "release/four-spirit-valley-cover-1080x1440.png",
+    "release/four-spirit-valley-icon-512.png",
+    "assets/icon.svg",
+    "assets/tutorial/01-elements.svg",
+    "assets/tutorial/02-action.svg",
+    "assets/tutorial/03-goal.svg",
+    "NOTE-DRAFT.md"
+  ],
+  "publication": {
+    "platform": "Xiaohongshu creator mini-tool platform",
+    "toolName": "四灵山居",
+    "version": "1.0.0",
+    "submittedAt": "2026-09-23T01:38:55Z",
+    "platformResult": "发布成功",
+    "reviewStatus": "审核中",
+    "serviceAgreement": {
+      "title": "小工具发布安全规范",
+      "url": "https://agree.xiaohongshu.com/h5/terms/ZXXY20260630004/-1",
+      "accepted": true,
+      "acceptedAt": "2026-09-23T01:38:55Z"
+    },
+    "package": {
+      "path": "dist/four-spirit-valley-xhs.zip",
+      "bytes": 27926,
+      "sha256": "b37e3c1a8b2df4683b5129d20a1c31d633952b48a33ac059dd2c1c7a629f8b07"
+    },
+    "desktopSimulatorCheck": "Opened chapter 1 level 1 and made one legal placement; displayed placement count changed from 0 to 1.",
+    "noteStatus": "local_draft_only_not_published"
+  },
+  "commands": {
+    "generate": "npm run generate",
+    "test": "npm test",
+    "build": "npm run build",
+    "audit": "npm run audit"
+  },
+  "limitations": [
+    "Actual iOS/Android devices and the XHS App mini-tool container require separate verification.",
+    "The mini-tool submission succeeded, but platform review is pending; public availability is not yet confirmed.",
+    "The promotional note remains a local draft and has not been published."
+  ]
+}

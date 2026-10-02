@@ -1,0 +1,15 @@
+import fs from 'node:fs';
+import {solve,canonical} from './oracle.mjs';
+let state=9182026;const random=()=>{state^=state<<13;state^=state>>>17;state^=state<<5;return (state>>>0)/4294967296;};
+const dirs=[[0,-1],[1,-1],[1,0],[1,1],[0,1],[-1,1],[-1,0],[-1,-1]],names=['读懂箭头','跨格投递','固定号码','片段拼接','排除子环','完整邮路'];
+function pathFor(size){const n=size*size,adj=Array.from({length:n},(_,a)=>Array.from({length:n},(_,b)=>b).filter(b=>a!==b&&(a%size===b%size||(a/size|0)===(b/size|0)||Math.abs(a%size-b%size)===Math.abs((a/size|0)-(b/size|0)))));let ticks=0;const used=new Set(),path=[];
+ function dfs(a){if(++ticks>20000)return false;used.add(a);path.push(a);if(path.length===n)return true;const opts=adj[a].filter(b=>!used.has(b)).map(b=>[b,adj[b].filter(c=>!used.has(c)).length+random()*4]).sort((a,b)=>a[1]-b[1]);for(const [b]of opts)if(dfs(b))return true;path.pop();used.delete(a);return false;}return dfs(Math.floor(random()*n))?path:null;}
+const levels=[],seen=new Set();
+for(let chapter=0;chapter<6;chapter++){const pool=[];let attempts=0;
+ while(pool.length<35&&attempts++<2000){const seed=state>>>0,size=chapter<2?3:chapter<4?4:5,path=pathFor(size);if(!path)continue;const arrows=Array(size*size).fill(-1);for(let k=0;k<path.length-1;k++){const a=path[k],b=path[k+1];arrows[a]=dirs.findIndex(v=>v[0]===Math.sign(b%size-a%size)&&v[1]===Math.sign((b/size|0)-(a/size|0)));}
+ let givens=Object.fromEntries(path.map((c,k)=>[c,k+1]));const l={size,arrows,givens},target=[6,4,6,4,5,2][chapter];
+ for(const c of path.slice(1,-1).sort(()=>random()-.5)){if(Object.keys(givens).length<=target)break;const value=givens[c];delete givens[c];const r=solve(l);if(r.count!==1||!r.exhausted)givens[c]=value;}
+ const proof=solve(l);if(proof.count!==1||!proof.exhausted)continue;const key=canonical(l);if(seen.has(key))continue;const jumps=path.slice(1).filter((b,k)=>Math.max(Math.abs(b%size-path[k]%size),Math.abs((b/size|0)-(path[k]/size|0)))>1).length;
+ if(chapter===1&&jumps<3)continue;if(chapter>=3&&proof.branches<2)continue;seen.add(key);pool.push({...l,seed,chapter:chapter+1,chapterName:names[chapter],proof:{nodes:proof.nodes,branches:proof.branches,depth:proof.depth,solutions:1,exhausted:true},jumps,score:proof.nodes+proof.branches*8});}
+ if(pool.length<10)throw Error('Not enough unique levels '+chapter);pool.sort((a,b)=>a.score-b.score);for(let i=0;i<10;i++){const p=pool[Math.floor(i*(pool.length-1)/9)];p.id='sand-'+String(levels.length+1).padStart(2,'0');p.role=i<2?'认识概念':i<8?'组合推理':'综合投递';levels.push(p);}}
+fs.mkdirSync('release',{recursive:true});fs.writeFileSync('src/levels.js','(function(root){root.SandLevels='+JSON.stringify(levels)+';})(typeof window===\'undefined\'?globalThis:window);\n');fs.writeFileSync('release/level-proof.json',JSON.stringify({version:1,generator:'xorshift32-ray-path-v1',count:levels.length,levels:levels.map(l=>({id:l.id,chapter:l.chapter,seed:l.seed,size:l.size,givens:Object.keys(l.givens).length,jumps:l.jumps,...l.proof}))},null,2));console.log('Generated',levels.length,'unique puzzles',levels.map(l=>l.proof.nodes));

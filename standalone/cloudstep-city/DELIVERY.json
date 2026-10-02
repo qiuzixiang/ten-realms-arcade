@@ -1,0 +1,81 @@
+{
+  "schemaVersion": 1,
+  "gameId": "cloudstep-city",
+  "title": "云阶筑城",
+  "version": "1.0.1",
+  "status": "NOTE_PUBLISHED",
+  "developmentAuthorized": true,
+  "uploadAuthorized": true,
+  "built": true,
+  "uploaded": true,
+  "platformDraftCreated": true,
+  "sourceCommit": "55cdddb75cf57c17baee80bac4121bd3be1687c6",
+  "workspaceBaseCommit": "374d2eee951c8f6aa0bbc829e9cceaa127596b7c",
+  "commit": null,
+  "directory": "standalone/cloudstep-city",
+  "entry": "dist/xhs/index.html",
+  "zip": "dist/cloudstep-city-xhs.zip",
+  "zipBytes": 22889,
+  "zipSha256": "231c23c5d12406940812843a9c01b8016ed6a99716d40489ab14522878cedebf",
+  "levelCount": 60,
+  "chapters": 6,
+  "uniqueSolutions": "60/60 confirmed by independent cell-search oracle",
+  "tests": {
+    "nodeSuites": 11,
+    "browserViewports": 9,
+    "additionalTouchFlow": true,
+    "safeAreaTop": 44,
+    "safeAreaBottom": 34,
+    "restrictedCSP": true,
+    "externalRequests": 0,
+    "zipCRC": "pass",
+    "platformSizeAudit": "pass",
+    "interruptedSettlementRecovery": true,
+    "storageQuotaFailure": true,
+    "modalSafeAreas": true
+  },
+  "screenshots": [
+    "release/home-mobile.png",
+    "release/gameplay-mobile.png",
+    "release/tutorial-mobile.png",
+    "release/completion-mobile.png",
+    "release/gameplay-320.png",
+    "release/gameplay-desktop.png"
+  ],
+  "artwork": {
+    "icon": "release/icon.png",
+    "iconDimensions": [
+      512,
+      512
+    ],
+    "cover": "release/cover.png",
+    "coverDimensions": [
+      1080,
+      1440
+    ],
+    "method": "original code-generated SVG rasterized in browser; no generative bitmap model"
+  },
+  "platformSpecVersion": "minitool-zip-builder 1.6.0 archived reference",
+  "unverified": [
+    "independent human review",
+    "external player difficulty testing",
+    "iOS Safari physical device",
+    "Android Chrome physical device",
+    "Xiaohongshu container",
+    "Chrome 61 / Android 8.1",
+    "latest platform specification"
+  ],
+  "license": "LICENSE; THIRD_PARTY_NOTICES.md",
+  "notes": "ZIP deployed successfully on Xiaohongshu. Tool available in published-tool attachment picker and attached to promotion note. Note publication success verified in UI. No Git commit or push.",
+  "review": "release/REVIEW-1.0.1.md",
+  "platformStatus": "AVAILABLE_FOR_NOTE_ATTACHMENT",
+  "promotionNote": {
+    "title": "站在街角，你能看见几栋楼",
+    "status": "PUBLISHED_SUCCESS_CONFIRMED",
+    "imageCount": 3,
+    "attachedTool": "云阶筑城",
+    "collection": "vibe小游戏",
+    "confirmation": "小红书创作服务平台显示发布成功",
+    "publicUrl": null
+  }
+}

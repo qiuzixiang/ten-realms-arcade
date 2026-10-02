@@ -1,0 +1,268 @@
+[
+  {
+    "client": 305,
+    "controls": [
+      {
+        "height": 44,
+        "text": "‹",
+        "width": 44
+      },
+      {
+        "height": 44,
+        "text": "›",
+        "width": 44
+      },
+      {
+        "height": 44,
+        "text": "＋ → −",
+        "width": 60.25
+      },
+      {
+        "height": 44,
+        "text": "− → ＋",
+        "width": 60.25
+      },
+      {
+        "height": 44,
+        "text": "○ 中性",
+        "width": 60.25
+      },
+      {
+        "height": 44,
+        "text": "清空",
+        "width": 60.25
+      }
+    ],
+    "h": 720,
+    "scroll": 305,
+    "w": 320
+  },
+  {
+    "client": 344,
+    "controls": [
+      {
+        "height": 44,
+        "text": "‹",
+        "width": 44
+      },
+      {
+        "height": 44,
+        "text": "›",
+        "width": 44
+      },
+      {
+        "height": 44,
+        "text": "＋ → −",
+        "width": 70
+      },
+      {
+        "height": 44,
+        "text": "− → ＋",
+        "width": 70
+      },
+      {
+        "height": 44,
+        "text": "○ 中性",
+        "width": 70
+      },
+      {
+        "height": 44,
+        "text": "清空",
+        "width": 70
+      }
+    ],
+    "h": 720,
+    "scroll": 344,
+    "w": 359
+  },
+  {
+    "client": 344,
+    "controls": [
+      {
+        "height": 44,
+        "text": "‹",
+        "width": 44
+      },
+      {
+        "height": 44,
+        "text": "›",
+        "width": 44
+      },
+      {
+        "height": 44,
+        "text": "＋ → −",
+        "width": 70
+      },
+      {
+        "height": 44,
+        "text": "− → ＋",
+        "width": 70
+      },
+      {
+        "height": 44,
+        "text": "○ 中性",
+        "width": 70
+      },
+      {
+        "height": 44,
+        "text": "清空",
+        "width": 70
+      }
+    ],
+    "h": 720,
+    "scroll": 344,
+    "w": 359
+  },
+  {
+    "client": 375,
+    "controls": [
+      {
+        "height": 44,
+        "text": "‹",
+        "width": 44
+      },
+      {
+        "height": 44,
+        "text": "›",
+        "width": 44
+      },
+      {
+        "height": 44,
+        "text": "＋ → −",
+        "width": 74.75
+      },
+      {
+        "height": 44,
+        "text": "− → ＋",
+        "width": 74.75
+      },
+      {
+        "height": 44,
+        "text": "○ 中性",
+        "width": 74.75
+      },
+      {
+        "height": 44,
+        "text": "清空",
+        "width": 74.75
+      }
+    ],
+    "h": 844,
+    "scroll": 375,
+    "w": 390
+  },
+  {
+    "client": 884,
+    "controls": [
+      {
+        "height": 44,
+        "text": "‹",
+        "width": 44
+      },
+      {
+        "height": 44,
+        "text": "›",
+        "width": 44
+      },
+      {
+        "height": 44,
+        "text": "＋ → −",
+        "width": 126.5
+      },
+      {
+        "height": 44,
+        "text": "− → ＋",
+        "width": 126.5
+      },
+      {
+        "height": 44,
+        "text": "○ 中性",
+        "width": 126.5
+      },
+      {
+        "height": 44,
+        "text": "清空",
+        "width": 126.5
+      }
+    ],
+    "h": 720,
+    "scroll": 884,
+    "w": 899
+  },
+  {
+    "client": 885,
+    "controls": [
+      {
+        "height": 44,
+        "text": "‹",
+        "width": 44
+      },
+      {
+        "height": 44,
+        "text": "›",
+        "width": 44
+      },
+      {
+        "height": 44,
+        "text": "＋ → −",
+        "width": 100.25
+      },
+      {
+        "height": 44,
+        "text": "− → ＋",
+        "width": 100.25
+      },
+      {
+        "height": 44,
+        "text": "○ 中性",
+        "width": 100.25
+      },
+      {
+        "height": 44,
+        "text": "清空",
+        "width": 100.25
+      }
+    ],
+    "h": 720,
+    "scroll": 885,
+    "w": 900
+  },
+  {
+    "client": 1265,
+    "controls": [
+      {
+        "height": 44,
+        "text": "‹",
+        "width": 44
+      },
+      {
+        "height": 44,
+        "text": "›",
+        "width": 44
+      },
+      {
+        "height": 44,
+        "text": "＋ → −",
+        "width": 137
+      },
+      {
+        "height": 44,
+        "text": "− → ＋",
+        "width": 137
+      },
+      {
+        "height": 44,
+        "text": "○ 中性",
+        "width": 137
+      },
+      {
+        "height": 44,
+        "text": "清空",
+        "width": 137
+      }
+    ],
+    "h": 720,
+    "scroll": 1265,
+    "w": 1280
+  }
+]

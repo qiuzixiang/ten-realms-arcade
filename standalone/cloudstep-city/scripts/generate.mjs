@@ -1,0 +1,14 @@
+import fs from 'node:fs';import vm from 'node:vm';
+const ctx=vm.createContext({});vm.runInContext(fs.readFileSync('src/engine.js','utf8'),ctx);const E=ctx.City;
+let seed=9182026;function rand(){seed=(Math.imul(seed,1664525)+1013904223)>>>0;return seed/4294967296;}function shuffle(a){return a.map(v=>({v,k:rand()})).sort((a,b)=>a.k-b.k).map(x=>x.v);}
+function canonical(p){const keys=[];for(let t=0;t<8;t++){const n=p.n,map=(r,c)=>{if(t>=4)c=n-1-c;for(let k=0;k<t%4;k++){const x=r;r=c;c=n-1-x;}return [r,c];};const giv=Array(n*n).fill(0),sol=Array(n*n).fill(0);for(let r=0;r<n;r++)for(let c=0;c<n;c++){const [y,x]=map(r,c);giv[y*n+x]=p.givens[r*n+c];sol[y*n+x]=p.solution[r*n+c];}const clues=E.clues(n,sol), mask={top:Array(n).fill(0),bottom:Array(n).fill(0),left:Array(n).fill(0),right:Array(n).fill(0)};E.sides.forEach(s=>p.clues[s].forEach((v,i)=>{if(!v)return;const r=s==='top'?-1:s==='bottom'?n:i,c=s==='left'?-1:s==='right'?n:i;const [y,x]=map(r,c);const side=y<0?'top':y>=n?'bottom':x<0?'left':'right';mask[side][side==='top'||side==='bottom'?x:y]=clues[side][side==='top'||side==='bottom'?x:y];}));keys.push(JSON.stringify([giv,mask]));}return keys.sort()[0];}
+const levels=[],seen=new Set(),names=['街角望楼','高楼之后','街区秩序','双面观察','缺席视角','云上新城'];
+for(let chapter=0;chapter<6;chapter++)for(let k=0;k<10;k++){
+ let p;for(let attempt=0;attempt<2000;attempt++){const n=chapter<2?3:chapter===5&&k>=4?5:4;const rr=shuffle([...Array(n).keys()]),cc=shuffle([...Array(n).keys()]),sy=shuffle(Array.from({length:n},(_,i)=>i+1));const solution=rr.reduce((a,r)=>a.concat(cc.map(c=>sy[(r+c)%n])),[]);p={id:`chapter-${String(chapter+1).padStart(2,'0')}-level-${String(k+1).padStart(2,'0')}`,chapter:chapter,n,seed:seed,solution,givens:solution.slice(),clues:E.clues(n,solution)};
+ const cells=shuffle([...Array(n*n).keys()]);let keep=chapter<2?(k<2?3:1):0;for(const i of cells){if(p.givens.filter(Boolean).length<=keep)break;let old=p.givens[i];p.givens[i]=0;if(E.solve(p).solutions.length!==1)p.givens[i]=old;}
+ const target=chapter===0?10:chapter===1?7:chapter===2?13:chapter===3?10:chapter===4?7:9;
+ for(const [s,i] of shuffle(E.sides.reduce((a,s)=>a.concat(p.clues[s].map((_,i)=>[s,i])),[]))){if(E.sides.reduce((a,s)=>a+p.clues[s].filter(Boolean).length,0)<=target)break;if(chapter===1&&(p.clues[s][i]===1||p.clues[s][i]===n))continue;const old=p.clues[s][i];p.clues[s][i]=0;if(E.solve(p).solutions.length!==1)p.clues[s][i]=old;}
+ const key=canonical(p);if(!seen.has(key)){seen.add(key);break;}p=null;
+ }if(!p)throw Error('unique selection exhausted');p.nodes=E.solve(p).nodes;levels.push(p);
+}
+fs.writeFileSync('src/levels.js','var CityLevels = '+JSON.stringify(levels)+';\nvar CityChapters = '+JSON.stringify(names)+';\n');fs.writeFileSync('release/level-proof.json',JSON.stringify(levels.map(p=>({id:p.id,seed:p.seed,size:p.n,solutions:1,nodes:p.nodes})),null,2));console.log('Generated',levels.length,'distinct puzzles');

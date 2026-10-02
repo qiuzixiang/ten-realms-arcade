@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#081c27">
+  <meta name="description" content="星际漂流：一次推进，一条新的航线。48关太空惯性解谜，每日航线与自由远航。">
+  <title>星际漂流 · STAR DRIFT</title>
+  <link rel="icon" href="./assets/icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <div class="cosmos" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="./" aria-label="星际漂流首页"><span class="brand-symbol">✧</span><span><strong>星际漂流</strong><small>STAR DRIFT</small></span></a>
+      <div class="header-note"><span class="signal-dot"></span> 信号已接通 <span class="divider">/</span> 你的下一程，在星光里</div>
+      <nav class="header-tools" aria-label="游戏菜单">
+        <button id="collection-button" class="quiet-button"><span data-icon="constellation"></span><span class="desktop-label">星图</span><span id="header-stars" class="header-count">0</span></button>
+        <button id="tutorial-button" class="icon-button" aria-label="飞行指南" title="飞行指南"><span data-icon="help"></span></button>
+        <button id="sound-button" class="icon-button" aria-label="关闭音效" aria-pressed="true" title="音效"><span data-icon="sound"></span></button>
+      </nav>
+    </header>
+
+    <main id="main" tabindex="-1">
+      <section class="voyage-heading" aria-label="航程选择">
+        <div class="chapter-heading"><span class="eyebrow" id="chapter-eyebrow">CHAPTER 01 / THE FIRST LIGHT</span><h1 id="chapter-title">启航之地<span class="title-dot">.</span></h1></div>
+        <div class="mode-tabs" role="group" aria-label="游戏模式">
+          <button class="mode-tab active" id="campaign-button" aria-pressed="true"><span data-icon="orbit"></span>星际旅程</button>
+          <button class="mode-tab" id="daily-button" aria-pressed="false"><span data-icon="sun"></span>每日航线<span class="new-dot"></span></button>
+          <button class="mode-tab" id="expedition-button" aria-pressed="false"><span data-icon="infinity"></span>自由远航</button>
+        </div>
+      </section>
+
+      <div class="game-layout">
+        <section class="flight-deck" aria-label="飞行棋盘">
+          <div class="deck-topline"><div><span class="live-mark"></span><span id="board-label">SECTOR 01—01</span></div><span id="board-size">5 × 5</span><button class="text-button" id="map-button">航线图 <span data-icon="arrow-right"></span></button></div>
+          <div class="board-stage" id="board-stage">
+            <div class="board-orbit orbit-one" aria-hidden="true"></div><div class="board-orbit orbit-two" aria-hidden="true"></div>
+            <svg id="board" role="img" aria-label="游戏棋盘，可以滑动或使用下方方向按钮推进" tabindex="0" xmlns="http://www.w3.org/2000/svg"></svg>
+            <div class="coordinates" aria-hidden="true"><span>深空定位 / SD-07</span><span>航迹实时同步 <i></i></span></div>
+          </div>
+          <div class="deck-bottomline"><div class="legend"><span><i class="legend-energy"></i>星核</span><span><i class="legend-anchor"></i>停泊点</span><span><i class="legend-wall"></i>舱壁</span><span><i class="legend-mine">×</i>暗雷</span></div><span class="input-note">滑动推进 · 八个方向</span></div>
+        </section>
+
+        <aside class="mission-panel" aria-label="当前任务和飞行控制">
+          <div class="mission-heading"><span class="eyebrow" id="mission-number">MISSION 01</span><span class="level-stars" id="level-stars" aria-label="尚未获得星级">✧ ✧ ✧</span></div>
+          <h2 id="level-name">初次点火</h2>
+          <p id="level-brief" class="mission-description">收集散落的星核，让失落的航道再次亮起。</p>
+          <div class="mission-stats"><div><span>回收星核</span><strong><b id="collected">0</b><i>/</i><b id="total-energy">2</b></strong><div id="energy-dots" class="energy-dots"></div></div><div><span>推进次数</span><strong id="moves">00</strong><small id="par-label">三星航线 ≤ 3 次</small></div></div>
+          <div id="flight-feedback" class="flight-feedback" role="status" aria-live="polite"><span data-icon="compass"></span><p>选一个方向，开始你的第一程。</p></div>
+          <div class="control-area"><div class="direction-pad" id="direction-pad" role="group" aria-label="八方向推进">
+            <button data-direction="NW" aria-label="向左上推进" title="向左上推进（Q）">↖</button><button data-direction="N" aria-label="向上推进" title="向上推进（W / ↑）">↑</button><button data-direction="NE" aria-label="向右上推进" title="向右上推进（E）">↗</button>
+            <button data-direction="W" aria-label="向左推进" title="向左推进（A / ←）">←</button><div class="pad-center" aria-hidden="true"><span data-icon="ship"></span></div><button data-direction="E" aria-label="向右推进" title="向右推进（D / →）">→</button>
+            <button data-direction="SW" aria-label="向左下推进" title="向左下推进（Z）">↙</button><button data-direction="S" aria-label="向下推进" title="向下推进（S / ↓）">↓</button><button data-direction="SE" aria-label="向右下推进" title="向右下推进（C）">↘</button>
+          </div><p class="controls-caption">轻点方向 / 在棋盘上滑动</p></div>
+          <div class="action-tools"><button id="undo-button" title="撤销（U）"><span data-icon="undo"></span>撤销</button><button id="hint-button" title="提示（H）"><span data-icon="spark"></span>提示</button><button id="restart-button" title="重开（R）"><span data-icon="restart"></span>重开</button></div>
+          <div class="pilot-note"><span class="pilot-avatar" aria-hidden="true">✦</span><div><span>领航员 · 阿遥</span><p id="pilot-note">不必急着抵达。先想好，你会在哪里停下。</p></div></div>
+        </aside>
+      </div>
+
+      <section class="journey-strip" aria-label="本章关卡"><div class="journey-label"><span class="eyebrow">YOUR JOURNEY</span><span id="journey-caption">这片星海，等你点亮</span></div><div id="journey-nodes" class="journey-nodes"></div><button class="chapter-map-button" id="all-levels-button" aria-label="查看全部48关"><span data-icon="grid"></span><span>全部航线</span></button></section>
+      <footer class="footer"><span><i class="signal-dot"></i> <span id="save-status">航程自动保存</span></span><span class="footer-center">一次推进，一条新的航线。</span><button id="about-button">规则与致谢 <span>↗</span></button></footer>
+    </main>
+  </div>
+
+  <dialog id="modal" aria-labelledby="modal-title"><div class="modal-shell"><div class="modal-topline"><span id="modal-eyebrow" class="eyebrow">FLIGHT MANUAL</span><button class="icon-button" id="modal-close" aria-label="关闭窗口"><span data-icon="close"></span></button></div><h2 id="modal-title"></h2><div id="modal-content"></div></div></dialog>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <noscript><p>请启用 JavaScript 来驾驶飞船。星际漂流可在支持现代浏览器的电脑和手机上游玩。</p></noscript>
+  <script type="module" src="./app.mjs"></script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+[
+  {
+    "command": "node scripts/generate.mjs",
+    "exitCode": 0,
+    "output": "Generated 60 D4-distinct levels. Complete BFS depth 3: 3076\n"
+  },
+  {
+    "command": "node scripts/build.mjs",
+    "exitCode": 0,
+    "output": "Built classic offline ZIP\n"
+  },
+  {
+    "command": "node --test tests/core.test.mjs",
+    "exitCode": 0,
+    "output": "✔ all 18 rotations match independent oracle; inverses and four turns (18.974042ms)\n✔ 60 distinct valid puzzles and independent full solutions (9.901458ms)\n✔ invalid input is atomic; replay boundaries and corrupt sessions (0.259083ms)\n✔ hints only use matching current state, otherwise explicit undo (2.323167ms)\n✔ completion proofs, reload and same-run/first-reward idempotency (5.507917ms)\n✔ tutorial is same real three-move puzzle and reaches exact target (0.070667ms)\n✔ classic offline artifact has no prohibited runtime and references exist (0.887375ms)\nℹ tests 7\nℹ suites 0\nℹ pass 7\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 73.843542\n"
+  }
+]

@@ -1,0 +1,22 @@
+{
+  "name": "dream-isle-hotel",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "audit": "node scripts/audit.mjs",
+    "qa:browser": "node scripts/browser.mjs",
+    "serve": "node scripts/serve.mjs",
+    "generate": "node scripts/generate.mjs"
+  },
+  "devDependencies": {
+    "acorn": "8.18.0",
+    "playwright": "1.62.1",
+    "sharp": "0.35.4"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

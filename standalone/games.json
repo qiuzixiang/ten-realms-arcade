@@ -3,30 +3,430 @@
     "slug": "cloud-camp-journey",
     "title": "云野露营",
     "levels": 60,
-    "description": "帐篷与树林的逻辑露营"
+    "description": "帐篷与树林的逻辑露营",
+    "build": [
+      "npm",
+      "run",
+      "build"
+    ],
+    "test": [
+      "npm",
+      "test"
+    ],
+    "output": "dist/xhs"
   },
   {
     "slug": "mistwood-album",
     "title": "雾窗显影",
     "levels": 60,
-    "description": "用数字线索显影森林画册"
+    "description": "用数字线索显影森林画册",
+    "build": [
+      "npm",
+      "run",
+      "build"
+    ],
+    "test": [
+      "npm",
+      "test"
+    ],
+    "output": "dist/xhs"
   },
   {
     "slug": "season-dye-journey",
     "title": "四季染旅",
     "levels": 72,
-    "description": "在色彩蔓延中规划染色顺序"
+    "description": "在色彩蔓延中规划染色顺序",
+    "build": [
+      "npm",
+      "run",
+      "build"
+    ],
+    "test": [
+      "npm",
+      "test"
+    ],
+    "output": "dist/xhs"
   },
   {
     "slug": "paper-crane-journey",
     "title": "纸鹤归旅",
     "levels": 60,
-    "description": "跳跃消除，寻找纸鹤归路"
+    "description": "跳跃消除，寻找纸鹤归路",
+    "build": [
+      "npm",
+      "run",
+      "build"
+    ],
+    "test": [
+      "npm",
+      "test"
+    ],
+    "output": "dist/xhs"
   },
   {
     "slug": "moon-tide-loop",
     "title": "月潮回环",
     "levels": 72,
-    "description": "循着线索连成月光回环"
+    "description": "循着线索连成月光回环",
+    "build": [
+      "npm",
+      "run",
+      "build"
+    ],
+    "test": [
+      "npm",
+      "test"
+    ],
+    "output": "dist/xhs"
+  },
+  {
+    "slug": "star-drift",
+    "title": "星际漂流",
+    "levels": 48,
+    "description": "独立主题小游戏",
+    "build": [
+      "npm",
+      "run",
+      "build"
+    ],
+    "test": [
+      "npm",
+      "test"
+    ],
+    "output": "dist"
+  },
+  {
+    "slug": "tide-lanterns",
+    "title": "潮汐灯塔",
+    "levels": 48,
+    "description": "独立主题小游戏",
+    "build": [
+      "npm",
+      "run",
+      "build"
+    ],
+    "test": [
+      "npm",
+      "test"
+    ],
+    "output": "dist"
+  },
+  {
+    "slug": "stardew-formulas",
+    "title": "星露配方",
+    "levels": 60,
+    "description": "独立主题小游戏",
+    "build": [
+      "npm",
+      "run",
+      "build"
+    ],
+    "test": [
+      "npm",
+      "test"
+    ],
+    "output": "dist/xhs"
+  },
+  {
+    "slug": "dream-isle-hotel",
+    "title": "梦屿旅舍",
+    "levels": 60,
+    "description": "独立主题小游戏",
+    "build": [
+      "npm",
+      "run",
+      "build"
+    ],
+    "test": [
+      "npm",
+      "test"
+    ],
+    "output": "dist/xhs"
+  },
+  {
+    "slug": "evening-bell-garden",
+    "title": "晚风铃庭",
+    "levels": 60,
+    "description": "独立主题小游戏",
+    "build": [
+      "npm",
+      "run",
+      "build"
+    ],
+    "test": [
+      "npm",
+      "test"
+    ],
+    "output": "dist/xhs"
+  },
+  {
+    "slug": "apricot-pantry",
+    "title": "杏橘收纳所",
+    "levels": 48,
+    "description": "独立主题小游戏",
+    "build": [
+      "python3",
+      "scripts/build-xhs.py"
+    ],
+    "test": [
+      "node",
+      "tests.mjs"
+    ],
+    "output": "dist/xhs"
+  },
+  {
+    "slug": "amber-strata-survey",
+    "title": "琥珀勘探队",
+    "levels": 60,
+    "description": "独立主题小游戏",
+    "build": [
+      "node",
+      "build.mjs"
+    ],
+    "test": [
+      "node",
+      "--test",
+      "tests.mjs"
+    ],
+    "output": "dist/xhs"
+  },
+  {
+    "slug": "firefly-nocturne",
+    "title": "萤庭夜游",
+    "levels": 60,
+    "description": "独立主题小游戏",
+    "build": [
+      "node",
+      "build-offline.mjs"
+    ],
+    "test": [
+      "node",
+      "--test",
+      "campaign-tests.mjs"
+    ],
+    "output": "dist/xhs"
+  },
+  {
+    "slug": "frostfield-railway",
+    "title": "霜野铁道",
+    "levels": 60,
+    "description": "独立主题小游戏",
+    "build": [
+      "npm",
+      "run",
+      "build"
+    ],
+    "test": [
+      "npm",
+      "test"
+    ],
+    "output": "dist/xhs"
+  },
+  {
+    "slug": "astral-turn-gallery",
+    "title": "星仪回廊",
+    "levels": 60,
+    "description": "独立主题小游戏",
+    "build": [
+      "node",
+      "scripts/build.mjs"
+    ],
+    "test": [
+      "node",
+      "--test",
+      "tests/core.test.mjs"
+    ],
+    "output": "dist/xhs"
+  },
+  {
+    "slug": "aurora-beacons",
+    "title": "极光信标",
+    "levels": 60,
+    "description": "独立主题小游戏",
+    "build": [
+      "npm",
+      "run",
+      "build"
+    ],
+    "test": [
+      "npm",
+      "test"
+    ],
+    "output": "dist/xhs"
+  },
+  {
+    "slug": "sandscript-post",
+    "title": "时砂来信",
+    "levels": 60,
+    "description": "独立主题小游戏",
+    "build": [
+      "npm",
+      "run",
+      "build"
+    ],
+    "test": [
+      "npm",
+      "test"
+    ],
+    "output": "dist/xhs"
+  },
+  {
+    "slug": "moonshade-archive",
+    "title": "月影书斋",
+    "levels": 60,
+    "description": "独立主题小游戏",
+    "build": [
+      "npm",
+      "run",
+      "build"
+    ],
+    "test": [
+      "npm",
+      "test"
+    ],
+    "output": "dist/xhs"
+  },
+  {
+    "slug": "four-spirit-valley",
+    "title": "四灵山居",
+    "levels": 60,
+    "description": "独立主题小游戏",
+    "build": [
+      "npm",
+      "run",
+      "build"
+    ],
+    "test": [
+      "npm",
+      "test"
+    ],
+    "output": "dist/xhs"
+  },
+  {
+    "slug": "starbud-garden",
+    "title": "星芽花园",
+    "levels": 60,
+    "description": "独立主题小游戏",
+    "build": [
+      "npm",
+      "run",
+      "build"
+    ],
+    "test": [
+      "npm",
+      "test"
+    ],
+    "output": "dist/xhs"
+  },
+  {
+    "slug": "yokai-pairing-house",
+    "title": "百妖合宿",
+    "levels": 60,
+    "description": "独立主题小游戏",
+    "build": [
+      "node",
+      "scripts/build.mjs"
+    ],
+    "test": [
+      "node",
+      "tests/verify.mjs"
+    ],
+    "output": "dist/xhs"
+  },
+  {
+    "slug": "cloudstep-city",
+    "title": "云阶筑城",
+    "levels": 60,
+    "description": "独立主题小游戏",
+    "build": [
+      "npm",
+      "run",
+      "build"
+    ],
+    "test": [
+      "npm",
+      "test"
+    ],
+    "output": "dist/xhs"
+  },
+  {
+    "slug": "scent-letter",
+    "title": "香笺秘方",
+    "levels": 60,
+    "description": "独立主题小游戏",
+    "build": [
+      "npm",
+      "run",
+      "build"
+    ],
+    "test": [
+      "npm",
+      "test"
+    ],
+    "output": "dist/xhs"
+  },
+  {
+    "slug": "daynight-scroll",
+    "title": "昼夜织卷",
+    "levels": 72,
+    "description": "独立主题小游戏",
+    "build": [
+      "npm",
+      "run",
+      "build"
+    ],
+    "test": [
+      "npm",
+      "test"
+    ],
+    "output": "dist/xhs"
+  },
+  {
+    "slug": "coral-tide-garden",
+    "title": "珊瑚育海",
+    "levels": 60,
+    "description": "独立主题小游戏",
+    "build": [
+      "npm",
+      "run",
+      "build"
+    ],
+    "test": [
+      "npm",
+      "test"
+    ],
+    "output": "dist/xhs"
+  },
+  {
+    "slug": "color-linez",
+    "title": "五子连珠",
+    "levels": 0,
+    "description": "独立主题小游戏",
+    "build": [
+      "npm",
+      "run",
+      "build"
+    ],
+    "test": [
+      "npm",
+      "test"
+    ],
+    "output": "dist/web"
+  },
+  {
+    "slug": "rolling-town",
+    "title": "滚滚小镇",
+    "levels": 0,
+    "description": "独立主题小游戏",
+    "build": [
+      "npm",
+      "run",
+      "build"
+    ],
+    "test": [
+      "npm",
+      "test"
+    ],
+    "output": "dist/xhs"
   }
 ]

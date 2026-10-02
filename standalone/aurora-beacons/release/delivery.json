@@ -1,0 +1,22 @@
+{
+  "slug": "aurora-beacons",
+  "title": "极光信标",
+  "version": "1.0.0",
+  "verifiedLevelCount": 60,
+  "chapters": 6,
+  "sourceCommit": "8ff2118",
+  "tests": 11,
+  "rootValidationFiles": 406,
+  "cleanExport": "passed",
+  "browser": "tested",
+  "xhsSimulator": "tested",
+  "physicalDevices": "not_tested",
+  "publication": {
+    "xhsTool": "under_review",
+    "xhsNote": "local_copy_prepared",
+    "github": "not_requested"
+  },
+  "zipBytes": 23902,
+  "zipSha256": "323896448b9d032f0df77525820d9c60f0b60ff6f695edb3ae3ba4b7a9f9661c",
+  "checkedAt": "2026-09-22T14:38:45.498261+08:00"
+}

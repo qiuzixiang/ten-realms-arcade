@@ -1,0 +1,1255 @@
+{
+  "generatorVersion": 1,
+  "seedBase": 20260914,
+  "symmetry": "Eight geometric symmetries plus exact directed initial-coloured influence-graph isomorphism",
+  "levels": [
+    {
+      "id": "chapter-01-level-01",
+      "seed": 20260914,
+      "size": 2,
+      "minimum": 1,
+      "nullity": 1,
+      "solutionCount": 2,
+      "verifiedPath": [
+        0
+      ],
+      "independentPath": [
+        0
+      ],
+      "chapterRole": "introduce"
+    },
+    {
+      "id": "chapter-01-level-02",
+      "seed": 20281915,
+      "size": 2,
+      "minimum": 1,
+      "nullity": 0,
+      "solutionCount": 1,
+      "verifiedPath": [
+        3
+      ],
+      "independentPath": [
+        3
+      ],
+      "chapterRole": "introduce"
+    },
+    {
+      "id": "chapter-01-level-03",
+      "seed": 20302916,
+      "size": 3,
+      "minimum": 1,
+      "nullity": 0,
+      "solutionCount": 1,
+      "verifiedPath": [
+        7
+      ],
+      "independentPath": [
+        7
+      ],
+      "chapterRole": "practice"
+    },
+    {
+      "id": "chapter-01-level-04",
+      "seed": 20323917,
+      "size": 3,
+      "minimum": 2,
+      "nullity": 0,
+      "solutionCount": 1,
+      "verifiedPath": [
+        0,
+        2
+      ],
+      "independentPath": [
+        0,
+        2
+      ],
+      "chapterRole": "practice"
+    },
+    {
+      "id": "chapter-01-level-05",
+      "seed": 20344918,
+      "size": 3,
+      "minimum": 2,
+      "nullity": 0,
+      "solutionCount": 1,
+      "verifiedPath": [
+        2,
+        6
+      ],
+      "independentPath": [
+        2,
+        6
+      ],
+      "chapterRole": "practice"
+    },
+    {
+      "id": "chapter-01-level-06",
+      "seed": 20365919,
+      "size": 3,
+      "minimum": 2,
+      "nullity": 1,
+      "solutionCount": 2,
+      "verifiedPath": [
+        7,
+        8
+      ],
+      "independentPath": [
+        7,
+        8
+      ],
+      "chapterRole": "practice"
+    },
+    {
+      "id": "chapter-01-level-07",
+      "seed": 20386922,
+      "size": 3,
+      "minimum": 3,
+      "nullity": 0,
+      "solutionCount": 1,
+      "verifiedPath": [
+        1,
+        6,
+        8
+      ],
+      "independentPath": [
+        1,
+        6,
+        8
+      ],
+      "chapterRole": "practice"
+    },
+    {
+      "id": "chapter-01-level-08",
+      "seed": 20407921,
+      "size": 3,
+      "minimum": 3,
+      "nullity": 1,
+      "solutionCount": 2,
+      "verifiedPath": [
+        4,
+        5,
+        7
+      ],
+      "independentPath": [
+        4,
+        5,
+        7
+      ],
+      "chapterRole": "practice"
+    },
+    {
+      "id": "chapter-01-level-09",
+      "seed": 20428922,
+      "size": 3,
+      "minimum": 3,
+      "nullity": 1,
+      "solutionCount": 2,
+      "verifiedPath": [
+        0,
+        5,
+        7
+      ],
+      "independentPath": [
+        0,
+        5,
+        7
+      ],
+      "chapterRole": "combine"
+    },
+    {
+      "id": "chapter-01-level-10",
+      "seed": 20449923,
+      "size": 3,
+      "minimum": 4,
+      "nullity": 1,
+      "solutionCount": 2,
+      "verifiedPath": [
+        0,
+        4,
+        6,
+        8
+      ],
+      "independentPath": [
+        0,
+        4,
+        6,
+        8
+      ],
+      "chapterRole": "combine"
+    },
+    {
+      "id": "chapter-02-level-01",
+      "seed": 21260914,
+      "size": 3,
+      "minimum": 2,
+      "nullity": 0,
+      "solutionCount": 1,
+      "verifiedPath": [
+        0,
+        7
+      ],
+      "independentPath": [
+        0,
+        7
+      ],
+      "chapterRole": "introduce"
+    },
+    {
+      "id": "chapter-02-level-02",
+      "seed": 21281915,
+      "size": 3,
+      "minimum": 2,
+      "nullity": 0,
+      "solutionCount": 1,
+      "verifiedPath": [
+        2,
+        5
+      ],
+      "independentPath": [
+        2,
+        5
+      ],
+      "chapterRole": "introduce"
+    },
+    {
+      "id": "chapter-02-level-03",
+      "seed": 21302920,
+      "size": 3,
+      "minimum": 2,
+      "nullity": 0,
+      "solutionCount": 1,
+      "verifiedPath": [
+        0,
+        6
+      ],
+      "independentPath": [
+        0,
+        6
+      ],
+      "chapterRole": "practice"
+    },
+    {
+      "id": "chapter-02-level-04",
+      "seed": 21323917,
+      "size": 3,
+      "minimum": 3,
+      "nullity": 0,
+      "solutionCount": 1,
+      "verifiedPath": [
+        0,
+        3,
+        4
+      ],
+      "independentPath": [
+        0,
+        3,
+        4
+      ],
+      "chapterRole": "practice"
+    },
+    {
+      "id": "chapter-02-level-05",
+      "seed": 21344918,
+      "size": 3,
+      "minimum": 3,
+      "nullity": 0,
+      "solutionCount": 1,
+      "verifiedPath": [
+        2,
+        3,
+        4
+      ],
+      "independentPath": [
+        2,
+        3,
+        4
+      ],
+      "chapterRole": "practice"
+    },
+    {
+      "id": "chapter-02-level-06",
+      "seed": 21365919,
+      "size": 3,
+      "minimum": 3,
+      "nullity": 0,
+      "solutionCount": 1,
+      "verifiedPath": [
+        1,
+        6,
+        8
+      ],
+      "independentPath": [
+        1,
+        6,
+        8
+      ],
+      "chapterRole": "practice"
+    },
+    {
+      "id": "chapter-02-level-07",
+      "seed": 21386920,
+      "size": 3,
+      "minimum": 4,
+      "nullity": 0,
+      "solutionCount": 1,
+      "verifiedPath": [
+        2,
+        6,
+        7,
+        8
+      ],
+      "independentPath": [
+        2,
+        6,
+        7,
+        8
+      ],
+      "chapterRole": "practice"
+    },
+    {
+      "id": "chapter-02-level-08",
+      "seed": 21407921,
+      "size": 3,
+      "minimum": 4,
+      "nullity": 0,
+      "solutionCount": 1,
+      "verifiedPath": [
+        1,
+        3,
+        5,
+        6
+      ],
+      "independentPath": [
+        1,
+        3,
+        5,
+        6
+      ],
+      "chapterRole": "practice"
+    },
+    {
+      "id": "chapter-02-level-09",
+      "seed": 21428922,
+      "size": 3,
+      "minimum": 4,
+      "nullity": 0,
+      "solutionCount": 1,
+      "verifiedPath": [
+        0,
+        3,
+        4,
+        7
+      ],
+      "independentPath": [
+        0,
+        3,
+        4,
+        7
+      ],
+      "chapterRole": "combine"
+    },
+    {
+      "id": "chapter-02-level-10",
+      "seed": 21449923,
+      "size": 3,
+      "minimum": 5,
+      "nullity": 0,
+      "solutionCount": 1,
+      "verifiedPath": [
+        1,
+        2,
+        5,
+        6,
+        8
+      ],
+      "independentPath": [
+        1,
+        2,
+        5,
+        6,
+        8
+      ],
+      "chapterRole": "combine"
+    },
+    {
+      "id": "chapter-03-level-01",
+      "seed": 22260914,
+      "size": 3,
+      "minimum": 2,
+      "nullity": 1,
+      "solutionCount": 2,
+      "verifiedPath": [
+        3,
+        7
+      ],
+      "independentPath": [
+        3,
+        7
+      ],
+      "chapterRole": "introduce"
+    },
+    {
+      "id": "chapter-03-level-02",
+      "seed": 22281916,
+      "size": 3,
+      "minimum": 2,
+      "nullity": 1,
+      "solutionCount": 2,
+      "verifiedPath": [
+        5,
+        6
+      ],
+      "independentPath": [
+        5,
+        6
+      ],
+      "chapterRole": "introduce"
+    },
+    {
+      "id": "chapter-03-level-03",
+      "seed": 22302916,
+      "size": 3,
+      "minimum": 2,
+      "nullity": 1,
+      "solutionCount": 2,
+      "verifiedPath": [
+        0,
+        1
+      ],
+      "independentPath": [
+        0,
+        1
+      ],
+      "chapterRole": "practice"
+    },
+    {
+      "id": "chapter-03-level-04",
+      "seed": 22323917,
+      "size": 3,
+      "minimum": 3,
+      "nullity": 1,
+      "solutionCount": 2,
+      "verifiedPath": [
+        0,
+        3,
+        8
+      ],
+      "independentPath": [
+        0,
+        3,
+        8
+      ],
+      "chapterRole": "practice"
+    },
+    {
+      "id": "chapter-03-level-05",
+      "seed": 22344919,
+      "size": 3,
+      "minimum": 3,
+      "nullity": 0,
+      "solutionCount": 1,
+      "verifiedPath": [
+        0,
+        3,
+        5
+      ],
+      "independentPath": [
+        0,
+        3,
+        5
+      ],
+      "chapterRole": "practice"
+    },
+    {
+      "id": "chapter-03-level-06",
+      "seed": 22365919,
+      "size": 3,
+      "minimum": 3,
+      "nullity": 0,
+      "solutionCount": 1,
+      "verifiedPath": [
+        0,
+        4,
+        7
+      ],
+      "independentPath": [
+        0,
+        4,
+        7
+      ],
+      "chapterRole": "practice"
+    },
+    {
+      "id": "chapter-03-level-07",
+      "seed": 22386920,
+      "size": 3,
+      "minimum": 4,
+      "nullity": 0,
+      "solutionCount": 1,
+      "verifiedPath": [
+        0,
+        1,
+        2,
+        7
+      ],
+      "independentPath": [
+        0,
+        1,
+        2,
+        7
+      ],
+      "chapterRole": "practice"
+    },
+    {
+      "id": "chapter-03-level-08",
+      "seed": 22407921,
+      "size": 3,
+      "minimum": 4,
+      "nullity": 1,
+      "solutionCount": 2,
+      "verifiedPath": [
+        1,
+        4,
+        6,
+        7
+      ],
+      "independentPath": [
+        1,
+        4,
+        6,
+        7
+      ],
+      "chapterRole": "practice"
+    },
+    {
+      "id": "chapter-03-level-09",
+      "seed": 22428923,
+      "size": 3,
+      "minimum": 4,
+      "nullity": 1,
+      "solutionCount": 2,
+      "verifiedPath": [
+        1,
+        3,
+        4,
+        7
+      ],
+      "independentPath": [
+        1,
+        3,
+        4,
+        7
+      ],
+      "chapterRole": "combine"
+    },
+    {
+      "id": "chapter-03-level-10",
+      "seed": 22449923,
+      "size": 3,
+      "minimum": 5,
+      "nullity": 0,
+      "solutionCount": 1,
+      "verifiedPath": [
+        0,
+        4,
+        5,
+        6,
+        8
+      ],
+      "independentPath": [
+        0,
+        4,
+        5,
+        6,
+        8
+      ],
+      "chapterRole": "combine"
+    },
+    {
+      "id": "chapter-04-level-01",
+      "seed": 23260915,
+      "size": 3,
+      "minimum": 3,
+      "nullity": 0,
+      "solutionCount": 1,
+      "verifiedPath": [
+        0,
+        5,
+        6
+      ],
+      "independentPath": [
+        0,
+        5,
+        6
+      ],
+      "chapterRole": "introduce"
+    },
+    {
+      "id": "chapter-04-level-02",
+      "seed": 23281915,
+      "size": 3,
+      "minimum": 3,
+      "nullity": 1,
+      "solutionCount": 2,
+      "verifiedPath": [
+        0,
+        2,
+        4
+      ],
+      "independentPath": [
+        0,
+        2,
+        4
+      ],
+      "chapterRole": "introduce"
+    },
+    {
+      "id": "chapter-04-level-03",
+      "seed": 23302916,
+      "size": 3,
+      "minimum": 3,
+      "nullity": 0,
+      "solutionCount": 1,
+      "verifiedPath": [
+        3,
+        4,
+        5
+      ],
+      "independentPath": [
+        3,
+        4,
+        5
+      ],
+      "chapterRole": "practice"
+    },
+    {
+      "id": "chapter-04-level-04",
+      "seed": 23323917,
+      "size": 3,
+      "minimum": 3,
+      "nullity": 0,
+      "solutionCount": 1,
+      "verifiedPath": [
+        1,
+        2,
+        5
+      ],
+      "independentPath": [
+        1,
+        2,
+        5
+      ],
+      "chapterRole": "practice"
+    },
+    {
+      "id": "chapter-04-level-05",
+      "seed": 23344918,
+      "size": 3,
+      "minimum": 4,
+      "nullity": 0,
+      "solutionCount": 1,
+      "verifiedPath": [
+        2,
+        4,
+        5,
+        7
+      ],
+      "independentPath": [
+        2,
+        4,
+        5,
+        7
+      ],
+      "chapterRole": "practice"
+    },
+    {
+      "id": "chapter-04-level-06",
+      "seed": 23365919,
+      "size": 3,
+      "minimum": 4,
+      "nullity": 0,
+      "solutionCount": 1,
+      "verifiedPath": [
+        2,
+        3,
+        6,
+        7
+      ],
+      "independentPath": [
+        2,
+        3,
+        6,
+        7
+      ],
+      "chapterRole": "practice"
+    },
+    {
+      "id": "chapter-04-level-07",
+      "seed": 23386920,
+      "size": 3,
+      "minimum": 4,
+      "nullity": 0,
+      "solutionCount": 1,
+      "verifiedPath": [
+        1,
+        3,
+        4,
+        8
+      ],
+      "independentPath": [
+        1,
+        3,
+        4,
+        8
+      ],
+      "chapterRole": "practice"
+    },
+    {
+      "id": "chapter-04-level-08",
+      "seed": 23407923,
+      "size": 3,
+      "minimum": 4,
+      "nullity": 0,
+      "solutionCount": 1,
+      "verifiedPath": [
+        0,
+        2,
+        5,
+        8
+      ],
+      "independentPath": [
+        0,
+        2,
+        5,
+        8
+      ],
+      "chapterRole": "practice"
+    },
+    {
+      "id": "chapter-04-level-09",
+      "seed": 23428922,
+      "size": 3,
+      "minimum": 5,
+      "nullity": 0,
+      "solutionCount": 1,
+      "verifiedPath": [
+        0,
+        3,
+        4,
+        6,
+        7
+      ],
+      "independentPath": [
+        0,
+        3,
+        4,
+        6,
+        7
+      ],
+      "chapterRole": "combine"
+    },
+    {
+      "id": "chapter-04-level-10",
+      "seed": 23449924,
+      "size": 3,
+      "minimum": 5,
+      "nullity": 0,
+      "solutionCount": 1,
+      "verifiedPath": [
+        0,
+        1,
+        4,
+        5,
+        7
+      ],
+      "independentPath": [
+        0,
+        1,
+        4,
+        5,
+        7
+      ],
+      "chapterRole": "combine"
+    },
+    {
+      "id": "chapter-05-level-01",
+      "seed": 24260914,
+      "size": 4,
+      "minimum": 3,
+      "nullity": 4,
+      "solutionCount": 16,
+      "verifiedPath": [
+        10,
+        12,
+        13
+      ],
+      "independentPath": [
+        10,
+        12,
+        13
+      ],
+      "chapterRole": "introduce"
+    },
+    {
+      "id": "chapter-05-level-02",
+      "seed": 24281915,
+      "size": 4,
+      "minimum": 3,
+      "nullity": 4,
+      "solutionCount": 16,
+      "verifiedPath": [
+        6,
+        7,
+        8
+      ],
+      "independentPath": [
+        6,
+        7,
+        8
+      ],
+      "chapterRole": "introduce"
+    },
+    {
+      "id": "chapter-05-level-03",
+      "seed": 24302916,
+      "size": 4,
+      "minimum": 4,
+      "nullity": 4,
+      "solutionCount": 16,
+      "verifiedPath": [
+        1,
+        2,
+        7,
+        13
+      ],
+      "independentPath": [
+        1,
+        2,
+        7,
+        13
+      ],
+      "chapterRole": "practice"
+    },
+    {
+      "id": "chapter-05-level-04",
+      "seed": 24323917,
+      "size": 4,
+      "minimum": 4,
+      "nullity": 4,
+      "solutionCount": 16,
+      "verifiedPath": [
+        0,
+        1,
+        8,
+        10
+      ],
+      "independentPath": [
+        0,
+        1,
+        8,
+        10
+      ],
+      "chapterRole": "practice"
+    },
+    {
+      "id": "chapter-05-level-05",
+      "seed": 24344918,
+      "size": 4,
+      "minimum": 5,
+      "nullity": 4,
+      "solutionCount": 16,
+      "verifiedPath": [
+        0,
+        6,
+        7,
+        10,
+        11
+      ],
+      "independentPath": [
+        0,
+        6,
+        7,
+        10,
+        11
+      ],
+      "chapterRole": "practice"
+    },
+    {
+      "id": "chapter-05-level-06",
+      "seed": 24365919,
+      "size": 4,
+      "minimum": 5,
+      "nullity": 4,
+      "solutionCount": 16,
+      "verifiedPath": [
+        2,
+        5,
+        6,
+        11,
+        12
+      ],
+      "independentPath": [
+        2,
+        5,
+        6,
+        11,
+        12
+      ],
+      "chapterRole": "practice"
+    },
+    {
+      "id": "chapter-05-level-07",
+      "seed": 24386924,
+      "size": 4,
+      "minimum": 6,
+      "nullity": 4,
+      "solutionCount": 16,
+      "verifiedPath": [
+        0,
+        1,
+        3,
+        4,
+        6,
+        11
+      ],
+      "independentPath": [
+        0,
+        1,
+        3,
+        4,
+        6,
+        11
+      ],
+      "chapterRole": "practice"
+    },
+    {
+      "id": "chapter-05-level-08",
+      "seed": 24407922,
+      "size": 4,
+      "minimum": 6,
+      "nullity": 4,
+      "solutionCount": 16,
+      "verifiedPath": [
+        1,
+        2,
+        3,
+        6,
+        10,
+        11
+      ],
+      "independentPath": [
+        1,
+        2,
+        3,
+        6,
+        10,
+        11
+      ],
+      "chapterRole": "practice"
+    },
+    {
+      "id": "chapter-05-level-09",
+      "seed": 24428947,
+      "size": 4,
+      "minimum": 7,
+      "nullity": 4,
+      "solutionCount": 16,
+      "verifiedPath": [
+        0,
+        1,
+        4,
+        5,
+        8,
+        9,
+        11
+      ],
+      "independentPath": [
+        0,
+        1,
+        4,
+        5,
+        8,
+        9,
+        11
+      ],
+      "chapterRole": "combine"
+    },
+    {
+      "id": "chapter-05-level-10",
+      "seed": 24449965,
+      "size": 4,
+      "minimum": 7,
+      "nullity": 4,
+      "solutionCount": 16,
+      "verifiedPath": [
+        2,
+        3,
+        4,
+        5,
+        7,
+        8,
+        10
+      ],
+      "independentPath": [
+        2,
+        3,
+        4,
+        5,
+        7,
+        8,
+        10
+      ],
+      "chapterRole": "combine"
+    },
+    {
+      "id": "chapter-06-level-01",
+      "seed": 25260914,
+      "size": 4,
+      "minimum": 4,
+      "nullity": 1,
+      "solutionCount": 2,
+      "verifiedPath": [
+        1,
+        9,
+        10,
+        13
+      ],
+      "independentPath": [
+        1,
+        9,
+        10,
+        13
+      ],
+      "chapterRole": "introduce"
+    },
+    {
+      "id": "chapter-06-level-02",
+      "seed": 25281916,
+      "size": 4,
+      "minimum": 4,
+      "nullity": 1,
+      "solutionCount": 2,
+      "verifiedPath": [
+        2,
+        5,
+        7,
+        11
+      ],
+      "independentPath": [
+        2,
+        5,
+        7,
+        11
+      ],
+      "chapterRole": "introduce"
+    },
+    {
+      "id": "chapter-06-level-03",
+      "seed": 25302916,
+      "size": 4,
+      "minimum": 5,
+      "nullity": 1,
+      "solutionCount": 2,
+      "verifiedPath": [
+        2,
+        7,
+        9,
+        13,
+        15
+      ],
+      "independentPath": [
+        2,
+        7,
+        9,
+        13,
+        15
+      ],
+      "chapterRole": "practice"
+    },
+    {
+      "id": "chapter-06-level-04",
+      "seed": 25323918,
+      "size": 4,
+      "minimum": 5,
+      "nullity": 1,
+      "solutionCount": 2,
+      "verifiedPath": [
+        1,
+        3,
+        7,
+        12,
+        14
+      ],
+      "independentPath": [
+        1,
+        3,
+        7,
+        12,
+        14
+      ],
+      "chapterRole": "practice"
+    },
+    {
+      "id": "chapter-06-level-05",
+      "seed": 25344918,
+      "size": 5,
+      "minimum": 6,
+      "nullity": 1,
+      "solutionCount": 2,
+      "verifiedPath": [
+        1,
+        10,
+        12,
+        18,
+        22,
+        24
+      ],
+      "independentPath": [
+        1,
+        10,
+        12,
+        18,
+        22,
+        24
+      ],
+      "chapterRole": "practice"
+    },
+    {
+      "id": "chapter-06-level-06",
+      "seed": 25365919,
+      "size": 5,
+      "minimum": 6,
+      "nullity": 1,
+      "solutionCount": 2,
+      "verifiedPath": [
+        2,
+        5,
+        11,
+        14,
+        15,
+        16
+      ],
+      "independentPath": [
+        2,
+        5,
+        11,
+        14,
+        15,
+        16
+      ],
+      "chapterRole": "practice"
+    },
+    {
+      "id": "chapter-06-level-07",
+      "seed": 25386920,
+      "size": 5,
+      "minimum": 7,
+      "nullity": 2,
+      "solutionCount": 4,
+      "verifiedPath": [
+        0,
+        5,
+        13,
+        14,
+        20,
+        21,
+        22
+      ],
+      "independentPath": [
+        0,
+        5,
+        13,
+        14,
+        20,
+        21,
+        22
+      ],
+      "chapterRole": "practice"
+    },
+    {
+      "id": "chapter-06-level-08",
+      "seed": 25407922,
+      "size": 5,
+      "minimum": 7,
+      "nullity": 1,
+      "solutionCount": 2,
+      "verifiedPath": [
+        2,
+        5,
+        9,
+        12,
+        14,
+        15,
+        21
+      ],
+      "independentPath": [
+        2,
+        5,
+        9,
+        12,
+        14,
+        15,
+        21
+      ],
+      "chapterRole": "practice"
+    },
+    {
+      "id": "chapter-06-level-09",
+      "seed": 25428922,
+      "size": 5,
+      "minimum": 8,
+      "nullity": 1,
+      "solutionCount": 2,
+      "verifiedPath": [
+        1,
+        4,
+        5,
+        7,
+        11,
+        12,
+        15,
+        22
+      ],
+      "independentPath": [
+        1,
+        4,
+        5,
+        7,
+        11,
+        12,
+        15,
+        22
+      ],
+      "chapterRole": "combine"
+    },
+    {
+      "id": "chapter-06-level-10",
+      "seed": 25449923,
+      "size": 5,
+      "minimum": 8,
+      "nullity": 1,
+      "solutionCount": 2,
+      "verifiedPath": [
+        2,
+        3,
+        9,
+        11,
+        13,
+        15,
+        20,
+        23
+      ],
+      "independentPath": [
+        2,
+        3,
+        9,
+        11,
+        13,
+        15,
+        20,
+        23
+      ],
+      "chapterRole": "combine"
+    }
+  ]
+}

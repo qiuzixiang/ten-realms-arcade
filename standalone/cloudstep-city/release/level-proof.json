@@ -1,0 +1,422 @@
+[
+  {
+    "id": "chapter-01-level-01",
+    "seed": 383940073,
+    "size": 3,
+    "solutions": 1,
+    "nodes": 4
+  },
+  {
+    "id": "chapter-01-level-02",
+    "seed": 3353128575,
+    "size": 3,
+    "solutions": 1,
+    "nodes": 4
+  },
+  {
+    "id": "chapter-01-level-03",
+    "seed": 1790311717,
+    "size": 3,
+    "solutions": 1,
+    "nodes": 4
+  },
+  {
+    "id": "chapter-01-level-04",
+    "seed": 2493723483,
+    "size": 3,
+    "solutions": 1,
+    "nodes": 4
+  },
+  {
+    "id": "chapter-01-level-05",
+    "seed": 2010039969,
+    "size": 3,
+    "solutions": 1,
+    "nodes": 4
+  },
+  {
+    "id": "chapter-01-level-06",
+    "seed": 4069535863,
+    "size": 3,
+    "solutions": 1,
+    "nodes": 4
+  },
+  {
+    "id": "chapter-01-level-07",
+    "seed": 2421444189,
+    "size": 3,
+    "solutions": 1,
+    "nodes": 4
+  },
+  {
+    "id": "chapter-01-level-08",
+    "seed": 2429469139,
+    "size": 3,
+    "solutions": 1,
+    "nodes": 4
+  },
+  {
+    "id": "chapter-01-level-09",
+    "seed": 407654489,
+    "size": 3,
+    "solutions": 1,
+    "nodes": 4
+  },
+  {
+    "id": "chapter-01-level-10",
+    "seed": 272515951,
+    "size": 3,
+    "solutions": 1,
+    "nodes": 4
+  },
+  {
+    "id": "chapter-02-level-01",
+    "seed": 156682389,
+    "size": 3,
+    "solutions": 1,
+    "nodes": 4
+  },
+  {
+    "id": "chapter-02-level-02",
+    "seed": 818827595,
+    "size": 3,
+    "solutions": 1,
+    "nodes": 4
+  },
+  {
+    "id": "chapter-02-level-03",
+    "seed": 816444177,
+    "size": 3,
+    "solutions": 1,
+    "nodes": 4
+  },
+  {
+    "id": "chapter-02-level-04",
+    "seed": 790284135,
+    "size": 3,
+    "solutions": 1,
+    "nodes": 4
+  },
+  {
+    "id": "chapter-02-level-05",
+    "seed": 592333773,
+    "size": 3,
+    "solutions": 1,
+    "nodes": 4
+  },
+  {
+    "id": "chapter-02-level-06",
+    "seed": 3997680067,
+    "size": 3,
+    "solutions": 1,
+    "nodes": 4
+  },
+  {
+    "id": "chapter-02-level-07",
+    "seed": 614108873,
+    "size": 3,
+    "solutions": 1,
+    "nodes": 5
+  },
+  {
+    "id": "chapter-02-level-08",
+    "seed": 3390938207,
+    "size": 3,
+    "solutions": 1,
+    "nodes": 4
+  },
+  {
+    "id": "chapter-02-level-09",
+    "seed": 2062530565,
+    "size": 3,
+    "solutions": 1,
+    "nodes": 4
+  },
+  {
+    "id": "chapter-02-level-10",
+    "seed": 761590587,
+    "size": 3,
+    "solutions": 1,
+    "nodes": 4
+  },
+  {
+    "id": "chapter-03-level-01",
+    "seed": 34867966,
+    "size": 4,
+    "solutions": 1,
+    "nodes": 9
+  },
+  {
+    "id": "chapter-03-level-02",
+    "seed": 769632922,
+    "size": 4,
+    "solutions": 1,
+    "nodes": 7
+  },
+  {
+    "id": "chapter-03-level-03",
+    "seed": 2750435190,
+    "size": 4,
+    "solutions": 1,
+    "nodes": 10
+  },
+  {
+    "id": "chapter-03-level-04",
+    "seed": 1249605010,
+    "size": 4,
+    "solutions": 1,
+    "nodes": 13
+  },
+  {
+    "id": "chapter-03-level-05",
+    "seed": 999676142,
+    "size": 4,
+    "solutions": 1,
+    "nodes": 5
+  },
+  {
+    "id": "chapter-03-level-06",
+    "seed": 3348067722,
+    "size": 4,
+    "solutions": 1,
+    "nodes": 6
+  },
+  {
+    "id": "chapter-03-level-07",
+    "seed": 2156889958,
+    "size": 4,
+    "solutions": 1,
+    "nodes": 5
+  },
+  {
+    "id": "chapter-03-level-08",
+    "seed": 2339408514,
+    "size": 4,
+    "solutions": 1,
+    "nodes": 5
+  },
+  {
+    "id": "chapter-03-level-09",
+    "seed": 2984000222,
+    "size": 4,
+    "solutions": 1,
+    "nodes": 6
+  },
+  {
+    "id": "chapter-03-level-10",
+    "seed": 4054291578,
+    "size": 4,
+    "solutions": 1,
+    "nodes": 5
+  },
+  {
+    "id": "chapter-04-level-01",
+    "seed": 2238632790,
+    "size": 4,
+    "solutions": 1,
+    "nodes": 17
+  },
+  {
+    "id": "chapter-04-level-02",
+    "seed": 2725344114,
+    "size": 4,
+    "solutions": 1,
+    "nodes": 12
+  },
+  {
+    "id": "chapter-04-level-03",
+    "seed": 1739469006,
+    "size": 4,
+    "solutions": 1,
+    "nodes": 11
+  },
+  {
+    "id": "chapter-04-level-04",
+    "seed": 3124692842,
+    "size": 4,
+    "solutions": 1,
+    "nodes": 9
+  },
+  {
+    "id": "chapter-04-level-05",
+    "seed": 183841606,
+    "size": 4,
+    "solutions": 1,
+    "nodes": 7
+  },
+  {
+    "id": "chapter-04-level-06",
+    "seed": 1094004834,
+    "size": 4,
+    "solutions": 1,
+    "nodes": 5
+  },
+  {
+    "id": "chapter-04-level-07",
+    "seed": 1192409790,
+    "size": 4,
+    "solutions": 1,
+    "nodes": 8
+  },
+  {
+    "id": "chapter-04-level-08",
+    "seed": 4071411290,
+    "size": 4,
+    "solutions": 1,
+    "nodes": 12
+  },
+  {
+    "id": "chapter-04-level-09",
+    "seed": 1221175094,
+    "size": 4,
+    "solutions": 1,
+    "nodes": 14
+  },
+  {
+    "id": "chapter-04-level-10",
+    "seed": 1421001042,
+    "size": 4,
+    "solutions": 1,
+    "nodes": 17
+  },
+  {
+    "id": "chapter-05-level-01",
+    "seed": 290511022,
+    "size": 4,
+    "solutions": 1,
+    "nodes": 8
+  },
+  {
+    "id": "chapter-05-level-02",
+    "seed": 529000778,
+    "size": 4,
+    "solutions": 1,
+    "nodes": 6
+  },
+  {
+    "id": "chapter-05-level-03",
+    "seed": 1171468070,
+    "size": 4,
+    "solutions": 1,
+    "nodes": 10
+  },
+  {
+    "id": "chapter-05-level-04",
+    "seed": 4112590402,
+    "size": 4,
+    "solutions": 1,
+    "nodes": 13
+  },
+  {
+    "id": "chapter-05-level-05",
+    "seed": 1324321438,
+    "size": 4,
+    "solutions": 1,
+    "nodes": 10
+  },
+  {
+    "id": "chapter-05-level-06",
+    "seed": 1755797562,
+    "size": 4,
+    "solutions": 1,
+    "nodes": 10
+  },
+  {
+    "id": "chapter-05-level-07",
+    "seed": 3359165206,
+    "size": 4,
+    "solutions": 1,
+    "nodes": 19
+  },
+  {
+    "id": "chapter-05-level-08",
+    "seed": 1442275122,
+    "size": 4,
+    "solutions": 1,
+    "nodes": 39
+  },
+  {
+    "id": "chapter-05-level-09",
+    "seed": 1068880014,
+    "size": 4,
+    "solutions": 1,
+    "nodes": 8
+  },
+  {
+    "id": "chapter-05-level-10",
+    "seed": 2300713770,
+    "size": 4,
+    "solutions": 1,
+    "nodes": 22
+  },
+  {
+    "id": "chapter-06-level-01",
+    "seed": 1164016390,
+    "size": 4,
+    "solutions": 1,
+    "nodes": 18
+  },
+  {
+    "id": "chapter-06-level-02",
+    "seed": 3052170274,
+    "size": 4,
+    "solutions": 1,
+    "nodes": 23
+  },
+  {
+    "id": "chapter-06-level-03",
+    "seed": 3400182398,
+    "size": 4,
+    "solutions": 1,
+    "nodes": 11
+  },
+  {
+    "id": "chapter-06-level-04",
+    "seed": 3209638426,
+    "size": 4,
+    "solutions": 1,
+    "nodes": 8
+  },
+  {
+    "id": "chapter-06-level-05",
+    "seed": 2911975447,
+    "size": 5,
+    "solutions": 1,
+    "nodes": 249
+  },
+  {
+    "id": "chapter-06-level-06",
+    "seed": 198795123,
+    "size": 5,
+    "solutions": 1,
+    "nodes": 18
+  },
+  {
+    "id": "chapter-06-level-07",
+    "seed": 2210404111,
+    "size": 5,
+    "solutions": 1,
+    "nodes": 104
+  },
+  {
+    "id": "chapter-06-level-08",
+    "seed": 2003499755,
+    "size": 5,
+    "solutions": 1,
+    "nodes": 362
+  },
+  {
+    "id": "chapter-06-level-09",
+    "seed": 961275655,
+    "size": 5,
+    "solutions": 1,
+    "nodes": 138
+  },
+  {
+    "id": "chapter-06-level-10",
+    "seed": 201127779,
+    "size": 5,
+    "solutions": 1,
+    "nodes": 22
+  }
+]

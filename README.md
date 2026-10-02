@@ -12,19 +12,41 @@
 - 4.0：[Vercel](https://ten-realms-arcade.vercel.app/v4/) · [GitHub Pages](https://qiuzixiang.github.io/ten-realms-arcade/v4/)
 - [GitHub 源码仓库](https://github.com/qiuzixiang/ten-realms-arcade)
 
-## 五款多关卡独立游戏
+## 27 款独立游戏
 
-[打开试玩合集](https://qiuzixiang.github.io/ten-realms-arcade/standalone/) · 每款提供离线 ZIP 下载。
+[打开试玩合集](https://qiuzixiang.github.io/ten-realms-arcade/standalone/) · 每款提供网页离线 ZIP 下载。
 
 | 游戏 | 主线关卡 | 源码 |
 | --- | --- | --- |
-| [云野露营](https://qiuzixiang.github.io/ten-realms-arcade/standalone/cloud-camp-journey/) | 60 | [目录](./standalone/cloud-camp-journey/) |
-| [雾窗显影](https://qiuzixiang.github.io/ten-realms-arcade/standalone/mistwood-album/) | 60 | [目录](./standalone/mistwood-album/) |
-| [四季染旅](https://qiuzixiang.github.io/ten-realms-arcade/standalone/season-dye-journey/) | 72 | [目录](./standalone/season-dye-journey/) |
-| [纸鹤归旅](https://qiuzixiang.github.io/ten-realms-arcade/standalone/paper-crane-journey/) | 60 | [目录](./standalone/paper-crane-journey/) |
-| [月潮回环](https://qiuzixiang.github.io/ten-realms-arcade/standalone/moon-tide-loop/) | 72 | [目录](./standalone/moon-tide-loop/) |
+| 云野露营 | 60 | [目录](./standalone/cloud-camp-journey/) |
+| 雾窗显影 | 60 | [目录](./standalone/mistwood-album/) |
+| 四季染旅 | 72 | [目录](./standalone/season-dye-journey/) |
+| 纸鹤归旅 | 60 | [目录](./standalone/paper-crane-journey/) |
+| 月潮回环 | 72 | [目录](./standalone/moon-tide-loop/) |
+| 星际漂流 | 48 | [目录](./standalone/star-drift/) |
+| 潮汐灯塔 | 48 | [目录](./standalone/tide-lanterns/) |
+| 星露配方 | 60 | [目录](./standalone/stardew-formulas/) |
+| 梦屿旅舍 | 60 | [目录](./standalone/dream-isle-hotel/) |
+| 晚风铃庭 | 60 | [目录](./standalone/evening-bell-garden/) |
+| 杏橘收纳所 | 48 | [目录](./standalone/apricot-pantry/) |
+| 琥珀勘探队 | 60 | [目录](./standalone/amber-strata-survey/) |
+| 萤庭夜游 | 60 | [目录](./standalone/firefly-nocturne/) |
+| 霜野铁道 | 60 | [目录](./standalone/frostfield-railway/) |
+| 星仪回廊 | 60 | [目录](./standalone/astral-turn-gallery/) |
+| 极光信标 | 60 | [目录](./standalone/aurora-beacons/) |
+| 时砂来信 | 60 | [目录](./standalone/sandscript-post/) |
+| 月影书斋 | 60 | [目录](./standalone/moonshade-archive/) |
+| 四灵山居 | 60 | [目录](./standalone/four-spirit-valley/) |
+| 星芽花园 | 60 | [目录](./standalone/starbud-garden/) |
+| 百妖合宿 | 60 | [目录](./standalone/yokai-pairing-house/) |
+| 云阶筑城 | 60 | [目录](./standalone/cloudstep-city/) |
+| 香笺秘方 | 60 | [目录](./standalone/scent-letter/) |
+| 昼夜织卷 | 72 | [目录](./standalone/daynight-scroll/) |
+| 珊瑚育海 | 60 | [目录](./standalone/coral-tide-garden/) |
+| 五子连珠 | 休闲挑战 | [目录](./standalone/color-linez/) |
+| 滚滚小镇 | 休闲挑战 | [目录](./standalone/rolling-town/) |
 
-运行 `npm test` 验证全部合集及五款独立游戏，`npm run build` 构建网站和离线包。
+首次运行 `npm run setup` 安装构建依赖；`npm test` 验证全部合集及独立游戏，`npm run build` 构建并检查网页资源和离线包。
 
 ## 1.0 · 原十款
 
@@ -119,3 +141,7 @@ npm run build
 ## 规则与许可
 
 规则参考 [Simon Tatham's Portable Puzzle Collection](https://www.chiark.greenend.org.uk/~sgtatham/puzzles/) 及 [ebnbin/puzzles](https://github.com/ebnbin/puzzles) 的中文网页版本。4.0 固定参考 `ebnbin/puzzles` 的指定提交，详情见 [4.0 规则契约](v4/RULES.md)。主题包装、视觉资产和本仓库中的游戏实现均为本项目重新制作。详细许可与署名见 [1.0 第三方声明](THIRD_PARTY_NOTICES.md)、[2.0 第三方声明](v2/THIRD_PARTY_NOTICES.md)、[3.0 第三方声明](v3/THIRD_PARTY_NOTICES.md) 与 [4.0 第三方声明](v4/THIRD_PARTY_NOTICES.md)。
+
+## 完整独立游戏目录
+
+已整理 27 款成品：[玩法与源码索引](./standalone/README.md)，[在线游玩及网页离线下载](https://qiuzixiang.github.io/ten-realms-arcade/standalone/)。

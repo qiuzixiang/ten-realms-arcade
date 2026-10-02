@@ -1,0 +1,118 @@
+{
+  "slug": "frostfield-railway",
+  "title": "霜野铁道",
+  "version": "1.0.0",
+  "source": {
+    "path": "v2/games/polar-railway",
+    "commit": "55cdddb75cf57c17baee80bac4121bd3be1687c6",
+    "rule": "Tracks",
+    "license": "MIT"
+  },
+  "status": "verified_submitted_pending_platform_review",
+  "targetLevelCount": 60,
+  "verifiedLevelCount": 60,
+  "chapterCount": 6,
+  "uniqueSolutionProof": "Independent vertex-simple-path enumeration to second solution or exhaustion; 60 exhausted singleton results",
+  "commands": {
+    "build": "npm run build",
+    "rules": "npm test",
+    "audit": "npm run audit",
+    "browser": "npm run serve then npm run browser"
+  },
+  "checks": {
+    "testsPassed": 21,
+    "browserMatrix": 9,
+    "csp": true,
+    "es2017": true,
+    "zipCRC": true,
+    "independentOracle": true,
+    "cleanCheckout": "passed",
+    "physicalIOS": "not_tested",
+    "physicalAndroid": "not_tested",
+    "chrome61Device": "not_tested",
+    "officialDesktopSimulator": "first-puzzle-completion_passed"
+  },
+  "artifacts": [
+    "dist/frostfield-railway-xhs.zip",
+    "release/icon-512.png",
+    "release/cover-1080x1440.png",
+    "release/NOTE.md",
+    "release/level-proofs.json",
+    "release/browser-report.json",
+    "release/audit.json",
+    "release/clean-check-report.json",
+    "release/PUBLICATION.json",
+    "release/platform-simulator-report.json",
+    "release/platform-review-card.png"
+  ],
+  "publication": {
+    "xhsTool": "submitted_pending_review",
+    "xhsNote": "local_draft",
+    "github": "not_requested",
+    "agreementChecked": true,
+    "toolId": "6ab27fcc4098b3001566a05b"
+  },
+  "package": {
+    "passed": true,
+    "checks": [
+      "ES2017 classic-script parse",
+      "Chrome 61 runtime API scan",
+      "All local references exist",
+      "No external resource or prohibited API",
+      "Exactly one HTML at ZIP root",
+      "All file suffixes allowed",
+      "ZIP CRC passed",
+      "SVG XML parsed",
+      "MIT notice included"
+    ],
+    "zipBytes": 31801,
+    "uncompressedBytes": 104258,
+    "sha256": "3843c810542d64d34f576718c02443fb231a2b83accf99dab07df222443d9c87",
+    "files": [
+      {
+        "path": "app.js",
+        "bytes": 64537
+      },
+      {
+        "path": "assets/icon.svg",
+        "bytes": 1031
+      },
+      {
+        "path": "assets/snowfield.svg",
+        "bytes": 10605
+      },
+      {
+        "path": "assets/station-1.svg",
+        "bytes": 2299
+      },
+      {
+        "path": "assets/station-2.svg",
+        "bytes": 2280
+      },
+      {
+        "path": "assets/station-3.svg",
+        "bytes": 2270
+      },
+      {
+        "path": "assets/station-4.svg",
+        "bytes": 2250
+      },
+      {
+        "path": "assets/station-5.svg",
+        "bytes": 2352
+      },
+      {
+        "path": "assets/station-6.svg",
+        "bytes": 2453
+      },
+      {
+        "path": "index.html",
+        "bytes": 547
+      },
+      {
+        "path": "style.css",
+        "bytes": 13634
+      }
+    ]
+  }
+}
