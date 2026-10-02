@@ -1,0 +1,168 @@
+{
+  "layouts": [
+    {
+      "width": 320,
+      "geometry": {
+        "width": 320,
+        "scroll": 320,
+        "tools": {
+          "x": 0,
+          "y": 766,
+          "width": 320,
+          "height": 78,
+          "top": 766,
+          "right": 320,
+          "bottom": 844,
+          "left": 0
+        }
+      }
+    },
+    {
+      "width": 390,
+      "geometry": {
+        "width": 390,
+        "scroll": 390,
+        "tools": {
+          "x": 0,
+          "y": 766,
+          "width": 390,
+          "height": 78,
+          "top": 766,
+          "right": 390,
+          "bottom": 844,
+          "left": 0
+        }
+      }
+    },
+    {
+      "width": 449,
+      "geometry": {
+        "width": 449,
+        "scroll": 449,
+        "tools": {
+          "x": 0,
+          "y": 766,
+          "width": 449,
+          "height": 78,
+          "top": 766,
+          "right": 449,
+          "bottom": 844,
+          "left": 0
+        }
+      }
+    },
+    {
+      "width": 450,
+      "geometry": {
+        "width": 450,
+        "scroll": 450,
+        "tools": {
+          "x": 0,
+          "y": 766,
+          "width": 450,
+          "height": 78,
+          "top": 766,
+          "right": 450,
+          "bottom": 844,
+          "left": 0
+        }
+      }
+    },
+    {
+      "width": 451,
+      "geometry": {
+        "width": 451,
+        "scroll": 451,
+        "tools": {
+          "x": 0,
+          "y": 766,
+          "width": 451,
+          "height": 78,
+          "top": 766,
+          "right": 451,
+          "bottom": 844,
+          "left": 0
+        }
+      }
+    },
+    {
+      "width": 799,
+      "geometry": {
+        "width": 799,
+        "scroll": 799,
+        "tools": {
+          "x": 0,
+          "y": 766,
+          "width": 799,
+          "height": 78,
+          "top": 766,
+          "right": 799,
+          "bottom": 844,
+          "left": 0
+        }
+      }
+    },
+    {
+      "width": 800,
+      "geometry": {
+        "width": 800,
+        "scroll": 800,
+        "tools": {
+          "x": 0,
+          "y": 766,
+          "width": 800,
+          "height": 78,
+          "top": 766,
+          "right": 800,
+          "bottom": 844,
+          "left": 0
+        }
+      }
+    },
+    {
+      "width": 801,
+      "geometry": {
+        "width": 801,
+        "scroll": 801,
+        "tools": {
+          "x": 16,
+          "y": 1010.78125,
+          "width": 491,
+          "height": 48,
+          "top": 1010.78125,
+          "right": 507,
+          "bottom": 1058.78125,
+          "left": 16
+        }
+      }
+    },
+    {
+      "width": 1280,
+      "geometry": {
+        "width": 1280,
+        "scroll": 1280,
+        "tools": {
+          "x": 96,
+          "y": 1167.359375,
+          "width": 628,
+          "height": 48,
+          "top": 1167.359375,
+          "right": 724,
+          "bottom": 1215.359375,
+          "left": 96
+        }
+      }
+    }
+  ],
+  "errors": [],
+  "checks": [
+    "double-confirm one move",
+    "restart cancels pending animation",
+    "keyboard arrow/enter/escape",
+    "real stuck and undo",
+    "tutorial screenshots",
+    "44/34px injected safe areas",
+    "all 60 initial boards render"
+  ],
+  "browser": "154.0.8037.58"
+}

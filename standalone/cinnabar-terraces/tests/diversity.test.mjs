@@ -1,0 +1,5 @@
+import test from 'node:test';import assert from 'node:assert/strict';import {createRequire} from 'node:module';import {canonical} from '../scripts/canonical.mjs';import {oracle} from '../scripts/oracle.mjs';
+const require=createRequire(import.meta.url),L=require('../levels.js').levels;
+test('campaign has 60 distinct clue topologies even under reflection/rotation, not number relabel practice',()=>{assert.equal(new Set(L.map(canonical)).size,60);const topologies=L.map(l=>canonical({n:l.n,relations:l.relations.map(e=>({a:e.a,b:e.b,sign:'<'}))}));assert.equal(new Set(topologies).size,60);});
+test('independent no-clue 4x4 enumeration counts all 576 Latin squares',()=>{const result=oracle({n:4,relations:[]},1000);assert.equal(result.count,576);assert.ok(result.exhausted);});
+test('representatives teach actual vertical direction, full five-length strict chain and branching convergence',()=>{const a=L[5],b=L[26],c=L[55];assert.ok(a.relations.some(e=>e.b-e.a===4&&e.sign==='<'));assert.ok(b.metrics.chainLength>=5);assert.ok(c.metrics.branching);assert.ok(c.metrics.hiddenSingles>0);});

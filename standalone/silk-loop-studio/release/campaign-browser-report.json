@@ -1,0 +1,301 @@
+{
+  "status": "PASSED",
+  "source": "final local candidate, real keyboard events; reduced-motion simulation",
+  "levels": [
+    {
+      "id": "silk-01",
+      "referenceMoves": 1,
+      "uiMoves": 1,
+      "complete": true
+    },
+    {
+      "id": "silk-02",
+      "referenceMoves": 2,
+      "uiMoves": 2,
+      "complete": true
+    },
+    {
+      "id": "silk-03",
+      "referenceMoves": 2,
+      "uiMoves": 2,
+      "complete": true
+    },
+    {
+      "id": "silk-04",
+      "referenceMoves": 2,
+      "uiMoves": 2,
+      "complete": true
+    },
+    {
+      "id": "silk-05",
+      "referenceMoves": 2,
+      "uiMoves": 2,
+      "complete": true
+    },
+    {
+      "id": "silk-06",
+      "referenceMoves": 3,
+      "uiMoves": 3,
+      "complete": true
+    },
+    {
+      "id": "silk-07",
+      "referenceMoves": 4,
+      "uiMoves": 4,
+      "complete": true
+    },
+    {
+      "id": "silk-08",
+      "referenceMoves": 5,
+      "uiMoves": 5,
+      "complete": true
+    },
+    {
+      "id": "silk-09",
+      "referenceMoves": 2,
+      "uiMoves": 2,
+      "complete": true
+    },
+    {
+      "id": "silk-10",
+      "referenceMoves": 3,
+      "uiMoves": 3,
+      "complete": true
+    },
+    {
+      "id": "silk-11",
+      "referenceMoves": 3,
+      "uiMoves": 3,
+      "complete": true
+    },
+    {
+      "id": "silk-12",
+      "referenceMoves": 4,
+      "uiMoves": 4,
+      "complete": true
+    },
+    {
+      "id": "silk-13",
+      "referenceMoves": 5,
+      "uiMoves": 5,
+      "complete": true
+    },
+    {
+      "id": "silk-14",
+      "referenceMoves": 4,
+      "uiMoves": 4,
+      "complete": true
+    },
+    {
+      "id": "silk-15",
+      "referenceMoves": 6,
+      "uiMoves": 6,
+      "complete": true
+    },
+    {
+      "id": "silk-16",
+      "referenceMoves": 4,
+      "uiMoves": 4,
+      "complete": true
+    },
+    {
+      "id": "silk-17",
+      "referenceMoves": 4,
+      "uiMoves": 4,
+      "complete": true
+    },
+    {
+      "id": "silk-18",
+      "referenceMoves": 5,
+      "uiMoves": 5,
+      "complete": true
+    },
+    {
+      "id": "silk-19",
+      "referenceMoves": 5,
+      "uiMoves": 5,
+      "complete": true
+    },
+    {
+      "id": "silk-20",
+      "referenceMoves": 6,
+      "uiMoves": 6,
+      "complete": true
+    },
+    {
+      "id": "silk-21",
+      "referenceMoves": 6,
+      "uiMoves": 6,
+      "complete": true
+    },
+    {
+      "id": "silk-22",
+      "referenceMoves": 5,
+      "uiMoves": 5,
+      "complete": true
+    },
+    {
+      "id": "silk-23",
+      "referenceMoves": 6,
+      "uiMoves": 6,
+      "complete": true
+    },
+    {
+      "id": "silk-24",
+      "referenceMoves": 5,
+      "uiMoves": 5,
+      "complete": true
+    },
+    {
+      "id": "silk-25",
+      "referenceMoves": 8,
+      "uiMoves": 8,
+      "complete": true
+    },
+    {
+      "id": "silk-26",
+      "referenceMoves": 8,
+      "uiMoves": 8,
+      "complete": true
+    },
+    {
+      "id": "silk-27",
+      "referenceMoves": 8,
+      "uiMoves": 8,
+      "complete": true
+    },
+    {
+      "id": "silk-28",
+      "referenceMoves": 8,
+      "uiMoves": 8,
+      "complete": true
+    },
+    {
+      "id": "silk-29",
+      "referenceMoves": 8,
+      "uiMoves": 8,
+      "complete": true
+    },
+    {
+      "id": "silk-30",
+      "referenceMoves": 8,
+      "uiMoves": 8,
+      "complete": true
+    },
+    {
+      "id": "silk-31",
+      "referenceMoves": 8,
+      "uiMoves": 8,
+      "complete": true
+    },
+    {
+      "id": "silk-32",
+      "referenceMoves": 8,
+      "uiMoves": 8,
+      "complete": true
+    },
+    {
+      "id": "silk-33",
+      "referenceMoves": 10,
+      "uiMoves": 10,
+      "complete": true
+    },
+    {
+      "id": "silk-34",
+      "referenceMoves": 10,
+      "uiMoves": 10,
+      "complete": true
+    },
+    {
+      "id": "silk-35",
+      "referenceMoves": 10,
+      "uiMoves": 10,
+      "complete": true
+    },
+    {
+      "id": "silk-36",
+      "referenceMoves": 10,
+      "uiMoves": 10,
+      "complete": true
+    },
+    {
+      "id": "silk-37",
+      "referenceMoves": 8,
+      "uiMoves": 8,
+      "complete": true
+    },
+    {
+      "id": "silk-38",
+      "referenceMoves": 10,
+      "uiMoves": 10,
+      "complete": true
+    },
+    {
+      "id": "silk-39",
+      "referenceMoves": 10,
+      "uiMoves": 10,
+      "complete": true
+    },
+    {
+      "id": "silk-40",
+      "referenceMoves": 10,
+      "uiMoves": 10,
+      "complete": true
+    },
+    {
+      "id": "silk-41",
+      "referenceMoves": 12,
+      "uiMoves": 12,
+      "complete": true
+    },
+    {
+      "id": "silk-42",
+      "referenceMoves": 11,
+      "uiMoves": 11,
+      "complete": true
+    },
+    {
+      "id": "silk-43",
+      "referenceMoves": 12,
+      "uiMoves": 12,
+      "complete": true
+    },
+    {
+      "id": "silk-44",
+      "referenceMoves": 15,
+      "uiMoves": 15,
+      "complete": true
+    },
+    {
+      "id": "silk-45",
+      "referenceMoves": 12,
+      "uiMoves": 12,
+      "complete": true
+    },
+    {
+      "id": "silk-46",
+      "referenceMoves": 15,
+      "uiMoves": 15,
+      "complete": true
+    },
+    {
+      "id": "silk-47",
+      "referenceMoves": 15,
+      "uiMoves": 15,
+      "complete": true
+    },
+    {
+      "id": "silk-48",
+      "referenceMoves": 12,
+      "uiMoves": 12,
+      "complete": true
+    }
+  ],
+  "pageErrors": [],
+  "externalRequests": [],
+  "claims": 48,
+  "earnedChapters": 6,
+  "strategyCards": 12,
+  "hostDeliveries": 48,
+  "duplicateDeliveries": 0
+}

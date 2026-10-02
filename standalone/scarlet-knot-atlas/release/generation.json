@@ -1,0 +1,2926 @@
+{
+  "seed": 20261001,
+  "count": 48,
+  "distinctGraphIsomorphismClasses": 48,
+  "method": "exhaustive adjacency-preserving pairwise graph isomorphism, no cutoff",
+  "levels": [
+    {
+      "id": "scarlet-tutorial-01",
+      "trials": 0,
+      "family": "path-tutorial",
+      "nodes": 4,
+      "edges": 3,
+      "components": 1,
+      "cycles": 0,
+      "articulations": [
+        1,
+        2
+      ],
+      "degrees": [
+        1,
+        1,
+        2,
+        2
+      ],
+      "blocks": [
+        {
+          "vertices": [
+            2,
+            3
+          ],
+          "edgeCount": 1,
+          "cycles": 0
+        },
+        {
+          "vertices": [
+            1,
+            2
+          ],
+          "edgeCount": 1,
+          "cycles": 0
+        },
+        {
+          "vertices": [
+            0,
+            1
+          ],
+          "edgeCount": 1,
+          "cycles": 0
+        }
+      ],
+      "cyclicBlocks": 0
+    },
+    {
+      "id": "scarlet-02",
+      "trials": 0,
+      "family": "convex-ear-triangulation",
+      "nodes": 5,
+      "edges": 6,
+      "components": 1,
+      "cycles": 2,
+      "articulations": [
+        3
+      ],
+      "degrees": [
+        1,
+        2,
+        2,
+        3,
+        4
+      ],
+      "blocks": [
+        {
+          "vertices": [
+            2,
+            3
+          ],
+          "edgeCount": 1,
+          "cycles": 0
+        },
+        {
+          "vertices": [
+            0,
+            1,
+            3,
+            4
+          ],
+          "edgeCount": 5,
+          "cycles": 2
+        }
+      ],
+      "cyclicBlocks": 1
+    },
+    {
+      "id": "scarlet-03",
+      "trials": 0,
+      "family": "convex-ear-triangulation",
+      "nodes": 5,
+      "edges": 4,
+      "components": 1,
+      "cycles": 0,
+      "articulations": [
+        1,
+        4
+      ],
+      "degrees": [
+        1,
+        1,
+        1,
+        2,
+        3
+      ],
+      "blocks": [
+        {
+          "vertices": [
+            3,
+            4
+          ],
+          "edgeCount": 1,
+          "cycles": 0
+        },
+        {
+          "vertices": [
+            1,
+            2
+          ],
+          "edgeCount": 1,
+          "cycles": 0
+        },
+        {
+          "vertices": [
+            1,
+            4
+          ],
+          "edgeCount": 1,
+          "cycles": 0
+        },
+        {
+          "vertices": [
+            0,
+            4
+          ],
+          "edgeCount": 1,
+          "cycles": 0
+        }
+      ],
+      "cyclicBlocks": 0
+    },
+    {
+      "id": "scarlet-04",
+      "trials": 1,
+      "family": "triangulated-lattice-blocks",
+      "nodes": 5,
+      "edges": 6,
+      "components": 1,
+      "cycles": 2,
+      "articulations": [
+        1
+      ],
+      "degrees": [
+        1,
+        2,
+        3,
+        3,
+        3
+      ],
+      "blocks": [
+        {
+          "vertices": [
+            1,
+            2
+          ],
+          "edgeCount": 1,
+          "cycles": 0
+        },
+        {
+          "vertices": [
+            0,
+            1,
+            3,
+            4
+          ],
+          "edgeCount": 5,
+          "cycles": 2
+        }
+      ],
+      "cyclicBlocks": 1
+    },
+    {
+      "id": "scarlet-05",
+      "trials": 0,
+      "family": "convex-ear-triangulation",
+      "nodes": 6,
+      "edges": 9,
+      "components": 1,
+      "cycles": 4,
+      "articulations": [],
+      "degrees": [
+        2,
+        2,
+        3,
+        3,
+        3,
+        5
+      ],
+      "blocks": [
+        {
+          "vertices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "edgeCount": 9,
+          "cycles": 4
+        }
+      ],
+      "cyclicBlocks": 1
+    },
+    {
+      "id": "scarlet-06",
+      "trials": 1,
+      "family": "triangulated-lattice-blocks",
+      "nodes": 6,
+      "edges": 7,
+      "components": 1,
+      "cycles": 2,
+      "articulations": [
+        1
+      ],
+      "degrees": [
+        2,
+        2,
+        2,
+        2,
+        2,
+        4
+      ],
+      "blocks": [
+        {
+          "vertices": [
+            1,
+            2,
+            4,
+            5
+          ],
+          "edgeCount": 4,
+          "cycles": 1
+        },
+        {
+          "vertices": [
+            0,
+            1,
+            3
+          ],
+          "edgeCount": 3,
+          "cycles": 1
+        }
+      ],
+      "cyclicBlocks": 2
+    },
+    {
+      "id": "scarlet-07",
+      "trials": 0,
+      "family": "convex-ear-triangulation",
+      "nodes": 6,
+      "edges": 7,
+      "components": 1,
+      "cycles": 2,
+      "articulations": [],
+      "degrees": [
+        2,
+        2,
+        2,
+        2,
+        3,
+        3
+      ],
+      "blocks": [
+        {
+          "vertices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "edgeCount": 7,
+          "cycles": 2
+        }
+      ],
+      "cyclicBlocks": 1
+    },
+    {
+      "id": "scarlet-08",
+      "trials": 0,
+      "family": "convex-ear-triangulation",
+      "nodes": 6,
+      "edges": 8,
+      "components": 1,
+      "cycles": 3,
+      "articulations": [
+        5
+      ],
+      "degrees": [
+        2,
+        2,
+        2,
+        2,
+        3,
+        5
+      ],
+      "blocks": [
+        {
+          "vertices": [
+            3,
+            4,
+            5
+          ],
+          "edgeCount": 3,
+          "cycles": 1
+        },
+        {
+          "vertices": [
+            0,
+            1,
+            2,
+            5
+          ],
+          "edgeCount": 5,
+          "cycles": 2
+        }
+      ],
+      "cyclicBlocks": 2
+    },
+    {
+      "id": "scarlet-09",
+      "trials": 7,
+      "family": "triangulated-lattice-blocks",
+      "nodes": 6,
+      "edges": 8,
+      "components": 1,
+      "cycles": 3,
+      "articulations": [
+        4
+      ],
+      "degrees": [
+        2,
+        2,
+        2,
+        3,
+        3,
+        4
+      ],
+      "blocks": [
+        {
+          "vertices": [
+            2,
+            4,
+            5
+          ],
+          "edgeCount": 3,
+          "cycles": 1
+        },
+        {
+          "vertices": [
+            0,
+            1,
+            3,
+            4
+          ],
+          "edgeCount": 5,
+          "cycles": 2
+        }
+      ],
+      "cyclicBlocks": 2
+    },
+    {
+      "id": "scarlet-10",
+      "trials": 7,
+      "family": "triangulated-lattice-blocks",
+      "nodes": 6,
+      "edges": 7,
+      "components": 1,
+      "cycles": 2,
+      "articulations": [
+        1,
+        4
+      ],
+      "degrees": [
+        1,
+        2,
+        2,
+        2,
+        3,
+        4
+      ],
+      "blocks": [
+        {
+          "vertices": [
+            1,
+            2
+          ],
+          "edgeCount": 1,
+          "cycles": 0
+        },
+        {
+          "vertices": [
+            1,
+            4,
+            5
+          ],
+          "edgeCount": 3,
+          "cycles": 1
+        },
+        {
+          "vertices": [
+            0,
+            3,
+            4
+          ],
+          "edgeCount": 3,
+          "cycles": 1
+        }
+      ],
+      "cyclicBlocks": 2
+    },
+    {
+      "id": "scarlet-11",
+      "trials": 14,
+      "family": "convex-ear-triangulation",
+      "nodes": 7,
+      "edges": 9,
+      "components": 1,
+      "cycles": 3,
+      "articulations": [
+        0,
+        2
+      ],
+      "degrees": [
+        1,
+        2,
+        2,
+        2,
+        3,
+        3,
+        5
+      ],
+      "blocks": [
+        {
+          "vertices": [
+            2,
+            3
+          ],
+          "edgeCount": 1,
+          "cycles": 0
+        },
+        {
+          "vertices": [
+            0,
+            1,
+            2
+          ],
+          "edgeCount": 3,
+          "cycles": 1
+        },
+        {
+          "vertices": [
+            0,
+            4,
+            5,
+            6
+          ],
+          "edgeCount": 5,
+          "cycles": 2
+        }
+      ],
+      "cyclicBlocks": 2
+    },
+    {
+      "id": "scarlet-12",
+      "trials": 6,
+      "family": "convex-ear-triangulation",
+      "nodes": 7,
+      "edges": 9,
+      "components": 1,
+      "cycles": 3,
+      "articulations": [
+        3,
+        6
+      ],
+      "degrees": [
+        1,
+        2,
+        2,
+        2,
+        3,
+        3,
+        5
+      ],
+      "blocks": [
+        {
+          "vertices": [
+            3,
+            4,
+            5
+          ],
+          "edgeCount": 3,
+          "cycles": 1
+        },
+        {
+          "vertices": [
+            1,
+            2,
+            3,
+            6
+          ],
+          "edgeCount": 5,
+          "cycles": 2
+        },
+        {
+          "vertices": [
+            0,
+            6
+          ],
+          "edgeCount": 1,
+          "cycles": 0
+        }
+      ],
+      "cyclicBlocks": 2
+    },
+    {
+      "id": "scarlet-13",
+      "trials": 16,
+      "family": "convex-ear-triangulation",
+      "nodes": 7,
+      "edges": 9,
+      "components": 1,
+      "cycles": 3,
+      "articulations": [
+        5
+      ],
+      "degrees": [
+        1,
+        2,
+        2,
+        2,
+        2,
+        3,
+        6
+      ],
+      "blocks": [
+        {
+          "vertices": [
+            3,
+            4,
+            5
+          ],
+          "edgeCount": 3,
+          "cycles": 1
+        },
+        {
+          "vertices": [
+            2,
+            5
+          ],
+          "edgeCount": 1,
+          "cycles": 0
+        },
+        {
+          "vertices": [
+            0,
+            1,
+            5,
+            6
+          ],
+          "edgeCount": 5,
+          "cycles": 2
+        }
+      ],
+      "cyclicBlocks": 2
+    },
+    {
+      "id": "scarlet-14",
+      "trials": 0,
+      "family": "convex-ear-triangulation",
+      "nodes": 8,
+      "edges": 12,
+      "components": 1,
+      "cycles": 5,
+      "articulations": [
+        5
+      ],
+      "degrees": [
+        2,
+        2,
+        2,
+        2,
+        3,
+        4,
+        4,
+        5
+      ],
+      "blocks": [
+        {
+          "vertices": [
+            3,
+            4,
+            5
+          ],
+          "edgeCount": 3,
+          "cycles": 1
+        },
+        {
+          "vertices": [
+            0,
+            1,
+            2,
+            5,
+            6,
+            7
+          ],
+          "edgeCount": 9,
+          "cycles": 4
+        }
+      ],
+      "cyclicBlocks": 2
+    },
+    {
+      "id": "scarlet-15",
+      "trials": 3,
+      "family": "triangulated-lattice-blocks",
+      "nodes": 8,
+      "edges": 9,
+      "components": 1,
+      "cycles": 2,
+      "articulations": [
+        1,
+        3,
+        4
+      ],
+      "degrees": [
+        1,
+        1,
+        2,
+        2,
+        2,
+        2,
+        4,
+        4
+      ],
+      "blocks": [
+        {
+          "vertices": [
+            1,
+            2
+          ],
+          "edgeCount": 1,
+          "cycles": 0
+        },
+        {
+          "vertices": [
+            4,
+            6,
+            7
+          ],
+          "edgeCount": 3,
+          "cycles": 1
+        },
+        {
+          "vertices": [
+            1,
+            4,
+            5
+          ],
+          "edgeCount": 3,
+          "cycles": 1
+        },
+        {
+          "vertices": [
+            1,
+            3
+          ],
+          "edgeCount": 1,
+          "cycles": 0
+        },
+        {
+          "vertices": [
+            0,
+            3
+          ],
+          "edgeCount": 1,
+          "cycles": 0
+        }
+      ],
+      "cyclicBlocks": 2
+    },
+    {
+      "id": "scarlet-16",
+      "trials": 4,
+      "family": "convex-ear-triangulation",
+      "nodes": 8,
+      "edges": 9,
+      "components": 1,
+      "cycles": 2,
+      "articulations": [
+        2,
+        3,
+        7
+      ],
+      "degrees": [
+        1,
+        1,
+        1,
+        2,
+        2,
+        3,
+        4,
+        4
+      ],
+      "blocks": [
+        {
+          "vertices": [
+            6,
+            7
+          ],
+          "edgeCount": 1,
+          "cycles": 0
+        },
+        {
+          "vertices": [
+            1,
+            2
+          ],
+          "edgeCount": 1,
+          "cycles": 0
+        },
+        {
+          "vertices": [
+            3,
+            4,
+            5
+          ],
+          "edgeCount": 3,
+          "cycles": 1
+        },
+        {
+          "vertices": [
+            2,
+            3,
+            7
+          ],
+          "edgeCount": 3,
+          "cycles": 1
+        },
+        {
+          "vertices": [
+            0,
+            7
+          ],
+          "edgeCount": 1,
+          "cycles": 0
+        }
+      ],
+      "cyclicBlocks": 2
+    },
+    {
+      "id": "scarlet-17",
+      "trials": 1,
+      "family": "triangulated-lattice-blocks",
+      "nodes": 7,
+      "edges": 8,
+      "components": 1,
+      "cycles": 2,
+      "articulations": [
+        0,
+        3
+      ],
+      "degrees": [
+        1,
+        2,
+        2,
+        2,
+        3,
+        3,
+        3
+      ],
+      "blocks": [
+        {
+          "vertices": [
+            0,
+            1,
+            2,
+            4,
+            5
+          ],
+          "edgeCount": 6,
+          "cycles": 2
+        },
+        {
+          "vertices": [
+            3,
+            6
+          ],
+          "edgeCount": 1,
+          "cycles": 0
+        },
+        {
+          "vertices": [
+            0,
+            3
+          ],
+          "edgeCount": 1,
+          "cycles": 0
+        }
+      ],
+      "cyclicBlocks": 1
+    },
+    {
+      "id": "scarlet-18",
+      "trials": 0,
+      "family": "convex-ear-triangulation",
+      "nodes": 8,
+      "edges": 13,
+      "components": 1,
+      "cycles": 6,
+      "articulations": [],
+      "degrees": [
+        2,
+        2,
+        2,
+        3,
+        4,
+        4,
+        4,
+        5
+      ],
+      "blocks": [
+        {
+          "vertices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "edgeCount": 13,
+          "cycles": 6
+        }
+      ],
+      "cyclicBlocks": 1
+    },
+    {
+      "id": "scarlet-19",
+      "trials": 1,
+      "family": "triangulated-lattice-blocks",
+      "nodes": 8,
+      "edges": 9,
+      "components": 1,
+      "cycles": 2,
+      "articulations": [
+        1
+      ],
+      "degrees": [
+        1,
+        1,
+        2,
+        2,
+        2,
+        3,
+        3,
+        4
+      ],
+      "blocks": [
+        {
+          "vertices": [
+            1,
+            2
+          ],
+          "edgeCount": 1,
+          "cycles": 0
+        },
+        {
+          "vertices": [
+            1,
+            5
+          ],
+          "edgeCount": 1,
+          "cycles": 0
+        },
+        {
+          "vertices": [
+            0,
+            1,
+            3,
+            4,
+            6,
+            7
+          ],
+          "edgeCount": 7,
+          "cycles": 2
+        }
+      ],
+      "cyclicBlocks": 1
+    },
+    {
+      "id": "scarlet-20",
+      "trials": 1,
+      "family": "triangulated-lattice-blocks",
+      "nodes": 9,
+      "edges": 14,
+      "components": 1,
+      "cycles": 6,
+      "articulations": [],
+      "degrees": [
+        2,
+        2,
+        3,
+        3,
+        3,
+        3,
+        3,
+        4,
+        5
+      ],
+      "blocks": [
+        {
+          "vertices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "edgeCount": 14,
+          "cycles": 6
+        }
+      ],
+      "cyclicBlocks": 1
+    },
+    {
+      "id": "scarlet-21",
+      "trials": 3,
+      "family": "triangulated-lattice-blocks",
+      "nodes": 9,
+      "edges": 14,
+      "components": 1,
+      "cycles": 6,
+      "articulations": [
+        3
+      ],
+      "degrees": [
+        1,
+        2,
+        2,
+        3,
+        3,
+        4,
+        4,
+        4,
+        5
+      ],
+      "blocks": [
+        {
+          "vertices": [
+            3,
+            6
+          ],
+          "edgeCount": 1,
+          "cycles": 0
+        },
+        {
+          "vertices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            7,
+            8
+          ],
+          "edgeCount": 13,
+          "cycles": 6
+        }
+      ],
+      "cyclicBlocks": 1
+    },
+    {
+      "id": "scarlet-22",
+      "trials": 0,
+      "family": "convex-ear-triangulation",
+      "nodes": 10,
+      "edges": 13,
+      "components": 1,
+      "cycles": 4,
+      "articulations": [],
+      "degrees": [
+        2,
+        2,
+        2,
+        2,
+        2,
+        3,
+        3,
+        3,
+        3,
+        4
+      ],
+      "blocks": [
+        {
+          "vertices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "edgeCount": 13,
+          "cycles": 4
+        }
+      ],
+      "cyclicBlocks": 1
+    },
+    {
+      "id": "scarlet-23",
+      "trials": 0,
+      "family": "convex-ear-triangulation",
+      "nodes": 10,
+      "edges": 13,
+      "components": 1,
+      "cycles": 4,
+      "articulations": [
+        1,
+        4
+      ],
+      "degrees": [
+        1,
+        2,
+        2,
+        2,
+        3,
+        3,
+        3,
+        3,
+        3,
+        4
+      ],
+      "blocks": [
+        {
+          "vertices": [
+            1,
+            2
+          ],
+          "edgeCount": 1,
+          "cycles": 0
+        },
+        {
+          "vertices": [
+            4,
+            5,
+            6
+          ],
+          "edgeCount": 3,
+          "cycles": 1
+        },
+        {
+          "vertices": [
+            0,
+            1,
+            3,
+            4,
+            7,
+            8,
+            9
+          ],
+          "edgeCount": 9,
+          "cycles": 3
+        }
+      ],
+      "cyclicBlocks": 2
+    },
+    {
+      "id": "scarlet-24",
+      "trials": 1,
+      "family": "triangulated-lattice-blocks",
+      "nodes": 10,
+      "edges": 14,
+      "components": 1,
+      "cycles": 5,
+      "articulations": [
+        2,
+        7
+      ],
+      "degrees": [
+        1,
+        2,
+        2,
+        2,
+        3,
+        3,
+        3,
+        4,
+        4,
+        4
+      ],
+      "blocks": [
+        {
+          "vertices": [
+            3,
+            7
+          ],
+          "edgeCount": 1,
+          "cycles": 0
+        },
+        {
+          "vertices": [
+            2,
+            7
+          ],
+          "edgeCount": 1,
+          "cycles": 0
+        },
+        {
+          "vertices": [
+            0,
+            1,
+            2,
+            4,
+            5,
+            6,
+            8,
+            9
+          ],
+          "edgeCount": 12,
+          "cycles": 5
+        }
+      ],
+      "cyclicBlocks": 1
+    },
+    {
+      "id": "scarlet-25",
+      "trials": 3,
+      "family": "triangulated-lattice-blocks",
+      "nodes": 9,
+      "edges": 11,
+      "components": 1,
+      "cycles": 3,
+      "articulations": [
+        3,
+        7
+      ],
+      "degrees": [
+        1,
+        1,
+        2,
+        2,
+        2,
+        3,
+        3,
+        4,
+        4
+      ],
+      "blocks": [
+        {
+          "vertices": [
+            7,
+            8
+          ],
+          "edgeCount": 1,
+          "cycles": 0
+        },
+        {
+          "vertices": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "edgeCount": 9,
+          "cycles": 3
+        },
+        {
+          "vertices": [
+            0,
+            3
+          ],
+          "edgeCount": 1,
+          "cycles": 0
+        }
+      ],
+      "cyclicBlocks": 1
+    },
+    {
+      "id": "scarlet-26",
+      "trials": 0,
+      "family": "triangulated-lattice-blocks",
+      "nodes": 9,
+      "edges": 12,
+      "components": 1,
+      "cycles": 4,
+      "articulations": [
+        5,
+        7
+      ],
+      "degrees": [
+        1,
+        1,
+        2,
+        2,
+        2,
+        3,
+        4,
+        4,
+        5
+      ],
+      "blocks": [
+        {
+          "vertices": [
+            2,
+            5
+          ],
+          "edgeCount": 1,
+          "cycles": 0
+        },
+        {
+          "vertices": [
+            6,
+            7
+          ],
+          "edgeCount": 1,
+          "cycles": 0
+        },
+        {
+          "vertices": [
+            0,
+            1,
+            3,
+            4,
+            5,
+            7,
+            8
+          ],
+          "edgeCount": 10,
+          "cycles": 4
+        }
+      ],
+      "cyclicBlocks": 1
+    },
+    {
+      "id": "scarlet-27",
+      "trials": 1,
+      "family": "triangulated-lattice-blocks",
+      "nodes": 10,
+      "edges": 12,
+      "components": 1,
+      "cycles": 3,
+      "articulations": [
+        1,
+        4,
+        5,
+        9
+      ],
+      "degrees": [
+        1,
+        2,
+        2,
+        2,
+        2,
+        2,
+        3,
+        3,
+        3,
+        4
+      ],
+      "blocks": [
+        {
+          "vertices": [
+            1,
+            2,
+            3,
+            6,
+            7
+          ],
+          "edgeCount": 6,
+          "cycles": 2
+        },
+        {
+          "vertices": [
+            8,
+            9
+          ],
+          "edgeCount": 1,
+          "cycles": 0
+        },
+        {
+          "vertices": [
+            5,
+            9
+          ],
+          "edgeCount": 1,
+          "cycles": 0
+        },
+        {
+          "vertices": [
+            4,
+            5
+          ],
+          "edgeCount": 1,
+          "cycles": 0
+        },
+        {
+          "vertices": [
+            0,
+            1,
+            4
+          ],
+          "edgeCount": 3,
+          "cycles": 1
+        }
+      ],
+      "cyclicBlocks": 2
+    },
+    {
+      "id": "scarlet-28",
+      "trials": 2,
+      "family": "triangulated-lattice-blocks",
+      "nodes": 10,
+      "edges": 15,
+      "components": 1,
+      "cycles": 6,
+      "articulations": [
+        1,
+        2
+      ],
+      "degrees": [
+        2,
+        2,
+        2,
+        2,
+        3,
+        3,
+        3,
+        4,
+        4,
+        5
+      ],
+      "blocks": [
+        {
+          "vertices": [
+            2,
+            3,
+            6,
+            7
+          ],
+          "edgeCount": 5,
+          "cycles": 2
+        },
+        {
+          "vertices": [
+            1,
+            2
+          ],
+          "edgeCount": 1,
+          "cycles": 0
+        },
+        {
+          "vertices": [
+            0,
+            1,
+            4,
+            5,
+            8,
+            9
+          ],
+          "edgeCount": 9,
+          "cycles": 4
+        }
+      ],
+      "cyclicBlocks": 2
+    },
+    {
+      "id": "scarlet-29",
+      "trials": 1,
+      "family": "triangulated-lattice-blocks",
+      "nodes": 11,
+      "edges": 14,
+      "components": 1,
+      "cycles": 4,
+      "articulations": [
+        1,
+        2,
+        3,
+        5
+      ],
+      "degrees": [
+        1,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        3,
+        4,
+        6
+      ],
+      "blocks": [
+        {
+          "vertices": [
+            3,
+            7
+          ],
+          "edgeCount": 1,
+          "cycles": 0
+        },
+        {
+          "vertices": [
+            2,
+            3
+          ],
+          "edgeCount": 1,
+          "cycles": 0
+        },
+        {
+          "vertices": [
+            5,
+            6,
+            10
+          ],
+          "edgeCount": 3,
+          "cycles": 1
+        },
+        {
+          "vertices": [
+            5,
+            8,
+            9
+          ],
+          "edgeCount": 3,
+          "cycles": 1
+        },
+        {
+          "vertices": [
+            1,
+            2,
+            5
+          ],
+          "edgeCount": 3,
+          "cycles": 1
+        },
+        {
+          "vertices": [
+            0,
+            1,
+            4
+          ],
+          "edgeCount": 3,
+          "cycles": 1
+        }
+      ],
+      "cyclicBlocks": 4
+    },
+    {
+      "id": "scarlet-30",
+      "trials": 0,
+      "family": "triangulated-lattice-blocks",
+      "nodes": 11,
+      "edges": 14,
+      "components": 1,
+      "cycles": 4,
+      "articulations": [
+        1,
+        2,
+        6,
+        9
+      ],
+      "degrees": [
+        1,
+        1,
+        1,
+        1,
+        2,
+        2,
+        3,
+        4,
+        4,
+        4,
+        5
+      ],
+      "blocks": [
+        {
+          "vertices": [
+            2,
+            3
+          ],
+          "edgeCount": 1,
+          "cycles": 0
+        },
+        {
+          "vertices": [
+            1,
+            2
+          ],
+          "edgeCount": 1,
+          "cycles": 0
+        },
+        {
+          "vertices": [
+            9,
+            10
+          ],
+          "edgeCount": 1,
+          "cycles": 0
+        },
+        {
+          "vertices": [
+            6,
+            7
+          ],
+          "edgeCount": 1,
+          "cycles": 0
+        },
+        {
+          "vertices": [
+            1,
+            4,
+            5,
+            6,
+            8,
+            9
+          ],
+          "edgeCount": 9,
+          "cycles": 4
+        },
+        {
+          "vertices": [
+            0,
+            1
+          ],
+          "edgeCount": 1,
+          "cycles": 0
+        }
+      ],
+      "cyclicBlocks": 1
+    },
+    {
+      "id": "scarlet-31",
+      "trials": 0,
+      "family": "triangulated-lattice-blocks",
+      "nodes": 12,
+      "edges": 20,
+      "components": 1,
+      "cycles": 9,
+      "articulations": [
+        2,
+        7
+      ],
+      "degrees": [
+        2,
+        2,
+        2,
+        2,
+        3,
+        3,
+        3,
+        4,
+        4,
+        4,
+        5,
+        6
+      ],
+      "blocks": [
+        {
+          "vertices": [
+            7,
+            10,
+            11
+          ],
+          "edgeCount": 3,
+          "cycles": 1
+        },
+        {
+          "vertices": [
+            2,
+            3,
+            7
+          ],
+          "edgeCount": 3,
+          "cycles": 1
+        },
+        {
+          "vertices": [
+            0,
+            1,
+            2,
+            4,
+            5,
+            6,
+            8,
+            9
+          ],
+          "edgeCount": 14,
+          "cycles": 7
+        }
+      ],
+      "cyclicBlocks": 3
+    },
+    {
+      "id": "scarlet-32",
+      "trials": 4,
+      "family": "triangulated-lattice-blocks",
+      "nodes": 12,
+      "edges": 18,
+      "components": 1,
+      "cycles": 7,
+      "articulations": [
+        1,
+        6,
+        9
+      ],
+      "degrees": [
+        1,
+        1,
+        1,
+        2,
+        2,
+        3,
+        3,
+        3,
+        4,
+        4,
+        6,
+        6
+      ],
+      "blocks": [
+        {
+          "vertices": [
+            8,
+            9
+          ],
+          "edgeCount": 1,
+          "cycles": 0
+        },
+        {
+          "vertices": [
+            3,
+            6
+          ],
+          "edgeCount": 1,
+          "cycles": 0
+        },
+        {
+          "vertices": [
+            1,
+            2,
+            4,
+            5,
+            6,
+            7,
+            9,
+            10,
+            11
+          ],
+          "edgeCount": 15,
+          "cycles": 7
+        },
+        {
+          "vertices": [
+            0,
+            1
+          ],
+          "edgeCount": 1,
+          "cycles": 0
+        }
+      ],
+      "cyclicBlocks": 1
+    },
+    {
+      "id": "scarlet-33",
+      "trials": 16,
+      "family": "triangulated-lattice-blocks",
+      "nodes": 11,
+      "edges": 14,
+      "components": 1,
+      "cycles": 4,
+      "articulations": [
+        0,
+        4,
+        5,
+        6,
+        10
+      ],
+      "degrees": [
+        1,
+        1,
+        1,
+        2,
+        2,
+        2,
+        3,
+        3,
+        3,
+        5,
+        5
+      ],
+      "blocks": [
+        {
+          "vertices": [
+            6,
+            7
+          ],
+          "edgeCount": 1,
+          "cycles": 0
+        },
+        {
+          "vertices": [
+            9,
+            10
+          ],
+          "edgeCount": 1,
+          "cycles": 0
+        },
+        {
+          "vertices": [
+            2,
+            3,
+            5,
+            6,
+            10
+          ],
+          "edgeCount": 7,
+          "cycles": 3
+        },
+        {
+          "vertices": [
+            0,
+            1,
+            5
+          ],
+          "edgeCount": 3,
+          "cycles": 1
+        },
+        {
+          "vertices": [
+            4,
+            8
+          ],
+          "edgeCount": 1,
+          "cycles": 0
+        },
+        {
+          "vertices": [
+            0,
+            4
+          ],
+          "edgeCount": 1,
+          "cycles": 0
+        }
+      ],
+      "cyclicBlocks": 2,
+      "asymmetric": true
+    },
+    {
+      "id": "scarlet-34",
+      "trials": 3,
+      "family": "triangulated-lattice-blocks",
+      "nodes": 11,
+      "edges": 14,
+      "components": 1,
+      "cycles": 4,
+      "articulations": [
+        1,
+        5,
+        6,
+        8
+      ],
+      "degrees": [
+        1,
+        1,
+        1,
+        2,
+        2,
+        2,
+        3,
+        3,
+        4,
+        4,
+        5
+      ],
+      "blocks": [
+        {
+          "vertices": [
+            8,
+            9
+          ],
+          "edgeCount": 1,
+          "cycles": 0
+        },
+        {
+          "vertices": [
+            4,
+            5,
+            8
+          ],
+          "edgeCount": 3,
+          "cycles": 1
+        },
+        {
+          "vertices": [
+            6,
+            10
+          ],
+          "edgeCount": 1,
+          "cycles": 0
+        },
+        {
+          "vertices": [
+            2,
+            3,
+            5,
+            6,
+            7
+          ],
+          "edgeCount": 7,
+          "cycles": 3
+        },
+        {
+          "vertices": [
+            1,
+            5
+          ],
+          "edgeCount": 1,
+          "cycles": 0
+        },
+        {
+          "vertices": [
+            0,
+            1
+          ],
+          "edgeCount": 1,
+          "cycles": 0
+        }
+      ],
+      "cyclicBlocks": 2,
+      "asymmetric": true
+    },
+    {
+      "id": "scarlet-35",
+      "trials": 26,
+      "family": "triangulated-lattice-blocks",
+      "nodes": 12,
+      "edges": 17,
+      "components": 1,
+      "cycles": 6,
+      "articulations": [
+        0,
+        1,
+        6
+      ],
+      "degrees": [
+        1,
+        2,
+        2,
+        2,
+        2,
+        2,
+        3,
+        3,
+        3,
+        4,
+        4,
+        6
+      ],
+      "blocks": [
+        {
+          "vertices": [
+            2,
+            3,
+            6,
+            7,
+            10,
+            11
+          ],
+          "edgeCount": 8,
+          "cycles": 3
+        },
+        {
+          "vertices": [
+            1,
+            5,
+            6,
+            8,
+            9
+          ],
+          "edgeCount": 7,
+          "cycles": 3
+        },
+        {
+          "vertices": [
+            0,
+            1
+          ],
+          "edgeCount": 1,
+          "cycles": 0
+        },
+        {
+          "vertices": [
+            0,
+            4
+          ],
+          "edgeCount": 1,
+          "cycles": 0
+        }
+      ],
+      "cyclicBlocks": 2,
+      "asymmetric": true
+    },
+    {
+      "id": "scarlet-36",
+      "trials": 21,
+      "family": "triangulated-lattice-blocks",
+      "nodes": 12,
+      "edges": 17,
+      "components": 1,
+      "cycles": 6,
+      "articulations": [
+        1,
+        6,
+        10
+      ],
+      "degrees": [
+        1,
+        1,
+        1,
+        2,
+        2,
+        2,
+        3,
+        3,
+        3,
+        4,
+        5,
+        7
+      ],
+      "blocks": [
+        {
+          "vertices": [
+            10,
+            11
+          ],
+          "edgeCount": 1,
+          "cycles": 0
+        },
+        {
+          "vertices": [
+            6,
+            7,
+            10
+          ],
+          "edgeCount": 3,
+          "cycles": 1
+        },
+        {
+          "vertices": [
+            3,
+            6
+          ],
+          "edgeCount": 1,
+          "cycles": 0
+        },
+        {
+          "vertices": [
+            1,
+            2,
+            4,
+            5,
+            6,
+            8,
+            9
+          ],
+          "edgeCount": 11,
+          "cycles": 5
+        },
+        {
+          "vertices": [
+            0,
+            1
+          ],
+          "edgeCount": 1,
+          "cycles": 0
+        }
+      ],
+      "cyclicBlocks": 2,
+      "asymmetric": true
+    },
+    {
+      "id": "scarlet-37",
+      "trials": 2,
+      "family": "triangulated-lattice-blocks",
+      "nodes": 13,
+      "edges": 18,
+      "components": 1,
+      "cycles": 6,
+      "articulations": [
+        8,
+        9
+      ],
+      "degrees": [
+        1,
+        2,
+        2,
+        2,
+        2,
+        2,
+        3,
+        3,
+        3,
+        3,
+        4,
+        4,
+        5
+      ],
+      "blocks": [
+        {
+          "vertices": [
+            4,
+            9
+          ],
+          "edgeCount": 1,
+          "cycles": 0
+        },
+        {
+          "vertices": [
+            3,
+            8,
+            9
+          ],
+          "edgeCount": 3,
+          "cycles": 1
+        },
+        {
+          "vertices": [
+            0,
+            1,
+            2,
+            5,
+            6,
+            7,
+            8,
+            10,
+            11,
+            12
+          ],
+          "edgeCount": 14,
+          "cycles": 5
+        }
+      ],
+      "cyclicBlocks": 2,
+      "asymmetric": true
+    },
+    {
+      "id": "scarlet-38",
+      "trials": 3,
+      "family": "triangulated-lattice-blocks",
+      "nodes": 13,
+      "edges": 19,
+      "components": 1,
+      "cycles": 7,
+      "articulations": [
+        7,
+        8,
+        9
+      ],
+      "degrees": [
+        1,
+        2,
+        2,
+        2,
+        2,
+        3,
+        3,
+        3,
+        3,
+        3,
+        4,
+        4,
+        6
+      ],
+      "blocks": [
+        {
+          "vertices": [
+            4,
+            9
+          ],
+          "edgeCount": 1,
+          "cycles": 0
+        },
+        {
+          "vertices": [
+            8,
+            9
+          ],
+          "edgeCount": 1,
+          "cycles": 0
+        },
+        {
+          "vertices": [
+            2,
+            3,
+            7,
+            8
+          ],
+          "edgeCount": 5,
+          "cycles": 2
+        },
+        {
+          "vertices": [
+            0,
+            1,
+            5,
+            6,
+            7,
+            10,
+            11,
+            12
+          ],
+          "edgeCount": 12,
+          "cycles": 5
+        }
+      ],
+      "cyclicBlocks": 2,
+      "asymmetric": true
+    },
+    {
+      "id": "scarlet-39",
+      "trials": 15,
+      "family": "triangulated-lattice-blocks",
+      "nodes": 14,
+      "edges": 23,
+      "components": 1,
+      "cycles": 10,
+      "articulations": [
+        2,
+        5
+      ],
+      "degrees": [
+        1,
+        2,
+        2,
+        2,
+        3,
+        3,
+        3,
+        3,
+        3,
+        4,
+        4,
+        4,
+        5,
+        7
+      ],
+      "blocks": [
+        {
+          "vertices": [
+            2,
+            3
+          ],
+          "edgeCount": 1,
+          "cycles": 0
+        },
+        {
+          "vertices": [
+            2,
+            5,
+            6,
+            7,
+            10,
+            11
+          ],
+          "edgeCount": 10,
+          "cycles": 5
+        },
+        {
+          "vertices": [
+            0,
+            1,
+            4,
+            5,
+            8,
+            9,
+            12,
+            13
+          ],
+          "edgeCount": 12,
+          "cycles": 5
+        }
+      ],
+      "cyclicBlocks": 2,
+      "asymmetric": true
+    },
+    {
+      "id": "scarlet-40",
+      "trials": 64,
+      "family": "triangulated-lattice-blocks",
+      "nodes": 14,
+      "edges": 18,
+      "components": 1,
+      "cycles": 5,
+      "articulations": [
+        1,
+        7,
+        10
+      ],
+      "degrees": [
+        1,
+        1,
+        1,
+        2,
+        2,
+        2,
+        2,
+        3,
+        3,
+        3,
+        3,
+        3,
+        5,
+        5
+      ],
+      "blocks": [
+        {
+          "vertices": [
+            3,
+            7
+          ],
+          "edgeCount": 1,
+          "cycles": 0
+        },
+        {
+          "vertices": [
+            6,
+            7,
+            10
+          ],
+          "edgeCount": 3,
+          "cycles": 1
+        },
+        {
+          "vertices": [
+            10,
+            11
+          ],
+          "edgeCount": 1,
+          "cycles": 0
+        },
+        {
+          "vertices": [
+            1,
+            2,
+            4,
+            5,
+            8,
+            9,
+            10,
+            12,
+            13
+          ],
+          "edgeCount": 12,
+          "cycles": 4
+        },
+        {
+          "vertices": [
+            0,
+            1
+          ],
+          "edgeCount": 1,
+          "cycles": 0
+        }
+      ],
+      "cyclicBlocks": 2,
+      "asymmetric": true
+    },
+    {
+      "id": "scarlet-41",
+      "trials": 0,
+      "family": "triangulated-lattice-blocks",
+      "nodes": 12,
+      "edges": 15,
+      "components": 1,
+      "cycles": 4,
+      "articulations": [
+        0,
+        2,
+        5,
+        6,
+        9
+      ],
+      "degrees": [
+        1,
+        1,
+        1,
+        2,
+        2,
+        2,
+        3,
+        3,
+        3,
+        3,
+        4,
+        5
+      ],
+      "blocks": [
+        {
+          "vertices": [
+            0,
+            1
+          ],
+          "edgeCount": 1,
+          "cycles": 0
+        },
+        {
+          "vertices": [
+            6,
+            11
+          ],
+          "edgeCount": 1,
+          "cycles": 0
+        },
+        {
+          "vertices": [
+            2,
+            3,
+            6,
+            7
+          ],
+          "edgeCount": 5,
+          "cycles": 2
+        },
+        {
+          "vertices": [
+            2,
+            5
+          ],
+          "edgeCount": 1,
+          "cycles": 0
+        },
+        {
+          "vertices": [
+            8,
+            9
+          ],
+          "edgeCount": 1,
+          "cycles": 0
+        },
+        {
+          "vertices": [
+            5,
+            9,
+            10
+          ],
+          "edgeCount": 3,
+          "cycles": 1
+        },
+        {
+          "vertices": [
+            0,
+            4,
+            5
+          ],
+          "edgeCount": 3,
+          "cycles": 1
+        }
+      ],
+      "cyclicBlocks": 3
+    },
+    {
+      "id": "scarlet-42",
+      "trials": 1,
+      "family": "triangulated-lattice-blocks",
+      "nodes": 13,
+      "edges": 17,
+      "components": 1,
+      "cycles": 5,
+      "articulations": [
+        1,
+        3,
+        8,
+        9
+      ],
+      "degrees": [
+        1,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        3,
+        3,
+        3,
+        3,
+        4,
+        5
+      ],
+      "blocks": [
+        {
+          "vertices": [
+            4,
+            9
+          ],
+          "edgeCount": 1,
+          "cycles": 0
+        },
+        {
+          "vertices": [
+            8,
+            9
+          ],
+          "edgeCount": 1,
+          "cycles": 0
+        },
+        {
+          "vertices": [
+            3,
+            8
+          ],
+          "edgeCount": 1,
+          "cycles": 0
+        },
+        {
+          "vertices": [
+            1,
+            2,
+            3,
+            6,
+            7,
+            10,
+            11,
+            12
+          ],
+          "edgeCount": 11,
+          "cycles": 4
+        },
+        {
+          "vertices": [
+            0,
+            1,
+            5
+          ],
+          "edgeCount": 3,
+          "cycles": 1
+        }
+      ],
+      "cyclicBlocks": 2
+    },
+    {
+      "id": "scarlet-43",
+      "trials": 0,
+      "family": "triangulated-lattice-blocks",
+      "nodes": 13,
+      "edges": 20,
+      "components": 1,
+      "cycles": 8,
+      "articulations": [
+        3,
+        4
+      ],
+      "degrees": [
+        1,
+        2,
+        2,
+        2,
+        2,
+        3,
+        3,
+        3,
+        4,
+        4,
+        4,
+        5,
+        5
+      ],
+      "blocks": [
+        {
+          "vertices": [
+            4,
+            9
+          ],
+          "edgeCount": 1,
+          "cycles": 0
+        },
+        {
+          "vertices": [
+            3,
+            4
+          ],
+          "edgeCount": 1,
+          "cycles": 0
+        },
+        {
+          "vertices": [
+            0,
+            1,
+            2,
+            3,
+            5,
+            6,
+            7,
+            8,
+            10,
+            11,
+            12
+          ],
+          "edgeCount": 18,
+          "cycles": 8
+        }
+      ],
+      "cyclicBlocks": 1
+    },
+    {
+      "id": "scarlet-44",
+      "trials": 1,
+      "family": "triangulated-lattice-blocks",
+      "nodes": 14,
+      "edges": 21,
+      "components": 1,
+      "cycles": 8,
+      "articulations": [
+        2,
+        6,
+        8,
+        11
+      ],
+      "degrees": [
+        1,
+        1,
+        2,
+        2,
+        2,
+        2,
+        3,
+        3,
+        3,
+        4,
+        4,
+        5,
+        5,
+        5
+      ],
+      "blocks": [
+        {
+          "vertices": [
+            2,
+            3
+          ],
+          "edgeCount": 1,
+          "cycles": 0
+        },
+        {
+          "vertices": [
+            2,
+            6
+          ],
+          "edgeCount": 1,
+          "cycles": 0
+        },
+        {
+          "vertices": [
+            7,
+            11
+          ],
+          "edgeCount": 1,
+          "cycles": 0
+        },
+        {
+          "vertices": [
+            8,
+            12,
+            13
+          ],
+          "edgeCount": 3,
+          "cycles": 1
+        },
+        {
+          "vertices": [
+            0,
+            1,
+            4,
+            5,
+            6,
+            8,
+            9,
+            10,
+            11
+          ],
+          "edgeCount": 15,
+          "cycles": 7
+        }
+      ],
+      "cyclicBlocks": 2
+    },
+    {
+      "id": "scarlet-45",
+      "trials": 0,
+      "family": "triangulated-lattice-blocks",
+      "nodes": 14,
+      "edges": 20,
+      "components": 1,
+      "cycles": 7,
+      "articulations": [
+        9,
+        10
+      ],
+      "degrees": [
+        1,
+        1,
+        1,
+        2,
+        2,
+        2,
+        3,
+        3,
+        3,
+        4,
+        4,
+        4,
+        5,
+        5
+      ],
+      "blocks": [
+        {
+          "vertices": [
+            10,
+            11
+          ],
+          "edgeCount": 1,
+          "cycles": 0
+        },
+        {
+          "vertices": [
+            9,
+            13
+          ],
+          "edgeCount": 1,
+          "cycles": 0
+        },
+        {
+          "vertices": [
+            9,
+            12
+          ],
+          "edgeCount": 1,
+          "cycles": 0
+        },
+        {
+          "vertices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "edgeCount": 17,
+          "cycles": 7
+        }
+      ],
+      "cyclicBlocks": 1
+    },
+    {
+      "id": "scarlet-46",
+      "trials": 0,
+      "family": "triangulated-lattice-blocks",
+      "nodes": 15,
+      "edges": 24,
+      "components": 1,
+      "cycles": 10,
+      "articulations": [
+        4,
+        6,
+        9
+      ],
+      "degrees": [
+        1,
+        1,
+        2,
+        2,
+        2,
+        2,
+        3,
+        3,
+        3,
+        3,
+        3,
+        4,
+        6,
+        6,
+        7
+      ],
+      "blocks": [
+        {
+          "vertices": [
+            4,
+            8
+          ],
+          "edgeCount": 1,
+          "cycles": 0
+        },
+        {
+          "vertices": [
+            2,
+            3,
+            6,
+            7
+          ],
+          "edgeCount": 5,
+          "cycles": 2
+        },
+        {
+          "vertices": [
+            6,
+            11
+          ],
+          "edgeCount": 1,
+          "cycles": 0
+        },
+        {
+          "vertices": [
+            9,
+            12,
+            13,
+            14
+          ],
+          "edgeCount": 5,
+          "cycles": 2
+        },
+        {
+          "vertices": [
+            0,
+            1,
+            4,
+            5,
+            6,
+            9,
+            10
+          ],
+          "edgeCount": 12,
+          "cycles": 6
+        }
+      ],
+      "cyclicBlocks": 3
+    },
+    {
+      "id": "scarlet-47",
+      "trials": 0,
+      "family": "triangulated-lattice-blocks",
+      "nodes": 16,
+      "edges": 27,
+      "components": 1,
+      "cycles": 12,
+      "articulations": [
+        6
+      ],
+      "degrees": [
+        1,
+        2,
+        2,
+        2,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        4,
+        4,
+        4,
+        5,
+        5,
+        7
+      ],
+      "blocks": [
+        {
+          "vertices": [
+            2,
+            6
+          ],
+          "edgeCount": 1,
+          "cycles": 0
+        },
+        {
+          "vertices": [
+            0,
+            1,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15
+          ],
+          "edgeCount": 26,
+          "cycles": 12
+        }
+      ],
+      "cyclicBlocks": 1
+    },
+    {
+      "id": "scarlet-48",
+      "trials": 0,
+      "family": "three-asymmetric-cyclic-blocks",
+      "nodes": 16,
+      "edges": 24,
+      "components": 1,
+      "cycles": 9,
+      "articulations": [
+        6,
+        7,
+        10,
+        14
+      ],
+      "degrees": [
+        1,
+        1,
+        2,
+        2,
+        2,
+        2,
+        3,
+        3,
+        3,
+        3,
+        4,
+        4,
+        4,
+        4,
+        4,
+        6
+      ],
+      "blocks": [
+        {
+          "vertices": [
+            14,
+            15
+          ],
+          "edgeCount": 1,
+          "cycles": 0
+        },
+        {
+          "vertices": [
+            8,
+            9,
+            10,
+            12,
+            13,
+            14
+          ],
+          "edgeCount": 8,
+          "cycles": 3
+        },
+        {
+          "vertices": [
+            3,
+            7
+          ],
+          "edgeCount": 1,
+          "cycles": 0
+        },
+        {
+          "vertices": [
+            6,
+            7,
+            10,
+            11
+          ],
+          "edgeCount": 5,
+          "cycles": 2
+        },
+        {
+          "vertices": [
+            0,
+            1,
+            2,
+            4,
+            5,
+            6
+          ],
+          "edgeCount": 9,
+          "cycles": 4
+        }
+      ],
+      "cyclicBlocks": 3
+    }
+  ]
+}

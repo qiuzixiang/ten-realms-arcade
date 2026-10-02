@@ -1,0 +1,456 @@
+{
+  "slug": "scarlet-knot-atlas",
+  "title": "红线绮梦馆",
+  "status": "local_candidate_verified_publication_paused",
+  "updatedAt": "2026-10-01T14:14:46.960891+00:00",
+  "source": {
+    "path": "games/red-thread-office",
+    "commit": "55cdddb75cf57c17baee80bac4121bd3be1687c6",
+    "license": "MIT",
+    "rule": "Untangle"
+  },
+  "worktree": "[local-source]",
+  "sourcePath": "[local-source]",
+  "branch": "codex/scarlet-knot-atlas",
+  "codeSnapshotCommit": "dd0a46f8ed750540fc264798001975cfe6cabc8e",
+  "previousCheckpointCommit": "4de511d",
+  "targetLevelCount": 48,
+  "verifiedLevelCount": 48,
+  "geometryVerifiedLevelCount": 48,
+  "scriptedUICompletedLevelCount": 48,
+  "humanBlindPlaythroughLevelCount": 0,
+  "chapters": [
+    {
+      "chapter": 1,
+      "levelCount": 8
+    },
+    {
+      "chapter": 2,
+      "levelCount": 8
+    },
+    {
+      "chapter": 3,
+      "levelCount": 8
+    },
+    {
+      "chapter": 4,
+      "levelCount": 8
+    },
+    {
+      "chapter": 5,
+      "levelCount": 8
+    },
+    {
+      "chapter": 6,
+      "levelCount": 8
+    }
+  ],
+  "commands": [
+    {
+      "command": "npm run generate",
+      "exitCode": 0
+    },
+    {
+      "command": "npm test",
+      "exitCode": 0
+    },
+    {
+      "command": "npm run prove",
+      "exitCode": 0
+    },
+    {
+      "command": "npm run build",
+      "exitCode": 0
+    },
+    {
+      "command": "npm run audit",
+      "exitCode": 0
+    }
+  ],
+  "checks": {
+    "tests": {
+      "pass": 16,
+      "fail": 0
+    },
+    "geometryOracle": {
+      "samples": 10000,
+      "campaignProofs": 48,
+      "representatives": 8
+    },
+    "tutorial": {
+      "states": 3,
+      "crossingCounts": [
+        1,
+        1,
+        0
+      ]
+    },
+    "browser": {
+      "status": "passed_modern_desktop_simulation",
+      "version": "154.0.8037.94",
+      "viewportStates": 36,
+      "errors": 0,
+      "externalRequests": 0,
+      "report": "[local-source]"
+    },
+    "boundary": {
+      "status": "passed",
+      "scriptedUICompletedLevels": 48,
+      "additionalCases": 8,
+      "report": "[local-source]"
+    },
+    "package": {
+      "status": "passed_local_candidate",
+      "officialArchivedAuditVersion": "1.7.0",
+      "directoryWarnings": 0,
+      "zipWarnings": 0,
+      "report": "[local-source]"
+    },
+    "cleanReproduction": {
+      "status": "passed",
+      "byteIdentical": true,
+      "report": "[local-source]"
+    },
+    "integration": "not_requested",
+    "physicalDevices": "not_tested",
+    "officialContainer": "not_tested",
+    "Chrome61": "not_tested",
+    "latestOnlineRules": "unverified_DNS_timeout"
+  },
+  "independentReview": {
+    "status": "findings_closed",
+    "closedFindings": 3,
+    "report": "[local-source]",
+    "lastReviewedPackageSHA256": "7a61022e769bbd54936d2d541356cbe3b89abd15f6f45a34a571a65a98f36175",
+    "subsequentChange": "Only initial static sound button aria-label changed to 切换声音; final package rebuilt, audited and clean-reproduced. Browser screenshots retain earlier UI state.",
+    "scope": "local source, production Chrome154 UI, geometry/tutorial/storage/reward regressions, gallery, ZIP/license; no physical or official container validation"
+  },
+  "zip": {
+    "path": "[local-source]",
+    "bytes": 111008,
+    "files": 9,
+    "sha256": "17d883a6e16ce0cec34a826c9611822aee823f095b3ada16f2983fdf38a6465a"
+  },
+  "zipPath": "[local-source]",
+  "artifacts": [
+    {
+      "path": "[local-source]",
+      "bytes": 4979,
+      "sha256": "febd3a3c68e6b89376c220a438bcbf1a3e86963115c9fd640c265747b3c4b48b"
+    },
+    {
+      "path": "[local-source]",
+      "bytes": 5851,
+      "sha256": "ff380a80754d40baccd54ac0a76bd07d131500df72426bc625cefe331047507e"
+    },
+    {
+      "path": "[local-source]",
+      "bytes": 1844,
+      "sha256": "3b6830ff2b92afc30a88cca00bc3b373b8159135a241d543b21b7e7f81cc7c15"
+    },
+    {
+      "path": "[local-source]",
+      "bytes": 2034,
+      "sha256": "6391d980a9084361fa6fa935e364f0458a6e9dcf8dc3167852ed33d435e08954"
+    },
+    {
+      "path": "[local-source]",
+      "bytes": 1659,
+      "sha256": "b02ec685aca518296ef3e85d3a2b083d567d7f583594091e7e306693d12ac77e"
+    },
+    {
+      "path": "[local-source]",
+      "bytes": 1087,
+      "sha256": "24dad4ceb0a76b343dca3b035627d4389ee25f8df6cd9c6699b30163b857a3c4"
+    },
+    {
+      "path": "[local-source]",
+      "bytes": 754,
+      "sha256": "79615fd1f18f7880196eea78cbcad55dca7800b13ce53a36e688c69e7cc2f636"
+    },
+    {
+      "path": "[local-source]",
+      "bytes": 111008,
+      "sha256": "17d883a6e16ce0cec34a826c9611822aee823f095b3ada16f2983fdf38a6465a"
+    },
+    {
+      "path": "[local-source]",
+      "bytes": 8359,
+      "sha256": "7641ce99bd8e61bfd3e65ad448f3f4bb83d65c7e0a6d8968038ce5e154c47059"
+    },
+    {
+      "path": "[local-source]",
+      "bytes": 92272,
+      "sha256": "98fd0ef65fafc9f34eee681962f5288de810694a5930193176e5e15969f773a0"
+    },
+    {
+      "path": "[local-source]",
+      "bytes": 14947,
+      "sha256": "88f9bcc9b471eabcc8015d461b7885adf55cca929641ccbe2bcf4094582d27ef"
+    },
+    {
+      "path": "[local-source]",
+      "bytes": 164113,
+      "sha256": "4e7f6eb071f68307bfe46ce43b1e7089cf1e387f348a94931c331bf67b50c67a"
+    },
+    {
+      "path": "[local-source]",
+      "bytes": 115225,
+      "sha256": "f976e708099e0a02aafa307f3e2726da95bde3f5242a509f1efcfd2a2b106243"
+    },
+    {
+      "path": "[local-source]",
+      "bytes": 170224,
+      "sha256": "323c09adaa944fc9e863aa991f91df1c67f5cbde37ba58b15abac2e56b5df069"
+    },
+    {
+      "path": "[local-source]",
+      "bytes": 122774,
+      "sha256": "95aebbe530bf4cca1201b1783af88e5797220321d52fc3d332706be8e14a208f"
+    },
+    {
+      "path": "[local-source]",
+      "bytes": 173474,
+      "sha256": "f5300e5bdeac4620407cb66f19a6b19506b04a37c801b02ffe7a1122f8b14ab2"
+    },
+    {
+      "path": "[local-source]",
+      "bytes": 124087,
+      "sha256": "d4fe06124fda4da55aac02e2e144b2d4c284976bc03983c0156d3a227456a79f"
+    },
+    {
+      "path": "[local-source]",
+      "bytes": 171732,
+      "sha256": "c5551e1dd1f951efd96d1e35a0e54f66a607334e28b73d3759bd07a7d6eb9b22"
+    },
+    {
+      "path": "[local-source]",
+      "bytes": 129862,
+      "sha256": "581161eafa8169f654ce77f973891891706c7f42c95b8d0064203c4b0c434100"
+    },
+    {
+      "path": "[local-source]",
+      "bytes": 174095,
+      "sha256": "2d153f304d7be96f8400c438cb1116cbcf78860afc8071fcf7288f0f7692272d"
+    },
+    {
+      "path": "[local-source]",
+      "bytes": 136099,
+      "sha256": "c997fd0da414a4997e4b0abb05d6c1dbc81ec4f64e0581ea3a3480daf7ce934e"
+    },
+    {
+      "path": "[local-source]",
+      "bytes": 177501,
+      "sha256": "b98e0abb6521e2272c28335a26d4b9668b7f8c027a46ea0eeffcbb31f11bd91d"
+    },
+    {
+      "path": "[local-source]",
+      "bytes": 153331,
+      "sha256": "9920697c85b1ea44311ece5bdbf91309bbfed8374b8adc2cecc866520c289768"
+    },
+    {
+      "path": "[local-source]",
+      "bytes": 204843,
+      "sha256": "03d1021e2d697b99431e50cc8e8b4488d7642dc5710422dac543be0e32ed94f6"
+    },
+    {
+      "path": "[local-source]",
+      "bytes": 3842,
+      "sha256": "1defa358813c7f960c3734db6a13c043c4f5bd24d5753d8eb80162108c9e63d4"
+    },
+    {
+      "path": "[local-source]",
+      "bytes": 120501,
+      "sha256": "26a3fa1f891092d2c7f59ac02339f675703a6fc0bd59492cdf7cf482342d1ecf"
+    },
+    {
+      "path": "[local-source]",
+      "bytes": 125188,
+      "sha256": "c7f7c4e502b928456caa491250bb17ef517ed5d00c23ab0995ea6a24f8d6abec"
+    },
+    {
+      "path": "[local-source]",
+      "bytes": 164096,
+      "sha256": "44ff0eb039ef10f1f6d047313c5aadf2d5fdc87bc29f101cb9ab3221fabfe922"
+    },
+    {
+      "path": "[local-source]",
+      "bytes": 2186099,
+      "sha256": "fc1f6412c18321bbae775f8d2da64078dc360955f6c19eaee71cb9dadd84775e"
+    },
+    {
+      "path": "[local-source]",
+      "bytes": 177774,
+      "sha256": "efd9833a4543f9a9e8750b335402ad31fde24ffafbf82167e816abcd79d385bb"
+    },
+    {
+      "path": "[local-source]",
+      "bytes": 340967,
+      "sha256": "ef1050a4f63f8b71bba7c39b5090b86b364976b1d3da1605a7aeaf71dbb19076"
+    },
+    {
+      "path": "[local-source]",
+      "bytes": 175146,
+      "sha256": "85deb4b90375788a8ca131245522213b7fc2e27b48aed7508a6cfc8de1db9acd"
+    },
+    {
+      "path": "[local-source]",
+      "bytes": 153373,
+      "sha256": "f22d2e9a10af58fb3a5481b3ccdeb464812b9451582c9eb12fcac989ddcbbf86"
+    },
+    {
+      "path": "[local-source]",
+      "bytes": 182313,
+      "sha256": "81f359cdc7d05be114b8379b97e966a1b72df2fde83ec7b79007db07fbf8dc5d"
+    },
+    {
+      "path": "[local-source]",
+      "bytes": 119917,
+      "sha256": "d6bf356ae808861e2befb6e88871fc33d12ade616b02c60ebdab787b5bca1cfd"
+    },
+    {
+      "path": "[local-source]",
+      "bytes": 288099,
+      "sha256": "3fca8b1c0168abd4b9db0d096a5ccf379f9e5e61249de92f1d3ee8ababfbb63c"
+    },
+    {
+      "path": "[local-source]",
+      "bytes": 144033,
+      "sha256": "f64bfc6c4d05cda3ce202bb94f934df1ab3167fea8b9dc5e7234aba5a1733bd4"
+    },
+    {
+      "path": "[local-source]",
+      "bytes": 115225,
+      "sha256": "f976e708099e0a02aafa307f3e2726da95bde3f5242a509f1efcfd2a2b106243"
+    },
+    {
+      "path": "[local-source]",
+      "bytes": 46936,
+      "sha256": "da0942fdfb358d18290a616fc191984a00f3b08b663cb526c067227ff2781edf"
+    },
+    {
+      "path": "[local-source]",
+      "bytes": 600249,
+      "sha256": "4e8880140b3bb4416d7c8ade37c3ab8b56586f5fdfdc36e3f7fa2bb4436face9"
+    },
+    {
+      "path": "[local-source]",
+      "bytes": 227244,
+      "sha256": "0a6741b500da1fadb29f2e455f3b8d8acb1928115f6289e1bf752b34d9fa0c96"
+    },
+    {
+      "path": "[local-source]",
+      "bytes": 306011,
+      "sha256": "d9f816abad4dc90904119d44022f431b1554319177a49650aebefe4d7e43583d"
+    },
+    {
+      "path": "[local-source]",
+      "bytes": 19521,
+      "sha256": "d5adc5c92ce85af39f4f0379cc9f88bf815849032014ac665add3496b80f6959"
+    },
+    {
+      "path": "[local-source]",
+      "bytes": 1882,
+      "sha256": "99faef01da8469e9571c17c2c8aa9300665e2ed7a6834b65642bdf6c974323ab"
+    },
+    {
+      "path": "[local-source]",
+      "bytes": 1465,
+      "sha256": "a7a65c3cec210df3f88d489e18c145f7ea6adc463bfe9e1e6770d099bb02fc7e"
+    },
+    {
+      "path": "[local-source]",
+      "bytes": 2107,
+      "sha256": "4d3e81f32d3c9fbe83e05fa504a0b4bfc45293a94a0d8d9b36e4df07a3b0401f"
+    },
+    {
+      "path": "[local-source]",
+      "bytes": 3530,
+      "sha256": "ed10beee5c351bba9b4ef8ce8c26843ed355f848048cdd363e97da34d310d711"
+    },
+    {
+      "path": "[local-source]",
+      "bytes": 2568,
+      "sha256": "d206cb4f7e7b96f7f9be009a2f9f63b08c5d7df743501c41f017d289f1d1075a"
+    },
+    {
+      "path": "[local-source]",
+      "bytes": 272192,
+      "sha256": "f0752b4c7f21b9c47a591b929dc3062e2ea0a7f8b15ef9d5644f2b2d5194d5f8"
+    },
+    {
+      "path": "[local-source]",
+      "bytes": 113718,
+      "sha256": "2f119410a8556b4797f2bec8f75885137b5c37a9266f5ac45b8344667c952d0e"
+    },
+    {
+      "path": "[local-source]",
+      "bytes": 125180,
+      "sha256": "ffc04d2581ea0169d1b4800e062db80f4ac51db2f224bc7f32ba2b7a68ad5227"
+    },
+    {
+      "path": "[local-source]",
+      "bytes": 55626,
+      "sha256": "84456c2dc630fbe86e0f7baacecbf0abb6d3a7cbe582a3baa0c03d7352c6846d"
+    },
+    {
+      "path": "[local-source]",
+      "bytes": 125632,
+      "sha256": "9fbed0892031f048d86569c4df0058bc4f0cafe74f4aa4e17a814129d9338394"
+    },
+    {
+      "path": "[local-source]",
+      "bytes": 64200,
+      "sha256": "4cfc03f02a33c87dbcd45e664c61b48c22c75a6fbd7bd5a1fd888778f62b2c85"
+    },
+    {
+      "path": "[local-source]",
+      "bytes": 128140,
+      "sha256": "b5b57fbc79ba755bf9b75a4fb09902c908c0a779096e9695eb0087c990c914e5"
+    },
+    {
+      "path": "[local-source]",
+      "bytes": 65820,
+      "sha256": "2ac86517236df671c971875c2bdc9db4e0ece82bddb8cc9cc52d2c9fbb671635"
+    },
+    {
+      "path": "[local-source]",
+      "bytes": 2568,
+      "sha256": "9d7f30a912f35660e93437b3e1a3976594adaed723416158815ec566f6b38f2e"
+    },
+    {
+      "path": "[local-source]",
+      "bytes": 402,
+      "sha256": "00a14e682268ad2a7fd88518e19403ed35ef432a6a476f2ba123a80cab219710"
+    }
+  ],
+  "publication": {
+    "github": "push_prohibited_not_performed",
+    "xhsTool": "upload_and_review_prohibited_not_performed",
+    "xhsNote": "local_draft_only_publication_and_update_prohibited_not_performed",
+    "automation": "not_created",
+    "otherChats": "not_messaged"
+  },
+  "usage": {
+    "date": "2026-10-01T14:14:46.960891+00:00",
+    "timezone": "Asia/Shanghai",
+    "limitId": "codex",
+    "usedPercent": 41,
+    "remainingPercent": 59,
+    "windowDurationMins": 300,
+    "resetsAt": 1790878140,
+    "taskTokens": null,
+    "imageTokens": null,
+    "cost": null,
+    "reason": "账户窗口百分比不是任务Token；正式工具未提供精确任务或ImageGen用量，无法统计，不估算。"
+  },
+  "limitations": [
+    "48关为有辅助的自动UI重放，真人盲解难度校准未进行；不承诺唯一或最优摆法。",
+    "浏览器尺寸和触摸模拟不能证明实体iOS/Android、真实官方容器或低端设备性能。",
+    "Chrome61实际引擎未测试；ES2017静态门禁不等于旧引擎运行验收。",
+    "最新在线平台规范未取得，使用归档1.7.0与API快照；不标platform-ready。",
+    "系统字体设置、动态地址栏、实体亮度/帧率/内存未验证。",
+    "精确任务Token、图像用量及成本不可取得，未估算。"
+  ],
+  "resume": "[local-source]"
+}

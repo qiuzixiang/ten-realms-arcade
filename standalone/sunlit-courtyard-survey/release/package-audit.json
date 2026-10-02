@@ -1,0 +1,56 @@
+{
+  "passed": true,
+  "zipBytes": 36702,
+  "sha256": "990f28787e8079f4497a3b61ad8328ec8c7411b921ac4031a00e19defb2238ee",
+  "rootEntry": "index.html",
+  "files": [
+    {
+      "path": "index.html",
+      "bytes": 1348,
+      "compressedBytes": 705
+    },
+    {
+      "path": "style.css",
+      "bytes": 13806,
+      "compressedBytes": 3620
+    },
+    {
+      "path": "license.json",
+      "bytes": 2217,
+      "compressedBytes": 1563
+    },
+    {
+      "path": "assets/hero.svg",
+      "bytes": 13261,
+      "compressedBytes": 2103
+    },
+    {
+      "path": "assets/icon.svg",
+      "bytes": 538,
+      "compressedBytes": 298
+    },
+    {
+      "path": "assets/tutorial-1.svg",
+      "bytes": 4531,
+      "compressedBytes": 518
+    },
+    {
+      "path": "assets/tutorial-3.svg",
+      "bytes": 4531,
+      "compressedBytes": 544
+    },
+    {
+      "path": "assets/tutorial-2.svg",
+      "bytes": 4531,
+      "compressedBytes": 535
+    },
+    {
+      "path": "app.js",
+      "bytes": 137220,
+      "compressedBytes": 25240
+    }
+  ],
+  "CRC": "pass",
+  "officialAudit": "9 files, 0 warnings (directory and ZIP)",
+  "semanticChecks": "19 tests include local refs, classic syntax, no banned network/worker APIs, manifest namespace"
+}

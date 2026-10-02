@@ -1,0 +1,9 @@
+{
+  "tool": "OpenAI built-in image_gen.imagegen",
+  "prompt": "Use case: stylized-concept. Asset: portrait 3:4 illustrated cover and homepage environment for an original Chinese contemplative untangle puzzle named Scarlet Knot Atlas. A refined miniature vermilion lacquer archive hall, cream ivory silk laid across a red lacquer desk, a small open silk-bound relationship ledger and scattered ivory paper seal tags with restrained aged brass borders, several taut straight scarlet threads across the work surface, one delicate hand gently lifting a paper seal tag at lower right. Warm side light, handmade fine paper fibers, silk sheen, shallow depth of field, muted burgundy and parchment palette, thoughtful elegant editorial illustration with realistic material craft, no fantasy glow. Composition: desk objects in lower two thirds, top 22% warm light ivory clean negative space suitable for title overlay, deep soft-focus shelves of burgundy ledgers behind, asymmetric arrangement, no dense playable node diagram. No text, no numbers, no logo, no UI, no watermark, no existing IP. Decorative art only, not a screenshot or instruction diagram.",
+  "original": "release/cover-original.png",
+  "cover": "release/cover.webp",
+  "runtime": "assets/hall.webp",
+  "label": "Decorative AI-assisted hall illustration; not gameplay or a tutorial screenshot",
+  "processing": "sharp resize to 1080x1440 cover and 720x960 runtime, WebP quality 84/78; no content retouch"
+}

@@ -1,0 +1,401 @@
+{
+  "date": "2026-10-01T14:04:41.795Z",
+  "campaign": [
+    {
+      "id": "scarlet-tutorial-01",
+      "chapter": 1,
+      "referenceHints": 6,
+      "moves": 2,
+      "zeroCrossings": true,
+      "claimCount": 1
+    },
+    {
+      "id": "scarlet-02",
+      "chapter": 1,
+      "referenceHints": 9,
+      "moves": 3,
+      "zeroCrossings": true,
+      "claimCount": 2
+    },
+    {
+      "id": "scarlet-03",
+      "chapter": 1,
+      "referenceHints": 9,
+      "moves": 3,
+      "zeroCrossings": true,
+      "claimCount": 3
+    },
+    {
+      "id": "scarlet-04",
+      "chapter": 1,
+      "referenceHints": 9,
+      "moves": 3,
+      "zeroCrossings": true,
+      "claimCount": 4
+    },
+    {
+      "id": "scarlet-05",
+      "chapter": 1,
+      "referenceHints": 18,
+      "moves": 6,
+      "zeroCrossings": true,
+      "claimCount": 5
+    },
+    {
+      "id": "scarlet-06",
+      "chapter": 1,
+      "referenceHints": 15,
+      "moves": 5,
+      "zeroCrossings": true,
+      "claimCount": 6
+    },
+    {
+      "id": "scarlet-07",
+      "chapter": 1,
+      "referenceHints": 9,
+      "moves": 3,
+      "zeroCrossings": true,
+      "claimCount": 7
+    },
+    {
+      "id": "scarlet-08",
+      "chapter": 1,
+      "referenceHints": 12,
+      "moves": 4,
+      "zeroCrossings": true,
+      "claimCount": 8
+    },
+    {
+      "id": "scarlet-09",
+      "chapter": 2,
+      "referenceHints": 15,
+      "moves": 5,
+      "zeroCrossings": true,
+      "claimCount": 9
+    },
+    {
+      "id": "scarlet-10",
+      "chapter": 2,
+      "referenceHints": 12,
+      "moves": 4,
+      "zeroCrossings": true,
+      "claimCount": 10
+    },
+    {
+      "id": "scarlet-11",
+      "chapter": 2,
+      "referenceHints": 21,
+      "moves": 7,
+      "zeroCrossings": true,
+      "claimCount": 11
+    },
+    {
+      "id": "scarlet-12",
+      "chapter": 2,
+      "referenceHints": 21,
+      "moves": 7,
+      "zeroCrossings": true,
+      "claimCount": 12
+    },
+    {
+      "id": "scarlet-13",
+      "chapter": 2,
+      "referenceHints": 12,
+      "moves": 4,
+      "zeroCrossings": true,
+      "claimCount": 13
+    },
+    {
+      "id": "scarlet-14",
+      "chapter": 2,
+      "referenceHints": 24,
+      "moves": 8,
+      "zeroCrossings": true,
+      "claimCount": 14
+    },
+    {
+      "id": "scarlet-15",
+      "chapter": 2,
+      "referenceHints": 24,
+      "moves": 8,
+      "zeroCrossings": true,
+      "claimCount": 15
+    },
+    {
+      "id": "scarlet-16",
+      "chapter": 2,
+      "referenceHints": 21,
+      "moves": 7,
+      "zeroCrossings": true,
+      "claimCount": 16
+    },
+    {
+      "id": "scarlet-17",
+      "chapter": 3,
+      "referenceHints": 12,
+      "moves": 4,
+      "zeroCrossings": true,
+      "claimCount": 17
+    },
+    {
+      "id": "scarlet-18",
+      "chapter": 3,
+      "referenceHints": 24,
+      "moves": 8,
+      "zeroCrossings": true,
+      "claimCount": 18
+    },
+    {
+      "id": "scarlet-19",
+      "chapter": 3,
+      "referenceHints": 24,
+      "moves": 8,
+      "zeroCrossings": true,
+      "claimCount": 19
+    },
+    {
+      "id": "scarlet-20",
+      "chapter": 3,
+      "referenceHints": 27,
+      "moves": 9,
+      "zeroCrossings": true,
+      "claimCount": 20
+    },
+    {
+      "id": "scarlet-21",
+      "chapter": 3,
+      "referenceHints": 24,
+      "moves": 8,
+      "zeroCrossings": true,
+      "claimCount": 21
+    },
+    {
+      "id": "scarlet-22",
+      "chapter": 3,
+      "referenceHints": 30,
+      "moves": 10,
+      "zeroCrossings": true,
+      "claimCount": 22
+    },
+    {
+      "id": "scarlet-23",
+      "chapter": 3,
+      "referenceHints": 30,
+      "moves": 10,
+      "zeroCrossings": true,
+      "claimCount": 23
+    },
+    {
+      "id": "scarlet-24",
+      "chapter": 3,
+      "referenceHints": 30,
+      "moves": 10,
+      "zeroCrossings": true,
+      "claimCount": 24
+    },
+    {
+      "id": "scarlet-25",
+      "chapter": 4,
+      "referenceHints": 24,
+      "moves": 8,
+      "zeroCrossings": true,
+      "claimCount": 25
+    },
+    {
+      "id": "scarlet-26",
+      "chapter": 4,
+      "referenceHints": 24,
+      "moves": 8,
+      "zeroCrossings": true,
+      "claimCount": 26
+    },
+    {
+      "id": "scarlet-27",
+      "chapter": 4,
+      "referenceHints": 27,
+      "moves": 9,
+      "zeroCrossings": true,
+      "claimCount": 27
+    },
+    {
+      "id": "scarlet-28",
+      "chapter": 4,
+      "referenceHints": 18,
+      "moves": 6,
+      "zeroCrossings": true,
+      "claimCount": 28
+    },
+    {
+      "id": "scarlet-29",
+      "chapter": 4,
+      "referenceHints": 33,
+      "moves": 11,
+      "zeroCrossings": true,
+      "claimCount": 29
+    },
+    {
+      "id": "scarlet-30",
+      "chapter": 4,
+      "referenceHints": 33,
+      "moves": 11,
+      "zeroCrossings": true,
+      "claimCount": 30
+    },
+    {
+      "id": "scarlet-31",
+      "chapter": 4,
+      "referenceHints": 36,
+      "moves": 12,
+      "zeroCrossings": true,
+      "claimCount": 31
+    },
+    {
+      "id": "scarlet-32",
+      "chapter": 4,
+      "referenceHints": 33,
+      "moves": 11,
+      "zeroCrossings": true,
+      "claimCount": 32
+    },
+    {
+      "id": "scarlet-33",
+      "chapter": 5,
+      "referenceHints": 27,
+      "moves": 9,
+      "zeroCrossings": true,
+      "claimCount": 33
+    },
+    {
+      "id": "scarlet-34",
+      "chapter": 5,
+      "referenceHints": 24,
+      "moves": 8,
+      "zeroCrossings": true,
+      "claimCount": 34
+    },
+    {
+      "id": "scarlet-35",
+      "chapter": 5,
+      "referenceHints": 36,
+      "moves": 12,
+      "zeroCrossings": true,
+      "claimCount": 35
+    },
+    {
+      "id": "scarlet-36",
+      "chapter": 5,
+      "referenceHints": 36,
+      "moves": 12,
+      "zeroCrossings": true,
+      "claimCount": 36
+    },
+    {
+      "id": "scarlet-37",
+      "chapter": 5,
+      "referenceHints": 39,
+      "moves": 13,
+      "zeroCrossings": true,
+      "claimCount": 37
+    },
+    {
+      "id": "scarlet-38",
+      "chapter": 5,
+      "referenceHints": 39,
+      "moves": 13,
+      "zeroCrossings": true,
+      "claimCount": 38
+    },
+    {
+      "id": "scarlet-39",
+      "chapter": 5,
+      "referenceHints": 42,
+      "moves": 14,
+      "zeroCrossings": true,
+      "claimCount": 39
+    },
+    {
+      "id": "scarlet-40",
+      "chapter": 5,
+      "referenceHints": 42,
+      "moves": 14,
+      "zeroCrossings": true,
+      "claimCount": 40
+    },
+    {
+      "id": "scarlet-41",
+      "chapter": 6,
+      "referenceHints": 24,
+      "moves": 8,
+      "zeroCrossings": true,
+      "claimCount": 41
+    },
+    {
+      "id": "scarlet-42",
+      "chapter": 6,
+      "referenceHints": 39,
+      "moves": 13,
+      "zeroCrossings": true,
+      "claimCount": 42
+    },
+    {
+      "id": "scarlet-43",
+      "chapter": 6,
+      "referenceHints": 39,
+      "moves": 13,
+      "zeroCrossings": true,
+      "claimCount": 43
+    },
+    {
+      "id": "scarlet-44",
+      "chapter": 6,
+      "referenceHints": 39,
+      "moves": 13,
+      "zeroCrossings": true,
+      "claimCount": 44
+    },
+    {
+      "id": "scarlet-45",
+      "chapter": 6,
+      "referenceHints": 42,
+      "moves": 14,
+      "zeroCrossings": true,
+      "claimCount": 45
+    },
+    {
+      "id": "scarlet-46",
+      "chapter": 6,
+      "referenceHints": 42,
+      "moves": 14,
+      "zeroCrossings": true,
+      "claimCount": 46
+    },
+    {
+      "id": "scarlet-47",
+      "chapter": 6,
+      "referenceHints": 48,
+      "moves": 16,
+      "zeroCrossings": true,
+      "claimCount": 47
+    },
+    {
+      "id": "scarlet-48",
+      "chapter": 6,
+      "referenceHints": 42,
+      "moves": 14,
+      "zeroCrossings": true,
+      "claimCount": 48
+    }
+  ],
+  "cases": [
+    "48 levels completed through real hint/apply UI; 48 replay-verified layouts; 48 distinct first claims; gallery eight per chapter; full refresh recovery",
+    "completed-session timer remains stopped across visibility events",
+    "Chrome CDP touch drag + tap picker + direction button",
+    "PointerEvent absent touch fallback + touchcancel no step",
+    "Mock native 9.46 Storage preferred over Web; completion ledger persisted",
+    "Storage write failure visible, no host reward sent",
+    "Corrupt JSON fallback, no other namespace cleared",
+    "200% CSS text scale including controls/dialog body; SVG pictorial labels stay fixed, system scaling on real devices not tested"
+  ],
+  "errors": [],
+  "browser": "154.0.8037.94"
+}

@@ -1,0 +1,56 @@
+[
+  {
+    "name": "text",
+    "fg": "#172a3b",
+    "bg": "#f4f0e7",
+    "ratio": 12.905322719755198
+  },
+  {
+    "name": "muted",
+    "fg": "#536a7a",
+    "bg": "#f4f0e7",
+    "ratio": 4.976377515151686
+  },
+  {
+    "name": "button",
+    "fg": "#ffffff",
+    "bg": "#163f78",
+    "ratio": 10.414959090660972
+  },
+  {
+    "name": "node",
+    "fg": "#172a3b",
+    "bg": "#ffffff",
+    "ratio": 14.677403234608631
+  },
+  {
+    "name": "error",
+    "fg": "#a33822",
+    "bg": "#fff0e9",
+    "ratio": 6.0051586587283445
+  },
+  {
+    "name": "success",
+    "fg": "#245c4c",
+    "bg": "#e0eee7",
+    "ratio": 6.476631292934013
+  },
+  {
+    "name": "grid",
+    "fg": "#78909b",
+    "bg": "#faf8f1",
+    "ratio": 3.156238809637354
+  },
+  {
+    "name": "node border",
+    "fg": "#7d929d",
+    "bg": "#ffffff",
+    "ratio": 3.245542545926492
+  },
+  {
+    "name": "focus",
+    "fg": "#ad7832",
+    "bg": "#faf8f1",
+    "ratio": 3.5868876199368227
+  }
+]

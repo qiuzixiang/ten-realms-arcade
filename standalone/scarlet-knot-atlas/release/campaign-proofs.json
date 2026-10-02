@@ -1,0 +1,486 @@
+{
+  "stage": "campaign_geometry_only_not_play_review",
+  "verifiedCount": 48,
+  "proofs": [
+    {
+      "id": "scarlet-tutorial-01",
+      "nodes": 4,
+      "edges": 3,
+      "initialCrossingPairs": 1,
+      "witnessCrossingPairs": 0,
+      "replayedMoves": 2,
+      "method": "independent exact BigInt determinant + legal runtime replay",
+      "claim": "solvable; no uniqueness or optimality claim"
+    },
+    {
+      "id": "scarlet-02",
+      "nodes": 5,
+      "edges": 6,
+      "initialCrossingPairs": 2,
+      "witnessCrossingPairs": 0,
+      "replayedMoves": 5,
+      "method": "independent exact BigInt determinant + legal runtime replay",
+      "claim": "solvable; no uniqueness or optimality claim"
+    },
+    {
+      "id": "scarlet-03",
+      "nodes": 5,
+      "edges": 4,
+      "initialCrossingPairs": 1,
+      "witnessCrossingPairs": 0,
+      "replayedMoves": 5,
+      "method": "independent exact BigInt determinant + legal runtime replay",
+      "claim": "solvable; no uniqueness or optimality claim"
+    },
+    {
+      "id": "scarlet-04",
+      "nodes": 5,
+      "edges": 6,
+      "initialCrossingPairs": 3,
+      "witnessCrossingPairs": 0,
+      "replayedMoves": 3,
+      "method": "independent exact BigInt determinant + legal runtime replay",
+      "claim": "solvable; no uniqueness or optimality claim"
+    },
+    {
+      "id": "scarlet-05",
+      "nodes": 6,
+      "edges": 9,
+      "initialCrossingPairs": 4,
+      "witnessCrossingPairs": 0,
+      "replayedMoves": 6,
+      "method": "independent exact BigInt determinant + legal runtime replay",
+      "claim": "solvable; no uniqueness or optimality claim"
+    },
+    {
+      "id": "scarlet-06",
+      "nodes": 6,
+      "edges": 7,
+      "initialCrossingPairs": 4,
+      "witnessCrossingPairs": 0,
+      "replayedMoves": 5,
+      "method": "independent exact BigInt determinant + legal runtime replay",
+      "claim": "solvable; no uniqueness or optimality claim"
+    },
+    {
+      "id": "scarlet-07",
+      "nodes": 6,
+      "edges": 7,
+      "initialCrossingPairs": 5,
+      "witnessCrossingPairs": 0,
+      "replayedMoves": 6,
+      "method": "independent exact BigInt determinant + legal runtime replay",
+      "claim": "solvable; no uniqueness or optimality claim"
+    },
+    {
+      "id": "scarlet-08",
+      "nodes": 6,
+      "edges": 8,
+      "initialCrossingPairs": 4,
+      "witnessCrossingPairs": 0,
+      "replayedMoves": 6,
+      "method": "independent exact BigInt determinant + legal runtime replay",
+      "claim": "solvable; no uniqueness or optimality claim"
+    },
+    {
+      "id": "scarlet-09",
+      "nodes": 6,
+      "edges": 8,
+      "initialCrossingPairs": 5,
+      "witnessCrossingPairs": 0,
+      "replayedMoves": 5,
+      "method": "independent exact BigInt determinant + legal runtime replay",
+      "claim": "solvable; no uniqueness or optimality claim"
+    },
+    {
+      "id": "scarlet-10",
+      "nodes": 6,
+      "edges": 7,
+      "initialCrossingPairs": 2,
+      "witnessCrossingPairs": 0,
+      "replayedMoves": 4,
+      "method": "independent exact BigInt determinant + legal runtime replay",
+      "claim": "solvable; no uniqueness or optimality claim"
+    },
+    {
+      "id": "scarlet-11",
+      "nodes": 7,
+      "edges": 9,
+      "initialCrossingPairs": 6,
+      "witnessCrossingPairs": 0,
+      "replayedMoves": 7,
+      "method": "independent exact BigInt determinant + legal runtime replay",
+      "claim": "solvable; no uniqueness or optimality claim"
+    },
+    {
+      "id": "scarlet-12",
+      "nodes": 7,
+      "edges": 9,
+      "initialCrossingPairs": 9,
+      "witnessCrossingPairs": 0,
+      "replayedMoves": 7,
+      "method": "independent exact BigInt determinant + legal runtime replay",
+      "claim": "solvable; no uniqueness or optimality claim"
+    },
+    {
+      "id": "scarlet-13",
+      "nodes": 7,
+      "edges": 9,
+      "initialCrossingPairs": 1,
+      "witnessCrossingPairs": 0,
+      "replayedMoves": 7,
+      "method": "independent exact BigInt determinant + legal runtime replay",
+      "claim": "solvable; no uniqueness or optimality claim"
+    },
+    {
+      "id": "scarlet-14",
+      "nodes": 8,
+      "edges": 12,
+      "initialCrossingPairs": 11,
+      "witnessCrossingPairs": 0,
+      "replayedMoves": 8,
+      "method": "independent exact BigInt determinant + legal runtime replay",
+      "claim": "solvable; no uniqueness or optimality claim"
+    },
+    {
+      "id": "scarlet-15",
+      "nodes": 8,
+      "edges": 9,
+      "initialCrossingPairs": 8,
+      "witnessCrossingPairs": 0,
+      "replayedMoves": 8,
+      "method": "independent exact BigInt determinant + legal runtime replay",
+      "claim": "solvable; no uniqueness or optimality claim"
+    },
+    {
+      "id": "scarlet-16",
+      "nodes": 8,
+      "edges": 9,
+      "initialCrossingPairs": 9,
+      "witnessCrossingPairs": 0,
+      "replayedMoves": 8,
+      "method": "independent exact BigInt determinant + legal runtime replay",
+      "claim": "solvable; no uniqueness or optimality claim"
+    },
+    {
+      "id": "scarlet-17",
+      "nodes": 7,
+      "edges": 8,
+      "initialCrossingPairs": 6,
+      "witnessCrossingPairs": 0,
+      "replayedMoves": 6,
+      "method": "independent exact BigInt determinant + legal runtime replay",
+      "claim": "solvable; no uniqueness or optimality claim"
+    },
+    {
+      "id": "scarlet-18",
+      "nodes": 8,
+      "edges": 13,
+      "initialCrossingPairs": 12,
+      "witnessCrossingPairs": 0,
+      "replayedMoves": 8,
+      "method": "independent exact BigInt determinant + legal runtime replay",
+      "claim": "solvable; no uniqueness or optimality claim"
+    },
+    {
+      "id": "scarlet-19",
+      "nodes": 8,
+      "edges": 9,
+      "initialCrossingPairs": 3,
+      "witnessCrossingPairs": 0,
+      "replayedMoves": 8,
+      "method": "independent exact BigInt determinant + legal runtime replay",
+      "claim": "solvable; no uniqueness or optimality claim"
+    },
+    {
+      "id": "scarlet-20",
+      "nodes": 9,
+      "edges": 14,
+      "initialCrossingPairs": 22,
+      "witnessCrossingPairs": 0,
+      "replayedMoves": 9,
+      "method": "independent exact BigInt determinant + legal runtime replay",
+      "claim": "solvable; no uniqueness or optimality claim"
+    },
+    {
+      "id": "scarlet-21",
+      "nodes": 9,
+      "edges": 14,
+      "initialCrossingPairs": 16,
+      "witnessCrossingPairs": 0,
+      "replayedMoves": 8,
+      "method": "independent exact BigInt determinant + legal runtime replay",
+      "claim": "solvable; no uniqueness or optimality claim"
+    },
+    {
+      "id": "scarlet-22",
+      "nodes": 10,
+      "edges": 13,
+      "initialCrossingPairs": 5,
+      "witnessCrossingPairs": 0,
+      "replayedMoves": 10,
+      "method": "independent exact BigInt determinant + legal runtime replay",
+      "claim": "solvable; no uniqueness or optimality claim"
+    },
+    {
+      "id": "scarlet-23",
+      "nodes": 10,
+      "edges": 13,
+      "initialCrossingPairs": 19,
+      "witnessCrossingPairs": 0,
+      "replayedMoves": 10,
+      "method": "independent exact BigInt determinant + legal runtime replay",
+      "claim": "solvable; no uniqueness or optimality claim"
+    },
+    {
+      "id": "scarlet-24",
+      "nodes": 10,
+      "edges": 14,
+      "initialCrossingPairs": 9,
+      "witnessCrossingPairs": 0,
+      "replayedMoves": 10,
+      "method": "independent exact BigInt determinant + legal runtime replay",
+      "claim": "solvable; no uniqueness or optimality claim"
+    },
+    {
+      "id": "scarlet-25",
+      "nodes": 9,
+      "edges": 11,
+      "initialCrossingPairs": 23,
+      "witnessCrossingPairs": 0,
+      "replayedMoves": 8,
+      "method": "independent exact BigInt determinant + legal runtime replay",
+      "claim": "solvable; no uniqueness or optimality claim"
+    },
+    {
+      "id": "scarlet-26",
+      "nodes": 9,
+      "edges": 12,
+      "initialCrossingPairs": 11,
+      "witnessCrossingPairs": 0,
+      "replayedMoves": 8,
+      "method": "independent exact BigInt determinant + legal runtime replay",
+      "claim": "solvable; no uniqueness or optimality claim"
+    },
+    {
+      "id": "scarlet-27",
+      "nodes": 10,
+      "edges": 12,
+      "initialCrossingPairs": 17,
+      "witnessCrossingPairs": 0,
+      "replayedMoves": 10,
+      "method": "independent exact BigInt determinant + legal runtime replay",
+      "claim": "solvable; no uniqueness or optimality claim"
+    },
+    {
+      "id": "scarlet-28",
+      "nodes": 10,
+      "edges": 15,
+      "initialCrossingPairs": 5,
+      "witnessCrossingPairs": 0,
+      "replayedMoves": 6,
+      "method": "independent exact BigInt determinant + legal runtime replay",
+      "claim": "solvable; no uniqueness or optimality claim"
+    },
+    {
+      "id": "scarlet-29",
+      "nodes": 11,
+      "edges": 14,
+      "initialCrossingPairs": 16,
+      "witnessCrossingPairs": 0,
+      "replayedMoves": 11,
+      "method": "independent exact BigInt determinant + legal runtime replay",
+      "claim": "solvable; no uniqueness or optimality claim"
+    },
+    {
+      "id": "scarlet-30",
+      "nodes": 11,
+      "edges": 14,
+      "initialCrossingPairs": 13,
+      "witnessCrossingPairs": 0,
+      "replayedMoves": 11,
+      "method": "independent exact BigInt determinant + legal runtime replay",
+      "claim": "solvable; no uniqueness or optimality claim"
+    },
+    {
+      "id": "scarlet-31",
+      "nodes": 12,
+      "edges": 20,
+      "initialCrossingPairs": 44,
+      "witnessCrossingPairs": 0,
+      "replayedMoves": 12,
+      "method": "independent exact BigInt determinant + legal runtime replay",
+      "claim": "solvable; no uniqueness or optimality claim"
+    },
+    {
+      "id": "scarlet-32",
+      "nodes": 12,
+      "edges": 18,
+      "initialCrossingPairs": 28,
+      "witnessCrossingPairs": 0,
+      "replayedMoves": 11,
+      "method": "independent exact BigInt determinant + legal runtime replay",
+      "claim": "solvable; no uniqueness or optimality claim"
+    },
+    {
+      "id": "scarlet-33",
+      "nodes": 11,
+      "edges": 14,
+      "initialCrossingPairs": 15,
+      "witnessCrossingPairs": 0,
+      "replayedMoves": 9,
+      "method": "independent exact BigInt determinant + legal runtime replay",
+      "claim": "solvable; no uniqueness or optimality claim"
+    },
+    {
+      "id": "scarlet-34",
+      "nodes": 11,
+      "edges": 14,
+      "initialCrossingPairs": 16,
+      "witnessCrossingPairs": 0,
+      "replayedMoves": 8,
+      "method": "independent exact BigInt determinant + legal runtime replay",
+      "claim": "solvable; no uniqueness or optimality claim"
+    },
+    {
+      "id": "scarlet-35",
+      "nodes": 12,
+      "edges": 17,
+      "initialCrossingPairs": 24,
+      "witnessCrossingPairs": 0,
+      "replayedMoves": 12,
+      "method": "independent exact BigInt determinant + legal runtime replay",
+      "claim": "solvable; no uniqueness or optimality claim"
+    },
+    {
+      "id": "scarlet-36",
+      "nodes": 12,
+      "edges": 17,
+      "initialCrossingPairs": 27,
+      "witnessCrossingPairs": 0,
+      "replayedMoves": 12,
+      "method": "independent exact BigInt determinant + legal runtime replay",
+      "claim": "solvable; no uniqueness or optimality claim"
+    },
+    {
+      "id": "scarlet-37",
+      "nodes": 13,
+      "edges": 18,
+      "initialCrossingPairs": 40,
+      "witnessCrossingPairs": 0,
+      "replayedMoves": 13,
+      "method": "independent exact BigInt determinant + legal runtime replay",
+      "claim": "solvable; no uniqueness or optimality claim"
+    },
+    {
+      "id": "scarlet-38",
+      "nodes": 13,
+      "edges": 19,
+      "initialCrossingPairs": 43,
+      "witnessCrossingPairs": 0,
+      "replayedMoves": 13,
+      "method": "independent exact BigInt determinant + legal runtime replay",
+      "claim": "solvable; no uniqueness or optimality claim"
+    },
+    {
+      "id": "scarlet-39",
+      "nodes": 14,
+      "edges": 23,
+      "initialCrossingPairs": 50,
+      "witnessCrossingPairs": 0,
+      "replayedMoves": 14,
+      "method": "independent exact BigInt determinant + legal runtime replay",
+      "claim": "solvable; no uniqueness or optimality claim"
+    },
+    {
+      "id": "scarlet-40",
+      "nodes": 14,
+      "edges": 18,
+      "initialCrossingPairs": 21,
+      "witnessCrossingPairs": 0,
+      "replayedMoves": 14,
+      "method": "independent exact BigInt determinant + legal runtime replay",
+      "claim": "solvable; no uniqueness or optimality claim"
+    },
+    {
+      "id": "scarlet-41",
+      "nodes": 12,
+      "edges": 15,
+      "initialCrossingPairs": 27,
+      "witnessCrossingPairs": 0,
+      "replayedMoves": 8,
+      "method": "independent exact BigInt determinant + legal runtime replay",
+      "claim": "solvable; no uniqueness or optimality claim"
+    },
+    {
+      "id": "scarlet-42",
+      "nodes": 13,
+      "edges": 17,
+      "initialCrossingPairs": 31,
+      "witnessCrossingPairs": 0,
+      "replayedMoves": 13,
+      "method": "independent exact BigInt determinant + legal runtime replay",
+      "claim": "solvable; no uniqueness or optimality claim"
+    },
+    {
+      "id": "scarlet-43",
+      "nodes": 13,
+      "edges": 20,
+      "initialCrossingPairs": 33,
+      "witnessCrossingPairs": 0,
+      "replayedMoves": 13,
+      "method": "independent exact BigInt determinant + legal runtime replay",
+      "claim": "solvable; no uniqueness or optimality claim"
+    },
+    {
+      "id": "scarlet-44",
+      "nodes": 14,
+      "edges": 21,
+      "initialCrossingPairs": 29,
+      "witnessCrossingPairs": 0,
+      "replayedMoves": 13,
+      "method": "independent exact BigInt determinant + legal runtime replay",
+      "claim": "solvable; no uniqueness or optimality claim"
+    },
+    {
+      "id": "scarlet-45",
+      "nodes": 14,
+      "edges": 20,
+      "initialCrossingPairs": 37,
+      "witnessCrossingPairs": 0,
+      "replayedMoves": 14,
+      "method": "independent exact BigInt determinant + legal runtime replay",
+      "claim": "solvable; no uniqueness or optimality claim"
+    },
+    {
+      "id": "scarlet-46",
+      "nodes": 15,
+      "edges": 24,
+      "initialCrossingPairs": 69,
+      "witnessCrossingPairs": 0,
+      "replayedMoves": 14,
+      "method": "independent exact BigInt determinant + legal runtime replay",
+      "claim": "solvable; no uniqueness or optimality claim"
+    },
+    {
+      "id": "scarlet-47",
+      "nodes": 16,
+      "edges": 27,
+      "initialCrossingPairs": 80,
+      "witnessCrossingPairs": 0,
+      "replayedMoves": 16,
+      "method": "independent exact BigInt determinant + legal runtime replay",
+      "claim": "solvable; no uniqueness or optimality claim"
+    },
+    {
+      "id": "scarlet-48",
+      "nodes": 16,
+      "edges": 24,
+      "initialCrossingPairs": 62,
+      "witnessCrossingPairs": 0,
+      "replayedMoves": 14,
+      "method": "independent exact BigInt determinant + legal runtime replay",
+      "claim": "solvable; no uniqueness or optimality claim"
+    }
+  ]
+}

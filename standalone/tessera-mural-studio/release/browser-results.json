@@ -1,0 +1,79 @@
+{
+  "results": [
+    {
+      "width": 320,
+      "metrics": {
+        "scroll": 320,
+        "client": 320,
+        "minTile": 46.328125
+      }
+    },
+    {
+      "width": 359,
+      "metrics": {
+        "scroll": 359,
+        "client": 359,
+        "minTile": 52.828125
+      }
+    },
+    {
+      "width": 360,
+      "metrics": {
+        "scroll": 360,
+        "client": 360,
+        "minTile": 53
+      }
+    },
+    {
+      "width": 361,
+      "metrics": {
+        "scroll": 361,
+        "client": 361,
+        "minTile": 48
+      }
+    },
+    {
+      "width": 390,
+      "metrics": {
+        "scroll": 390,
+        "client": 390,
+        "minTile": 52.828125
+      }
+    },
+    {
+      "width": 759,
+      "metrics": {
+        "scroll": 759,
+        "client": 759,
+        "minTile": 63.15625
+      }
+    },
+    {
+      "width": 760,
+      "metrics": {
+        "scroll": 760,
+        "client": 760,
+        "minTile": 63.15625
+      }
+    },
+    {
+      "width": 761,
+      "metrics": {
+        "scroll": 761,
+        "client": 761,
+        "minTile": 49.328125
+      }
+    },
+    {
+      "width": 1280,
+      "metrics": {
+        "scroll": 1280,
+        "client": 1280,
+        "minTile": 68.15625
+      }
+    }
+  ],
+  "errors": [],
+  "externalRequests": [],
+  "interaction": "touch, undo/redo, restart, reload restore, victory, reward dedupe, gallery, tutorial escape, 25 real overlap hints, safe-area, doubled-text"
+}

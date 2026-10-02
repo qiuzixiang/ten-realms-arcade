@@ -1,0 +1,14 @@
+{
+  "name": "porcelain-flow-atelier",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "generate": "node scripts/generate.mjs",
+    "test": "node tests/rules.mjs && node tests/session.mjs",
+    "build": "node scripts/build.mjs",
+    "audit": "node scripts/audit.mjs && python3 platform/spec/scripts/audit_artifact.py dist/xhs && python3 platform/spec/scripts/audit_artifact.py dist/porcelain-flow-atelier-xhs.zip",
+    "playtest": "node tests/browser.mjs",
+    "media": "node scripts/media.mjs"
+  }
+}

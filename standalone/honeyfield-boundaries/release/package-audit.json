@@ -1,0 +1,21 @@
+{
+  "status": "local_candidate_audit_passed",
+  "files": 13,
+  "uncompressedBytes": 415171,
+  "zipBytes": 39872,
+  "syntax": "ES2017 acorn parse",
+  "crc": true,
+  "svgXML": true,
+  "offlineReferences": true,
+  "platformVersion": "1.7.0 package; internal SKILL metadata 1.6.0",
+  "officialOutput": [
+    "PASS: 13 file(s), 0 warning(s)\n",
+    "NOTE: Node audit checks zip size only; artifact contents must be audited before packaging\nPASS: 1 file(s), 0 warning(s)\n"
+  ],
+  "notCovered": [
+    "latest online documentation DNS timed out",
+    "official container",
+    "iOS and Android physical devices",
+    "Chrome61 runtime"
+  ]
+}

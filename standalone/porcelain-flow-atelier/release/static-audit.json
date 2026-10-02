@@ -1,0 +1,60 @@
+{
+  "files": [
+    {
+      "path": "app.js",
+      "bytes": 103330,
+      "sha256": "120ed54d1cf566660661a7b30fd10a2bddd3fad1cc3c4e78032db7dfe8bef33a"
+    },
+    {
+      "path": "assets/atelier.svg",
+      "bytes": 3351,
+      "sha256": "2a17cecc6545ac09c7bde4ec84c94d04ef81dd8d1f074dcb4c505bea8af10ba4"
+    },
+    {
+      "path": "assets/icon.svg",
+      "bytes": 616,
+      "sha256": "aaaea9686d06d9b57dd91b869883a9b12beeddab0519a9ac04d5a0c64c5eb5e9"
+    },
+    {
+      "path": "index.html",
+      "bytes": 561,
+      "sha256": "188644728dd38473798800aec9e98149a225c5735108ce076ccb5641b9b339a0"
+    },
+    {
+      "path": "licenses.json",
+      "bytes": 2529,
+      "sha256": "19fe3ca3ad19e2f3de87e4d10486c16a32753bbc99defbd9bc13ccae66bae7a6"
+    },
+    {
+      "path": "styles.css",
+      "bytes": 10627,
+      "sha256": "9f6d6c6b775748702c68486f8cec7f3dbc77b814ea130d715378ede553d3c0e6"
+    }
+  ],
+  "zip": {
+    "bytes": 27464,
+    "sha256": "bf2f14adc7f61d6d721b86248b18de2ba58eec0b932dee8bdb7436d681f2aad4",
+    "entries": [
+      "index.html",
+      "styles.css",
+      "licenses.json",
+      "assets/",
+      "assets/icon.svg",
+      "assets/atelier.svg",
+      "app.js"
+    ],
+    "crc": "pass"
+  },
+  "checks": [
+    "classic script; node syntax parse",
+    "relative references exist",
+    "forbidden capability scan",
+    "ES2017 modern-syntax/runtime scan and manual review; not Chrome61 execution",
+    "ZIP root/type/escape/CRC",
+    "no external assets; licenses bundled"
+  ],
+  "limitations": [
+    "No official simulator or physical Android/iOS/Chrome61 execution",
+    "latest online document DNS timeout"
+  ]
+}

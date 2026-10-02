@@ -1,0 +1,128 @@
+{
+  "slug": "lantern-spirit-market",
+  "title": "灯灵夜归市",
+  "updatedAt": "2026-10-01T12:03:04.765700+08:00",
+  "status": "local_complete_candidate_pending_container_validation",
+  "source": {
+    "worktree": "[local-source]",
+    "directory": "[local-source]",
+    "branch": "codex/lantern-spirit-market",
+    "baseCommit": "55cdddb75cf57c17baee80bac4121bd3be1687c6",
+    "original": "games/night-market-spirits",
+    "rule": "Same Game",
+    "originalLogicSha256": "5520a02b30850b17de90d796c3e37ec19e5a057bdb88ac17f6fd940e27044569",
+    "license": "MIT"
+  },
+  "targetLevelCount": 60,
+  "verifiedLevelCount": 60,
+  "chapters": [
+    "灯笼巷",
+    "落伞街",
+    "回家路",
+    "借一盏光",
+    "五色终钟",
+    "整街归灯"
+  ],
+  "features": [
+    "maximal-group preview then confirm",
+    "stable gravity then left compaction animation",
+    "60 independently replayed clear witnesses",
+    "proven traps and unequal-score late routes",
+    "shared-engine three-state tutorial",
+    "hint/undo/restart",
+    "replayed saves and first-claim dedup",
+    "native Storage preference and serialized fallback",
+    "five original silhouettes",
+    "48px precise group cards and fixed mobile tools"
+  ],
+  "checks": {
+    "logic": "11/11 passed",
+    "smallBoardEnumeration": 729,
+    "clearWitnesses": 60,
+    "trapProofs": "chapters3–6 independent exhaustive DFS",
+    "browserMatrix": "320x720,390x844,1280x720 with restrictive CSP",
+    "breakpoints": "449/450/451 and799/800/801,44/34px safe areas",
+    "allBoardsRendered": 60,
+    "es2017": "Acorn8.18 parse passed",
+    "packageAudit": "9 files,0 warnings,CRC valid",
+    "cleanBuild": "passed,byte-identical ZIP",
+    "visualQA": "actual Chrome screenshots reviewed",
+    "repositoryGlobalTests": "not run; unrelated baseline games unchanged"
+  },
+  "runtimeHashes": {
+    "adapter.js": "aed2a5ba20d237f49d6b38ca2a196fa4e45e34d500d1446b2cacb7f562532bc1",
+    "index.html": "e8f8e3d12372ed4bebe75d6d0da90788b28208486c9de7db1dd90a0ee09c24fb",
+    "styles.css": "3d14d1572603c0cc5fca7311b925264ad8fb33bf3242a7cc4ba3bf5b5eceb1f6",
+    "core.js": "3a939643ae415e487eec89b929bf90b14598a73d162f2a156055611894fee5fb",
+    "icon.svg": "51dbc459a3bac328c1a6b008886a07556b019173c262a7c10ec050e6bbdf9ad1",
+    "tutorial.js": "bdb38c6669d611c70ca59c99e8954849af9f88160968bb4c83584d8d51cec342",
+    "levels.js": "df4564fabdff08a8e1d8633976e6f65b7c3c004c6ae38226ff7b245beedec898",
+    "app.js": "92c33c1d2ee3e8153ff32ee65c2cf528b8118e9401ac720499fd15cd561f9337",
+    "storage.js": "f301e5c4b060e9d806c968b4a78aab1e19c51771394f75e28004316a15d53817"
+  },
+  "artifacts": [
+    {
+      "path": "[local-source]",
+      "bytes": 19846,
+      "sha256": "37ea9aea23f8195ca0e0a6b6ae37d6adbd5e2961a99412317511c2e12f695316"
+    },
+    {
+      "path": "[local-source]",
+      "bytes": 72996,
+      "sha256": "4814511b8e5872c1c04aab7e72809bbfaae248754f7d73ab00ee5f3be14bacf0"
+    },
+    {
+      "path": "[local-source]",
+      "bytes": 674,
+      "sha256": "51dbc459a3bac328c1a6b008886a07556b019173c262a7c10ec050e6bbdf9ad1"
+    },
+    {
+      "path": "[local-source]",
+      "bytes": 3290,
+      "sha256": "73b4b023761d44d104199c72c5dd0cf7165e0174f0edf442f85009c1f2551628"
+    },
+    {
+      "path": "[local-source]",
+      "bytes": 3178,
+      "sha256": "dcca39413c3ad3f1e38374312aed8776684f7f346522a70391e0596d7d3b598d"
+    },
+    {
+      "path": "[local-source]",
+      "bytes": 1017,
+      "sha256": "019d0c00bc0a9778260907db1061ba0d67e5e84c6db37a9b89a65491dbfe6dea"
+    },
+    {
+      "path": "[local-source]",
+      "bytes": 2449,
+      "sha256": "92282d3fcfc4bbccefd5d03c8e2bd697eebe9cb4d7558e55aac71b0cdf9be1c6"
+    }
+  ],
+  "publication": {
+    "github": "not_pushed",
+    "xhsTool": "not_uploaded_or_submitted",
+    "xhsNote": "local_draft_not_published",
+    "automation": "not_created"
+  },
+  "limitations": [
+    "official platform simulator not tested",
+    "iOS/Android physical scan container not tested",
+    "real touch and Chrome61/WebView61 not tested",
+    "real performance not measured",
+    "online specification DNS timeout; cache name1.7.0 but metadata1.6.0"
+  ],
+  "usage": {
+    "status": "unavailable",
+    "actualTokens": null,
+    "cost": null,
+    "reason": "No available task-specific official usage interface; no estimates substituted",
+    "imagegenCalls": 0
+  },
+  "documents": [
+    "README.md",
+    "RULES.md",
+    "QA.md",
+    "ART.md",
+    "THIRD_PARTY_NOTICES.md",
+    "release/NOTE-DRAFT.md"
+  ]
+}

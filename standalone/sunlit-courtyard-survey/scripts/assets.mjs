@@ -1,0 +1,2 @@
+import fs from 'node:fs';import {model,tutorialFrames} from '../view.mjs';import {LEVELS} from '../levels.mjs';
+const home={width:5,height:5,clues:[]},a=Array(25).fill(0);[1,4,7,10,13,17,24].forEach(i=>a[i]=1);fs.writeFileSync(new URL('../assets/hero.svg',import.meta.url),model(home,a));tutorialFrames(LEVELS[0]).forEach((f,i)=>fs.writeFileSync(new URL('../assets/tutorial-'+(i+1)+'.svg',import.meta.url),f.svg));console.log('Exact tutorial SVGs and code-native courtyard model written');

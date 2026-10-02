@@ -1,0 +1,11 @@
+{
+  "date": "2026-10-02",
+  "url": "https://miniapp-sandbox.xiaohongshu.com/minitool/doc",
+  "attempt": "curl -L --max-time 25",
+  "result": "No retained response body; header file was empty; full exit status not retained. No current-spec compliance claim.",
+  "fallback": "User-provided minitool-zip-builder 1.7.0 archive; JS API snapshot 2026-09-23",
+  "archiveSha256": "8bd0f4fde976ec3e9784bebc9fd8d16270769c129b39098698fc58572716c305",
+  "manifestVersion": "1.7.0",
+  "skillYamlVersion": "1.6.0",
+  "storageChoice": "Documented native Storage preferred at client9.46+ after capability/version checks; otherwise Web storage; read/write failures surfaced."
+}

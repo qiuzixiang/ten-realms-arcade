@@ -1,0 +1,261 @@
+{
+  "slug": "tessera-mural-studio",
+  "title": "彩砾壁画馆",
+  "version": "1.0.0",
+  "status": "LOCAL_VALIDATED_CANDIDATE",
+  "platformReady": false,
+  "sourceRoot": "[local-source]",
+  "worktreeRoot": "[local-source]",
+  "developmentBase": "374d2ee",
+  "source": {
+    "rule": "Mosaic",
+    "path": "v3/games/celestial-mural",
+    "researchCommit": "55cdddb75cf57c17baee80bac4121bd3be1687c6",
+    "upstreamCommit": "5a9e1795a3324e0f6433b79fbe31cbd9b12048a3",
+    "license": "MIT",
+    "authors": [
+      "Didi Kohen",
+      "Michal Shomer",
+      "Simon Tatham and contributors"
+    ]
+  },
+  "targetLevelCount": 60,
+  "verifiedLevelCount": 60,
+  "chapters": [
+    {
+      "id": 1,
+      "levelCount": 10
+    },
+    {
+      "id": 2,
+      "levelCount": 10
+    },
+    {
+      "id": 3,
+      "levelCount": 10
+    },
+    {
+      "id": 4,
+      "levelCount": 10
+    },
+    {
+      "id": 5,
+      "levelCount": 10
+    },
+    {
+      "id": 6,
+      "levelCount": 10
+    }
+  ],
+  "rules": {
+    "includesSelf": true,
+    "allCellsExplicit": true,
+    "victoryComparesReference": false,
+    "uniqueProof": "independent binary equation search, exhaustive after first solution, limit2",
+    "deduplication": "reflection/rotation canonical silhouette signatures",
+    "proofFile": "release/proofs.json"
+  },
+  "commands": [
+    {
+      "command": "node scripts/generate.cjs",
+      "exitCode": 0,
+      "evidence": "release/generation.log"
+    },
+    {
+      "command": "node scripts/build.cjs",
+      "exitCode": 0,
+      "evidence": "release/build.log"
+    },
+    {
+      "command": "node scripts/test.cjs",
+      "exitCode": 0,
+      "evidence": "release/tests.log"
+    },
+    {
+      "command": "node scripts/browser.cjs",
+      "exitCode": 0,
+      "evidence": "release/browser-results.json"
+    },
+    {
+      "command": "node scripts/edge-browser.cjs",
+      "exitCode": 0,
+      "evidence": "release/edge-browser.log"
+    },
+    {
+      "command": "node scripts/compatibility.cjs",
+      "exitCode": 0,
+      "evidence": "release/compatibility.log"
+    },
+    {
+      "command": "audit_artifact.py dist/xhs",
+      "exitCode": 0,
+      "evidence": "release/audit-directory.log"
+    },
+    {
+      "command": "audit_artifact.py dist/tessera-mural-studio-xhs.zip",
+      "exitCode": 0,
+      "evidence": "release/audit-zip.log"
+    },
+    {
+      "command": "unzip -t dist/tessera-mural-studio-xhs.zip",
+      "exitCode": 0,
+      "evidence": "release/zip-crc.log"
+    },
+    {
+      "command": "python3 scripts/verify-clean.py --audit-script <archived-1.7.0-audit_artifact.py>",
+      "exitCode": 0,
+      "evidence": "release/clean-checkout.json"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "[local-source]",
+      "bytes": 17523,
+      "sha256": "326d5df60dc46789d36c98c171311a2a292365758d02898aa08072124795386e"
+    },
+    {
+      "path": "[local-source]",
+      "bytes": 198489,
+      "sha256": "50559f91b7845ee0c1581b9059debaa16eac1a4312bae109d725dd5f867103fa"
+    },
+    {
+      "path": "[local-source]",
+      "bytes": 14630,
+      "sha256": "2f7a1ad9414500a5bea2c81041313187c5399925bc405376ff134dfd8835c4dc"
+    },
+    {
+      "path": "[local-source]",
+      "bytes": 61556,
+      "sha256": "153c42496b94af18360038c06218c8334d688e699157e279b954ffc01a72c48e"
+    },
+    {
+      "path": "[local-source]",
+      "bytes": 44249,
+      "sha256": "7929a5997c350a81d57e849fddaf6bce4a535c5bf0e0a5fd18487cad7990f03e"
+    },
+    {
+      "path": "[local-source]",
+      "bytes": 92220,
+      "sha256": "4269379dae207c671d6583d5d28810f89793fed6a817ee437a63b20646edc634"
+    },
+    {
+      "path": "[local-source]",
+      "bytes": 32238,
+      "sha256": "65e8f292ca428cd37fd05bf9634bab4356710b616ece9131ef3d72c9cc53b160"
+    },
+    {
+      "path": "[local-source]",
+      "bytes": 561979,
+      "sha256": "88b62d011391e8702ff7493f82b8dbf1adbd118437082d462b2a5ab171fce5d0"
+    },
+    {
+      "path": "[local-source]",
+      "bytes": 1424,
+      "sha256": "cb9e3e3ce111d6e8310f4fb956d516fda66d7db9242976762a2038cd65fdeb45"
+    },
+    {
+      "path": "[local-source]",
+      "bytes": 96652,
+      "sha256": "3b7aef16574f7980ada05f8f71829056f5a8640fac8029ba25db6ca025e5a47f"
+    },
+    {
+      "path": "[local-source]",
+      "bytes": 5706,
+      "sha256": "f5198b8f3d420b1467b1f995199826e8cec8e2caa3a85d6421d58541919415b9"
+    }
+  ],
+  "checkedAt": "2026-10-02T03:12:33.595989+08:00",
+  "platformSpec": {
+    "archiveVersion": "1.7.0",
+    "skillMetadataVersion": "1.6.0",
+    "onlineAttempt": "DNS timeout curl28 HTTP000",
+    "onlineCurrentVerified": false
+  },
+  "validation": {
+    "ruleSuites": 9,
+    "browserViewports": [
+      {
+        "width": 320,
+        "height": 720
+      },
+      {
+        "width": 390,
+        "height": 844
+      },
+      {
+        "width": 1280,
+        "height": 720
+      }
+    ],
+    "breakpointWidths": [
+      359,
+      360,
+      361,
+      759,
+      760,
+      761
+    ],
+    "minimum320CellWidth": 46.328125,
+    "restrictedCSP": true,
+    "externalRequests": 0,
+    "runtimeErrors": 0,
+    "nativeStorage": "interface mock only",
+    "screenshots": "actual desktop Chrome mobile simulation",
+    "cover": "composed from actual gameplay screenshot, code decoration",
+    "generatedBitmapAssets": false,
+    "overlapExplanation": "A/B clues, actual remaining-count equation, solid common area and dashed difference area",
+    "cleanCheckout": {
+      "status": "PASSED",
+      "codeCommit": "eb41340e7d181abfa84b65bfa343cce892fa06ec",
+      "generatorByteIdentical": true,
+      "zipByteIdentical": true,
+      "evidence": "release/clean-checkout.json"
+    },
+    "fullHistoryBoundary": "4096 moves restore; extra move rejected with undo/restart explanation"
+  },
+  "limitations": [
+    "Official minitool simulator and container not tested",
+    "iOS and Android physical devices not tested",
+    "Chrome/WebView61 runtime and CSS execution not tested",
+    "Latest online platform documentation could not be obtained",
+    "Native persistent storage only mocked; physical performance not measured",
+    "Shared registry, host outbox and global rewards not integrated; no full collection tests",
+    "Human player difficulty not measured"
+  ],
+  "publication": {
+    "github": "not_pushed",
+    "xhsTool": "not_uploaded",
+    "xhsReview": "not_submitted",
+    "xhsNote": "local_draft_only",
+    "automations": "not_created"
+  },
+  "usage": {
+    "exactTaskTokens": null,
+    "reason": "No formal task input/output/cached token accounting accessible; cannot count, no estimate",
+    "accountWindowChecksUsedPercent": [
+      80,
+      82,
+      83,
+      84,
+      85,
+      86,
+      87,
+      88,
+      90
+    ],
+    "percentagesAreTaskTokens": false,
+    "resumedWindowChecksUsedPercent": [
+      9,
+      11,
+      12,
+      14,
+      15
+    ],
+    "latestRemainingPercent": 85
+  },
+  "resume": "Local development and validation complete. Preserve same candidate ZIP for any later separately authorized official simulator and iOS/Android verification. No upload or push during account restriction.",
+  "buildReproducibility": "Sorted file list, fixed 1980 UTC timestamps, zip -X",
+  "localReady": true,
+  "sourceCommit": "eb41340e7d181abfa84b65bfa343cce892fa06ec",
+  "branch": "codex/tessera-mural-studio"
+}

@@ -1,0 +1,555 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "tag": "390 maximum",
+      "scroll": 390,
+      "width": 390,
+      "cell": 54,
+      "tools": {
+        "dockTop": 679,
+        "dockBottom": 844,
+        "paneBottom": 679,
+        "viewport": 844,
+        "buttons": [
+          {
+            "text": "▰ 黑屏",
+            "hit": true
+          },
+          {
+            "text": "◆ 白点",
+            "hit": true
+          },
+          {
+            "text": "清除",
+            "hit": true
+          },
+          {
+            "text": "↶ 撤销",
+            "hit": true
+          },
+          {
+            "text": "逻辑提示",
+            "hit": true
+          },
+          {
+            "text": "重开",
+            "hit": true
+          },
+          {
+            "text": "点击循环 ✓",
+            "hit": true
+          },
+          {
+            "text": "反向循环",
+            "hit": true
+          }
+        ]
+      }
+    },
+    {
+      "tag": "320 max board",
+      "scroll": 320,
+      "width": 320,
+      "cell": 46,
+      "tools": {
+        "dockTop": 555,
+        "dockBottom": 720,
+        "paneBottom": 555,
+        "viewport": 720,
+        "buttons": [
+          {
+            "text": "▰ 黑屏",
+            "hit": true
+          },
+          {
+            "text": "◆ 白点",
+            "hit": true
+          },
+          {
+            "text": "清除",
+            "hit": true
+          },
+          {
+            "text": "↶ 撤销",
+            "hit": true
+          },
+          {
+            "text": "逻辑提示",
+            "hit": true
+          },
+          {
+            "text": "重开",
+            "hit": true
+          },
+          {
+            "text": "点击循环 ✓",
+            "hit": true
+          },
+          {
+            "text": "反向循环",
+            "hit": true
+          }
+        ]
+      }
+    },
+    {
+      "tag": "320 tutorial",
+      "scroll": 320,
+      "width": 320,
+      "cell": 46,
+      "tools": {
+        "dockTop": 555,
+        "dockBottom": 720,
+        "paneBottom": 555,
+        "viewport": 720,
+        "buttons": [
+          {
+            "text": "▰ 黑屏",
+            "hit": false
+          },
+          {
+            "text": "◆ 白点",
+            "hit": false
+          },
+          {
+            "text": "清除",
+            "hit": false
+          },
+          {
+            "text": "↶ 撤销",
+            "hit": false
+          },
+          {
+            "text": "逻辑提示",
+            "hit": false
+          },
+          {
+            "text": "重开",
+            "hit": false
+          },
+          {
+            "text": "点击循环 ✓",
+            "hit": false
+          },
+          {
+            "text": "反向循环",
+            "hit": false
+          }
+        ]
+      }
+    },
+    {
+      "tag": "369 max board",
+      "scroll": 369,
+      "width": 369,
+      "cell": 46,
+      "tools": {
+        "dockTop": 555,
+        "dockBottom": 720,
+        "paneBottom": 555,
+        "viewport": 720,
+        "buttons": [
+          {
+            "text": "▰ 黑屏",
+            "hit": true
+          },
+          {
+            "text": "◆ 白点",
+            "hit": true
+          },
+          {
+            "text": "清除",
+            "hit": true
+          },
+          {
+            "text": "↶ 撤销",
+            "hit": true
+          },
+          {
+            "text": "逻辑提示",
+            "hit": true
+          },
+          {
+            "text": "重开",
+            "hit": true
+          },
+          {
+            "text": "点击循环 ✓",
+            "hit": true
+          },
+          {
+            "text": "反向循环",
+            "hit": true
+          }
+        ]
+      }
+    },
+    {
+      "tag": "369 tutorial",
+      "scroll": 369,
+      "width": 369,
+      "cell": 46,
+      "tools": {
+        "dockTop": 555,
+        "dockBottom": 720,
+        "paneBottom": 555,
+        "viewport": 720,
+        "buttons": [
+          {
+            "text": "▰ 黑屏",
+            "hit": false
+          },
+          {
+            "text": "◆ 白点",
+            "hit": false
+          },
+          {
+            "text": "清除",
+            "hit": false
+          },
+          {
+            "text": "↶ 撤销",
+            "hit": false
+          },
+          {
+            "text": "逻辑提示",
+            "hit": false
+          },
+          {
+            "text": "重开",
+            "hit": false
+          },
+          {
+            "text": "点击循环 ✓",
+            "hit": false
+          },
+          {
+            "text": "反向循环",
+            "hit": false
+          }
+        ]
+      }
+    },
+    {
+      "tag": "370 max board",
+      "scroll": 370,
+      "width": 370,
+      "cell": 54,
+      "tools": {
+        "dockTop": 555,
+        "dockBottom": 720,
+        "paneBottom": 555,
+        "viewport": 720,
+        "buttons": [
+          {
+            "text": "▰ 黑屏",
+            "hit": true
+          },
+          {
+            "text": "◆ 白点",
+            "hit": true
+          },
+          {
+            "text": "清除",
+            "hit": true
+          },
+          {
+            "text": "↶ 撤销",
+            "hit": true
+          },
+          {
+            "text": "逻辑提示",
+            "hit": true
+          },
+          {
+            "text": "重开",
+            "hit": true
+          },
+          {
+            "text": "点击循环 ✓",
+            "hit": true
+          },
+          {
+            "text": "反向循环",
+            "hit": true
+          }
+        ]
+      }
+    },
+    {
+      "tag": "370 tutorial",
+      "scroll": 370,
+      "width": 370,
+      "cell": 54,
+      "tools": {
+        "dockTop": 555,
+        "dockBottom": 720,
+        "paneBottom": 555,
+        "viewport": 720,
+        "buttons": [
+          {
+            "text": "▰ 黑屏",
+            "hit": false
+          },
+          {
+            "text": "◆ 白点",
+            "hit": false
+          },
+          {
+            "text": "清除",
+            "hit": false
+          },
+          {
+            "text": "↶ 撤销",
+            "hit": false
+          },
+          {
+            "text": "逻辑提示",
+            "hit": false
+          },
+          {
+            "text": "重开",
+            "hit": false
+          },
+          {
+            "text": "点击循环 ✓",
+            "hit": false
+          },
+          {
+            "text": "反向循环",
+            "hit": false
+          }
+        ]
+      }
+    },
+    {
+      "tag": "760 max board",
+      "scroll": 760,
+      "width": 760,
+      "cell": 54,
+      "tools": {
+        "dockTop": 555,
+        "dockBottom": 720,
+        "paneBottom": 555,
+        "viewport": 720,
+        "buttons": [
+          {
+            "text": "▰ 黑屏",
+            "hit": true
+          },
+          {
+            "text": "◆ 白点",
+            "hit": true
+          },
+          {
+            "text": "清除",
+            "hit": true
+          },
+          {
+            "text": "↶ 撤销",
+            "hit": true
+          },
+          {
+            "text": "逻辑提示",
+            "hit": true
+          },
+          {
+            "text": "重开",
+            "hit": true
+          },
+          {
+            "text": "点击循环 ✓",
+            "hit": true
+          },
+          {
+            "text": "反向循环",
+            "hit": true
+          }
+        ]
+      }
+    },
+    {
+      "tag": "760 tutorial",
+      "scroll": 760,
+      "width": 760,
+      "cell": 54,
+      "tools": {
+        "dockTop": 555,
+        "dockBottom": 720,
+        "paneBottom": 555,
+        "viewport": 720,
+        "buttons": [
+          {
+            "text": "▰ 黑屏",
+            "hit": false
+          },
+          {
+            "text": "◆ 白点",
+            "hit": false
+          },
+          {
+            "text": "清除",
+            "hit": false
+          },
+          {
+            "text": "↶ 撤销",
+            "hit": false
+          },
+          {
+            "text": "逻辑提示",
+            "hit": false
+          },
+          {
+            "text": "重开",
+            "hit": false
+          },
+          {
+            "text": "点击循环 ✓",
+            "hit": false
+          },
+          {
+            "text": "反向循环",
+            "hit": false
+          }
+        ]
+      }
+    },
+    {
+      "tag": "761 max board",
+      "scroll": 761,
+      "width": 761,
+      "cell": 54
+    },
+    {
+      "tag": "761 tutorial",
+      "scroll": 761,
+      "width": 761,
+      "cell": 54
+    },
+    {
+      "tag": "1280 max board",
+      "scroll": 1280,
+      "width": 1280,
+      "cell": 54
+    },
+    {
+      "tag": "1280 tutorial",
+      "scroll": 1280,
+      "width": 1280,
+      "cell": 54
+    },
+    {
+      "tag": "320 safe area",
+      "scroll": 320,
+      "width": 320,
+      "cell": 46,
+      "tools": {
+        "dockTop": 521,
+        "dockBottom": 720,
+        "paneBottom": 521,
+        "viewport": 720,
+        "buttons": [
+          {
+            "text": "▰ 黑屏",
+            "hit": true
+          },
+          {
+            "text": "◆ 白点",
+            "hit": true
+          },
+          {
+            "text": "清除",
+            "hit": true
+          },
+          {
+            "text": "↶ 撤销",
+            "hit": true
+          },
+          {
+            "text": "逻辑提示",
+            "hit": true
+          },
+          {
+            "text": "重开",
+            "hit": true
+          },
+          {
+            "text": "点击循环 ✓",
+            "hit": true
+          },
+          {
+            "text": "反向循环",
+            "hit": true
+          }
+        ]
+      }
+    },
+    {
+      "tag": "320 text double",
+      "scroll": 320,
+      "width": 320,
+      "cell": 46,
+      "tools": {
+        "dockTop": 1327.984375,
+        "dockBottom": 1662.359375,
+        "paneBottom": 1327.984375,
+        "viewport": 720,
+        "buttons": [
+          {
+            "text": "▰ 黑屏",
+            "hit": false
+          },
+          {
+            "text": "◆ 白点",
+            "hit": false
+          },
+          {
+            "text": "清除",
+            "hit": false
+          },
+          {
+            "text": "↶ 撤销",
+            "hit": false
+          },
+          {
+            "text": "逻辑提示",
+            "hit": false
+          },
+          {
+            "text": "重开",
+            "hit": false
+          },
+          {
+            "text": "点击循环 ✓",
+            "hit": false
+          },
+          {
+            "text": "反向循环",
+            "hit": false
+          }
+        ],
+        "mode": "document-scroll",
+        "afterScrollHits": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "interaction": "tutorial-next/finish/reopen, notes/moves, undo, black-only complete, refresh/dedup, collection, keyboard, hints, connectivity example",
+      "passed": true
+    }
+  ],
+  "pageErrors": [],
+  "externalRequests": [],
+  "environment": "Playwright Chromium desktop + touch simulation; CSP injected; no official container or real device",
+  "browserVersion": "154.0.8037.94",
+  "artifactScriptSHA256": "8606f980d00985d4c2b5716205e35346e94036e20a4e16f0a79ebd9e5785eab4"
+}

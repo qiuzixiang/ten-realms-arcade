@@ -1,0 +1,183 @@
+{
+  "artifact": "dist/xhs: exact candidate contents",
+  "status": "BROWSER_SIMULATION_PASSED",
+  "viewports": [
+    {
+      "width": 320,
+      "height": 720,
+      "boardWidth": 288,
+      "numberFont": "26px",
+      "inputSizes": [
+        {
+          "width": 147,
+          "height": 48
+        },
+        {
+          "width": 147,
+          "height": 48
+        },
+        {
+          "width": 68,
+          "height": 48
+        },
+        {
+          "width": 68,
+          "height": 48
+        },
+        {
+          "width": 68,
+          "height": 48
+        },
+        {
+          "width": 68,
+          "height": 48
+        },
+        {
+          "width": 144,
+          "height": 52
+        },
+        {
+          "width": 144,
+          "height": 52
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "boardWidth": 348,
+      "numberFont": "28px",
+      "inputSizes": [
+        {
+          "width": 176,
+          "height": 48
+        },
+        {
+          "width": 176,
+          "height": 48
+        },
+        {
+          "width": 82.5,
+          "height": 48
+        },
+        {
+          "width": 82.5,
+          "height": 48
+        },
+        {
+          "width": 82.5,
+          "height": 48
+        },
+        {
+          "width": 82.5,
+          "height": 48
+        },
+        {
+          "width": 173,
+          "height": 52
+        },
+        {
+          "width": 173,
+          "height": 52
+        }
+      ]
+    },
+    {
+      "width": 1280,
+      "height": 720,
+      "boardWidth": 434,
+      "numberFont": "32px",
+      "inputSizes": [
+        {
+          "width": 219,
+          "height": 48
+        },
+        {
+          "width": 219,
+          "height": 48
+        },
+        {
+          "width": 104,
+          "height": 48
+        },
+        {
+          "width": 104,
+          "height": 48
+        },
+        {
+          "width": 104,
+          "height": 48
+        },
+        {
+          "width": 104,
+          "height": 48
+        },
+        {
+          "width": 216,
+          "height": 52
+        },
+        {
+          "width": 216,
+          "height": 52
+        }
+      ]
+    }
+  ],
+  "checks": [
+    "320/390 touch taps and desktop clicks: true tutorial, navigation, 48 levels, board dimensions, input >=48px, moves, undo/redo, refresh, current-state hint, restart, sandbox replay, repeat-win claim dedupe, collection, settings",
+    "Keyboard R/C, 1–4, axis-mismatched arrows no-op, animation repeat input locked; navigation cancels old animation; 16 canonical tiles remain; tutorial internal scroll reset, focus trap/Escape return",
+    "width/height breakpoints ±1px, 44/34 safe areas, 20px body text, reduced motion, landscape",
+    "Blocked storage remains playable and does not deliver unpersisted rewards"
+  ],
+  "screenshots": [
+    "tutorial-1-320.png",
+    "tutorial-2-320.png",
+    "tutorial-3-320.png",
+    "home-320.png",
+    "chapters-320.png",
+    "game-320.png",
+    "hint-320.png",
+    "strategy-320.png",
+    "complete-320.png",
+    "collection-320.png",
+    "settings-320.png",
+    "tutorial-1-390.png",
+    "tutorial-2-390.png",
+    "tutorial-3-390.png",
+    "home-390.png",
+    "chapters-390.png",
+    "game-390.png",
+    "hint-390.png",
+    "strategy-390.png",
+    "complete-390.png",
+    "collection-390.png",
+    "settings-390.png",
+    "tutorial-1-1280.png",
+    "tutorial-2-1280.png",
+    "tutorial-3-1280.png",
+    "home-1280.png",
+    "chapters-1280.png",
+    "game-1280.png",
+    "hint-1280.png",
+    "strategy-1280.png",
+    "complete-1280.png",
+    "collection-1280.png",
+    "settings-1280.png",
+    "breakpoint-358.png",
+    "breakpoint-359.png",
+    "breakpoint-360.png",
+    "breakpoint-798.png",
+    "breakpoint-799.png",
+    "breakpoint-800.png",
+    "height-649.png",
+    "height-650.png",
+    "height-651.png",
+    "safe-large-reduced-320.png",
+    "safe-modal-320.png",
+    "landscape-720.png",
+    "storage-blocked-320.png"
+  ],
+  "errors": [],
+  "externalRequests": [],
+  "chromium": "154.0.8037.94"
+}

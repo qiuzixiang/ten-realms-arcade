@@ -1,0 +1,15 @@
+{
+  "cover": {
+    "width": 1080,
+    "height": 1440,
+    "source": "release/cover.html: original vector scene + actual release/game-390.png screenshot clipped by page layout",
+    "label": "真实游玩局部 · 本地浏览器模拟画面"
+  },
+  "icon": {
+    "width": 512,
+    "height": 512,
+    "source": "assets/icon.svg original vector rendered in browser"
+  },
+  "imagegen": false,
+  "physicalDeviceClaim": false
+}

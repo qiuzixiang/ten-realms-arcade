@@ -1,0 +1,15 @@
+'use strict';
+const fs=require('node:fs'),path=require('node:path'),cp=require('node:child_process');
+const root=path.resolve(__dirname,'..'),out=path.join(root,'dist/xhs');
+fs.mkdirSync(out,{recursive:true});
+const names=['index.html','styles.css','app.js','assets'];for(const n of fs.readdirSync(out))if(!names.includes(n))throw Error('Unknown output file; refusing overwrite '+n);
+fs.mkdirSync(path.join(out,'assets'),{recursive:true});
+const assets=['hall.webp','icon.svg','tutorial-initial.svg','tutorial-one.svg','tutorial-complete.svg','licenses.json'];for(const n of fs.readdirSync(path.join(out,'assets')))if(!assets.includes(n))throw Error('Unknown asset '+n);
+const notice={license:fs.readFileSync(path.join(root,'LICENSE'),'utf8'),thirdPartyNotices:fs.readFileSync(path.join(root,'THIRD_PARTY_NOTICES.md'),'utf8'),generatedArt:'hall.webp: OpenAI built-in ImageGen; decorative hall illustration, not gameplay. SVGs and UI generated from original code under MIT.'};
+fs.writeFileSync(path.join(out,'assets/licenses.json'),JSON.stringify(notice,null,2)+'\n');
+for(const n of assets.filter(n=>n!=='licenses.json'))fs.copyFileSync(path.join(root,'assets',n),path.join(out,'assets',n));
+let html=fs.readFileSync(path.join(root,'index.html'),'utf8').replace(/<script src="\.\/(core|levels|renderer|session|storage)\.js"><\/script>/g,'');fs.writeFileSync(path.join(out,'index.html'),html);fs.copyFileSync(path.join(root,'styles.css'),path.join(out,'styles.css'));
+fs.writeFileSync(path.join(out,'app.js'),'/*\n'+notice.license+'\n'+notice.thirdPartyNotices+'*/\n'+['core.js','levels.js','renderer.js','session.js','storage.js','app.js'].map(n=>fs.readFileSync(path.join(root,n),'utf8')).join('\n'));
+const files=['index.html','styles.css','app.js'].concat(assets.map(n=>'assets/'+n));files.forEach(n=>fs.utimesSync(path.join(out,n),new Date('2026-10-01T00:00:00Z'),new Date('2026-10-01T00:00:00Z')));
+const zip=path.join(root,'dist/scarlet-knot-atlas-xhs.zip');if(fs.existsSync(zip))fs.unlinkSync(zip);cp.execFileSync('zip',['-q','-X',zip].concat(files),{cwd:out,env:Object.assign({},process.env,{TZ:'UTC'})});
+console.log('Built standalone classic ES2017 files: '+out+'\nCandidate ZIP: '+zip);

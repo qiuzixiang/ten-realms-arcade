@@ -1,0 +1,221 @@
+{
+  "slug": "honeyfield-boundaries",
+  "title": "蜜田巡界",
+  "version": "1.0.0",
+  "date": "2026-10-02",
+  "timezone": "Asia/Shanghai",
+  "status": "LOCAL_VERIFIED_CANDIDATE",
+  "localDevelopmentComplete": true,
+  "platformReady": false,
+  "sourceDirectory": "[local-source]",
+  "worktree": "[local-source]",
+  "branch": "codex/honeyfield-boundaries",
+  "ownership": "only standalone/honeyfield-boundaries; shared registry and other games unchanged",
+  "source": {
+    "path": "v4/games/archipelago-guard",
+    "commit": "55cdddb75cf57c17baee80bac4121bd3be1687c6",
+    "rule": "Palisade / Five Cells",
+    "license": "MIT; Nikoli rule lineage, Jonas Kölker / Simon Tatham contributors credited; independent rewrite"
+  },
+  "targetLevelCount": 60,
+  "verifiedLevelCount": 60,
+  "chapterCount": 6,
+  "uniqueProofCount": 60,
+  "proofMethod": "independent connected-K-set exact cover; exhaustive search for second solution; no reference solution input",
+  "contentNote": "First three chapters contain 30 D4-distinct clue+partition puzzles using 14 uniquely identifiable 4x4 partitions; 10 distinct partitions per chapter. Later chapters extend to 5x5 and 6x6. All 60 have no-guess logical traces; human difficulty not independently calibrated.",
+  "commands": [
+    {
+      "command": "npm run generate",
+      "exitCode": 0,
+      "directory": "[local-source]"
+    },
+    {
+      "command": "npm run build",
+      "exitCode": 0,
+      "directory": "[local-source]"
+    },
+    {
+      "command": "npm test",
+      "exitCode": 0,
+      "directory": "[local-source]"
+    },
+    {
+      "command": "npm run audit",
+      "exitCode": 0,
+      "directory": "[local-source]"
+    },
+    {
+      "command": "npm run qa:browser",
+      "exitCode": 0,
+      "directory": "[local-source]"
+    },
+    {
+      "command": "node scripts/reproduce.mjs",
+      "exitCode": 0,
+      "directory": "[local-source]"
+    },
+    {
+      "command": "git diff --check",
+      "exitCode": 0,
+      "directory": "[local-source]"
+    }
+  ],
+  "checks": {
+    "ruleAssertions": 5706,
+    "exhaustive4x4Tilings": 117,
+    "uniqueExhaustive": true,
+    "puzzleD4Distinct": true,
+    "tutorialSameRenderer": true,
+    "preciseInput": "selected cell + four 48px directions; no overlapping edge hit areas",
+    "viewports": [
+      "320x720",
+      "390x844",
+      "1280x720",
+      "479/480/481",
+      "799/800/801"
+    ],
+    "browser": "154.0.8037.94",
+    "browserFunctionalRecords": 8,
+    "externalRequests": 0,
+    "jsErrors": 0,
+    "storageCorruption": true,
+    "rewardIdempotency": true,
+    "practiceNoReward": true,
+    "nativeStorageMock": true,
+    "hostPersistenceAndRetryMock": true,
+    "cleanRebuild": true,
+    "package": {
+      "status": "local_candidate_audit_passed",
+      "files": 13,
+      "uncompressedBytes": 415171,
+      "zipBytes": 39872,
+      "syntax": "ES2017 acorn parse",
+      "crc": true,
+      "svgXML": true,
+      "offlineReferences": true,
+      "platformVersion": "1.7.0 package; internal SKILL metadata 1.6.0",
+      "officialOutput": [
+        "PASS: 13 file(s), 0 warning(s)\n",
+        "NOTE: Node audit checks zip size only; artifact contents must be audited before packaging\nPASS: 1 file(s), 0 warning(s)\n"
+      ],
+      "notCovered": [
+        "latest online documentation DNS timed out",
+        "official container",
+        "iOS and Android physical devices",
+        "Chrome61 runtime"
+      ]
+    }
+  },
+  "artifacts": [
+    {
+      "path": "[local-source]",
+      "bytes": 39872,
+      "sha256": "0445f522e10415c993a536c88afc376d5976c3b402e17b08584f5c8cd76b4ddf"
+    },
+    {
+      "path": "[local-source]",
+      "bytes": 200595,
+      "sha256": "31da5aba0f972fe5b2057e6f189e2875af902a22cf87566ec371efc26c7bfbfa"
+    },
+    {
+      "path": "[local-source]",
+      "bytes": 107024,
+      "sha256": "eeca51fea59172c1804333dc72aac2da5a47ef5fbc7aba1ceb69193bbc6b7f45"
+    },
+    {
+      "path": "[local-source]",
+      "bytes": 114549,
+      "sha256": "cbbdb7c65d3aab2235684983442d62e7db0a17a88be636becd0c29fbbc9dde02"
+    },
+    {
+      "path": "[local-source]",
+      "bytes": 159693,
+      "sha256": "8746ac9cfccc05456c89a4be1a56a7eac6fdebc31d7cdd19e89ba3f7e1f2b7ed"
+    },
+    {
+      "path": "[local-source]",
+      "bytes": 137395,
+      "sha256": "9c799366ac98cb3ddbb629e2b7c2e0c57101573e1dda37ba2b67dc237c00809e"
+    },
+    {
+      "path": "[local-source]",
+      "bytes": 100750,
+      "sha256": "8df2d873d61b1a0afdc875141031013a01aee610e557fcd4889bbde4b164113c"
+    },
+    {
+      "path": "[local-source]",
+      "bytes": 106398,
+      "sha256": "fe447d177ff4eda372b0625f0824378009e226185cf35f4acab5686f7c7677d9"
+    },
+    {
+      "path": "[local-source]",
+      "bytes": 119968,
+      "sha256": "5e7e13a2c557b939a8fabb0e0b3ba8f5b813b6ddca5ea511dc9b492cef1bb7d3"
+    },
+    {
+      "path": "[local-source]",
+      "bytes": 80892,
+      "sha256": "0504567018c391a30ec58b784281c4b98263e5d769bfd10553f01223271fc542"
+    },
+    {
+      "path": "[local-source]",
+      "bytes": 31115,
+      "sha256": "8cd25f2e213f392797c800b07131964321f1d5738dbba5232d33ccc4128c3891"
+    },
+    {
+      "path": "[local-source]",
+      "bytes": 6202,
+      "sha256": "2f0ab8a3334d21e4705808160732db5f7d7bb508d04aad49e847a9b07c6efc19"
+    },
+    {
+      "path": "[local-source]",
+      "bytes": 1734,
+      "sha256": "2a871ba6d9968fdf30e9628344b60f3b896495e2a02e3184635c2d5d4b946037"
+    },
+    {
+      "path": "[local-source]",
+      "bytes": 635,
+      "sha256": "0037bb77ac474a0041a48e35bd10491067f26712e32813832b5547a8374706b5"
+    },
+    {
+      "path": "[local-source]",
+      "bytes": 2615,
+      "sha256": "3f6292066e155e9acd2a97ad02cfb0d625703033bce603b6ff598280811bf51e"
+    },
+    {
+      "path": "[local-source]",
+      "bytes": 1343,
+      "sha256": "f9dc9ae83b3d0d5e70f50018cce11fa483a5d3fd01762d8a0276ed4c399ca83d"
+    }
+  ],
+  "limitations": [
+    "latest online minitool spec unverified: curl DNS timeout exit28",
+    "official platform simulator not tested",
+    "Android/iOS physical browsers and containers not tested",
+    "Chrome61 runtime not tested; syntax parsed to ES2017, CSS baseline reviewed",
+    "physical safe area/orientation/address bar and low-end performance not tested",
+    "color vision simulation not tested",
+    "no real-player difficulty study",
+    "collection unlocked screenshot uses revalidated legitimate engine completion proofs in a test save"
+  ],
+  "publication": {
+    "github": "not_pushed",
+    "xhsTool": "not_uploaded_not_submitted",
+    "xhsNote": "local_markdown_only_no_platform_draft",
+    "integration": "not_integrated_into_shared_registry",
+    "automations": "none",
+    "otherThreadMessages": "none"
+  },
+  "usage": {
+    "exactTokens": "无法统计，正式工具未提供本任务Token；不估算",
+    "accountSnapshot": {
+      "usedPercent": 3,
+      "remainingPercent": 97,
+      "windowDurationMins": 300,
+      "resetsAt": 1790907841
+    },
+    "sharedAccountNotTaskUsage": true,
+    "resetOrCreditActionsByThisTask": "none"
+  },
+  "resume": "No remaining local implementation gate. Future external validation requires separate authorization and removal of current account restrictions; use this exact candidate ZIP and verify simulator/Android/iOS before calling it platform-ready."
+}

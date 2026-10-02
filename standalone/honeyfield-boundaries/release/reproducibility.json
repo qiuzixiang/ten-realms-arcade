@@ -1,0 +1,29 @@
+{
+  "cleanDirectory": "/var/folders/zs/hpwfkwh1687frv7wds0wg1zw0000gn/T/honeyfield-clean-vYv2da",
+  "node": "v24.13.0",
+  "generatedLevelsSha256": "545dc0065513f34099ad8b97e5101039fd520953e0d35d0aac881ecaeb2527b4",
+  "levelsDeterministic": true,
+  "runtimeFilesIdentical": true,
+  "outputs": [
+    {
+      "command": "node scripts/generate.mjs",
+      "exitCode": 0,
+      "output": "hf-01 4 5 0 24\nhf-02 4 5 0 23\nhf-03 4 5 0 23\nhf-04 4 5 0 23\nhf-05 4 5 1 24\nhf-06 4 5 1 23\nhf-07 4 5 1 24\nhf-08 4 5 1 24\nhf-09 4 5 2 24\nhf-10 4 5 2 23\nhf-11 4 5 3 23\nhf-12 4 5 3 24\nhf-13 4 5 3 22\nhf-14 4 5 4 23\nhf-15 4 7 4 23\nhf-16 4 5 4 23\nhf-17 4 5 5 24\nhf-18 4 5 5 22\nhf-19 4 5 5 23\nhf-20 4 7 6 23\nhf-21 4 6 6 22\nhf-22 4 6 6 22\nhf-23 4 6 6 23\nhf-24 4 7 6 22\nhf-25 4 6 7 23\nhf-26 4 10 7 22\nhf-27 4 5 7 24\nhf-28 4 7 7 22\nhf-29 4 5 8 23\nhf-30 4 8 8 22\nhf-31 5 6 3 39\nhf-32 5 6 3 40\nhf-33 5 9 4 40\nhf-34 5 6 4 39\nhf-35 5 6 5 39\nhf-36 5 6 5 40\nhf-37 5 6 6 40\nhf-38 5 6 6 38\nhf-39 5 10 7 39\nhf-40 5 6 7 39\nhf-41 6 9 5 60\nhf-42 6 7 5 60\nhf-43 6 14 6 59\nhf-44 6 7 6 59\nhf-45 6 17 7 59\nhf-46 6 7 7 59\nhf-47 6 8 8 60\nhf-48 6 9 8 59\nhf-49 6 9 9 59\nhf-50 6 12 9 60\nhf-51 6 7 10 58\nhf-52 6 7 10 59\nhf-53 6 17 11 60\nhf-54 6 23 11 58\nhf-55 6 13 12 57\nhf-56 6 7 12 60\nhf-57 6 8 13 59\nhf-58 6 19 13 60\nhf-59 6 9 14 58\nhf-60 6 9 14 59\n"
+    },
+    {
+      "command": "node scripts/build.mjs",
+      "exitCode": 0,
+      "output": "Built /private/var/folders/zs/hpwfkwh1687frv7wds0wg1zw0000gn/T/honeyfield-clean-vYv2da/honeyfield-boundaries/dist/xhs\nZIP /private/var/folders/zs/hpwfkwh1687frv7wds0wg1zw0000gn/T/honeyfield-clean-vYv2da/honeyfield-boundaries/dist/honeyfield-boundaries-xhs-candidate.zip (39872 bytes)\n"
+    },
+    {
+      "command": "node tests/rules.mjs",
+      "exitCode": 0,
+      "output": "PASS 5706 assertions; 60 exhaustive unique proofs; 117 4x4 tilings\n"
+    },
+    {
+      "command": "node scripts/audit.mjs",
+      "exitCode": 0,
+      "output": "{\"status\":\"local_candidate_audit_passed\",\"files\":13,\"uncompressedBytes\":415171,\"zipBytes\":39872,\"syntax\":\"ES2017 acorn parse\",\"crc\":true,\"svgXML\":true,\"offlineReferences\":true,\"platformVersion\":\"1.7.0 package; internal SKILL metadata 1.6.0\",\"officialOutput\":[\"PASS: 13 file(s), 0 warning(s)\\n\",\"NOTE: Node audit checks zip size only; artifact contents must be audited before packaging\\nPASS: 1 file(s), 0 warning(s)\\n\"],\"notCovered\":[\"latest online documentation DNS timed out\",\"official container\",\"iOS and Android physical devices\",\"Chrome61 runtime\"]}\n"
+    }
+  ]
+}

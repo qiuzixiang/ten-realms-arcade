@@ -1,0 +1,1045 @@
+{
+  "method": "independent connected-K-set exact cover; exhaustive search for second solution; no reference solution input",
+  "levels": [
+    {
+      "id": "hf-01",
+      "solutions": 1,
+      "exhaustive": true,
+      "nodes": 5,
+      "candidates": 9,
+      "logicSteps": 24,
+      "strategies": {
+        "clue": 20,
+        "region-domain": 2,
+        "capacity": 2
+      },
+      "clues": 16,
+      "canonical": "0,0,0,0,1,1,1,2,1,3,3,2,3,3,2,2|3,2,2,3,2,2,3,3,3,2,3,2,3,2,3,2",
+      "partitionCanonical": "0,0,0,0,1,1,1,2,1,3,3,2,3,3,2,2|,,,,,,,,,,,,,,,",
+      "seed": 7112026
+    },
+    {
+      "id": "hf-02",
+      "solutions": 1,
+      "exhaustive": true,
+      "nodes": 5,
+      "candidates": 7,
+      "logicSteps": 23,
+      "strategies": {
+        "clue": 23
+      },
+      "clues": 16,
+      "canonical": "0,0,0,1,0,2,1,1,2,2,3,1,2,3,3,3|2,2,3,3,3,3,3,1,2,2,3,3,3,3,1,3",
+      "partitionCanonical": "0,0,0,1,0,2,1,1,2,2,3,1,2,3,3,3|,,,,,,,,,,,,,,,",
+      "seed": 2410485670
+    },
+    {
+      "id": "hf-03",
+      "solutions": 1,
+      "exhaustive": true,
+      "nodes": 5,
+      "candidates": 9,
+      "logicSteps": 23,
+      "strategies": {
+        "clue": 21,
+        "region-domain": 1,
+        "capacity": 1
+      },
+      "clues": 16,
+      "canonical": "0,0,0,0,1,1,1,2,1,3,2,2,3,3,3,2|3,2,2,3,2,2,3,3,3,3,3,1,3,1,3,3",
+      "partitionCanonical": "0,0,0,0,1,1,1,2,1,3,2,2,3,3,3,2|,,,,,,,,,,,,,,,",
+      "seed": 1213785466
+    },
+    {
+      "id": "hf-04",
+      "solutions": 1,
+      "exhaustive": true,
+      "nodes": 5,
+      "candidates": 11,
+      "logicSteps": 23,
+      "strategies": {
+        "clue": 16,
+        "region-domain": 6,
+        "capacity": 1
+      },
+      "clues": 16,
+      "canonical": "0,0,0,0,1,1,1,1,2,2,2,3,2,3,3,3|3,2,2,3,3,2,2,3,2,2,3,3,3,3,2,2",
+      "partitionCanonical": "0,0,0,0,1,1,1,1,2,2,2,3,2,3,3,3|,,,,,,,,,,,,,,,",
+      "seed": 623573563
+    },
+    {
+      "id": "hf-05",
+      "solutions": 1,
+      "exhaustive": true,
+      "nodes": 5,
+      "candidates": 11,
+      "logicSteps": 24,
+      "strategies": {
+        "clue": 19,
+        "capacity": 3,
+        "connect": 1,
+        "region-domain": 1
+      },
+      "clues": 15,
+      "canonical": "0,0,0,1,0,1,1,1,2,2,3,3,2,2,3,3|2,2,3,3,3,3,2,2,2,2,2,,2,2,2,2",
+      "partitionCanonical": "0,0,0,1,0,1,1,1,2,2,3,3,2,2,3,3|,,,,,,,,,,,,,,,",
+      "seed": 3517580654
+    },
+    {
+      "id": "hf-06",
+      "solutions": 1,
+      "exhaustive": true,
+      "nodes": 5,
+      "candidates": 10,
+      "logicSteps": 23,
+      "strategies": {
+        "clue": 18,
+        "region-domain": 3,
+        "capacity": 1,
+        "connect": 1
+      },
+      "clues": 15,
+      "canonical": "0,0,0,0,1,2,2,3,1,2,2,3,1,1,3,3|3,2,2,3,3,2,2,3,2,2,2,2,,3,3,2",
+      "partitionCanonical": "0,0,0,0,1,2,2,3,1,2,2,3,1,1,3,3|,,,,,,,,,,,,,,,",
+      "seed": 3670104100
+    },
+    {
+      "id": "hf-07",
+      "solutions": 1,
+      "exhaustive": true,
+      "nodes": 5,
+      "candidates": 4,
+      "logicSteps": 24,
+      "strategies": {
+        "clue": 24
+      },
+      "clues": 15,
+      "canonical": "0,0,0,1,2,0,1,1,2,2,3,1,2,3,3,3|,1,3,3,3,3,3,1,1,3,3,3,3,3,1,3",
+      "partitionCanonical": "0,0,0,1,2,0,1,1,2,2,3,1,2,3,3,3|,,,,,,,,,,,,,,,",
+      "seed": 1969367211
+    },
+    {
+      "id": "hf-08",
+      "solutions": 1,
+      "exhaustive": true,
+      "nodes": 5,
+      "candidates": 5,
+      "logicSteps": 24,
+      "strategies": {
+        "clue": 21,
+        "capacity": 2,
+        "region-domain": 1
+      },
+      "clues": 15,
+      "canonical": "0,0,0,0,1,1,1,2,3,1,2,2,3,3,3,2|3,2,2,3,3,1,3,3,3,3,3,1,2,,3,3",
+      "partitionCanonical": "0,0,0,0,1,1,1,2,3,1,2,2,3,3,3,2|,,,,,,,,,,,,,,,",
+      "seed": 2326028074
+    },
+    {
+      "id": "hf-09",
+      "solutions": 1,
+      "exhaustive": true,
+      "nodes": 5,
+      "candidates": 14,
+      "logicSteps": 24,
+      "strategies": {
+        "clue": 15,
+        "capacity": 6,
+        "region-domain": 3
+      },
+      "clues": 14,
+      "canonical": "0,0,0,0,1,1,1,1,2,2,3,3,2,2,3,3|3,2,2,3,,2,2,3,2,,2,2,2,2,2,2",
+      "partitionCanonical": "0,0,0,0,1,1,1,1,2,2,3,3,2,2,3,3|,,,,,,,,,,,,,,,",
+      "seed": 48011681
+    },
+    {
+      "id": "hf-10",
+      "solutions": 1,
+      "exhaustive": true,
+      "nodes": 5,
+      "candidates": 9,
+      "logicSteps": 23,
+      "strategies": {
+        "clue": 17,
+        "capacity": 2,
+        "region-domain": 4
+      },
+      "clues": 14,
+      "canonical": "0,0,0,0,1,1,1,2,3,3,1,2,3,3,2,2|,2,2,3,3,2,2,3,2,2,3,,2,2,3,2",
+      "partitionCanonical": "0,0,0,0,1,1,1,2,3,3,1,2,3,3,2,2|,,,,,,,,,,,,,,,",
+      "seed": 2453114424
+    },
+    {
+      "id": "hf-11",
+      "solutions": 1,
+      "exhaustive": true,
+      "nodes": 5,
+      "candidates": 8,
+      "logicSteps": 23,
+      "strategies": {
+        "clue": 20,
+        "capacity": 3
+      },
+      "clues": 13,
+      "canonical": "0,0,0,1,0,2,1,1,2,2,3,1,2,3,3,3|2,,3,3,3,3,3,1,2,,3,3,3,3,,3",
+      "partitionCanonical": "0,0,0,1,0,2,1,1,2,2,3,1,2,3,3,3|,,,,,,,,,,,,,,,",
+      "seed": 3281710538
+    },
+    {
+      "id": "hf-12",
+      "solutions": 1,
+      "exhaustive": true,
+      "nodes": 5,
+      "candidates": 7,
+      "logicSteps": 24,
+      "strategies": {
+        "clue": 19,
+        "region-domain": 3,
+        "capacity": 2
+      },
+      "clues": 13,
+      "canonical": "0,0,0,0,1,1,1,2,3,1,2,2,3,3,3,2|3,2,,3,3,1,3,3,3,3,3,1,2,,,3",
+      "partitionCanonical": "0,0,0,0,1,1,1,2,3,1,2,2,3,3,3,2|,,,,,,,,,,,,,,,",
+      "seed": 2799853100
+    },
+    {
+      "id": "hf-13",
+      "solutions": 1,
+      "exhaustive": true,
+      "nodes": 5,
+      "candidates": 17,
+      "logicSteps": 22,
+      "strategies": {
+        "clue": 17,
+        "region-domain": 4,
+        "connect": 1
+      },
+      "clues": 13,
+      "canonical": "0,0,0,0,1,1,1,2,3,3,1,2,3,3,2,2|3,,2,,3,2,2,3,2,2,3,2,,2,3,2",
+      "partitionCanonical": "0,0,0,0,1,1,1,2,3,3,1,2,3,3,2,2|,,,,,,,,,,,,,,,",
+      "seed": 2593478075
+    },
+    {
+      "id": "hf-14",
+      "solutions": 1,
+      "exhaustive": true,
+      "nodes": 5,
+      "candidates": 20,
+      "logicSteps": 23,
+      "strategies": {
+        "clue": 15,
+        "region-domain": 6,
+        "capacity": 2
+      },
+      "clues": 12,
+      "canonical": "0,0,0,0,1,1,1,2,1,3,3,2,3,3,2,2|3,,2,3,,2,3,3,3,,3,2,3,,3,2",
+      "partitionCanonical": "0,0,0,0,1,1,1,2,1,3,3,2,3,3,2,2|,,,,,,,,,,,,,,,",
+      "seed": 1197460467
+    },
+    {
+      "id": "hf-15",
+      "solutions": 1,
+      "exhaustive": true,
+      "nodes": 7,
+      "candidates": 23,
+      "logicSteps": 23,
+      "strategies": {
+        "region-domain": 8,
+        "clue": 13,
+        "capacity": 2
+      },
+      "clues": 12,
+      "canonical": "0,0,0,0,1,1,1,1,2,2,2,3,2,3,3,3|3,,2,3,,2,,3,2,2,3,3,3,3,2,",
+      "partitionCanonical": "0,0,0,0,1,1,1,1,2,2,2,3,2,3,3,3|,,,,,,,,,,,,,,,",
+      "seed": 1982388704
+    },
+    {
+      "id": "hf-16",
+      "solutions": 1,
+      "exhaustive": true,
+      "nodes": 5,
+      "candidates": 8,
+      "logicSteps": 23,
+      "strategies": {
+        "clue": 23
+      },
+      "clues": 12,
+      "canonical": "0,0,0,1,2,0,1,1,2,2,3,1,2,3,3,3|,1,3,,3,3,3,1,1,3,3,3,3,,,3",
+      "partitionCanonical": "0,0,0,1,2,0,1,1,2,2,3,1,2,3,3,3|,,,,,,,,,,,,,,,",
+      "seed": 3382888415
+    },
+    {
+      "id": "hf-17",
+      "solutions": 1,
+      "exhaustive": true,
+      "nodes": 5,
+      "candidates": 23,
+      "logicSteps": 24,
+      "strategies": {
+        "clue": 19,
+        "capacity": 2,
+        "region-domain": 3
+      },
+      "clues": 11,
+      "canonical": "0,0,0,0,1,1,1,2,1,3,2,2,3,3,3,2|,2,,3,2,2,,3,,3,,1,3,1,3,3",
+      "partitionCanonical": "0,0,0,0,1,1,1,2,1,3,2,2,3,3,3,2|,,,,,,,,,,,,,,,",
+      "seed": 2637499407
+    },
+    {
+      "id": "hf-18",
+      "solutions": 1,
+      "exhaustive": true,
+      "nodes": 5,
+      "candidates": 14,
+      "logicSteps": 22,
+      "strategies": {
+        "clue": 16,
+        "connect": 2,
+        "region-domain": 3,
+        "capacity": 1
+      },
+      "clues": 11,
+      "canonical": "0,0,0,1,0,1,1,1,2,2,3,3,2,2,3,3|2,,3,,3,3,,2,2,2,,2,2,2,2,",
+      "partitionCanonical": "0,0,0,1,0,1,1,1,2,2,3,3,2,2,3,3|,,,,,,,,,,,,,,,",
+      "seed": 1997045323
+    },
+    {
+      "id": "hf-19",
+      "solutions": 1,
+      "exhaustive": true,
+      "nodes": 5,
+      "candidates": 21,
+      "logicSteps": 23,
+      "strategies": {
+        "region-domain": 3,
+        "clue": 16,
+        "capacity": 3,
+        "connect": 1
+      },
+      "clues": 11,
+      "canonical": "0,0,0,0,1,2,2,3,1,2,2,3,1,1,3,3|3,2,2,3,3,,2,3,2,2,2,,,,3,",
+      "partitionCanonical": "0,0,0,0,1,2,2,3,1,2,2,3,1,1,3,3|,,,,,,,,,,,,,,,",
+      "seed": 2902292148
+    },
+    {
+      "id": "hf-20",
+      "solutions": 1,
+      "exhaustive": true,
+      "nodes": 7,
+      "candidates": 23,
+      "logicSteps": 23,
+      "strategies": {
+        "region-domain": 9,
+        "clue": 11,
+        "capacity": 3
+      },
+      "clues": 10,
+      "canonical": "0,0,0,1,0,1,1,1,2,3,3,3,2,2,2,3|,2,,3,3,,2,2,,3,2,,,2,3,3",
+      "partitionCanonical": "0,0,0,1,0,1,1,1,2,3,3,3,2,2,2,3|,,,,,,,,,,,,,,,",
+      "seed": 2631946288
+    },
+    {
+      "id": "hf-21",
+      "solutions": 1,
+      "exhaustive": true,
+      "nodes": 6,
+      "candidates": 20,
+      "logicSteps": 22,
+      "strategies": {
+        "region-domain": 9,
+        "clue": 10,
+        "capacity": 2,
+        "connect": 1
+      },
+      "clues": 10,
+      "canonical": "0,0,0,0,1,1,1,2,3,3,1,2,3,3,2,2|3,2,2,,3,,2,3,2,2,3,,,,3,",
+      "partitionCanonical": "0,0,0,0,1,1,1,2,3,3,1,2,3,3,2,2|,,,,,,,,,,,,,,,",
+      "seed": 161825939
+    },
+    {
+      "id": "hf-22",
+      "solutions": 1,
+      "exhaustive": true,
+      "nodes": 6,
+      "candidates": 24,
+      "logicSteps": 22,
+      "strategies": {
+        "clue": 14,
+        "capacity": 5,
+        "region-domain": 3
+      },
+      "clues": 10,
+      "canonical": "0,0,0,0,1,1,1,2,1,3,2,2,3,3,3,2|3,2,2,3,2,,3,,3,,3,1,3,,,",
+      "partitionCanonical": "0,0,0,0,1,1,1,2,1,3,2,2,3,3,3,2|,,,,,,,,,,,,,,,",
+      "seed": 2044507727
+    },
+    {
+      "id": "hf-23",
+      "solutions": 1,
+      "exhaustive": true,
+      "nodes": 6,
+      "candidates": 33,
+      "logicSteps": 23,
+      "strategies": {
+        "clue": 11,
+        "region-domain": 5,
+        "capacity": 7
+      },
+      "clues": 10,
+      "canonical": "0,0,0,0,1,1,1,2,1,3,3,2,3,3,2,2|3,,2,3,2,2,,3,3,,,2,,2,,2",
+      "partitionCanonical": "0,0,0,0,1,1,1,2,1,3,3,2,3,3,2,2|,,,,,,,,,,,,,,,",
+      "seed": 1247414718
+    },
+    {
+      "id": "hf-24",
+      "solutions": 1,
+      "exhaustive": true,
+      "nodes": 7,
+      "candidates": 38,
+      "logicSteps": 22,
+      "strategies": {
+        "region-domain": 7,
+        "clue": 10,
+        "capacity": 5
+      },
+      "clues": 10,
+      "canonical": "0,0,0,0,1,1,1,2,1,2,2,2,3,3,3,3|,,2,3,2,2,,3,3,,,2,3,,2,3",
+      "partitionCanonical": "0,0,0,0,1,1,1,2,1,2,2,2,3,3,3,3|,,,,,,,,,,,,,,,",
+      "seed": 1907182553
+    },
+    {
+      "id": "hf-25",
+      "solutions": 1,
+      "exhaustive": true,
+      "nodes": 6,
+      "candidates": 24,
+      "logicSteps": 23,
+      "strategies": {
+        "clue": 18,
+        "capacity": 4,
+        "region-domain": 1
+      },
+      "clues": 9,
+      "canonical": "0,0,0,1,0,2,1,1,2,2,3,1,2,3,3,3|,2,,,,,3,1,,2,3,3,,3,1,3",
+      "partitionCanonical": "0,0,0,1,0,2,1,1,2,2,3,1,2,3,3,3|,,,,,,,,,,,,,,,",
+      "seed": 827474910
+    },
+    {
+      "id": "hf-26",
+      "solutions": 1,
+      "exhaustive": true,
+      "nodes": 10,
+      "candidates": 17,
+      "logicSteps": 22,
+      "strategies": {
+        "region-domain": 10,
+        "clue": 8,
+        "capacity": 3,
+        "connect": 1
+      },
+      "clues": 9,
+      "canonical": "0,0,0,0,1,1,1,1,2,2,3,3,2,2,3,3|,,2,,,2,2,3,2,2,2,2,,2,,",
+      "partitionCanonical": "0,0,0,0,1,1,1,1,2,2,3,3,2,2,3,3|,,,,,,,,,,,,,,,",
+      "seed": 970319724
+    },
+    {
+      "id": "hf-27",
+      "solutions": 1,
+      "exhaustive": true,
+      "nodes": 5,
+      "candidates": 19,
+      "logicSteps": 24,
+      "strategies": {
+        "region-domain": 11,
+        "clue": 11,
+        "capacity": 2
+      },
+      "clues": 9,
+      "canonical": "0,0,0,0,1,1,1,2,3,1,2,2,3,3,3,2|3,2,2,,,1,3,3,3,,,,,2,3,",
+      "partitionCanonical": "0,0,0,0,1,1,1,2,3,1,2,2,3,3,3,2|,,,,,,,,,,,,,,,",
+      "seed": 2583715366
+    },
+    {
+      "id": "hf-28",
+      "solutions": 1,
+      "exhaustive": true,
+      "nodes": 7,
+      "candidates": 32,
+      "logicSteps": 22,
+      "strategies": {
+        "clue": 13,
+        "capacity": 4,
+        "region-domain": 4,
+        "connect": 1
+      },
+      "clues": 9,
+      "canonical": "0,0,0,1,0,1,1,1,2,2,3,3,2,2,3,3|,2,,3,3,,2,2,2,,2,,2,,,2",
+      "partitionCanonical": "0,0,0,1,0,1,1,1,2,2,3,3,2,2,3,3|,,,,,,,,,,,,,,,",
+      "seed": 1839895947
+    },
+    {
+      "id": "hf-29",
+      "solutions": 1,
+      "exhaustive": true,
+      "nodes": 5,
+      "candidates": 24,
+      "logicSteps": 23,
+      "strategies": {
+        "clue": 9,
+        "region-domain": 11,
+        "capacity": 3
+      },
+      "clues": 8,
+      "canonical": "0,0,0,1,0,1,1,1,2,3,3,3,2,2,2,3|,2,,,,3,2,,3,,2,2,2,,3,",
+      "partitionCanonical": "0,0,0,1,0,1,1,1,2,3,3,3,2,2,2,3|,,,,,,,,,,,,,,,",
+      "seed": 3591127283
+    },
+    {
+      "id": "hf-30",
+      "solutions": 1,
+      "exhaustive": true,
+      "nodes": 8,
+      "candidates": 35,
+      "logicSteps": 22,
+      "strategies": {
+        "region-domain": 12,
+        "clue": 9,
+        "capacity": 1
+      },
+      "clues": 8,
+      "canonical": "0,0,0,0,1,1,1,1,2,2,2,3,2,3,3,3|3,2,,,3,,,,,2,3,,3,3,2,",
+      "partitionCanonical": "0,0,0,0,1,1,1,1,2,2,2,3,2,3,3,3|,,,,,,,,,,,,,,,",
+      "seed": 125062365
+    },
+    {
+      "id": "hf-31",
+      "solutions": 1,
+      "exhaustive": true,
+      "nodes": 6,
+      "candidates": 26,
+      "logicSteps": 39,
+      "strategies": {
+        "clue": 27,
+        "region-domain": 7,
+        "capacity": 5
+      },
+      "clues": 22,
+      "canonical": "0,0,0,0,0,1,1,1,1,2,1,3,2,2,2,3,3,3,2,4,3,4,4,4,4|3,2,2,,3,2,2,2,3,3,3,,3,1,2,2,1,3,3,3,3,,2,2,2",
+      "partitionCanonical": "0,0,0,0,0,1,1,1,1,2,1,3,2,2,2,3,3,3,2,4,3,4,4,4,4|,,,,,,,,,,,,,,,,,,,,,,,,",
+      "seed": 2980101100
+    },
+    {
+      "id": "hf-32",
+      "solutions": 1,
+      "exhaustive": true,
+      "nodes": 6,
+      "candidates": 16,
+      "logicSteps": 40,
+      "strategies": {
+        "clue": 34,
+        "region-domain": 4,
+        "capacity": 2
+      },
+      "clues": 22,
+      "canonical": "0,0,0,0,1,0,2,3,3,1,2,2,3,1,1,2,3,3,4,1,2,4,4,4,4|2,2,2,,3,3,3,2,3,,2,2,2,3,1,2,3,2,3,3,3,3,2,1,",
+      "partitionCanonical": "0,0,0,0,1,0,2,3,3,1,2,2,3,1,1,2,3,3,4,1,2,4,4,4,4|,,,,,,,,,,,,,,,,,,,,,,,,",
+      "seed": 1214760786
+    },
+    {
+      "id": "hf-33",
+      "solutions": 1,
+      "exhaustive": true,
+      "nodes": 9,
+      "candidates": 21,
+      "logicSteps": 40,
+      "strategies": {
+        "clue": 28,
+        "region-domain": 9,
+        "capacity": 2,
+        "connect": 1
+      },
+      "clues": 21,
+      "canonical": "0,0,0,0,1,0,1,1,1,1,2,2,3,3,3,2,2,2,4,3,4,4,4,4,3|2,2,2,3,,3,3,2,2,2,,2,3,2,2,2,1,3,,2,,2,2,2,3",
+      "partitionCanonical": "0,0,0,0,1,0,1,1,1,1,2,2,3,3,3,2,2,2,4,3,4,4,4,4,3|,,,,,,,,,,,,,,,,,,,,,,,,",
+      "seed": 820413931
+    },
+    {
+      "id": "hf-34",
+      "solutions": 1,
+      "exhaustive": true,
+      "nodes": 6,
+      "candidates": 20,
+      "logicSteps": 39,
+      "strategies": {
+        "clue": 32,
+        "connect": 1,
+        "capacity": 3,
+        "region-domain": 3
+      },
+      "clues": 21,
+      "canonical": "0,0,0,0,1,0,2,2,1,1,3,2,2,2,1,3,3,4,4,1,3,3,4,4,4|2,2,2,3,3,3,2,2,3,1,3,2,1,3,2,1,2,2,,3,2,,,1,",
+      "partitionCanonical": "0,0,0,0,1,0,2,2,1,1,3,2,2,2,1,3,3,4,4,1,3,3,4,4,4|,,,,,,,,,,,,,,,,,,,,,,,,",
+      "seed": 4173437993
+    },
+    {
+      "id": "hf-35",
+      "solutions": 1,
+      "exhaustive": true,
+      "nodes": 6,
+      "candidates": 20,
+      "logicSteps": 39,
+      "strategies": {
+        "clue": 29,
+        "region-domain": 7,
+        "capacity": 3
+      },
+      "clues": 20,
+      "canonical": "0,0,0,0,1,0,2,2,2,1,3,2,4,1,1,3,2,4,4,1,3,3,3,4,4|2,2,2,3,,3,2,2,,,3,,3,3,1,2,3,2,2,3,,2,3,2,3",
+      "partitionCanonical": "0,0,0,0,1,0,2,2,2,1,3,2,4,1,1,3,2,4,4,1,3,3,3,4,4|,,,,,,,,,,,,,,,,,,,,,,,,",
+      "seed": 3057765275
+    },
+    {
+      "id": "hf-36",
+      "solutions": 1,
+      "exhaustive": true,
+      "nodes": 6,
+      "candidates": 38,
+      "logicSteps": 40,
+      "strategies": {
+        "clue": 30,
+        "region-domain": 3,
+        "capacity": 6,
+        "connect": 1
+      },
+      "clues": 20,
+      "canonical": "0,0,0,0,1,2,2,0,1,1,3,2,2,1,4,3,3,2,1,4,3,3,4,4,4|3,2,1,3,3,3,2,3,2,,3,2,2,2,3,1,2,,,2,,,3,2,2",
+      "partitionCanonical": "0,0,0,0,1,2,2,0,1,1,3,2,2,1,4,3,3,2,1,4,3,3,4,4,4|,,,,,,,,,,,,,,,,,,,,,,,,",
+      "seed": 1772486365
+    },
+    {
+      "id": "hf-37",
+      "solutions": 1,
+      "exhaustive": true,
+      "nodes": 6,
+      "candidates": 51,
+      "logicSteps": 40,
+      "strategies": {
+        "clue": 29,
+        "capacity": 5,
+        "region-domain": 6
+      },
+      "clues": 19,
+      "canonical": "0,0,0,0,1,0,1,1,1,1,2,2,3,3,3,2,3,3,4,4,2,2,4,4,4|2,,2,3,3,3,3,2,,,2,3,2,,3,,3,2,,2,2,3,3,1,2",
+      "partitionCanonical": "0,0,0,0,1,0,1,1,1,1,2,2,3,3,3,2,3,3,4,4,2,2,4,4,4|,,,,,,,,,,,,,,,,,,,,,,,,",
+      "seed": 2424289781
+    },
+    {
+      "id": "hf-38",
+      "solutions": 1,
+      "exhaustive": true,
+      "nodes": 6,
+      "candidates": 26,
+      "logicSteps": 38,
+      "strategies": {
+        "clue": 31,
+        "region-domain": 3,
+        "capacity": 4
+      },
+      "clues": 19,
+      "canonical": "0,0,0,0,1,0,2,2,1,1,3,3,2,2,1,3,4,4,2,1,3,3,4,4,4|2,2,2,3,,3,3,2,3,1,,3,,2,2,,,2,3,3,2,3,2,,3",
+      "partitionCanonical": "0,0,0,0,1,0,2,2,1,1,3,3,2,2,1,3,4,4,2,1,3,3,4,4,4|,,,,,,,,,,,,,,,,,,,,,,,,",
+      "seed": 2718389773
+    },
+    {
+      "id": "hf-39",
+      "solutions": 1,
+      "exhaustive": true,
+      "nodes": 10,
+      "candidates": 46,
+      "logicSteps": 39,
+      "strategies": {
+        "clue": 23,
+        "region-domain": 12,
+        "capacity": 4
+      },
+      "clues": 18,
+      "canonical": "0,0,0,0,1,2,2,0,1,1,2,3,3,1,4,2,3,3,1,4,2,3,4,4,4|,,1,,3,2,3,,,2,2,2,2,2,,2,1,,3,2,3,3,3,2,2",
+      "partitionCanonical": "0,0,0,0,1,2,2,0,1,1,2,3,3,1,4,2,3,3,1,4,2,3,4,4,4|,,,,,,,,,,,,,,,,,,,,,,,,",
+      "seed": 4188035568
+    },
+    {
+      "id": "hf-40",
+      "solutions": 1,
+      "exhaustive": true,
+      "nodes": 6,
+      "candidates": 25,
+      "logicSteps": 39,
+      "strategies": {
+        "clue": 25,
+        "region-domain": 11,
+        "capacity": 2,
+        "connect": 1
+      },
+      "clues": 18,
+      "canonical": "0,0,0,0,1,0,2,1,1,1,2,2,3,3,1,2,4,3,3,3,2,4,4,4,4|2,,,3,3,3,,3,2,,2,,2,2,3,2,3,2,1,3,,2,,2,3",
+      "partitionCanonical": "0,0,0,0,1,0,2,1,1,1,2,2,3,3,1,2,4,3,3,3,2,4,4,4,4|,,,,,,,,,,,,,,,,,,,,,,,,",
+      "seed": 1653875496
+    },
+    {
+      "id": "hf-41",
+      "solutions": 1,
+      "exhaustive": true,
+      "nodes": 9,
+      "candidates": 48,
+      "logicSteps": 60,
+      "strategies": {
+        "clue": 43,
+        "region-domain": 12,
+        "connect": 2,
+        "capacity": 3
+      },
+      "clues": 31,
+      "canonical": "0,0,0,0,0,1,0,2,2,1,1,1,2,2,2,2,1,1,3,4,4,4,4,4,3,5,5,5,5,4,3,3,3,3,5,5|2,2,2,2,3,3,3,2,,3,1,1,3,1,1,3,2,2,3,3,2,2,2,2,,3,2,2,,,2,2,2,3,,3",
+      "partitionCanonical": "0,0,0,0,0,1,0,2,2,1,1,1,2,2,2,2,1,1,3,4,4,4,4,4,3,5,5,5,5,4,3,3,3,3,5,5|,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+      "seed": 448870293
+    },
+    {
+      "id": "hf-42",
+      "solutions": 1,
+      "exhaustive": true,
+      "nodes": 7,
+      "candidates": 52,
+      "logicSteps": 60,
+      "strategies": {
+        "clue": 38,
+        "connect": 2,
+        "capacity": 6,
+        "region-domain": 14
+      },
+      "clues": 31,
+      "canonical": "0,0,0,0,1,1,0,2,2,2,1,3,0,2,2,2,1,3,4,4,5,1,1,3,4,4,5,3,3,3,4,4,5,5,5,5|2,2,2,,2,3,2,2,1,,,3,3,2,1,2,2,2,2,2,3,3,,2,1,1,2,3,2,,2,2,2,2,2,3",
+      "partitionCanonical": "0,0,0,0,1,1,0,2,2,2,1,3,0,2,2,2,1,3,4,4,5,1,1,3,4,4,5,3,3,3,4,4,5,5,5,5|,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+      "seed": 1821952065
+    },
+    {
+      "id": "hf-43",
+      "solutions": 1,
+      "exhaustive": true,
+      "nodes": 14,
+      "candidates": 52,
+      "logicSteps": 59,
+      "strategies": {
+        "clue": 33,
+        "region-domain": 22,
+        "capacity": 4
+      },
+      "clues": 30,
+      "canonical": "0,0,0,0,0,1,0,2,2,2,2,1,3,2,4,4,2,1,3,4,4,5,5,1,3,3,4,5,1,1,3,3,4,5,5,5|,2,2,2,3,3,3,,2,2,2,2,3,3,2,3,3,,2,3,1,2,3,2,1,2,2,2,,2,,2,3,2,,3",
+      "partitionCanonical": "0,0,0,0,0,1,0,2,2,2,2,1,3,2,4,4,2,1,3,4,4,5,5,1,3,3,4,5,1,1,3,3,4,5,5,5|,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+      "seed": 1389898778
+    },
+    {
+      "id": "hf-44",
+      "solutions": 1,
+      "exhaustive": true,
+      "nodes": 7,
+      "candidates": 62,
+      "logicSteps": 59,
+      "strategies": {
+        "clue": 45,
+        "connect": 2,
+        "capacity": 6,
+        "region-domain": 6
+      },
+      "clues": 30,
+      "canonical": "0,0,0,0,1,1,0,0,2,1,1,3,2,2,2,1,1,3,2,4,4,3,3,3,2,4,5,5,5,3,4,4,4,5,5,5|2,1,2,3,2,,2,,3,,1,3,2,2,2,2,2,2,2,2,,3,2,1,3,,,1,2,3,3,1,3,2,1,3",
+      "partitionCanonical": "0,0,0,0,1,1,0,0,2,1,1,3,2,2,2,1,1,3,2,4,4,3,3,3,2,4,5,5,5,3,4,4,4,5,5,5|,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+      "seed": 1848233517
+    },
+    {
+      "id": "hf-45",
+      "solutions": 1,
+      "exhaustive": true,
+      "nodes": 17,
+      "candidates": 160,
+      "logicSteps": 59,
+      "strategies": {
+        "clue": 43,
+        "capacity": 4,
+        "connect": 2,
+        "region-domain": 10
+      },
+      "clues": 29,
+      "canonical": "0,0,0,0,0,1,2,0,3,3,3,1,2,2,3,4,3,1,2,2,3,4,1,1,2,5,5,4,4,1,5,5,5,5,4,4|3,,2,2,3,3,3,,2,2,2,2,1,2,,,3,2,1,2,,2,3,1,3,2,,2,2,3,3,1,,3,2,3",
+      "partitionCanonical": "0,0,0,0,0,1,2,0,3,3,3,1,2,2,3,4,3,1,2,2,3,4,1,1,2,5,5,4,4,1,5,5,5,5,4,4|,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+      "seed": 1736928255
+    },
+    {
+      "id": "hf-46",
+      "solutions": 1,
+      "exhaustive": true,
+      "nodes": 7,
+      "candidates": 36,
+      "logicSteps": 59,
+      "strategies": {
+        "clue": 43,
+        "connect": 1,
+        "region-domain": 8,
+        "capacity": 7
+      },
+      "clues": 29,
+      "canonical": "0,0,0,0,1,1,2,2,2,0,1,1,2,3,2,0,1,1,2,3,3,4,4,4,3,3,5,4,5,4,3,5,5,5,5,4|3,,2,,2,2,2,2,2,2,1,1,2,3,,3,,2,3,1,3,,2,,2,2,3,3,3,2,,3,1,2,2,3",
+      "partitionCanonical": "0,0,0,0,1,1,2,2,2,0,1,1,2,3,2,0,1,1,2,3,3,4,4,4,3,3,5,4,5,4,3,5,5,5,5,4|,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+      "seed": 3058666595
+    },
+    {
+      "id": "hf-47",
+      "solutions": 1,
+      "exhaustive": true,
+      "nodes": 8,
+      "candidates": 51,
+      "logicSteps": 60,
+      "strategies": {
+        "clue": 43,
+        "capacity": 7,
+        "region-domain": 8,
+        "connect": 2
+      },
+      "clues": 28,
+      "canonical": "0,0,0,0,0,1,0,2,2,1,1,1,2,2,3,1,4,1,2,2,3,4,4,4,3,3,3,5,4,4,3,5,5,5,5,5|2,2,2,2,3,3,3,2,3,2,2,1,,,3,3,,3,2,2,,3,0,2,2,2,2,3,,2,,3,2,1,,",
+      "partitionCanonical": "0,0,0,0,0,1,0,2,2,1,1,1,2,2,3,1,4,1,2,2,3,4,4,4,3,3,3,5,4,4,3,5,5,5,5,5|,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+      "seed": 3881385537
+    },
+    {
+      "id": "hf-48",
+      "solutions": 1,
+      "exhaustive": true,
+      "nodes": 9,
+      "candidates": 44,
+      "logicSteps": 59,
+      "strategies": {
+        "clue": 39,
+        "region-domain": 14,
+        "connect": 2,
+        "capacity": 4
+      },
+      "clues": 28,
+      "canonical": "0,0,0,0,1,1,0,0,1,1,1,2,3,3,3,1,2,2,4,3,3,3,2,5,4,4,4,2,2,5,4,4,5,5,5,5|,,,3,2,3,2,2,3,,2,3,3,1,2,3,2,2,3,2,,3,2,3,1,1,3,,2,2,,2,,2,2,2",
+      "partitionCanonical": "0,0,0,0,1,1,0,0,1,1,1,2,3,3,3,1,2,2,4,3,3,3,2,5,4,4,4,2,2,5,4,4,5,5,5,5|,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+      "seed": 404311510
+    },
+    {
+      "id": "hf-49",
+      "solutions": 1,
+      "exhaustive": true,
+      "nodes": 9,
+      "candidates": 63,
+      "logicSteps": 59,
+      "strategies": {
+        "clue": 42,
+        "capacity": 5,
+        "connect": 2,
+        "region-domain": 10
+      },
+      "clues": 27,
+      "canonical": "0,0,0,0,1,1,0,2,1,1,1,1,0,2,3,4,4,4,2,2,3,3,4,4,2,3,3,5,4,5,2,3,5,5,5,5|,2,2,3,2,2,2,,3,,,2,3,,3,3,1,2,2,,1,,1,2,2,2,2,3,3,,3,,3,1,2,2",
+      "partitionCanonical": "0,0,0,0,1,1,0,2,1,1,1,1,0,2,3,4,4,4,2,2,3,3,4,4,2,3,3,5,4,5,2,3,5,5,5,5|,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+      "seed": 3791571406
+    },
+    {
+      "id": "hf-50",
+      "solutions": 1,
+      "exhaustive": true,
+      "nodes": 12,
+      "candidates": 133,
+      "logicSteps": 60,
+      "strategies": {
+        "clue": 44,
+        "region-domain": 9,
+        "capacity": 6,
+        "connect": 1
+      },
+      "clues": 27,
+      "canonical": "0,0,0,0,1,1,0,2,2,1,1,1,0,2,2,2,3,1,4,5,2,5,3,3,4,5,5,5,5,3,4,4,4,4,3,3|2,,2,3,2,2,2,,2,3,1,,3,2,,3,3,3,3,3,,,,2,2,2,,1,3,2,2,2,,3,3,2",
+      "partitionCanonical": "0,0,0,0,1,1,0,2,2,1,1,1,0,2,2,2,3,1,4,5,2,5,3,3,4,5,5,5,5,3,4,4,4,4,3,3|,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+      "seed": 3494706232
+    },
+    {
+      "id": "hf-51",
+      "solutions": 1,
+      "exhaustive": true,
+      "nodes": 7,
+      "candidates": 56,
+      "logicSteps": 58,
+      "strategies": {
+        "clue": 43,
+        "connect": 3,
+        "region-domain": 8,
+        "capacity": 4
+      },
+      "clues": 26,
+      "canonical": "0,0,0,0,0,1,2,2,0,3,1,1,2,2,3,3,1,1,4,2,2,3,3,1,4,4,4,5,3,5,4,4,5,5,5,5|,2,1,,,3,2,2,3,3,2,,2,,3,1,2,1,3,2,,,2,3,1,1,,3,3,,2,2,3,,2,2",
+      "partitionCanonical": "0,0,0,0,0,1,2,2,0,3,1,1,2,2,3,3,1,1,4,2,2,3,3,1,4,4,4,5,3,5,4,4,5,5,5,5|,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+      "seed": 3546275042
+    },
+    {
+      "id": "hf-52",
+      "solutions": 1,
+      "exhaustive": true,
+      "nodes": 7,
+      "candidates": 47,
+      "logicSteps": 59,
+      "strategies": {
+        "clue": 43,
+        "capacity": 6,
+        "region-domain": 9,
+        "connect": 1
+      },
+      "clues": 26,
+      "canonical": "0,0,0,0,1,1,0,0,1,1,1,2,3,3,3,1,2,2,4,4,3,2,2,5,4,3,3,2,5,5,4,4,4,5,5,5|,1,,3,2,,,2,3,,2,3,3,,2,3,,2,2,3,2,,2,3,2,3,2,3,2,1,2,,3,,1,2",
+      "partitionCanonical": "0,0,0,0,1,1,0,0,1,1,1,2,3,3,3,1,2,2,4,4,3,2,2,5,4,3,3,2,5,5,4,4,4,5,5,5|,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+      "seed": 2145599958
+    },
+    {
+      "id": "hf-53",
+      "solutions": 1,
+      "exhaustive": true,
+      "nodes": 17,
+      "candidates": 113,
+      "logicSteps": 60,
+      "strategies": {
+        "clue": 35,
+        "connect": 2,
+        "capacity": 8,
+        "region-domain": 15
+      },
+      "clues": 25,
+      "canonical": "0,0,0,0,1,1,0,2,2,2,1,3,0,2,1,1,1,3,4,2,3,3,3,3,4,2,4,5,5,5,4,4,4,5,5,5|2,,,3,2,3,,2,2,,2,3,3,,3,2,2,,,,,2,2,2,2,3,3,,1,2,,2,2,2,1,2",
+      "partitionCanonical": "0,0,0,0,1,1,0,2,2,2,1,3,0,2,1,1,1,3,4,2,3,3,3,3,4,2,4,5,5,5,4,4,4,5,5,5|,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+      "seed": 2527275954
+    },
+    {
+      "id": "hf-54",
+      "solutions": 1,
+      "exhaustive": true,
+      "nodes": 23,
+      "candidates": 101,
+      "logicSteps": 58,
+      "strategies": {
+        "clue": 37,
+        "region-domain": 17,
+        "capacity": 4
+      },
+      "clues": 25,
+      "canonical": "0,0,0,0,1,1,0,0,2,2,1,1,2,2,2,1,1,3,2,4,4,4,5,3,4,4,5,5,5,3,4,5,5,3,3,3|,1,2,3,,2,2,2,,3,,,2,2,,3,2,3,,2,2,3,3,2,2,2,,,2,2,,3,2,3,2,",
+      "partitionCanonical": "0,0,0,0,1,1,0,0,2,2,1,1,2,2,2,1,1,3,2,4,4,4,5,3,4,4,5,5,5,3,4,5,5,3,3,3|,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+      "seed": 3609037147
+    },
+    {
+      "id": "hf-55",
+      "solutions": 1,
+      "exhaustive": true,
+      "nodes": 13,
+      "candidates": 63,
+      "logicSteps": 57,
+      "strategies": {
+        "clue": 33,
+        "region-domain": 18,
+        "capacity": 6
+      },
+      "clues": 24,
+      "canonical": "0,0,0,0,1,1,0,2,1,1,1,1,0,2,3,3,3,3,4,2,2,2,5,3,4,2,5,5,5,3,4,4,4,4,5,5|,2,,3,,2,2,3,3,2,1,2,3,,3,,,2,,,2,3,3,2,2,3,,2,1,3,2,,2,,2,",
+      "partitionCanonical": "0,0,0,0,1,1,0,2,1,1,1,1,0,2,3,3,3,3,4,2,2,2,5,3,4,2,5,5,5,3,4,4,4,4,5,5|,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+      "seed": 2296677953
+    },
+    {
+      "id": "hf-56",
+      "solutions": 1,
+      "exhaustive": true,
+      "nodes": 7,
+      "candidates": 148,
+      "logicSteps": 60,
+      "strategies": {
+        "clue": 39,
+        "region-domain": 11,
+        "capacity": 10
+      },
+      "clues": 24,
+      "canonical": "0,0,0,0,0,1,0,2,1,1,1,1,2,2,2,1,3,3,4,4,2,2,5,3,4,4,4,5,5,3,4,5,5,5,3,3|2,,2,,,3,3,,,1,,2,3,1,2,,,2,2,,2,3,3,2,,1,3,,2,2,3,,2,2,3,2",
+      "partitionCanonical": "0,0,0,0,0,1,0,2,1,1,1,1,2,2,2,1,3,3,4,4,2,2,5,3,4,4,4,5,5,3,4,5,5,5,3,3|,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+      "seed": 3742215405
+    },
+    {
+      "id": "hf-57",
+      "solutions": 1,
+      "exhaustive": true,
+      "nodes": 8,
+      "candidates": 123,
+      "logicSteps": 59,
+      "strategies": {
+        "clue": 36,
+        "capacity": 7,
+        "connect": 2,
+        "region-domain": 14
+      },
+      "clues": 23,
+      "canonical": "0,0,0,0,1,1,2,0,0,3,3,1,2,2,2,3,1,1,2,4,3,3,1,5,2,4,3,5,5,5,4,4,4,4,5,5|3,1,1,,,,,2,2,,3,2,1,,3,2,2,,2,3,2,,,3,,,,,1,1,3,1,2,3,2,2",
+      "partitionCanonical": "0,0,0,0,1,1,2,0,0,3,3,1,2,2,2,3,1,1,2,4,3,3,1,5,2,4,3,5,5,5,4,4,4,4,5,5|,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+      "seed": 1654659970
+    },
+    {
+      "id": "hf-58",
+      "solutions": 1,
+      "exhaustive": true,
+      "nodes": 19,
+      "candidates": 132,
+      "logicSteps": 60,
+      "strategies": {
+        "clue": 41,
+        "connect": 4,
+        "region-domain": 8,
+        "capacity": 7
+      },
+      "clues": 23,
+      "canonical": "0,0,0,0,0,0,1,1,1,2,2,2,1,1,3,3,3,2,1,4,3,3,3,2,4,4,5,5,5,2,4,4,4,5,5,5|,2,2,,2,3,,,,3,,2,1,2,2,,2,,3,3,,1,2,,2,1,3,,2,3,,1,3,2,1,",
+      "partitionCanonical": "0,0,0,0,0,0,1,1,1,2,2,2,1,1,3,3,3,2,1,4,3,3,3,2,4,4,5,5,5,2,4,4,4,5,5,5|,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+      "seed": 2919945778
+    },
+    {
+      "id": "hf-59",
+      "solutions": 1,
+      "exhaustive": true,
+      "nodes": 9,
+      "candidates": 173,
+      "logicSteps": 58,
+      "strategies": {
+        "clue": 24,
+        "region-domain": 19,
+        "capacity": 14,
+        "connect": 1
+      },
+      "clues": 22,
+      "canonical": "0,0,0,0,0,1,0,1,1,1,1,1,2,2,2,2,3,3,4,2,3,3,3,5,4,2,3,5,5,5,4,4,4,4,5,5|,2,,,3,3,,,,2,2,,3,1,2,3,2,3,3,2,2,2,2,3,,,,3,,,2,,,3,2,2",
+      "partitionCanonical": "0,0,0,0,0,1,0,1,1,1,1,1,2,2,2,2,3,3,4,2,3,3,3,5,4,2,3,5,5,5,4,4,4,4,5,5|,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+      "seed": 2011011365
+    },
+    {
+      "id": "hf-60",
+      "solutions": 1,
+      "exhaustive": true,
+      "nodes": 9,
+      "candidates": 123,
+      "logicSteps": 59,
+      "strategies": {
+        "clue": 33,
+        "connect": 3,
+        "region-domain": 14,
+        "capacity": 9
+      },
+      "clues": 22,
+      "canonical": "0,0,0,0,0,0,1,1,1,2,2,2,1,1,3,3,3,2,4,1,5,3,3,2,4,4,5,5,3,2,4,4,4,5,5,5|3,2,,,2,3,2,1,,3,2,2,2,1,3,1,,,,3,3,,1,,,2,2,2,,,2,1,3,,,",
+      "partitionCanonical": "0,0,0,0,0,0,1,1,1,2,2,2,1,1,3,3,3,2,4,1,5,3,3,2,4,4,5,5,3,2,4,4,4,5,5,5|,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+      "seed": 1112726348
+    }
+  ]
+}

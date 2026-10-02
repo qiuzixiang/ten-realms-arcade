@@ -1,0 +1,191 @@
+[
+  {
+    "viewport": {
+      "width": 320,
+      "height": 720
+    },
+    "overflow": {
+      "scroll": 320,
+      "width": 320
+    },
+    "groupTargets": [
+      {
+        "width": 140,
+        "height": 60.28125
+      },
+      {
+        "width": 140,
+        "height": 60.28125
+      },
+      {
+        "width": 140,
+        "height": 60.28125
+      },
+      {
+        "width": 140,
+        "height": 60.28125
+      },
+      {
+        "width": 140,
+        "height": 60.28125
+      },
+      {
+        "width": 140,
+        "height": 60.28125
+      },
+      {
+        "width": 140,
+        "height": 60.28125
+      },
+      {
+        "width": 140,
+        "height": 60.28125
+      },
+      {
+        "width": 140,
+        "height": 60.28125
+      },
+      {
+        "width": 140,
+        "height": 60.28125
+      }
+    ],
+    "errors": [],
+    "externalRequests": 0,
+    "checks": [
+      "tutorial three cards and escape",
+      "preview-confirm",
+      "undo exact state",
+      "reload replay",
+      "clear",
+      "reward dedup after replay",
+      "7x8 precise group selection"
+    ]
+  },
+  {
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "overflow": {
+      "scroll": 390,
+      "width": 390
+    },
+    "groupTargets": [
+      {
+        "width": 175,
+        "height": 60.28125
+      },
+      {
+        "width": 175,
+        "height": 60.28125
+      },
+      {
+        "width": 175,
+        "height": 60.28125
+      },
+      {
+        "width": 175,
+        "height": 60.28125
+      },
+      {
+        "width": 175,
+        "height": 60.28125
+      },
+      {
+        "width": 175,
+        "height": 60.28125
+      },
+      {
+        "width": 175,
+        "height": 60.28125
+      },
+      {
+        "width": 175,
+        "height": 60.28125
+      },
+      {
+        "width": 175,
+        "height": 60.28125
+      },
+      {
+        "width": 175,
+        "height": 60.28125
+      }
+    ],
+    "errors": [],
+    "externalRequests": 0,
+    "checks": [
+      "tutorial three cards and escape",
+      "preview-confirm",
+      "undo exact state",
+      "reload replay",
+      "clear",
+      "reward dedup after replay",
+      "7x8 precise group selection"
+    ]
+  },
+  {
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "overflow": {
+      "scroll": 1280,
+      "width": 1280
+    },
+    "groupTargets": [
+      {
+        "width": 212,
+        "height": 60.28125
+      },
+      {
+        "width": 212,
+        "height": 60.28125
+      },
+      {
+        "width": 212,
+        "height": 60.28125
+      },
+      {
+        "width": 212,
+        "height": 60.28125
+      },
+      {
+        "width": 212,
+        "height": 60.28125
+      },
+      {
+        "width": 212,
+        "height": 60.28125
+      },
+      {
+        "width": 212,
+        "height": 60.28125
+      },
+      {
+        "width": 212,
+        "height": 60.28125
+      },
+      {
+        "width": 212,
+        "height": 60.28125
+      },
+      {
+        "width": 212,
+        "height": 60.28125
+      }
+    ],
+    "errors": [],
+    "externalRequests": 0,
+    "checks": [
+      "tutorial three cards and escape",
+      "preview-confirm",
+      "undo exact state",
+      "reload replay",
+      "clear",
+      "reward dedup after replay",
+      "7x8 precise group selection"
+    ]
+  }
+]

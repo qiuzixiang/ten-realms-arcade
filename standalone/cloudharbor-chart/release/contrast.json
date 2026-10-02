@@ -1,0 +1,44 @@
+[
+  {
+    "role": "body",
+    "foreground": "253d50",
+    "background": "f5eedc",
+    "ratio": 9.75
+  },
+  {
+    "role": "muted",
+    "foreground": "536775",
+    "background": "f5eedc",
+    "ratio": 5.09
+  },
+  {
+    "role": "primary text",
+    "foreground": "fff9e9",
+    "background": "285d7b",
+    "ratio": 6.79
+  },
+  {
+    "role": "lane",
+    "foreground": "285d7b",
+    "background": "fbf6e7",
+    "ratio": 6.61
+  },
+  {
+    "role": "port boundary",
+    "foreground": "537382",
+    "background": "fbf6e7",
+    "ratio": 4.69
+  },
+  {
+    "role": "complete",
+    "foreground": "305543",
+    "background": "e2eee9",
+    "ratio": 7.04
+  },
+  {
+    "role": "error",
+    "foreground": "963e3d",
+    "background": "fbf6e7",
+    "ratio": 6.37
+  }
+]

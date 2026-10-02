@@ -1,0 +1,22 @@
+✔ All legal moves agree with coordinate oracle; four cycles and inverses restore (5.591209ms)
+✔ Malformed moves are exact no-ops; malformed or partially solved boards never win (0.113917ms)
+✔ 48 campaign levels independently solve, have no D4/torus-equivalent repetitions (6.112458ms)
+✔ Tutorial chain and shared renderer show exactly sixteen real tiles (0.248792ms)
+✔ Hints solve arbitrary legal deviations without replaying stale original steps (42.86175ms)
+✔ Undo/redo restore board and effective step count; independent best and first claims dedupe (0.670584ms)
+✔ Corrupt current run does not destroy replay-verified receipts; fake claims rejected (0.166709ms)
+✔ Persistence failure blocks host delivery, retry keeps one stable claim ID (0.155625ms)
+✔ Better independent score updates receipt without repeating first reward (0.241125ms)
+✔ Restored pending rewards use verified receipts, sanitize fields and remove duplicate IDs (0.143542ms)
+✔ Native 9.46+ storage is preferred and saves writes in order (0.765292ms)
+✔ Old/uninjected clients use web storage; write exceptions return false (0.100125ms)
+✔ Native failure is reported, without creating a second inconsistent web save (0.078458ms)
+✔ Read exceptions never overwrite an unknown existing save even when writes would succeed (0.061334ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 14
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 86.032042

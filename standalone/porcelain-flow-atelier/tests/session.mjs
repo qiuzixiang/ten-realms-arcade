@@ -1,0 +1,25 @@
+import assert from 'node:assert/strict';
+import {LEVELS} from '../levels.mjs';
+import {inspect} from '../logic.mjs';
+import {STORE_KEY,newSession,replaySession,editSession,cleanStore,settleStore,createPersistence} from '../session.mjs';
+const p=LEVELS[0];let s=newSession(p),store=cleanStore(null),checks=0;const check=c=>{assert.ok(c);checks++;};
+check(replaySession(p,s).moves===0);check(editSession(p,s,'set',-1,'/')===null);check(editSession(p,s,'set',0,'')===null);
+s=editSession(p,s,'note',0,'/');check(replaySession(p,s).moves===0);check(!inspect(p,replaySession(p,s).board).complete);s=editSession(p,s,'set',0,p.solution[0]);check(replaySession(p,s).notes[0]==='/');check(replaySession(p,s).moves===1);
+const undone=Object.assign({},s,{cursor:s.cursor-1});check(replaySession(p,undone).board[0]==='');check(replaySession(p,undone).notes[0]==='/');check(replaySession(p,s).board[0]===p.solution[0]);
+s=Object.assign({},s,{cursor:0});s=editSession(p,s,'set',0,p.solution[0]);check(s.actions.length===1);
+for(let i=1;i<p.solution.length;i++)s=editSession(p,s,'set',i,p.solution[i]);check(inspect(p,replaySession(p,s).board).complete);
+store=settleStore(store,p,s,'2026-10-01T16:00:00.000Z');check(store.outbox.length===1);check(store.outbox[0].claimIds.length===2);check(Object.keys(store.records).length===1);assert.deepEqual(cleanStore(JSON.parse(JSON.stringify(store))),store);checks++;
+const oldId=store.current.completedId;store=settleStore(store,p,store.current,'2026-10-01T16:00:01.000Z');check(store.outbox.length===1);check(store.current.completedId===oldId);
+const rewind=Object.assign({},store.current,{cursor:store.current.cursor-1});check(settleStore(store,p,rewind,'2026-10-01T16:00:02.000Z')===null);store=settleStore(store,p,Object.assign({},rewind,{cursor:rewind.cursor+1}),'2026-10-01T16:00:03.000Z');check(store.outbox.length===1);
+let newRun=newSession(p);p.solution.forEach((v,i)=>newRun=editSession(p,newRun,'set',i,v));store=settleStore(store,p,newRun,'2026-10-01T16:00:04.000Z');check(store.outbox.length===1);check(store.current.runId!==s.runId);
+const fake=JSON.parse(JSON.stringify(store));fake.records[p.id].first.timeline=[];fake.records[p.id].unassisted.timeline=[];check(Object.keys(cleanStore(fake).records).length===0);check(cleanStore(fake).outbox.length===0);
+for(const mutate of [v=>v.seed='fake',v=>v.cursor=9999,v=>v.actions.push({kind:'set',i:0,value:'x'}),v=>v.actions.push({kind:'set',i:0,value:p.solution[0]}),v=>v.runId='../bad']){const bad=JSON.parse(JSON.stringify(newRun));mutate(bad);check(replaySession(p,bad)===null);}
+const isolated=new Map([['other-game','untouched']]),local={getItem:k=>isolated.get(k)||null,setItem:(k,v)=>isolated.set(k,v)};
+const fallback=await createPersistence({localStorage:local});check(fallback.mode==='browser-fallback');check(await fallback.write(STORE_KEY,store));check((await fallback.read(STORE_KEY)).ok);check(isolated.get('other-game')==='untouched');
+const nativeData=new Map();let webWrites=0;const native=await createPersistence({xhs:{launchOptions:{miniToolEnv:{buildVersion:9462004}},miniTool:{setStorage:async({key,data})=>nativeData.set(key,data),getStorage:async({key})=>({data:nativeData.get(key)||null})}},localStorage:{setItem(){webWrites++;}}});check(native.mode==='native-9.46+');check(await native.write(STORE_KEY,store));check((await native.read(STORE_KEY)).value.current.runId===store.current.runId);check(webWrites===0);
+const broken=await createPersistence({xhs:{launchOptions:{miniToolEnv:{buildVersion:9492004}},miniTool:{setStorage:async()=>{throw Error('blocked');},getStorage:async()=>{throw Error('blocked');}}},localStorage:local});check(!await broken.write(STORE_KEY,store));check(!(await broken.read(STORE_KEY)).ok);
+const denied=await createPersistence({localStorage:{getItem(){throw Error('denied');},setItem(){throw Error('denied');}}});check(!await denied.write(STORE_KEY,store));check(!(await denied.read(STORE_KEY)).ok);
+let assisted=Object.assign({},s,{hints:1}),second=settleStore(cleanStore(null),p,assisted,'2026-10-01T16:00:01Z');check(second.outbox[0].claimIds.length===1);second=settleStore(second,p,newRun,'2026-10-01T16:00:02Z');check(second.outbox.length===2);check(second.outbox[1].claimIds.length===1&&second.outbox[1].claimIds[0].endsWith(':unassisted'));
+const tampered=JSON.parse(JSON.stringify(second));tampered.outbox[1].claimIds.push(tampered.outbox[0].claimIds[0]);tampered.outbox[0].claimIds.push(tampered.outbox[0].claimIds[0]);const sanitized=cleanStore(tampered);check(sanitized.outbox[0].claimIds.length===1);check(sanitized.outbox[1].claimIds.length===1&&sanitized.outbox[1].claimIds[0].endsWith(':unassisted'));
+const asyncNative=await createPersistence({xhs:{launchOptions:{},miniTool:{getLaunchOptions:async()=>({miniToolEnv:{buildVersion:9460000}}),getStorage:async()=>({data:null}),setStorage:async()=>{}}},localStorage:local});check(asyncNative.mode==='native-9.46+');
+console.log('PASS session: '+checks+' checks; replay, corruption, undo/redo, assisted claims, new runs, native/fallback/failed storage, namespace.');

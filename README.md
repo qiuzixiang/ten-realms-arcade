@@ -12,7 +12,7 @@
 - 4.0：[Vercel](https://ten-realms-arcade.vercel.app/v4/) · [GitHub Pages](https://qiuzixiang.github.io/ten-realms-arcade/v4/)
 - [GitHub 源码仓库](https://github.com/qiuzixiang/ten-realms-arcade)
 
-## 27 款独立游戏
+## 36 款独立游戏
 
 [打开试玩合集](https://qiuzixiang.github.io/ten-realms-arcade/standalone/) · 每款提供网页离线 ZIP 下载。
 
@@ -45,6 +45,15 @@
 | 珊瑚育海 | 60 | [目录](./standalone/coral-tide-garden/) |
 | 五子连珠 | 休闲挑战 | [目录](./standalone/color-linez/) |
 | 滚滚小镇 | 休闲挑战 | [目录](./standalone/rolling-town/) |
+| 灯灵夜归市 | 60 | [目录](./standalone/lantern-spirit-market/) |
+| 云港航图 | 60 | [目录](./standalone/cloudharbor-chart/) |
+| 红线绮梦馆 | 48 | [目录](./standalone/scarlet-knot-atlas/) |
+| 瓷流工坊 | 60 | [目录](./standalone/porcelain-flow-atelier/) |
+| 彩砾壁画馆 | 60 | [目录](./standalone/tessera-mural-studio/) |
+| 光庭测绘 | 48 | [目录](./standalone/sunlit-courtyard-survey/) |
+| 蜜田巡界 | 60 | [目录](./standalone/honeyfield-boundaries/) |
+| 朱陶阶庭 | 60 | [目录](./standalone/cinnabar-terraces/) |
+| 彩绸回环 | 48 | [目录](./standalone/silk-loop-studio/) |
 
 首次运行 `npm run setup` 安装构建依赖；`npm test` 验证全部合集及独立游戏，`npm run build` 构建并检查网页资源和离线包。
 
@@ -144,4 +153,4 @@ npm run build
 
 ## 完整独立游戏目录
 
-已整理 27 款成品：[玩法与源码索引](./standalone/README.md)，[在线游玩及网页离线下载](https://qiuzixiang.github.io/ten-realms-arcade/standalone/)。
+已整理 36 款成品：[玩法与源码索引](./standalone/README.md)，[在线游玩及网页离线下载](https://qiuzixiang.github.io/ten-realms-arcade/standalone/)。

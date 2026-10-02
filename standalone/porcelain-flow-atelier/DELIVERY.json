@@ -1,0 +1,244 @@
+{
+  "slug": "porcelain-flow-atelier",
+  "title": "瓷流工坊",
+  "version": "1.0.0",
+  "status": "LOCAL_ACCEPTANCE_PASSED_CANDIDATE_ONLY",
+  "recordedAtUtc": "2026-10-01T15:49:25.357604+00:00",
+  "userTimezone": "Asia/Shanghai",
+  "developmentWorktree": "[local-source]",
+  "sourceDirectory": "[local-source]",
+  "developmentBranch": "codex/porcelain-flow-atelier",
+  "sourceGitBase": "374d2ee",
+  "ownership": "Only standalone/porcelain-flow-atelier; no shared registry or other games changed",
+  "source": {
+    "path": "v3/games/molten-core-vent",
+    "referenceCheckout": "",
+    "commit": "55cdddb75cf57c17baee80bac4121bd3be1687c6",
+    "logicSha256": "27adc724a1c0c70137be80918d88e22d88859beb027adb051cddc46daa55b743",
+    "rule": "Slant / Gokigen Naname",
+    "license": "MIT; attribution and original license retained"
+  },
+  "targetLevelCount": 60,
+  "verifiedLevelCount": 60,
+  "uniqueCount": 60,
+  "chapterCount": 6,
+  "rules": {
+    "independentOracle": "Own coordinates, adjacency DFS cycle detection and complete binary search; no engine imports; no solution input",
+    "exhaustiveConfigurations": 19764,
+    "ruleChecks": 79614,
+    "sessionChecks": 47,
+    "geometricDuplicates": 0,
+    "truncatedCertificates": 0
+  },
+  "curriculum": {
+    "chapters1And2": "All have complete count-only proof",
+    "chapters3To6": "Require cycle exclusion beyond counts",
+    "chapters5And6": "Every level has a >=6-edge half-board-spanning cycle deduction",
+    "humanSolveDuration": "Not measured; no 5-12 minute claim"
+  },
+  "checks": {
+    "rules": "passed",
+    "storageAndRewards": "passed",
+    "tutorialTruth": "passed; same puzzle empty/one/completed states",
+    "build": "passed",
+    "archivedSpecAudit": "passed; directory and ZIP, zero warnings",
+    "staticReferencesCapabilitiesCrc": "passed",
+    "browserSimulation": "passed; 54 measured scenarios, Chrome 154.0.8037.94; restricted CSP; zero page errors/external requests",
+    "minimumCell320": 44.53125,
+    "minimumCell390": 53.1875,
+    "safetyFontMotion": "passed browser simulation: 44/34px insets, 200% text, reduced motion",
+    "cleanStagedCopy": "npm test/build/audit exit0; source/runtime independent of untracked residue",
+    "reproducibleGeneration": "levels.mjs and certificates.json byte-identical after fixed-seed regeneration",
+    "gitDiffCheck": "passed"
+  },
+  "commands": [
+    {
+      "command": "npm run generate",
+      "exitCode": 0,
+      "log": "release/generation.log; release/reproducibility.log"
+    },
+    {
+      "command": "npm test",
+      "exitCode": 0,
+      "log": "release/unit-tests.log"
+    },
+    {
+      "command": "npm run build",
+      "exitCode": 0,
+      "log": "release/build.log"
+    },
+    {
+      "command": "npm run audit",
+      "exitCode": 0,
+      "log": "release/package-audit.log"
+    },
+    {
+      "command": "npm run playtest",
+      "exitCode": 0,
+      "log": "release/browser.log"
+    },
+    {
+      "command": "npm run media",
+      "exitCode": 0,
+      "log": "release/media.log"
+    },
+    {
+      "command": "fresh git checkout-index copy: npm test/build/audit",
+      "exitCode": 0,
+      "log": "release/clean-copy.log"
+    },
+    {
+      "command": "curl -L --max-time 25 https://miniapp-sandbox.xiaohongshu.com/minitool/doc",
+      "exitCode": 28,
+      "result": "DNS resolution timed out; current document unavailable"
+    }
+  ],
+  "platform": {
+    "localSpecPackage": "minitool-zip-builder 1.7.0",
+    "sha256": "8bd0f4fde976ec3e9784bebc9fd8d16270769c129b39098698fc58572716c305",
+    "metadataMismatch": "Original SKILL.md metadata1.6.0; package manifest1.7.0; original retained",
+    "onlineRules": "not fetched; DNS timeout",
+    "storage": "Prefer detected native 9.46+; browser fallback when not applicable; mocks tested only",
+    "officialSimulator": "not tested",
+    "iosPhysical": "not tested",
+    "androidPhysical": "not tested",
+    "chrome61Execution": "not tested; manual ES2017 review and static scans only",
+    "lowEndPerformance": "not measured",
+    "platformReady": false
+  },
+  "artifacts": [
+    {
+      "relativePath": "dist/porcelain-flow-atelier-xhs.zip",
+      "absolutePath": "[local-source]",
+      "bytes": 27464,
+      "sha256": "bf2f14adc7f61d6d721b86248b18de2ba58eec0b932dee8bdb7436d681f2aad4"
+    },
+    {
+      "relativePath": "dist/xhs/app.js",
+      "absolutePath": "[local-source]",
+      "bytes": 103330,
+      "sha256": "120ed54d1cf566660661a7b30fd10a2bddd3fad1cc3c4e78032db7dfe8bef33a"
+    },
+    {
+      "relativePath": "release/certificates.json",
+      "absolutePath": "[local-source]",
+      "bytes": 437284,
+      "sha256": "903de710736c80f212c067174dc7e4623e6dce87eb6d2a6d943e1ab1dcee6f23"
+    },
+    {
+      "relativePath": "release/cover-1080x1440.png",
+      "absolutePath": "[local-source]",
+      "bytes": 273543,
+      "sha256": "973c03da1c3520d5e7ed0fd2f976fe52822f165347b0723d1f27c9ab71be89ec"
+    },
+    {
+      "relativePath": "release/icon-512.png",
+      "absolutePath": "[local-source]",
+      "bytes": 24103,
+      "sha256": "9879a409918665095e6bc0a540acc43fcb09d465ae5fe08afcd8c475e127772b"
+    },
+    {
+      "relativePath": "release/screenshots/gameplay-390.png",
+      "absolutePath": "[local-source]",
+      "bytes": 90541,
+      "sha256": "68e9f8644b5950c9e0bf00566b37995ff4c9049e2773afbc06b3f53a9748f1a0"
+    },
+    {
+      "relativePath": "release/screenshots/complete-390.png",
+      "absolutePath": "[local-source]",
+      "bytes": 116246,
+      "sha256": "baa60edd731f41b017a07a7155a7ea6eadfb783770e0e3a363359eea921a1f7e"
+    },
+    {
+      "relativePath": "release/screenshots/collection-390.png",
+      "absolutePath": "[local-source]",
+      "bytes": 68532,
+      "sha256": "024f1a0de9c4895fc6b6932b90f95f691c008c03ae8ef7c2c49b4a43a9b8907d"
+    },
+    {
+      "relativePath": "release/NOTE-DRAFT.md",
+      "absolutePath": "[local-source]",
+      "bytes": 1698,
+      "sha256": "d40bae6836cc64f31e8aec0231548a6675e634b981ec5ea74e291f6fe265deb7"
+    },
+    {
+      "relativePath": "release/browser-results.json",
+      "absolutePath": "[local-source]",
+      "bytes": 11245,
+      "sha256": "ec35fec8329d461edc9fab33fb766d25980594dd2f51399a355753f7555184fd"
+    },
+    {
+      "relativePath": "release/static-audit.json",
+      "absolutePath": "[local-source]",
+      "bytes": 1631,
+      "sha256": "f107c51062fa057973573b3d2b2c9b86741d8f688fcee3e944fd17a5e242ad93"
+    },
+    {
+      "relativePath": "release/media-capture.json",
+      "absolutePath": "[local-source]",
+      "bytes": 325,
+      "sha256": "1ba14f8e311faa40af00b8fa940f9de8770a659a3384b3b23d6d065949174159"
+    },
+    {
+      "relativePath": "release/tutorial-proof.json",
+      "absolutePath": "[local-source]",
+      "bytes": 946,
+      "sha256": "59aed20fe65edc6d02c6fffd6274599363b4d9afc3740fdf9b8d5781a31ca0bf"
+    },
+    {
+      "relativePath": "release/clean-copy.log",
+      "absolutePath": "[local-source]",
+      "bytes": 1365,
+      "sha256": "35a9de65fd192360a6508df5f162a31369efe5695f346a9774441546a81fbe4f"
+    },
+    {
+      "relativePath": "release/reproducibility.log",
+      "absolutePath": "[local-source]",
+      "bytes": 3544,
+      "sha256": "d76d641889676198318d57db9643098766aa5f0d9b073c2db15be6481842be3a"
+    }
+  ],
+  "publication": {
+    "github": "not pushed",
+    "xhsTool": "not uploaded; submission forbidden",
+    "xhsReview": "not submitted; forbidden",
+    "xhsNote": "local draft only; publishing or updating forbidden",
+    "automations": "none created",
+    "messagesToOtherThreads": "none"
+  },
+  "limitations": [
+    "Latest online specification unavailable",
+    "Official simulator and physical iOS/Android container not tested",
+    "Real Chrome61 parsing/rendering, device performance and storage lifecycle unverified",
+    "Human solve-time and long-term retention unmeasured",
+    "Exact task Token count unavailable; no estimate"
+  ],
+  "usage": {
+    "exactTokenCount": null,
+    "text": "无法统计：正式工具仅返回账户窗口百分比，未返回本任务Token；没有估算。",
+    "lastAccountWindowSnapshot": {
+      "windowMinutes": 300,
+      "usedPercent": 67,
+      "remainingPercent": 33
+    },
+    "snapshotsUsedPercent": [
+      51,
+      53,
+      57,
+      60,
+      62,
+      64,
+      67
+    ],
+    "rule": "Only remaining>10% continued; snapshots are shared-account percentage, not task token or cost; no credits/reset purchase"
+  },
+  "environment": {
+    "os": "macOS-15.8-arm64-arm-64bit-Mach-O",
+    "node": "v24.13.0",
+    "browser": "154.0.8037.94",
+    "browserDependencies": "Existing bundled Playwright and Sharp; no installation",
+    "screenshots": "Production bundle actual UI interaction; browser simulation only; not physical devices",
+    "art": "Original native SVG product scene and relics; no AI bitmap",
+    "report": "README.md; QA.md; RULES.md; THIRD_PARTY_NOTICES.md"
+  }
+}

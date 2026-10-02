@@ -1,0 +1,38 @@
+{
+  "commands": [
+    {
+      "command": [
+        "node",
+        "--test",
+        "tests/adapter.test.mjs",
+        "tests/core.test.mjs"
+      ],
+      "exitCode": 0,
+      "stdout": "✔ native version 9.46+ prioritized and writes serialized with snapshots (3.688666ms)\n✔ old or absent client falls back to localStorage (0.331833ms)\n✔ failed read protects existing save; failed native writes report false (0.48725ms)\nsmaller-first representative 21\n✔ exhaustive 3x2 boards: independent components and stable columns (8.125709ms)\n✔ diagonals, full component, preview immutability, no automatic chain (0.232875ms)\n✔ all 60 witnesses independently replay to empty, exact score and no color duplicates (16.088875ms)\n✔ tutorial exact chain (0.089375ms)\n✔ replay validates corrupted save, recomputes scores and first claim is idempotent (0.350875ms)\n✔ search cutoff never claims proof (0.0785ms)\n✔ each advertised losing first move independently proven by complete search (102.488584ms)\n✔ representative smaller-first lure and late alternative routes exist (0.443291ms)\nℹ tests 11\nℹ suites 0\nℹ pass 11\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 159.96125\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "node",
+        "tools/build.mjs"
+      ],
+      "exitCode": 0,
+      "stdout": "/private/var/folders/zs/hpwfkwh1687frv7wds0wg1zw0000gn/T/lantern-clean-r2j65shb/game/dist/lantern-spirit-market-xhs.zip\n",
+      "stderr": ""
+    }
+  ],
+  "runtimeHashesEqual": true,
+  "runtimeHashes": {
+    "adapter.js": "aed2a5ba20d237f49d6b38ca2a196fa4e45e34d500d1446b2cacb7f562532bc1",
+    "index.html": "e8f8e3d12372ed4bebe75d6d0da90788b28208486c9de7db1dd90a0ee09c24fb",
+    "styles.css": "3d14d1572603c0cc5fca7311b925264ad8fb33bf3242a7cc4ba3bf5b5eceb1f6",
+    "core.js": "3a939643ae415e487eec89b929bf90b14598a73d162f2a156055611894fee5fb",
+    "icon.svg": "51dbc459a3bac328c1a6b008886a07556b019173c262a7c10ec050e6bbdf9ad1",
+    "tutorial.js": "bdb38c6669d611c70ca59c99e8954849af9f88160968bb4c83584d8d51cec342",
+    "levels.js": "df4564fabdff08a8e1d8633976e6f65b7c3c004c6ae38226ff7b245beedec898",
+    "app.js": "92c33c1d2ee3e8153ff32ee65c2cf528b8118e9401ac720499fd15cd561f9337",
+    "storage.js": "f301e5c4b060e9d806c968b4a78aab1e19c51771394f75e28004316a15d53817"
+  },
+  "zipHashEqual": true,
+  "zipSha256": "37ea9aea23f8195ca0e0a6b6ae37d6adbd5e2961a99412317511c2e12f695316"
+}

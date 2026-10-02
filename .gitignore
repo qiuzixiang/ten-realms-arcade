@@ -13,3 +13,10 @@ standalone/*/release/clean-check/
 standalone/*/platform/*.skill
 standalone/*/release/*.skill
 standalone/color-linez/releases/*.zip
+
+# Internal account usage snapshots
+standalone/*/release/usage*json
+standalone/*/release/token-usage*json
+standalone/cloudharbor-chart/tools/delivery.cjs
+standalone/silk-loop-studio/scripts/delivery.cjs
+standalone/silk-loop-studio/scripts/usage.cjs

@@ -1,0 +1,526 @@
+{
+  "engine": "Playwright Google Chrome browser simulation; not official container or physical devices",
+  "browserVersion": "154.0.8037.94",
+  "capturedAt": "2026-10-01T15:41:11.357Z",
+  "bundleSha256": "120ed54d1cf566660661a7b30fd10a2bddd3fad1cc3c4e78032db7dfe8bef33a",
+  "results": [
+    {
+      "label": "desktop first tutorial",
+      "metrics": {
+        "scrollWidth": 1280,
+        "width": 1280,
+        "minCell": null,
+        "minHeight": null,
+        "modalOverflow": false
+      }
+    },
+    {
+      "label": "desktop play",
+      "metrics": {
+        "scrollWidth": 1280,
+        "width": 1280,
+        "minCell": 64.46875,
+        "minHeight": 64.46875,
+        "modalOverflow": false
+      }
+    },
+    {
+      "label": "desktop long-path",
+      "metrics": {
+        "scrollWidth": 1280,
+        "width": 1280,
+        "minCell": 64.015625,
+        "minHeight": 64.015625,
+        "modalOverflow": false
+      }
+    },
+    {
+      "label": "desktop interactions, reward and host retry",
+      "passed": true
+    },
+    {
+      "label": "320 home",
+      "metrics": {
+        "scrollWidth": 320,
+        "width": 320,
+        "minCell": null,
+        "minHeight": null,
+        "modalOverflow": false
+      }
+    },
+    {
+      "label": "320 largest board",
+      "metrics": {
+        "scrollWidth": 320,
+        "width": 320,
+        "minCell": 44.53125,
+        "minHeight": 44.53125,
+        "modalOverflow": false
+      }
+    },
+    {
+      "label": "320 hint",
+      "metrics": {
+        "scrollWidth": 320,
+        "width": 320,
+        "minCell": 44.53125,
+        "minHeight": 44.53125,
+        "modalOverflow": false
+      }
+    },
+    {
+      "label": "320 tutorial",
+      "metrics": {
+        "scrollWidth": 320,
+        "width": 320,
+        "minCell": 44.53125,
+        "minHeight": 44.53125,
+        "modalOverflow": false
+      }
+    },
+    {
+      "label": "320 safe area",
+      "metrics": {
+        "scrollWidth": 320,
+        "width": 320,
+        "minCell": 44.53125,
+        "minHeight": 44.53125,
+        "modalOverflow": false
+      }
+    },
+    {
+      "label": "359 home",
+      "metrics": {
+        "scrollWidth": 359,
+        "width": 359,
+        "minCell": null,
+        "minHeight": null,
+        "modalOverflow": false
+      }
+    },
+    {
+      "label": "359 largest board",
+      "metrics": {
+        "scrollWidth": 359,
+        "width": 359,
+        "minCell": 44.53125,
+        "minHeight": 44.53125,
+        "modalOverflow": false
+      }
+    },
+    {
+      "label": "359 hint",
+      "metrics": {
+        "scrollWidth": 359,
+        "width": 359,
+        "minCell": 44.53125,
+        "minHeight": 44.53125,
+        "modalOverflow": false
+      }
+    },
+    {
+      "label": "359 tutorial",
+      "metrics": {
+        "scrollWidth": 359,
+        "width": 359,
+        "minCell": 44.53125,
+        "minHeight": 44.53125,
+        "modalOverflow": false
+      }
+    },
+    {
+      "label": "359 safe area",
+      "metrics": {
+        "scrollWidth": 359,
+        "width": 359,
+        "minCell": 44.53125,
+        "minHeight": 44.53125,
+        "modalOverflow": false
+      }
+    },
+    {
+      "label": "360 home",
+      "metrics": {
+        "scrollWidth": 360,
+        "width": 360,
+        "minCell": null,
+        "minHeight": null,
+        "modalOverflow": false
+      }
+    },
+    {
+      "label": "360 largest board",
+      "metrics": {
+        "scrollWidth": 360,
+        "width": 360,
+        "minCell": 49.484375,
+        "minHeight": 49.484375,
+        "modalOverflow": false
+      }
+    },
+    {
+      "label": "360 hint",
+      "metrics": {
+        "scrollWidth": 360,
+        "width": 360,
+        "minCell": 49.484375,
+        "minHeight": 49.484375,
+        "modalOverflow": false
+      }
+    },
+    {
+      "label": "360 tutorial",
+      "metrics": {
+        "scrollWidth": 360,
+        "width": 360,
+        "minCell": 49.484375,
+        "minHeight": 49.484375,
+        "modalOverflow": false
+      }
+    },
+    {
+      "label": "360 safe area",
+      "metrics": {
+        "scrollWidth": 360,
+        "width": 360,
+        "minCell": 49.484375,
+        "minHeight": 49.484375,
+        "modalOverflow": false
+      }
+    },
+    {
+      "label": "390 home",
+      "metrics": {
+        "scrollWidth": 390,
+        "width": 390,
+        "minCell": null,
+        "minHeight": null,
+        "modalOverflow": false
+      }
+    },
+    {
+      "label": "390 largest board",
+      "metrics": {
+        "scrollWidth": 390,
+        "width": 390,
+        "minCell": 53.1875,
+        "minHeight": 53.1875,
+        "modalOverflow": false
+      }
+    },
+    {
+      "label": "390 hint",
+      "metrics": {
+        "scrollWidth": 390,
+        "width": 390,
+        "minCell": 53.1875,
+        "minHeight": 53.1875,
+        "modalOverflow": false
+      }
+    },
+    {
+      "label": "390 tutorial",
+      "metrics": {
+        "scrollWidth": 390,
+        "width": 390,
+        "minCell": 53.1875,
+        "minHeight": 53.1875,
+        "modalOverflow": false
+      }
+    },
+    {
+      "label": "390 safe area",
+      "metrics": {
+        "scrollWidth": 390,
+        "width": 390,
+        "minCell": 53.1875,
+        "minHeight": 53.1875,
+        "modalOverflow": false
+      }
+    },
+    {
+      "label": "759 home",
+      "metrics": {
+        "scrollWidth": 759,
+        "width": 759,
+        "minCell": null,
+        "minHeight": null,
+        "modalOverflow": false
+      }
+    },
+    {
+      "label": "759 largest board",
+      "metrics": {
+        "scrollWidth": 759,
+        "width": 759,
+        "minCell": 53.1875,
+        "minHeight": 53.1875,
+        "modalOverflow": false
+      }
+    },
+    {
+      "label": "759 hint",
+      "metrics": {
+        "scrollWidth": 759,
+        "width": 759,
+        "minCell": 53.1875,
+        "minHeight": 53.1875,
+        "modalOverflow": false
+      }
+    },
+    {
+      "label": "759 tutorial",
+      "metrics": {
+        "scrollWidth": 759,
+        "width": 759,
+        "minCell": 53.1875,
+        "minHeight": 53.1875,
+        "modalOverflow": false
+      }
+    },
+    {
+      "label": "759 safe area",
+      "metrics": {
+        "scrollWidth": 759,
+        "width": 759,
+        "minCell": 53.1875,
+        "minHeight": 53.1875,
+        "modalOverflow": false
+      }
+    },
+    {
+      "label": "760 home",
+      "metrics": {
+        "scrollWidth": 760,
+        "width": 760,
+        "minCell": null,
+        "minHeight": null,
+        "modalOverflow": false
+      }
+    },
+    {
+      "label": "760 largest board",
+      "metrics": {
+        "scrollWidth": 760,
+        "width": 760,
+        "minCell": 53.1875,
+        "minHeight": 53.1875,
+        "modalOverflow": false
+      }
+    },
+    {
+      "label": "760 hint",
+      "metrics": {
+        "scrollWidth": 760,
+        "width": 760,
+        "minCell": 53.1875,
+        "minHeight": 53.1875,
+        "modalOverflow": false
+      }
+    },
+    {
+      "label": "760 tutorial",
+      "metrics": {
+        "scrollWidth": 760,
+        "width": 760,
+        "minCell": 53.1875,
+        "minHeight": 53.1875,
+        "modalOverflow": false
+      }
+    },
+    {
+      "label": "760 safe area",
+      "metrics": {
+        "scrollWidth": 760,
+        "width": 760,
+        "minCell": 53.1875,
+        "minHeight": 53.1875,
+        "modalOverflow": false
+      }
+    },
+    {
+      "label": "761 home",
+      "metrics": {
+        "scrollWidth": 761,
+        "width": 761,
+        "minCell": null,
+        "minHeight": null,
+        "modalOverflow": false
+      }
+    },
+    {
+      "label": "761 largest board",
+      "metrics": {
+        "scrollWidth": 761,
+        "width": 761,
+        "minCell": 60.453125,
+        "minHeight": 60.453125,
+        "modalOverflow": false
+      }
+    },
+    {
+      "label": "761 hint",
+      "metrics": {
+        "scrollWidth": 761,
+        "width": 761,
+        "minCell": 60.453125,
+        "minHeight": 60.453125,
+        "modalOverflow": false
+      }
+    },
+    {
+      "label": "761 tutorial",
+      "metrics": {
+        "scrollWidth": 761,
+        "width": 761,
+        "minCell": 60.453125,
+        "minHeight": 60.453125,
+        "modalOverflow": false
+      }
+    },
+    {
+      "label": "761 safe area",
+      "metrics": {
+        "scrollWidth": 761,
+        "width": 761,
+        "minCell": 60.453125,
+        "minHeight": 60.453125,
+        "modalOverflow": false
+      }
+    },
+    {
+      "label": "844 home",
+      "metrics": {
+        "scrollWidth": 844,
+        "width": 844,
+        "minCell": null,
+        "minHeight": null,
+        "modalOverflow": false
+      }
+    },
+    {
+      "label": "844 largest board",
+      "metrics": {
+        "scrollWidth": 844,
+        "width": 844,
+        "minCell": 64.015625,
+        "minHeight": 64.015625,
+        "modalOverflow": false
+      }
+    },
+    {
+      "label": "844 hint",
+      "metrics": {
+        "scrollWidth": 844,
+        "width": 844,
+        "minCell": 64.015625,
+        "minHeight": 64.015625,
+        "modalOverflow": false
+      }
+    },
+    {
+      "label": "844 tutorial",
+      "metrics": {
+        "scrollWidth": 844,
+        "width": 844,
+        "minCell": 64.015625,
+        "minHeight": 64.015625,
+        "modalOverflow": false
+      }
+    },
+    {
+      "label": "844 safe area",
+      "metrics": {
+        "scrollWidth": 844,
+        "width": 844,
+        "minCell": 64.015625,
+        "minHeight": 64.015625,
+        "modalOverflow": false
+      }
+    },
+    {
+      "label": "1280 home",
+      "metrics": {
+        "scrollWidth": 1280,
+        "width": 1280,
+        "minCell": null,
+        "minHeight": null,
+        "modalOverflow": false
+      }
+    },
+    {
+      "label": "1280 largest board",
+      "metrics": {
+        "scrollWidth": 1280,
+        "width": 1280,
+        "minCell": 64.015625,
+        "minHeight": 64.015625,
+        "modalOverflow": false
+      }
+    },
+    {
+      "label": "1280 hint",
+      "metrics": {
+        "scrollWidth": 1280,
+        "width": 1280,
+        "minCell": 64.015625,
+        "minHeight": 64.015625,
+        "modalOverflow": false
+      }
+    },
+    {
+      "label": "1280 tutorial",
+      "metrics": {
+        "scrollWidth": 1280,
+        "width": 1280,
+        "minCell": 64.015625,
+        "minHeight": 64.015625,
+        "modalOverflow": false
+      }
+    },
+    {
+      "label": "1280 safe area",
+      "metrics": {
+        "scrollWidth": 1280,
+        "width": 1280,
+        "minCell": 64.015625,
+        "minHeight": 64.015625,
+        "modalOverflow": false
+      }
+    },
+    {
+      "label": "200% text, reduced motion",
+      "metrics": {
+        "scrollWidth": 390,
+        "width": 390,
+        "minCell": 53.1875,
+        "minHeight": 53.1875,
+        "modalOverflow": false
+      }
+    },
+    {
+      "label": "200% tutorial",
+      "metrics": {
+        "scrollWidth": 390,
+        "width": 390,
+        "minCell": 53.1875,
+        "minHeight": 53.1875,
+        "modalOverflow": false
+      }
+    },
+    {
+      "label": "hanging optional host bounded",
+      "passed": true
+    },
+    {
+      "label": "denied storage -> retry -> one event",
+      "passed": true
+    },
+    {
+      "label": "native 9.46 mock built-runtime",
+      "passed": true
+    }
+  ],
+  "pageErrors": [],
+  "externalRequests": []
+}

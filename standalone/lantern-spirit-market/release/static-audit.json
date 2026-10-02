@@ -1,0 +1,61 @@
+{
+  "files": [
+    {
+      "file": "adapter.js",
+      "bytes": 1190,
+      "es2017": true
+    },
+    {
+      "file": "app.js",
+      "bytes": 18886,
+      "es2017": true
+    },
+    {
+      "file": "core.js",
+      "bytes": 2881,
+      "es2017": true
+    },
+    {
+      "file": "icon.svg",
+      "bytes": 674,
+      "es2017": null
+    },
+    {
+      "file": "index.html",
+      "bytes": 1848,
+      "es2017": null
+    },
+    {
+      "file": "levels.js",
+      "bytes": 28433,
+      "es2017": true
+    },
+    {
+      "file": "storage.js",
+      "bytes": 1344,
+      "es2017": true
+    },
+    {
+      "file": "styles.css",
+      "bytes": 7461,
+      "es2017": null
+    },
+    {
+      "file": "tutorial.js",
+      "bytes": 181,
+      "es2017": true
+    }
+  ],
+  "contrasts": {
+    "inkOnPaper": 11.775364595913075,
+    "inkOnCream": 13.798433842602405,
+    "primary": 5.976321687049482,
+    "secondary": 7.305761759307781
+  },
+  "classicScripts": true,
+  "networkCalls": 0,
+  "externalResourceRefs": 0,
+  "jsBaseline": "ES2017 acorn parsing passed",
+  "legacyEngineRuntime": "not tested",
+  "cssReview": "Flex/Grid/margins; no flex-gap dependency, no clamp/aspect-ratio/nesting; fixed-position inset fallback provided"
+}

@@ -1,0 +1,22 @@
+{
+  "files": [
+    {
+      "file": "app.js",
+      "bytes": 66423
+    },
+    {
+      "file": "index.html",
+      "bytes": 412
+    },
+    {
+      "file": "styles.css",
+      "bytes": 9072
+    }
+  ],
+  "zipBytes": 21658,
+  "classicScripts": true,
+  "localReferences": true,
+  "forbiddenAPIsAbsent": true,
+  "syntax": "node --check passes; manual ES2017/Chrome61 review, old engine not run",
+  "css": "Grid grid-gap, flex margins, physical properties, safe-area fallback; no old engine run"
+}

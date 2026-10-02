@@ -1,0 +1,68 @@
+{
+  "passed": true,
+  "environment": "clean temporary source copy; no preexisting dist/node_modules",
+  "runs": [
+    {
+      "command": "node scripts/generate.mjs",
+      "exitCode": 0,
+      "output": "courtyard-01 5x5 13 reading nodes 1 attempts 1\ncourtyard-02 5x5 13 reading nodes 1 attempts 2\ncourtyard-03 5x5 13 reading,spacing nodes 1 attempts 3\ncourtyard-04 5x5 13 reading nodes 1 attempts 4\ncourtyard-05 5x5 13 reading,spacing nodes 1 attempts 5\ncourtyard-06 5x5 13 reading,spacing nodes 1 attempts 6\ncourtyard-07 5x5 13 reading nodes 1 attempts 7\ncourtyard-08 5x5 13 reading,spacing nodes 1 attempts 8\ncourtyard-09 5x5 10 reading nodes 1 attempts 9\ncourtyard-10 5x5 10 reading nodes 1 attempts 10\ncourtyard-11 5x5 10 reading,spacing nodes 1 attempts 11\ncourtyard-12 5x5 10 reading,spacing nodes 1 attempts 12\ncourtyard-13 5x5 10 reading nodes 1 attempts 13\ncourtyard-14 5x5 10 reading,spacing nodes 1 attempts 14\ncourtyard-15 5x5 10 reading nodes 1 attempts 15\ncourtyard-16 5x5 10 reading,spacing nodes 1 attempts 16\ncourtyard-17 5x5 9 reading,spacing nodes 1 attempts 18\ncourtyard-18 5x5 9 reading,spacing nodes 1 attempts 19\ncourtyard-19 5x5 9 reading,spacing nodes 1 attempts 20\ncourtyard-20 5x5 9 reading,spacing nodes 1 attempts 21\ncourtyard-21 6x5 9 reading,spacing nodes 1 attempts 22\ncourtyard-22 6x5 9 reading,spacing nodes 1 attempts 23\ncourtyard-23 6x5 9 reading,spacing nodes 1 attempts 24\ncourtyard-24 6x5 9 reading,spacing nodes 1 attempts 25\ncourtyard-25 5x6 8 reading,spacing,bridge nodes 1 attempts 29\ncourtyard-26 5x6 8 reading,bridge,spacing nodes 1 attempts 37\ncourtyard-27 5x6 8 reading,spacing,bridge nodes 1 attempts 46\ncourtyard-28 5x6 8 reading,spacing,bridge nodes 1 attempts 48\ncourtyard-29 6x6 8 reading,bridge,spacing nodes 1 attempts 49\ncourtyard-30 6x6 8 reading,bridge,spacing nodes 1 attempts 52\ncourtyard-31 6x6 8 reading,spacing,bridge nodes 1 attempts 56\ncourtyard-32 6x6 8 reading,bridge,spacing nodes 1 attempts 57\ncourtyard-33 6x6 7 reading,bridge,spacing nodes 1 attempts 58\ncourtyard-34 6x6 7 reading,bridge,spacing nodes 1 attempts 59\ncourtyard-35 6x6 7 reading,spacing,bridge nodes 1 attempts 61\ncourtyard-36 6x6 7 reading,spacing,bridge nodes 1 attempts 63\ncourtyard-37 6x6 7 reading,spacing,bridge nodes 1 attempts 64\ncourtyard-38 6x6 7 reading,bridge,spacing nodes 1 attempts 66\ncourtyard-39 6x6 7 reading,spacing,bridge nodes 1 attempts 67\ncourtyard-40 6x6 8 reading,spacing,bridge nodes 1 attempts 68\ncourtyard-41 5x5 7 reading,bridge,spacing nodes 1 attempts 69\ncourtyard-42 6x6 7 reading,spacing,bridge nodes 1 attempts 70\ncourtyard-43 6x6 7 reading,spacing nodes 1 attempts 71\ncourtyard-44 6x6 8 reading,spacing,bridge nodes 1 attempts 72\ncourtyard-45 6x6 7 reading,spacing nodes 1 attempts 73\ncourtyard-46 6x6 7 reading,bridge,spacing nodes 1 attempts 74\ncourtyard-47 6x6 8 reading,spacing,bridge nodes 1 attempts 75\ncourtyard-48 6x6 7 reading,spacing,bridge nodes 1 attempts 76\n"
+    },
+    {
+      "command": "node scripts/assets.mjs",
+      "exitCode": 0,
+      "output": "Exact tutorial SVGs and code-native courtyard model written\n"
+    },
+    {
+      "command": "node scripts/build.mjs",
+      "exitCode": 0,
+      "output": "Built classic ES2017 candidate: /private/var/folders/zs/hpwfkwh1687frv7wds0wg1zw0000gn/T/courtyard-clean-PEFyF4/dist/sunlit-courtyard-survey-candidate.zip\n"
+    },
+    {
+      "command": "node --test tests/package.test.mjs tests/rules.test.mjs tests/session.test.mjs",
+      "exitCode": 0,
+      "output": "✔ classic bundle retains every exported dependency, including storage namespace (6.678541ms)\n✔ strict local package, no modules/network/modern runtime dependencies, references exist (1.517125ms)\n✔ ZIP CRC, root entry and allowed paths; directory matches exactly (40.496084ms)\n✔ 48 puzzles: only visible clues, complete second-solution search and independent predicate (11.121291ms)\n✔ every logical deduction is forced by original clues; notes are not assumed (15.063042ms)\n✔ all 3x3 layouts: oracle exhaustive cross-check, including singleton possible-white islands (2.537708ms)\n✔ production rays include self once, penetrate clue and notes, stop at first black (0.144458ms)\n✔ diagonal black permitted, orthogonal black forbidden; accurate readings do not override disconnection (0.146583ms)\n✔ unknown and white notes are rule-equivalent; all levels can finish using black actions only (2.336541ms)\n✔ same certified tutorial puzzle: initial, one legal black placement, completed without filling dots (0.335709ms)\n✔ clue validity and timeline rejects illegal or forged state (0.114958ms)\n✔ notes, full undo selected state, restart and refresh replay (1.315208ms)\n✔ completion id and first reward dedup: notes after completion, replay, damaged layout and new run (1.333833ms)\n✔ forged booleans, xp, claims, malformed actions, tutorial upgrade rejected without wiping earned progress (0.331583ms)\n✔ six chapter badges derive from verified distinct completions only (8.148334ms)\n✔ highest hints recorded, wrong white notes not trusted, original-chain hint result (0.553708ms)\n✔ persist before host, same-id retry, native storage 9.46 and web fallback; failed native never silently splits storage (0.476375ms)\n✔ 4096 action boundary preserves current state and refresh; no silent reset (257.115042ms)\n✔ 1000 identical replays are compact; later first completion and lower hints survive restore (26.068333ms)\nℹ tests 19\nℹ suites 0\nℹ pass 19\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 328.95825\n"
+    },
+    {
+      "command": "python3 platform/audit_artifact.py dist/xhs",
+      "exitCode": 0,
+      "output": "PASS: 9 file(s), 0 warning(s)\n"
+    },
+    {
+      "command": "python3 platform/audit_artifact.py dist/sunlit-courtyard-survey-candidate.zip",
+      "exitCode": 0,
+      "output": "PASS: 9 file(s), 0 warning(s)\n"
+    }
+  ],
+  "comparisons": [
+    {
+      "file": "levels.mjs",
+      "source": "7b164e1725f0a3b0227038c7487a5c38e3a0e03f5e8aaf6526d9f03e8c97ef84",
+      "clean": "7b164e1725f0a3b0227038c7487a5c38e3a0e03f5e8aaf6526d9f03e8c97ef84"
+    },
+    {
+      "file": "assets/hero.svg",
+      "source": "e5456b02505c33fa31e636604fe4f5cf9047da5ab49b22ba5841fb5f8fe31b41",
+      "clean": "e5456b02505c33fa31e636604fe4f5cf9047da5ab49b22ba5841fb5f8fe31b41"
+    },
+    {
+      "file": "assets/tutorial-1.svg",
+      "source": "85008bc13443b3e364658d9b557d25238f46cf4a880453c976e31c32fef16f6d",
+      "clean": "85008bc13443b3e364658d9b557d25238f46cf4a880453c976e31c32fef16f6d"
+    },
+    {
+      "file": "assets/tutorial-2.svg",
+      "source": "6de1d3f9803917367abf59008af19ee0d08df4956a6064914cbca596f125efdc",
+      "clean": "6de1d3f9803917367abf59008af19ee0d08df4956a6064914cbca596f125efdc"
+    },
+    {
+      "file": "assets/tutorial-3.svg",
+      "source": "214ba1b606ae033c4869dcb418115c30eb82bfe12e7849e90d724e530ea65cfd",
+      "clean": "214ba1b606ae033c4869dcb418115c30eb82bfe12e7849e90d724e530ea65cfd"
+    },
+    {
+      "file": "dist/xhs/app.js",
+      "source": "8606f980d00985d4c2b5716205e35346e94036e20a4e16f0a79ebd9e5785eab4",
+      "clean": "8606f980d00985d4c2b5716205e35346e94036e20a4e16f0a79ebd9e5785eab4"
+    }
+  ]
+}

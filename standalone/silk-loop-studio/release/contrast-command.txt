@@ -1,0 +1,58 @@
+Contrast: [
+  {
+    label: '正文',
+    fg: '#283033',
+    bg: '#fff8ed',
+    minimum: 4.5,
+    ratio: 12.75
+  },
+  {
+    label: '辅助正文',
+    fg: '#675d51',
+    bg: '#fff8ed',
+    minimum: 4.5,
+    ratio: 6.1
+  },
+  {
+    label: '蓝色标题',
+    fg: '#354a90',
+    bg: '#fff8ed',
+    minimum: 4.5,
+    ratio: 7.86
+  },
+  {
+    label: '主按钮',
+    fg: '#ffffff',
+    bg: '#354a90',
+    minimum: 4.5,
+    ratio: 8.29
+  },
+  {
+    label: '数字纸签',
+    fg: '#1d2428',
+    bg: '#fffaf3',
+    minimum: 4.5,
+    ratio: 15.14
+  },
+  {
+    label: '方向按钮',
+    fg: '#283033',
+    bg: '#efbc42',
+    minimum: 4.5,
+    ratio: 7.65
+  },
+  {
+    label: '焦点边',
+    fg: '#354a90',
+    bg: '#fff8ed',
+    minimum: 3,
+    ratio: 7.86
+  },
+  {
+    label: '目标位标注',
+    fg: '#ffffff',
+    bg: '#565960',
+    minimum: 4.5,
+    ratio: 7.02
+  }
+]

@@ -1,0 +1,1 @@
+{"name":"silk-loop-studio","version":"1.0.0","private":true,"scripts":{"generate":"node scripts/generate.cjs","test":"node --test tests/*.test.cjs","build":"node scripts/build.cjs","audit":"python3 platform/audit_artifact.py dist/silk-loop-studio-xhs.zip","browser":"node scripts/browser.cjs"}}

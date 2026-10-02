@@ -1,0 +1,278 @@
+{
+  "date": "2026-10-01T08:35:54.972Z",
+  "browser": "154.0.8037.94",
+  "CSP": "default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'none'; object-src 'none'; frame-src 'none'",
+  "viewports": [
+    {
+      "width": 320,
+      "height": 720,
+      "dims": {
+        "width": 320,
+        "scroll": 320,
+        "buttons": [
+          {
+            "label": "设置",
+            "w": 56,
+            "h": 48
+          },
+          {
+            "label": "启程画航图 →",
+            "w": 150,
+            "h": 48
+          },
+          {
+            "label": "01 / 航行许可证六章六十关，从小港到整片天空",
+            "w": 288,
+            "h": 84.03125
+          },
+          {
+            "label": "02 / 云港旅行手册接通一片云域，收下一封明信片",
+            "w": 288,
+            "h": 84.03125
+          },
+          {
+            "label": "03 / 制图入门课三张真实航图，学会单双航道",
+            "w": 288,
+            "h": 84.03125
+          }
+        ]
+      },
+      "safeArea": "44/34",
+      "passed": true
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "dims": {
+        "width": 390,
+        "scroll": 390,
+        "buttons": [
+          {
+            "label": "设置",
+            "w": 56,
+            "h": 48
+          },
+          {
+            "label": "启程画航图 →",
+            "w": 170,
+            "h": 48
+          },
+          {
+            "label": "01 / 航行许可证六章六十关，从小港到整片天空",
+            "w": 358,
+            "h": 84.03125
+          },
+          {
+            "label": "02 / 云港旅行手册接通一片云域，收下一封明信片",
+            "w": 358,
+            "h": 84.03125
+          },
+          {
+            "label": "03 / 制图入门课三张真实航图，学会单双航道",
+            "w": 358,
+            "h": 84.03125
+          }
+        ]
+      },
+      "safeArea": "44/34",
+      "passed": true
+    },
+    {
+      "width": 1280,
+      "height": 720,
+      "dims": {
+        "width": 1280,
+        "scroll": 1280,
+        "buttons": [
+          {
+            "label": "设置",
+            "w": 56,
+            "h": 48
+          },
+          {
+            "label": "启程画航图 →",
+            "w": 170,
+            "h": 48
+          },
+          {
+            "label": "01 / 航行许可证六章六十关，从小港到整片天空",
+            "w": 344,
+            "h": 95.140625
+          },
+          {
+            "label": "02 / 云港旅行手册接通一片云域，收下一封明信片",
+            "w": 344,
+            "h": 95.140625
+          },
+          {
+            "label": "03 / 制图入门课三张真实航图，学会单双航道",
+            "w": 344,
+            "h": 95.140625
+          }
+        ]
+      },
+      "safeArea": "44/34",
+      "passed": true
+    },
+    {
+      "width": 359,
+      "height": 720,
+      "dims": {
+        "width": 359,
+        "scroll": 359,
+        "buttons": [
+          {
+            "label": "设置",
+            "w": 56,
+            "h": 48
+          },
+          {
+            "label": "启程画航图 →",
+            "w": 150,
+            "h": 48
+          },
+          {
+            "label": "01 / 航行许可证六章六十关，从小港到整片天空",
+            "w": 327,
+            "h": 84.03125
+          },
+          {
+            "label": "02 / 云港旅行手册接通一片云域，收下一封明信片",
+            "w": 327,
+            "h": 84.03125
+          },
+          {
+            "label": "03 / 制图入门课三张真实航图，学会单双航道",
+            "w": 327,
+            "h": 84.03125
+          }
+        ]
+      },
+      "safeArea": "44/34",
+      "passed": true
+    },
+    {
+      "width": 360,
+      "height": 720,
+      "dims": {
+        "width": 360,
+        "scroll": 360,
+        "buttons": [
+          {
+            "label": "设置",
+            "w": 56,
+            "h": 48
+          },
+          {
+            "label": "启程画航图 →",
+            "w": 170,
+            "h": 48
+          },
+          {
+            "label": "01 / 航行许可证六章六十关，从小港到整片天空",
+            "w": 328,
+            "h": 84.03125
+          },
+          {
+            "label": "02 / 云港旅行手册接通一片云域，收下一封明信片",
+            "w": 328,
+            "h": 84.03125
+          },
+          {
+            "label": "03 / 制图入门课三张真实航图，学会单双航道",
+            "w": 328,
+            "h": 84.03125
+          }
+        ]
+      },
+      "safeArea": "44/34",
+      "passed": true
+    },
+    {
+      "width": 799,
+      "height": 720,
+      "dims": {
+        "width": 799,
+        "scroll": 799,
+        "buttons": [
+          {
+            "label": "设置",
+            "w": 56,
+            "h": 48
+          },
+          {
+            "label": "启程画航图 →",
+            "w": 170,
+            "h": 48
+          },
+          {
+            "label": "01 / 航行许可证六章六十关，从小港到整片天空",
+            "w": 767,
+            "h": 84.03125
+          },
+          {
+            "label": "02 / 云港旅行手册接通一片云域，收下一封明信片",
+            "w": 767,
+            "h": 84.03125
+          },
+          {
+            "label": "03 / 制图入门课三张真实航图，学会单双航道",
+            "w": 767,
+            "h": 84.03125
+          }
+        ]
+      },
+      "safeArea": "44/34",
+      "passed": true
+    },
+    {
+      "width": 800,
+      "height": 720,
+      "dims": {
+        "width": 800,
+        "scroll": 800,
+        "buttons": [
+          {
+            "label": "设置",
+            "w": 56,
+            "h": 48
+          },
+          {
+            "label": "启程画航图 →",
+            "w": 170,
+            "h": 48
+          },
+          {
+            "label": "01 / 航行许可证六章六十关，从小港到整片天空",
+            "w": 244,
+            "h": 95.140625
+          },
+          {
+            "label": "02 / 云港旅行手册接通一片云域，收下一封明信片",
+            "w": 244,
+            "h": 95.140625
+          },
+          {
+            "label": "03 / 制图入门课三张真实航图，学会单双航道",
+            "w": 244,
+            "h": 95.140625
+          }
+        ]
+      },
+      "safeArea": "44/34",
+      "passed": true
+    }
+  ],
+  "interactions": [
+    "First tutorial initial/one legal double/complete",
+    "skip/reopen/Escape/focus trap",
+    "port picker + four nearest neighbors + explicit counts",
+    "undo and reload restore",
+    "first and final level completed only through UI",
+    "restart and repeated completion reward dedupe",
+    "collection displays verified actual network",
+    "safe areas 44/34 at all viewports"
+  ],
+  "errors": [],
+  "requests": []
+}

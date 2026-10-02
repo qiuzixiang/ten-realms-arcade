@@ -1,0 +1,87 @@
+{
+  "browser": "154.0.8037.94",
+  "source": "HTTP-served dist/xhs under restrictive CSP; real clicks, keyboard and simulated touch",
+  "report": [
+    {
+      "viewport": "320x720",
+      "dims": {
+        "board": 288,
+        "cell": 48,
+        "direction": 48,
+        "modes": [
+          48,
+          48,
+          48
+        ]
+      },
+      "complete": true,
+      "repeatedRewardCount": 1,
+      "refresh": true,
+      "keyboard": false,
+      "touch": true,
+      "CSP": true
+    },
+    {
+      "viewport": "390x844",
+      "dims": {
+        "board": 348,
+        "cell": 58,
+        "direction": 48,
+        "modes": [
+          48,
+          48,
+          48
+        ]
+      },
+      "complete": true,
+      "repeatedRewardCount": 1,
+      "refresh": true,
+      "keyboard": false,
+      "touch": true,
+      "CSP": true
+    },
+    {
+      "viewport": "1280x720",
+      "dims": {
+        "board": 520,
+        "cell": 86.65625,
+        "direction": 48,
+        "modes": [
+          48,
+          48,
+          48
+        ]
+      },
+      "complete": true,
+      "repeatedRewardCount": 1,
+      "refresh": true,
+      "keyboard": true,
+      "touch": false,
+      "CSP": true
+    },
+    {
+      "practiceReward": 0,
+      "hintTiers": true
+    },
+    {
+      "corruptionPreservesValidLedger": true,
+      "otherGameUntouched": true
+    },
+    {
+      "storageFailureStillPlayable": true
+    },
+    {
+      "nativeStorageMock": true,
+      "hostDeliveryAfterPersistence": true,
+      "hostRewardDedup": true,
+      "failedAckRetriesSameClaim": true
+    },
+    {
+      "unlockedCollectionFromValidatedEngineProofs": true
+    }
+  ],
+  "errors": [],
+  "external": [],
+  "physicalDevices": false,
+  "officialContainer": false
+}

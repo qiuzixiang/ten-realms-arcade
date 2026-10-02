@@ -1,0 +1,1149 @@
+{
+  "seed": 74213,
+  "method": "correlated random rectangular boards, bounded DFS, canonical color dedup; chapters 3–6 require growth bridge and independently exhaustive losing branch; chapter 6 requires two unequal verified scores",
+  "levels": [
+    {
+      "id": 1,
+      "tags": {
+        "initialGroups": 4,
+        "twoGroups": 1,
+        "bridges": 2,
+        "provenLosingFirstMoves": [],
+        "nodes": 5
+      },
+      "reference": 54,
+      "alternate": 38
+    },
+    {
+      "id": 2,
+      "tags": {
+        "initialGroups": 4,
+        "twoGroups": 1,
+        "bridges": 1,
+        "provenLosingFirstMoves": [
+          [
+            1,
+            0
+          ],
+          [
+            3,
+            0
+          ],
+          [
+            3,
+            3
+          ]
+        ],
+        "nodes": 4
+      },
+      "reference": 74,
+      "alternate": null
+    },
+    {
+      "id": 3,
+      "tags": {
+        "initialGroups": 5,
+        "twoGroups": 2,
+        "bridges": 1,
+        "provenLosingFirstMoves": [
+          [
+            1,
+            1
+          ]
+        ],
+        "nodes": 8
+      },
+      "reference": 54,
+      "alternate": 66
+    },
+    {
+      "id": 4,
+      "tags": {
+        "initialGroups": 4,
+        "twoGroups": 3,
+        "bridges": 0,
+        "provenLosingFirstMoves": [
+          [
+            0,
+            2
+          ]
+        ],
+        "nodes": 5
+      },
+      "reference": 68,
+      "alternate": 102
+    },
+    {
+      "id": 5,
+      "tags": {
+        "initialGroups": 5,
+        "twoGroups": 5,
+        "bridges": 0,
+        "provenLosingFirstMoves": [
+          [
+            0,
+            1
+          ]
+        ],
+        "nodes": 8
+      },
+      "reference": 18,
+      "alternate": 26
+    },
+    {
+      "id": 6,
+      "tags": {
+        "initialGroups": 2,
+        "twoGroups": 1,
+        "bridges": 0,
+        "provenLosingFirstMoves": [],
+        "nodes": 3
+      },
+      "reference": 148,
+      "alternate": null
+    },
+    {
+      "id": 7,
+      "tags": {
+        "initialGroups": 5,
+        "twoGroups": 4,
+        "bridges": 1,
+        "provenLosingFirstMoves": [
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            3
+          ]
+        ],
+        "nodes": 18
+      },
+      "reference": 34,
+      "alternate": 30
+    },
+    {
+      "id": 8,
+      "tags": {
+        "initialGroups": 4,
+        "twoGroups": 0,
+        "bridges": 1,
+        "provenLosingFirstMoves": [],
+        "nodes": 3
+      },
+      "reference": 78,
+      "alternate": 54
+    },
+    {
+      "id": 9,
+      "tags": {
+        "initialGroups": 3,
+        "twoGroups": 1,
+        "bridges": 1,
+        "provenLosingFirstMoves": [
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            2
+          ]
+        ],
+        "nodes": 5
+      },
+      "reference": 66,
+      "alternate": null
+    },
+    {
+      "id": 10,
+      "tags": {
+        "initialGroups": 3,
+        "twoGroups": 0,
+        "bridges": 1,
+        "provenLosingFirstMoves": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            2
+          ]
+        ],
+        "nodes": 7
+      },
+      "reference": 60,
+      "alternate": null
+    },
+    {
+      "id": 11,
+      "tags": {
+        "initialGroups": 5,
+        "twoGroups": 3,
+        "bridges": 1,
+        "provenLosingFirstMoves": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            2
+          ]
+        ],
+        "nodes": 6
+      },
+      "reference": 146,
+      "alternate": 150
+    },
+    {
+      "id": 12,
+      "tags": {
+        "initialGroups": 6,
+        "twoGroups": 1,
+        "bridges": 2,
+        "provenLosingFirstMoves": [],
+        "nodes": 5
+      },
+      "reference": 186,
+      "alternate": 174
+    },
+    {
+      "id": 13,
+      "tags": {
+        "initialGroups": 5,
+        "twoGroups": 1,
+        "bridges": 0,
+        "provenLosingFirstMoves": [],
+        "nodes": 5
+      },
+      "reference": 166,
+      "alternate": 154
+    },
+    {
+      "id": 14,
+      "tags": {
+        "initialGroups": 6,
+        "twoGroups": 1,
+        "bridges": 0,
+        "provenLosingFirstMoves": [],
+        "nodes": 7
+      },
+      "reference": 62,
+      "alternate": 66
+    },
+    {
+      "id": 15,
+      "tags": {
+        "initialGroups": 5,
+        "twoGroups": 0,
+        "bridges": 1,
+        "provenLosingFirstMoves": [
+          [
+            0,
+            0
+          ],
+          [
+            4,
+            2
+          ]
+        ],
+        "nodes": 24
+      },
+      "reference": 122,
+      "alternate": 138
+    },
+    {
+      "id": 16,
+      "tags": {
+        "initialGroups": 3,
+        "twoGroups": 2,
+        "bridges": 0,
+        "provenLosingFirstMoves": [],
+        "nodes": 4
+      },
+      "reference": 260,
+      "alternate": 320
+    },
+    {
+      "id": 17,
+      "tags": {
+        "initialGroups": 6,
+        "twoGroups": 0,
+        "bridges": 1,
+        "provenLosingFirstMoves": [],
+        "nodes": 5
+      },
+      "reference": 270,
+      "alternate": 282
+    },
+    {
+      "id": 18,
+      "tags": {
+        "initialGroups": 3,
+        "twoGroups": 0,
+        "bridges": 0,
+        "provenLosingFirstMoves": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            2
+          ]
+        ],
+        "nodes": 3
+      },
+      "reference": 230,
+      "alternate": null
+    },
+    {
+      "id": 19,
+      "tags": {
+        "initialGroups": 6,
+        "twoGroups": 1,
+        "bridges": 1,
+        "provenLosingFirstMoves": [],
+        "nodes": 6
+      },
+      "reference": 126,
+      "alternate": 84
+    },
+    {
+      "id": 20,
+      "tags": {
+        "initialGroups": 3,
+        "twoGroups": 1,
+        "bridges": 0,
+        "provenLosingFirstMoves": [
+          [
+            0,
+            4
+          ],
+          [
+            4,
+            1
+          ]
+        ],
+        "nodes": 4
+      },
+      "reference": 282,
+      "alternate": null
+    },
+    {
+      "id": 21,
+      "tags": {
+        "initialGroups": 7,
+        "twoGroups": 2,
+        "bridges": 2,
+        "provenLosingFirstMoves": [
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            3
+          ]
+        ],
+        "nodes": 664
+      },
+      "reference": 50,
+      "alternate": 52
+    },
+    {
+      "id": 22,
+      "tags": {
+        "initialGroups": 8,
+        "twoGroups": 1,
+        "bridges": 2,
+        "provenLosingFirstMoves": [
+          [
+            1,
+            3
+          ]
+        ],
+        "nodes": 12
+      },
+      "reference": 78,
+      "alternate": 70
+    },
+    {
+      "id": 23,
+      "tags": {
+        "initialGroups": 6,
+        "twoGroups": 1,
+        "bridges": 1,
+        "provenLosingFirstMoves": [
+          [
+            0,
+            0
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            3,
+            3
+          ],
+          [
+            4,
+            4
+          ]
+        ],
+        "nodes": 9
+      },
+      "reference": 206,
+      "alternate": null
+    },
+    {
+      "id": 24,
+      "tags": {
+        "initialGroups": 6,
+        "twoGroups": 1,
+        "bridges": 1,
+        "provenLosingFirstMoves": [
+          [
+            0,
+            0
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            4,
+            0
+          ]
+        ],
+        "nodes": 37
+      },
+      "reference": 208,
+      "alternate": null
+    },
+    {
+      "id": 25,
+      "tags": {
+        "initialGroups": 4,
+        "twoGroups": 1,
+        "bridges": 1,
+        "provenLosingFirstMoves": [
+          [
+            0,
+            4
+          ]
+        ],
+        "nodes": 6
+      },
+      "reference": 418,
+      "alternate": 406
+    },
+    {
+      "id": 26,
+      "tags": {
+        "initialGroups": 6,
+        "twoGroups": 0,
+        "bridges": 1,
+        "provenLosingFirstMoves": [
+          [
+            3,
+            1
+          ]
+        ],
+        "nodes": 9
+      },
+      "reference": 128,
+      "alternate": 120
+    },
+    {
+      "id": 27,
+      "tags": {
+        "initialGroups": 6,
+        "twoGroups": 3,
+        "bridges": 1,
+        "provenLosingFirstMoves": [
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            1,
+            5
+          ],
+          [
+            3,
+            2
+          ]
+        ],
+        "nodes": 10
+      },
+      "reference": 136,
+      "alternate": null
+    },
+    {
+      "id": 28,
+      "tags": {
+        "initialGroups": 9,
+        "twoGroups": 4,
+        "bridges": 2,
+        "provenLosingFirstMoves": [
+          [
+            1,
+            4
+          ]
+        ],
+        "nodes": 112
+      },
+      "reference": 92,
+      "alternate": 100
+    },
+    {
+      "id": 29,
+      "tags": {
+        "initialGroups": 6,
+        "twoGroups": 4,
+        "bridges": 1,
+        "provenLosingFirstMoves": [
+          [
+            1,
+            0
+          ]
+        ],
+        "nodes": 11
+      },
+      "reference": 134,
+      "alternate": 156
+    },
+    {
+      "id": 30,
+      "tags": {
+        "initialGroups": 5,
+        "twoGroups": 0,
+        "bridges": 1,
+        "provenLosingFirstMoves": [
+          [
+            2,
+            0
+          ],
+          [
+            3,
+            0
+          ]
+        ],
+        "nodes": 10
+      },
+      "reference": 214,
+      "alternate": 146
+    },
+    {
+      "id": 31,
+      "tags": {
+        "initialGroups": 8,
+        "twoGroups": 4,
+        "bridges": 2,
+        "provenLosingFirstMoves": [
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            3,
+            0
+          ]
+        ],
+        "nodes": 672
+      },
+      "reference": 188,
+      "alternate": 224
+    },
+    {
+      "id": 32,
+      "tags": {
+        "initialGroups": 7,
+        "twoGroups": 2,
+        "bridges": 2,
+        "provenLosingFirstMoves": [
+          [
+            3,
+            0
+          ]
+        ],
+        "nodes": 2598
+      },
+      "reference": 230,
+      "alternate": 124
+    },
+    {
+      "id": 33,
+      "tags": {
+        "initialGroups": 7,
+        "twoGroups": 1,
+        "bridges": 1,
+        "provenLosingFirstMoves": [
+          [
+            3,
+            1
+          ],
+          [
+            4,
+            0
+          ],
+          [
+            5,
+            5
+          ]
+        ],
+        "nodes": 9
+      },
+      "reference": 416,
+      "alternate": 544
+    },
+    {
+      "id": 34,
+      "tags": {
+        "initialGroups": 7,
+        "twoGroups": 8,
+        "bridges": 1,
+        "provenLosingFirstMoves": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            4,
+            5
+          ]
+        ],
+        "nodes": 761
+      },
+      "reference": 118,
+      "alternate": 142
+    },
+    {
+      "id": 35,
+      "tags": {
+        "initialGroups": 8,
+        "twoGroups": 2,
+        "bridges": 1,
+        "provenLosingFirstMoves": [
+          [
+            2,
+            6
+          ]
+        ],
+        "nodes": 19
+      },
+      "reference": 114,
+      "alternate": 152
+    },
+    {
+      "id": 36,
+      "tags": {
+        "initialGroups": 7,
+        "twoGroups": 0,
+        "bridges": 2,
+        "provenLosingFirstMoves": [
+          [
+            4,
+            5
+          ]
+        ],
+        "nodes": 9
+      },
+      "reference": 122,
+      "alternate": 148
+    },
+    {
+      "id": 37,
+      "tags": {
+        "initialGroups": 5,
+        "twoGroups": 2,
+        "bridges": 1,
+        "provenLosingFirstMoves": [
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            5,
+            3
+          ]
+        ],
+        "nodes": 10
+      },
+      "reference": 140,
+      "alternate": null
+    },
+    {
+      "id": 38,
+      "tags": {
+        "initialGroups": 9,
+        "twoGroups": 2,
+        "bridges": 1,
+        "provenLosingFirstMoves": [
+          [
+            2,
+            2
+          ]
+        ],
+        "nodes": 12
+      },
+      "reference": 86,
+      "alternate": 136
+    },
+    {
+      "id": 39,
+      "tags": {
+        "initialGroups": 9,
+        "twoGroups": 6,
+        "bridges": 2,
+        "provenLosingFirstMoves": [
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            3
+          ]
+        ],
+        "nodes": 1268
+      },
+      "reference": 104,
+      "alternate": 78
+    },
+    {
+      "id": 40,
+      "tags": {
+        "initialGroups": 4,
+        "twoGroups": 3,
+        "bridges": 1,
+        "provenLosingFirstMoves": [
+          [
+            0,
+            3
+          ],
+          [
+            2,
+            0
+          ]
+        ],
+        "nodes": 9
+      },
+      "reference": 316,
+      "alternate": 308
+    },
+    {
+      "id": 41,
+      "tags": {
+        "initialGroups": 6,
+        "twoGroups": 6,
+        "bridges": 1,
+        "provenLosingFirstMoves": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            6
+          ]
+        ],
+        "nodes": 42
+      },
+      "reference": 500,
+      "alternate": 528
+    },
+    {
+      "id": 42,
+      "tags": {
+        "initialGroups": 9,
+        "twoGroups": 10,
+        "bridges": 1,
+        "provenLosingFirstMoves": [
+          [
+            0,
+            0
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            2,
+            4
+          ]
+        ],
+        "nodes": 8311
+      },
+      "reference": 248,
+      "alternate": 252
+    },
+    {
+      "id": 43,
+      "tags": {
+        "initialGroups": 9,
+        "twoGroups": 5,
+        "bridges": 2,
+        "provenLosingFirstMoves": [
+          [
+            1,
+            2
+          ],
+          [
+            5,
+            5
+          ]
+        ],
+        "nodes": 720
+      },
+      "reference": 332,
+      "alternate": 280
+    },
+    {
+      "id": 44,
+      "tags": {
+        "initialGroups": 8,
+        "twoGroups": 2,
+        "bridges": 1,
+        "provenLosingFirstMoves": [
+          [
+            3,
+            1
+          ]
+        ],
+        "nodes": 10
+      },
+      "reference": 304,
+      "alternate": 368
+    },
+    {
+      "id": 45,
+      "tags": {
+        "initialGroups": 9,
+        "twoGroups": 5,
+        "bridges": 3,
+        "provenLosingFirstMoves": [
+          [
+            1,
+            0
+          ]
+        ],
+        "nodes": 44
+      },
+      "reference": 130,
+      "alternate": 150
+    },
+    {
+      "id": 46,
+      "tags": {
+        "initialGroups": 10,
+        "twoGroups": 2,
+        "bridges": 1,
+        "provenLosingFirstMoves": [
+          [
+            4,
+            1
+          ]
+        ],
+        "nodes": 595
+      },
+      "reference": 346,
+      "alternate": 318
+    },
+    {
+      "id": 47,
+      "tags": {
+        "initialGroups": 12,
+        "twoGroups": 4,
+        "bridges": 3,
+        "provenLosingFirstMoves": [
+          [
+            1,
+            0
+          ]
+        ],
+        "nodes": 16
+      },
+      "reference": 112,
+      "alternate": 84
+    },
+    {
+      "id": 48,
+      "tags": {
+        "initialGroups": 7,
+        "twoGroups": 6,
+        "bridges": 2,
+        "provenLosingFirstMoves": [
+          [
+            0,
+            1
+          ]
+        ],
+        "nodes": 462
+      },
+      "reference": 386,
+      "alternate": 390
+    },
+    {
+      "id": 49,
+      "tags": {
+        "initialGroups": 13,
+        "twoGroups": 6,
+        "bridges": 1,
+        "provenLosingFirstMoves": [
+          [
+            3,
+            1
+          ]
+        ],
+        "nodes": 20
+      },
+      "reference": 100,
+      "alternate": 104
+    },
+    {
+      "id": 50,
+      "tags": {
+        "initialGroups": 10,
+        "twoGroups": 3,
+        "bridges": 2,
+        "provenLosingFirstMoves": [
+          [
+            1,
+            2
+          ],
+          [
+            5,
+            0
+          ],
+          [
+            5,
+            1
+          ],
+          [
+            5,
+            2
+          ]
+        ],
+        "nodes": 795
+      },
+      "reference": 380,
+      "alternate": 294
+    },
+    {
+      "id": 51,
+      "tags": {
+        "initialGroups": 10,
+        "twoGroups": 5,
+        "bridges": 3,
+        "provenLosingFirstMoves": [
+          [
+            5,
+            4
+          ]
+        ],
+        "nodes": 1332
+      },
+      "reference": 168,
+      "alternate": 194
+    },
+    {
+      "id": 52,
+      "tags": {
+        "initialGroups": 12,
+        "twoGroups": 4,
+        "bridges": 1,
+        "provenLosingFirstMoves": [
+          [
+            0,
+            2
+          ]
+        ],
+        "nodes": 12
+      },
+      "reference": 360,
+      "alternate": 352
+    },
+    {
+      "id": 53,
+      "tags": {
+        "initialGroups": 11,
+        "twoGroups": 4,
+        "bridges": 2,
+        "provenLosingFirstMoves": [
+          [
+            3,
+            1
+          ]
+        ],
+        "nodes": 78
+      },
+      "reference": 176,
+      "alternate": 170
+    },
+    {
+      "id": 54,
+      "tags": {
+        "initialGroups": 10,
+        "twoGroups": 0,
+        "bridges": 1,
+        "provenLosingFirstMoves": [
+          [
+            0,
+            0
+          ],
+          [
+            5,
+            3
+          ]
+        ],
+        "nodes": 18
+      },
+      "reference": 196,
+      "alternate": 230
+    },
+    {
+      "id": 55,
+      "tags": {
+        "initialGroups": 11,
+        "twoGroups": 4,
+        "bridges": 1,
+        "provenLosingFirstMoves": [
+          [
+            0,
+            0
+          ]
+        ],
+        "nodes": 164
+      },
+      "reference": 216,
+      "alternate": 202
+    },
+    {
+      "id": 56,
+      "tags": {
+        "initialGroups": 8,
+        "twoGroups": 5,
+        "bridges": 2,
+        "provenLosingFirstMoves": [
+          [
+            3,
+            1
+          ],
+          [
+            4,
+            0
+          ]
+        ],
+        "nodes": 233
+      },
+      "reference": 344,
+      "alternate": 348
+    },
+    {
+      "id": 57,
+      "tags": {
+        "initialGroups": 13,
+        "twoGroups": 2,
+        "bridges": 2,
+        "provenLosingFirstMoves": [
+          [
+            0,
+            3
+          ]
+        ],
+        "nodes": 40
+      },
+      "reference": 90,
+      "alternate": 82
+    },
+    {
+      "id": 58,
+      "tags": {
+        "initialGroups": 11,
+        "twoGroups": 2,
+        "bridges": 1,
+        "provenLosingFirstMoves": [
+          [
+            3,
+            2
+          ]
+        ],
+        "nodes": 11
+      },
+      "reference": 192,
+      "alternate": 168
+    },
+    {
+      "id": 59,
+      "tags": {
+        "initialGroups": 9,
+        "twoGroups": 4,
+        "bridges": 2,
+        "provenLosingFirstMoves": [
+          [
+            0,
+            0
+          ],
+          [
+            6,
+            4
+          ]
+        ],
+        "nodes": 3749
+      },
+      "reference": 290,
+      "alternate": 292
+    },
+    {
+      "id": 60,
+      "tags": {
+        "initialGroups": 10,
+        "twoGroups": 1,
+        "bridges": 1,
+        "provenLosingFirstMoves": [
+          [
+            3,
+            5
+          ]
+        ],
+        "nodes": 10
+      },
+      "reference": 284,
+      "alternate": 274
+    }
+  ]
+}

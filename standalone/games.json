@@ -428,5 +428,149 @@
       "test"
     ],
     "output": "dist/xhs"
+  },
+  {
+    "slug": "lantern-spirit-market",
+    "title": "灯灵夜归市",
+    "levels": 60,
+    "description": "分组清盘",
+    "build": [
+      "npm",
+      "run",
+      "build"
+    ],
+    "test": [
+      "npm",
+      "test"
+    ],
+    "output": "dist/xhs"
+  },
+  {
+    "slug": "cloudharbor-chart",
+    "title": "云港航图",
+    "levels": 60,
+    "description": "连接全网",
+    "build": [
+      "npm",
+      "run",
+      "build"
+    ],
+    "test": [
+      "npm",
+      "test"
+    ],
+    "output": "dist/xhs"
+  },
+  {
+    "slug": "scarlet-knot-atlas",
+    "title": "红线绮梦馆",
+    "levels": 48,
+    "description": "挪点解线",
+    "build": [
+      "npm",
+      "run",
+      "build"
+    ],
+    "test": [
+      "npm",
+      "test"
+    ],
+    "output": "dist/xhs"
+  },
+  {
+    "slug": "porcelain-flow-atelier",
+    "title": "瓷流工坊",
+    "levels": 60,
+    "description": "选择斜片方向，满足交点计数并避免闭环",
+    "build": [
+      "npm",
+      "run",
+      "build"
+    ],
+    "test": [
+      "npm",
+      "test"
+    ],
+    "output": "dist/xhs"
+  },
+  {
+    "slug": "tessera-mural-studio",
+    "title": "彩砾壁画馆",
+    "levels": 60,
+    "description": "填彩片与底片，让含自身的九宫计数吻合",
+    "build": [
+      "npm",
+      "run",
+      "build"
+    ],
+    "test": [
+      "npm",
+      "test"
+    ],
+    "output": "dist/xhs"
+  },
+  {
+    "slug": "sunlit-courtyard-survey",
+    "title": "光庭测绘",
+    "levels": 48,
+    "description": "放置遮屏校准四向视距并保留连通白地",
+    "build": [
+      "npm",
+      "run",
+      "build"
+    ],
+    "test": [
+      "npm",
+      "test"
+    ],
+    "output": "dist/xhs"
+  },
+  {
+    "slug": "honeyfield-boundaries",
+    "title": "蜜田巡界",
+    "levels": 60,
+    "description": "划边分区",
+    "build": [
+      "npm",
+      "run",
+      "build"
+    ],
+    "test": [
+      "npm",
+      "test"
+    ],
+    "output": "dist/xhs"
+  },
+  {
+    "slug": "cinnabar-terraces",
+    "title": "朱陶阶庭",
+    "levels": 60,
+    "description": "大小关系填数",
+    "build": [
+      "npm",
+      "run",
+      "build"
+    ],
+    "test": [
+      "npm",
+      "test"
+    ],
+    "output": "dist/xhs"
+  },
+  {
+    "slug": "silk-loop-studio",
+    "title": "彩绸回环",
+    "levels": 48,
+    "description": "环移归序",
+    "build": [
+      "npm",
+      "run",
+      "build"
+    ],
+    "test": [
+      "npm",
+      "test"
+    ],
+    "output": "dist/xhs"
   }
 ]

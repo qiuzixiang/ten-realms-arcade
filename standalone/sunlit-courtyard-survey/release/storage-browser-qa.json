@@ -1,0 +1,18 @@
+{
+  "passed": true,
+  "environment": "desktop Chromium + documented native API mocks, not platform",
+  "reports": [
+    {
+      "scenario": "native-9.46 quota fail: no host before durable save; retry same completion id; XP10",
+      "passed": true
+    },
+    {
+      "scenario": "native read failure visible; existing key never overwritten until successful retry",
+      "passed": true
+    },
+    {
+      "scenario": "long hold then immediate different cell, Shift+Space reverse, modal Tab/Escape and progress preservation",
+      "passed": true
+    }
+  ]
+}

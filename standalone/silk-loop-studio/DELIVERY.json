@@ -1,0 +1,405 @@
+{
+  "slug": "silk-loop-studio",
+  "title": "彩绸回环",
+  "version": "1.0.0",
+  "date": "2026-10-02",
+  "status": "LOCAL_VERIFIED_CANDIDATE",
+  "localAcceptancePassed": true,
+  "platformReady": false,
+  "source": {
+    "original": "v4/games/orbit-atlas",
+    "originalCommit": "55cdddb75cf57c17baee80bac4121bd3be1687c6",
+    "originalLogicSha256": "9a4503ea1e64d8015bc575bdc793c23b29b911ca8ebfbb9d8c8d831c299a681e",
+    "rule": "Sixteen",
+    "license": "MIT",
+    "implementationCommit": "28ad11f",
+    "workspace": "[local-source]",
+    "sourceDirectory": "[local-source]",
+    "branch": "codex/silk-loop-studio",
+    "boundary": "Only standalone/silk-loop-studio files retained; shared registry/source unchanged. Generated root-test changes outside this game were restored/cleaned."
+  },
+  "levels": {
+    "target": 48,
+    "verified": 48,
+    "chapters": 6,
+    "perChapter": 8,
+    "proof": "Independent per-number coordinate replay",
+    "deduplication": "Goal-preserving D4 and torus translations",
+    "optimalClaim": false,
+    "uniqueActionSequenceClaim": false,
+    "generator": "silk-structure-1"
+  },
+  "features": {
+    "preciseTwoStageInput": true,
+    "keyboardAxisLock": true,
+    "undoRedoRestart": true,
+    "hintFromCurrentState": true,
+    "threeTrueTutorialFrames": true,
+    "pausableStrategyReplay": true,
+    "privateSave": true,
+    "replayVerifiedReceipts": true,
+    "readFailureProtectsUnknownSave": true,
+    "persistBeforeHost": true,
+    "stableRewardIds": true,
+    "chapterCloths": 6,
+    "strategyCards": 12
+  },
+  "commands": [
+    {
+      "command": "node scripts/assets.cjs",
+      "exitCode": 0,
+      "result": "Original vector scene/icon"
+    },
+    {
+      "command": "node scripts/generate.cjs",
+      "exitCode": 0,
+      "result": "48 oracle-verified symmetry-distinct levels"
+    },
+    {
+      "command": "node --test tests/*.test.cjs",
+      "exitCode": 0,
+      "result": "14/14 tests passed"
+    },
+    {
+      "command": "node scripts/build.cjs",
+      "exitCode": 0,
+      "result": "Deterministic classic candidate built"
+    },
+    {
+      "command": "node scripts/audit.cjs",
+      "exitCode": 0,
+      "result": "11 files, local references/capabilities/syntax/CRC pass"
+    },
+    {
+      "command": "python3 platform/audit_artifact.py dist/xhs",
+      "exitCode": 0,
+      "result": "11 files, zero warning"
+    },
+    {
+      "command": "python3 platform/audit_artifact.py dist/silk-loop-studio-xhs.zip",
+      "exitCode": 0,
+      "result": "11 files, zero warning"
+    },
+    {
+      "command": "node scripts/contrast.cjs",
+      "exitCode": 0,
+      "result": "Text and controls meet contrast thresholds"
+    },
+    {
+      "command": "node scripts/browser.cjs",
+      "exitCode": 0,
+      "result": "46 viewport captures; zero errors/external requests"
+    },
+    {
+      "command": "node scripts/campaign-browser.cjs",
+      "exitCode": 0,
+      "result": "48/48 actual keyboard paths; 48 idempotent host claims; 6 cloths/12 cards"
+    },
+    {
+      "command": "node scripts/promotional.cjs",
+      "exitCode": 0,
+      "result": "1080x1440 cover and 512x512 icon"
+    },
+    {
+      "command": "node scripts/clean-check.cjs",
+      "exitCode": 0,
+      "result": "Clean git archive: artwork/levels/ZIP byte-identical"
+    },
+    {
+      "command": "xmllint --noout --nonet assets/*.svg",
+      "exitCode": 0,
+      "result": "Original SVG XML valid"
+    },
+    {
+      "command": "npm test (isolated repository root)",
+      "exitCode": 0,
+      "result": "Original fixed source baseline suite exit0; this game covered separately"
+    },
+    {
+      "command": "git diff --check",
+      "exitCode": 0,
+      "result": "Whitespace check exit0"
+    }
+  ],
+  "checks": {
+    "rule": "passed",
+    "saveReward": "passed",
+    "package": "local static passed",
+    "browser": "ordinary Chromium simulation passed",
+    "campaign": "48 actual UI completions passed",
+    "cleanReproduction": "passed",
+    "viewports": [
+      {
+        "width": 320,
+        "height": 720,
+        "boardWidth": 288,
+        "numberFont": "26px",
+        "inputSizes": [
+          {
+            "width": 147,
+            "height": 48
+          },
+          {
+            "width": 147,
+            "height": 48
+          },
+          {
+            "width": 68,
+            "height": 48
+          },
+          {
+            "width": 68,
+            "height": 48
+          },
+          {
+            "width": 68,
+            "height": 48
+          },
+          {
+            "width": 68,
+            "height": 48
+          },
+          {
+            "width": 144,
+            "height": 52
+          },
+          {
+            "width": 144,
+            "height": 52
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "height": 844,
+        "boardWidth": 348,
+        "numberFont": "28px",
+        "inputSizes": [
+          {
+            "width": 176,
+            "height": 48
+          },
+          {
+            "width": 176,
+            "height": 48
+          },
+          {
+            "width": 82.5,
+            "height": 48
+          },
+          {
+            "width": 82.5,
+            "height": 48
+          },
+          {
+            "width": 82.5,
+            "height": 48
+          },
+          {
+            "width": 82.5,
+            "height": 48
+          },
+          {
+            "width": 173,
+            "height": 52
+          },
+          {
+            "width": 173,
+            "height": 52
+          }
+        ]
+      },
+      {
+        "width": 1280,
+        "height": 720,
+        "boardWidth": 434,
+        "numberFont": "32px",
+        "inputSizes": [
+          {
+            "width": 219,
+            "height": 48
+          },
+          {
+            "width": 219,
+            "height": 48
+          },
+          {
+            "width": 104,
+            "height": 48
+          },
+          {
+            "width": 104,
+            "height": 48
+          },
+          {
+            "width": 104,
+            "height": 48
+          },
+          {
+            "width": 104,
+            "height": 48
+          },
+          {
+            "width": 216,
+            "height": 52
+          },
+          {
+            "width": 216,
+            "height": 52
+          }
+        ]
+      }
+    ],
+    "screenshotCapture": "Fixed actual viewport, GPU screenshot path disabled, settled DOM; not stitched or conceptual gameplay",
+    "externalRequests": 0,
+    "pageErrors": 0
+  },
+  "artifacts": [
+    {
+      "path": "[local-source]",
+      "bytes": 26477,
+      "sha256": "10c941e9b991ad574b75ced601f81a2e7e0820abde61fcde65a6161c64593bc9",
+      "kind": "local offline candidate"
+    },
+    {
+      "path": "[local-source]",
+      "bytes": 1346,
+      "sha256": "219bad8742dc4a631cffceec72e7ba042c8b6b9545b67da54dcfeaa0a96b63cb",
+      "kind": "source or local draft"
+    },
+    {
+      "path": "[local-source]",
+      "bytes": 561692,
+      "sha256": "42930d47f2ce582a84ff4045d6d7ed5c6d05e119f4eb31c052f849b3047396be",
+      "kind": "original theme illustration"
+    },
+    {
+      "path": "[local-source]",
+      "bytes": 71032,
+      "sha256": "51e15c6f9d70858b5629ab3aa8362136345db746b86fc3d222944c5d1ef8fac0",
+      "kind": "real browser viewport screenshot or original SVG icon render"
+    },
+    {
+      "path": "[local-source]",
+      "bytes": 92259,
+      "sha256": "ba17f5e84f6cbb5222e4a9ee5eab1dd02cb36204ad9e1c34fa12bc520694fcf8",
+      "kind": "real browser viewport screenshot or original SVG icon render"
+    },
+    {
+      "path": "[local-source]",
+      "bytes": 123612,
+      "sha256": "e0dfb8d7d8abe1bff3ec89abb2e8fb7762431b7e35fb3c7809310b239f382cbb",
+      "kind": "real browser viewport screenshot or original SVG icon render"
+    },
+    {
+      "path": "[local-source]",
+      "bytes": 217755,
+      "sha256": "954cb3052e51482230f2bda63def3da8dfa749bbc24449b091b2e84c8b967761",
+      "kind": "real browser viewport screenshot or original SVG icon render"
+    },
+    {
+      "path": "[local-source]",
+      "bytes": 129623,
+      "sha256": "c717f7d18c5450578310d52759ee09c0606ac185eddb206cd94e701fd78d1922",
+      "kind": "real browser viewport screenshot or original SVG icon render"
+    },
+    {
+      "path": "[local-source]",
+      "bytes": 128949,
+      "sha256": "f1f91a9bdee8a3537f79f1065b700a89423f3623165506cc5eff6bf22063c1d1",
+      "kind": "real browser viewport screenshot or original SVG icon render"
+    },
+    {
+      "path": "[local-source]",
+      "bytes": 127813,
+      "sha256": "69123ebbb4b1d1c85182ef03c7b86c860168e6099cc2f2a25bf5060dc893aaa5",
+      "kind": "real browser viewport screenshot or original SVG icon render"
+    },
+    {
+      "path": "[local-source]",
+      "bytes": 123048,
+      "sha256": "74f869f2c6ab14740ed69d3dc3cf8c63c6c3b97af05f63c3ced68df2e57c1b59",
+      "kind": "real browser viewport screenshot or original SVG icon render"
+    },
+    {
+      "path": "[local-source]",
+      "bytes": 78174,
+      "sha256": "7baa3477dcb3b099526a9b45a0f3b4c980ba3106bccdd6eded9f44ba82356d5b",
+      "kind": "real browser viewport screenshot or original SVG icon render"
+    },
+    {
+      "path": "[local-source]",
+      "bytes": 1445,
+      "sha256": "72cfe7a20c1357ea77339e4d2ba021c874e39d40c07fe544d3f271c67a5e403d",
+      "kind": "source or local draft"
+    }
+  ],
+  "evidence": [
+    "[local-source]",
+    "[local-source]",
+    "[local-source]",
+    "[local-source]",
+    "[local-source]",
+    "[local-source]",
+    "[local-source]",
+    "[local-source]",
+    "[local-source]",
+    "[local-source]"
+  ],
+  "limits": [
+    "Current online minitool specification not verified; cached1.7.0 and2026-09-23 API reference used",
+    "Official simulator and Android/iOS real-device browser/container not tested",
+    "Chrome61 actual WebView parsing/layout/performance not tested; static ES2017/CSS baseline audit only",
+    "Native Storage tested with mocks, not official container",
+    "No real player difficulty calibration, optimal/unique-sequence proof or retention measurement",
+    "History safety cap4096; over900000-character save rejected with explicit warning",
+    "Token snapshot excludes later calls and final response"
+  ],
+  "publication": {
+    "github": "not_pushed",
+    "xhsTool": "not_uploaded_or_submitted",
+    "xhsNote": "local_draft_only",
+    "automations": "none_created",
+    "otherChatMessages": "none_sent"
+  },
+  "usage": {
+    "report": "[local-source]",
+    "status": "EXACT_LOCAL_SNAPSHOT",
+    "precise": true,
+    "threadSnapshot": {
+      "input_tokens": 6657121,
+      "cached_input_tokens": 6436480,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 65549,
+      "reasoning_output_tokens": 18675,
+      "total_tokens": 6722670,
+      "textInputPlusOutput": 6722670,
+      "noncachedInputPlusOutput": 286190
+    },
+    "developmentTurn": {
+      "turnId": "01a0f9b3-bf90-7bd1-b565-75c97a4a1690",
+      "recordedAt": "2026-10-01T23:43:26.680Z",
+      "usage": {
+        "input_tokens": 6631613,
+        "cached_input_tokens": 6412672,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 65517,
+        "reasoning_output_tokens": 18675,
+        "total_tokens": 6697130,
+        "textInputPlusOutput": 6697130,
+        "noncachedInputPlusOutput": 284458
+      }
+    },
+    "exclusions": [
+      "Calls and final response after this snapshot",
+      "Coordinator and unrelated chats",
+      "Unreported image/audio usage; no image-generation calls were used"
+    ],
+    "accountWindow": "[local-source]",
+    "accountPercentageUsedForTokens": false
+  },
+  "recovery": {
+    "entry": "[local-source]",
+    "nextAuthorizedStep": "Platform simulator and Android/iOS validation only after account issue is resolved and explicit publication authorization. Local gameplay is complete."
+  }
+}

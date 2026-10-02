@@ -1,0 +1,13 @@
+import {readFileSync,writeFileSync,mkdirSync,rmSync,copyFileSync,cpSync} from 'node:fs';
+import {fileURLToPath} from 'node:url';
+import {resolve} from 'node:path';
+import {execFileSync} from 'node:child_process';
+import vm from 'node:vm';
+const base=fileURLToPath(new URL('..',import.meta.url)),dist=resolve(base,'dist'),out=resolve(dist,'xhs');
+mkdirSync(dist,{recursive:true});rmSync(out,{recursive:true,force:true});mkdirSync(out);
+const files=['logic.mjs','levels.mjs','session.mjs','render.mjs','app.mjs'];
+const bundle='(function(){\n"use strict";\n'+files.map(f=>readFileSync(resolve(base,f),'utf8').replace(/^import[^\n]*\n/gm,'').replace(/^export /gm,'')).join('\n')+'\n})();\n';
+new vm.Script(bundle);writeFileSync(resolve(out,'app.js'),bundle);copyFileSync(resolve(base,'index.html'),resolve(out,'index.html'));copyFileSync(resolve(base,'styles.css'),resolve(out,'styles.css'));cpSync(resolve(base,'assets'),resolve(out,'assets'),{recursive:true});
+writeFileSync(resolve(out,'licenses.json'),JSON.stringify({license:'MIT',copyright:'2026 Ten Realms Arcade contributors',rule:'Slant / Gokigen Naname; Simon Tatham and contributors; ebnbin/puzzles',notice:readFileSync(resolve(base,'THIRD_PARTY_NOTICES.md'),'utf8'),licenseText:readFileSync(resolve(base,'LICENSE'),'utf8')},null,2));
+const zip=resolve(dist,'porcelain-flow-atelier-xhs.zip');rmSync(zip,{force:true});execFileSync('zip',['-q','-r','-X',zip,'.'],{cwd:out});
+console.log('Built classic ES2017 bundle: '+out);console.log('Candidate ZIP: '+zip);

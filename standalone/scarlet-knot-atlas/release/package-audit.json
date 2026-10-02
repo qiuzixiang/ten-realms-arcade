@@ -1,0 +1,143 @@
+{
+  "date": "2026-10-01T14:08:58.783Z",
+  "status": "local_static_candidate_passed_not_platform_ready",
+  "officialSpec": "1.7.0 archived manifest; latest online document unavailable",
+  "officialScriptSHA256": "62ff11eae1d5bb566a6f74b0fa102fe2eb3ffe982b87596aca2f93485cc9de21",
+  "officialResults": [
+    {
+      "target": "directory",
+      "stdout": "PASS: 9 file(s), 0 warning(s)",
+      "exitCode": 0
+    },
+    {
+      "target": "zip",
+      "stdout": "PASS: 9 file(s), 0 warning(s)",
+      "exitCode": 0
+    }
+  ],
+  "files": [
+    {
+      "path": "app.js",
+      "bytes": 109671,
+      "sha256": "0c450c81d98129c35e984125be2de77e0a6482357f8ff66a608938b55353d01b"
+    },
+    {
+      "path": "assets/hall.webp",
+      "bytes": 81434,
+      "sha256": "1e8952615b195f9ed73b1ec72cd456c73ac47a4f8fa4208a31b25ff811077629"
+    },
+    {
+      "path": "assets/icon.svg",
+      "bytes": 585,
+      "sha256": "ccc0abe23f2b1c348b3c59632c38a75abcd56547ee5bea577a1ddbdf155d7eae"
+    },
+    {
+      "path": "assets/licenses.json",
+      "bytes": 2080,
+      "sha256": "81634dfbb22c302ab6e5dc3cef532b2d41faf54ed368578278942a7975561dab"
+    },
+    {
+      "path": "assets/tutorial-complete.svg",
+      "bytes": 2602,
+      "sha256": "7755c6b1552130d03e564a2f46d808bd639acd6c5912c3927a9133c00e6a7056"
+    },
+    {
+      "path": "assets/tutorial-initial.svg",
+      "bytes": 2855,
+      "sha256": "5d14e4436ba729f553184f5e2b5e45340b365fc10390296b6167d494c6cff4f8"
+    },
+    {
+      "path": "assets/tutorial-one.svg",
+      "bytes": 3188,
+      "sha256": "614016fa7b0c45e6404a12504d024c903461136628e06f04033069ccd4500972"
+    },
+    {
+      "path": "index.html",
+      "bytes": 1298,
+      "sha256": "6b210153bafcd98eef656f0736d787782e0449df66e7c0bcb5a3b75c4f85cf3e"
+    },
+    {
+      "path": "styles.css",
+      "bytes": 11388,
+      "sha256": "26f33b4f9046781fcb5caf0a277974881355b13ac1ec7281bd35be4ee3856175"
+    }
+  ],
+  "zip": {
+    "CRC": "passed",
+    "rootEntry": "index.html",
+    "files": [
+      "index.html",
+      "styles.css",
+      "app.js",
+      "assets/hall.webp",
+      "assets/icon.svg",
+      "assets/tutorial-initial.svg",
+      "assets/tutorial-one.svg",
+      "assets/tutorial-complete.svg",
+      "assets/licenses.json"
+    ],
+    "bytes": 111008,
+    "uncompressedBytes": 215101,
+    "sha256": "17d883a6e16ce0cec34a826c9611822aee823f095b3ada16f2983fdf38a6465a"
+  },
+  "syntax": "Node parse and explicit ES2017/newer API static gate; not Chrome61 execution",
+  "XML": {
+    "SVG_XML": "passed",
+    "tutorialStates": 3,
+    "crossingCounts": [
+      1,
+      1,
+      0
+    ]
+  },
+  "contrast": [
+    {
+      "role": "text",
+      "fg": "#241b20",
+      "bg": "#f6ebd9",
+      "ratio": 14.21,
+      "target": 4.5
+    },
+    {
+      "role": "muted",
+      "fg": "#655452",
+      "bg": "#fff9ef",
+      "ratio": 6.81,
+      "target": 4.5
+    },
+    {
+      "role": "line",
+      "fg": "#9f3040",
+      "bg": "#f6ebd9",
+      "ratio": 5.99,
+      "target": 3
+    },
+    {
+      "role": "button",
+      "fg": "#ffffff",
+      "bg": "#9f3040",
+      "ratio": 7.07,
+      "target": 4.5
+    },
+    {
+      "role": "seal-border",
+      "fg": "#815c29",
+      "bg": "#fff9ec",
+      "ratio": 5.72,
+      "target": 3
+    },
+    {
+      "role": "selection",
+      "fg": "#2e6e66",
+      "bg": "#f6ebd9",
+      "ratio": 5.03,
+      "target": 3
+    }
+  ],
+  "limitations": [
+    "latest online rules unavailable",
+    "official container not tested",
+    "Chrome61 engine not tested",
+    "physical iOS/Android not tested"
+  ]
+}

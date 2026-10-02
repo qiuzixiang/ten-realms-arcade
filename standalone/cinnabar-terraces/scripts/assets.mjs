@@ -1,0 +1,8 @@
+import fs from 'node:fs';import {createRequire} from 'node:module';const require=createRequire(import.meta.url),E=require('../engine.js'),V=require('../view.js'),L=require('../levels.js');
+const icon='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><rect width="512" height="512" rx="100" fill="#F7E6D7"/><path d="M70 343L215 263L355 340L211 422Z" fill="#AD5F48"/><path d="M70 298L215 218L355 295L211 378Z" fill="#C96B48"/><path d="M211 378v44l144-82v-45Z" fill="#9D4D3D"/><path d="M229 186L330 130L439 190L338 248Z" fill="#DEA482"/><path d="M229 186v80l109 60v-78Z" fill="#C96B48"/><path d="M338 248v78l101-56v-80Z" fill="#AD5F48"/><path d="M115 187l45-20-45-20" fill="none" stroke="#793C3A" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+fs.writeFileSync('assets/icon.svg',icon);
+const metadata=[];
+for(const n of [4,5,6]){const l=L.levels.find(x=>x.n===n),initial=E.blank(n),hint=E.nextHint(l,initial.values),action=E.apply(initial,n,hint.cell,hint.value,'fill'),solved=E.blank(n);solved.values=l.solution.slice();if(!E.evaluate(l,solved.values).complete)throw Error('Tutorial invalid');
+const states=[initial,action,solved];['initial','action','complete'].forEach((stage,i)=>{fs.writeFileSync('assets/tutorial-'+n+'-'+stage+'.svg',V.svg(l,states[i],stage,i===1?hint.cell:-1));});metadata.push({n,levelId:l.id,seed:l.seed,checksum:l.checksum,action:{cell:hint.cell,value:hint.value},states:states.map(s=>s.values)});}
+fs.writeFileSync('release/tutorial-metadata.json',JSON.stringify(metadata,null,2));fs.writeFileSync('assets/courtyard.svg',V.courtyard([1,2,3,4,3,4,1,2,2,1,4,3,4,3,2,1],4));
+console.log('Original icon, courtyard, nine engine-generated tutorial SVGs written.');

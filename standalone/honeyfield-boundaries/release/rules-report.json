@@ -1,0 +1,380 @@
+{
+  "assertions": 5706,
+  "completeTilings4x4": 117,
+  "levels": [
+    {
+      "id": "hf-01",
+      "nodes": 5,
+      "unique": true,
+      "logicSteps": 24
+    },
+    {
+      "id": "hf-02",
+      "nodes": 5,
+      "unique": true,
+      "logicSteps": 23
+    },
+    {
+      "id": "hf-03",
+      "nodes": 5,
+      "unique": true,
+      "logicSteps": 23
+    },
+    {
+      "id": "hf-04",
+      "nodes": 5,
+      "unique": true,
+      "logicSteps": 23
+    },
+    {
+      "id": "hf-05",
+      "nodes": 5,
+      "unique": true,
+      "logicSteps": 24
+    },
+    {
+      "id": "hf-06",
+      "nodes": 5,
+      "unique": true,
+      "logicSteps": 23
+    },
+    {
+      "id": "hf-07",
+      "nodes": 5,
+      "unique": true,
+      "logicSteps": 24
+    },
+    {
+      "id": "hf-08",
+      "nodes": 5,
+      "unique": true,
+      "logicSteps": 24
+    },
+    {
+      "id": "hf-09",
+      "nodes": 5,
+      "unique": true,
+      "logicSteps": 24
+    },
+    {
+      "id": "hf-10",
+      "nodes": 5,
+      "unique": true,
+      "logicSteps": 23
+    },
+    {
+      "id": "hf-11",
+      "nodes": 5,
+      "unique": true,
+      "logicSteps": 23
+    },
+    {
+      "id": "hf-12",
+      "nodes": 5,
+      "unique": true,
+      "logicSteps": 24
+    },
+    {
+      "id": "hf-13",
+      "nodes": 5,
+      "unique": true,
+      "logicSteps": 22
+    },
+    {
+      "id": "hf-14",
+      "nodes": 5,
+      "unique": true,
+      "logicSteps": 23
+    },
+    {
+      "id": "hf-15",
+      "nodes": 7,
+      "unique": true,
+      "logicSteps": 23
+    },
+    {
+      "id": "hf-16",
+      "nodes": 5,
+      "unique": true,
+      "logicSteps": 23
+    },
+    {
+      "id": "hf-17",
+      "nodes": 5,
+      "unique": true,
+      "logicSteps": 24
+    },
+    {
+      "id": "hf-18",
+      "nodes": 5,
+      "unique": true,
+      "logicSteps": 22
+    },
+    {
+      "id": "hf-19",
+      "nodes": 5,
+      "unique": true,
+      "logicSteps": 23
+    },
+    {
+      "id": "hf-20",
+      "nodes": 7,
+      "unique": true,
+      "logicSteps": 23
+    },
+    {
+      "id": "hf-21",
+      "nodes": 6,
+      "unique": true,
+      "logicSteps": 22
+    },
+    {
+      "id": "hf-22",
+      "nodes": 6,
+      "unique": true,
+      "logicSteps": 22
+    },
+    {
+      "id": "hf-23",
+      "nodes": 6,
+      "unique": true,
+      "logicSteps": 23
+    },
+    {
+      "id": "hf-24",
+      "nodes": 7,
+      "unique": true,
+      "logicSteps": 22
+    },
+    {
+      "id": "hf-25",
+      "nodes": 6,
+      "unique": true,
+      "logicSteps": 23
+    },
+    {
+      "id": "hf-26",
+      "nodes": 10,
+      "unique": true,
+      "logicSteps": 22
+    },
+    {
+      "id": "hf-27",
+      "nodes": 5,
+      "unique": true,
+      "logicSteps": 24
+    },
+    {
+      "id": "hf-28",
+      "nodes": 7,
+      "unique": true,
+      "logicSteps": 22
+    },
+    {
+      "id": "hf-29",
+      "nodes": 5,
+      "unique": true,
+      "logicSteps": 23
+    },
+    {
+      "id": "hf-30",
+      "nodes": 8,
+      "unique": true,
+      "logicSteps": 22
+    },
+    {
+      "id": "hf-31",
+      "nodes": 6,
+      "unique": true,
+      "logicSteps": 39
+    },
+    {
+      "id": "hf-32",
+      "nodes": 6,
+      "unique": true,
+      "logicSteps": 40
+    },
+    {
+      "id": "hf-33",
+      "nodes": 9,
+      "unique": true,
+      "logicSteps": 40
+    },
+    {
+      "id": "hf-34",
+      "nodes": 6,
+      "unique": true,
+      "logicSteps": 39
+    },
+    {
+      "id": "hf-35",
+      "nodes": 6,
+      "unique": true,
+      "logicSteps": 39
+    },
+    {
+      "id": "hf-36",
+      "nodes": 6,
+      "unique": true,
+      "logicSteps": 40
+    },
+    {
+      "id": "hf-37",
+      "nodes": 6,
+      "unique": true,
+      "logicSteps": 40
+    },
+    {
+      "id": "hf-38",
+      "nodes": 6,
+      "unique": true,
+      "logicSteps": 38
+    },
+    {
+      "id": "hf-39",
+      "nodes": 10,
+      "unique": true,
+      "logicSteps": 39
+    },
+    {
+      "id": "hf-40",
+      "nodes": 6,
+      "unique": true,
+      "logicSteps": 39
+    },
+    {
+      "id": "hf-41",
+      "nodes": 9,
+      "unique": true,
+      "logicSteps": 60
+    },
+    {
+      "id": "hf-42",
+      "nodes": 7,
+      "unique": true,
+      "logicSteps": 60
+    },
+    {
+      "id": "hf-43",
+      "nodes": 14,
+      "unique": true,
+      "logicSteps": 59
+    },
+    {
+      "id": "hf-44",
+      "nodes": 7,
+      "unique": true,
+      "logicSteps": 59
+    },
+    {
+      "id": "hf-45",
+      "nodes": 17,
+      "unique": true,
+      "logicSteps": 59
+    },
+    {
+      "id": "hf-46",
+      "nodes": 7,
+      "unique": true,
+      "logicSteps": 59
+    },
+    {
+      "id": "hf-47",
+      "nodes": 8,
+      "unique": true,
+      "logicSteps": 60
+    },
+    {
+      "id": "hf-48",
+      "nodes": 9,
+      "unique": true,
+      "logicSteps": 59
+    },
+    {
+      "id": "hf-49",
+      "nodes": 9,
+      "unique": true,
+      "logicSteps": 59
+    },
+    {
+      "id": "hf-50",
+      "nodes": 12,
+      "unique": true,
+      "logicSteps": 60
+    },
+    {
+      "id": "hf-51",
+      "nodes": 7,
+      "unique": true,
+      "logicSteps": 58
+    },
+    {
+      "id": "hf-52",
+      "nodes": 7,
+      "unique": true,
+      "logicSteps": 59
+    },
+    {
+      "id": "hf-53",
+      "nodes": 17,
+      "unique": true,
+      "logicSteps": 60
+    },
+    {
+      "id": "hf-54",
+      "nodes": 23,
+      "unique": true,
+      "logicSteps": 58
+    },
+    {
+      "id": "hf-55",
+      "nodes": 13,
+      "unique": true,
+      "logicSteps": 57
+    },
+    {
+      "id": "hf-56",
+      "nodes": 7,
+      "unique": true,
+      "logicSteps": 60
+    },
+    {
+      "id": "hf-57",
+      "nodes": 8,
+      "unique": true,
+      "logicSteps": 59
+    },
+    {
+      "id": "hf-58",
+      "nodes": 19,
+      "unique": true,
+      "logicSteps": 60
+    },
+    {
+      "id": "hf-59",
+      "nodes": 9,
+      "unique": true,
+      "logicSteps": 58
+    },
+    {
+      "id": "hf-60",
+      "nodes": 9,
+      "unique": true,
+      "logicSteps": 59
+    }
+  ],
+  "checks": [
+    "outer count",
+    "null/zero",
+    "stray wall",
+    "local-only false positives",
+    "unknown/clear equivalence",
+    "history",
+    "corrupt state/ledger",
+    "practice",
+    "reward IDs",
+    "local and native storage",
+    "no-guess traces",
+    "tutorial exact renderer"
+  ]
+}

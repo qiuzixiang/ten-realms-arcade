@@ -1,0 +1,331 @@
+{
+  "slug": "cloudharbor-chart",
+  "title": "云港航图",
+  "version": "1.0.0",
+  "date": "2026-10-01",
+  "timezone": "Asia/Shanghai",
+  "status": "local_ready_platform_unverified",
+  "source": {
+    "rule": "Bridges / Hashi",
+    "path": "games/sky-bridges",
+    "plannedCommit": "55cdddb75cf57c17baee80bac4121bd3be1687c6",
+    "logicSha256": "e0a0195efd5a9ee2b114940e5cfbffd195002f0a187b1df4ccb3f7d64c36d643",
+    "license": "MIT"
+  },
+  "git": {
+    "base": "374d2eee951c8f6aa0bbc829e9cceaa127596b7c",
+    "branch": "codex/cloudharbor-chart",
+    "pushed": false
+  },
+  "workspace": {
+    "developmentRoot": "[local-source]",
+    "mirrorRoot": "[local-source]",
+    "changeScope": "standalone/cloudharbor-chart/ only",
+    "sharedFilesChanged": false
+  },
+  "targetLevelCount": 60,
+  "verifiedLevelCount": 60,
+  "proof": {
+    "method": "Independent pair visibility and integer domain exhaustive search excluding a second connected solution; each replay verified by runtime engine",
+    "independentOfEngine": true,
+    "independentOfStoredAnswer": true,
+    "exhaustive": true,
+    "dihedralUniqueCount": 60,
+    "representatives": [
+      "chart-01:5 ports and double",
+      "chart-31:12 exact ports can split into components; connected solution unique",
+      "chart-51:20 ports with cycle and crossing candidates"
+    ]
+  },
+  "chapters": [
+    {
+      "id": 1,
+      "name": "风起小港",
+      "count": 10
+    },
+    {
+      "id": 2,
+      "name": "云径相望",
+      "count": 10
+    },
+    {
+      "id": 3,
+      "name": "航线相让",
+      "count": 10
+    },
+    {
+      "id": 4,
+      "name": "群岛互达",
+      "count": 10
+    },
+    {
+      "id": 5,
+      "name": "双翼长航",
+      "count": 10
+    },
+    {
+      "id": 6,
+      "name": "整片天空",
+      "count": 10
+    }
+  ],
+  "checks": [
+    {
+      "command": "npm test",
+      "exitCode": 0,
+      "evidence": "release/tests.log"
+    },
+    {
+      "command": "node tools/prove.cjs",
+      "exitCode": 0,
+      "evidence": "release/proofs.log"
+    },
+    {
+      "command": "node tools/audit.cjs",
+      "exitCode": 0,
+      "evidence": "release/package-audit.log"
+    },
+    {
+      "command": "python3 [local-source] dist/xhs",
+      "exitCode": 0,
+      "evidence": "release/official-directory-audit.log"
+    },
+    {
+      "command": "python3 [local-source] dist/cloudharbor-chart-xhs.zip",
+      "exitCode": 0,
+      "evidence": "release/official-zip-audit.log"
+    },
+    {
+      "command": "node tools/browser-qa.cjs",
+      "exitCode": 0,
+      "evidence": "release/browser-qa.log"
+    },
+    {
+      "command": "node tools/boundary-qa.cjs",
+      "exitCode": 0,
+      "evidence": "release/boundary-qa.log"
+    },
+    {
+      "command": "clean git archive export: node --test, build, prove, audit",
+      "exitCode": 0,
+      "evidence": "release/clean-check.json"
+    }
+  ],
+  "build": {
+    "command": "npm run build",
+    "exitCode": 0,
+    "deterministicZip": true,
+    "rootIndex": true,
+    "classicScripts": true,
+    "files": 3,
+    "networkRequired": false
+  },
+  "platformSpecification": {
+    "packageManifestVersion": "1.7.0",
+    "skillYamlVersion": "1.6.0",
+    "originalMismatchPreserved": true,
+    "packageSha256": "8bd0f4fde976ec3e9784bebc9fd8d16270769c129b39098698fc58572716c305",
+    "onlineDoc": "DNS resolving timed out; curl exit 28 HTTP000 on 2026-10-01",
+    "fallbackApiSnapshotDate": "2026-09-23",
+    "latestComplianceClaim": false,
+    "nativeStorage": "9.46+ method/version detection preferred; mock verified; no real container test"
+  },
+  "stages": {
+    "development": "passed_local",
+    "rules": "passed_69_tests",
+    "levelProof": "60_exhaustive_unique",
+    "tutorial": "same_puzzle_true_states",
+    "package": "local_candidate_audited",
+    "browserSimulation": "7_viewports_modern_Chrome_passed",
+    "physicalDevices": "not_tested",
+    "officialContainer": "not_tested",
+    "integration": "not_requested",
+    "publication": "prohibited_this_round"
+  },
+  "artifacts": [
+    {
+      "relative": "dist/cloudharbor-chart-xhs.zip",
+      "path": "[local-source]",
+      "mirrorPath": "[local-source]",
+      "bytes": 21658,
+      "sha256": "7a73090e6649041956e135d36332119a722d19ad9df49ba7b07d952b25fd3888"
+    },
+    {
+      "relative": "dist/xhs/index.html",
+      "path": "[local-source]",
+      "mirrorPath": "[local-source]",
+      "bytes": 412,
+      "sha256": "818c47de127c7be7e5e4f420a0e0aefec26172af1c7657432f1789e4d52b6ca5"
+    },
+    {
+      "relative": "dist/xhs/app.js",
+      "path": "[local-source]",
+      "mirrorPath": "[local-source]",
+      "bytes": 66423,
+      "sha256": "c3d064fe2351a9d92b70884427a2b4c3bdaf3a8573aa8ab8a3eb5629dd6f5856"
+    },
+    {
+      "relative": "dist/xhs/styles.css",
+      "path": "[local-source]",
+      "mirrorPath": "[local-source]",
+      "bytes": 9072,
+      "sha256": "e2c3a07491df2d6d5976fdb59424d1084b3d073ea25e20d90d22e5b3522320ae"
+    },
+    {
+      "relative": "levels.js",
+      "path": "[local-source]",
+      "mirrorPath": "[local-source]",
+      "bytes": 32859,
+      "sha256": "6c32063ecf636e54475b37ab292cf60346beeabfcc8d6d5f23c17d50bc5135cd"
+    },
+    {
+      "relative": "release/level-proofs.json",
+      "path": "[local-source]",
+      "mirrorPath": "[local-source]",
+      "bytes": 12698,
+      "sha256": "86c4fcc6aa98cedd9bc9f2db07989d03b5c6a7d79fabdbc5925154c3979325f8"
+    },
+    {
+      "relative": "release/browser-qa.json",
+      "path": "[local-source]",
+      "mirrorPath": "[local-source]",
+      "bytes": 6960,
+      "sha256": "533323149f0137127040053308415900dd187eaa3a0f24e247c231ecaca790ea"
+    },
+    {
+      "relative": "release/boundary-qa.json",
+      "path": "[local-source]",
+      "mirrorPath": "[local-source]",
+      "bytes": 535,
+      "sha256": "9bf0d7059155c03f8f5ec06cf08951b6a675fd8e6c3628c54b0cd9a4373bb676"
+    },
+    {
+      "relative": "release/package-audit.json",
+      "path": "[local-source]",
+      "mirrorPath": "[local-source]",
+      "bytes": 489,
+      "sha256": "8676fb85642036eeaaac46b13b7e6709c04be9dd6f5981aa317f9f7542d8611e"
+    },
+    {
+      "relative": "release/reproducibility.json",
+      "path": "[local-source]",
+      "mirrorPath": "[local-source]",
+      "bytes": 239,
+      "sha256": "0b80fc5ce85572d8a6702046c09064ac38e4920d388909a53f7142828a29fd13"
+    },
+    {
+      "relative": "release/clean-check.json",
+      "path": "[local-source]",
+      "mirrorPath": "[local-source]",
+      "bytes": 2390,
+      "sha256": "473b3e71e6f061990899cc4294bf7a4226645b8001509fc3817276c4a7b90004"
+    },
+    {
+      "relative": "release/cover.png",
+      "path": "[local-source]",
+      "mirrorPath": "[local-source]",
+      "bytes": 119269,
+      "sha256": "9402eaf7c0e4d28844280ed7c3c60dddc841bd34c82775917f092d20c26ddb5f"
+    },
+    {
+      "relative": "release/icon.png",
+      "path": "[local-source]",
+      "mirrorPath": "[local-source]",
+      "bytes": 29596,
+      "sha256": "8b3cbaf8deb60be1293e10733de1fe3dfc43cf650e65cfa23a1d18103e7b9d7a"
+    },
+    {
+      "relative": "release/icon-64.png",
+      "path": "[local-source]",
+      "mirrorPath": "[local-source]",
+      "bytes": 3434,
+      "sha256": "1f7bea6555bf857d27af847dc935551fbd22326268c494ab58a7d7f0a901eb88"
+    },
+    {
+      "relative": "release/viewport-home-390.png",
+      "path": "[local-source]",
+      "mirrorPath": "[local-source]",
+      "bytes": 81225,
+      "sha256": "3c2a5fbe24cf49d97ee29752666b4da6d07758f2f6609699938ea21c701cc903"
+    },
+    {
+      "relative": "release/viewport-ports-320.png",
+      "path": "[local-source]",
+      "mirrorPath": "[local-source]",
+      "bytes": 54710,
+      "sha256": "6fa675459536ccfc99c37b5b4315a361dd86ed3318d3779cf083c96ac50413cb"
+    },
+    {
+      "relative": "release/disconnected-real-390.png",
+      "path": "[local-source]",
+      "mirrorPath": "[local-source]",
+      "bytes": 111240,
+      "sha256": "7ad48a5eeabef9a6699f68903341e4ee4d08a39556c54b8e4722b9bf12298418"
+    },
+    {
+      "relative": "release/tutorial-one-390.png",
+      "path": "[local-source]",
+      "mirrorPath": "[local-source]",
+      "bytes": 63788,
+      "sha256": "7998c11e6d3218f0ec3d560ac7d5a008d78d9c993123dfd93494e1f2a00d0ffa"
+    },
+    {
+      "relative": "release/tutorial-complete-390.png",
+      "path": "[local-source]",
+      "mirrorPath": "[local-source]",
+      "bytes": 64213,
+      "sha256": "d6d32e0c45fca3e1e9e3ba61aa1580adb234ddbe4230ec34fa7b658a2f6654bb"
+    },
+    {
+      "relative": "release/complete-390.png",
+      "path": "[local-source]",
+      "mirrorPath": "[local-source]",
+      "bytes": 120527,
+      "sha256": "8383cc66db7aae853f824e4e26d3a33041e97cb773189f0d08928c71c2a72eda"
+    },
+    {
+      "relative": "release/dense-complete-390.png",
+      "path": "[local-source]",
+      "mirrorPath": "[local-source]",
+      "bytes": 141131,
+      "sha256": "f1156c9467c0250e3485bb61ec5829887f006378aa071a9a0eb4de14b762a494"
+    },
+    {
+      "relative": "release/postcard-real-390.png",
+      "path": "[local-source]",
+      "mirrorPath": "[local-source]",
+      "bytes": 249302,
+      "sha256": "d044ff62e63825557594f529d31123965ff9c7584377e3f479af201c60559973"
+    }
+  ],
+  "limitations": [
+    "Entity iOS/Android devices and official mini-tool simulator/container not tested",
+    "Chrome61/Android8.1 parsing/layout not run; ES2017/CSS baseline statically reviewed",
+    "Current online spec could not be fetched, local manifest/SKILL version mismatch retained",
+    "No true device performance measurements or external player difficulty study",
+    "Shared registry/host integration not performed; native storage and host use mocks"
+  ],
+  "publication": {
+    "github": "not_pushed",
+    "xhsTool": "not_uploaded_not_submitted",
+    "xhsNote": "local_draft_only_not_created_on_platform",
+    "automation": "none_created",
+    "otherThreads": "no_messages_sent"
+  },
+  "usage": {
+    "taskTokens": {
+      "status": "unavailable",
+      "input": null,
+      "output": null,
+      "cachedInput": null,
+      "reason": "Official usage tool exposes account percentages only; precise task tokens cannot be obtained, not estimated"
+    },
+    "accountWindowSnapshot": {
+      "capturedAt": "2026-10-01T08:37:25.123Z",
+      "windowDurationMins": 300,
+      "usedPercent": 70,
+      "remainingPercent": 30,
+      "resetCreditsUsed": false
+    }
+  }
+}

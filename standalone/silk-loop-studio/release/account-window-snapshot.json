@@ -1,0 +1,9 @@
+{
+  "capturedAt": "2026-10-01 23:42:26 UTC",
+  "windowDurationMins": 300,
+  "usedPercent": 72,
+  "remainingPercent": 28,
+  "resetsAt": 1790907841,
+  "tokenEstimation": false,
+  "policy": "Continue only with readable 300-minute Codex window remaining >10%; no credits/reset coupons used"
+}

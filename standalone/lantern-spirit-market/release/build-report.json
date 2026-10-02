@@ -1,0 +1,18 @@
+{
+  "files": [
+    "index.html",
+    "styles.css",
+    "core.js",
+    "levels.js",
+    "storage.js",
+    "app.js",
+    "tutorial.js",
+    "adapter.js",
+    "icon.svg"
+  ],
+  "zip": "[local-source]",
+  "entry": "index.html",
+  "networkResources": 0,
+  "target": "ES2017 / Chrome61 baseline",
+  "containerVerified": false
+}

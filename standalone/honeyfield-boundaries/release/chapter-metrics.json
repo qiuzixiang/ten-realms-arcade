@@ -1,0 +1,80 @@
+[
+  {
+    "chapter": 1,
+    "clues": [
+      14,
+      16
+    ],
+    "strategies": {
+      "clue": 194,
+      "region-domain": 21,
+      "capacity": 18,
+      "connect": 2
+    }
+  },
+  {
+    "chapter": 2,
+    "clues": [
+      10,
+      13
+    ],
+    "strategies": {
+      "clue": 169,
+      "capacity": 18,
+      "region-domain": 39,
+      "connect": 4
+    }
+  },
+  {
+    "chapter": 3,
+    "clues": [
+      8,
+      10
+    ],
+    "strategies": {
+      "region-domain": 73,
+      "clue": 113,
+      "capacity": 36,
+      "connect": 3
+    }
+  },
+  {
+    "chapter": 4,
+    "clues": [
+      18,
+      22
+    ],
+    "strategies": {
+      "clue": 288,
+      "region-domain": 65,
+      "capacity": 36,
+      "connect": 4
+    }
+  },
+  {
+    "chapter": 5,
+    "clues": [
+      27,
+      31
+    ],
+    "strategies": {
+      "clue": 413,
+      "region-domain": 113,
+      "connect": 16,
+      "capacity": 52
+    }
+  },
+  {
+    "chapter": 6,
+    "clues": [
+      22,
+      26
+    ],
+    "strategies": {
+      "clue": 364,
+      "connect": 16,
+      "region-domain": 133,
+      "capacity": 75
+    }
+  }
+]

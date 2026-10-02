@@ -1,6 +1,6 @@
 # 独立游戏合集
 
-27 款成品游戏，保留各游戏源码、玩法说明、测试及许可信息。
+36 款成品游戏，保留各游戏源码、玩法说明、测试及许可信息。
 
 [在线游玩](https://qiuzixiang.github.io/ten-realms-arcade/standalone/)
 
@@ -39,3 +39,13 @@ npm run build
 - [珊瑚育海](./coral-tide-garden/)
 - [五子连珠](./color-linez/)
 - [滚滚小镇](./rolling-town/)
+
+- [灯灵夜归市](./lantern-spirit-market/)
+- [云港航图](./cloudharbor-chart/)
+- [红线绮梦馆](./scarlet-knot-atlas/)
+- [瓷流工坊](./porcelain-flow-atelier/)
+- [彩砾壁画馆](./tessera-mural-studio/)
+- [光庭测绘](./sunlit-courtyard-survey/)
+- [蜜田巡界](./honeyfield-boundaries/)
+- [朱陶阶庭](./cinnabar-terraces/)
+- [彩绸回环](./silk-loop-studio/)

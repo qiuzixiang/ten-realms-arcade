@@ -1,0 +1,371 @@
+{
+  "slug": "sunlit-courtyard-survey",
+  "title": "光庭测绘",
+  "version": "1.0.0",
+  "status": "LOCAL_VERIFIED_CANDIDATE",
+  "date": "2026-10-02",
+  "timezone": "Asia/Shanghai",
+  "targetLevelCount": 48,
+  "verifiedLevelCount": 48,
+  "chapters": [
+    {
+      "id": 1,
+      "name": "门庭读光",
+      "count": 8
+    },
+    {
+      "id": 2,
+      "name": "四臂分配",
+      "count": 8
+    },
+    {
+      "id": 3,
+      "name": "遮屏间距",
+      "count": 8
+    },
+    {
+      "id": 4,
+      "name": "一步之桥",
+      "count": 8
+    },
+    {
+      "id": 5,
+      "name": "交错长视",
+      "count": 8
+    },
+    {
+      "id": 6,
+      "name": "光庭竣图",
+      "count": 8
+    }
+  ],
+  "source": {
+    "workspace": "[local-source]",
+    "repository": "[local-source]",
+    "branch": "codex/sunlit-courtyard-survey",
+    "developmentBase": "374d2eee951c8f6aa0bbc829e9cceaa127596b7c",
+    "planningReferenceCommit": "55cdddb75cf57c17baee80bac4121bd3be1687c6",
+    "referencePath": "v3/games/eclipse-watch",
+    "referenceLogicSHA256": "2b9c0e88ca0fa832e5e55865451a933a2e209d9993be3d0137332ed9c9824118",
+    "rule": "Range / Kurodoko / Kuromasu",
+    "license": "MIT; LICENSE retained and license.json in candidate",
+    "ownership": "standalone/sunlit-courtyard-survey only; no shared registry edits"
+  },
+  "proof": {
+    "oracle": "row/column intervals + independent matrix BFS + black-pair checks; no core/solution dependency",
+    "unique": 48,
+    "secondSolutionSearch": "all exhausted; no node cutoff",
+    "geometricDeduplication": "D4 canonical black layouts",
+    "hintCertificates": "each inverse deduction proven unsatisfiable",
+    "report": "[local-source]"
+  },
+  "checks": [
+    {
+      "command": "node scripts/generate.mjs",
+      "exitCode": 0,
+      "result": "48 certified unique levels, 76 candidates"
+    },
+    {
+      "command": "node scripts/assets.mjs",
+      "exitCode": 0,
+      "result": "exact same-puzzle tutorial states"
+    },
+    {
+      "command": "node scripts/build.mjs",
+      "exitCode": 0,
+      "result": "classic local ES2017 source; node --check passed"
+    },
+    {
+      "command": "node --test tests/*.test.mjs",
+      "exitCode": 0,
+      "result": "19/19 passed"
+    },
+    {
+      "command": "python3 platform/audit_artifact.py dist/xhs",
+      "exitCode": 0,
+      "result": "9 files, 0 warnings"
+    },
+    {
+      "command": "python3 platform/audit_artifact.py dist/sunlit-courtyard-survey-candidate.zip",
+      "exitCode": 0,
+      "result": "9 files, 0 warnings; CRC/root/path audit separate"
+    },
+    {
+      "command": "node scripts/browser-qa.mjs",
+      "exitCode": 0,
+      "result": "viewport and real UI clicks under injected CSP",
+      "report": "[local-source]"
+    },
+    {
+      "command": "node scripts/storage-browser-qa.mjs",
+      "exitCode": 0,
+      "result": "native API mocks + read/write failure/retry + input/focus",
+      "report": "[local-source]"
+    },
+    {
+      "command": "node scripts/clean-check.mjs",
+      "exitCode": 0,
+      "result": "clean source copy generate/build/test/audits + 6 identical hashes",
+      "report": "[local-source]"
+    },
+    {
+      "command": "node scripts/release-assets.mjs",
+      "exitCode": 0,
+      "result": "native vector cover with real screenshot inset + 512 icon"
+    }
+  ],
+  "browser": {
+    "environment": "Playwright Chromium desktop + touch simulation; CSP injected; no official container or real device",
+    "version": "154.0.8037.94",
+    "viewports": [
+      "320x720",
+      "390x844",
+      "1280x720",
+      "369x720",
+      "370x720",
+      "760x720",
+      "761x720"
+    ],
+    "safeAreaSimulation": {
+      "top": 44,
+      "bottom": 34
+    },
+    "text200": "root32px/rem; document scroll; every tool hittable after scroll",
+    "externalRequests": 0,
+    "pageErrors": 0,
+    "sourceScriptSHA256": "8606f980d00985d4c2b5716205e35346e94036e20a4e16f0a79ebd9e5785eab4"
+  },
+  "review": {
+    "status": "PASSED_NO_OPEN_LOCAL_BLOCKERS",
+    "method": "skill-required independent read-only subagent; fixes documented in QA",
+    "report": "[local-source]"
+  },
+  "packaging": {
+    "status": "LOCAL_CANDIDATE_ONLY_NOT_PLATFORM_READY",
+    "spec": "minitool-zip-builder1.7.0 archived 2026-09-25",
+    "specArchiveSHA256": "8bd0f4fde976ec3e9784bebc9fd8d16270769c129b39098698fc58572716c305",
+    "internalMetadataNote": "manifest1.7.0; original SKILL YAML1.6.0 retained",
+    "apiSnapshotDate": "2026-09-23",
+    "onlineCheck": {
+      "attempts": 1,
+      "url": "https://miniapp-sandbox.xiaohongshu.com/minitool/doc",
+      "exitCode": 28,
+      "httpStatus": 0,
+      "bytes": 0,
+      "result": "DNS resolution timeout after20s; current online requirements unverified"
+    },
+    "nativeStorage": "capability + buildVersion>=9.46 priority; otherwise Web fallback; failures explicit",
+    "zip": "[local-source]"
+  },
+  "artifacts": [
+    {
+      "kind": "candidate_zip",
+      "path": "[local-source]",
+      "bytes": 36702,
+      "sha256": "990f28787e8079f4497a3b61ad8328ec8c7411b921ac4031a00e19defb2238ee"
+    },
+    {
+      "kind": "evidence_or_source",
+      "path": "[local-source]",
+      "bytes": 137220,
+      "sha256": "8606f980d00985d4c2b5716205e35346e94036e20a4e16f0a79ebd9e5785eab4"
+    },
+    {
+      "kind": "evidence_or_source",
+      "path": "[local-source]",
+      "bytes": 42166,
+      "sha256": "1c8aec4adec43e436f517b03205e5db3003ba2be9d0584b6ef9e23994a05b3ba"
+    },
+    {
+      "kind": "evidence_or_source",
+      "path": "[local-source]",
+      "bytes": 11382,
+      "sha256": "5a9995d024c4c512ea3efc66a5a77af37b395706952b8f308c22273ee23466d8"
+    },
+    {
+      "kind": "evidence_or_source",
+      "path": "[local-source]",
+      "bytes": 557,
+      "sha256": "66f1c6b7f841fc9828337717aa426428af8e4ffeb5857e0315a6a7d6d455e4a0"
+    },
+    {
+      "kind": "evidence_or_source",
+      "path": "[local-source]",
+      "bytes": 7286,
+      "sha256": "97cf7f2f1788cb2310bad42e0a251f32c18b163673bda81cd0174e4133ab6d87"
+    },
+    {
+      "kind": "evidence_or_source",
+      "path": "[local-source]",
+      "bytes": 1232,
+      "sha256": "03a7e086113d37139fe0bdbc8a5cf89122b8742f60647953827c113a9fae84dd"
+    },
+    {
+      "kind": "native_export_or_real_browser_screenshot",
+      "path": "[local-source]",
+      "bytes": 148639,
+      "sha256": "fd952fc6019965f43b7bfe560ac412e75b41dfa39e18deb4ce6114405e6efcfc"
+    },
+    {
+      "kind": "native_export_or_real_browser_screenshot",
+      "path": "[local-source]",
+      "bytes": 7506,
+      "sha256": "7cef0894d04d8aaaf6c2d0c77a26f7fe95553cdc4e8c20bf1db35c41fe8360b8"
+    },
+    {
+      "kind": "native_export_or_real_browser_screenshot",
+      "path": "[local-source]",
+      "bytes": 48832,
+      "sha256": "1fe3ae8cedb748b5090d19c75ac131dadfecfbc02e3c8b06c0f499e00b6174ac"
+    },
+    {
+      "kind": "native_export_or_real_browser_screenshot",
+      "path": "[local-source]",
+      "bytes": 39494,
+      "sha256": "d8cfee1204e2399b41c7074ac1d75cfcef34ba0630793152a7942f25ca71c1b2"
+    },
+    {
+      "kind": "native_export_or_real_browser_screenshot",
+      "path": "[local-source]",
+      "bytes": 74650,
+      "sha256": "98f38935d31843a595ca9d3b0d0f705bc71c2ad3b57161e0341dfc1402301f10"
+    },
+    {
+      "kind": "native_export_or_real_browser_screenshot",
+      "path": "[local-source]",
+      "bytes": 79229,
+      "sha256": "552fc0a74f51e75bbac774b6527e74d17db8aee6a89492f4791030b525128a43"
+    },
+    {
+      "kind": "native_export_or_real_browser_screenshot",
+      "path": "[local-source]",
+      "bytes": 70150,
+      "sha256": "52e5d37bf47ffed84f6d06844c019d6bdc1d58a15256d801fcbfabdafbd225b0"
+    },
+    {
+      "kind": "native_export_or_real_browser_screenshot",
+      "path": "[local-source]",
+      "bytes": 69010,
+      "sha256": "e313ec6582ffe88e2fcf2633e3836ea8db56ef1e4b66f4d47e472be394a5ba4a"
+    },
+    {
+      "kind": "native_export_or_real_browser_screenshot",
+      "path": "[local-source]",
+      "bytes": 100440,
+      "sha256": "b5b2e98c5b996bb98d77d8a86ab91945d951d4207af73bef497ef14d6b44d133"
+    },
+    {
+      "kind": "evidence_or_source",
+      "path": "[local-source]",
+      "bytes": 1509,
+      "sha256": "1947808d72c83b1989185247e7f9002ade98b9ae6390f40237eb80cd6a87cdd0"
+    },
+    {
+      "kind": "evidence_or_source",
+      "path": "[local-source]",
+      "bytes": 3909,
+      "sha256": "ee13f90f70b27fbc055a5c157f99800832bac8b308f13b1fb98745c5f1f82d19"
+    },
+    {
+      "kind": "evidence_or_source",
+      "path": "[local-source]",
+      "bytes": 7697,
+      "sha256": "534815774ddd9c248c09a35eddba7af04d3a6efb6a2ca8879265341a7b602392"
+    },
+    {
+      "kind": "evidence_or_source",
+      "path": "[local-source]",
+      "bytes": 2186,
+      "sha256": "8cbccfc7584c9d5f8ea2a0ebbde98c74d83b56d4837d03acdec8859ecf0b7816"
+    },
+    {
+      "kind": "evidence_or_source",
+      "path": "[local-source]",
+      "bytes": 2786,
+      "sha256": "aae129f40613dbf005bb6edcd11878738964b33de93d0e3c0faec75627e956fe"
+    },
+    {
+      "kind": "evidence_or_source",
+      "path": "[local-source]",
+      "bytes": 6191,
+      "sha256": "73f0bdee1db118f7dce9bfa7dd3ccf91926324659ff9c71c032bbfb178066b5a"
+    },
+    {
+      "kind": "evidence_or_source",
+      "path": "[local-source]",
+      "bytes": 1653,
+      "sha256": "ba9671d4cf47a233c402eeb22cd7ad283101273da59d3528532bf4451012983d"
+    },
+    {
+      "kind": "evidence_or_source",
+      "path": "[local-source]",
+      "bytes": 4386,
+      "sha256": "95dd6b4709155edbc2d06d6e810863dc460d5e5bb24495887c7fd8b4c551bdee"
+    },
+    {
+      "kind": "evidence_or_source",
+      "path": "[local-source]",
+      "bytes": 24437,
+      "sha256": "bf500aa8dd69f9521a6a45a6b03d66b18ff274c8cc6dc7b42b7940a2d719ad4e"
+    },
+    {
+      "kind": "evidence_or_source",
+      "path": "[local-source]",
+      "bytes": 97501,
+      "sha256": "7b164e1725f0a3b0227038c7487a5c38e3a0e03f5e8aaf6526d9f03e8c97ef84"
+    },
+    {
+      "kind": "evidence_or_source",
+      "path": "[local-source]",
+      "bytes": 1092,
+      "sha256": "d57dee12a2761c34fc5e536fdbdeb5d2eaecf53a8f37524b2ccf7cc5f6d83ca4"
+    }
+  ],
+  "publication": {
+    "github": "not_pushed",
+    "xhsTool": "PROHIBITED_NOT_UPLOADED_NOT_SUBMITTED",
+    "xhsNote": "PROHIBITED_NOT_CREATED_NOT_UPDATED_LOCAL_DRAFT_ONLY",
+    "automation": "not_created",
+    "otherChats": "not_messaged",
+    "integration": "not_registered_in_shared_collection"
+  },
+  "usage": {
+    "exactTaskTokens": null,
+    "status": "无法统计",
+    "reason": "formal tool exposes account percentage windows, not task token totals; no estimates or cost calculation",
+    "accountWindowMinutes": 300,
+    "observedUsedPercent": [
+      27,
+      28,
+      31,
+      37,
+      44,
+      47,
+      49,
+      53
+    ],
+    "lastObservedRemainingPercent": 47,
+    "notTaskAttributable": true,
+    "gating": "continued only while300min remaining>10%; no credits/reset coupon used"
+  },
+  "limitations": [
+    "iOS/Android physical devices not tested",
+    "official platform simulator/container not tested",
+    "current online specification not available",
+    "Chrome/WebView61 compatibility not physically tested",
+    "screen reader and actual mobile performance/memory not measured",
+    "no external player difficulty/retention study",
+    "no root collection integration or full-repo build (independent scope only)"
+  ],
+  "resume": {
+    "requiredLocalWork": [],
+    "futureAuthorizedPlatformWork": "only after user changes account prohibition and grants publication scope; verify same ZIP official simulator then Android and iOS and latest spec",
+    "commands": [
+      "node scripts/build.mjs",
+      "node --test tests/*.test.mjs",
+      "node scripts/browser-qa.mjs",
+      "node scripts/storage-browser-qa.mjs",
+      "node scripts/clean-check.mjs"
+    ]
+  }
+}

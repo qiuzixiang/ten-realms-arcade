@@ -1,0 +1,15 @@
+{
+  "freshTemporaryDirectory": true,
+  "files": [
+    {
+      "file": "levels.js",
+      "sha256": "f6c10055311488565a12b78fbbe4019097a2ba5b6fba89b1c01677d29a1c4cd2",
+      "identical": true
+    },
+    {
+      "file": "release/level-proofs.json",
+      "sha256": "78ed38b3c557eb54a0aabacdce18bc2a9b28c0e724db5a1bb3c2d6654e8125ab",
+      "identical": true
+    }
+  ]
+}

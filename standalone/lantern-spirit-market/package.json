@@ -1,0 +1,1 @@
+{"name":"lantern-spirit-market","version":"1.0.0","private":true,"scripts":{"test":"node --test tests/*.test.mjs","generate":"node tools/generate.mjs","build":"node tools/build.mjs","audit":"node tools/audit.mjs","qa:browser":"node tools/browser-qa.mjs","qa:edges":"node tools/edge-qa.mjs"},"devDependencies":{"acorn":"8.18.0","playwright":"1.62.1"}}

@@ -1,0 +1,69 @@
+{
+  "status": "PASSED",
+  "scope": "local static candidate only",
+  "files": [
+    {
+      "path": "app.js",
+      "bytes": 21590,
+      "sha256": "163ca58aa754bd628193953c2c349e037135bc1be88d4d7a99ae78f5c863a299"
+    },
+    {
+      "path": "assets/atelier.svg",
+      "bytes": 10790,
+      "sha256": "163d016a36c096f78c91d05bc4ca8b123e66b2ac36c02182d984b379371b174f"
+    },
+    {
+      "path": "assets/icon.svg",
+      "bytes": 2221,
+      "sha256": "aab5febc3c52dc38cc47ceac6e287c759bef821f847bcdd902e358e85c897085"
+    },
+    {
+      "path": "engine.js",
+      "bytes": 2903,
+      "sha256": "d2749e0425f3fb24f81feeb23414ab1cb61f134ea3c8848de63df3f5c1099db1"
+    },
+    {
+      "path": "index.html",
+      "bytes": 1346,
+      "sha256": "219bad8742dc4a631cffceec72e7ba042c8b6b9545b67da54dcfeaa0a96b63cb"
+    },
+    {
+      "path": "levels.js",
+      "bytes": 35433,
+      "sha256": "4b11f38a85cda554b73bd4d1fc663d5bb4e30ed9949264af1ab7737e3c78db41"
+    },
+    {
+      "path": "license.json",
+      "bytes": 2647,
+      "sha256": "7fcb2b2cd86a32f3a9474a3b60a872ac1625155c912ce6bfd6fdbf3f69da2f58"
+    },
+    {
+      "path": "session.js",
+      "bytes": 4266,
+      "sha256": "0a1b75db635c993de016f11862f18ac0db478907abb38c172f0d1d40f3d1872d"
+    },
+    {
+      "path": "storage.js",
+      "bytes": 1337,
+      "sha256": "19c039fa8271ada67317dedfdbdc1fc23613665c3284c468733bbef5311573de"
+    },
+    {
+      "path": "style.css",
+      "bytes": 15601,
+      "sha256": "d03511805f1fff76da576a68e18b1cd96d8ea94e4bb792354ecd388af598235b"
+    },
+    {
+      "path": "view.js",
+      "bytes": 1879,
+      "sha256": "101d88d8a3b73de47822aa9d870ef4d6542d2f3502976dd1c3ba5b1d13b5fb4f"
+    }
+  ],
+  "checks": [
+    "single root HTML; only permitted types; local references exist; ordered external classic scripts; script syntax checks; banned-capability/new-syntax scan; margin/grid-gap CSS baseline; safe area ordinary fallback; no shared dependencies; licenses embedded as JSON"
+  ],
+  "currentOnlineSpecification": "unverified: attempt returned no retained response body on 2026-10-02; full exit status not retained",
+  "zip": {
+    "bytes": 26477,
+    "sha256": "10c941e9b991ad574b75ced601f81a2e7e0820abde61fcde65a6161c64593bc9"
+  }
+}

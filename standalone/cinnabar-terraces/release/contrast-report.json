@@ -1,0 +1,106 @@
+{
+  "method": "WCAG relative luminance, static exact foreground/background pairs",
+  "changes": "Darkened tile outline and button boundaries; darkened digit and earned-brick text. No red/green-only information.",
+  "rows": [
+    {
+      "name": "body",
+      "foreground": "#2E3037",
+      "background": "#F7E6D7",
+      "ratio": 10.824062353769914,
+      "target": 4.5,
+      "passed": true
+    },
+    {
+      "name": "heading",
+      "foreground": "#793C3A",
+      "background": "#F7E6D7",
+      "ratio": 6.845979315368529,
+      "target": 4.5,
+      "passed": true
+    },
+    {
+      "name": "primary label",
+      "foreground": "#FFF5EA",
+      "background": "#793C3A",
+      "ratio": 7.7371957691998645,
+      "target": 4.5,
+      "passed": true
+    },
+    {
+      "name": "digit",
+      "foreground": "#21181D",
+      "background": "#C96B48",
+      "ratio": 4.682494371399101,
+      "target": 4.5,
+      "passed": true
+    },
+    {
+      "name": "caption",
+      "foreground": "#73524C",
+      "background": "#F7E6D7",
+      "ratio": 5.675468234420292,
+      "target": 4.5,
+      "passed": true
+    },
+    {
+      "name": "chapter text",
+      "foreground": "#63443E",
+      "background": "#ECCDAD",
+      "ratio": 5.728421473855092,
+      "target": 4.5,
+      "passed": true
+    },
+    {
+      "name": "notes",
+      "foreground": "#3F554E",
+      "background": "#E2BFA7",
+      "ratio": 4.671948978988881,
+      "target": 4.5,
+      "passed": true
+    },
+    {
+      "name": "relation",
+      "foreground": "#793C3A",
+      "background": "#FAEEE3",
+      "ratio": 7.301856474381734,
+      "target": 4.5,
+      "passed": true
+    },
+    {
+      "name": "conflict",
+      "foreground": "#8A2840",
+      "background": "#E2BFA7",
+      "ratio": 4.980901645441043,
+      "target": 4.5,
+      "passed": true
+    },
+    {
+      "name": "selection",
+      "foreground": "#793C3A",
+      "background": "#F3C86E",
+      "ratio": 5.276005298132147,
+      "target": 3,
+      "passed": true
+    },
+    {
+      "name": "tile boundary",
+      "foreground": "#8D5B49",
+      "background": "#E2BFA7",
+      "ratio": 3.2868358056080877,
+      "target": 3,
+      "passed": true
+    },
+    {
+      "name": "button boundary",
+      "foreground": "#9A6C56",
+      "background": "#FBF0E6",
+      "ratio": 4.020391043192139,
+      "target": 3,
+      "passed": true
+    }
+  ],
+  "limitations": [
+    "not a physical-device/color-vision study",
+    "decorative illustration gradients and disabled controls excluded"
+  ]
+}

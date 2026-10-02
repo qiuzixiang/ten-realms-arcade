@@ -1,0 +1,81 @@
+{
+  "status": "PASSED",
+  "sourceCommit": "28ad11fb8835c830f11fa8857e825b9a712428d9",
+  "commands": [
+    {
+      "command": "node scripts/assets.cjs",
+      "exitCode": 0,
+      "output": "Original vector textile scene and icon written; no generated raster assets",
+      "error": ""
+    },
+    {
+      "command": "node scripts/generate.cjs",
+      "exitCode": 0,
+      "output": "[\n  [ '第一条彩带', 8 ],\n  [ '经纬相遇', 8 ],\n  [ '借位再归', 8 ],\n  [ '角落换线', 8 ],\n  [ '连纹入框', 8 ],\n  [ '最后一幅绸', 8 ]\n]\nGenerated 48 coordinate-oracle verified, symmetry-distinct levels",
+      "error": ""
+    },
+    {
+      "command": "node --test tests/core.test.cjs tests/storage.test.cjs",
+      "exitCode": 0,
+      "output": "✔ All legal moves agree with coordinate oracle; four cycles and inverses restore (5.483833ms)\n✔ Malformed moves are exact no-ops; malformed or partially solved boards never win (0.110416ms)\n✔ 48 campaign levels independently solve, have no D4/torus-equivalent repetitions (6.033334ms)\n✔ Tutorial chain and shared renderer show exactly sixteen real tiles (0.299916ms)\n✔ Hints solve arbitrary legal deviations without replaying stale original steps (42.491667ms)\n✔ Undo/redo restore board and effective step count; independent best and first claims dedupe (0.463583ms)\n✔ Corrupt current run does not destroy replay-verified receipts; fake claims rejected (0.111542ms)\n✔ Persistence failure blocks host delivery, retry keeps one stable claim ID (0.134625ms)\n✔ Better independent score updates receipt without repeating first reward (0.124834ms)\n✔ Restored pending rewards use verified receipts, sanitize fields and remove duplicate IDs (0.105125ms)\n✔ Native 9.46+ storage is preferred and saves writes in order (0.743375ms)\n✔ Old/uninjected clients use web storage; write exceptions return false (0.108083ms)\n✔ Native failure is reported, without creating a second inconsistent web save (0.081666ms)\n✔ Read exceptions never overwrite an unknown existing save even when writes would succeed (0.055333ms)\nℹ tests 14\nℹ suites 0\nℹ pass 14\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 84.117709",
+      "error": ""
+    },
+    {
+      "command": "node scripts/build.cjs",
+      "exitCode": 0,
+      "output": "Built classic-script local candidate: /private/var/folders/zs/hpwfkwh1687frv7wds0wg1zw0000gn/T/silk-clean-AFRSkA/standalone/silk-loop-studio/dist/silk-loop-studio-xhs.zip 26477 bytes",
+      "error": ""
+    },
+    {
+      "command": "node scripts/audit.cjs",
+      "exitCode": 0,
+      "output": "Static audit passed: 11 files; CRC valid; ZIP 26477 bytes",
+      "error": ""
+    },
+    {
+      "command": "node scripts/contrast.cjs",
+      "exitCode": 0,
+      "output": "Contrast: [\n  {\n    label: '正文',\n    fg: '#283033',\n    bg: '#fff8ed',\n    minimum: 4.5,\n    ratio: 12.75\n  },\n  {\n    label: '辅助正文',\n    fg: '#675d51',\n    bg: '#fff8ed',\n    minimum: 4.5,\n    ratio: 6.1\n  },\n  {\n    label: '蓝色标题',\n    fg: '#354a90',\n    bg: '#fff8ed',\n    minimum: 4.5,\n    ratio: 7.86\n  },\n  {\n    label: '主按钮',\n    fg: '#ffffff',\n    bg: '#354a90',\n    minimum: 4.5,\n    ratio: 8.29\n  },\n  {\n    label: '数字纸签',\n    fg: '#1d2428',\n    bg: '#fffaf3',\n    minimum: 4.5,\n    ratio: 15.14\n  },\n  {\n    label: '方向按钮',\n    fg: '#283033',\n    bg: '#efbc42',\n    minimum: 4.5,\n    ratio: 7.65\n  },\n  {\n    label: '焦点边',\n    fg: '#354a90',\n    bg: '#fff8ed',\n    minimum: 3,\n    ratio: 7.86\n  },\n  {\n    label: '目标位标注',\n    fg: '#ffffff',\n    bg: '#565960',\n    minimum: 4.5,\n    ratio: 7.02\n  }\n]",
+      "error": ""
+    },
+    {
+      "command": "python3 platform/audit_artifact.py dist/xhs",
+      "exitCode": 0,
+      "output": "PASS: 11 file(s), 0 warning(s)",
+      "error": ""
+    },
+    {
+      "command": "python3 platform/audit_artifact.py dist/silk-loop-studio-xhs.zip",
+      "exitCode": 0,
+      "output": "PASS: 11 file(s), 0 warning(s)",
+      "error": ""
+    }
+  ],
+  "reproduction": [
+    {
+      "file": "assets/atelier.svg",
+      "originalHash": "163d016a36c096f78c91d05bc4ca8b123e66b2ac36c02182d984b379371b174f",
+      "cleanHash": "163d016a36c096f78c91d05bc4ca8b123e66b2ac36c02182d984b379371b174f",
+      "match": true
+    },
+    {
+      "file": "assets/icon.svg",
+      "originalHash": "aab5febc3c52dc38cc47ceac6e287c759bef821f847bcdd902e358e85c897085",
+      "cleanHash": "aab5febc3c52dc38cc47ceac6e287c759bef821f847bcdd902e358e85c897085",
+      "match": true
+    },
+    {
+      "file": "levels.js",
+      "originalHash": "4b11f38a85cda554b73bd4d1fc663d5bb4e30ed9949264af1ab7737e3c78db41",
+      "cleanHash": "4b11f38a85cda554b73bd4d1fc663d5bb4e30ed9949264af1ab7737e3c78db41",
+      "match": true
+    },
+    {
+      "file": "dist/silk-loop-studio-xhs.zip",
+      "originalHash": "10c941e9b991ad574b75ced601f81a2e7e0820abde61fcde65a6161c64593bc9",
+      "cleanHash": "10c941e9b991ad574b75ced601f81a2e7e0820abde61fcde65a6161c64593bc9",
+      "match": true
+    }
+  ],
+  "temporaryCheckoutRemoved": true
+}

@@ -1,0 +1,22 @@
+{
+  "status": "LOCAL_CANDIDATE_AUDIT_PASSED",
+  "zipBytes": 44501,
+  "uncompressedBytes": 234475,
+  "fileCount": 20,
+  "ES2017Parse": true,
+  "crc": true,
+  "localReferences": true,
+  "SVGXML": true,
+  "licenses": true,
+  "officialOutput": [
+    "PASS: 20 file(s), 0 warning(s)\n",
+    "NOTE: Node audit checks zip size only; artifact contents must be audited before packaging\nPASS: 1 file(s), 0 warning(s)\n"
+  ],
+  "platformReady": false,
+  "limitations": [
+    "online spec DNS timed out",
+    "no official simulator",
+    "no physical iOS/Android",
+    "no actual Chrome61 runtime"
+  ]
+}

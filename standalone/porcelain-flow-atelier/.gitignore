@@ -1,0 +1,4 @@
+# Small local delivery files are intentional review artifacts.
+!dist/
+!dist/**
+!release/*.log

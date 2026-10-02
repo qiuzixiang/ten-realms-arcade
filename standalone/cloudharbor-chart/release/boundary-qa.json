@@ -1,0 +1,13 @@
+{
+  "checks": [
+    "tutorial X and Escape persist read flag without clearing progress",
+    "touch tap route selection and keyboard Enter port selection",
+    "UI crossing rejected without state/history change",
+    "crossing note does not block actual line",
+    "12 exact ports disconnected: no win, actual screenshot",
+    "hint usage persisted",
+    "checked flags cleared with neighboring line and restored by undo",
+    "host failure outbox retained, same ID retry on reload, acknowledgement avoids repeat"
+  ],
+  "errors": []
+}

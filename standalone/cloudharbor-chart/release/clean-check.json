@@ -1,0 +1,32 @@
+{
+  "testedCommit": "a0d66b8e332525def2ca2961d4796179e15cf413",
+  "cleanExport": "/var/folders/zs/hpwfkwh1687frv7wds0wg1zw0000gn/T/cloudharbor-clean-ajtqxib6/standalone/cloudharbor-chart",
+  "checks": [
+    {
+      "command": "node --test tests/rules.test.cjs",
+      "exitCode": 0,
+      "outputTail": "o skipping middle port; endpoint sharing; cycle allowed; overfull allowed (0.098541ms)\n✔ full disconnected components do not win (0.036958ms)\n✔ crossing atomic rejection; notes never block crossing route; checked invalidation (0.127792ms)\n✔ strict state validation rejects tampering (0.09475ms)\n✔ domain oracle agrees with raw 3^E enumeration on 30 small fixtures (1.34025ms)\n✔ completion and reward dedupe; restore recomputes actual winner (0.861625ms)\n✔ native 9.46+ storage preference, fallback and failures (0.578375ms)\n✔ damaged histories rejected without deleting valid collection (0.258458ms)\nℹ tests 69\nℹ suites 0\nℹ pass 69\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 57.418917\n",
+      "stderr": ""
+    },
+    {
+      "command": "node tools/build.cjs",
+      "exitCode": 0,
+      "outputTail": "Built /private/var/folders/zs/hpwfkwh1687frv7wds0wg1zw0000gn/T/cloudharbor-clean-ajtqxib6/standalone/cloudharbor-chart/dist/xhs\nZIP /private/var/folders/zs/hpwfkwh1687frv7wds0wg1zw0000gn/T/cloudharbor-clean-ajtqxib6/standalone/cloudharbor-chart/dist/cloudharbor-chart-xhs.zip\n",
+      "stderr": ""
+    },
+    {
+      "command": "node tools/prove.cjs",
+      "exitCode": 0,
+      "outputTail": "60 independent exhaustive uniqueness proofs, all engine verified\n",
+      "stderr": ""
+    },
+    {
+      "command": "node tools/audit.cjs",
+      "exitCode": 0,
+      "outputTail": "{\n  \"files\": [\n    {\n      \"file\": \"app.js\",\n      \"bytes\": 66423\n    },\n    {\n      \"file\": \"index.html\",\n      \"bytes\": 412\n    },\n    {\n      \"file\": \"styles.css\",\n      \"bytes\": 9072\n    }\n  ],\n  \"zipBytes\": 21658,\n  \"classicScripts\": true,\n  \"localReferences\": true,\n  \"forbiddenAPIsAbsent\": true,\n  \"syntax\": \"node --check passes; manual ES2017/Chrome61 review, old engine not run\",\n  \"css\": \"Grid grid-gap, flex margins, physical properties, safe-area fallback; no old engine run\"\n}\n",
+      "stderr": ""
+    }
+  ],
+  "zipSha256Identical": true,
+  "sharedFilesChanged": false
+}

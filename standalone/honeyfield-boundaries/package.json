@@ -1,0 +1,1 @@
+{"name":"honeyfield-boundaries","private":true,"version":"1.0.0","scripts":{"generate":"node scripts/generate.mjs","build":"node scripts/build.mjs","test":"node tests/rules.mjs","qa:browser":"node tests/browser.mjs","audit":"node scripts/audit.mjs"}}

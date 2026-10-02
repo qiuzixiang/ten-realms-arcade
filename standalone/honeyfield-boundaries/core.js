@@ -1,0 +1,20 @@
+(function(root){
+'use strict';
+function edges(l){var a=[];for(var y=0;y<l.n;y++)for(var x=1;x<l.n;x++)a.push('v:'+y+':'+x);for(y=1;y<l.n;y++)for(x=0;x<l.n;x++)a.push('h:'+y+':'+x);return a;}
+function side(l,i,d){var x=i%l.n,y=Math.floor(i/l.n);if(d===0)return y===0?null:'h:'+y+':'+x;if(d===1)return x===l.n-1?null:'v:'+y+':'+(x+1);if(d===2)return y===l.n-1?null:'h:'+(y+1)+':'+x;return x===0?null:'v:'+y+':'+x;}
+function adjacent(l,key){var p=key.split(':'),y=+p[1],x=+p[2];return p[0]==='v'?[y*l.n+x-1,y*l.n+x]:[(y-1)*l.n+x,y*l.n+x];}
+function fresh(l){var e={};edges(l).forEach(function(k){e[k]=0;});return {edges:e,moves:0};}
+function normalize(l,s){if(!s||!s.edges||Array.isArray(s.edges)||!Number.isInteger(s.moves)||s.moves<0||s.moves>100000)return null;var ks=edges(l);if(Object.keys(s.edges).length!==ks.length||!ks.every(function(k){return [0,1,2].includes(s.edges[k]);}))return null;return {edges:Object.assign({},s.edges),moves:s.moves};}
+function set(l,s,key,value){if(!edges(l).includes(key)||![0,1,2].includes(value)||s.edges[key]===value)return null;var e=Object.assign({},s.edges);e[key]=value;return {edges:e,moves:s.moves+1};}
+function groups(l,s,onlyClear){var parent=Array.from({length:l.n*l.n},function(_,i){return i;});function find(i){while(parent[i]!==i)i=parent[i];return i;}edges(l).forEach(function(k){if(onlyClear?s.edges[k]===2:s.edges[k]!==1){var a=adjacent(l,k);parent[find(a[0])]=find(a[1]);}});var map={};parent.forEach(function(_,i){var r=find(i);if(!map[r])map[r]=[];map[r].push(i);});return Object.values(map);}
+function count(l,s,i){var c=0;for(var d=0;d<4;d++){var k=side(l,i,d);if(k===null||s.edges[k]===1)c++;}return c;}
+function analyze(l,s){var gs=groups(l,s),ids=[],errors=[],over=[];gs.forEach(function(g,j){g.forEach(function(i){ids[i]=j;});});l.clues.forEach(function(c,i){if(c!==null){var b=count(l,s,i);if(b!==c)errors.push(i);if(b>c)over.push(i);}});var stray=edges(l).filter(function(k){var a=adjacent(l,k);return s.edges[k]===1&&ids[a[0]]===ids[a[1]];});var sizes=gs.every(function(g){return g.length===l.k;});return {groups:gs,ids:ids,errors:errors,over:over,stray:stray,sizes:sizes,complete:sizes&&errors.length===0&&stray.length===0};}
+function solved(l,s){return !!normalize(l,s)&&analyze(l,s).complete;}
+// Sound deductions use definite open components and possible open components separately.
+function deduction(l,s){var ks=edges(l),clear=groups(l,s,true),possible=groups(l,s),cid=[],pid=[];clear.forEach(function(g,j){g.forEach(function(i){cid[i]=j;});});possible.forEach(function(g,j){g.forEach(function(i){pid[i]=j;});});
+for(var i=0;i<l.clues.length;i++){if(l.clues[i]===null)continue;var walls=0,unknown=[];for(var d=0;d<4;d++){var key=side(l,i,d);if(key===null||s.edges[key]===1)walls++;else if(s.edges[key]===0)unknown.push(key);}if(unknown.length&&walls===l.clues[i])return {key:unknown[0],value:2,cell:i,type:'clue',reason:'这格已有 '+walls+' 道墙，达到数字；其余边必须无墙。'};if(unknown.length&&walls+unknown.length===l.clues[i])return {key:unknown[0],value:1,cell:i,type:'clue',reason:'要达到数字 '+l.clues[i]+'，这格剩余未知边都必须是墙。'};}
+for(i=0;i<ks.length;i++){key=ks[i];if(s.edges[key]!==0)continue;var a=adjacent(l,key),c=cid[a[0]],b=cid[a[1]];if(c===b)return {key:key,value:2,cell:a[0],type:'connect',reason:'两侧已由明确通路相连；不能在同一区内部留墙。'};if(clear[c].length+clear[b].length>l.k)return {key:key,value:1,cell:a[0],type:'capacity',reason:'连通这两块明确通路会超过每区 '+l.k+' 格，这条边必须立篱。'};if(possible[pid[a[0]]].length===l.k)return {key:key,value:2,cell:a[0],type:'connect',reason:'可通行范围恰好 '+l.k+' 格，内部必须连通且不能有冗余墙。'};}
+return null;}
+function logical(l){var s=fresh(l),trace=[],a;while((a=deduction(l,s))){s=set(l,s,a.key,a.value);trace.push(a);if(trace.length>edges(l).length)throw Error('loop');}return {state:s,trace:trace,complete:solved(l,s)};}
+root.HoneyCore={edges:edges,side:side,adjacent:adjacent,fresh:fresh,normalize:normalize,set:set,groups:groups,count:count,analyze:analyze,solved:solved,deduction:deduction,logical:logical};
+})(typeof window!=='undefined'?window:globalThis);

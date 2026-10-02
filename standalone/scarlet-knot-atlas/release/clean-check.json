@@ -1,0 +1,39 @@
+{
+  "date": "2026-10-01T14:10:33.887Z",
+  "sourceCommit": "dd0a46f8ed750540fc264798001975cfe6cabc8e",
+  "scope": "standalone/scarlet-knot-atlas",
+  "commands": [
+    {
+      "command": "npm run generate",
+      "exitCode": 0,
+      "output": "> scarlet-knot-atlas@1.0.0 generate\n> node tools/generate.cjs && node tools/tutorial.cjs\n\nGenerated 48 connected non-isomorphic graphs in six chapters. Difficulty labels require play review.\nRendered true initial / one legal move / completed tutorial: crossing pairs 1 / 1 / 0."
+    },
+    {
+      "command": "npm test",
+      "exitCode": 0,
+      "output": "> scarlet-knot-atlas@1.0.0 test\n> node --test tests/*.test.cjs\n\n✔ 48 graphs, 6 chapters, distinct exact topology, closed geometry witnessed and replayable (16.655166ms)\n✔ initial and reference seals stay legible at 288 by 344 board; no rule-level distance restriction (0.633917ms)\n✔ closed intersection: X, T, collinear, coincident and separate (0.480291ms)\n✔ different IDs with identical coordinates count; same logical endpoint exempt (0.126833ms)\n✔ 10000 deterministic lattice samples agree with independent parameter oracle (9.990334ms)\n✔ moves are atomic; cancellation preview belongs outside engine; undo victory (0.587958ms)\n✔ restore replays all moves and rejects forged saved positions or histories (0.166708ms)\n✔ claim and outbox deduplicate same victory, replay and new-run first reward (1.154708ms)\n✔ Web adapter private keys, damaged JSON and write failure (0.227708ms)\n✔ native Storage preferred at 9.46+; version fallback and slow queue retain latest (19.49175ms)\n✔ persist before delivery, same completion/claim IDs on retry and ack write failure (0.629791ms)\n✔ late host ack persists latest game position rather than old flush snapshot (1.771125ms)\n✔ hanging optional host has a bounded retry timeout, preserving stable claim (17.355625ms)\n✔ exact isomorphism accepts relabeling and rejects same-degree different graphs (1.397791ms)\n✔ articulation classification covers two blocks sharing a point (0.102125ms)\n✔ renderer uses exact formal points, all straight edges, all knot pairs in three tutorial states (0.877458ms)\nℹ tests 16\nℹ suites 0\nℹ pass 16\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 72.465"
+    },
+    {
+      "command": "npm run prove",
+      "exitCode": 0,
+      "output": "> scarlet-knot-atlas@1.0.0 prove\n> node tools/prove.cjs && node tools/prove.cjs --campaign\n\nVerified 8 representative graphs with independent oracle and runtime replay.\nVerified 48 campaign graphs with independent oracle and runtime replay."
+    },
+    {
+      "command": "npm run build",
+      "exitCode": 0,
+      "output": "> scarlet-knot-atlas@1.0.0 build\n> node tools/build.cjs\n\nBuilt standalone classic ES2017 files: /private/var/folders/zs/hpwfkwh1687frv7wds0wg1zw0000gn/T/scarlet-clean-JqlMNB/standalone/scarlet-knot-atlas/dist/xhs\nCandidate ZIP: /private/var/folders/zs/hpwfkwh1687frv7wds0wg1zw0000gn/T/scarlet-clean-JqlMNB/standalone/scarlet-knot-atlas/dist/scarlet-knot-atlas-xhs.zip"
+    },
+    {
+      "command": "npm run audit",
+      "exitCode": 0,
+      "output": "> scarlet-knot-atlas@1.0.0 audit\n> node tools/audit.cjs\n\nPASS local package: 111008 bytes, 9 files, CRC/XML/relative refs/static capability gates/contrast; official audit 0 warnings."
+    }
+  ],
+  "zipSHA256": "17d883a6e16ce0cec34a826c9611822aee823f095b3ada16f2983fdf38a6465a",
+  "byteIdenticalToWorkingCandidate": true,
+  "tempDirectory": "/var/folders/zs/hpwfkwh1687frv7wds0wg1zw0000gn/T/scarlet-clean-JqlMNB",
+  "limitations": [
+    "browser checks performed against same-byte working candidate, not rerun from temporary path",
+    "archived official audit script is an external specified test dependency; MINITOOL_AUDIT override supported"
+  ]
+}

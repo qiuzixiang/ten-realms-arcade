@@ -1,0 +1,380 @@
+{
+  "artifact": "dist/xhs (exact ZIP contents)",
+  "csp": "restricted headers; no script-inline/eval/network",
+  "viewports": [
+    {
+      "width": 320,
+      "height": 720,
+      "touchInput": true,
+      "overflow": false,
+      "controls": [
+        {
+          "class": "row-key active",
+          "width": 46.65625,
+          "height": 44
+        },
+        {
+          "class": "row-key",
+          "width": 46.671875,
+          "height": 44
+        },
+        {
+          "class": "row-key",
+          "width": 46.671875,
+          "height": 44
+        },
+        {
+          "class": "row-key",
+          "width": 46.65625,
+          "height": 44
+        },
+        {
+          "class": "row-key",
+          "width": 46.671875,
+          "height": 44
+        },
+        {
+          "class": "row-key",
+          "width": 46.671875,
+          "height": 44
+        },
+        {
+          "class": "cell-key active",
+          "width": 88,
+          "height": 48
+        },
+        {
+          "class": "cell-key",
+          "width": 88,
+          "height": 48
+        },
+        {
+          "class": "cell-key",
+          "width": 88,
+          "height": 48
+        },
+        {
+          "class": "cell-key",
+          "width": 88,
+          "height": 48
+        },
+        {
+          "class": "cell-key",
+          "width": 88,
+          "height": 48
+        },
+        {
+          "class": "cell-key",
+          "width": 88,
+          "height": 48
+        },
+        {
+          "class": "digit-key",
+          "width": 88,
+          "height": 52
+        },
+        {
+          "class": "digit-key",
+          "width": 88,
+          "height": 52
+        },
+        {
+          "class": "digit-key",
+          "width": 88,
+          "height": 52
+        },
+        {
+          "class": "digit-key",
+          "width": 88,
+          "height": 52
+        },
+        {
+          "class": "digit-key",
+          "width": 88,
+          "height": 52
+        },
+        {
+          "class": "digit-key",
+          "width": 88,
+          "height": 52
+        }
+      ],
+      "fullSolve": "ct-41 via touch panel",
+      "saveResume": true,
+      "completionDedup": true,
+      "practice": true
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "touchInput": true,
+      "overflow": false,
+      "controls": [
+        {
+          "class": "row-key active",
+          "width": 53.15625,
+          "height": 44
+        },
+        {
+          "class": "row-key",
+          "width": 53.171875,
+          "height": 44
+        },
+        {
+          "class": "row-key",
+          "width": 53.171875,
+          "height": 44
+        },
+        {
+          "class": "row-key",
+          "width": 53.15625,
+          "height": 44
+        },
+        {
+          "class": "row-key",
+          "width": 53.171875,
+          "height": 44
+        },
+        {
+          "class": "row-key",
+          "width": 53.171875,
+          "height": 44
+        },
+        {
+          "class": "cell-key active",
+          "width": 106,
+          "height": 48
+        },
+        {
+          "class": "cell-key",
+          "width": 106,
+          "height": 48
+        },
+        {
+          "class": "cell-key",
+          "width": 106,
+          "height": 48
+        },
+        {
+          "class": "cell-key",
+          "width": 106,
+          "height": 48
+        },
+        {
+          "class": "cell-key",
+          "width": 106,
+          "height": 48
+        },
+        {
+          "class": "cell-key",
+          "width": 106,
+          "height": 48
+        },
+        {
+          "class": "digit-key",
+          "width": 106,
+          "height": 52
+        },
+        {
+          "class": "digit-key",
+          "width": 106,
+          "height": 52
+        },
+        {
+          "class": "digit-key",
+          "width": 106,
+          "height": 52
+        },
+        {
+          "class": "digit-key",
+          "width": 106,
+          "height": 52
+        },
+        {
+          "class": "digit-key",
+          "width": 106,
+          "height": 52
+        },
+        {
+          "class": "digit-key",
+          "width": 106,
+          "height": 52
+        }
+      ],
+      "fullSolve": "ct-41 via touch panel",
+      "saveResume": true,
+      "completionDedup": true,
+      "practice": true
+    },
+    {
+      "width": 1280,
+      "height": 720,
+      "touchInput": false,
+      "overflow": false,
+      "controls": [
+        {
+          "class": "row-key active",
+          "width": 57.5,
+          "height": 44
+        },
+        {
+          "class": "row-key",
+          "width": 57.5,
+          "height": 44
+        },
+        {
+          "class": "row-key",
+          "width": 57.5,
+          "height": 44
+        },
+        {
+          "class": "row-key",
+          "width": 57.5,
+          "height": 44
+        },
+        {
+          "class": "row-key",
+          "width": 57.5,
+          "height": 44
+        },
+        {
+          "class": "row-key",
+          "width": 57.5,
+          "height": 44
+        },
+        {
+          "class": "cell-key active",
+          "width": 114.65625,
+          "height": 48
+        },
+        {
+          "class": "cell-key",
+          "width": 114.671875,
+          "height": 48
+        },
+        {
+          "class": "cell-key",
+          "width": 114.65625,
+          "height": 48
+        },
+        {
+          "class": "cell-key",
+          "width": 114.65625,
+          "height": 48
+        },
+        {
+          "class": "cell-key",
+          "width": 114.671875,
+          "height": 48
+        },
+        {
+          "class": "cell-key",
+          "width": 114.65625,
+          "height": 48
+        },
+        {
+          "class": "digit-key",
+          "width": 114.65625,
+          "height": 52
+        },
+        {
+          "class": "digit-key",
+          "width": 114.671875,
+          "height": 52
+        },
+        {
+          "class": "digit-key",
+          "width": 114.65625,
+          "height": 52
+        },
+        {
+          "class": "digit-key",
+          "width": 114.65625,
+          "height": 52
+        },
+        {
+          "class": "digit-key",
+          "width": 114.671875,
+          "height": 52
+        },
+        {
+          "class": "digit-key",
+          "width": 114.65625,
+          "height": 52
+        }
+      ],
+      "fullSolve": "ct-41 via mouse panel",
+      "saveResume": true,
+      "completionDedup": true,
+      "practice": true
+    }
+  ],
+  "errors": [],
+  "externalRequests": [],
+  "checks": [
+    "desktop keyboard full solve, host failure/retry same ID, persistent ledger before host",
+    "corrupt current reset, earned ledger revalidated, forged completion rejected, other game preserved",
+    "storage-blocked path remains playable and never delivers unpersisted reward",
+    "breakpoints ±1px, 44/34px safe area, reduced motion, large body text, landscape",
+    "ct-06 vertical direction, ct-27 five-length chain, ct-56 branching; 5/6 tutorial true-state cards"
+  ],
+  "screenshots": [
+    "tutorial-one-320.png",
+    "tutorial-two-320.png",
+    "tutorial-three-320.png",
+    "home-320.png",
+    "chapters-320.png",
+    "game-320.png",
+    "maximum-notes-320.png",
+    "hint-320.png",
+    "complete-320.png",
+    "collection-320.png",
+    "practice-320.png",
+    "tutorial-one-390.png",
+    "tutorial-two-390.png",
+    "tutorial-three-390.png",
+    "home-390.png",
+    "chapters-390.png",
+    "game-390.png",
+    "maximum-notes-390.png",
+    "hint-390.png",
+    "complete-390.png",
+    "collection-390.png",
+    "practice-390.png",
+    "tutorial-one-1280.png",
+    "tutorial-two-1280.png",
+    "tutorial-three-1280.png",
+    "home-1280.png",
+    "chapters-1280.png",
+    "game-1280.png",
+    "maximum-notes-1280.png",
+    "hint-1280.png",
+    "complete-1280.png",
+    "collection-1280.png",
+    "practice-1280.png",
+    "storage-unavailable-320.png",
+    "breakpoint-358.png",
+    "breakpoint-359.png",
+    "breakpoint-360.png",
+    "breakpoint-798.png",
+    "breakpoint-799.png",
+    "breakpoint-800.png",
+    "breakpoint-1149.png",
+    "breakpoint-1150.png",
+    "breakpoint-1151.png",
+    "safe-area-large-text-320.png",
+    "safe-area-modal-320.png",
+    "landscape-720.png",
+    "representative-ct-06-390.png",
+    "representative-ct-06-hint.png",
+    "representative-ct-27-390.png",
+    "representative-ct-27-hint.png",
+    "representative-ct-56-390.png",
+    "representative-ct-56-hint.png",
+    "tutorial-5-action-390.png",
+    "tutorial-5-complete-390.png",
+    "tutorial-6-action-390.png",
+    "tutorial-6-complete-390.png"
+  ],
+  "status": "BROWSER_SIMULATION_PASSED"
+}
